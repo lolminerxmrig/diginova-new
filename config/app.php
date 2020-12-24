@@ -165,6 +165,12 @@ return [
         /*
          * Package Service Providers...
          */
+        Modules\Customers\Auth\Providers\CustomerAuthServiceProvider::class,
+
+        Modules\Staff\Auth\Providers\StaffAuthServiceProvider::class,
+
+        Modules\Sellers\Auth\Providers\SellerAuthServiceProvider::class,
+
 
         /*
          * Application Service Providers...
