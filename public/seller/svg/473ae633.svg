@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="40px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Badge / Flag / Sensetive</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Badge-/-Flag-/-Sensetive" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M2.5,-2.5 L42.5,-2.5 L42.5,40 C42.5,41.1045695 41.6045695,42 40.5,42 C40.3523063,42 40.205067,41.9836401 40.0609756,41.9512195 L22.9390244,38.0987805 C22.6499548,38.0337398 22.3500452,38.0337398 22.0609756,38.0987805 L4.93902439,41.9512195 C3.86139561,42.193686 2.79124696,41.5166532 2.54878049,40.4390244 C2.51635992,40.294933 2.5,40.1476937 2.5,40 L2.5,-2.5 Z" id="Rectangle" fill="#FFC000" fill-rule="nonzero" transform="translate(22.500000, 20.000000) rotate(90.000000) translate(-22.500000, -20.000000) "></path>
+        <g id="Icon-/-Sensitive" transform="translate(10.000000, 6.000000)" fill="#FFFFFF">
+            <path d="M1.04166667,22.9166667 L23.9583333,22.9166667 L12.5,3.125 L1.04166667,22.9166667 L1.04166667,22.9166667 Z M13.5416667,19.7916667 L11.4583333,19.7916667 L11.4583333,17.7083333 L13.5416667,17.7083333 L13.5416667,19.7916667 L13.5416667,19.7916667 Z M13.5416667,15.625 L11.4583333,15.625 L11.4583333,11.4583333 L13.5416667,11.4583333 L13.5416667,15.625 L13.5416667,15.625 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
