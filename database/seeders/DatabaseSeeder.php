@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        $this->call('Modules\Staff\Auth\Database\seeders\StaffSeeder');
+        $this->call('Modules\Customers\Auth\Database\seeders\CustomerSeeder');
     }
 }
