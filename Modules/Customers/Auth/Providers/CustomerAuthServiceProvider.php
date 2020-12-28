@@ -18,6 +18,6 @@ class CustomerAuthServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
 
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'userauth');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'customerauth');
     }
 }

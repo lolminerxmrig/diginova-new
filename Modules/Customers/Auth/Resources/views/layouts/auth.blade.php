@@ -27,21 +27,28 @@
     <link rel="stylesheet" href="{{ asset('assets/css/min-width1366px.css') }} " media="screen and (min-width: 1366px)">
     <link rel="stylesheet" href="{{ asset('assets/css/min-width1680px.css') }} " media="screen and (min-width: 1680px)">
     <script src="{{ asset('assets/js/sentry.js') }} "></script>
-    <script src="{{ asset('assets/js/loginAction.js') }} "></script>
+    @yield('head')
 </head>
+
 <body class="is-access-page account-pages" style="" cz-shortcut-listen="true">
 <main id="main">
-    <div class="c-toast__container js-toast-container">
-        <div class="c-toast js-toast" style="display: none">
-            <div class="c-toast__text js-toast-text">
+
+    @if(isset($errors) && ($errors->first()))
+    <div id="inline-error" class="c-toast__container js-toast-container">
+            <div class="c-toast js-toast">
+                <div class="c-toast__text js-toast-text" >
+                        {{ $errors->first() }}
+                </div>
+
+                <div class="c-toast__btn-container">
+                    <button id="inline-error-btn" type="button"class="js-toast-btn o-link o-link--sm o-link--no-border o-btn">
+                        متوجه شدم
+                    </button>
+                </div>
             </div>
-            <div class="c-toast__btn-container">
-                <button type="button" class="js-toast-btn o-link o-link--sm o-link--no-border o-btn">
-                    متوجه شدم
-                </button>
-            </div>
-        </div>
     </div>
+    @endif
+
     <div class="semi-modal-layout">
         <section class="o-page o-page--account-box">
             <div class="u-hidden js-invalid-login-message" data-invalid="0">
@@ -51,6 +58,24 @@
             </div>
         </section>
     </div>
+
+    <script>
+        function fadeOutEffect() {
+            var fadeTarget = document.getElementById("inline-error");
+            var fadeEffect = setInterval(function () {
+                if (!fadeTarget.style.opacity) {
+                    fadeTarget.style.opacity = 1;
+                }
+                if (fadeTarget.style.opacity > 0) {
+                    fadeTarget.style.opacity -= 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                }
+            }, 20);
+        }
+        document.getElementById("inline-error-btn").addEventListener('click', fadeOutEffect);
+    </script>
+
 </main>
 </body>
 </html>

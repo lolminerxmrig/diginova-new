@@ -1,6 +1,7 @@
 <?php
 
-use Modules\UserAuth\Http\Controllers\CustomerAuthController;
+use Illuminate\Support\Facades\Route;
+use Modules\Customers\Auth\Http\Controllers\CustomerRegLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,33 @@ use Modules\UserAuth\Http\Controllers\CustomerAuthController;
 */
 
 
-Route::prefix('users')->group(function(){
-    Route::get('login-register',function () {
-        return view('userauth::login-register');
-    })->name('login-register.step1');
+Route::prefix('users')->middleware('web')->group(function(){
+    Route::get('login-register', [CustomerRegLoginController::class, 'regLoginPage'])
+        ->name('customer.regLoginPage');
 
-    Route::post('login-register', [CustomerAuthController::class, 'check'])->name('login-register.check');
-    Route::get('confirm', [CustomerAuthController::class, 'confirm'])->name('login-register.step2');
+    Route::post('login-register', [CustomerRegLoginController::class, 'check'])
+        ->name('customer.check');
+
+    Route::get('login/confirm', [CustomerRegLoginController::class, 'confirmPage'])
+        ->name('customer.confirmPage');
+
+    Route::post('login/confirm', [CustomerRegLoginController::class, 'confirm'])
+        ->name('customer.confirm');
+
+    Route::post('login/confirm/sms', [CustomerRegLoginController::class, 'confirmSms'])
+        ->name('customer.confirmSms');
+
+    Route::get('password/forgot', [CustomerRegLoginController::class, 'forgotPage'])
+        ->name('customer.forgotPage');
+
+    Route::post('password/forgot', [CustomerRegLoginController::class, 'forgot'])
+        ->name('customer.forgot');
+
+    Route::get('welcome', [CustomerRegLoginController::class, 'welcome'])
+        ->name('customer.welcomme');
+
+    Route::get('logout', [CustomerRegLoginController::class, 'logout'])
+        ->name('customer.logout');
 });
 
 
