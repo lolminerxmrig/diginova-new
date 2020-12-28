@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Module Service Providers...
          */
         Modules\Customers\Auth\Providers\CustomerAuthServiceProvider::class,
 
