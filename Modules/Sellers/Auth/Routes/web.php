@@ -1,6 +1,8 @@
 <?php
 
-use Modules\Sellers\Auth\Http\Controllers\SellerAuthController;
+use Illuminate\Support\Facades\Route;
+use Modules\Sellers\Auth\Http\Controllers\SellerController;
+use Modules\Sellers\Auth\Http\Controllers\SellerRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,42 @@ use Modules\Sellers\Auth\Http\Controllers\SellerAuthController;
 */
 
 
+Route::domain('seller.diginova.test')->middleware('web')->group(function () {
+    Route::get('account/dashboard', [SellerController::class, 'dashboardPage'])
+        ->middleware('seller')->name('seller.dashboardPage');
 
-Route::domain('seller.diginova.test')->group(function () {
-    Route::get('account/login',function () {
-        return view('sellerauth::login');
-    })->name('seller-login');
+    Route::get('/', [SellerController::class, 'indexPage'])
+        ->name('seller.indexPage');
+
+    Route::get('account/login', [SellerController::class, 'loginPage'])
+        ->name('seller.loginPage');
+
+    Route::post('account/login', [SellerController::class, 'confirm'])
+        ->name('seller.confirm');
+
+    Route::get('account/logout', [SellerController::class, 'logout'])
+        ->name('seller.logout');
+
+    Route::get('account/forgotpassword', [SellerController::class, 'forgotPage'])
+        ->name('seller.forgotPage');
+
+    Route::post('account/forgotpassword', [SellerController::class, 'forgot'])
+        ->name('seller.forgot');
 });
 
+
+Route::domain('seller.diginova.test')->middleware('web')->group(function () {
+    Route::get('registration', [SellerController::class, 'regStepOne'])
+        ->name('seller.regStepOne');
+
+    Route::post('registration', [SellerRegisterController::class, 'saveStepOne'])
+        ->name('seller.saveStepOne');
+
+//    Route::get('registration/email', [SellerRegLoginController::class, 'regStep2'])
+//        ->name('seller.regStep2');
+//
+//    Route::get('registration/business-details', [SellerRegLoginController::class, 'regStep3'])
+//        ->name('seller.regStep3');
+
+
+});

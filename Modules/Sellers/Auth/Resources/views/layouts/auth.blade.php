@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="{{ asset('seller/icon/caf67ad9.ico') }}" type="image/icon">
     <link rel="stylesheet" href="{{ asset('seller/css/select2.css') }}">
     <script src="{{ asset('seller/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('seller/js/loginAction.js') }}"></script>
+    @yield('head')
   </head>
   <body cz-shortcut-listen="true">
     <div class="c-new-login">
