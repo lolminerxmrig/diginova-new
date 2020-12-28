@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Staff\Auth\Http\Controllers\LoginController;
+use Modules\Staff\Auth\Http\Controllers\StaffRegLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,17 +14,25 @@ use Modules\Staff\Auth\Http\Controllers\LoginController;
 |
 */
 
+Route::domain('staff.diginova.test')->middleware('web')->group(function () {
+    Route::get('/', [StaffRegLoginController::class, 'indexPage'])
+        ->name('staff.indexPage');
 
-Route::domain('staff.diginova.test')->group(function () {
-    Route::get('/',function () {
-        return redirect()->route('staff-show');
-    })->middleware('web')->name('staff-index');
+    Route::get('account/dashboard', [StaffRegLoginController::class, 'dashboardPage'])
+        ->middleware('staff')->name('staff.dashboardPage');
 
-    Route::get('account/login', [LoginController::class, 'show'])->middleware('web')->name('staff-show');
-    Route::get('account/dashboard', function(){
-        return view('staffauth::dashboard')->name('staff-dashboard');
-    })->middleware('web');
-    Route::post('account/login', [LoginController::class, 'login'])->middleware('web')->name('staff-login');
-    Route::post('account/logout', [LoginController::class, 'logout'])->middleware('web')->name('staff-logout');
+    Route::get('account/login', [StaffRegLoginController::class, 'loginPage'])
+        ->name('staff.loginPage');
+
+    Route::get('account/forgotpassword', [StaffRegLoginController::class, 'forgotPage'])
+        ->name('staff.forgotPage');
+
+    Route::post('account/login', [StaffRegLoginController::class, 'confirm'])
+        ->name('staff.confirm');
+
+    Route::get('account/logout', [StaffRegLoginController::class, 'logout'])
+        ->name('staff.logout');
+
+    Route::post('account/forgotpassword', [StaffRegLoginController::class, 'forgot'])
+        ->name('staff.forgot');
 });
-
