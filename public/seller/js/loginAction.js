@@ -30,24 +30,24 @@ var LoginAction = {
 
         $form.validate({
             rules: {
-                'login[email]': {
+                'email': {
                     required: true,
                     email: true,
                     maxlength: 255
                 },
-                'login[password]': {
+                'password': {
                     required: true,
                     minlength: 4,
                     maxlength: 255
                 }
             },
             messages: {
-                'login[email]': {
+                'email': {
                     'required': 'وارد نمودن ایمیل اجباری است',
                     'email': 'آدرس ایمیل صحیح نمی‌باشد',
                     'maxlength': 'form.general.email.validation.toolong'
                 },
-                'login[password]': {
+                'password': {
                     'required': 'وارد کردن رمز عبور اجباری می‌باشد',
                     'minlength': 'طول رمز عبور کوتاه است',
                     'maxlength': 'کلمه عبور فعلی بسیار بلند است'

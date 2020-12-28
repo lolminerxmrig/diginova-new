@@ -2,21 +2,21 @@
 var LoginAction = {
     init: function () {
       this.initLoginForm();
-  
+
       if (isModuleActive('new_login')) {
         this.initLoginError();
       }
     },
-  
+
     initLoginForm: function () {
       var $form = $('#loginForm');
       setTimeout(function () {
         $form.find('input').first().focus();
       }, 100)
-  
+
       $form.validate({
         rules: {
-          'login[email_phone]': {
+          'email_phone': {
             required: true,
             email_phone: true,
             maxlength: 255
@@ -28,7 +28,7 @@ var LoginAction = {
           }
         },
         messages: {
-          'login[email_phone]': {
+          'email_phone': {
             'required': 'ایمیل یا شماره موبایل را وارد نمایید',
             'email_phone': 'ایمیل یا شماره موبایل نامعتبر است',
             'maxlength': 'ایمیل طولانی است'
@@ -40,7 +40,7 @@ var LoginAction = {
           }
         }
       });
-  
+
       if (!isModuleActive('new_login')) {
         $form.find('button').on('click', function (e) {
           e.preventDefault();
@@ -49,7 +49,7 @@ var LoginAction = {
         });
       }
     },
-  
+
     initLoginError: function () {
       var $errorContainer = $('.js-invalid-login-message');
       if (!!$errorContainer.data('invalid')) {
@@ -59,7 +59,7 @@ var LoginAction = {
       }
     },
   };
-  
+
   $(function () {
     LoginAction.init();
   });
