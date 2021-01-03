@@ -162,14 +162,23 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
-         * Module Service Providers...
+         * Modules Service Providers...
          */
         Modules\Customers\Auth\Providers\CustomerAuthServiceProvider::class,
 
-        Modules\Staff\Auth\Providers\StaffAuthServiceProvider::class,
-
         Modules\Sellers\Auth\Providers\SellerAuthServiceProvider::class,
+
+        Modules\Staff\Auth\Providers\StaffAuthServiceProvider::class,
+        Modules\Staff\Category\Providers\StaffCategoryServiceProvider::class,
+
+
+        /*
+         * Packages Service Providers...
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+
 
 
         /*
