@@ -18,8 +18,6 @@
                 <div class="c-grid__row">
                   <div class="c-grid__col">
 
-                    <form action="{{ route('staff.categoryCreate') }}" method="post" id="category_form" style="width:100%">
-                      @csrf
                       <div class="product-form">
                         <div class="c-content-accordion js-accordion uk-accordion">
                           <section class="c-content-accordion__row js-content-section uk-open"
@@ -347,7 +345,7 @@
                         </div>
 
                       </div>
-                    </form>
+
                   </div>
                 </div>
               </div>
@@ -550,20 +548,21 @@ $(document).on('click', "#submit-form", function(e) {
     var name = $("input[name='name']").val();
     var slug = $("input[name='slug']").val();
     var en_name = $("input[name='en_name']").val();
-    var image = $("input[name='image']").attr('data-id');
+    var image = $("img[name='uploaded']").attr('data-id');
 
-    if(name && slug && en_name && selectedCategory) {
+
+    if(name && slug && en_name && selectedCategory && image) {
         $.ajax({
-            method: "POST",
+            method: "post",
             url: 'create',
             data: {
-            name: name,
-            slug: slug,
-            en_name: en_name,
-            image: image,
-            parent_id: selectedCategory,
-        },
-        success: function(response) {
+                name: name,
+                slug: slug,
+                en_name: en_name,
+                image: image,
+                parent_id: selectedCategory,
+            },
+            success: function(response) {
             $.toast({
                 heading: 'موفق!',
                 text: "دسته با موفقیت ایجاد شد",
@@ -576,10 +575,10 @@ $(document).on('click', "#submit-form", function(e) {
                 url: 'reload',
                 data: data,
                 success: function(response) {
-                $('#categoriesContainer').replaceWith(response);
+                    $('#categoriesContainer').replaceWith(response);
                 },
                 error: function () {
-                $('#categoriesContainer').hide();
+                    $('#categoriesContainer').hide();
                 }
             });
         },
@@ -596,9 +595,7 @@ $(document).on('click', "#submit-form", function(e) {
                 bgColor: '#EF5661',
                 textColor: '#fff',
             });
-
     }
-
 });
 
 

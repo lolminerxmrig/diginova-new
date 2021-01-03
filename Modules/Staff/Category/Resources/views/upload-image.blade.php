@@ -8,7 +8,7 @@
       <li class="c-content-upload__gallery-row js-uploads-row li-error" id="1dsWB">
 
         <div class="c-content-upload__img-container">
-            <img src="{{ asset("media/images/{$input['image']}") }}" data-id="{{ $media->id }}" class="c-content-upload__img js-upload-thumb uploadImage">
+            <img name="uploaded" src="{{ asset("media/images/{$input['image']}") }}" data-id="{{ $media->id }}" class="c-content-upload__img js-upload-thumb uploadImage">
             <div class="c-content-upload__img-loader" style="display: none;">
                 <div class="progress__wrapper">
                     <span class="progress"></span>
