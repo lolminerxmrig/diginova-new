@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'کالای دیچیتال',
+            'name' => 'کالای دیجیتال',
             'en_name' => 'digital',
             'image_id' => 1,
             'slug' => 'test',
@@ -24,7 +24,7 @@ class CategorySeeder extends Seeder
         ]);
 
         Category::create([
-            'name' => 'مذ و پوشاک',
+            'name' => 'مد و پوشاک',
             'en_name' => 'digital',
             'image_id' => 1,
             'slug' => 'test',
@@ -44,7 +44,7 @@ class CategorySeeder extends Seeder
             'en_name' => 'digital',
             'image_id' => 1,
             'slug' => 'test',
-            'parent_id' => 2,
+            'parent_id' => 1,
         ]);
 
         Category::create([
@@ -52,7 +52,7 @@ class CategorySeeder extends Seeder
             'en_name' => 'digital',
             'image_id' => 1,
             'slug' => 'test',
-            'parent_id' => 3,
+            'parent_id' => 2,
         ]);
 
         Category::create([
@@ -60,15 +60,15 @@ class CategorySeeder extends Seeder
             'en_name' => 'digital',
             'image_id' => 1,
             'slug' => 'test',
-            'parent_id' => 3,
+            'parent_id' => 2,
         ]);
 
         Category::create([
             'name' => 'سامسونگ',
             'en_name' => 'digital',
-            'image_id' => 1,
+            'image_id' => 4,
             'slug' => 'test',
-            'parent_id' => 4,
+            'parent_id' => 9,
         ]);
 
         Category::create([
@@ -76,7 +76,7 @@ class CategorySeeder extends Seeder
             'en_name' => 'digital',
             'image_id' => 1,
             'slug' => 'test',
-            'parent_id' => 2,
+            'parent_id' => 9,
         ]);
 
         Category::create([
@@ -100,7 +100,7 @@ class CategorySeeder extends Seeder
             'en_name' => 'digital',
             'image_id' => 1,
             'slug' => 'test',
-            'parent_id' => 6,
+            'parent_id' => 7,
         ]);
 
         Category::create([
@@ -108,7 +108,7 @@ class CategorySeeder extends Seeder
             'en_name' => 'digital',
             'image_id' => 1,
             'slug' => 'test',
-            'parent_id' => 1,
+            'parent_id' => 7,
         ]);
     }
 }
