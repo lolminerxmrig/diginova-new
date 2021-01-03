@@ -91146,7 +91146,7 @@ ul {
 ** persian-datepicker - v1.1.3
 ** Reza Babakhani <babakhani.reza@gmail.com>
 ** http://babakhani.github.io/PersianWebToolkit/docs/datepicker
-** Under WTFPL license 
+** Under WTFPL license
 */
 
 .datepicker-plot-area {
@@ -92023,4 +92023,43 @@ Multiple mode
   display: block;
   z-index: 10;
   border-top: 1px solid #D7D7D7;
+}
+
+.url-input {
+    width: calc(100% - 152px);
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 0px;
+    color: #4c535e;
+    font-family: IRANYekan, sans-serif;
+}
+
+.url-inputs {
+    font-size: 14px !important;
+    padding-top: 10px;
+    color: #4c535e;
+    font-family: IRANYekan, sans-serif;
+}
+
+.button-urls{
+    text-align: center;
+    font-size: 15px;
+    background: #889098;
+    font-family: IRANYekan, sans-serif;
+    color: #ffff;
+    height: 96%;
+    margin-top: 1px;
+    margin-left: 16px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    padding-top: 2px;
+}
+
+.button-url{
+    width: 160px;
+    font-size: 17px;
+    background: #889098;
+    font-family: IRANYekan, sans-serif;
+    color: #606265;
 }
