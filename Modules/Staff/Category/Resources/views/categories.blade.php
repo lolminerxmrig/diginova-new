@@ -1,5 +1,9 @@
 @extends('layouts.staff.master')
 
+@section('head')
+<script src="{{ asset('seller/js/create-category-validation.js') }}"></script>
+@endsection
+
 @section('content')
 <main class="c-content-layout">
       <div class="uk-container uk-container-large">
@@ -15,9 +19,8 @@
           <div class="c-grid__row">
             <div class="c-grid__col">
               <div class="c-card" data-select2-id="136">
-                <div class="c-grid__row">
+                <form id="category_form">
                   <div class="c-grid__col">
-
                       <div class="product-form">
                         <div class="c-content-accordion js-accordion uk-accordion">
                           <section class="c-content-accordion__row js-content-section uk-open"
@@ -41,12 +44,6 @@
                               id="stepTitleContainer" aria-hidden="false" style="
                               margin-right: -25px;
                               ">
-
-                                <div class="c-grid__row c-grid__row--gap-lg js-auto-title-message" style="width: 100%;margin-right: -2px;margin-bottom: 30px; display: none;">
-                                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
-                                        <div class="c-content-product__auto-title-msg">خطا. لطفا همه فیلد ها را کامل کنید</div>
-                                    </div>
-                                </div>
 
                               <div
                                 class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr"
@@ -104,15 +101,15 @@
                                 </div>
                               </div>
 
-
-
-                            <div class="c-card__body c-card__body--content">
-                                <label for="" class="search-form__action-label">نامک</label>
-                                <div class="c-ui-tag__textarea c-ui-tag__textarea--inline js-textarea-tags" style="color: #606265;width: 49.5%;margin-bottom: 20px; padding-right:0px; border: none;">
-                                    <input name="slug" type="text" class="c-content-input__origin js-prevent-submit url-inputs" dir="ltr" aria-invalid="false">
-                                    <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="-{{ config('app.url') }}/search/category" disabled>
+                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                    <label class="uk-form-label uk-flex uk-flex-between">نامک</label>
+                                    <div class="field-wrapper">
+                                        <input type="text" class="c-content-input__origin js-attribute-old-value url-inputs" name="slug" dir="ltr">
+                                        <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="-{{ config('app.url') }}/search/category" disabled>
+                                    </div>
+                                    <div>
+                                    </div>
                                 </div>
-                            </div>
 
 
                               <div class="c-card__body c-card__body--content category-box">
@@ -132,8 +129,8 @@
                                 <div id="categoriesContainer" class="c-content-categories">
                                   <div class="c-content-categories__container"
                                     id="categoriesContainerContent">
-                                    <div class="c-content-categories__wrapper js-category-column cat-box">
-                                      <ul class="c-content-categories__list">
+                                    <div class="c-content-categories__wrapper js-category-column cat-box" id="cat-box">
+                                      <ul class="c-content-categories__list" style="list-style: none;">
                                         @foreach($categories->where('parent_id', 0) as $category)
                                         <li class="c-content-categories__item
                                           {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}">
@@ -141,9 +138,9 @@
                                             class="c-content-categories__link js-category-link">
                                           <input type="radio" name="category"
                                             value="{{ $category->id }}"
-                                            class="uk-hidden js-category-data radio"
+                                            class="js-category-data radio"
                                             data-id="{{ $category->id }}"
-                                            data-theme="">
+                                            data-theme="" style="visibility: hidden;">
                                           {{ $category->name }}
                                           </label>
                                         </li>
@@ -156,8 +153,8 @@
                                     <div class="c-content-loader__spinner"></div>
                                   </div>
                                 </div>
-                                <div class="c-content-categories__summary">
-                                  <div class="c-content-categories__summary-breadcrumbs">
+                                <div id="breadcrumb" class="c-content-categories__summary">
+                                  <div class="c-content-categories__summary-breadcrumbs" id="bread-box">
                                     <span class="">دسته انتخابی شما:</span>
                                     <ul class="js-selected-category c-content-categories__selected-list" id="breadcrumbs">
                                       <!-- ajax -->
@@ -175,6 +172,7 @@
                                   </div>
 
                                 </div>
+                                <div id="error-cat" class="field-wrapper has-error"></div>
                               </div>
                               <div class="c-content-loader c-content-loader--fixed category-box">
                                 <div class="c-content-loader__logo"></div>
@@ -203,7 +201,7 @@
                                         id="uploadGalleryContainer">
                                         <div uk-form-custom=""
                                             class="uk-form-custom">
-                                            <input name="image" type="file" id="uploadImage" onchange="document.getElementById('preview_uploading').src = window.URL.createObjectURL(this.files[0])" class="hidden">
+                                            <input name="image" type="file" id="uploadImage" onchange="document.getElementById('preview_uploading').src = window.URL.createObjectURL(this.files[0])" style="visibility: hidden;">
                                         </div>
                                         <span class="c-content-upload__ui-btn">بارگذاری تصویر</span>
                                         <ul class="c-content-upload__list c-content-upload__list--tooltips">
@@ -284,10 +282,6 @@
                                             </li>
                                             </ul>
                                         </div>
-
-
-
-
                                     </div>
                                     </fieldset>
                                 </div>
@@ -330,7 +324,6 @@
                             </ul>
                           </section>
                         </div>
-
                         <div class="c-card__footer c-card__footer--products">
                           <div class="c-grid__row">
                             <div class="c-grid__col c-grid__col--flex-initial">
@@ -338,14 +331,13 @@
                                 id="saveAjaxErrors">
                               </div>
                               <div class="uk-flex uk-flex-left">
-                                <a class="c-ui-btn c-ui-btn--next mr-a" id="submit-form">افزودن دسته</a>
+                                <button class="c-ui-btn c-ui-btn--next mr-a" id="submit-form">افزودن دسته</button>
                               </div>
                             </div>
                           </div>
                         </div>
-
                       </div>
-
+                </form>
                   </div>
                 </div>
               </div>
@@ -366,6 +358,7 @@ $(function() {
   $(".url-inputs").css({
       'padding-left': buttonWidth
   });
+
 });
 
 // پنهان کردن دسته بندی وقتی روی چک باکس کلیک شد
@@ -396,6 +389,60 @@ $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
+});
+
+
+// ایجکس فرم اصلی
+// $(document).on('click', "#submit-form", function(e) {
+$('#category_form').on('submit', function(e){
+    e.preventDefault();
+
+
+    if ($("#is_main").val()) {
+        var selectedCategory = $("#is_main").val();
+    } else {
+        var selectedCategory = $("input[name='category']").val();
+    }
+
+    var name = $("input[name='name']").val();
+    var slug = $("input[name='slug']").val();
+    var en_name = $("input[name='en_name']").val();
+    var image = $("img[name='uploaded']").attr('data-id');
+
+
+    if(name && slug && en_name && selectedCategory && image) {
+        $.ajax({
+            method: "post",
+            url: 'create',
+            data: {
+                name: name,
+                slug: slug,
+                en_name: en_name,
+                image: image,
+                parent_id: selectedCategory,
+            },
+            success: function(response) {
+                $.toast({
+                    heading: 'موفق!',
+                    text: "دسته با موفقیت ایجاد شد",
+                    bgColor: '#3DC3A1',
+                    textColor: '#fff',
+                });
+
+                $.ajax({
+                    type: 'post',
+                    url: 'reload',
+                    data: data,
+                    success: function(response) {
+                        $('#categoriesContainer').replaceWith(response);
+                    },
+                    error: function () {
+                        $('#categoriesContainer').hide();
+                    }
+                });
+            },
+        });
+    }
 });
 
 
@@ -535,77 +582,17 @@ $('#searchKeyword').on('keyup', function() {
   }
 });
 
-
-// ایجکس فرم اصلی
-$(document).on('click', "#submit-form", function(e) {
-
-    if ($("#is_main").val()) {
-        var selectedCategory = $("#is_main").val();
-    } else {
-        var selectedCategory = $("input[name='category']").val();
-    }
-
-    var name = $("input[name='name']").val();
-    var slug = $("input[name='slug']").val();
-    var en_name = $("input[name='en_name']").val();
-    var image = $("img[name='uploaded']").attr('data-id');
-
-
-    if(name && slug && en_name && selectedCategory && image) {
-        $.ajax({
-            method: "post",
-            url: 'create',
-            data: {
-                name: name,
-                slug: slug,
-                en_name: en_name,
-                image: image,
-                parent_id: selectedCategory,
-            },
-            success: function(response) {
-            $.toast({
-                heading: 'موفق!',
-                text: "دسته با موفقیت ایجاد شد",
-                bgColor: '#3DC3A1',
-                textColor: '#fff',
-            });
-
-            $.ajax({
-                type: 'post',
-                url: 'reload',
-                data: data,
-                success: function(response) {
-                    $('#categoriesContainer').replaceWith(response);
-                },
-                error: function () {
-                    $('#categoriesContainer').hide();
-                }
-            });
-        },
-        });
-    }
-    else
-    {
-        $(".js-auto-title-message").show();
-        $(window).scrollTop(0);
-
-        $.toast({
-                heading: 'خطا!',
-                text: "لطفا همه فیلد ها را پر کنید",
-                bgColor: '#EF5661',
-                textColor: '#fff',
-            });
-    }
-});
-
-
-
 $(document).on('click', ".reset-box", function(e) {
     $.ajax({
         type: 'post',
         url: 'reload',
         success: function(response) {
             $('#categoriesContainer').replaceWith(response);
+
+            var breadcrumb_div = '<div class="c-content-categories__summary-breadcrumbs" id="bread-box"><span class="">دسته انتخابی شما:</span>';
+                breadcrumb_div += '<ul class="js-selected-category c-content-categories__selected-list" id="breadcrumbs"></ul>';
+            $('#bread-box').replaceWith(breadcrumb_div);
+
         }
     });
 
