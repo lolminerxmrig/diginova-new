@@ -4,7 +4,7 @@ var CategoryFormAction = {
     },
 
     initForgotForm: function () {
-        const $form = $('#category_form');
+        const $form = $('#brand_form');
 
         if (!$form.length) {
             return;
@@ -30,15 +30,17 @@ var CategoryFormAction = {
                     required: true,
                 },
 
+                'description': {
+                    required: true,
+                },
+
                 'category': {
                     required: true,
                 },
 
-
                 'image': {
                     required: true,
                 }
-
             },
             messages: {
                 'name': {
@@ -54,15 +56,19 @@ var CategoryFormAction = {
                 },
 
                 'category': {
-                    'required': 'انتخاب دسته اصلی اجباری است',
+                    'required': 'وارد نمودن گروه کالایی فعال برند اجباری است',
+                },
+
+                'description': {
+                    'required': 'وارد نمودن شرح برند اجباری است',
                 },
 
                 'image': {
-                    'required': 'بارگزاری تصویر برای دسته بندی اجباری است',
+                    'required': 'بارگزاری تصویر برای لوگوی برند اجباری است',
                 }
             },
             errorPlacement: function (error, element) {
-                if (element.attr("name") == "name" || element.attr("name") == "en_name"){
+                if (element.attr("name") == "name" || element.attr("name") == "en_name" || element.attr("name") == "description"){
                     error.insertAfter(element).addClass('error-msg');
                 }
                 else if(element.attr("name") == "slug"){
