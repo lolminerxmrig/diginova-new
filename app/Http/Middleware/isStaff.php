@@ -19,7 +19,7 @@ class isStaff
     {
         if(Auth::guard('staff')->check() == false)
         {
-            return redirect('account/dashboard');
+            return redirect('account/login');
         }
         return $next($request);
     }
