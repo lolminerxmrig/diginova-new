@@ -1,16 +1,16 @@
 <!Doctype html>
 <html  dir="rtl">
-  <head>
+<head>
     <title>دیجی‌کالا</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="https://seller.digikala.com/static/files/caf67ad9.ico" type="image/icon">
+    <link rel="shortcut icon" href="{{ asset('seller/icon/caf67ad9.ico') }}" type="image/icon">
     <link rel="stylesheet" href="{{ asset('seller/css/select2.css') }}">
     <script src="{{ asset('seller/js/jquery.min.js') }}"></script>
     <script src="{{ asset('seller/js/tags.js') }}"></script>
     <script src="{{ asset('seller/js/jquery.toast.js') }}"></script>
     <link href="{{ asset('seller/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
-    {{-- <script src="{{ asset('seller/js/create-category-validation.js') }}"></script> --}}
+    @yield('head')
 </head>
   <body>
     <header class="c-header js-header">
