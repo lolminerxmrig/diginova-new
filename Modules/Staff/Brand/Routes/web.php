@@ -14,25 +14,55 @@ use Modules\Staff\Brand\Http\Controllers\StaffBrandController;
 |
 */
 
-Route::domain('staff.diginova.test')->middleware('web', 'staff')->group(function () {
-    Route::get('brands/create', [StaffBrandController::class, 'createPage'])
-        ->name('staff.brand.brandCreatePage');
+Route::domain('staff.diginova.test')->prefix('brands')->name('staff.brands.')
+    ->middleware('web', 'staff')->group(function () {
 
-    Route::post('brands/create', [StaffBrandController::class, 'create'])
-        ->name('staff.brand.brandCreate');
+    Route::get('/', [StaffBrandController::class, 'index'])
+        ->name('index');
 
-    Route::post('brands/ajax', [StaffBrandController::class, 'categoryAjax'])
-        ->name('staff.brand.categoryAjax');
+    Route::post('filter', [StaffBrandController::class, 'filterByType'])
+        ->name('filterByType');
 
-    Route::post('brands/ajaxbreadcrumb', [StaffBrandController::class, 'breadcrumbAjax'])
-        ->name('staff.brand.breadcrumbAjax');
+    Route::post('brand-search', [StaffBrandController::class, 'brandSearch'])
+        ->name('brandSearch');
 
-    Route::post('brands/reload', [StaffBrandController::class, 'reloadAjax'])
-        ->name('staff.brand.reloadAjax');
+    Route::post('brand-cat-search', [StaffBrandController::class, 'brandCatSearch'])
+        ->name('brandCatSearch');
 
-    Route::post('brands/ajaxupload', [StaffBrandController::class, 'uploadImage'])
-        ->name('staff.brand.uploadAjax');
+    Route::post('ajax-pagination', [StaffBrandController::class, 'ajaxPagination'])
+        ->name('ajaxPagination');
 
-    Route::post('brands/ajaxdelete', [StaffBrandController::class, 'deleteImage'])
-        ->name('staff.brand.deleteAjax');
+    Route::get('create', [StaffBrandController::class, 'create'])
+        ->name('create');
+
+    Route::post('store', [StaffBrandController::class, 'store'])
+        ->name('store');
+
+    Route::get('edit/{id}', [StaffBrandController::class, 'edit'])
+        ->name('edit');
+
+    Route::post('update', [StaffBrandController::class, 'update'])
+        ->name('update');
+
+    Route::post('delete', [StaffBrandController::class, 'moveToTrash'])
+        ->name('moveToTrash');
+
+    Route::get('trash', [StaffBrandController::class, 'trash'])
+        ->name('trash');
+
+    Route::post('trash-pagination', [StaffBrandController::class, 'trashPagination'])
+        ->name('trashPagination');
+
+    Route::post('force-delete', [StaffBrandController::class, 'removeFromTrash'])
+        ->name('removeFromTrash');
+
+    Route::post('restore', [StaffBrandController::class, 'restoreFromTrash'])
+        ->name('restoreFromTrash');
+
+    Route::post('ajaxupload', [StaffBrandController::class, 'uploadImage'])
+        ->name('ajaxupload');
+
+    Route::post('ajaxdelete', [StaffBrandController::class, 'deleteImage'])
+        ->name('ajaxdelete');
+
 });

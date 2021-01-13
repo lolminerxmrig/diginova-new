@@ -20,13 +20,8 @@ class CreateBrandsTable extends Migration
             $table->text('description');
             $table->string('slug');
             $table->boolean('type')->nullable();
-            $table->integer('category_id');
-            $table->foreignId('media_id')->constrained('media', 'id');
             $table->timestamps();
-
-            $table->foreign('media_id')->references('id')
-                ->on('media')->onDelete('cascade');
-
+            $table->softDeletes();
         });
     }
 

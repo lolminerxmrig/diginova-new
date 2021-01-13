@@ -2,8 +2,11 @@
 
 namespace Modules\Staff\Brand\Providers;
 
+use Faker\Factory;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Factories\Factory as ModelFactory;
+
+
 
 class StaffBrandServiceProvider extends ServiceProvider
 {
@@ -20,4 +23,5 @@ class StaffBrandServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffbrand');
     }
+
 }

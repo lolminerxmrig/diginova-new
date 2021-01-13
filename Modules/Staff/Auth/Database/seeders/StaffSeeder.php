@@ -18,7 +18,7 @@ class StaffSeeder extends Seeder
         Staff::create([
             'first_name' => 'Mehdi',
             'last_name' => 'Jalali',
-            'email' => 'admin@diginova.test',
+            'email' => 'staff@diginova.test',
             'password' => Hash::make(123456),
         ]);
     }
