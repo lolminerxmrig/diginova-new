@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="{{ asset('seller/icon/caf67ad9.ico') }}" type="image/icon">
     <link rel="stylesheet" href="{{ asset('seller/css/select2.css') }}">
     <script src="{{ asset('seller/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('seller/js/tags.js') }}"></script>
     <script src="{{ asset('seller/js/jquery.toast.js') }}"></script>
     <link href="{{ asset('seller/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
     @yield('head')
@@ -33,173 +32,39 @@
           <div class="uk-navbar-right" id="dashboard-step-1">
             <ul class="uk-navbar-nav uk-navbar-nav--responsive">
               <li class="first-level">
-                <a href="#" class="" aria-expanded="false">محصولات
+                <a href="#" class="" aria-expanded="false">تولید محتوا
                 <span class="chevron-down"></span>
                 </a>
-                <div
-                  class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter"
-                  style="left: 1071px; top: 50px; animation-duration: 200ms;">
+                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li>
-                      <a href="/content/find/product/">
-                      جستجو یا درج محصول
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/product/">
-                      مدیریت محصولات
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/productconfig/editinformation/">
-                      مدیریت تنوع و قیمت گذاری
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="first-level">
-                <a href="#" class="" aria-expanded="false">سفارش‌های مشتریان
-                <span class="chevron-down"></span>
-                </a>
-                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right"
-                  style="left: 971.469px; top: 50px;">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li>
-                      <a href="/orders/">
-                      سفارش‌های تایید شده
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="first-level">
-                <a href="#" class="" aria-expanded="false">محموله ها
-                <span class="chevron-down"></span>
-                </a>
-                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right"
-                  style="left: 785.188px; top: 50px;">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li>
-                      <a href="/consignment/">
-                      ایجاد محموله برای انبار
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/packages/">
-                      لیست محموله ها
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="first-level">
-                <a href="#" class="" aria-expanded="false">بازاریابی
-                <span class="chevron-down"></span>
-                </a>
-                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right"
-                  style="left: 657.984px; top: 50px;">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li>
-                      <a href="/promotion-management/">
-                      مدیریت پروموشن‌ها
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/join-promotions-list/index/">
-                      ‌شرکت در پروموشن جدید
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/periodic-prices/active/">
-                      تخفیف های هوشمند
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/product-list/">
-                      ساخت صفحه سفارشی
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="first-level">
-                <a href="#" class="" aria-expanded="false">گزارشات
-                <span class="chevron-down"></span>
-                </a>
-                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right"
-                  style="left: 544.344px; top: 50px;">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li>
-                      <a href="/passiveorders/">
-                      گزارش سفارش‌های نهایی شده
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/inventory/">
-                      گزارش موجودی انبار
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/sellercommission/">
-                      کمیسیون، هزینه ها و جرایم
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/sellerinvoice/">
-                      صورتحساب ها
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/imports/">
-                      گزارش بارگذاری ها
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="first-level">
-                <a href="#" class="" aria-expanded="false">راهنما
-                <span class="chevron-down"></span>
-                </a>
-                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right"
-                  style="left: 429.828px; top: 50px;">
-                  <ul class="uk-nav uk-navbar-dropdown-nav">
-                    <li>
-                      <a href="/profile/new/guide/">
-                      راهنمای درج تا فروش
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/profile/new/pricing/">
-                      راهنمای قیمت گذاری
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://selleracademy.digikala.com/سوالات-متداول/" target="_blank">
-                      سوالات متداول
-                      </a>
-                    </li>
-                    <li>
-                      <a href="http://selleracademy.digikala.com/" target="_blank">
-                      مرکز آموزش فروشندگان
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://selleracademy.digikala.com/اقلام-ممنوعه/" target="_blank">
-                      کالاهای ممنوعه
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://www.digikala.com/contentfactory/" target="_blank">
-                      کارخانه محتوا
-                      </a>
-                    </li>
-                    <li>
-                      <a href="ReportGuideModal">
-                      گزارش تخلف
-                      </a>
-                    </li>
+                      <li>
+                          <a>برند ها</a>
+                          <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter menu-child-margin">
+                              <ul class="uk-nav uk-navbar-dropdown-nav">
+                                  <li>
+                                      <a href="{{ route('staff.brands.index') }}">مدیریت برند ها</a>
+                                  </li>
+                                  <li>
+                                      <a href="{{ route('staff.brands.create') }}">ایجاد برند</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </li>
+
+                      <li>
+                          <a href="#">دسته بندی ها</a>
+                          <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade
+                           uk-animation-enter menu-child-margin">
+                              <ul class="uk-nav uk-navbar-dropdown-nav">
+                                  <li>
+                                      <a href="{{ route('staff.categories.index') }}">مدیریت دسته بندی ها</a>
+                                  </li>
+                                  <li>
+                                      <a href="{{ route('staff.categories.create') }}">ایجاد دسته بندی</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </li>
                   </ul>
                 </div>
               </li>
@@ -237,23 +102,6 @@
                     <li>
                       <a href="/" class="has-icon ">
                         <span uk-icon="icon: clock;" class="uk-icon">
-                          <svg width="20" height="20"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ratio="1">
-                            <circle fill="none"
-                              stroke="#000"
-                              stroke-width="1.1"
-                              cx="10"
-                              cy="10"
-                              r="9"></circle>
-                            <rect
-                              x="9" y="4" width="1" height="7"></rect>
-                            <path fill="none"
-                              stroke="#000"
-                              stroke-width="1.1"
-                              d="M13.018,14.197 L9.445,10.625"></path>
-                          </svg>
                         </span>
                         داشبورد عملکرد
                       </a>
@@ -261,20 +109,6 @@
                     <li>
                       <a href="/profile/new/display/" class="has-icon ">
                         <span uk-icon="icon: user;" class="uk-icon">
-                          <svg width="20" height="20"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ratio="1">
-                            <circle fill="none"
-                              stroke="#000"
-                              stroke-width="1.1"
-                              cx="9.9"
-                              cy="6.4"
-                              r="4.4"></circle>
-                            <path
-                              fill="none" stroke="#000" stroke-width="1.1"
-                              d="M1.5,19 C2.3,14.5 5.8,11.2 10,11.2 C14.2,11.2 17.7,14.6 18.5,19.2"></path>
-                          </svg>
                         </span>
                         پروفایل شما
                       </a>
@@ -282,20 +116,6 @@
                     <li>
                       <a href="/account/changepassword/" class="has-icon ">
                         <span uk-icon="icon: lock;" class="uk-icon">
-                          <svg width="20" height="20"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ratio="1">
-                            <rect fill="none"
-                              stroke="#000"
-                              height="10"
-                              width="13"
-                              y="8.5"
-                              x="3.5"></rect>
-                            <path
-                              fill="none" stroke="#000"
-                              d="M6.5,8 L6.5,4.88 C6.5,3.01 8.07,1.5 10,1.5 C11.93,1.5 13.5,3.01 13.5,4.88 L13.5,8"></path>
-                          </svg>
                         </span>
                         تغییر رمز عبور
                       </a>
@@ -303,20 +123,6 @@
                     <li>
                       <a href="/account/logout/" class="has-icon ">
                         <span uk-icon="icon: ban;" class="uk-icon">
-                          <svg width="20" height="20"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ratio="1">
-                            <circle fill="none"
-                              stroke="#000"
-                              stroke-width="1.1"
-                              cx="10"
-                              cy="10"
-                              r="9"></circle>
-                            <line
-                              fill="none" stroke="#000" stroke-width="1.1" x1="4" y1="3.5" x2="16"
-                              y2="16.5"></line>
-                          </svg>
                         </span>
                         خروج
                       </a>
@@ -331,16 +137,6 @@
               <li>
                 <a href="/notification/" uk-icon="mail" class="header-notification uk-icon">
                   <span class="c-profile-nav__item-counter c-profile-nav__item-counter--header">۴۳۸</span>
-                  <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-                    ratio="1">
-                    <polyline fill="none" stroke="#000" points="1.4,6.5 10,11 18.6,6.5"></polyline>
-                    <path d="M 1,4 1,16 19,16 19,4 1,4 Z M 18,15 2,15 2,5 18,5 18,15 Z"></path>
-                  </svg>
-                  <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-                    ratio="1">
-                    <polyline fill="none" stroke="#000" points="1.4,6.5 10,11 18.6,6.5"></polyline>
-                    <path d="M 1,4 1,16 19,16 19,4 1,4 Z M 18,15 2,15 2,5 18,5 18,15 Z"></path>
-                  </svg>
                 </a>
               </li>
             </ul>
