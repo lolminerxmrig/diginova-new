@@ -1,3 +1,8 @@
+$.validator.addMethod("requiredIfChecked", function (val, ele, arg) {
+    if ($("#is_main").is(":checked") && ($.trim(val) == '')) { return true; }
+    return false;
+}, "انتخاب تصویر برای زیر دسته ها اجباری است");
+
 var CategoryFormAction = {
     init: function () {
         this.initForgotForm();
@@ -9,10 +14,6 @@ var CategoryFormAction = {
         if (!$form.length) {
             return;
         }
-
-        $('#submit-form').click(function () {
-            $form.submit();
-        });
 
         $form.find('input').first().focus();
 
@@ -36,7 +37,7 @@ var CategoryFormAction = {
 
 
                 'image': {
-                    required: true,
+                    requiredIfChecked: true,
                 }
 
             },
@@ -76,8 +77,6 @@ var CategoryFormAction = {
                 else if(element.attr("name") == "image"){
                         error.appendTo(".c-content-upload__title").addClass('error-text').css('display', 'inline-block');
                 }
-
-
             },
         }).showBackendErrors();
     },
