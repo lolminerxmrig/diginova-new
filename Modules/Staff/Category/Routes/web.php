@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\Staff\Category\Http\Controllers\StaffCategoryController;
 
 /*
-|-----------categories/ajaxcategory---------------------------------------------------------------
+|--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -14,28 +14,64 @@ use Modules\Staff\Category\Http\Controllers\StaffCategoryController;
 |
 */
 
-Route::domain('staff.diginova.test')->middleware('web', 'staff')->group(function () {
-    Route::get('categories/create', [StaffCategoryController::class, 'createPage'])
-        ->name('staff.categoryCreatePage');
+Route::domain('staff.diginova.test')->prefix('categories')->name('staff.categories.')
+    ->middleware('web', 'staff')->group(function () {
 
-    Route::post('categories/create', [StaffCategoryController::class, 'create'])
-    ->name('staff.categoryCreate');
+    Route::get('/', [StaffCategoryController::class, 'index'])
+        ->name('index');
 
-    Route::post('categories/ajax', [StaffCategoryController::class, 'categoryAjax'])
-        ->name('staff.categoryAjax');
+    Route::get('create', [StaffCategoryController::class, 'create'])
+        ->name('create');
 
-    Route::post('categories/ajaxbreadcrumb', [StaffCategoryController::class, 'breadcrumbAjax'])
-        ->name('staff.breadcrumbAjax');
+    Route::post('store', [StaffCategoryController::class, 'store'])
+        ->name('store');
 
-    Route::post('categories/reload', [StaffCategoryController::class, 'reloadAjax'])
-    ->name('staff.reloadAjax');
+    Route::post('update', [StaffCategoryController::class, 'update'])
+        ->name('update');
 
-    Route::post('categories/ajaxsearch', [StaffCategoryController::class, 'searchAjax'])
-    ->name('staff.searchAjax');
+    Route::get('{id}/edit', [StaffCategoryController::class, 'edit'])
+        ->name('edit');
 
-    Route::post('categories/ajaxupload', [StaffCategoryController::class, 'uploadImage'])
-    ->name('staff.uploadAjax');
+    Route::post('get-data', [StaffCategoryController::class, 'getData'])
+        ->name('getData');
 
-    Route::post('categories/ajaxdelete', [StaffCategoryController::class, 'deleteImage'])
-    ->name('staff.deleteAjax');
+    Route::post('ajax-search', [StaffCategoryController::class, 'ajaxSearch'])
+        ->name('ajaxsearch');
+
+    Route::post('ajax-upload', [StaffCategoryController::class, 'uploadImage'])
+        ->name('ajaxupload');;
+
+    Route::post('ajaxdelete', [StaffCategoryController::class, 'deleteImage'])
+        ->name('ajaxdelete');
+
+    Route::post('child-categories-loader', [StaffCategoryController::class, 'childCatsLoader'])
+        ->name('childCatsLoader');
+
+    Route::post('breadcrumb-loader', [StaffCategoryController::class, 'breadcrumbLoader'])
+        ->name('breadcrumbLoader');
+
+    Route::post('main-cat-reloader', [StaffCategoryController::class, 'mainCatReloader'])
+        ->name('mainCatLoader');
+
+
+
+
+
+
+
+    Route::post('delete', [StaffCategoryController::class, 'moveToTrash'])
+        ->name('moveToTrash');
+
+    Route::get('trash', [StaffCategoryController::class, 'trash'])
+        ->name('trash');
+
+    Route::post('trash-pagination', [StaffCategoryController::class, 'trashPagination'])
+        ->name('trashPagination');
+
+    Route::post('force-delete', [StaffCategoryController::class, 'removeFromTrash'])
+        ->name('removeFromTrash');
+
+    Route::post('restore', [StaffCategoryController::class, 'restoreFromTrash'])
+        ->name('restoreFromTrash');
+
 });

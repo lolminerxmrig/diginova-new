@@ -4,13 +4,18 @@ namespace Modules\Staff\Category\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+use Modules\Staff\Brand\Models\Brand;
+use App\Models\Media;
 
 
 class Category extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
-    protected $fillable = ['name', 'en_name', 'image_id', 'parent_id', 'slug'];
+    protected $fillable = ['name', 'en_name', 'parent_id', 'slug'];
 
     public function children()
     {
@@ -21,6 +26,16 @@ class Category extends Model
     {
         return $this->belongsTo(self::class, 'parent_id');
 
+    }
+
+    public function media()
+    {
+        return $this->morphOne(Media::class, 'mediable');
+    }
+
+    public function brands()
+    {
+        return $this->morphedByMany(Brand::class, 'categorizable');
     }
 }
 
