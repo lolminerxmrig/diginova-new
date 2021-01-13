@@ -6,7 +6,7 @@
         <li class="c-content-upload__gallery-row js-uploads-row li-error" id="1dsWB">
 
             <div class="c-content-upload__img-container">
-                <img name="uploaded" id="preview_uploading" src="{{ asset("media/images/{$input['image']}") }}" data-id="{{ $media->id }}" class="c-content-upload__img js-upload-thumb upload-image">
+                <img name="uploaded" id="preview_uploading" src="{{ (($cat_media)? asset($cat_media->path . '/' . $cat_media->name) : '') }}" data-id="{{ ($cat_media)? $cat_media->id : '' }}" class="c-content-upload__img js-upload-thumb upload-image">
                 <div class="c-content-upload__img-loader" style="display: none;">
                     <div class="progress__wrapper">
                         <span class="progress"></span>
@@ -20,8 +20,8 @@
                     <div class="c-content-upload__desc">
                         <div class="c-content-upload__desc--top">
                             <div class="right">
-                                <div class="c-content-upload__name js-upload-name">{{ $request->image->getClientOriginalName() }}</div>
-                                <div class="c-content-upload__size js-upload-size">{{  convertByte($imageSize) }}</div>
+                                <div class="c-content-upload__name js-upload-name">{{ ($cat_media) ? $cat_media->name : '' }}</div>
+                                <div class="c-content-upload__size js-upload-size"></div>
                             </div>
                             <div class="c-content-upload__select"></div>
                         </div>

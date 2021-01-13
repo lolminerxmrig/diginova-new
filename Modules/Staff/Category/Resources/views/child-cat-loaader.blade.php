@@ -1,4 +1,4 @@
-<div class="c-content-categories__wrapper js-category-column cat-box">
+<div class="c-content-categories__wrapper js-category-column cat-box appended-box" data-id="{{ $id }}">
     <ul class="c-content-categories__list">
         @foreach($categories->where('parent_id', $id) as $category)
             <li class="c-content-categories__item
