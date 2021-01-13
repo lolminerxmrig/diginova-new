@@ -92069,3 +92069,24 @@ Multiple mode
     color: #ed5565;
     font-weight: 400;
 }
+
+.c-card__footer {
+    width:100%;
+}
+
+.c-ui-table__header {
+    text-align: center;
+}
+
+.c-ui-table__cell {
+    text-align: center;
+}
+
+.submit-form-cu {
+    margin-left:20px;
+}
+
+.menu-child-margin
+{
+    left: -200px !important;
+}
