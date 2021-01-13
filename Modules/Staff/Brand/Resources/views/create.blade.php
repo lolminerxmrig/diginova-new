@@ -1,7 +1,8 @@
 @extends('layouts.staff.master')
 
 @section('head')
-    <script src="{{ asset('seller/js/create-brand-validation.js') }}"></script>
+<script src="{{ asset('seller/js/create-brand-validation.js') }}"></script>
+<script src="{{ asset('seller/js/tags.js') }}"></script>
 @endsection
 
 @section('content')

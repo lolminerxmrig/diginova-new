@@ -12,5 +12,10 @@ class Media extends Model
 
     protected $table = 'media';
     protected $fillable = ['name', 'path', 'person_role', 'person_id'];
+
+    public function mediable()
+    {
+        return $this->morphTo();
+    }
 }
 

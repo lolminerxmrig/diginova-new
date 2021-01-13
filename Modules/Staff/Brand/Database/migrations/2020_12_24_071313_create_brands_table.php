@@ -14,15 +14,19 @@ class CreateBrandsTable extends Migration
     public function up()
     {
         Schema::create('brands', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->string('name');
             $table->string('en_name');
             $table->text('description');
             $table->string('slug');
-            $table->boolean('type');
+            $table->boolean('type')->nullable();
             $table->integer('category_id');
-            $table->integer('image_id');
+            $table->foreignId('media_id')->constrained('media', 'id');
             $table->timestamps();
+
+            $table->foreign('media_id')->references('id')
+                ->on('media')->onDelete('cascade');
+
         });
     }
 
@@ -33,6 +37,6 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('brands');
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.staff.master')
 
 @section('head')
-<script src="{{ asset('seller/js/create-category-validation.js') }}"></script>
+{{--<script src="{{ asset('seller/js/create-category-validation.js') }}"></script>--}}
 @endsection
 
 @section('content')
@@ -397,11 +397,10 @@ $.ajaxSetup({
 $('#category_form').on('submit', function(e){
     e.preventDefault();
 
-
-    if ($("#is_main").val()) {
-        var selectedCategory = $("#is_main").val();
+    if ($("input:checked[type='checkbox']").val()) {
+        var selectedCategory = 0;
     } else {
-        var selectedCategory = $("input[name='category']").val();
+        var selectedCategory = $("input:checked[type='radio']").attr('data-id');
     }
 
     var name = $("input[name='name']").val();
@@ -410,7 +409,7 @@ $('#category_form').on('submit', function(e){
     var image = $("img[name='uploaded']").attr('data-id');
 
 
-    if(name && slug && en_name && selectedCategory && image) {
+    // if(name && slug && en_name && selectedCategory && image) {
         $.ajax({
             method: "post",
             url: 'create',
@@ -442,7 +441,7 @@ $('#category_form').on('submit', function(e){
                 });
             },
         });
-    }
+    // }
 });
 
 
