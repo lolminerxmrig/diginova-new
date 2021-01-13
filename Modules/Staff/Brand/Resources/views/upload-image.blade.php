@@ -2,13 +2,11 @@
     <h3 class="product-form__section-title product-form__section-title--gap">
         تصویر بارگذاری شده
     </h3>
-    <input type="hidden" name="images[main_image]" id="mainImageContainer" value="" />
-    <input type="hidden" name="images[order]" id="imagesOrderContainer" />
     <ul id="imagesContainer" class="c-content-upload__gallery-list js-uploaded-list js-sortable-list uk-sortable">
         <li class="c-content-upload__gallery-row js-uploads-row li-error" id="1dsWB">
 
             <div class="c-content-upload__img-container">
-                <img name="uploaded" src="{{ asset("media/images/{$input['image']}") }}" data-id="{{ $media->id }}" class="c-content-upload__img js-upload-thumb uploadImage">
+                <img name="uploaded" id="preview_uploading" src="{{ asset("media/images/{$input['image']}") }}" data-id="{{ $media->id }}" class="c-content-upload__img js-upload-thumb upload-image">
                 <div class="c-content-upload__img-loader" style="display: none;">
                     <div class="progress__wrapper">
                         <span class="progress"></span>

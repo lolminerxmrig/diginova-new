@@ -20,12 +20,12 @@
           <div class="c-grid__row">
             <div class="c-grid__col">
               <div class="c-card" data-select2-id="136">
-                  <form id="brand_form" class="c-grid__row">
+                  <form id="brand_form">
                   <div class="c-grid__row">
                       <div class="c-grid__col">
                           <div class="product-form">
                             <div class="c-content-accordion js-accordion uk-accordion">
-                              <section class="c-content-accordion__row js-content-section uk-open"
+                              <section id="top-fields" class="c-content-accordion__row js-content-section uk-open"
                                 id="stepCategoryAccordion">
                                 <h2 style="
                                   font-size: 18px;
@@ -37,7 +37,6 @@
                                     ">ایجاد برند
                                   </div>
                                 </h2>
-
 
                                 <div
                                   style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;"></div>
@@ -104,9 +103,9 @@
                                       ">
                                       <label
                                         class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto"
-                                        id="productIsFakeLabel">
+                                        id="type" class="type">
                                         <input type="checkbox" class="c-ui-checkbox__origin"
-                                          name="type" id="type" value="1">
+                                          name="type" id="type" class="type">
                                         <span class="c-ui-checkbox__check"></span>
                                         <span class="c-ui-checkbox__label">ویژه</span>
                                         <div class="c-wiki c-wiki__holder">
@@ -117,28 +116,15 @@
                                     </div>
                                   </div>
 
-
-
                                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                         <label class="uk-form-label uk-flex uk-flex-between">نامک</label>
                                         <div class="field-wrapper">
                                             <input type="text" class="c-content-input__origin js-attribute-old-value url-inputs" name="slug" dir="ltr">
-                                            <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="-{{ config('app.url') }}/search/category" disabled>
+                                            <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="/{{ config('app.url') }}/brand" disabled>
                                         </div>
                                         <div>
                                         </div>
                                     </div>
-
-
-    {{--                              <div class="c-card__body c-card__body--content category-box">--}}
-    {{--                                <label for="" class="search-form__action-label">جستجو در میان دسته ها</label>--}}
-    {{--                                <div class="search-form__autocomplete-container">--}}
-    {{--                                  <div class="search-form__autocomplete js-autosuggest-box">--}}
-    {{--                                    <input name="search" id="searchKeyword" class="c-content-input__origin js-prevent-submit"--}}
-    {{--                                      type="text" placeholder="دسته مورد نظرتان را جستجو کنید">--}}
-    {{--                                  </div>--}}
-    {{--                                </div>--}}
-    {{--                              </div>--}}
 
                                   <div class="c-card__body c-card__body--content category-box">
                                     <label for="" class="search-form__action-label">گروه کالایی فعال در برندتان را انتخاب کنید</label>
@@ -180,7 +166,6 @@
                                         <span class="">دسته های انتخابی شما:</span>
                                         <ul class="js-selected-category c-content-categories__selected-list" id="breadcrumbs">
                                           <!-- ajax -->
-
                                         </ul>
                                       </div>
 
@@ -199,7 +184,9 @@
                                     <div class="c-content-loader__spinner"></div>
                                   </div>
                                 </div>
+                                <input type="text" name="category_group" class="category_group" id="hidden_cat_group" style="visibility: hidden">
                               </section>
+
 
                               <section id="stepImagesAccordion">
                                 <div
@@ -216,12 +203,11 @@
                                         <legend class="c-content-upload__title">برای برند
                                             لوگو انتخاب کنید
                                         </legend>
-                                        <div>
+                                        <div id="image-container">
                                             <label class="c-content-upload__trigger"
                                             id="uploadGalleryContainer">
-                                            <div uk-form-custom=""
-                                                class="uk-form-custom">
-                                                <input name="image" type="file" id="uploadImage" onchange="document.getElementById('preview_uploading').src = window.URL.createObjectURL(this.files[0])" style="visibility: hidden;">
+                                            <div uk-form-custom="" class="uk-form-custom">
+                                                <input name="image" type="file" id="uploadImage"  accept="image/*" onchange="loadFile(event)">
                                             </div>
                                             <span class="c-content-upload__ui-btn">بارگذاری تصویر</span>
                                             <ul class="c-content-upload__list c-content-upload__list--tooltips">
@@ -231,6 +217,12 @@
                                                 </li>
                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                                 فرمت تصاویر بایستی JPG باشد
+                                                </li>
+                                                <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
+                                                    حداکثر حجم فایل 2 مگابایت باشد
+                                                </li>
+                                                <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
+                                                    حداقل ابعاد عکس 125 * 125 پیکسل باشد
                                                 </li>
                                             </ul>
                                             </label>
@@ -258,18 +250,16 @@
                                             </div>
                                             </div>
 
-
-
-
                                             <div id="imagesSection" class="c-content-upload__uploads js-uploaded-section" style="display: none;">
+                                              <div class="upload-box">
                                                 <h3 class="product-form__section-title product-form__section-title--gap">
                                                 تصویر در حال بارگذاری
                                                 </h3>
-
                                                 <ul id="imagesContainer" class="c-content-upload__gallery-list js-uploaded-list js-sortable-list uk-sortable">
                                                 <li class="c-content-upload__gallery-row js-uploads-row  li-error" id="1dsWB">
                                                     <div class="c-content-upload__img-container">
-                                                    <img src="" alt="" id="preview_uploading" class="c-content-upload__img js-upload-thumb uploadImage" />
+                                                    <img name="uploaded" data-id="0" id="preview_uploading"
+                                                         class="c-content-upload__img js-upload-thumb upload-image" />
 
                                                     <div class="c-content-upload__img-loader">
                                                         <div class="progress__wrapper">
@@ -298,13 +288,14 @@
                                                             <button type="button" class="c-content-upload__btn c-content-upload__btn--remove js-remove-upload"></button>
                                                         </div>
                                                     </div>
-
                                                 </li>
                                                 </ul>
-                                            </div>
+                                          </div>
+
+                                        </div>
 
 
-
+                                        </div>
 
                                         </div>
                                         </fieldset>
@@ -356,7 +347,7 @@
                                     id="saveAjaxErrors">
                                   </div>
                                   <div class="uk-flex uk-flex-left">
-                                    <a class="c-ui-btn c-ui-btn--next mr-a" id="submit-form">افزودن برند</a>
+                                    <button class="c-ui-btn c-ui-btn--next mr-a submit-form-cu" id="submit-form">افزودن برند</button>
                                   </div>
                                 </div>
                               </div>
@@ -374,53 +365,36 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('staff/js/brands.js') }}"></script>
 
 <script>
 
-// تغییر پدینگ فیلد نامک
-$(function() {
-  var buttonWidth = $('#button-urls').width() + 20;
-  $(".url-inputs").css({
-      'padding-left': buttonWidth
-  });
-
-    $("form").removeClass('c-grid__row');
-
-});
-
-// اضافه کردن توکن به درخواست های ایجکس
+// // اضافه کردن توکن به درخواست های ایجکس
 $.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
-
-// تابع تبدیل بایت
-function formatBytes(bytes, decimals = 0) {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-}
-
-// نمایش حجم عکس در فرانت
-// نمایش نام فایل
-$(document).on("change", "#uploadImage", function() {
-    $('.js-upload-size').text(formatBytes(this.files[0].size));
-    var filename = $("#uploadImage").val().split('\\').pop();
-    $('.js-upload-name').text(filename);
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
 });
 
 // ایجکس آپلود عکس
 $(document).on("change", "#uploadImage", function() {
     $("#imagesSection").show();
+    $(".li-error").removeClass('has-error');
+    $(".error-image").html('');
+
 
     var form_data = new FormData();
     var input_image = $("#uploadImage").prop("files")[0];
 
     form_data.append("image", input_image);
+
+    var old_img = $("img[name='uploaded']").attr('data-id');
+
+    if(old_img)
+    {
+        form_data.append("old_img", old_img);
+        console.log(form_data);
+    }
 
     $.ajax({
         url: "ajaxupload",
@@ -433,8 +407,11 @@ $(document).on("change", "#uploadImage", function() {
             $("#imagesSection").replaceWith(data);
         },
         error: function(data) {
+            $("#imagesSection").show();
+
             $(".li-error").addClass('has-error');
-            $(".error-image").html(data.responseJSON.error);
+            // $(".error-image").html(data.responseJSON.error);
+            $(".error-image").html('تصویری که انتخاب کرید شرایط لازم را ندارد');
         }
     });
 
@@ -446,47 +423,28 @@ $(document).on("click", ".js-remove-upload", function() {
         url: "ajaxdelete",
         type: 'post',
         data: {
-            id: $('.uploadImage').attr('data-id'),
+            id: $('#preview_uploading').attr('data-id'),
         },
-        success: function(data) {
+        success: function (data) {
+            $("input[name='image']").val('');
             $("#imagesSection").hide();
         },
-        error: function()
-        {
+        error: function () {
+            $("input[name='image']").val('');
             $("#imagesSection").hide();
+            $('.uploadImage').attr('data-id', 0);
         }
     });
 });
 
-// ایجکس دسته ها
-$(document).on('click', "input[name='category']", function(e) {
-
-  $(this).closest("div").nextAll().remove();
-  $("li").removeClass('is-active');
-  $(this).closest("li").addClass("is-active");
-
-  var categorySelected = $("input[name='category']:checked").val();
-  $.ajax({
-    method: "POST",
-    url: 'ajax',
-    data: {
-      id: categorySelected,
-    },
-    success: function(response) {
-      $('#categoriesContainerContent').append(response);
-      console.log(response);
-    },
-  });
-
-});
-
 // ایجکس فرم اصلی
-// $(document).on('click', "#submit-form", function(e) {
 $('#brand_form').on('submit', function(e){
     e.preventDefault();
-    // Collect the new orderings
+
     var categories = [];
-    $("input[name='categegory_group[]']").each(function(i, element) {
+    categories.length = 0;
+
+    $("input[name='category_group']").each(function(i, element) {
         var id = $(element).attr('value'); // Set a data-id attribute on each li
         var i = i;
         categories[i] = id;
@@ -495,110 +453,56 @@ $('#brand_form').on('submit', function(e){
     var name = $("input[name='name']").val();
     var en_name = $("input[name='en_name']").val();
     var description = $("textarea[name='description']").val();
-    var type = $("input[name='type']").val();
     var slug = $("input[name='slug']").val();
-    var image = $('.uploadImage').attr('data-id');
+    var image = $('#preview_uploading').attr('data-id');
 
-    if(name) {
+    if ($("input[name='type']").is(':checked')) {
+        var type = 1;
+    } else {
+        var type = 0;
+    }
+
+    if (name && en_name && description && slug && image && (image !== '0') )
+    {
         $.ajax({
-        method: "POST",
-        url: 'create',
-        data: {
-            name: name,
-            en_name: en_name,
-            description: description,
-            type: type,
-            slug: slug,
-            image: image,
-            categories: categories,
-        },
-        success: function(response) {
-            $.toast({
-                heading: 'موفق!',
-                text: "برند با موفقیت ایجاد شد",
-                bgColor: '#3DC3A1',
-                textColor: '#fff',
-            });
+            method: "POST",
+            url: '{{ route('staff.brands.store') }}',
+            data: {
+                name: name,
+                en_name: en_name,
+                description: description,
+                type: type,
+                slug: slug,
+                image: image,
+                categories: categories,
+            },
+            success: function(response) {
+                $.toast({
+                    heading: 'موفق!',
+                    text: "برند با موفقیت ایجاد شد",
+                    bgColor: '#3DC3A1',
+                    textColor: '#fff',
+                });
 
-            $.ajax({
-                type: 'post',
-                url: 'reload',
-                data: data,
-                success: function(response) {
-                    $('#categoriesContainer').replaceWith(response);
-                },
-                error: function () {
-                    $('#categoriesContainer').hide();
-                }
-            });
-        },
+                $('#brand_form').trigger("reset");
+                $("li[data-cat-id]").remove();
+                $("#imagesSection").hide();
+                $('#preview_uploading').attr('data-id', '0');
+                $("input[name='type']").removeAttr('checked');
+
+                $(".category_group").each(function() {
+                    $(this).remove();
+                });
+
+                var hidden_input = '<input type="text" name="category_group" class="category_group" id="hidden_cat_group" style="visibility: hidden">';
+                $("#top-fields").append(hidden_input);
+
+            }
         });
     }
-});
-
-$(document).on('click', ".reset-box", function(e) {
-    $.ajax({
-        type: 'post',
-        url: 'reload',
-        success: function(response) {
-            $('#categoriesContainer').replaceWith(response);
-            $("#categoryStepNext").addClass('disabled');
-        }
-    });
 
 });
-
-$(document).on('change', "input[name='category']", function(e) {
-    if($("input[name='category']:checked")){
-        $("#categoryStepNext").removeClass('disabled');
-    }
-});
-
-$(document).on('click', "#categoryStepNext", function(e) {
-    $(this).addClass('disabled');
-
-    $.ajax({
-        type: 'post',
-        url: 'reload',
-        success: function(response) {
-            $('#categoriesContainer').replaceWith(response);
-        }
-    });
-
-    // ای دی دسته ای که انتخاب شده
-    var cat_id = $("input[name='category']:checked").attr('data-cat-id');
-    var li_id = $("li[data-cat-id=" + cat_id + "]").attr('data-cat-id');
-
-    var cat_lable = $("label[data-cat-id=" + cat_id + "]").text();
-
-    var li = '<li class="select2-selection__choice" data-cat-id="' + cat_id + '" style="background: #889098;color: #ffffff;height: 25px;border-radius: 33px;font-size: 12px;padding: 5px 11px 0px 11px;margin-left: 5px;">';
-        li += '<span class="select2-selection__choice__remove" role="presentation">' +  cat_lable + '</span>';
-        li += '<a class="select2-selection__choice__remove remove-breadcrumb" data-cat-id="' + cat_id + '" role="presentation" style="margin-right: 5px; font-weight: bold; padding-right: 2px; color: white;">×</a> </li>';
-
-    var input = '<input type="text" name="categegory_group[]" value="' + cat_id + '" hidden>';
-
-    if(cat_id !== li_id){
-        $("#breadcrumbs").append(li);
-        $("#breadcrumbs").append(input);
-    }
-
-});
-
-$(document).on('click', ".remove-breadcrumb", function(e) {
-    var cat_id = $(this).attr('data-cat-id');
-    $("li[data-cat-id=" + cat_id + "]").remove();
-    $("input[value=" + cat_id + "]").remove();
-    $.ajax({
-        type: 'post',
-        url: 'reload',
-        success: function(response) {
-            $('#categoriesContainer').replaceWith(response);
-            $("#categoryStepNext").addClass('disabled');
-        }
-    });
-});
-
-
 
 </script>
 @endsection
+
