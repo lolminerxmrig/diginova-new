@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Modules\Staff\Brand\Models\Brand;
+use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 
 
@@ -36,6 +37,11 @@ class Category extends Model
     public function brands()
     {
         return $this->morphedByMany(Brand::class, 'categorizable');
+    }
+
+    public function types()
+    {
+        return $this->morphToMany(Type::class, 'typable');
     }
 }
 
