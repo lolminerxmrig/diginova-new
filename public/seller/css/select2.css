@@ -92090,3 +92090,47 @@ Multiple mode
 {
     left: -200px !important;
 }
+
+.type-field-box
+{
+    margin: 40px 0px 0px; width: 100%;
+}
+
+.type_field
+{
+    width: 60%;margin-right: 10px;float: right;
+}
+
+.edit-field-btn
+{
+    min-width: 120px !important; float: right; margin-right: 10px;
+}
+
+.remove-field-btn
+{
+    float:right;
+}
+
+
+.red-btn
+{
+    border: 1px solid #ef5661 !important;
+    color: #ef5661;
+    min-width: 39px !important;
+    width: 56px !important;
+    margin-right: 6px;
+    float: right;
+
+}
+
+.red-btn:hover
+{
+    color: #ef5661 !important;
+}
+
+.ok-btn {
+    min-width: 50px !important;
+    float: right;
+    width: 57px !important;
+    margin-right: 10px !important;
+}
