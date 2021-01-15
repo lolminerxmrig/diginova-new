@@ -173,6 +173,7 @@ return [
         Modules\Staff\Auth\Providers\StaffAuthServiceProvider::class,
         Modules\Staff\Category\Providers\StaffCategoryServiceProvider::class,
         Modules\Staff\Brand\Providers\StaffBrandServiceProvider::class,
+        Modules\Staff\Type\Providers\StaffTypeServiceProvider::class,
 
 
         /*
