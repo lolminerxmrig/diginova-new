@@ -3,6 +3,7 @@
 namespace Modules\Staff\Brand\Providers;
 
 use Faker\Factory;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory as ModelFactory;
 
@@ -22,6 +23,10 @@ class StaffBrandServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
 
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffbrand');
+
+        Relation::morphMap([
+            'attributeGroup' => 'Modules\Staff\Attribute\Models\AttributeGroup',
+        ]);
     }
 
 }

@@ -174,6 +174,9 @@ return [
         Modules\Staff\Category\Providers\StaffCategoryServiceProvider::class,
         Modules\Staff\Brand\Providers\StaffBrandServiceProvider::class,
         Modules\Staff\Type\Providers\StaffTypeServiceProvider::class,
+        Modules\Staff\Attribute\Providers\StaffAttributeServiceProvider::class,
+        Modules\Staff\Product\Providers\StaffProductServiceProvider::class,
+        Modules\Staff\Unit\Providers\StaffUnitServiceProvider::class,
 
 
         /*

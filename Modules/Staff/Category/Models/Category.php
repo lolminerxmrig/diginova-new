@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Modules\Staff\Attribute\Models\AttributeGroup;
+use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Brand\Models\Brand;
+use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 
@@ -39,9 +42,24 @@ class Category extends Model
         return $this->morphedByMany(Brand::class, 'categorizable');
     }
 
+    public function attributeGroups()
+    {
+        return $this->morphedByMany(AttributeGroup::class, 'categorizable');
+    }
+
     public function types()
     {
         return $this->morphToMany(Type::class, 'typable');
     }
+
+    public function attribute()
+    {
+        return $this->morphedByMany(Attribute::class, 'categorizable');
+    }
+
+  public function products()
+  {
+    return $this->morphedByMany(Product::class, 'categorizable');
+  }
 }
 

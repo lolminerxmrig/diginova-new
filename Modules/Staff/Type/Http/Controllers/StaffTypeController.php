@@ -46,25 +46,25 @@ class StaffTypeController extends Controller
 
     public function update($request)
     {
-        $data = array_filter($request->database_data);
-        Log::info('data');
-        foreach ($data as $key => $value){
-            Log::info('key: ' . $key);
-            Log::info('value: ' . $value);
+        if (isset($request->database_data) && !is_null($request->database_data)){
+            $data = array_filter($request->database_data);
+            foreach ($data as $key => $value){
+                Log::info('key: ' . $key);
+                Log::info('value: ' . $value);
 
-            if ($value == 'deleted'){
-                Category::find($data)->types()->where('id', $key)->delete();
-            }
+                if ($value == 'deleted'){
+                    Category::find($data)->types()->where('id', $key)->delete();
+                }
 
-            if (!is_null($value)){
-                Log::info('not is null');
-                Type::find($key)->update([
-                    'name' => $value,
-                ]);
-            } else {
-                Log::info('is null: '. $key);
+                if (!is_null($value)){
+                    Type::find($key)->update([
+                        'name' => $value,
+                    ]);
+                } else {
+                    Log::info('is null: '. $key);
 
-                Category::find($request->category)->types()->where('id', $key)->delete();
+                    Category::find($request->category)->types()->where('id', $key)->delete();
+                }
             }
         }
     }

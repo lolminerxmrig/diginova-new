@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('seller/icon/caf67ad9.ico') }}" type="image/icon">
     <link rel="stylesheet" href="{{ asset('seller/css/select2.css') }}">
-    <script src="{{ asset('seller/js/jquery.min.js') }}"></script>
+    <script id="jquery" src="{{ asset('seller/js/jquery.min.js') }}"></script>
     <script src="{{ asset('seller/js/jquery.toast.js') }}"></script>
     <link href="{{ asset('seller/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
     @yield('head')
@@ -65,6 +65,30 @@
                               </ul>
                           </div>
                       </li>
+
+                    <li>
+                      <a href="#">محصولات</a>
+                      <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade
+                           uk-animation-enter menu-child-margin">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                          <li>
+                            <a href="{{ route('staff.products.index') }}">مدیریت محصولات</a>
+                          </li>
+                          <li>
+                            <a href="{{ route('staff.products.create') }}">ایجاد محصول جدید</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a href="{{ route('staff.attributes.index') }}">ویژگی ها</a>
+                    </li>
+
+                    <li>
+                      <a href="{{ route('staff.units.index') }}">واحد ها</a>
+                    </li>
+
                   </ul>
                 </div>
               </li>
