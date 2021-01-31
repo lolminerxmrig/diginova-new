@@ -26,6 +26,7 @@ class StaffCategoryServiceProvider extends ServiceProvider
         Relation::morphMap([
             'categories' => 'Modules\Staff\Category\Models\Category',
             'brands' => 'Modules\Staff\Brand\Models\Brand',
+            'Attribute' => 'Modules\Staff\Attribute\Models\Attribute',
         ]);
     }
 }

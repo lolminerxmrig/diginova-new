@@ -18,16 +18,45 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'en_name', 'parent_id', 'slug'];
-
-    public function types()
-    {
-      return $this->belongsToMany(Type::class);
-    }
+    protected $fillable = [
+      'status',
+      'title_fa',
+      'title_en',
+      'nature',
+      'advantages',
+      'disadvantages',
+      'brand_id',
+      'model',
+      'is_iranian',
+      'length',
+      'width',
+      'height',
+      'weight',
+      'description',
+    ];
 
     public function categories()
     {
       return $this->morphToMany(Category::class);
+    }
+
+    public function media()
+    {
+        return $this->morphToMany(Media::class);
+    }
+
+    public function brand()
+    {
+      return $this->belongsTo(Brand::class);
+    }
+
+
+    /**
+     * The types that belong to the products.
+     */
+    public function type()
+    {
+        return $this->belongsToMany(Type::class, 'product_type');
     }
 }
 

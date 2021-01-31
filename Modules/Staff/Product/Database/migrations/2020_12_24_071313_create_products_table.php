@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('title_fa');
             $table->string('title_en')->nullable();
-            $table->string('product_nature');
+            $table->string('nature');
             $table->string('model');
             $table->boolean('is_iranian');
             $table->boolean('status');
@@ -25,8 +25,10 @@ class CreateProductsTable extends Migration
             $table->integer('width');
             $table->integer('height');
             $table->integer('weight');
-            $table->text('description');
             $table->integer('brand_id');
+            $table->json('advantages')->nullable();
+            $table->json('disadvantages')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

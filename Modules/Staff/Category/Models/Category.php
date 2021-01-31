@@ -47,19 +47,20 @@ class Category extends Model
         return $this->morphedByMany(AttributeGroup::class, 'categorizable');
     }
 
-    public function types()
-    {
-        return $this->morphToMany(Type::class, 'typable');
-    }
-
-    public function attribute()
+    public function attributes()
     {
         return $this->morphedByMany(Attribute::class, 'categorizable');
     }
 
-  public function products()
-  {
-    return $this->morphedByMany(Product::class, 'categorizable');
-  }
+    public function types()
+    {
+        return $this->morphedByMany(Type::class, 'categorizable');
+    }
+
+
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'categorizable');
+    }
 }
 

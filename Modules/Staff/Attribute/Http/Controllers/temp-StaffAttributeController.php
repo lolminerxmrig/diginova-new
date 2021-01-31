@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\View;
 use Modules\Staff\Attribute\Models\Attributable;
 use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Attribute\Models\AttributeValue;
-use Modules\Staff\Category\Models\Categorizable;
 use Modules\Staff\Type\Http\Requests\StaffTypeRequest;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Type\Models\Type;
@@ -24,6 +23,7 @@ class StaffAttributeController extends Controller
   public function index()
   {
     $categories = Category::all();
+
     return view('staffattribute::index', compact('categories'));
   }
 
@@ -115,12 +115,6 @@ class StaffAttributeController extends Controller
             'is_filterable' => $request->attr_filterables[$i],
           ]);
 
-          Categorizable::create([
-            'category_id' => $request->category_id,
-            'categorizable_type' => 'Attribute',
-            'categorizable_id' => $id,
-          ]);
-
 
           foreach (json_decode($request->attr_values[$i]) as $attr_value)
           {
@@ -157,12 +151,6 @@ class StaffAttributeController extends Controller
 
           $attr_group = AttributeGroup::find($request->category_id);
           $attr_group->attributes()->attach($created_attr);
-
-          Categorizable::create([
-            'category_id' => $request->category_id,
-            'categorizable_type' => 'Attribute',
-            'categorizable_id' => $created_attr->id,
-          ]);
         }
 
         $i++;
@@ -170,6 +158,7 @@ class StaffAttributeController extends Controller
     }
 
   }
+
 
   public function update($request)
   {

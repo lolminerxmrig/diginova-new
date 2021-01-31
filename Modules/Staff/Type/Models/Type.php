@@ -19,9 +19,13 @@ class Type extends Model
         return $this->morphedByMany(Category::class, 'typable');
     }
 
-    public function products()
+
+    /**
+     * The products that belong to the types.
+     */
+    public function types()
     {
-      return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, 'product_type');
     }
 }
 

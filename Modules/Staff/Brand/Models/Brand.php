@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Media;
 use Modules\Staff\Category\Models\Category;
+use Modules\Staff\Product\Models\Product;
 
 
 class Brand extends Model
@@ -32,4 +33,10 @@ class Brand extends Model
     {
         return 'en_name';
     }
+
+    public function products()
+    {
+      return $this->hasMany(Product::class);
+    }
+
 }

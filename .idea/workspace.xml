@@ -13,61 +13,33 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c6adf28-119f-4cef-ae06-bfc6c99776b8" name="test" comment="">
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Models/Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Models/Type.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/staff/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/staff/master.blade.php" afterDir="false" />
-    </list>
-    <list id="aca6119d-1593-413f-8e01-a44ff24a8d7d" name="Default Changelist" comment="">
+    <list default="true" id="4c6adf28-119f-4cef-ae06-bfc6c99776b8" name="test" comment="test">
       <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/diginova.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/diginova.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Customers/Auth/Providers/CustomerAuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Customers/Auth/Providers/CustomerAuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Database/factories/BrandFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Database/factories/BrandFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Requests/StaffBrandImageRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Requests/StaffBrandImageRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Requests/StaffBrandRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Requests/StaffBrandRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Providers/StaffBrandServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Providers/StaffBrandServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-pagination.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-pagination.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-trash-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-trash-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/layouts/pagination/pagination.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/layouts/pagination/pagination.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/trash.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/trash.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Database/migrations/2020_12_24_071313_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Database/migrations/2020_12_24_071313_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Database/migrations/2021_01_09_222536_create_categorizables_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Database/migrations/2021_01_09_222536_create_categorizables_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Http/Requests/StaffCategoryImageRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Http/Requests/StaffCategoryImageRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Http/Requests/StaffCategoryRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Http/Requests/StaffCategoryRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations/2020_12_24_074145_create_attribute_product_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations/2020_12_24_074145_create_attribute_product_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Http/Controllers/StaffAttributeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Http/Controllers/StaffAttributeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Models/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Models/Attribute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Providers/StaffAttributeServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Providers/StaffAttributeServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Models/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Models/Brand.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/ajax-trash-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/ajax-trash-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/layouts/pagination/pagination.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/layouts/pagination/pagination.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/select-cat-loader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/select-cat-loader.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/selectloop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/selectloop.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/trash.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/trash.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Database/migrations/2020_12_24_071355_create_typables_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Database/migrations/2020_12_24_071355_create_typables_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Database/migrations/2020_12_24_071385_create_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Database/migrations/2020_12_24_071385_create_types_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Http/Controllers/StaffTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Http/Controllers/StaffTypeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Http/Requests/StaffTypeRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Http/Requests/StaffTypeRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Resources/views/ajax-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Resources/views/ajax-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Resources/views/select-cat-loader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Resources/views/select-cat-loader.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Resources/views/selectloop.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Resources/views/selectloop.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/images/index/brand1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/images/index/brand1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/seller/css/select2.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/seller/css/select2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/seller/js/jquery-3.5.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/seller/js/jquery-3.5.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/seller/js/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/seller/js/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/seller/js/tableView.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/seller/js/tableView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/seller/js/tags3.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/seller/js/tags3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/js/ajax/brands.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/js/ajax/brands.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/js/brands.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/js/brands.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/staff/js/categories.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/staff/js/categories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Providers/StaffCategoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Providers/StaffCategoryServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations/2020_12_24_071013_create_product_type_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations/2020_12_25_071093_create_product_type_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations/2020_12_24_071313_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations/2020_12_24_071313_create_products_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers/StaffProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers/StaffProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Models/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/ajax/attributes-step.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/ajax/attributes-step.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Database/migrations/2020_12_24_071355_create_typables_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Models/Typable.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Models/Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Models/Type.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Providers/StaffTypeServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Providers/StaffTypeServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Media.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Media.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_01_213631_create_media_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_01_213631_create_media_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/seller/js/tags5.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/seller/js/tags5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/staff/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/staff/master.blade.php" afterDir="false" />
     </list>
+    <list id="aca6119d-1593-413f-8e01-a44ff24a8d7d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +50,7 @@
     <execution />
   </component>
   <component name="EditorConfigPreviewManager">
-    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/Modules/Staff/Unit/Resources/views/layouts/modal.blade.php" />
+    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/Modules/Staff/Category/Models/Category.php" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -118,22 +90,6 @@
         <option value="https://github.com/mehdijalalii/diginova" />
       </set>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/resources/views/layouts/staff/master.blade.php">
-      <ranges>
-        <range start1="8" end1="9" start2="8" end2="9" changelist="aca6119d-1593-413f-8e01-a44ff24a8d7d" />
-        <range start1="67" end1="67" start2="67" end2="91" changelist="4c6adf28-119f-4cef-ae06-bfc6c99776b8" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/Modules/Staff/Category/Models/Category.php">
-      <ranges>
-        <range start1="8" end1="8" start2="8" end2="10" changelist="aca6119d-1593-413f-8e01-a44ff24a8d7d" />
-        <range start1="9" end1="9" start2="11" end2="12" changelist="4c6adf28-119f-4cef-ae06-bfc6c99776b8" />
-        <range start1="41" end1="41" start2="44" end2="49" changelist="aca6119d-1593-413f-8e01-a44ff24a8d7d" />
-        <range start1="45" end1="45" start2="53" end2="63" changelist="aca6119d-1593-413f-8e01-a44ff24a8d7d" />
-      </ranges>
-    </file>
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration">
@@ -299,6 +255,7 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
@@ -307,19 +264,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Product/Resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/Models" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Brand/Database/migrations" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/Http/Controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views" />
@@ -503,6 +460,14 @@
       <workItem from="1611844910079" duration="8331000" />
       <workItem from="1611858524521" duration="1187000" />
       <workItem from="1611899223202" duration="7883000" />
+      <workItem from="1611917515431" duration="3711000" />
+      <workItem from="1611923389795" duration="4459000" />
+      <workItem from="1611931057105" duration="3412000" />
+      <workItem from="1611943054179" duration="959000" />
+      <workItem from="1611951335157" duration="69000" />
+      <workItem from="1611984157950" duration="5173000" />
+      <workItem from="1611997392325" duration="31662000" />
+      <workItem from="1612062881601" duration="17222000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <option name="createBranch" value="false" />

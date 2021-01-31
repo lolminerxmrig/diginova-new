@@ -552,8 +552,9 @@
                       <section class="c-content-accordion__row js-content-section uk-open" id="stepCategoryAccordion">
                         <h2 class="c-content-accordion__title ">
                           <div class="c-content-accordion__title-text">گام اول: انتخاب گروه کالا
-                            <span class="c-content-accordion__guid-line js-guideline-icon "
-                                  data-guideline-modal="category_selection"></span>
+{{--                            <span class="c-content-accordion__guid-line js-guideline-icon"--}}
+{{--                                  data-guideline-modal="category_selection">--}}
+{{--                            </span>--}}
                           </div>
                         </h2>
                         <div class="c-content-accordion__content" id="stepCategoryContainer" aria-hidden="false">
@@ -683,6 +684,7 @@
                                 <li class="c-content-error__item">
                                 </li>
                               </ul>
+
                               <div class="c-grid__row c-grid__row--gap-lg js-auto-title-message">
                                 <div
                                   class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
@@ -697,6 +699,7 @@
                                   </div>
                                 </div>
                               </div>
+
                               <div class="c-grid__row c-grid__row--gap-lg">
                                 <div
                                   class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
@@ -745,15 +748,15 @@
                                   </label>
 
                                   <div class="field-wrapper field-wrapper--justify field-wrapper--background">
-                                    <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto disabled"
+                                    <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto"
                                            id="productIsFakeLabel">
                                       <input type="checkbox" class="c-ui-checkbox__origin" name="product[fake]"
-                                             id="productIsFake" value="1" data-brand-other-id="719">
+                                             id="productIsFake" value="1" data-brand-other-id="0">
                                       <span class="c-ui-checkbox__check"></span>
                                       <span class="c-ui-checkbox__label">
-                نشان کالای غیراصل
-                (<span class="c-ui-checkbox__strong">غیر اصل</span>)
-            </span>
+                                          نشان کالای غیراصل
+                                          (<span class="c-ui-checkbox__strong">غیر اصل</span>)
+                                      </span>
                                     </label>
 
                                     <div class="c-wiki c-wiki__holder">
@@ -814,13 +817,11 @@
                                     نوع کالا:
                                     <span class="uk-form-label__required"></span>
                                   </label>
-                                  <div
-                                    class="field-wrapper ui-select ui-select__container ui-select__container--product">
-                                    <select name="product[category_product_type_id][]" id="categoryProductTypesSelect"
+                                  <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
+                                    <select name="product[types][]" id="categoryProductTypesSelect"
                                             class="uk-input uk-input--select js-select-origin js-in-product select2-hidden-accessible"
                                             multiple="" disabled="" data-select2-id="categoryProductTypesSelect"
                                             tabindex="-1" aria-hidden="true">
-
                                     </select>
                                     <span class="select-counter"></span>
                                     <div class="js-select-options"></div>
@@ -869,7 +870,6 @@
                                     <select name="product[is_iranian]" id="isIranian"
                                             class="uk-input uk-input--select js-select-origin js-in-product select2-hidden-accessible"
                                             tabindex="-1" aria-hidden="true">
-                                      <option></option>
                                       <option value="1">ایرانی</option>
                                       <option value="0">خارجی</option>
                                     </select>
@@ -983,6 +983,7 @@
                                   </div>
                                 </div>
                               </div>
+
                               <div class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
                                   <label for="" class="uk-form-label">شرح کالا:</label>
@@ -1057,13 +1058,7 @@
                         <div id="confirmFakeSelectionBrandChangeModal" class="marketplace-redesign uk-modal"
                              uk-modal="">
                           <div class="uk-modal-dialog uk-modal-dialog--confirm uk-modal-body">
-                            <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button"
-                                    uk-close="">
-                              <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"
-                                   ratio="1">
-                                <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                                <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
-                              </svg>
+                            <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button" uk-close="">
                             </button>
 
                             <div class="modal-product modal-product--confirm">
@@ -1449,12 +1444,7 @@
           <div>
             <div class="c-content-accordion__modal-header uk-flex uk-flex-middle uk-flex-between">
               <p class="c-content-accordion__modal-title c-content-accordion__modal-title--light">راهنما</p>
-              <button class="uk-modal-close uk-close uk-icon" type="button" uk-close="">
-                <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1">
-                  <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                  <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
-                </svg>
-              </button>
+              <button class="uk-modal-close uk-close uk-icon" type="button" uk-close=""></button>
             </div>
 
             <div class="c-content-accordion__modal-body">
@@ -1462,7 +1452,7 @@
                 کالا</p>
               <div class="o-spacing-m-t-5 c-content-accordion__modal-content-container">
                 <p class="c-content-accordion__modal-text js-modal-item " data-item="short_description">1- کالای مشابه
-                  با کالایی که قصد فروش آن را دارید را در سایت دیجیکالا جست و جو کنید.
+                  با کالایی که قصد فروش آن را دارید را در سایت  جست و جو کنید.
                   2- پس از یافتن محصولات، روی عبارت "جدید ترین" کلیک کنید.
                   3- یکی از کالاها را انتخاب کنید.
                   4- مطابق با گروه آن کالا، گروه کالایی خود را در هنگام درج انتخاب کنید.</p>
@@ -1481,9 +1471,9 @@
                       <span class="c-content-accordion__modal-guidelines-expand-icon"></span>
                     </div>
                     <div class="c-content-accordion__modal-text uk-hidden js-guideline-desc"><p>برای هر کسب‌و‌کار، شغل و
-                        حرفه‌ای قوانین خاصی وجود دارد و فروشگاه اینترنتی دیجی‌کالا هم از این قانون مستثنا نیست.</p>
+                        حرفه‌ای قوانین خاصی وجود دارد و فروشگاه اینترنتی هم از این قانون مستثنا نیست.</p>
 
-                      <p>کالاهای ممنوعه کالاهایی هستند که فروش آن ها در سایت دیجیکالا مجاز نیست. این کالاها پس از بررسی،
+                      <p>کالاهای ممنوعه کالاهایی هستند که فروش آن ها در سایت  مجاز نیست. این کالاها پس از بررسی،
                         وضعیتشان به "حذف شده" تغییر میکند و فروشنده دیگر امکان ویرایش آن را نخواهد داشت.</p>
 
                       <p>برای سرعت بخشیدن به فرآیند درج لطفا قبل از درج کالا با مراجعه به <a
@@ -1572,10 +1562,6 @@
             <div class="c-content-accordion__modal-header uk-flex uk-flex-middle uk-flex-between">
               <p class="c-content-accordion__modal-title c-content-accordion__modal-title--light">راهنما</p>
               <button class="uk-modal-close uk-close uk-icon" type="button" uk-close="">
-                <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1">
-                  <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                  <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
-                </svg>
               </button>
             </div>
 
@@ -1888,11 +1874,16 @@
     $(document).on('change', ".title-creator", function () {
       var model = $("input[name='product[model]']").val();
       var full_brand = $("#brandsSelect option:selected").text();
-      var brand = full_brand.substring(0, full_brand.indexOf(" ("));
+      var brand = full_brand.substring(0, full_brand.indexOf(" "));
       console.log(brand);
       var nature = $("input[name='product[product_nature]']").val();
 
-      var product_title = nature + ' ' + brand + ' مدل ' + model;
+      if($("#brandsSelect option:selected").val() == 0) {
+        var product_title = nature + ' مدل ' + model;
+      }
+      else {
+        var product_title = nature + ' ' + brand + ' مدل ' + model;
+      }
 
       console.log(product_title);
 
@@ -1903,6 +1894,7 @@
   </script>
 
 @endsection
+
 
 
 

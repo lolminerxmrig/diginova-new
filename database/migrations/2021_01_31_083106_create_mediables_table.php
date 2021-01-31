@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypablesTable extends Migration
+class CreateMediablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTypablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('typables', function (Blueprint $table) {
+        Schema::create('mediables', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_id');
-            $table->nullableMorphs('typable');
+            $table->integer('media_id');
+            $table->morphs('mediable');
+            $table->boolean('is_main')->nullable();
+            $table->integer('position')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTypablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typables');
+        Schema::dropIfExists('mediables');
     }
 }

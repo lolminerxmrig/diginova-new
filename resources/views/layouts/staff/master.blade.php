@@ -86,6 +86,10 @@
                     </li>
 
                     <li>
+                      <a href="{{ route('staff.types.index') }}">نوع ها</a>
+                    </li>
+
+                    <li>
                       <a href="{{ route('staff.units.index') }}">واحد ها</a>
                     </li>
 

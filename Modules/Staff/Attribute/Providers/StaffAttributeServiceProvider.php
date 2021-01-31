@@ -24,6 +24,7 @@ class StaffAttributeServiceProvider extends ServiceProvider
 
         Relation::morphMap([
             'AttributeGroups' => 'Modules\Staff\Attribute\Models\AttributeGroup',
+            'Attribute' => 'Modules\Staff\Attribute\Models\Attribute',
         ]);
     }
 }

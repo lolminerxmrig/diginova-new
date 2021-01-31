@@ -176,7 +176,7 @@
                                                       <div class="uk-flex uk-flex-column">
                                                         <a href="https://www.digikala.com/product/dkp-4335203/" target="_blank">
                                                           <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial" style="margin:auto;">
-                                                               {{ $product->title_fa }}
+                                                               دوربین دیجیتال سونی مدل ننینین ینینی
                                                           </span>
                                                           <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                         </a>
@@ -198,10 +198,10 @@
                                                       <a href="/product/?search%5Bbrand_id%5D=1">
                                                         <div class="uk-flex uk-flex-column">
                                                           <span class="c- -card-row-item" style="margin: auto;">
-                                                              {{ $product->brand->name }}
+                                                              سونی
                                                           </span>
                                                           <span class="c-wallet__body-card-row-item" style="margin: auto;">
-                                                               {{ $product->brand->en_name }}
+                                                              Sony
                                                           </span>
                                                         </div>
                                                       </a>

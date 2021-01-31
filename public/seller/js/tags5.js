@@ -1881,7 +1881,7 @@ let IndexAction = {
                 minlength: 2,
                 maxlength: 255
             },
-            'product[category_product_type_id][]': {
+            'product[types][]': {
                 required: true
             },
             'product[title_alt]': {
@@ -1986,7 +1986,7 @@ let IndexAction = {
                 'minlength': 'مدل وارد شده کوتاه‌تر از حد مجاز است، مدل نمی‌تواند کوتاه‌تر از 2 کاراکتر باشد',
                 'maxlength': 'مدل وارد شده طولانی‌تر از حد مجاز است، مدل نمی‌تواند طولاتی‌تر از 255 کاراکتر باشد'
             },
-            'product[category_product_type_id][]': {
+            'product[types][]': {
                 'required': 'وارد کردن نوع کالا اجباری است'
             },
             'product[title_alt]': {

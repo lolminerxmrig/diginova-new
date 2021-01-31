@@ -90,7 +90,7 @@
 
         <div class="field-wrapper ui-select ui-select__container">
             <select class="uk-input uk-input--select js-select-origin select2-hidden-accessible {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]" data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true">
-                <option>یکی از گزینه ها را انتخاب کنید</option>
+                <option value="">یکی از گزینه ها را انتخاب کنید</option>
               @foreach($attribute->values as $item)
                 <option value="{{ $item->id }}"> {{ $item->value }} </option>
               @endforeach
@@ -182,9 +182,32 @@
 
 </div>
 @endforeach
+@if(! $attr_groups->count())
+<div class="c-grid__row c-grid__row--gap-lg js-auto-title-message">
+  <div
+    class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
+    <div class="c-content-product__auto-title-msg">برای این گروه کالایی شما هیچ ویژگی ایجاد نکرده اید پیشنهاد می شود حتما ابتدا برای دسته بندی ها ویژگی ایجاد کنید سپس اقدام به ایجاد محصول کنید و یا پس از ذخیره این صفحه و ایجاد ویژگی برای آن نسبت به ویرایش محصول اقدام کنید.</div>
+  </div>
+</div>
+@endif
+{{--<div class="c-grid__row c-grid__row--gap-lg">--}}
+{{--  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">--}}
+{{--    <label for="" class="uk-form-label">سایر توضیحات:</label>--}}
+{{--    <div class="field-wrapper field-wrapper--textarea">--}}
+{{--                                    <textarea name="product[description]"--}}
+{{--                                              placeholder="برای معرفی بهتر کالا به مشتریان، پیشنهاد می‌‌شود 150 کلمه درباره‌ کالای خود بنویسید."--}}
+{{--                                              class="c-content-input__origin c-content-input__origin--textarea js-textarea-words"--}}
+{{--                                              rows="5" maxlength="2000"></textarea>--}}
+{{--      <span class="textarea__wordcount">--}}
+{{--                        <span class="js-wordcount-target">0</span>/2000--}}
+{{--                    </span>--}}
+{{--    </div>--}}
+{{--  </div>--}}
+{{--</div>--}}
+
 
 <div class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">
-    <button class="c-ui-btn c-ui-btn--next mr-a goToTitleStep" value="sss" id="attributesStepNext">
+    <button class="c-ui-btn c-ui-btn--next mr-a goToTitleStep" id="attributesStepNext">
         ادامه دادن
     </button>
 </div>
