@@ -146,7 +146,7 @@ class StaffBrandController extends Controller
         }
     }
 
-    public function uploadImage(StaffBrandImageRequest $request)
+    public function uploadImage(Request $request)
     {
         if ($request->old_img){
             $request->id = $request->old_img;

@@ -23,6 +23,9 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     Route::get('create', [StaffProductController::class, 'create'])
         ->name('create');
 
+    Route::get('edit/{id}', [StaffProductController::class, 'edit'])
+        ->name('create');
+
     Route::post('child-categories-loader', [StaffProductController::class, 'childCatsLoader'])
         ->name('childCatsLoader');
 

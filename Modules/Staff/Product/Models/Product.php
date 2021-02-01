@@ -35,9 +35,9 @@ class Product extends Model
       'description',
     ];
 
-    public function categories()
+    public function category()
     {
-      return $this->morphToMany(Category::class);
+      return $this->morphToMany(Category::class, 'categorizable');
     }
 
     public function media()

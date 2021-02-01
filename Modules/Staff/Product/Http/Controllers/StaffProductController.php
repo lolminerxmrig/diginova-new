@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 
 use App\Models\Media;
 use Modules\Staff\Attribute\Models\AttributeProduct;
+use Modules\Staff\Category\Models\Categorizable;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
@@ -33,6 +34,29 @@ class StaffProductController extends Controller
         return view('staffproduct::index', compact('products', 'trashed_products'));
     }
 
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+//        $product_category = Category::find($product->category[0]->id);
+
+        $category = $product->category[0];
+        do {
+            $main_cat=$category->parent;
+            $lists[] = $category;
+            $category = $category->parent;
+        } while (isset($category->parent));
+        $lists = array_reverse($lists,true);
+        $aa = [0];
+
+        foreach ($lists as $list) {
+            $all_parent[] = $list->id;
+        }
+        array_unshift($all_parent,0);
+
+        $categories = Category::all();
+
+        return view('staffproduct::edit', compact('product', 'all_parent', 'categories'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -256,6 +280,12 @@ class StaffProductController extends Controller
             'description' => $request->product['description'],
         ]);
 
+        Categorizable::create([
+           'category_id' => $request->product['category_id'],
+           'categorizable_type' => 'Product',
+           'categorizable_id' => $product->id,
+        ]);
+
         $category = Category::find($request->product['category_id']);
 
         if (isset($category->attributes)) {
@@ -279,34 +309,51 @@ class StaffProductController extends Controller
 
 
         foreach ($request->images['images'] as $key => $value)
+        {
+            if($request['images']['main_image'] == $value){
+                $is_main = 1;
+            } else {
+                $is_main = 0;
+            }
+
             Mediable::create([
                 'media_id' => $value,
                 'mediable_type' => 'Product',
                 'mediable_id' => $product->id,
                 'position' => $key,
+                'is_main' => $is_main,
             ]);
 
-            $media = Media::update(
-                ['id' => $value],
-                ['status' => 1]
-            );
+            Media::where('id', $value)->update([
+                'status' => 1,
+            ]);
 
 
-        $all_images = explode(",", $request->images['order']);
-        $available_images = $request['images']['images'];
-
-        $only_deleted = array_diff($all_images, $available_images);
-
-        foreach ($only_deleted as $item) {
-            $media = Media::find($item);
-            Mediable::where('media_id', $media->id)->delete();
             $user_id = auth()->guard('staff')->user()->id;
-            if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
-                unlink(public_path("$media->path/") . $media->name);
-                $media->delete();
+
+
+            $all_images = $request['images']['order'];
+            $all_images = explode(',', $all_images);
+
+            $available_images = $request['images']['images'];
+
+            $only_trashed = array_diff($all_images, $available_images);
+
+            foreach ($only_trashed as $item)
+            {
+                $media = Media::find($item);
+                if(($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id))
+                {
+                    unlink(public_path("$media->path/"). $media->name);
+                    $media->delete();
+                }
             }
+
         }
     }
+
+
+
 
 
     public function ajaxPagination(Request $request)

@@ -783,8 +783,8 @@
                                   <div>
                                   </div>
                                 </div>
-                                <div
-                                  class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 c-grid__col--xs-gap">
+
+                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 c-grid__col--xs-gap">
                                   <label for="" class="uk-form-label">
                                     ماهیت کالا:
                                     <span class="uk-form-label__required"></span>
@@ -797,6 +797,7 @@
                                     </label>
                                   </div>
                                 </div>
+
                                 <div
                                   class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4">
                                   <div class="field-wrapper hidden" id="commissionContainer">

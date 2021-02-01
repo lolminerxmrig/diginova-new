@@ -38,7 +38,6 @@ class StaffProductController extends Controller
         return view('staffproduct::index', compact('products', 'trashed_products'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      * @return Response
