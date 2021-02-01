@@ -15,15 +15,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4c6adf28-119f-4cef-ae06-bfc6c99776b8" name="test" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Controllers/StaffBrandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Controllers/StaffBrandController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Requests/StaffBrandImageRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Requests/StaffBrandImageRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers/StaffProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers/StaffProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers/temp-StaffProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers/temp-StaffProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Providers/StaffProductServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Providers/StaffProductServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_01_213631_create_media_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_01_213631_create_media_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/edit.blade.php" afterDir="false" />
     </list>
     <list id="aca6119d-1593-413f-8e01-a44ff24a8d7d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -455,7 +448,7 @@
       <workItem from="1611997392325" duration="31662000" />
       <workItem from="1612062881601" duration="29737000" />
       <workItem from="1612100163430" duration="16001000" />
-      <workItem from="1612154568417" duration="194000" />
+      <workItem from="1612154568417" duration="4158000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <option name="createBranch" value="false" />

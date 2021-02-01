@@ -44,7 +44,7 @@ class StaffProductController extends Controller
             $main_cat=$category->parent;
             $lists[] = $category;
             $category = $category->parent;
-        } while (isset($category->parent));
+        } while (isset($category));
         $lists = array_reverse($lists,true);
         $aa = [0];
 

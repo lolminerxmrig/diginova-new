@@ -581,22 +581,23 @@
                                                         <div id="categoriesContainer" class="c-content-categories">
                                                             <div class="c-content-categories__container" id="categoriesContainerContent">
                                                                 @foreach($all_parent as $parent)
-                                                                <div class="c-content-categories__wrapper js-category-column">
-                                                                    <ul class="c-content-categories__list">
-                                                                        @foreach($categories->where('parent_id',$parent) as $category)
-                                                                        <li class="c-content-categories__item">
-{{--                                                                        <li class="c-content-categories__item   {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}--}}
-{{--                                                                        {{ in_array($category->id, $all_parent) ? 'is-active' : '' }}">--}}
-                                                                            <label class="c-content-categories__link js-category-link">
-                                                                                <input type="radio" class="uk-hidden js-category-data"
-                                                                                       data-id="{{ $category->id }}" value="{{ $category->name }}" data-theme="">
-                                                                                {{ $category->name }}
-                                                                                {{ $category->id }}
-                                                                            </label>
-                                                                        </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </div>
+                                                                    @if($categories->where('parent_id', $parent)->count() > 0)
+                                                                        <div class="c-content-categories__wrapper js-category-column">
+                                                                            <ul class="c-content-categories__list">
+                                                                                @foreach($categories->where('parent_id',$parent) as $category)
+                                                                                    <li class="c-content-categories__item
+                                                                                     {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}
+                                                                                     {{ in_array($category->id, $all_parent) ? 'is-active' : '' }}">
+                                                                                        <label class="c-content-categories__link js-category-link">
+                                                                                            <input type="radio" class="uk-hidden js-category-data"
+                                                                                                   data-id="{{ $category->id }}" value="{{ $category->name }}" data-theme="">
+                                                                                            {{ $category->name }}
+                                                                                        </label>
+                                                                                    </li>
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        </div>
+                                                                    @endif
                                                                 @endforeach
 
                                                             </div>
@@ -610,24 +611,13 @@
                                                             <div class="c-content-categories__summary-breadcrumbs">
                                                                 <span class="">گروه کالایی انتخابی شما:</span>
                                                                 <ul class="js-selected-category c-content-categories__selected-list">
-                                                                    <li class="c-content-categories__selected-category">
-                                                                        مد و پوشاک
-                                                                    </li>
-                                                                    <li class="c-content-categories__selected-category">
-                                                                        بچگانه
-                                                                    </li>
-                                                                    <li class="c-content-categories__selected-category">
-                                                                        نوزاد
-                                                                    </li>
-                                                                    <li class="c-content-categories__selected-category">
-                                                                        لباس نوزاد
-                                                                    </li>
-                                                                    <li class="c-content-categories__selected-category">
-                                                                        جوراب و ساق نوزاد
-                                                                    </li>
-                                                                    <li class="c-content-categories__selected-category">
-                                                                        جوراب نوزاد
-                                                                    </li>
+                                                                    @foreach($all_parent as $parent)
+                                                                        @if($parent !== 0)
+                                                                            <li class="c-content-categories__selected-category">
+                                                                                {{ $categories->find($parent)->name }}
+                                                                            </li>
+                                                                        @endif
+                                                                    @endforeach
                                                                 </ul>
                                                             </div>
 
