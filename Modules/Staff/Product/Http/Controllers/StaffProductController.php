@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 
 use App\Models\Media;
 use Modules\Staff\Attribute\Models\AttributeProduct;
+use Modules\Staff\Brand\Models\BrandProduct;
 use Modules\Staff\Category\Models\Categorizable;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Brand\Models\Brand;
@@ -29,7 +30,7 @@ class StaffProductController extends Controller
      */
     public function index()
     {
-        $products = Product::distinct('title_fa')->orderBy('created_at', 'desc')->paginate(10);
+        $products = Product::orderBy('created_at', 'desc')->paginate(10);
         $trashed_products = Product::distinct('title_fa')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
         return view('staffproduct::index', compact('products', 'trashed_products'));
     }
@@ -54,8 +55,9 @@ class StaffProductController extends Controller
         array_unshift($all_parent,0);
 
         $categories = Category::all();
+        $attr_groups = $product->category[0]->attributeGroups;
 
-        return view('staffproduct::edit', compact('product', 'all_parent', 'categories'));
+        return view('staffproduct::edit', compact('product', 'all_parent', 'categories', 'attr_groups'));
     }
 
     /**
@@ -114,7 +116,7 @@ class StaffProductController extends Controller
         }
 
         foreach ($cat as $brand) {
-            $brands[] = array("value" => $brand->id, "text" => $brand->name . ' ' . $brand->en_name);
+            $brands[] = array("value" => $brand->id, "text" => $brand->name . ' (' . $brand->en_name . ')');
         }
 
         $defualt_brand = array("value" => "", "text" => 'برند کالا را انتخاب کنید');
@@ -288,12 +290,14 @@ class StaffProductController extends Controller
 
         $category = Category::find($request->product['category_id']);
 
+
         if (isset($category->attributes)) {
             foreach ($category->attributes as $attribute) {
+
                 AttributeProduct::create([
                     'attribute_id' => $attribute->id,
                     'product_id' => $product->id,
-                    'values' => (isset($request['attributes'][$attribute->id])) ? json_encode($request['attributes'][$attribute->id]) : '',
+                    'value' => (isset($request['attributes'][$attribute->id])) ? $request['attributes'][$attribute->id] : '',
                 ]);
             }
         }
@@ -364,16 +368,16 @@ class StaffProductController extends Controller
             $paginatorNum = 10;
         }
 
-        $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate($paginatorNum);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $products = Product::orderBy('created_at', 'desc')->paginate($paginatorNum);
+        $trashed_products = Product::onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
 
         $media = Media::all();
         $categories = Category::all();
 
         $pageType = 'index';
 
-        return View::make('staffproduct::ajax-content',
-            compact('brands', 'media', 'categories', 'pageType', 'trashed_brands'))->render();
+        return View::make('staffproduct::ajax.ajax-content',
+            compact('products', 'media', 'categories', 'pageType', 'trashed_products'))->render();
 
     }
 
@@ -384,12 +388,12 @@ class StaffProductController extends Controller
             return $this->ajaxPagination($request);
 
         } else {
-            $brands = Brand::where('type', 1)->distinct('name')->orderBy('created_at', 'desc')->paginate(1);
-            $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+            $products = Product::where('type', 1)->orderBy('created_at', 'desc')->paginate(10);
+            $trashed_products = Product::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
             $pageType = 'only_special';
 
-            if ($brands) {
-                return View::make('staffproduct::ajax-content', compact('brands', 'pageType', 'trashed_brands'));
+            if ($products) {
+                return View::make('staffproduct::ajax.ajax-content', compact('products', 'pageType', 'trashed_products'));
             }
 
         }
@@ -398,24 +402,21 @@ class StaffProductController extends Controller
 
     public function trash()
     {
-        $brands = Brand::onlyTrashed()->paginate(1);
-        return view('staffproduct::trash', compact('brands'));
+        $products = Product::onlyTrashed()->paginate(10);
+        return view('staffproduct::trash', compact('products'));
     }
 
 
     public function trashPagination()
     {
-        $brands = Brand::onlyTrashed()->paginate(1);
-        return View::make('staffproduct::ajax-trash-content', compact('brands'));
+        $products = Product::onlyTrashed()->paginate(10);
+        return View::make('staffproduct::ajax.ajax-trash-content', compact('products'));
     }
 
 
     public function moveToTrash(Request $request)
     {
-        Brand::find($request->id)->delete();
-        //        $id = $request->id;
-        //        return response()->json($id, 200);
-
+        Product::find($request->id)->delete();
         return $this->ajaxPagination($request);
 
     }
@@ -423,49 +424,56 @@ class StaffProductController extends Controller
 
     public function restoreFromTrash(Request $request)
     {
-        Brand::withTrashed()->find($request->id)->restore();
-        $brands = Brand::onlyTrashed()->paginate(10);
-        return View::make('staffproduct::ajax-trash-content', compact('brands'));
+        Product::withTrashed()->find($request->id)->restore();
+        $products = Product::onlyTrashed()->paginate(10);
+        return View::make('staffproduct::ajax.ajax-trash-content', compact('products'));
     }
 
 
     public function removeFromTrash(Request $request)
     {
-        Brand::withTrashed()->find($request->id)->forceDelete();
-        $brands = Brand::onlyTrashed()->paginate(10);
-        return View::make('staffproduct::ajax-trash-content', compact('brands'));
-
+        ProductType::where('product_id', $request->id)->forceDelete();
+        Product::withTrashed()->find($request->id)->forceDelete();
+        $products = Product::onlyTrashed()->paginate(10);
+        return View::make('staffproduct::ajax.ajax-trash-content', compact('products'));
     }
 
 
-    public function brandSearch(Request $request, Brand $brands)
+    public function productSearch(Request $request, Brand $brands)
     {
         $search_keyword = $request->search_keyword;
 
-        $brands = Brand::query()->where('name', 'LIKE', "%{$search_keyword}%")->paginate(1);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $products = Product::query()->where('title_fa', 'LIKE', "%{$search_keyword}%")->paginate(1);
+        $trashed_products = Product::onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
 
-        if ($brands) {
-            $pageType = 'brandSearch';
-            return View::make("staffproduct::ajax-content",
-                compact('brands', 'pageType', 'trashed_brands'));
+        if ($products) {
+            $pageType = 'productSearch';
+            return View::make("staffproduct::ajax.ajax-content",
+                compact('products', 'pageType', 'trashed_products'));
         }
     }
 
 
-    public function brandCatSearch(Request $request, Brand $brands)
+    public function productCatSearch(Request $request, Product $products)
     {
         $search_keyword = $request->search_keyword;
 
-        $brands = $brands->whereHas('categories', function ($query) use ($search_keyword) {
+        $products = $products->whereHas('categories', function ($query) use ($search_keyword) {
             $query->where('name', 'LIKE', '%' . $search_keyword . '%');
         })->paginate(5);
 
-        if ($brands) {
+        if ($products) {
             $pageType = 'brandCatSearch';
-            $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
-            return View::make("staffproduct::ajax-content", compact('brands', 'pageType', 'trashed_brands'));
+            $trashed_products = Product::onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+            return View::make("staffproduct::ajax.ajax-content", compact('products', 'pageType', 'trashed_products'));
         }
+    }
+
+    public function statusProduct(Request $request)
+    {
+        Product::where('id', $request->product_id)->update([
+            'status' => $request->status,
+        ]);
     }
 
 }

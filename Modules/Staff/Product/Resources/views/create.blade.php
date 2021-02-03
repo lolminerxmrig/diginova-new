@@ -628,11 +628,6 @@
                           <div class="uk-modal-dialog uk-modal-dialog--confirm uk-modal-body">
                             <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button"
                                     uk-close="">
-                              <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"
-                                   ratio="1">
-                                <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                                <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
-                              </svg>
                             </button>
 
                             <div class="modal-product modal-product--confirm">
@@ -812,8 +807,7 @@
                               </div>
 
                               <div class="c-grid__row c-grid__row--gap-lg">
-                                <div
-                                  class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 ">
+                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 ">
                                   <label for="" class="uk-form-label uk-flex uk-flex-between">
                                     نوع کالا:
                                     <span class="uk-form-label__required"></span>

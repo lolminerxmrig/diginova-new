@@ -5,6 +5,7 @@ namespace Modules\Staff\Attribute\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Staff\Category\Models\Category;
+use Modules\Staff\Product\Models\Product;
 
 
 class Attribute extends Model
@@ -21,6 +22,11 @@ class Attribute extends Model
     public function values()
     {
       return $this->hasMany(AttributeValue::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
     }
 }
 

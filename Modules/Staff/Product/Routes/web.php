@@ -26,6 +26,9 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     Route::get('edit/{id}', [StaffProductController::class, 'edit'])
         ->name('create');
 
+    Route::post('status-product', [StaffProductController::class, 'statusProduct'])
+        ->name('statusProduct');
+
     Route::post('child-categories-loader', [StaffProductController::class, 'childCatsLoader'])
         ->name('childCatsLoader');
 
@@ -82,9 +85,9 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     Route::post('filter', [StaffProductController::class, 'filterByType'])
       ->name('filterByType');
 
-    Route::post('brand-search', [StaffProductController::class, 'brandSearch'])
-      ->name('brandSearch');
+    Route::post('product-search', [StaffProductController::class, 'productSearch'])
+      ->name('productSearch');
 
-
-
+    Route::post('product-cat-search', [StaffProductController::class, 'productCatSearch'])
+        ->name('productCatSearch');
   });

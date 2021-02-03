@@ -116,9 +116,10 @@
 {{--                <span class="uk-float-left uk-padding-medium-left">...</span>--}}
 {{--            @endif--}}
         </label>
+
         <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
             <select class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product select2-hidden-accessible
-              {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" multiple="" name="attributes[{{$attribute->id}}]"
+              {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" multiple="" name="attributes[{{$attribute->id}}][]"
                     data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true" aria-describedby="attributes[{{$attribute->id}}]-error" aria-invalid="false">
               @foreach($attribute->values as $item)
                 <option value="{{ $item->id }}"> {{ $item->value }} </option>
@@ -128,6 +129,7 @@
             <div class="js-select-options"></div>
             <div id="attributes[33887][]-error" class="error error-msg" style="display: none;"></div></div>
         <div>
+
         </div>
     </div>
     @endif

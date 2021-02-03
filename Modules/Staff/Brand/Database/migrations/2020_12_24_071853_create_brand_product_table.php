@@ -17,6 +17,7 @@ class CreateBrandProductTable extends Migration
             $table->id();
             $table->integer('brand_id');
             $table->integer('product_id');
+            $table->timestamps();
         });
     }
 

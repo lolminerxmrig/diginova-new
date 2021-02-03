@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Attribute\Models\AttributeGroup;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
@@ -35,6 +36,12 @@ class Product extends Model
       'description',
     ];
 
+
+    protected $casts = [
+        'advantages' => 'array',
+        'disadvantages' => 'array',
+    ];
+
     public function category()
     {
       return $this->morphToMany(Category::class, 'categorizable');
@@ -42,12 +49,22 @@ class Product extends Model
 
     public function media()
     {
-        return $this->morphToMany(Media::class);
+        return $this->morphToMany(Media::class, 'mediable', 'mediables')->withPivot('is_main');
     }
 
     public function brand()
     {
       return $this->belongsTo(Brand::class);
+    }
+
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class);
+    }
+
+    public function categories()
+    {
+        return $this->morphToMany(Category::class, 'categorizable');
     }
 
 

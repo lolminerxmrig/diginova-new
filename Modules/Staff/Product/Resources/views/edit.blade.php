@@ -569,10 +569,8 @@
                                                             کالای شما:</label>
                                                         <div class="search-form__autocomplete-container">
                                                             <div class="search-form__autocomplete js-autosuggest-box">
-                                                                <input id="searchKeyword"
-                                                                       class="c-content-input__origin js-prevent-submit"
-                                                                       type="text"
-                                                                       placeholder="نام کالا،  دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل"
+                                                                <input id="searchKeyword" class="c-content-input__origin js-prevent-submit"
+                                                                   type="text" placeholder="نام کالا،  دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل"
                                                                        disabled>
                                                             </div>
                                                         </div>
@@ -684,8 +682,8 @@
                                                 <h2 class="c-content-accordion__title">
                                                     <div class="c-content-accordion__title-text">گام دوم: درج اطلاعات
                                                         کالا
-                                                        <span class="c-content-accordion__guid-line js-guideline-icon "
-                                                              data-guideline-modal="product_info"></span>
+{{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon "--}}
+{{--                                                              data-guideline-modal="product_info"></span>--}}
                                                     </div>
                                                 </h2>
                                                 <div class="c-content-accordion__content" id="stepProductContainer">
@@ -814,18 +812,15 @@
                                                                            class="uk-form-label uk-flex uk-flex-between">
                                                                         برند یا نام سازنده کالا:
                                                                         <span class="uk-form-label__required"></span>
-                                                                        <a href="{{ route('staff.brands.create') }}" class="search-link">ایجاد برند جدید</a>
+                                                                        <a href="{{ route('staff.brands.create') }}" target="_blank" class="search-link">ایجاد برند جدید</a>
                                                                     </label>
                                                                     <div
                                                                         class="field-wrapper ui-select ui-select__container">
-                                                                        <select name="product[brand_id]"
-                                                                                id="brandsSelect"
-                                                                                class="uk-input uk-input--select js-select-origin"
-                                                                                required>
+                                                                        <select name="product[brand_id]" id="brandsSelect" class="uk-input uk-input--select js-select-origin" required>
                                                                             <option value="">برند کالا را انتخاب کنید</option>
+                                                                            <option value="0">متفرقه Miscellaneous</option>
                                                                             @foreach($product->category[0]->brands as $brand)
-                                                                                <option value="0">متفرقه Miscellaneous</option>
-                                                                                <option value="{{ $brand->id }}" {{ ($product->brand_id == $brand->id )? 'selected' : '' }}>{{ $brand->name }}</option>
+                                                                                <option value="{{ $brand->id }}" {{ ($product->brand_id == $brand->id )? 'selected' : '' }}>{{ $brand->name }} {{ $brand->en_name }}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <div class="js-select-options"></div>
@@ -868,27 +863,28 @@
                                                                         نوع کالا:
                                                                         <span class="uk-form-label__required"></span>
                                                                     </label>
-                                                                    <div
-                                                                        class="field-wrapper ui-select ui-select__container ui-select__container--product">
-                                                                        <select name="product[category_product_type_id][]"
-                                                                                id="categoryProductTypesSelect"
+
+                                                                    <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
+                                                                        <select name="product[types][]" id="categoryProductTypesSelect"
                                                                                 class="uk-input uk-input--select js-select-origin js-in-product"
+                                                                                {{ (count($product->category[0]->types) == 0)? 'disabled' : '' }}
                                                                                 multiple="multiple">
                                                                             <option value="">نوع کالا را انتخاب کنید</option>
-                                                                            @php
-                                                                                foreach ($product->type as $type)
-                                                                                {
-                                                                                    $this_product_types [] = $type->id;
-                                                                                }
-                                                                            @endphp
-                                                                            @foreach($product->category[0]->types as $type)
-                                                                                <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>
-                                                                            @endforeach
-
+                                                                                @php
+                                                                                    foreach ($product->type as $type)
+                                                                                    {
+                                                                                        $this_product_types [] = $type->id;
+                                                                                    }
+                                                                                @endphp
+                                                                                @foreach($product->category[0]->types as $type)
+                                                                                    <option value="dd">sss</option>
+{{--                                                                                    <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>--}}
+                                                                                @endforeach
                                                                         </select>
                                                                         <span class="select-counter"></span>
                                                                         <div class="js-select-options"></div>
                                                                     </div>
+
                                                                     <div>
                                                                     </div>
                                                                 </div>
@@ -947,8 +943,8 @@
                                                                                 id="isIranian"
                                                                                 class="uk-input uk-input--select js-select-origin js-in-product">
                                                                             <option></option>
-                                                                            <option value="1">ایرانی</option>
-                                                                            <option value="0">خارجی</option>
+                                                                            <option value="1" {{ ($product->is_iranian == 1 )? 'selected' : '' }}>ایرانی</option>
+                                                                            <option value="0" {{ ($product->is_iranian == 0 )? 'selected' : '' }}>خارجی</option>
                                                                         </select>
                                                                         <span class="select-counter"></span>
                                                                         <div class="js-select-options"></div>
@@ -990,23 +986,16 @@
                                                                             class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6">
                                                                             <label for="" class="uk-form-label">
                                                                                 ابعاد بسته‌بندی (سانتیمتر):
-                                                                                <span
-                                                                                    class="uk-form-label__required"></span>
+                                                                                <span class="uk-form-label__required"></span>
                                                                             </label>
-                                                                            <div
-                                                                                class="c-grid__row c-grid__row--gap-small c-grid__row--nowrap-sm">
-                                                                                <div
-                                                                                    class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial">
+                                                                            <div class="c-grid__row c-grid__row--gap-small c-grid__row--nowrap-sm">
+                                                                                <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial">
                                                                                     <div class="field-wrapper">
                                                                                         <label class="c-content-input">
                                                                                     <span
                                                                                         class="c-content-input__text c-content-input__text--overlay">طول</span>
-                                                                                            <input type="text"
-                                                                                                   placeholder=""
-                                                                                                   class="c-content-input__origin c-content-input__origin--overlay"
-                                                                                                   value="20"
-                                                                                                   name="product[package_length]"
-                                                                                            >
+                                                                                            <input type="text" placeholder="" class="c-content-input__origin c-content-input__origin--overlay"
+                                                                                                   value="{{ $product->length }}" name="product[package_length]">
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
@@ -1019,9 +1008,8 @@
                                                                                             <input type="text"
                                                                                                    placeholder=""
                                                                                                    class="c-content-input__origin c-content-input__origin--overlay"
-                                                                                                   value="18"
-                                                                                                   name="product[package_width]"
-                                                                                            >
+                                                                                                   value="{{ $product->width }}"
+                                                                                                   name="product[package_width]">
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
@@ -1034,9 +1022,8 @@
                                                                                             <input type="text"
                                                                                                    placeholder=""
                                                                                                    class="c-content-input__origin c-content-input__origin--overlay"
-                                                                                                   value="9"
-                                                                                                   name="product[package_height]"
-                                                                                            >
+                                                                                                   value="{{ $product->height }}"
+                                                                                                   name="product[package_height]">
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
@@ -1055,9 +1042,8 @@
                                                                                 class="c-content-input__text c-content-input__text--overlay">وزن</span>
                                                                                     <input type="text" placeholder=""
                                                                                            class="c-content-input__origin c-content-input__origin--overlay"
-                                                                                           value="88"
-                                                                                           name="product[package_weight]"
-                                                                                    >
+                                                                                           value="{{ $product->weight }}"
+                                                                                           name="product[package_weight]">
                                                                                 </label>
                                                                             </div>
                                                                         </div>
@@ -1076,7 +1062,7 @@
                       class="c-content-input__origin c-content-input__origin--textarea js-textarea-words"
                       rows="5"
                       maxlength="2000"
-            ></textarea>
+            >{{ $product->description }}</textarea>
                                                                         <span class="textarea__wordcount">
                 <span class="js-wordcount-target">0</span>/2000
             </span>
@@ -1102,10 +1088,12 @@
                                                                         </div>
                                                                         <div
                                                                             class="c-ui-tag__textarea js-textarea-tags-container"></div>
-                                                                        <select name="product[advantages][]" multiple
-                                                                                class="js-textarea-tags-select c-ui-tag__select"
-                                                                                required>
-
+                                                                        <select name="product[advantages][]" multiple class="js-textarea-tags-select c-ui-tag__select" required>
+                                                                            @if(!is_null($product->advantages))
+                                                                                @foreach($product->advantages as $advantage )
+                                                                                    <option value="{{ $advantage }}" selected="selected">{{ $advantage }}</option>
+                                                                                @endforeach
+                                                                            @endif
                                                                         </select>
                                                                     </div>
                                                                     <div>
@@ -1132,7 +1120,11 @@
                                                                         <select name="product[disadvantages][]" multiple
                                                                                 class="js-textarea-tags-select c-ui-tag__select"
                                                                                 required>
-
+                                                                            @if(!is_null($product->disadvantages))
+                                                                                @foreach($product->disadvantages as $disadvantage )
+                                                                                    <option value="{{ $disadvantage }}" selected="selected">{{ $disadvantage }}</option>
+                                                                                @endforeach
+                                                                            @endif
                                                                         </select>
                                                                     </div>
                                                                     <div>
@@ -1152,7 +1144,7 @@
                                                         <div class="c-content-loader__spinner"></div>
                                                     </div>
                                                 </div>
-                                                <div class="c-content-progress ">
+                                                <div class="c-content-progress active">
                                                     <span class="c-content-progress__step"></span>
                                                 </div>
                                                 <div id="confirmFakeSelectionBrandChangeModal"
@@ -1490,359 +1482,147 @@
                                                 <h2 class="c-content-accordion__title">
                                                     <div class="c-content-accordion__title-text">گام سوم: درج ویژگی‌های
                                                         کالا
-                                                        <span class="c-content-accordion__guid-line js-guideline-icon "
-                                                              data-guideline-modal="attributes"></span>
+{{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="attributes"></span>--}}
                                                     </div>
                                                 </h2>
                                                 <div class="c-content-accordion__content" id="stepAttributesContainer">
                                                     <div class="c-card__body  c-card__body--content"
                                                          id="stepAttributesContent">
                                                         <form id="stepAttributesForm">
-                                                            <div class="c-grid__row c-grid__row--gap-lg">
-                                                                <div
-                                                                    class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
-                                                                    <h3 class="product-form__section-title product-form__section-title--dot">
-                                                                        مشخصات کلی محصول</h3>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr">
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-12">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        مدل
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
 
-                        ui-select ui-select__container ui-select__container--product
-
-                ">
-                                                                        <select
-                                                                            class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product"
-                                                                            multiple="multiple"
-                                                                            name="attributes[34996][]"
-                                                                            data-placeholder="انتخاب کنید">
-                                                                            <option value="63035">
-                                                                                کوتاه
-                                                                            </option>
-                                                                            <option value="63034">
-                                                                                بلند
-                                                                            </option>
-                                                                            <option value="63036">
-                                                                                جوراب شلواری
-                                                                            </option>
-                                                                        </select>
-                                                                        <span class="select-counter"></span>
-                                                                        <div class="js-select-options"></div>
-                                                                    </div>
-                                                                    <div>
+                                                            @foreach($attr_groups as $atrr_group)
+                                                                <div class="c-grid__row c-grid__row--gap-lg">
+                                                                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
+                                                                        <h3 class="product-form__section-title product-form__section-title--dot">{{ $atrr_group->name }}</h3>
                                                                     </div>
                                                                 </div>
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-12">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        جنس
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
 
-                        ui-select ui-select__container ui-select__container--product
 
-                ">
-                                                                        <select
-                                                                            class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product"
-                                                                            multiple="multiple"
-                                                                            name="attributes[36361][]"
-                                                                            data-placeholder="انتخاب کنید">
-                                                                            <option value="68855">
-                                                                                نخ
-                                                                            </option>
-                                                                            <option value="68856">
-                                                                                پلی آمید
-                                                                            </option>
-                                                                            <option value="85590">
-                                                                                پلی استر
-                                                                            </option>
-                                                                            <option value="85591">
-                                                                                پنبه
-                                                                            </option>
-                                                                        </select>
-                                                                        <span class="select-counter"></span>
-                                                                        <div class="js-select-options"></div>
-                                                                    </div>
-                                                                    <div>
+                                                                <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr">
+
+                                                                    @foreach($atrr_group->attributes->unique() as $attribute)
+
+                                                                        @if($attribute->types == 3 )
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                                                                <label class="uk-form-label uk-flex uk-flex-between">
+                                                                                    {{ $attribute->name }}
+
+                                                                                    @if($attribute->is_required)
+                                                                                        <span class="uk-form-label__required"></span>
+                                                                                    @endif
+
+                                                                                    {{--            @if(...)--}}
+                                                                                    {{--                <span class="uk-float-left uk-padding-medium-left">...</span>--}}
+                                                                                    {{--            @endif--}}
+
+                                                                                </label>
+
+                                                                                <div class="field-wrapper ui-select ui-select__container">
+                                                                                    <select class="uk-input uk-input--select js-select-origin select2-hidden-accessible {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]" data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true">
+                                                                                        <option value="">یکی از گزینه ها را انتخاب کنید</option>
+                                                                                        @foreach($attribute->values as $item)
+                                                                                            <option value="{{ $item->id }}"> {{ $item->value }} </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    <div class="js-select-options"></div>
+                                                                                </div>
+                                                                                <div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endif
+
+
+                                                                        @if($attribute->types == 4 )
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+                                                                                <label class="uk-form-label uk-flex uk-flex-between">
+                                                                                    {{ $attribute->name }}
+
+                                                                                    @if($attribute->is_required)
+                                                                                        <span class="uk-form-label__required"></span>
+                                                                                    @endif
+
+                                                                                    {{--            @if(...)--}}
+                                                                                    {{--                <span class="uk-float-left uk-padding-medium-left">...</span>--}}
+                                                                                    {{--            @endif--}}
+                                                                                </label>
+                                                                                <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
+                                                                                    <select class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product select2-hidden-accessible
+              {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" multiple="" name="attributes[{{$attribute->id}}]"
+                                                                                            data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true" aria-describedby="attributes[{{$attribute->id}}]-error" aria-invalid="false">
+                                                                                        @foreach($attribute->values as $item)
+                                                                                            <option value="{{ $item->id }}"> {{ $item->value }} </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    <span class="select-counter" style="display: none;">۰</span>
+                                                                                    <div class="js-select-options"></div>
+                                                                                    <div id="attributes[33887][]-error" class="error error-msg" style="display: none;"></div></div>
+                                                                                <div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endif
+
+
+                                                                        @if($attribute->types == 1)
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                                                                <label class="uk-form-label uk-flex uk-flex-between">
+                                                                                    {{ $attribute->name }}
+
+                                                                                    @if($attribute->is_required)
+                                                                                        <span class="uk-form-label__required"></span>
+                                                                                    @endif
+
+                                                                                    {{--            @if(...)--}}
+                                                                                    {{--            <span class="uk-float-left uk-padding-medium-left">...</span>--}}
+                                                                                    {{--            @endif--}}
+
+                                                                                </label>
+                                                                                <div class="field-wrapper">
+                                                                                    <input type="text" class="c-content-input__origin js-attribute-old-value
+                                                                                        {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]"
+                                                                                           value="{{ $product->attribute }}">
+                                                                                </div>
+                                                                                <div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endif
+
+
+                                                                        @if($attribute->types == 2)
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+                                                                                <label class="uk-form-label uk-flex uk-flex-between">
+                                                                                    {{ $attribute->name }}
+
+                                                                                    @if($attribute->is_required)
+                                                                                        <span class="uk-form-label__required"></span>
+                                                                                    @endif
+
+                                                                                    {{--            @if(...)--}}
+                                                                                    {{--                <span class="uk-float-left uk-padding-medium-left">...</span>--}}
+                                                                                    {{--            @endif--}}
+                                                                                </label>
+                                                                                <div class="field-wrapper">
+                                                                                    <textarea class="uk-textarea uk-textarea--attr {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]"></textarea>
+                                                                                </div>
+                                                                                <div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endif
+
+                                                                    @endforeach
+
+                                                                </div>
+                                                            @endforeach
+                                                            @if(!$attr_groups->count())
+                                                                <div class="c-grid__row c-grid__row--gap-lg js-auto-title-message">
+                                                                    <div
+                                                                        class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
+                                                                        <div class="c-content-product__auto-title-msg">برای این گروه کالایی شما هیچ ویژگی ایجاد نکرده اید پیشنهاد می شود حتما ابتدا برای دسته بندی ها ویژگی ایجاد کنید سپس اقدام به ایجاد محصول کنید و یا پس از ذخیره این صفحه و ایجاد ویژگی برای آن نسبت به ویرایش محصول اقدام کنید.</div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-12">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        مناسب برای
-                                                                        <span class="uk-form-label__required"></span>
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
-
-                        ui-select ui-select__container ui-select__container--product
-
-                ">
-                                                                        <select
-                                                                            class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product js-required-attribute"
-                                                                            multiple="multiple"
-                                                                            name="attributes[36362][]"
-                                                                            data-placeholder="انتخاب کنید">
-                                                                            <option value="68857">
-                                                                                دخترانه
-                                                                            </option>
-                                                                            <option value="77026">
-                                                                                پسرانه
-                                                                            </option>
-                                                                        </select>
-                                                                        <span class="select-counter"></span>
-                                                                        <div class="js-select-options"></div>
-                                                                    </div>
-                                                                    <div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="c-grid__row c-grid__row--gap-lg">
-                                                                <div
-                                                                    class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
-                                                                    <h3 class="product-form__section-title product-form__section-title--dot">
-                                                                        ویژگی ها</h3>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr">
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-12">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        توضیحات جنس
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
-
-
-
-                ">
-                                                                <textarea class="uk-textarea uk-textarea--attr"
-                                                                          name="attributes[34997]"
-                                                                          class="js-attribute-old-value"
-                                                                ></textarea>
-                                                                    </div>
-                                                                    <div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-12">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        نگهداری
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
-
-
-
-                ">
-                                                                <textarea class="uk-textarea uk-textarea--attr"
-                                                                          name="attributes[35052]"
-                                                                          class="js-attribute-old-value"
-                                                                ></textarea>
-                                                                    </div>
-                                                                    <div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-12">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        جزئیات
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
-
-
-
-                ">
-                                                                <textarea class="uk-textarea uk-textarea--attr"
-                                                                          name="attributes[35053]"
-                                                                          class="js-attribute-old-value"
-                                                                ></textarea>
-                                                                    </div>
-                                                                    <div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-12">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        یادآوری
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
-
-
-
-                ">
-                                                                <textarea class="uk-textarea uk-textarea--attr"
-                                                                          name="attributes[35054]"
-                                                                          class="js-attribute-old-value"
-                                                                ></textarea>
-                                                                    </div>
-                                                                    <div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="c-grid__row c-grid__row--gap-lg">
-                                                                <div
-                                                                    class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
-                                                                    <h3 class="product-form__section-title product-form__section-title--dot">
-                                                                        مشخصات</h3>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr">
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-6">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        کد کالا
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
-
-
-
-                ">
-                                                                        <input type="text"
-                                                                               class="c-content-input__origin js-attribute-old-value"
-                                                                               name="attributes[34998]"
-                                                                               value=""
-                                                                        >
-                                                                    </div>
-                                                                    <div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-6">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        کشور مبدا برند
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
-                        ui-select ui-select__container
-
-
-                ">
-                                                                        <select
-                                                                            class="uk-input uk-input--select js-select-origin"
-                                                                            name="attributes[35055]"
-                                                                        >
-                                                                            <option value="-1" selected="selected">
-                                                                                انتخاب کنید
-                                                                            </option>
-                                                                            <option value="63287">
-                                                                                فرانسه
-                                                                            </option>
-                                                                            <option value="63289">
-                                                                                اسپانیا
-                                                                            </option>
-                                                                            <option value="63288">
-                                                                                ایتالیا
-                                                                            </option>
-                                                                            <option value="63291">
-                                                                                انگلستان
-                                                                            </option>
-                                                                            <option value="63290">
-                                                                                ترکیه
-                                                                            </option>
-                                                                            <option value="82334">
-                                                                                آلمان
-                                                                            </option>
-                                                                        </select>
-                                                                        <div class="js-select-options"></div>
-                                                                    </div>
-                                                                    <div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                        c-grid__col--sm-6">
-                                                                    <label
-                                                                        class="uk-form-label uk-flex uk-flex-between">
-                                                                        کشور تولید کننده
-                                                                        <span
-                                                                            class="uk-float-left uk-padding-medium-left"></span>
-                                                                    </label>
-                                                                    <div class="field-wrapper
-                        ui-select ui-select__container
-
-
-                ">
-                                                                        <select
-                                                                            class="uk-input uk-input--select js-select-origin"
-                                                                            name="attributes[35056]"
-                                                                        >
-                                                                            <option value="-1" selected="selected">
-                                                                                انتخاب کنید
-                                                                            </option>
-                                                                            <option value="63295">
-                                                                                فرانسه
-                                                                            </option>
-                                                                            <option value="63294">
-                                                                                چین
-                                                                            </option>
-                                                                            <option value="63297">
-                                                                                اندونزی
-                                                                            </option>
-                                                                            <option value="63298">
-                                                                                ایتالیا
-                                                                            </option>
-                                                                            <option value="63300">
-                                                                                ترکیه
-                                                                            </option>
-                                                                            <option value="63296">
-                                                                                هند
-                                                                            </option>
-                                                                            <option value="63292">
-                                                                                بنگلادش
-                                                                            </option>
-                                                                            <option value="63293">
-                                                                                میانمار
-                                                                            </option>
-                                                                            <option value="63299">
-                                                                                کره
-                                                                            </option>
-                                                                            <option value="82335">
-                                                                                آلمان
-                                                                            </option>
-                                                                        </select>
-                                                                        <div class="js-select-options"></div>
-                                                                    </div>
-                                                                    <div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">
-                                                                <button class="c-ui-btn c-ui-btn--next mr-a hidden "
-                                                                        id="attributesStepNext">
+                                                            @endif
+                                                            <div class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">
+                                                                <button class="c-ui-btn c-ui-btn--next mr-a goToTitleStep" id="attributesStepNext">
                                                                     ادامه دادن
-                                                                </button>
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -1852,7 +1632,7 @@
                                                         <div class="c-content-loader__spinner"></div>
                                                     </div>
                                                 </div>
-                                                <div class="c-content-progress ">
+                                                <div class="c-content-progress active">
                                                     <span class="c-content-progress__step"></span>
                                                 </div>
                                             </section>
@@ -1861,8 +1641,7 @@
                                                 <h2 class="c-content-accordion__title">
                                                     <div class="c-content-accordion__title-text js-step-title-header">
                                                         گام چهارم: عنوان پیشنهادی کالا
-                                                        <span class="c-content-accordion__guid-line js-guideline-icon "
-                                                              data-guideline-modal="auto_title"></span>
+{{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="auto_title"></span>--}}
                                                     </div>
                                                 </h2>
                                                 <div
@@ -1887,7 +1666,7 @@
                                                                     </label>
                                                                     <div class="field-wrapper">
                                                                         <input value=""
-                                                                               class="c-content-input__origin c-ui-input--deactive js-suggested-title-fa js-edit-mode-suggested-title-fa"
+                                                                               class="c-content-input__origin c-ui-input--deactive js-suggested-title-fa js-edit-mode-suggested-title-fa persian-title"
                                                                                disabled/>
                                                                     </div>
                                                                 </div>
@@ -1916,7 +1695,7 @@
                                                                         <input type="text"
                                                                                placeholder="شیوه نامگذاری صحیح کالا : ماهیت کالا + برند + کلمه مدل+مدل کالا"
                                                                                class="c-content-input__origin js-suggested-title-fa js-edit-mode-title-fa"
-                                                                               value="پاپوش نوزادی طرح عروسکی کد 104"
+                                                                               value="{{ $product->title_fa }}"
                                                                                name="title[title_fa]"
                                                                                required>
                                                                     </div>
@@ -1932,7 +1711,7 @@
                                                                         <input type="text"
                                                                                placeholder="Syntax for naming product : Brand+Model+Division"
                                                                                class="c-content-input__origin js-suggested-title-en js-edit-mode-title-en"
-                                                                               value="" name="title[title_en]"
+                                                                               value="{{ $product->title_en }}" name="title[title_en]"
                                                                         >
                                                                     </div>
                                                                     <div>
@@ -1962,7 +1741,7 @@
                                                         <div class="c-content-loader__spinner"></div>
                                                     </div>
                                                 </div>
-                                                <div class="c-content-progress ">
+                                                <div class="c-content-progress active">
                                                     <span class="c-content-progress__step"></span>
                                                 </div>
                                             </section>
@@ -1970,11 +1749,10 @@
                                                      id="stepImagesAccordion">
                                                 <h2 class="c-content-accordion__title ">
                                                     <div class="c-content-accordion__title-text">
-<span class="js-step-images-header">
-گام پنجم: بارگذاری تصاویر
-</span>
-                                                        <span class="c-content-accordion__guid-line js-guideline-icon "
-                                                              data-guideline-modal="media"></span>
+                                                        <span class="js-step-images-header">
+                                                        گام پنجم: بارگذاری تصاویر
+                                                        </span>
+{{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="media"></span>--}}
                                                     </div>
                                                 </h2>
                                                 <div
@@ -1983,29 +1761,29 @@
                                                     <div class="c-card__body c-card__body--content marketplace-redesign"
                                                          id="stepImagesContent">
                                                         <form id="stepImagesForm">
-                                                            <div class="c-content-upload__checkbox-container">
-                                                                <div class="field-wrapper">
-                                                                    <label class="c-ui-radio c-ui-radio--content">
-                                                                        <input type="radio"
-                                                                               class="c-ui-radio__origin js-images-owner"
-                                                                               name="images[who_will_upload]" value="1"
-                                                                               id="sellerWillUpload" checked>
-                                                                        <span
-                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>
-                                                                        <span
-                                                                            class="c-ui-radio__label c-ui-radio__label--content">بارگذاری تصویر توسط شما</span>
-                                                                    </label>
-                                                                    <label class="c-ui-radio c-ui-radio--content">
-                                                                        <input type="radio"
-                                                                               class="c-ui-radio__origin js-images-owner"
-                                                                               name="images[who_will_upload]" value="0">
-                                                                        <span
-                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>
-                                                                        <span
-                                                                            class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط دیجی‌کالا</span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
+{{--                                                            <div class="c-content-upload__checkbox-container">--}}
+{{--                                                                <div class="field-wrapper">--}}
+{{--                                                                    <label class="c-ui-radio c-ui-radio--content">--}}
+{{--                                                                        <input type="radio"--}}
+{{--                                                                               class="c-ui-radio__origin js-images-owner"--}}
+{{--                                                                               name="images[who_will_upload]" value="1"--}}
+{{--                                                                               id="sellerWillUpload" checked>--}}
+{{--                                                                        <span--}}
+{{--                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
+{{--                                                                        <span--}}
+{{--                                                                            class="c-ui-radio__label c-ui-radio__label--content">بارگذاری تصویر توسط شما</span>--}}
+{{--                                                                    </label>--}}
+{{--                                                                    <label class="c-ui-radio c-ui-radio--content">--}}
+{{--                                                                        <input type="radio"--}}
+{{--                                                                               class="c-ui-radio__origin js-images-owner"--}}
+{{--                                                                               name="images[who_will_upload]" value="0">--}}
+{{--                                                                        <span--}}
+{{--                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
+{{--                                                                        <span--}}
+{{--                                                                            class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط دیجی‌کالا</span>--}}
+{{--                                                                    </label>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
                                                             <div class="hidden" id="imagesDKServiceContainer">
                                                                 <div class="c-content-upload__digikala">
                                                                     در صورتی که تمایل دارید عکاسی از محصول شما توسط
@@ -2103,130 +1881,47 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div id="imagesSection"
-                                                                                 class="c-content-upload__uploads js-uploaded-section">
+                                                                            <div id="imagesSection" class="c-content-upload__uploads js-uploaded-section">
                                                                                 <h3 class="product-form__section-title product-form__section-title--gap">
                                                                                     تصاویر بارگذاری شده
                                                                                 </h3>
-                                                                                <input type="hidden"
-                                                                                       name="images[main_image]"
-                                                                                       id="mainImageContainer"
-                                                                                       value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09"/>
-                                                                                <input type="hidden"
-                                                                                       name="images[order]"
-                                                                                       id="imagesOrderContainer"/>
-                                                                                <ul id="imagesContainer"
-                                                                                    class="c-content-upload__gallery-list js-uploaded-list js-sortable-list">
-                                                                                    <li class="c-content-upload__gallery-row js-uploads-row primary"
-                                                                                        id="Y2pmQWd1QklCRjRWd256NXBneVBLdz09">
-                                                                                        <input type="hidden"
-                                                                                               name="images[images][]"
-                                                                                               value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09"
-                                                                                               class="js-image-id-input"/>
-                                                                                        <div
-                                                                                            class="c-content-upload__img-container">
-                                                                                            <img
-                                                                                                src="https://dkstatics-public.digikala.com/digikala-products/5076202.jpg?x-oss-process=image/resize,m_fill,h_90,w_90"
-                                                                                                alt=""
-                                                                                                class="c-content-upload__img">
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="c-content-upload__mid-container">
-                                                                                            <div
-                                                                                                class="c-content-upload__mid-container--top">
-                                                                                                <div
-                                                                                                    class="c-content-upload__desc">
-                                                                                                    <div
-                                                                                                        class="c-content-upload__desc--top">
-                                                                                                        <div
-                                                                                                            class="right">
-                                                                                                            <div
-                                                                                                                class="c-content-upload__name"></div>
-                                                                                                            <div
-                                                                                                                class="c-content-upload__size"></div>
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="c-content-upload__select">
+                                                                                <input type="hidden" name="images[main_image]" id="mainImageContainer" value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09"/>
+                                                                                <input type="hidden" name="images[order]" id="imagesOrderContainer"/>
+                                                                                <ul id="imagesContainer" class="c-content-upload__gallery-list js-uploaded-list js-sortable-list">
+                                                                                    @foreach($product->media as $image)
+                                                                                        <li class="c-content-upload__gallery-row js-uploads-row
+                                                                                            {{ ($image->pivot->is_main == 1)? 'primary' : '' }}
+                                                                                        " id="{{ $image->id }}">
+                                                                                            <input type="hidden" name="images[images][]" value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09" class="js-image-id-input"/>
+                                                                                            <div class="c-content-upload__img-container">
+                                                                                                <img src="{{ env('APP_URL') . '/' .$image->path . '/' . $image->name }}" alt="" class="c-content-upload__img">
+                                                                                            </div>
+                                                                                            <div class="c-content-upload__mid-container">
+                                                                                                <div class="c-content-upload__mid-container--top">
+                                                                                                    <div class="c-content-upload__desc">
+                                                                                                        <div class="c-content-upload__desc--top">
+                                                                                                            <div class="right">
+                                                                                                                <div class="c-content-upload__name"></div>
+                                                                                                                <div class="c-content-upload__size"></div>
+                                                                                                            </div>
+                                                                                                            <div class="c-content-upload__select"></div>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <ul class="c-content-upload__list c-content-upload__list--errors js-upload-error-list"></ul>
-                                                                                        <div
-                                                                                            class="c-content-upload__controls">
-                                                                                            <button type="button"
-                                                                                                    class="c-content-upload__btn c-content-upload__btn--flag show js-flag-primary  checked"></button>
-                                                                                            <button type="button"
-                                                                                                    class="c-content-upload__btn c-content-upload__btn--remove show js-remove-upload"></button>
-                                                                                            <button type="button"
-                                                                                                    class="c-content-upload__btn c-content-upload__btn--undo js-undo-remove"></button>
-                                                                                            <div
-                                                                                                class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
-                                                                                        <span
-                                                                                            class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
-                                                                                                <span
-                                                                                                    class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
-                                                                                                <span
-                                                                                                    class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                    <li class="c-content-upload__gallery-row js-uploads-row"
-                                                                                        id="aExYV0pDS0h3Vk4yUjh4Q2d2ODV6Zz09">
-                                                                                        <input type="hidden"
-                                                                                               name="images[images][]"
-                                                                                               value="aExYV0pDS0h3Vk4yUjh4Q2d2ODV6Zz09"
-                                                                                               class="js-image-id-input"/>
-                                                                                        <div
-                                                                                            class="c-content-upload__img-container">
-                                                                                            <img
-                                                                                                src="https://dkstatics-public.digikala.com/digikala-products/5076335.jpg?x-oss-process=image/resize,m_fill,h_90,w_90"
-                                                                                                alt=""
-                                                                                                class="c-content-upload__img">
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="c-content-upload__mid-container">
-                                                                                            <div
-                                                                                                class="c-content-upload__mid-container--top">
-                                                                                                <div
-                                                                                                    class="c-content-upload__desc">
-                                                                                                    <div
-                                                                                                        class="c-content-upload__desc--top">
-                                                                                                        <div
-                                                                                                            class="right">
-                                                                                                            <div
-                                                                                                                class="c-content-upload__name"></div>
-                                                                                                            <div
-                                                                                                                class="c-content-upload__size"></div>
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="c-content-upload__select">
-                                                                                                        </div>
-                                                                                                    </div>
+                                                                                            <ul class="c-content-upload__list c-content-upload__list--errors js-upload-error-list"></ul>
+                                                                                            <div class="c-content-upload__controls">
+                                                                                                <button type="button" class="c-content-upload__btn c-content-upload__btn--flag show js-flag-primary {{ ($image->pivot->is_main == 1)? 'checked' : '' }}"></button>
+                                                                                                <button type="button" class="c-content-upload__btn c-content-upload__btn--remove show js-remove-upload"></button>
+                                                                                                <button type="button" class="c-content-upload__btn c-content-upload__btn--undo js-undo-remove"></button>
+                                                                                                <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
+                                                                                                    <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
+                                                                                                    <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
+                                                                                                    <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
                                                                                                 </div>
                                                                                             </div>
-                                                                                        </div>
-                                                                                        <ul class="c-content-upload__list c-content-upload__list--errors js-upload-error-list"></ul>
-                                                                                        <div
-                                                                                            class="c-content-upload__controls">
-                                                                                            <button type="button"
-                                                                                                    class="c-content-upload__btn c-content-upload__btn--flag show js-flag-primary "></button>
-                                                                                            <button type="button"
-                                                                                                    class="c-content-upload__btn c-content-upload__btn--remove show js-remove-upload"></button>
-                                                                                            <button type="button"
-                                                                                                    class="c-content-upload__btn c-content-upload__btn--undo js-undo-remove"></button>
-                                                                                            <div
-                                                                                                class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
-                                                                                        <span
-                                                                                            class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
-                                                                                                <span
-                                                                                                    class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
-                                                                                                <span
-                                                                                                    class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </li>
+                                                                                        </li>
+                                                                                    @endforeach
                                                                                 </ul>
                                                                                 <div type="button"
                                                                                      class="c-content-upload__show-more hidden">
@@ -2240,7 +1935,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                                <div class="c-content-progress c-content-progress--last">
+                                                <div class="c-content-progress active">
                                                     <span class="c-content-progress__step"></span>
                                                 </div>
                                                 <ul id="uploadingTemplate" class="hidden">
@@ -2806,7 +2501,26 @@
             }
         });
 
-        $(document).on('change', ".title-creator", function () {
+
+    $(document).ready(function (){
+        var model = $("input[name='product[model]']").val();
+        var full_brand = $("#brandsSelect option:selected").text();
+        var brand = full_brand.substring(0, full_brand.indexOf(" ("));
+        var nature = $("input[name='product[product_nature]']").val();
+
+        if ($("#brandsSelect option:selected").val() == 0) {
+            var product_title = nature + ' مدل ' + model;
+        } else {
+            var product_title = nature + ' ' + brand + ' مدل ' + model;
+        }
+        $(".persian-title").val(product_title);
+    });
+
+
+
+
+
+    $(document).on('change', ".title-creator", function () {
             var model = $("input[name='product[model]']").val();
             var full_brand = $("#brandsSelect option:selected").text();
             var brand = full_brand.substring(0, full_brand.indexOf(" "));

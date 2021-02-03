@@ -2871,7 +2871,7 @@ let IndexAction = {
         let $uploadGalleryContainer = $('#uploadGalleryContainer');
 
         window.UIkit.upload($uploadGalleryContainer, {
-            url: 'create/step/images/upload/images',
+            url: '/products/create/step/images/upload/images',
             multiple: true,
             concurrent: 1,
             beforeSend: function (environment) {
