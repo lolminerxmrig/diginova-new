@@ -818,9 +818,9 @@
                                                                         class="field-wrapper ui-select ui-select__container">
                                                                         <select name="product[brand_id]" id="brandsSelect" class="uk-input uk-input--select js-select-origin" required>
                                                                             <option value="">برند کالا را انتخاب کنید</option>
-                                                                            <option value="0">متفرقه Miscellaneous</option>
+                                                                            <option value="0">متفرقه (Miscellaneous)</option>
                                                                             @foreach($product->category[0]->brands as $brand)
-                                                                                <option value="{{ $brand->id }}" {{ ($product->brand_id == $brand->id )? 'selected' : '' }}>{{ $brand->name }} {{ $brand->en_name }}</option>
+                                                                                <option value="{{ $brand->id }}" {{ ($product->brand_id == $brand->id )? 'selected' : '' }}>{{ $brand->name }} ({{ $brand->en_name }})</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <div class="js-select-options"></div>
@@ -871,15 +871,20 @@
                                                                                 multiple="multiple">
                                                                             <option value="">نوع کالا را انتخاب کنید</option>
                                                                                 @php
+                                                                                  if(isset($product->type) && !is_null($product->type)) {
                                                                                     foreach ($product->type as $type)
                                                                                     {
                                                                                         $this_product_types [] = $type->id;
                                                                                     }
+                                                                                  }
                                                                                 @endphp
-                                                                                @foreach($product->category[0]->types as $type)
-                                                                                    <option value="dd">sss</option>
-{{--                                                                                    <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>--}}
-                                                                                @endforeach
+
+                                                                                @if(isset($product->type) && !is_null($product->type))
+                                                                                    @foreach($product->category[0]->types as $type)
+                                                                                        <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>
+                                                                                    @endforeach
+                                                                                @endif
+
                                                                         </select>
                                                                         <span class="select-counter"></span>
                                                                         <div class="js-select-options"></div>
@@ -1502,12 +1507,14 @@
 
                                                                     @foreach($atrr_group->attributes->unique() as $attribute)
 
-                                                                        @if($attribute->types == 3 )
+
+                                                                    @if($attribute->types == 3 )
+
                                                                             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                                                 <label class="uk-form-label uk-flex uk-flex-between">
                                                                                     {{ $attribute->name }}
 
-                                                                                    @if($attribute->is_required)
+                                                                                @if($attribute->is_required)
                                                                                         <span class="uk-form-label__required"></span>
                                                                                     @endif
 
@@ -1517,12 +1524,16 @@
 
                                                                                 </label>
 
+{{--                                                                                {{ (isset($product->attributes->find($attribute->id)->pivot->value))? $product->attributes->find($attribute->id)->pivot->value : ''  }}--}}
+
                                                                                 <div class="field-wrapper ui-select ui-select__container">
                                                                                     <select class="uk-input uk-input--select js-select-origin select2-hidden-accessible {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]" data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true">
                                                                                         <option value="">یکی از گزینه ها را انتخاب کنید</option>
+
                                                                                         @foreach($attribute->values as $item)
-                                                                                            <option value="{{ $item->id }}"> {{ $item->value }} </option>
+                                                                                            <option value="{{ $item->id }}" {{ ($product->attributes->find($attribute->id)->pivot->value == $item->id)? 'selected' : '' }}> {{ $item->value }} </option>
                                                                                         @endforeach
+
                                                                                     </select>
                                                                                     <div class="js-select-options"></div>
                                                                                 </div>
@@ -1545,14 +1556,64 @@
                                                                                     {{--                <span class="uk-float-left uk-padding-medium-left">...</span>--}}
                                                                                     {{--            @endif--}}
                                                                                 </label>
+
+{{--                                                                                @foreach($attribute->values as $item)--}}
+{{--                                                                                    @foreach($product->attributes()->where('attribute_id', $item->id)->get() as $attr)--}}
+{{--                                                                                            @php--}}
+{{--                                                                                                $this_attrs [$item->id] = $attr->pivot->attribute_id;--}}
+{{--                                                                                            @endphp--}}
+{{--                                                                                    @endforeach--}}
+{{--                                                                                @endforeach--}}
+                                                                                @foreach($attribute->product->values as $item)
+                                                                                    @foreach($product->attributes()->where('attribute_id', $item->id)->get() as $attr)
+                                                                                        @php
+                                                                                            $this_attrs [$item->id] = $attr->pivot->attribute_id;
+                                                                                        @endphp
+                                                                                    @endforeach
+                                                                                @endforeach
+                                                                                    {{ dd($this_attrs) }}
+
+
                                                                                 <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
                                                                                     <select class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product select2-hidden-accessible
-              {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" multiple="" name="attributes[{{$attribute->id}}]"
+                                                                                         {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" multiple="" name="attributes[{{$attribute->id}}]"
                                                                                             data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true" aria-describedby="attributes[{{$attribute->id}}]-error" aria-invalid="false">
+{{--                                                                                        @php--}}
+{{--                                                                                            if(isset($product->type) && !is_null($product->type)) {--}}
+{{--                                                                                              foreach ($product->type as $type)--}}
+{{--                                                                                              {--}}
+{{--                                                                                                  $this_product_types [] = $type->id;--}}
+{{--                                                                                              }--}}
+{{--                                                                                            }--}}
+{{--                                                                                        @endphp--}}
+
+{{--                                                                                        @if(isset($product->type) && !is_null($product->type))--}}
+{{--                                                                                            @foreach($product->category[0]->types as $type)--}}
+{{--                                                                                                <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>--}}
+{{--                                                                                            @endforeach--}}
+{{--                                                                                        @endif--}}
                                                                                         @foreach($attribute->values as $item)
-                                                                                            <option value="{{ $item->id }}"> {{ $item->value }} </option>
+                                                                                            @foreach($product->attributes()->where('attribute_id', $item->id)->get() as $attr)
+                                                                                                @php
+                                                                                                    $this_attrs [] = $attr->pivot->attribute_id;
+                                                                                                @endphp
+                                                                                            @endforeach
                                                                                         @endforeach
+
+                                                                                    @foreach($attribute->values as $item)
+
+{{--                                                                                        @php--}}
+{{--                                                                                            if(isset($attrs)){--}}
+{{--                                                                                            unset($attrs);--}}
+{{--                                                                                            }--}}
+{{--                                                                                        @endphp--}}
+
+                                                                                            {{--                                                                                            {{ dd($product->attributes->find($attribute->id)->values->find($item->id)->id == $item->id) }}--}}
+{{--                                                                                            <option>{{ $product->attributes->find($attribute->id)->values }}</option>--}}
+                                                                                            <option value="{{ $item->id }}" {{ (in_array($item->id, $this_attrs))? 'selected' : '' }}> {{ $item->value }} </option>
+                                                                                    @endforeach
                                                                                     </select>
+
                                                                                     <span class="select-counter" style="display: none;">۰</span>
                                                                                     <div class="js-select-options"></div>
                                                                                     <div id="attributes[33887][]-error" class="error error-msg" style="display: none;"></div></div>
@@ -1579,7 +1640,7 @@
                                                                                 <div class="field-wrapper">
                                                                                     <input type="text" class="c-content-input__origin js-attribute-old-value
                                                                                         {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]"
-                                                                                           value="{{ $product->attribute }}">
+                                                                                           value="{{ (isset($product->attributes->find($attribute->id)->pivot->value))? $product->attributes->find($attribute->id)->pivot->value : ''  }}">
                                                                                 </div>
                                                                                 <div>
                                                                                 </div>
@@ -1601,7 +1662,7 @@
                                                                                     {{--            @endif--}}
                                                                                 </label>
                                                                                 <div class="field-wrapper">
-                                                                                    <textarea class="uk-textarea uk-textarea--attr {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]"></textarea>
+                                                                                    <textarea class="uk-textarea uk-textarea--attr {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]">{{ (isset($product->attributes->find($attribute->id)->pivot->value))? $product->attributes->find($attribute->id)->pivot->value : ''  }}</textarea>
                                                                                 </div>
                                                                                 <div>
                                                                                 </div>
@@ -2523,14 +2584,13 @@
     $(document).on('change', ".title-creator", function () {
             var model = $("input[name='product[model]']").val();
             var full_brand = $("#brandsSelect option:selected").text();
-            var brand = full_brand.substring(0, full_brand.indexOf(" "));
-            console.log(brand);
+            var brand = full_brand.substring(0, full_brand.indexOf(" ("));
             var nature = $("input[name='product[product_nature]']").val();
 
             if ($("#brandsSelect option:selected").val() == 0) {
                 var product_title = nature + ' مدل ' + model;
             } else {
-                var product_title = nature + ' ' + brand + ' مدل ' + model;
+                var product_title = nature + '' + brand + ' مدل ' + model;
             }
 
             console.log(product_title);

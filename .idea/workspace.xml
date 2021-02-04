@@ -14,24 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c6adf28-119f-4cef-ae06-bfc6c99776b8" name="test" comment="test">
-      <change afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Models/BrandProduct.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations/2020_12_24_071315_create_attributes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations/2020_12_24_098315_create_attributes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations/2020_12_24_074145_create_attribute_product_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations/2020_1_26_074495_create_attribute_product_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations/2020_12_24_079345_create_attribute_values_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/migrations/2020_12_25_079345_create_attribute_values_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Models/Attribute.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Models/Attribute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Models/AttributeProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Models/AttributeProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Database/migrations/2020_12_24_071853_create_brand_product_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Database/migrations/2020_12_24_071853_create_brand_product_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Models/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Models/Brand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Models/Category.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers/StaffProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Http/Controllers/StaffProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/ajax/attributes-step.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/ajax/attributes-step.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Product/Routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Product/Routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/seller/js/tags5.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/seller/js/tags5.js" afterDir="false" />
     </list>
     <list id="aca6119d-1593-413f-8e01-a44ff24a8d7d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -466,7 +452,9 @@
       <workItem from="1612154568417" duration="37025000" />
       <workItem from="1612202166402" duration="1548000" />
       <workItem from="1612241224555" duration="24838000" />
-      <workItem from="1612326422985" duration="4961000" />
+      <workItem from="1612326422985" duration="33803000" />
+      <workItem from="1612380025195" duration="1214000" />
+      <workItem from="1612414972449" duration="6410000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <option name="createBranch" value="false" />
@@ -486,22 +474,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/public/seller/js/tags5.js</url>
-          <line>2963</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/Modules/Staff/Type/Resources/views/index.blade.php</url>
-          <line>146</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

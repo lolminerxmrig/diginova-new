@@ -38,7 +38,6 @@ class StaffProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-//        $product_category = Category::find($product->category[0]->id);
 
         $category = $product->category[0];
         do {
@@ -56,6 +55,42 @@ class StaffProductController extends Controller
 
         $categories = Category::all();
         $attr_groups = $product->category[0]->attributeGroups;
+
+
+
+
+
+
+
+//        dd(count($product->attributes));
+//        foreach ($product->attributes as $attribut) {
+//            if (!is_null($attribut->pivot->value))
+//            {
+//
+//            }
+//            else {
+//                $x = $attribut->values;
+//                foreach ($attribut->values as $valu) {
+//                    dd($valu->value);
+//                }
+//            }
+//        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         return view('staffproduct::edit', compact('product', 'all_parent', 'categories', 'attr_groups'));
     }
@@ -291,14 +326,26 @@ class StaffProductController extends Controller
         $category = Category::find($request->product['category_id']);
 
 
-        if (isset($category->attributes)) {
-            foreach ($category->attributes as $attribute) {
+        if (isset($request->attributes)) {
+            foreach ($request['attributes'] as $id => $value) {
+                if(is_array($value)){
+                    foreach($value as $val) {
+                        AttributeProduct::create([
+                            'attribute_id' => $id,
+                            'product_id' => $product->id,
+                            'value_id' => $val,
+                        ]);
+                    }
+                }
+                elseif (!is_array($value) && !is_null($value)) {
+                    AttributeProduct::create([
+                        'attribute_id' => $id,
+                        'product_id' => $product->id,
+                        'value' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
+                    ]);
+                }
 
-                AttributeProduct::create([
-                    'attribute_id' => $attribute->id,
-                    'product_id' => $product->id,
-                    'value' => (isset($request['attributes'][$attribute->id])) ? $request['attributes'][$attribute->id] : '',
-                ]);
+
             }
         }
 

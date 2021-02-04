@@ -59,7 +59,7 @@ class Product extends Model
 
     public function attributes()
     {
-        return $this->belongsToMany(Attribute::class);
+        return $this->belongsToMany(Attribute::class, 'attribute_product')->withPivot(['value', 'value_id']);
     }
 
     public function categories()
@@ -75,5 +75,6 @@ class Product extends Model
     {
         return $this->belongsToMany(Type::class, 'product_type');
     }
+
 }
 
