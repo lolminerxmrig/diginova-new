@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class AttributeProduct extends Model
 {
-    use HasFactory;
+//    use HasFactory;
 
     protected $fillable = ['attribute_id', 'product_id', 'value_id', 'value'];
 
     protected $table = 'attribute_product';
+
+    public function value()
+    {
+        return $this->belongsToMany(AttributeValue::class);
+    }
 
 }

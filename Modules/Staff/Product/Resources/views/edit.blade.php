@@ -570,7 +570,7 @@
                                                         <div class="search-form__autocomplete-container">
                                                             <div class="search-form__autocomplete js-autosuggest-box">
                                                                 <input id="searchKeyword" class="c-content-input__origin js-prevent-submit"
-                                                                   type="text" placeholder="نام کالا،  دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل"
+                                                                       type="text" placeholder="نام کالا،  دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل"
                                                                        disabled>
                                                             </div>
                                                         </div>
@@ -585,7 +585,7 @@
                                                                                 @foreach($categories->where('parent_id',$parent) as $category)
                                                                                     <li class="c-content-categories__item
                                                                                      {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}
-                                                                                     {{ in_array($category->id, $all_parent) ? 'is-active' : '' }}">
+                                                                                    {{ in_array($category->id, $all_parent) ? 'is-active' : '' }}">
                                                                                         <label class="c-content-categories__link js-category-link">
                                                                                             <input type="radio" class="uk-hidden js-category-data"
                                                                                                    data-id="{{ $category->id }}" value="{{ $category->name }}" data-theme="">
@@ -682,8 +682,8 @@
                                                 <h2 class="c-content-accordion__title">
                                                     <div class="c-content-accordion__title-text">گام دوم: درج اطلاعات
                                                         کالا
-{{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon "--}}
-{{--                                                              data-guideline-modal="product_info"></span>--}}
+                                                        {{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon "--}}
+                                                        {{--                                                              data-guideline-modal="product_info"></span>--}}
                                                     </div>
                                                 </h2>
                                                 <div class="c-content-accordion__content" id="stepProductContainer">
@@ -870,20 +870,20 @@
                                                                                 {{ (count($product->category[0]->types) == 0)? 'disabled' : '' }}
                                                                                 multiple="multiple">
                                                                             <option value="">نوع کالا را انتخاب کنید</option>
-                                                                                @php
-                                                                                  if(isset($product->type) && !is_null($product->type)) {
-                                                                                    foreach ($product->type as $type)
-                                                                                    {
-                                                                                        $this_product_types [] = $type->id;
-                                                                                    }
+                                                                            @php
+                                                                                if(isset($product->type) && !is_null($product->type)) {
+                                                                                  foreach ($product->type as $type)
+                                                                                  {
+                                                                                      $this_product_types [] = $type->id;
                                                                                   }
-                                                                                @endphp
+                                                                                }
+                                                                            @endphp
 
-                                                                                @if(isset($product->type) && !is_null($product->type))
-                                                                                    @foreach($product->category[0]->types as $type)
-                                                                                        <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>
-                                                                                    @endforeach
-                                                                                @endif
+                                                                            @if(isset($product->type) && !is_null($product->type))
+                                                                                @foreach($product->category[0]->types as $type)
+                                                                                    <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>
+                                                                                @endforeach
+                                                                            @endif
 
                                                                         </select>
                                                                         <span class="select-counter"></span>
@@ -1094,15 +1094,15 @@
                                                                         <div
                                                                             class="c-ui-tag__textarea js-textarea-tags-container"></div>
                                                                         <select name="product[advantages][]" multiple class="js-textarea-tags-select c-ui-tag__select" required>
-                                                                            @if(!is_null($product->advantages))
-                                                                                @foreach($product->advantages as $advantage )
-                                                                                    <option value="{{ $advantage }}" selected="selected">{{ $advantage }}</option>
-                                                                                @endforeach
-                                                                            @endif
+{{--                                                                            @if(!is_null($product->advantages))--}}
+{{--                                                                                @foreach($product->advantages as $advantage )--}}
+{{--                                                                                    <option value="{{ $advantage }}" selected="selected">{{ $advantage }}</option>--}}
+{{--                                                                                @endforeach--}}
+{{--                                                                            @endif--}}
                                                                         </select>
                                                                     </div>
                                                                     <div>
-                                                                    </div>
+{{--                                                                    </div>--}}
                                                                 </div>
                                                                 <div
                                                                     class="c-grid__col c-grid__col--gap-attr c-grid__col--flex-initial c-grid__col--sm-6 c-grid__col--xs-gap">
@@ -1125,14 +1125,14 @@
                                                                         <select name="product[disadvantages][]" multiple
                                                                                 class="js-textarea-tags-select c-ui-tag__select"
                                                                                 required>
-                                                                            @if(!is_null($product->disadvantages))
-                                                                                @foreach($product->disadvantages as $disadvantage )
-                                                                                    <option value="{{ $disadvantage }}" selected="selected">{{ $disadvantage }}</option>
-                                                                                @endforeach
-                                                                            @endif
+{{--                                                                            @if(!is_null($product->disadvantages))--}}
+{{--                                                                                @foreach($product->disadvantages as $disadvantage )--}}
+{{--                                                                                    <option value="{{ $disadvantage }}" selected="selected">{{ $disadvantage }}</option>--}}
+{{--                                                                                @endforeach--}}
+{{--                                                                            @endif--}}
                                                                         </select>
                                                                     </div>
-                                                                    <div>
+                                                               prod     <div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1487,7 +1487,7 @@
                                                 <h2 class="c-content-accordion__title">
                                                     <div class="c-content-accordion__title-text">گام سوم: درج ویژگی‌های
                                                         کالا
-{{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="attributes"></span>--}}
+                                                        {{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="attributes"></span>--}}
                                                     </div>
                                                 </h2>
                                                 <div class="c-content-accordion__content" id="stepAttributesContainer">
@@ -1508,13 +1508,13 @@
                                                                     @foreach($atrr_group->attributes->unique() as $attribute)
 
 
-                                                                    @if($attribute->types == 3 )
+                                                                        @if($attribute->types == 3 )
 
                                                                             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                                                 <label class="uk-form-label uk-flex uk-flex-between">
                                                                                     {{ $attribute->name }}
 
-                                                                                @if($attribute->is_required)
+                                                                                    @if($attribute->is_required)
                                                                                         <span class="uk-form-label__required"></span>
                                                                                     @endif
 
@@ -1523,15 +1523,16 @@
                                                                                     {{--            @endif--}}
 
                                                                                 </label>
-
-{{--                                                                                {{ (isset($product->attributes->find($attribute->id)->pivot->value))? $product->attributes->find($attribute->id)->pivot->value : ''  }}--}}
-
+                                                                                @foreach($attribute->values as $value)
+                                                                                    {{ dd($attribute) }}
+{{--                                                                                    <option value="{{ $value->id }}" {{ $attribute->pivot->value_id == $value->id ? 'selected' :  '' }} >{{ $value->value }}</option>--}}
+                                                                                @endforeach
                                                                                 <div class="field-wrapper ui-select ui-select__container">
                                                                                     <select class="uk-input uk-input--select js-select-origin select2-hidden-accessible {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]" data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true">
                                                                                         <option value="">یکی از گزینه ها را انتخاب کنید</option>
 
-                                                                                        @foreach($attribute->values as $item)
-                                                                                            <option value="{{ $item->id }}" {{ ($product->attributes->find($attribute->id)->pivot->value == $item->id)? 'selected' : '' }}> {{ $item->value }} </option>
+                                                                                        @foreach($attribute->values as $value)
+                                                                                            <option value="{{ $value->id }}" {{ $attribute->pivot->value_id == $value->id ? 'selected' :  '' }} >{{ $value->value }}</option>
                                                                                         @endforeach
 
                                                                                     </select>
@@ -1557,61 +1558,19 @@
                                                                                     {{--            @endif--}}
                                                                                 </label>
 
-{{--                                                                                @foreach($attribute->values as $item)--}}
-{{--                                                                                    @foreach($product->attributes()->where('attribute_id', $item->id)->get() as $attr)--}}
-{{--                                                                                            @php--}}
-{{--                                                                                                $this_attrs [$item->id] = $attr->pivot->attribute_id;--}}
-{{--                                                                                            @endphp--}}
-{{--                                                                                    @endforeach--}}
-{{--                                                                                @endforeach--}}
-                                                                                @foreach($attribute->product->values as $item)
-                                                                                    @foreach($product->attributes()->where('attribute_id', $item->id)->get() as $attr)
-                                                                                        @php
-                                                                                            $this_attrs [$item->id] = $attr->pivot->attribute_id;
-                                                                                        @endphp
+                                                                                @foreach($product->attributes as $attribute)
+                                                                                    @foreach($attribute->values as $value)
+                                                                                        @php $array[] = $attribute->pivot->value_id;  @endphp
                                                                                     @endforeach
                                                                                 @endforeach
-                                                                                    {{ dd($this_attrs) }}
-
 
                                                                                 <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
                                                                                     <select class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product select2-hidden-accessible
                                                                                          {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" multiple="" name="attributes[{{$attribute->id}}]"
                                                                                             data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true" aria-describedby="attributes[{{$attribute->id}}]-error" aria-invalid="false">
-{{--                                                                                        @php--}}
-{{--                                                                                            if(isset($product->type) && !is_null($product->type)) {--}}
-{{--                                                                                              foreach ($product->type as $type)--}}
-{{--                                                                                              {--}}
-{{--                                                                                                  $this_product_types [] = $type->id;--}}
-{{--                                                                                              }--}}
-{{--                                                                                            }--}}
-{{--                                                                                        @endphp--}}
-
-{{--                                                                                        @if(isset($product->type) && !is_null($product->type))--}}
-{{--                                                                                            @foreach($product->category[0]->types as $type)--}}
-{{--                                                                                                <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>--}}
-{{--                                                                                            @endforeach--}}
-{{--                                                                                        @endif--}}
-                                                                                        @foreach($attribute->values as $item)
-                                                                                            @foreach($product->attributes()->where('attribute_id', $item->id)->get() as $attr)
-                                                                                                @php
-                                                                                                    $this_attrs [] = $attr->pivot->attribute_id;
-                                                                                                @endphp
-                                                                                            @endforeach
+                                                                                        @foreach($attribute->values as $value)
+                                                                                            <option value="{{ $value->id }}" {{ in_array($value->id, $array) ? 'selected' :  '' }} >{{ $value->value }}</option>
                                                                                         @endforeach
-
-                                                                                    @foreach($attribute->values as $item)
-
-{{--                                                                                        @php--}}
-{{--                                                                                            if(isset($attrs)){--}}
-{{--                                                                                            unset($attrs);--}}
-{{--                                                                                            }--}}
-{{--                                                                                        @endphp--}}
-
-                                                                                            {{--                                                                                            {{ dd($product->attributes->find($attribute->id)->values->find($item->id)->id == $item->id) }}--}}
-{{--                                                                                            <option>{{ $product->attributes->find($attribute->id)->values }}</option>--}}
-                                                                                            <option value="{{ $item->id }}" {{ (in_array($item->id, $this_attrs))? 'selected' : '' }}> {{ $item->value }} </option>
-                                                                                    @endforeach
                                                                                     </select>
 
                                                                                     <span class="select-counter" style="display: none;">۰</span>
@@ -1702,7 +1661,7 @@
                                                 <h2 class="c-content-accordion__title">
                                                     <div class="c-content-accordion__title-text js-step-title-header">
                                                         گام چهارم: عنوان پیشنهادی کالا
-{{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="auto_title"></span>--}}
+                                                        {{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="auto_title"></span>--}}
                                                     </div>
                                                 </h2>
                                                 <div
@@ -1813,7 +1772,7 @@
                                                         <span class="js-step-images-header">
                                                         گام پنجم: بارگذاری تصاویر
                                                         </span>
-{{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="media"></span>--}}
+                                                        {{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="media"></span>--}}
                                                     </div>
                                                 </h2>
                                                 <div
@@ -1822,29 +1781,29 @@
                                                     <div class="c-card__body c-card__body--content marketplace-redesign"
                                                          id="stepImagesContent">
                                                         <form id="stepImagesForm">
-{{--                                                            <div class="c-content-upload__checkbox-container">--}}
-{{--                                                                <div class="field-wrapper">--}}
-{{--                                                                    <label class="c-ui-radio c-ui-radio--content">--}}
-{{--                                                                        <input type="radio"--}}
-{{--                                                                               class="c-ui-radio__origin js-images-owner"--}}
-{{--                                                                               name="images[who_will_upload]" value="1"--}}
-{{--                                                                               id="sellerWillUpload" checked>--}}
-{{--                                                                        <span--}}
-{{--                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
-{{--                                                                        <span--}}
-{{--                                                                            class="c-ui-radio__label c-ui-radio__label--content">بارگذاری تصویر توسط شما</span>--}}
-{{--                                                                    </label>--}}
-{{--                                                                    <label class="c-ui-radio c-ui-radio--content">--}}
-{{--                                                                        <input type="radio"--}}
-{{--                                                                               class="c-ui-radio__origin js-images-owner"--}}
-{{--                                                                               name="images[who_will_upload]" value="0">--}}
-{{--                                                                        <span--}}
-{{--                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
-{{--                                                                        <span--}}
-{{--                                                                            class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط دیجی‌کالا</span>--}}
-{{--                                                                    </label>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
+                                                            {{--                                                            <div class="c-content-upload__checkbox-container">--}}
+                                                            {{--                                                                <div class="field-wrapper">--}}
+                                                            {{--                                                                    <label class="c-ui-radio c-ui-radio--content">--}}
+                                                            {{--                                                                        <input type="radio"--}}
+                                                            {{--                                                                               class="c-ui-radio__origin js-images-owner"--}}
+                                                            {{--                                                                               name="images[who_will_upload]" value="1"--}}
+                                                            {{--                                                                               id="sellerWillUpload" checked>--}}
+                                                            {{--                                                                        <span--}}
+                                                            {{--                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
+                                                            {{--                                                                        <span--}}
+                                                            {{--                                                                            class="c-ui-radio__label c-ui-radio__label--content">بارگذاری تصویر توسط شما</span>--}}
+                                                            {{--                                                                    </label>--}}
+                                                            {{--                                                                    <label class="c-ui-radio c-ui-radio--content">--}}
+                                                            {{--                                                                        <input type="radio"--}}
+                                                            {{--                                                                               class="c-ui-radio__origin js-images-owner"--}}
+                                                            {{--                                                                               name="images[who_will_upload]" value="0">--}}
+                                                            {{--                                                                        <span--}}
+                                                            {{--                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
+                                                            {{--                                                                        <span--}}
+                                                            {{--                                                                            class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط دیجی‌کالا</span>--}}
+                                                            {{--                                                                    </label>--}}
+                                                            {{--                                                                </div>--}}
+                                                            {{--                                                            </div>--}}
                                                             <div class="hidden" id="imagesDKServiceContainer">
                                                                 <div class="c-content-upload__digikala">
                                                                     در صورتی که تمایل دارید عکاسی از محصول شما توسط
@@ -1952,7 +1911,7 @@
                                                                                     @foreach($product->media as $image)
                                                                                         <li class="c-content-upload__gallery-row js-uploads-row
                                                                                             {{ ($image->pivot->is_main == 1)? 'primary' : '' }}
-                                                                                        " id="{{ $image->id }}">
+                                                                                            " id="{{ $image->id }}">
                                                                                             <input type="hidden" name="images[images][]" value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09" class="js-image-id-input"/>
                                                                                             <div class="c-content-upload__img-container">
                                                                                                 <img src="{{ env('APP_URL') . '/' .$image->path . '/' . $image->name }}" alt="" class="c-content-upload__img">
@@ -2563,25 +2522,25 @@
         });
 
 
-    $(document).ready(function (){
-        var model = $("input[name='product[model]']").val();
-        var full_brand = $("#brandsSelect option:selected").text();
-        var brand = full_brand.substring(0, full_brand.indexOf(" ("));
-        var nature = $("input[name='product[product_nature]']").val();
+        $(document).ready(function (){
+            var model = $("input[name='product[model]']").val();
+            var full_brand = $("#brandsSelect option:selected").text();
+            var brand = full_brand.substring(0, full_brand.indexOf(" ("));
+            var nature = $("input[name='product[product_nature]']").val();
 
-        if ($("#brandsSelect option:selected").val() == 0) {
-            var product_title = nature + ' مدل ' + model;
-        } else {
-            var product_title = nature + ' ' + brand + ' مدل ' + model;
-        }
-        $(".persian-title").val(product_title);
-    });
-
-
+            if ($("#brandsSelect option:selected").val() == 0) {
+                var product_title = nature + ' مدل ' + model;
+            } else {
+                var product_title = nature + ' ' + brand + ' مدل ' + model;
+            }
+            $(".persian-title").val(product_title);
+        });
 
 
 
-    $(document).on('change', ".title-creator", function () {
+
+
+        $(document).on('change', ".title-creator", function () {
             var model = $("input[name='product[model]']").val();
             var full_brand = $("#brandsSelect option:selected").text();
             var brand = full_brand.substring(0, full_brand.indexOf(" ("));
@@ -2602,9 +2561,3 @@
     </script>
 
 @endsection
-
-
-
-
-
-

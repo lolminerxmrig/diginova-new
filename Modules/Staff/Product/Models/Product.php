@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Attribute\Models\AttributeGroup;
+use Modules\Staff\Attribute\Models\AttributeProduct;
+use Modules\Staff\Attribute\Models\ProductAttributes;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Type\Models\Type;
@@ -57,11 +59,6 @@ class Product extends Model
       return $this->belongsTo(Brand::class);
     }
 
-    public function attributes()
-    {
-        return $this->belongsToMany(Attribute::class, 'attribute_product')->withPivot(['value', 'value_id']);
-    }
-
     public function categories()
     {
         return $this->morphToMany(Category::class, 'categorizable');
@@ -76,5 +73,11 @@ class Product extends Model
         return $this->belongsToMany(Type::class, 'product_type');
     }
 
-}
 
+    public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class, 'attribute_product')
+            ->withPivot('value_id');
+    }
+
+}
