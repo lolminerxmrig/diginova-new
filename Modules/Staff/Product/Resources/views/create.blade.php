@@ -571,6 +571,7 @@
                               </div>
                             </div>
                           </div>
+
                           <div class="c-card__body c-card__body--content">
                             <div id="categoriesContainer" class="c-content-categories">
                               <div class="c-content-categories__container" id="categoriesContainerContent">
@@ -613,9 +614,8 @@
                                         id="categoryReset"></button>
                               </div>
                             </div>
-
-
                           </div>
+
                           <div class="c-content-loader">
                             <div class="c-content-loader__logo"></div>
                             <div class="c-content-loader__spinner"></div>

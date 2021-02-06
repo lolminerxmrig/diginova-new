@@ -4,7 +4,7 @@
         {{ $category->name }}
     </li>
 @else
-    <?
+    <?php
         unset($main_cat);
         unset($lists);
         unset($lists);

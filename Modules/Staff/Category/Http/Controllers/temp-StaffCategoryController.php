@@ -3,6 +3,7 @@
 namespace Modules\Staff\Category\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
 use Illuminate\Support\Facades\Log;
@@ -92,34 +93,31 @@ class StaffCategoryController extends Controller
 
     }
 
+    /**
+     * Return the tree structure View for category select section.
+     * @return Response
+     */
     public function childCatsLoader(Request $request)
     {
-        $categories = Category::get()->unique('name');
-        $id = $request->id;
-        // حل مشکل ستون های خالی
-        if (count(Category::where('parent_id', $id)->get()) !== 0)
-        {
-            return View::make("staffcategory::child-cat-loaader", compact('id', 'categories'));
-        }
+      $categories = Category::all();
+      $id = $request->parent_id;
+      return View::make("staffproduct::ajax.child-cat-loader", compact('id', 'categories'));
     }
 
-    public function breadcrumbLoader(Request $request)
-    {
-        $category = Category::find($request->id);
-        return View::make("staffcategory::breadcrumb-loader", compact('category'));
-    }
 
-    public function mainCatReloader(Request $request)
+    /**
+     * Return the result for category search section.
+     * @return Response
+     */
+    public function searchCategories(Request $request)
     {
-        $categories = Category::get()->unique('name');
-        return View::make("staffcategory::main-cat-loader", compact('categories'));
-    }
-
-    public function ajaxSearch(Request $request)
-    {
-        $categories = Category::query()->where('name', 'LIKE', "%{$request->search}%")->get();
-
+      if (!is_null($request->q)) {
+        $categories = Category::query()->where('name', 'LIKE', "%{$request->q}%")->get();
         return View::make("staffcategory::ajax.search-categories", compact('categories'));
+      } else {
+        $categories = Category::all();
+        return View::make("staffcategory::ajax.main-cat-loader", compact('categories'));
+      }
     }
 
     public function uploadImage(StaffCategoryImageRequest $request)

@@ -60,7 +60,6 @@ $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();
     $("li").removeClass('is-active');
-    $(this).closest("li").addClass("is-active");
 
     var categorySelected = $("input[name='category']:checked").val();
 

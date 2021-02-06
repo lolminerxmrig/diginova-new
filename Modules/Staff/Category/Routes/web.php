@@ -38,6 +38,9 @@ Route::domain('staff.diginova.test')->prefix('categories')->name('staff.categori
     Route::post('ajax-search', [StaffCategoryController::class, 'ajaxSearch'])
         ->name('ajaxsearch');
 
+    Route::post('search-categories', [StaffCategoryController::class, 'searchCategories'])
+      ->name('searchCategories');
+
     Route::post('ajax-upload', [StaffCategoryController::class, 'uploadImage'])
         ->name('ajaxupload');
 
@@ -52,12 +55,6 @@ Route::domain('staff.diginova.test')->prefix('categories')->name('staff.categori
 
     Route::post('main-cat-reloader', [StaffCategoryController::class, 'mainCatReloader'])
         ->name('mainCatLoader');
-
-
-
-
-
-
 
     Route::post('delete', [StaffCategoryController::class, 'moveToTrash'])
         ->name('moveToTrash');
