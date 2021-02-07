@@ -20,7 +20,6 @@ class CreateMediaTable extends Migration
             $table->string('person_role');
             $table->integer('person_id');
             $table->boolean('status')->nullable();
-            $table->nullableMorphs('mediable');
             $table->timestamps();
         });
     }

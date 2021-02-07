@@ -36,9 +36,9 @@ var CategoryFormAction = {
                 },
 
 
-                'image': {
-                    requiredIfChecked: true,
-                }
+                // 'image': {
+                //     requiredIfChecked: true,
+                // }
 
             },
             messages: {
@@ -57,12 +57,14 @@ var CategoryFormAction = {
                 'category': {
                     'required': 'انتخاب دسته اصلی اجباری است',
                 },
-
-                'image': {
-                    'required': 'بارگزاری تصویر برای دسته بندی اجباری است',
-                }
+                //
+                // 'image': {
+                //     'required': 'بارگزاری تصویر برای دسته بندی اجباری است',
+                // }
             },
-            errorPlacement: function (error, element) {
+            ignore: [],
+
+          errorPlacement: function (error, element) {
                 if (element.attr("name") == "name" || element.attr("name") == "en_name"){
                     error.insertAfter(element).addClass('error-msg');
                 }
@@ -74,9 +76,9 @@ var CategoryFormAction = {
                     error.appendTo(".js-selected-category").addClass('error-text');
                 }
 
-                else if(element.attr("name") == "image"){
-                        error.appendTo(".c-content-upload__title").addClass('error-text').css('display', 'inline-block');
-                }
+                // else if(element.attr("name") == "image"){
+                //         error.appendTo(".c-content-upload__title").addClass('error-text').css('display', 'inline-block');
+                // }
             },
         }).showBackendErrors();
     },

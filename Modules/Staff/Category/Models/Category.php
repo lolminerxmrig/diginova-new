@@ -32,11 +32,6 @@ class Category extends Model
 
     }
 
-    public function media()
-    {
-        return $this->morphOne(Media::class, 'mediable');
-    }
-
     public function brands()
     {
         return $this->morphedByMany(Brand::class, 'categorizable');
@@ -57,10 +52,14 @@ class Category extends Model
         return $this->morphedByMany(Type::class, 'categorizable');
     }
 
-
     public function products()
     {
         return $this->morphedByMany(Product::class);
+    }
+
+    public function media()
+    {
+        return $this->morphToMany(Media::class, 'mediable');
     }
 }
 

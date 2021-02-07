@@ -24,9 +24,9 @@ class StaffProductServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffproduct');
 
         Relation::morphMap([
-            'categories' => 'Modules\Staff\Category\Models\Category',
-            'brands' => 'Modules\Staff\Brand\Models\Brand',
-            'product' => 'Modules\Staff\Product\Models\Product',
+            'Category' => 'Modules\Staff\Category\Models\Category',
+            'Brand' => 'Modules\Staff\Brand\Models\Brand',
+            'Attribute' => 'Modules\Staff\Attribute\Models\Attribute',
         ]);
     }
 }

@@ -48,12 +48,6 @@
                 </li>
               @endforeach
             @endif
-
-
-
-
-
-
           </ul>
         </label>
       </li>

@@ -2,6 +2,7 @@
 
 namespace Modules\Staff\Category\Http\Controllers;
 
+use App\Models\Mediable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -16,79 +17,105 @@ use App\Models\Media;
 
 class StaffCategoryController extends Controller
 {
+
     public function index()
     {
         $categories = Category::all();
         $media = Media:: all();
-        $trashed_categories = Category::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('staffcategory::index', compact('categories', 'media', 'trashed_categories'));
+        return view('staffcategory::index', compact('categories', 'media'));
     }
 
     public function create()
     {
-        $categories = Category::get()->unique('name');
+        $categories = Category::get();
         return view('staffcategory::create', compact('categories'));
     }
 
     public function store(StaffCategoryRequest $request)
     {
-        $category = Category::create([
-            'name' => $request->name,
-            'en_name' => $request->en_name,
-            'slug' => $request->slug,
-            'parent_id' => $request->parent_id,
-        ]);
-
-        if ($request->image !== 'not_required')
-        {
-            Media::find($request->image)->update([
-                'mediable_type' => 'categories',
-                'mediable_id' => $category->id,
+        $exist_category = Category::where('name', $request->name)->get();
+        if(count($exist_category) == 0){
+            $category = Category::create([
+                'name' => $request->name,
+                'en_name' => $request->en_name,
+                'slug' => $request->slug,
+                'parent_id' => $request->parent_id,
             ]);
+
+            if ($request->image !== 'not_required') {
+                Media::find($request->image)->categories()->attach($category);
+                Media::find($request->image)->update([
+                    'status' => 1,
+                ]);
+            }
         }
     }
 
     public function getData(Request $request)
     {
-        $cat= Category::find($request->id);
-        $cat_media = Category::find($request->id)->media;
-        $categories = Category::all();
-        if ($cat_media)
-        {
+        $cat = Category::find($request->id);
+        $cat_media = $cat->media()->first();
+//        $categories = Category::all();
+        if ($cat_media) {
+            Log::info('is image');
             return response()->json([
-                'options' => View::make('staffcategory::select-cat-loader', compact('categories', 'cat'))->render(),
-                'image' => View::make('staffcategory::uploaded-image', compact('cat_media'))->render(),
+//                'options' => View::make('staffcategory::select-cat-loader', compact('categories', 'cat'))->render(),
+                'image' => View::make('staffcategory::layouts.ajax.image-box.uploaded-image', compact('cat_media'))->render(),
                 'category' => $cat,
             ], 200);
-        }
-        else
-        {
-            return response()->json([
-                'options' => View::make('staffcategory::select-cat-loader', compact('categories', 'cat'))->render(),
-                'category' => $cat,
-            ], 200);
-        }
+        } else {
+            Log::info('is no image');
 
+            return response()->json([
+//                'options' => View::make('staffcategory::select-cat-loader', compact('categories', 'cat'))->render(),
+                'category' => $cat,
+            ], 200);
+        }
 
 
     }
 
     public function update(StaffCategoryRequest $request)
     {
-        Category::find($request->id)->update([
+
+        $category = Category::find($request->id)->update([
             'name' => $request->name,
             'en_name' => $request->en_name,
             'slug' => $request->slug,
-            'parent_id' => $request->parent_id,
         ]);
 
-        Media::where('mediable_type', 'categories')->where('mediable_id', $request->id)->delete();
+        Mediable::where('mediable_type', 'Category')->where('mediable_id', $request->id)->delete();
+//
+//        Media::where('id', $request->image)->update([
+//            'mediable_type' => 'categories',
+//            'mediable_id' => $request->id,
+//        ]);
 
-        Media::where('id', $request->image)->update([
-            'mediable_type' => 'categories',
-            'mediable_id' => $request->id,
-        ]);
+        $old_img = Mediable::where('media_id', $request->image)->first();
+        // نشون دهنده اینه که این عکس قبلا عکس این نبوده؟
+        if($old_img == null)
+        {
+            Log::info($old_img);
+            if (Category::find($request->id)->media()->first() !== null){
+                Category::find($request->id)->media()->first()->delete();
+            }
+
+            Media::find($request->image)->update([
+                'status' => 1,
+            ]);
+
+            $this_cat = Category::find($request->id)->id;
+            Media::find($request->image)->categories()->attach($this_cat);
+        }
+
+//        if($request->image){
+//            $this_cat = Category::find($request->id)->id;
+//            Media::find($request->image)->categories()->attach($this_cat);
+//            Media::find($request->image)->update([
+//                'status' => 1,
+//            ]);
+//        }
 
     }
 
@@ -97,47 +124,40 @@ class StaffCategoryController extends Controller
         $categories = Category::get()->unique('name');
         $id = $request->id;
         // حل مشکل ستون های خالی
-        if (count(Category::where('parent_id', $id)->get()) !== 0)
-        {
-            return View::make("staffcategory::child-cat-loaader", compact('id', 'categories'));
+        if (count(Category::where('parent_id', $id)->get()) !== 0) {
+            return View::make("staffcategory::layouts.ajax.category-box.child", compact('id', 'categories'));
         }
     }
 
     public function breadcrumbLoader(Request $request)
     {
         $category = Category::find($request->id);
-        return View::make("staffcategory::breadcrumb-loader", compact('category'));
+        return View::make("staffcategory::layouts.ajax.category-box.breadcrumb", compact('category'));
     }
 
     public function mainCatReloader(Request $request)
     {
         $categories = Category::get()->unique('name');
-        return View::make("staffcategory::main-cat-loader", compact('categories'));
+        return View::make("staffcategory::layouts.ajax.category-box.main", compact('categories'));
     }
 
     public function ajaxSearch(Request $request)
     {
         $categories = Category::query()->where('name', 'LIKE', "%{$request->search}%")->get();
 
-        return View::make("staffcategory::ajax.search-categories", compact('categories'));
+        return View::make("staffcategory::layouts.ajax.category-box.search", compact('categories'));
     }
 
     public function uploadImage(StaffCategoryImageRequest $request)
     {
-        if ($request->old_img){
+        if ($request->old_img) {
             $request->id = $request->old_img;
             $this->deleteImage($request);
         }
 
         $imageSize = $request->file('image')->getSize();
 
-        // convert to blob
-        // $path = $request->file('image')->getRealPath();
-        // $image = file_get_contents($path);
-        // $filename = time().'.'.$request->image->extension();
-        // $base64 = base64_encode($image);
-
-        $input['image'] = time().'.'.$request->image->extension();
+        $input['image'] = time() . '.' . $request->image->extension();
         $request->image->move(public_path('media/images'), $input['image']);
 
         $media = Media::create([
@@ -147,57 +167,61 @@ class StaffCategoryController extends Controller
             'person_role' => 'staff',
         ]);
 
-        return View::make("staffcategory::upload-image" ,
-            compact('input','imageSize', 'request' , 'media'));
+//        if($request->update == 'true')
+//        {
+//            Mediable::where('mediable_type', 'Category')->where('mediable_id', $request->id)->delete();
+//        }
+
+        return View::make("staffcategory::layouts.ajax.image-box.upload-image",
+            compact('input', 'imageSize', 'request', 'media'));
     }
+
+
+    public function uploadUpdate(StaffCategoryImageRequest $request)
+    {
+        Log::info('running');
+        $validated = $request->validated();
+        if ($request->old_img) {
+            $request->id = $request->old_img;
+            if(Mediable::where('media_id', $request->old_img)->first() == null)
+            {
+                $this->deleteImage($request);
+            }
+        }
+
+        $imageSize = $request->file('image')->getSize();
+
+        $input['image'] = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('media/images'), $input['image']);
+
+        $media = Media::create([
+            'name' => $input['image'],
+            'path' => 'media/images',
+            'person_id' => auth()->guard('staff')->user()->id,
+            'person_role' => 'staff',
+        ]);
+
+
+
+//        if($request->update == 'true')
+//        {
+//            Mediable::where('mediable_type', 'Category')->where('mediable_id', $request->id)->delete();
+//        }
+
+        return View::make("staffcategory::layouts.ajax.image-box.upload-image",
+            compact('input', 'imageSize', 'request', 'media'));
+    }
+
 
     public function deleteImage(Request $request)
     {
         $media = Media::find($request->id);
         $user_id = auth()->guard('staff')->user()->id;
 
-        if(($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id))
-        {
-            unlink(public_path("$media->path/"). $media->name);
+        if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
+            unlink(public_path("$media->path/") . $media->name);
             $media->delete();
         }
-    }
-
-
-
-
-
-
-
-
-    public function trash()
-    {
-        $categories = Category::onlyTrashed()->paginate(1);
-        return view('staffcategory::trash', compact('categories'));
-    }
-
-    public function trashPagination(){
-        $categories = Category::onlyTrashed()->paginate(10);
-        return View::make('staffcategory::ajax-trash-content', compact('categories'));
-    }
-
-    public function moveToTrash(Request $request)
-    {
-        Category::find($request->id)->delete();
-    }
-
-    public function restoreFromTrash(Request $request)
-    {
-        Category::withTrashed()->find($request->id)->restore();
-        $categories = Category::onlyTrashed()->paginate(10);
-        return View::make('staffcategory::ajax-trash-content', compact('categories'));
-    }
-
-    public function removeFromTrash(Request $request)
-    {
-        Category::withTrashed()->find($request->id)->forceDelete();
-        $categories = Category::onlyTrashed()->paginate(10);
-        return View::make('staffcategory::ajax-trash-content', compact('categories'));
     }
 
 }

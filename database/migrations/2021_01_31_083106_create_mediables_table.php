@@ -19,7 +19,6 @@ class CreateMediablesTable extends Migration
             $table->morphs('mediable');
             $table->boolean('is_main')->nullable();
             $table->integer('position')->nullable();
-            $table->timestamps();
         });
     }
 

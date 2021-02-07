@@ -44,6 +44,9 @@ Route::domain('staff.diginova.test')->prefix('categories')->name('staff.categori
     Route::post('ajax-upload', [StaffCategoryController::class, 'uploadImage'])
         ->name('ajaxupload');
 
+    Route::post('upload-update', [StaffCategoryController::class, 'uploadUpdate'])
+        ->name('uploadUpdate');
+
     Route::post('ajaxdelete', [StaffCategoryController::class, 'deleteImage'])
         ->name('ajaxdelete');
 

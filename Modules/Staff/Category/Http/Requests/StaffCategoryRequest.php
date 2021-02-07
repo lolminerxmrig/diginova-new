@@ -30,7 +30,7 @@ class StaffCategoryRequest extends FormRequest
                 'slug' => 'required',
                 'en_name' => 'required',
                 'image' => 'required',
-                'parent_id' => 'required',
+//                'parent_id' => 'required',
             ];
         }
         else{

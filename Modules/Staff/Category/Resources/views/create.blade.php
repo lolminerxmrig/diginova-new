@@ -2,6 +2,7 @@
 
 @section('head')
   <script src="{{ asset('seller/js/create-category-validation.js') }}"></script>
+  <script src="{{ asset('seller/js/tags.js') }}"></script>
 @endsection
 
 @section('content')
@@ -129,16 +130,14 @@
                                 id="cat-box" data-id="0">
                                 <ul class="c-content-categories__list" style="list-style: none;">
                                   @foreach($categories->where('parent_id', 0) as $category)
-                                    <li
-                                      class="c-content-categories__item {{ (count($category->children) > 0) ? 'has-children' : '' }}">
-                                      <label
-                                        class="c-content-categories__link js-category-link">
+                                    <li class="c-content-categories__item {{ (count($category->children) > 0) ? 'has-children' : '' }}">
+                                      <label class="c-content-categories__link js-category-link">
                                         <input type="radio" name="category"
                                                value="{{ $category->id }}"
                                                class="js-category-data radio uk-hidden"
                                                data-id="{{ $category->id }}"
                                                data-theme=""
-                                               style="visibility: hidden;" required="required">
+                                               style="visibility: hidden;">
                                         {{ $category->name }}
                                       </label>
                                     </li>
@@ -379,8 +378,6 @@
 
 <script>
 
-
-
   // تغییر پدینگ فیلد نامک
   $(function () {
     var buttonWidth = $('#button-urls').width() + 20;
@@ -395,7 +392,6 @@
     if ($("#is_main").is(":checked")) {
       $(".category-box").hide();
       $("#stepImagesAccordion").hide();
-      // $("#stepTitleContainer").css('margin-bottom', '-60px');
     } else {
       $(".category-box").show();
       $("#stepImagesAccordion").show();
@@ -460,7 +456,8 @@
             bgColor: '#3DC3A1',
             textColor: '#fff',
           });
-          $('#category_form').trigger("reset");
+            $('html, body').animate({scrollTop: '0px'}, 300);
+            $('#category_form').trigger("reset");
 
           $(".appended-box").each(function () {
             $(this).remove();
@@ -538,10 +535,21 @@
       },
       error: function (data) {
         $(".li-error").addClass('has-error');
-        // $(".error-image").html(data.responseJSON.error);
         $(".error-image").html('تصویری که انتخاب کرید شرایط لازم را ندارد');
-        $('#preview_uploading').attr('data-id', 0);
-        $("img[name='uploaded']").attr('data-id', 0);
+
+          $.ajax({
+              url: '{{route('staff.categories.ajaxdelete')}}',
+              type: 'post',
+              data: {
+                  id: $("img[name='uploaded']").attr('data-id'),
+              },
+              success: function (data) {
+                  $("input[name='image']").val('');
+                  // $("#imagesSection").hide();
+                  $('#preview_uploading').attr('data-id', 0);
+                  $("img[name='uploaded']").attr('data-id', 0);
+              },
+          });
       }
     });
 
@@ -554,7 +562,7 @@
       url: '{{route('staff.categories.ajaxdelete')}}',
       type: 'post',
       data: {
-        id: $('.uploadImage').attr('data-id'),
+        id: $("img[name='uploaded']").attr('data-id'),
       },
       success: function (data) {
         $("input[name='image']").val('');
@@ -573,8 +581,7 @@
   $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();
-    $("li").nextAll().removeClass('is-active');
-    $(this).closest(".js-category-column").find('li').removeClass('is-active');
+    $(this).closest(".c-content-categories__list").find('li').removeClass('is-active');
     $(this).closest("li").addClass("is-active");
 
     var categorySelected = $("input[name='category']:checked").val();
