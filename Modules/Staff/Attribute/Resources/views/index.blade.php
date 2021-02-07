@@ -215,11 +215,6 @@ $('.save-btn').on('click', function (e) {
 });
 
 
-$(document).on('click', '.no', function (){
-    $('.c-header__nav').show();
-});
-
-
 $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
     $("#newAttributeRequestModal").addClass('uk-open');
     $("#newAttributeRequestModal").css('display', 'block');
@@ -230,11 +225,14 @@ $(document).on('click', '.uk-close', function () {
     $('.c-header__nav').show();
 });
 
+$(document).on('click', '.no', function (){
+    $('.c-header__nav').show();
+});
+
+
 
 $(document).on('click', '.delete-btn', function () {
     var id = $(this).val();
-
-
 
     $(".uk-modal-container").addClass('uk-open');
     $(".uk-modal-container").css('display', 'block');

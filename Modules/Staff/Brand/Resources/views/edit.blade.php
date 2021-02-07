@@ -62,7 +62,10 @@
                             ">
                                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr
                                                         c-grid__col--flex-initial c-grid__col--sm-6">
-                                                            <label class="uk-form-label uk-flex uk-flex-between">نام برند </label>
+                                                            <label class="uk-form-label uk-flex uk-flex-between">
+                                                                نام برند
+                                                                <span class="uk-form-label__required"></span>
+                                                            </label>
                                                             <div class="field-wrapper">
                                                                 <input type="text" class="c-content-input__origin js-attribute-old-value"
                                                                        name="name" value="{{ old('name')?? $brand->name }}">
@@ -72,8 +75,10 @@
                                                         </div>
                                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
                               c-grid__col--sm-6">
-                                                            <label class="uk-form-label uk-flex uk-flex-between">نام
-                                                                انگلیسی</label>
+                                                            <label class="uk-form-label uk-flex uk-flex-between">
+                                                                نام انگلیسی
+                                                              <span class="uk-form-label__required"></span>
+                                                            </label>
                                                             <div class="field-wrapper">
                                                                 <input type="text"
                                                                        class="c-content-input__origin js-attribute-old-value"
@@ -88,7 +93,9 @@
                                                          style="margin-right: 0px; width: 100%; margin-bottom: 40px;">
                                                         <div
                                                             class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
-                                                            <label for="" class="uk-form-label">شرح برند:</label>
+                                                            <label for="" class="uk-form-label">
+                                                                شرح برند:
+                                                            </label>
                                                             <div class="field-wrapper field-wrapper--textarea">
                                                                 <textarea name="description"
                                                                           placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"
@@ -102,38 +109,40 @@
                                                         </div>
                                                     </div>
 
-                                                    <div
-                                                        class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 c-grid__col--xs-gap"
-                                                        style="margin-top: 15px;margin-bottom: 15px;">
+{{--                                                    <div--}}
+{{--                                                        class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 c-grid__col--xs-gap"--}}
+{{--                                                        style="margin-top: 15px;margin-bottom: 15px;">--}}
 
-                                                        <label for="" class="search-form__action-label">نوع
-                                                            برند</label>
+{{--                                                        <label for="" class="search-form__action-label">نوع--}}
+{{--                                                            برند</label>--}}
 
-                                                        <div
-                                                            class="field-wrapper field-wrapper--justify field-wrapper--background"
-                                                            style="
-                              width: 201px;
-                              ">
-                                                            <label
-                                                                class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto"
-                                                                id="type" class="type">
-                                                                <input type="checkbox" class="c-ui-checkbox__origin"
-                                                                       name="type" id="type" class="type"
-                                                                       data-status="0" {{ old('type') == 1 ? 'checked' : ($brand->type == 1 ? 'checked' : '')  }}>
-                                                                <span class="c-ui-checkbox__check"></span>
-                                                                <span class="c-ui-checkbox__label">ویژه</span>
-                                                                <div class="c-wiki c-wiki__holder">
-                                  <span class="c-wiki-sign js-tooltip"
-                                        data-tooltip="اگر قصد دارید نوع این برند، ویژه شود این گزینه را انتخاب کنید"></span>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </div>
+{{--                                                        <div--}}
+{{--                                                            class="field-wrapper field-wrapper--justify field-wrapper--background"--}}
+{{--                                                            style="--}}
+{{--                              width: 201px;--}}
+{{--                              ">--}}
+{{--                                                            <label--}}
+{{--                                                                class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto"--}}
+{{--                                                                id="type" class="type">--}}
+{{--                                                                <input type="checkbox" class="c-ui-checkbox__origin"--}}
+{{--                                                                       name="type" id="type" class="type"--}}
+{{--                                                                       data-status="0" {{ old('type') == 1 ? 'checked' : ($brand->type == 1 ? 'checked' : '')  }}>--}}
+{{--                                                                <span class="c-ui-checkbox__check"></span>--}}
+{{--                                                                <span class="c-ui-checkbox__label">ویژه</span>--}}
+{{--                                                                <div class="c-wiki c-wiki__holder">--}}
+{{--                                  <span class="c-wiki-sign js-tooltip"--}}
+{{--                                        data-tooltip="اگر قصد دارید نوع این برند، ویژه شود این گزینه را انتخاب کنید"></span>--}}
+{{--                                                                </div>--}}
+{{--                                                            </label>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
 
                                                     <div
                                                         class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
-                                                        <label
-                                                            class="uk-form-label uk-flex uk-flex-between">نامک</label>
+                                                        <label class="uk-form-label uk-flex uk-flex-between">
+                                                            نامک
+                                                            <span class="uk-form-label__required"></span>
+                                                        </label>
                                                         <div class="field-wrapper">
                                                             <input type="text"
                                                                    class="c-content-input__origin js-attribute-old-value url-inputs"

@@ -17,22 +17,22 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        $brands = ['سامسونگ', 'ال جی', 'هواوی', 'پاناسونیک', 'بوش', 'آدیداس', 'پوما', 'نایک', 'پاکشوما', 'نوکیا', 'اپل', 'ایسوس', 'ایسر', 'لنوو'];
-        for($i = 0; $i++; $i <= (count($brands) - 1))
-        {
-            $add_brand = Brand::insert([
-                'name' => "برند ",
-                'en_name' => "brand $brands[$i]",
-                'description' => 'تست',
-                'type' => rand(0,1),
-                'slug' => 'samsung',
-            ]);
-
-            Categorizable::insert([
-                'category_id' => rand(0,1),
-                'categorizable_type' => 'brands',
-                'categorizable_id' => $add_brand->id,
-            ]);
-        }
+//        $brands = ['سامسونگ', 'ال جی', 'هواوی', 'پاناسونیک', 'بوش', 'آدیداس', 'پوما', 'نایک', 'پاکشوما', 'نوکیا', 'اپل', 'ایسوس', 'ایسر', 'لنوو'];
+//        for($i = 0; $i++; $i <= (count($brands) - 1))
+//        {
+//            $add_brand = Brand::insert([
+//                'name' => "برند ",
+//                'en_name' => "brand $brands[$i]",
+//                'description' => 'تست',
+//                'type' => rand(0,1),
+//                'slug' => 'samsung',
+//            ]);
+//
+//            Categorizable::insert([
+//                'category_id' => rand(0,1),
+//                'categorizable_type' => 'brands',
+//                'categorizable_id' => $add_brand->id,
+//            ]);
+//        }
     }
 }

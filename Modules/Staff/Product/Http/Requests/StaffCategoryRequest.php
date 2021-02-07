@@ -31,6 +31,7 @@ class StaffCategoryRequest extends FormRequest
                 'en_name' => 'required',
                 'image' => 'required',
                 'parent_id' => 'required',
+                'description' => 'nullable',
             ];
         }
         else{
@@ -39,6 +40,7 @@ class StaffCategoryRequest extends FormRequest
                 'slug' => 'required',
                 'en_name' => 'required',
                 'parent_id' => 'required',
+                'description' => 'nullable',
             ];
         }
     }

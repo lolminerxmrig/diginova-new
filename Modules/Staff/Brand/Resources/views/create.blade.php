@@ -54,8 +54,10 @@
                                     ">
                                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
                                       c-grid__col--sm-6">
-                                      <label class="uk-form-label uk-flex uk-flex-between">نام
-                                      برند </label>
+                                      <label class="uk-form-label uk-flex uk-flex-between">
+                                          نام برند
+                                          <span class="uk-form-label__required"></span>
+                                      </label>
                                       <div class="field-wrapper">
                                         <input type="text"
                                           class="c-content-input__origin js-attribute-old-value"
@@ -66,7 +68,10 @@
                                     </div>
                                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
                                       c-grid__col--sm-6">
-                                      <label class="uk-form-label uk-flex uk-flex-between">نام انگلیسی</label>
+                                      <label class="uk-form-label uk-flex uk-flex-between">
+                                          نام انگلیسی
+                                          <span class="uk-form-label__required"></span>
+                                      </label>
                                       <div class="field-wrapper
                                         ">
                                         <input type="text"
@@ -80,44 +85,53 @@
 
                                     <div class="c-grid__row c-grid__row--gap-lg"  style="margin-right: 0px; width: 100%; margin-bottom: 40px;">
                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
-                                            <label for="" class="uk-form-label">شرح برند:</label>
+                                            <label for="" class="uk-form-label">
+                                                شرح برند:
+                                            </label>
                                             <div class="field-wrapper field-wrapper--textarea">
                                                 <textarea name="description" placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …" class="c-content-input__origin c-content-input__origin--textarea js-textarea-words" rows="" maxlength="500"></textarea>
-                                                <span class="textarea__wordcount">
-                                                    <span class="js-wordcount-target">0</span>/500
-                                                </span>
+{{--                                                <span class="textarea__wordcount">--}}
+{{--                                                    <span class="js-wordcount-target">0</span>/500--}}
+{{--                                                </span>--}}
                                             </div>
                                         </div>
                                     </div>
 
-                                  <div
-                                    class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 c-grid__col--xs-gap"
-                                    style="margin-top: 15px;margin-bottom: 15px;">
+{{--                                  <div--}}
+{{--                                    class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 c-grid__col--xs-gap"--}}
+{{--                                    style="margin-top: 15px;margin-bottom: 15px;">--}}
 
-                                      <label for="" class="search-form__action-label">نوع برند</label>
+{{--                                      <label for="" class="search-form__action-label">--}}
+{{--                                          نوع برند--}}
+{{--                                          <span class="uk-form-label__required"></span>--}}
+{{--                                      </label>--}}
 
-                                      <div
-                                      class="field-wrapper field-wrapper--justify field-wrapper--background"
-                                      style="
-                                      width: 201px;
-                                      ">
-                                      <label
-                                        class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto"
-                                        id="type" class="type">
-                                        <input type="checkbox" class="c-ui-checkbox__origin"
-                                          name="type" id="type" class="type">
-                                        <span class="c-ui-checkbox__check"></span>
-                                        <span class="c-ui-checkbox__label">ویژه</span>
-                                        <div class="c-wiki c-wiki__holder">
-                                          <span class="c-wiki-sign js-tooltip"
-                                            data-tooltip="اگر قصد دارید نوع این برند، ویژه شود این گزینه را انتخاب کنید"></span>
-                                        </div>
-                                      </label>
-                                    </div>
-                                  </div>
+{{--                                      <div--}}
+{{--                                      class="field-wrapper field-wrapper--justify field-wrapper--background"--}}
+{{--                                      style="--}}
+{{--                                      width: 201px;--}}
+{{--                                      ">--}}
+{{--                                      <label--}}
+{{--                                        class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto"--}}
+{{--                                        id="type" class="type">--}}
+{{--                                        <input type="checkbox" class="c-ui-checkbox__origin"--}}
+{{--                                          name="type" id="type" class="type">--}}
+{{--                                        <span class="c-ui-checkbox__check"></span>--}}
+{{--                                        <span class="c-ui-checkbox__label">ویژه</span>--}}
+{{--                                        <div class="c-wiki c-wiki__holder">--}}
+{{--                                          <span class="c-wiki-sign js-tooltip"--}}
+{{--                                            data-tooltip="اگر قصد دارید نوع این برند، ویژه شود این گزینه را انتخاب کنید"></span>--}}
+{{--                                        </div>--}}
+{{--                                      </label>--}}
+{{--                                    </div>--}}
+{{--                                      --}}
+{{--                                  </div>--}}
 
                                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
-                                        <label class="uk-form-label uk-flex uk-flex-between">نامک</label>
+                                        <label class="uk-form-label uk-flex uk-flex-between">
+                                            نامک
+                                           <span class="uk-form-label__required"></span>
+                                        </label>
                                         <div class="field-wrapper">
                                             <input type="text" class="c-content-input__origin js-attribute-old-value url-inputs" name="slug" dir="ltr">
                                             <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="/{{ config('app.url') }}/brand" disabled>
@@ -146,7 +160,7 @@
                                                 class="c-content-categories__link js-category-link">
                                               <input type="radio" name="category"
                                                 value="{{ $category->id }}"
-                                                class="js-category-data radio"
+                                                class="js-category-data radio uk-hidden"
                                                 data-cat-id="{{ $category->id }}"
                                                 data-theme="" style="visibility: hidden;">
                                               {{ $category->name }}

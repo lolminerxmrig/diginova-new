@@ -4,19 +4,17 @@ namespace Modules\Staff\Brand\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 
 use Modules\Staff\Brand\Http\Requests\StaffBrandRequest;
-use Modules\Staff\Brand\Http\Requests\StaffBrandImageRequest;
 use Modules\Staff\Category\Models\Categorizable;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Brand\Models\Brand;
 use App\Models\Media;
-use Illuminate\Support\Facades\Response;
 
 class StaffBrandController extends Controller
 {
+
     public function index()
     {
         $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate(10);
@@ -155,13 +153,6 @@ class StaffBrandController extends Controller
 
         $imageSize = $request->file('image')->getSize();
 
-
-        // convert to blob
-        // $path = $request->file('image')->getRealPath();
-        // $image = file_get_contents($path);
-        // $filename = time().'.'.$request->image->extension();
-        // $base64 = base64_encode($image);
-
         $input['image'] = time().'.'.$request->image->extension();
         $request->image->move(public_path('media/images'), $input['image']);
 
@@ -203,11 +194,7 @@ class StaffBrandController extends Controller
     public function moveToTrash(Request $request)
     {
         Brand::find($request->id)->delete();
-//        $id = $request->id;
-//        return response()->json($id, 200);
-
         return $this->ajaxPagination($request);
-
     }
 
     public function restoreFromTrash(Request $request)
@@ -222,7 +209,6 @@ class StaffBrandController extends Controller
         Brand::withTrashed()->find($request->id)->forceDelete();
         $brands = Brand::onlyTrashed()->paginate(10);
         return View::make('staffbrand::ajax-trash-content', compact('brands'));
-
     }
 
     public function brandSearch(Request $request, Brand $brands)

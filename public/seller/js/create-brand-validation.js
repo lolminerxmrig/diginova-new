@@ -63,6 +63,8 @@ var CategoryFormAction = {
                     'required': 'بارگزاری تصویر برای لوگوی برند اجباری است',
                 }
             },
+            ignore: [],
+
             errorPlacement: function (error, element) {
                 if (element.attr("name") == "name" || element.attr("name") == "en_name" || element.attr("name") == "description"){
                     error.insertAfter(element).addClass('error-msg');

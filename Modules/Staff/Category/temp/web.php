@@ -59,7 +59,19 @@ Route::domain('staff.diginova.test')->prefix('categories')->name('staff.categori
     Route::post('main-cat-reloader', [StaffCategoryController::class, 'mainCatReloader'])
         ->name('mainCatLoader');
 
-    Route::post('destroy', [StaffCategoryController::class, 'destroy'])
-        ->name('destroy');
+    Route::post('delete', [StaffCategoryController::class, 'moveToTrash'])
+        ->name('moveToTrash');
+
+    Route::get('trash', [StaffCategoryController::class, 'trash'])
+        ->name('trash');
+
+    Route::post('trash-pagination', [StaffCategoryController::class, 'trashPagination'])
+        ->name('trashPagination');
+
+    Route::post('force-delete', [StaffCategoryController::class, 'removeFromTrash'])
+        ->name('removeFromTrash');
+
+    Route::post('restore', [StaffCategoryController::class, 'restoreFromTrash'])
+        ->name('restoreFromTrash');
 
 });

@@ -17,9 +17,8 @@ use App\Models\Media;
 class Category extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
-    protected $fillable = ['name', 'en_name', 'parent_id', 'slug'];
+    protected $fillable = ['name', 'en_name', 'parent_id', 'slug', 'description'];
 
     public function children()
     {
@@ -60,6 +59,13 @@ class Category extends Model
     public function media()
     {
         return $this->morphToMany(Media::class, 'mediable');
+    }
+
+    protected static function boot() {
+        parent::boot();
+        static::deleting( function ($category) {
+            $category->children()->delete();
+        });
     }
 }
 
