@@ -75,7 +75,6 @@ class StaffCategoryController extends Controller
 
     public function update(StaffCategoryRequest $request)
     {
-
         $category = Category::find($request->id)->update([
             'name' => $request->name,
             'en_name' => $request->en_name,

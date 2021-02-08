@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <main class="c-content-layout">
+<main class="c-content-layout">
         <div class="uk-container uk-container-large">
             <div class="c-grid" data-select2-id="137">
                 <div class="c-content-page c-content-page--plain c-grid__row">
@@ -18,6 +18,7 @@
                         </div>
                     </div>
                 </div>
+                @if ($categories->count())
                 <div class="c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-card" data-select2-id="136">
@@ -370,6 +371,31 @@
                         </form>
                     </div>
                 </div>
+                @else
+                    <div class="c-grid c-join__grid">
+                        <div class="c-grid__row">
+                            <div class="c-grid__col">
+                                <div class="c-card">
+                                    <div class="c-card__body">
+                                        <div class="c-grid__col">
+                                            <div class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible" data-tab="1">
+                                                <div class="c-join__promotion-info-box c-join__promotion-info-box--empty">
+                                                    <img class="c-join__promotion-info-img" src="https://seller.digikala.com/static/files/ac21f0e6.svg" alt="Empty">
+                                                        <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">شما تا به حال هیچ دسته ای ایجاد نکرده‌اید</p>
+                                                        <p class="c-join__promotion-info-statement">
+                                                            برای ایجاد دسته جدید روی دکمه زیر کلیک کنید.
+                                                        </p>
+                                                        <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
+                                                           href="{{ route('staff.categories.create') }}">ایجاد دسته جدید</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
         </div>
@@ -379,7 +405,7 @@
 @endsection
 
 @section('script')
-    <script>
+<script>
         $(".edit-form-section").hide();
 
         // تغییر پدینگ فیلد نامک

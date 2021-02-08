@@ -15,18 +15,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4c6adf28-119f-4cef-ae06-bfc6c99776b8" name="test" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Database/migrations/2020_12_24_071313_create_brands_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Database/migrations/2020_12_24_071313_create_brands_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Controllers/StaffBrandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Controllers/StaffBrandController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Requests/StaffBrandImageRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Http/Requests/StaffBrandImageRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Models/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Models/Brand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Providers/StaffBrandServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Providers/StaffBrandServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-trash-content.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/ajax-trash-content.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/trash.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/trash.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Media.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Media.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/temp/StaffCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/temp/StaffCategoryController.php" afterDir="false" />
     </list>
     <list id="aca6119d-1593-413f-8e01-a44ff24a8d7d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -473,7 +463,7 @@
       <workItem from="1612629784355" duration="9001000" />
       <workItem from="1612667571645" duration="20747000" />
       <workItem from="1612693620768" duration="17998000" />
-      <workItem from="1612758915052" duration="2206000" />
+      <workItem from="1612758915052" duration="4223000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -507,18 +497,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Modules/Staff/Category/Resources/views/index.blade.php</url>
-          <line>724</line>
+          <line>750</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Modules/Staff/Category/Resources/views/index.blade.php</url>
-          <line>381</line>
+          <line>407</line>
           <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/Modules/Staff/Category/Resources/views/index.blade.php</url>
-          <line>173</line>
-          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
