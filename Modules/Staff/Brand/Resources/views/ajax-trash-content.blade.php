@@ -67,7 +67,9 @@
                                         <span class="c-wallet__body-card-row-item"> {{ persianNum($brands->firstItem() + $key) }} </span>
                                     </td>
                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                        <img src="{{ asset($brand->media->path . '/' . $brand->media->name) }}" width="40" height="40">
+                                        @if($brand->media)
+                                            <img src="{{ env('APP_URL') . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}" width="65" height="65">
+                                        @endif
                                     </td>
                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                         <div class="uk-flex uk-flex-column">
@@ -110,6 +112,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @include('staffbrand::layouts.modal')
                             </tbody>
                         </table>
                     </div>

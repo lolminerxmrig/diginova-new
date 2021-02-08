@@ -470,11 +470,11 @@ $('#brand_form').on('submit', function(e){
     var slug = $("input[name='slug']").val();
     var image = $('#preview_uploading').attr('data-id');
 
-    if ($("input[name='type']").is(':checked')) {
-        var type = 1;
-    } else {
-        var type = 0;
-    }
+    // if ($("input[name='type']").is(':checked')) {
+    //     var type = 1;
+    // } else {
+    //     var type = 0;
+    // }
 
     if (name && en_name && description && slug && image && (image !== '0') )
     {
@@ -485,7 +485,7 @@ $('#brand_form').on('submit', function(e){
                 name: name,
                 en_name: en_name,
                 description: description,
-                type: type,
+                // type: type,
                 slug: slug,
                 image: image,
                 categories: categories,

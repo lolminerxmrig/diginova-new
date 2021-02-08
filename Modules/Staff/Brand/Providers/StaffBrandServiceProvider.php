@@ -26,6 +26,7 @@ class StaffBrandServiceProvider extends ServiceProvider
 
         Relation::morphMap([
             'attributeGroup' => 'Modules\Staff\Attribute\Models\AttributeGroup',
+            'Brand' => 'Modules\Staff\Brand\Models\Brand',
         ]);
     }
 

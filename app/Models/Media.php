@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\Product;
 
@@ -19,6 +20,12 @@ class Media extends Model
     {
         return $this->morphedByMany(Category::class, 'mediable');
     }
+
+    public function brands()
+    {
+        return $this->morphedByMany(Brand::class, 'mediable');
+    }
+
 
     public function products()
     {

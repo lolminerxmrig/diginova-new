@@ -156,8 +156,9 @@
                                                         <span class="c-wallet__body-card-row-item"> {{ persianNum($brands->firstItem() + $key) }} </span>
                                                     </td>
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                        <img src="{{ asset($brand->media->path . '/' . $brand->media->name) }}" width="40" height="40">
-                                                    </td>
+                                                        @if($brand->media)
+                                                            <img src="{{ env('APP_URL') . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}" width="65" height="65">
+                                                        @endif                                                    </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#" target="_blank">
@@ -185,10 +186,9 @@
 
                                                     <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> ۱ </span>
                                                     </td>
-
+                                                    <div class="modal-section">
                                                     <td class="c-ui-table__cell">
                                                         <div class="c-promo__actions">
-
                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn"
                                                                 value="{{ $brand->id }}">بازگردانی</button>
 
@@ -197,8 +197,11 @@
                                                                value="{{ $brand->id }}">حذف کامل</button>
                                                         </div>
                                                     </td>
+                                                    </div>
                                                 </tr>
                                             @endforeach
+                                            @include('staffbrand::layouts.modal')
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -353,20 +356,67 @@ $(document).on('click', '.c-ui-paginator__control a', function(e){
 
 
 //حذف برند
-$(document).on('click','.delete-btn' , function (){
+{{--$(document).on('click','.delete-btn' , function (){--}}
+{{--    var brand_id = $(this).val();--}}
+
+{{--    $.ajax({--}}
+{{--        method: 'post',--}}
+{{--        url: "{{route('staff.brands.removeFromTrash')}}",--}}
+{{--        data: {--}}
+{{--            'id': brand_id,--}}
+{{--        },--}}
+{{--        success: function (response){--}}
+{{--            $('.js-table-container').replaceWith(response);--}}
+{{--        },--}}
+{{--    });--}}
+{{--});--}}
+
+
+
+$(document).on('click', '.delete-btn', function () {
+
     var brand_id = $(this).val();
 
-    $.ajax({
-        method: 'post',
-        url: "{{route('staff.brands.removeFromTrash')}}",
-        data: {
-            'id': brand_id,
-        },
-        success: function (response){
-            $('.js-table-container').replaceWith(response);
-        },
+    $('.c-header__nav').hide();
+    $(".uk-modal-container").addClass('uk-open');
+    $(".uk-modal-container").css('display', 'block');
+
+
+    $(document).on('click', '.uk-close', function () {
+        $('.c-header__nav').show();
+    });
+
+    $(document).on('click', '.no', function () {
+        $('.c-header__nav').show();
+    });
+
+    $(document).on('click', '.yes', function () {
+
+        $('.c-header__nav').show();
+
+        // var brand_id = $(this).val();
+
+        $.ajax({
+            method: 'post',
+            url: "{{route('staff.brands.removeFromTrash')}}",
+            data: {
+                'id': brand_id,
+            },
+            success: function (response){
+                $('.js-table-container').replaceWith(response);
+
+                $.toast({
+                    heading: 'موفق!',
+                    text: "برند با موفقیت حذف شد",
+                    bgColor: '#3DC3A1',
+                    textColor: '#fff',
+                });
+            },
+        });
+
     });
 });
+
 
 
 

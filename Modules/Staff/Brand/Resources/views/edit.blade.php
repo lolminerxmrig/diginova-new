@@ -325,9 +325,9 @@
                                                                             <ul id="imagesContainer" class="c-content-upload__gallery-list js-uploaded-list js-sortable-list uk-sortable">
                                                                                 <li class="c-content-upload__gallery-row js-uploads-row li-error" id="1dsWB">
                                                                                     <div class="c-content-upload__img-container">
-                                                                                        @if($brand->media)
-                                                                                        <img name="uploaded" id="preview_uploading" src="{{ asset($brand->media->path . '/' . $brand->media->name) }}"
-                                                                                             data-id="{{ ($brand->media->id)? $brand->media->id : 0 }}" class="c-content-upload__img js-upload-thumb upload-image">
+                                                                                        @if(count($brand->media))
+                                                                                        <img name="uploaded" id="preview_uploading" src="{{ env('APP_URL') . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}"
+                                                                                             data-id="{{ ($brand->media()->first()->id)? $brand->media()->first()->id : 0 }}" class="c-content-upload__img js-upload-thumb upload-image">
                                                                                         @else
                                                                                             <img name="uploaded" id="preview_uploading" src=""
                                                                                                  data-id="0" class="c-content-upload__img js-upload-thumb upload-image" hidden>
@@ -346,9 +346,9 @@
                                                                                                 <div class="c-content-upload__desc--top">
                                                                                                     <div class="right">
                                                                                                         <div class="c-content-upload__name js-upload-name">
-                                                                                                            @if($brand->media)
-                                                                                                                {{ $brand->media->name }}
-                                                                                                            @endif
+{{--                                                                                                            @if($brand->media)--}}
+{{--                                                                                                                {{ $brand->media->name }}--}}
+{{--                                                                                                            @endif--}}
                                                                                                         </div>
                                                                                                         <div class="c-content-upload__size js-upload-size"></div>
                                                                                                     </div>

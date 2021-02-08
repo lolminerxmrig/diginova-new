@@ -65,23 +65,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div
-                                        class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">
-                                        <div class="c-join__filter">
-                                            <p class="c-ui-form__label">نمایش برند:</p>
-                                            <div class="c-join__filter-container">
-                                                <label class="c-join__radio-label">
-                                                    <input class="c-join__radio search_type" type="radio"
-                                                           name="search_type" value="all" checked>
-                                                    <span class="c-join__radio-option">همه برندها</span>
-                                                </label>
-                                                <label class="c-join__radio-label">
-                                                    <input class="c-join__radio search_type" type="radio" name="search_type" value="only_special">
-                                                    <span class="c-join__radio-option">فقط ویژه ها</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
+
+{{--                                    <div class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">--}}
+{{--                                        <div class="c-join__filter">--}}
+{{--                                            <p class="c-ui-form__label">نمایش برند:</p>--}}
+{{--                                            <div class="c-join__filter-container">--}}
+{{--                                                <label class="c-join__radio-label">--}}
+{{--                                                    <input class="c-join__radio search_type" type="radio"--}}
+{{--                                                           name="search_type" value="all" checked>--}}
+{{--                                                    <span class="c-join__radio-option">همه برندها</span>--}}
+{{--                                                </label>--}}
+{{--                                                <label class="c-join__radio-label">--}}
+{{--                                                    <input class="c-join__radio search_type" type="radio" name="search_type" value="only_special">--}}
+{{--                                                    <span class="c-join__radio-option">فقط ویژه ها</span>--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
                                 </div>
                             </div>
                         </div>
@@ -170,9 +171,9 @@
                                                         <span class="c-wallet__body-card-row-item"> {{ persianNum($brands->firstItem() + $key) }} </span>
                                                     </td>
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                        @if($brand->media)
-                                                        <img src="{{ asset($brand->media->path . '/' . $brand->media->name) }}" width="40" height="40">
-                                                        @endif
+                                                            @if(count($brand->media))
+                                                            <img src="{{ env('APP_URL') . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}" width="65" height="65">
+                                                            @endif
                                                     </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                         <div class="uk-flex uk-flex-column">
@@ -434,6 +435,7 @@ $(".search_type").on('change', function (){
         }
     });
 });
+
 
 //حذف برند
 $(document).on('click','.delete-btn' , function (){
