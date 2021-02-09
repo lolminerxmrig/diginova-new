@@ -75,7 +75,7 @@ class StaffCategoryController extends Controller
 
     public function update(StaffCategoryRequest $request)
     {
-        $category = Category::find($request->id)->update([
+        Category::find($request->id)->update([
             'name' => $request->name,
             'en_name' => $request->en_name,
             'slug' => $request->slug,
@@ -89,13 +89,18 @@ class StaffCategoryController extends Controller
             if($old_img == null)
             {
                 if (Category::find($request->id)->media()->first() !== null){
-                    Category::find($request->id)->media()->first()->delete();
+                    $media = Category::find($request->id)->media()->first();
+                    $user_id = auth()->guard('staff')->user()->id;
+
+                    if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
+                        unlink(public_path("$media->path/") . $media->name);
+                    }
+                    $media->delete();
                 }
 
                 Media::find($request->image)->update([
                     'status' => 1,
                 ]);
-
 
                 $this_cat = Category::find($request->id)->id;
                 Media::find($request->image)->categories()->attach($this_cat);

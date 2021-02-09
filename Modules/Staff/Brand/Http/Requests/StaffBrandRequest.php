@@ -28,7 +28,7 @@ class StaffBrandRequest extends FormRequest
             return [
                 'name' => 'required',
                 'en_name' => 'required',
-                'description' => 'required',
+                'description' => 'nullable',
                 'categories' => 'required',
                 'slug' => 'required',
                 'type' => 'nullable',
@@ -39,7 +39,7 @@ class StaffBrandRequest extends FormRequest
             return [
                 'name' => 'required',
                 'en_name' => 'required',
-                'description' => 'required',
+                'description' => 'nullable',
                 'categories' => 'required',
                 'slug' => 'required',
                 'type' => 'nullable',

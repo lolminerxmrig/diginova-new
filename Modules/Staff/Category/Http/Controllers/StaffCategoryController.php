@@ -75,33 +75,61 @@ class StaffCategoryController extends Controller
     public function update(StaffCategoryRequest $request)
     {
 
-        $category = Category::find($request->id)->update([
+        Category::find($request->id)->update([
             'name' => $request->name,
             'en_name' => $request->en_name,
             'slug' => $request->slug,
             'description' => $request->description,
         ]);
 
-        Mediable::where('mediable_type', 'Category')->where('mediable_id', $request->id)->delete();
+//        Mediable::where('mediable_type', 'Category')->where('mediable_id', $request->id)->delete();
+//
+//        if ($request->image)
+//        {
+//            $old_img = Mediable::where('media_id', $request->image)->first();
+//            if($old_img == null)
+//            {
+//                if (Category::find($request->id)->media()->first() !== null){
+//                    Category::find($request->id)->media()->first()->delete();
+//                }
+//
+//                Media::find($request->image)->update([
+//                    'status' => 1,
+//                ]);
+//
+//
+//                $this_cat = Category::find($request->id)->id;
+//                Media::find($request->image)->categories()->attach($this_cat);
+//            }
+//        }
+
+        $media = Category::find($request->id)->media()->first();
+        $user_id = auth()->guard('staff')->user()->id;
+
 
         if ($request->image)
         {
             $old_img = Mediable::where('media_id', $request->image)->first();
             if($old_img == null)
             {
-                if (Category::find($request->id)->media()->first() !== null){
-                    Category::find($request->id)->media()->first()->delete();
-                }
+//                if (Category::find($request->id)->media()->first() !== null && Category::find($request->id)->media()->first()->id !== $request->image){
+                    Mediable::where('mediable_type', 'Category')->where('mediable_id', $request->id)->delete();
+                    if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
+                        unlink(public_path("$media->path/") . $media->name);
+                        $media->delete();
+                    }
 
-                Media::find($request->image)->update([
-                    'status' => 1,
-                ]);
 
+                    Media::find($request->image)->update([
+                        'status' => 1,
+                    ]);
 
-                $this_cat = Category::find($request->id)->id;
-                Media::find($request->image)->categories()->attach($this_cat);
+                    $this_category = Category::find($request->id)->id;
+                    Media::find($request->image)->categories()->attach($this_category);
+//                }
             }
         }
+
     }
 
     public function childCatsLoader(Request $request)
@@ -196,21 +224,7 @@ class StaffCategoryController extends Controller
     public function destroy(Request $request)
     {
 //        $category = Category::find($request->id);
-//        $child = Category::find($request->id)->child;
-//        $child2 = Category::find($request->id)->child;
-//        $category->forceDelete();
-//
-//        while(!is_null($child)){
-//            $child->forceDelete();
-//            $child = $child2
-//        }
-
-//        foreach($category->children as $child){
-//            $child->forceDelete();
-//        }
-//        $category->forceDelete();
-
-//        $category->children()->delete();
+//        $category->delete();
     }
 
 }

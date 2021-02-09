@@ -17,7 +17,7 @@ class CreateBrandsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('en_name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('slug');
             $table->timestamps();
             $table->softDeletes();

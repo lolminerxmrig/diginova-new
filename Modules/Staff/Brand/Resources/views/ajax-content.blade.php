@@ -81,7 +81,7 @@
                                         <span class="c-wallet__body-card-row-item"> {{ persianNum($brands->firstItem() + $key) }} </span>
                                     </td>
                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                        @if($brand->media)
+                                        @if(count($brand->media))
                                             <img src="{{ env('APP_URL') . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}" width="60" height="60">
                                         @endif                                    </td>
                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">

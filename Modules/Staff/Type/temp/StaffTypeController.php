@@ -38,8 +38,8 @@ class StaffTypeController extends Controller
         }
 
 //        if ($request->database_data) {
-            return $this->update($request);
-            Log::info('go to update method');
+        return $this->update($request);
+        Log::info('go to update method');
 //        }
 
     }
@@ -77,6 +77,7 @@ class StaffTypeController extends Controller
         if (count(Category::where('parent_id', $id)->get()) !== 0)
         {
             return View::make("stafftype::layouts.ajax.category-box.child", compact('id', 'categories'));
+//            return View::make("stafftype::child-cat-loaader", compact('id', 'categories'));
         }
     }
 

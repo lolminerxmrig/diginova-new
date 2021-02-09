@@ -100,8 +100,7 @@
                                                                 <textarea name="description"
                                                                           placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"
                                                                           class="c-content-input__origin c-content-input__origin--textarea js-textarea-words"
-                                                                          rows="" maxlength="500">{{ old('description')?? $brand->description }}
-                                                                </textarea>
+                                                                          rows="" maxlength="500">{{ old('description')?? $brand->description }}</textarea>
                                                                 <span class="textarea__wordcount">
                                             <span class="js-wordcount-target">0</span>/500
                                         </span>
@@ -465,22 +464,19 @@ $(document).on("change", "#uploadImage", function () {
     $(".error-image").html('');
 
 
-
     var form_data = new FormData();
     var input_image = $("#uploadImage").prop("files")[0];
 
     form_data.append("image", input_image);
 
     var old_img = $("img[name='uploaded']").attr('data-id');
-    console.log(old_img);
 
     if (old_img) {
         form_data.append("old_img", old_img);
     }
 
-
     $.ajax({
-        url: "{{ route('staff.brands.ajaxupload') }}",
+        url: '{{route('staff.brands.uploadUpdate')}}',
         cache: false,
         contentType: false,
         processData: false,
@@ -488,47 +484,19 @@ $(document).on("change", "#uploadImage", function () {
         type: 'post',
         success: function (data) {
             $("#imagesSection").replaceWith(data);
+            $(".c-content-upload__title").find('.error-text').remove();
         },
         error: function (data) {
-            $("#imagesSection").show();
-
             $(".li-error").addClass('has-error');
-            // $(".error-image").html(data.responseJSON.error);
             $(".error-image").html('تصویری که انتخاب کرید شرایط لازم را ندارد');
-
-            $.ajax({
-                url: "{{ route('staff.brands.ajaxdelete') }}",
-                type: 'post',
-                data: {
-                    id: $('#preview_uploading').attr('data-id'),
-                },
-                success: function (data) {
-                    $('#preview_uploading').attr('data-id', '0');
-                },
-                error: function () {
-                }
-            });
         }
     });
 
 });
 
-// ایجکس حذف عکس
+//  حذف عکس
 $(document).on("click", ".js-remove-upload", function () {
-    $.ajax({
-        url: "{{ route('staff.brands.ajaxdelete') }}",
-        type: 'post',
-        data: {
-            id: $('#preview_uploading').attr('data-id'),
-        },
-        success: function (data) {
-            $("#imagesSection").hide();
-            $('#preview_uploading').attr('data-id', '0');
-        },
-        error: function () {
-            $("#imagesSection").hide();
-        }
-    });
+    $("#imagesSection").hide();
 });
 
 // ایجکس فرم اصلی
@@ -538,7 +506,7 @@ $('#brand_form').on('submit', function (e) {
     var categories = [];
     categories.length = 0;
     $("input[name='category_group']").each(function (i, element) {
-        var id = $(element).attr('value'); // Set a data-id attribute on each li
+        var id = $(element).attr('value');
         var i = i;
         categories[i] = id;
     });
@@ -550,7 +518,7 @@ $('#brand_form').on('submit', function (e) {
     var slug = $("input[name='slug']").val();
     var image = $('#preview_uploading').attr('data-id');
 
-    // if (name && en_name && description && slug && image && (image !== '0') )
+    // if (name && en_name && slug && image && (image !== '0') )
     // {
     $.ajax({
         method: "POST",
@@ -564,6 +532,7 @@ $('#brand_form').on('submit', function (e) {
             image: image,
             categories: categories,
             id: {{ $brand->id }},
+
         },
         success: function () {
             window.location.href = "{{ route('staff.brands.index') }}";

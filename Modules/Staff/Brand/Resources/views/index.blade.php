@@ -192,6 +192,8 @@
                                                         <a href="#">
                                                             <div class="uk-flex uk-flex-column">
                                                                   <span class="c- -card-row-item" style="line-height: 23px;">
+{{--                                                                      {{ $brand->name }}--}}
+{{--                                                                      {{ count($brand->categories) }}--}}
                                                                     @foreach($brand->categories as $category)
                                                                           {{ $category->name }}&nbsp;<br>
                                                                       @endforeach
@@ -226,7 +228,7 @@
                                         </table>
                                     </div>
                                     <div class="c-card__footer" style="width: auto;">
-                                        <a href="{{ route('staff.brands.create') }}" target="_blank">
+                                        <a href="{{ route('staff.brands.create') }}">
                                             <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
                                                 ایجاد برند جدید
                                             </div>

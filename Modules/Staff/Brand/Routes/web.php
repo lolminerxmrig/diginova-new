@@ -62,7 +62,11 @@ Route::domain('staff.diginova.test')->prefix('brands')->name('staff.brands.')
     Route::post('ajaxupload', [StaffBrandController::class, 'uploadImage'])
         ->name('ajaxupload');
 
-    Route::post('ajaxdelete', [StaffBrandController::class, 'deleteImage'])
+    Route::post('upload-update', [StaffBrandController::class, 'uploadUpdate'])
+        ->name('uploadUpdate');
+
+
+        Route::post('ajaxdelete', [StaffBrandController::class, 'deleteImage'])
         ->name('ajaxdelete');
 
 });

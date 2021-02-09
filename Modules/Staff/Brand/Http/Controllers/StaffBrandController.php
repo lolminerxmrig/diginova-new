@@ -2,9 +2,9 @@
 
 namespace Modules\Staff\Brand\Http\Controllers;
 
+use App\Models\Mediable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 
 use Modules\Staff\Brand\Http\Requests\StaffBrandImageRequest;
@@ -45,7 +45,6 @@ class StaffBrandController extends Controller
 
         return View::make('staffbrand::ajax-content',
             compact('brands', 'media', 'categories', 'pageType', 'trashed_brands'))->render();
-
     }
 
     public function filterByType(Request $request)
@@ -84,6 +83,13 @@ class StaffBrandController extends Controller
 
     public function update(StaffBrandRequest $request)
     {
+        // تبدیل آرایه ای از اعداد با فرمت رشته به آرایه عددی
+        $categories = array_map(function($value) {
+            return intval($value);
+        }, $request->categories);
+
+        $brand = Brand::find($request->id);
+
         Brand::find($request->id)->update([
             'name' => $request->name,
             'en_name' => $request->en_name,
@@ -91,26 +97,37 @@ class StaffBrandController extends Controller
             'slug' => $request->slug,
         ]);
 
-        $brand = Brand::find($request->id);
+        $media = Brand::find($request->id)->media()->first();
+        $user_id = auth()->guard('staff')->user()->id;
 
-        Media::find($request->image)->brands()->attach($brand);
-        Media::find($request->image)->update([
-            'status' => 1,
-        ]);
-
-        $brand->categories()->delete();
-
-
-        foreach ($request->categories as $key => $id)
+        if ($request->image)
         {
-            $category = Category::find($id);
-//            $brand->categories()->attach($category);
+            $old_img = Mediable::where('media_id', $request->image)->first();
+            if($old_img == null)
+            {
+                if (Brand::find($request->id)->media()->first() !== null && Brand::find($request->id)->media()->first()->id !== $request->image){
+                    Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
+                    if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
+                        unlink(public_path("$media->path/") . $media->name);
+                    }
+                    $media->delete();
 
-            Categorizable::create([
-                'category_id' => $id,
-                'categorizable_type' => 'Brand',
-                'categorizable_id' => $request->id,
-            ]);
+                    Media::find($request->image)->update([
+                        'status' => 1,
+                    ]);
+
+                    $this_brand = Brand::find($request->id)->id;
+                    Media::find($request->image)->brands()->attach($this_brand);
+                }
+            }
+        }
+
+        Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();
+
+        foreach ($categories as $category)
+        {
+            $this_cat = Category::find($category);
+            $brand->categories()->attach($this_cat);
         }
 
     }
@@ -127,27 +144,16 @@ class StaffBrandController extends Controller
             'en_name' => $request->en_name,
             'description' => $request->description,
             'slug' => $request->slug,
-//            'type' => $request->type,
         ]);
 
         foreach ($categories as $category)
         {
-            Categorizable::create([
-                'category_id' => $category,
-                'categorizable_type' => 'Brand',
-                'categorizable_id' => $brand->id,
-            ]);
+            $this_cat = Category::find($category);
+            $brand->categories()->attach($this_cat);
         }
 
         if ($request->image !== 'not_required')
         {
-//            $first_brand = Brand::where('name', $request->name)->first()->id;
-
-//            Media::find($request->image)->update([
-//                'mediable_type' => 'brands',
-//                'mediable_id' => $first_brand,
-//            ]);
-
             Media::find($request->image)->brands()->attach($brand);
             Media::find($request->image)->update([
                 'status' => 1,
@@ -175,8 +181,34 @@ class StaffBrandController extends Controller
         ]);
 
 
-        return View::make("staffbrand::upload-image" ,
+        return View::make("staffbrand::layouts.ajax.image-box.upload-image" ,
             compact('input', 'imageSize', 'request' , 'media'));
+    }
+
+    public function uploadUpdate(StaffBrandImageRequest $request)
+    {
+        if ($request->old_img) {
+            $request->id = $request->old_img;
+            if(Mediable::where('media_id', $request->old_img)->first() == null)
+            {
+                $this->deleteImage($request);
+            }
+        }
+
+        $imageSize = $request->file('image')->getSize();
+
+        $input['image'] = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('media/images'), $input['image']);
+
+        $media = Media::create([
+            'name' => $input['image'],
+            'path' => 'media/images',
+            'person_id' => auth()->guard('staff')->user()->id,
+            'person_role' => 'staff',
+        ]);
+
+        return View::make("staffbrand::layouts.ajax.image-box.upload-image",
+            compact('input', 'imageSize', 'request', 'media'));
     }
 
     public function deleteImage(Request $request)
@@ -217,9 +249,29 @@ class StaffBrandController extends Controller
 
     public function removeFromTrash(Request $request)
     {
-        Brand::withTrashed()->find($request->id)->forceDelete();
+        $brand = Brand::withTrashed()->find($request->id);
+        $media = $brand->media()->first();
+        $user_id = auth()->guard('staff')->user()->id;
+        if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
+            unlink(public_path("$media->path/") . $media->name);
+            $media->delete();
+            Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
+        }
+
+        Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();
+        $brand->forceDelete();
+        if($brand->products)
+        {
+            foreach ($brand->products as $product)
+            {
+                $product->update([
+                   'brand_id' => 0,
+                ]);
+            }
+        }
         $brands = Brand::onlyTrashed()->paginate(10);
         return View::make('staffbrand::ajax-trash-content', compact('brands'));
+
     }
 
     public function brandSearch(Request $request, Brand $brands)

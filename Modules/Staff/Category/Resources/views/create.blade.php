@@ -490,14 +490,16 @@
                         description: description,
                     },
                     success: function (response) {
-                        $.toast({
-                            heading: 'موفق!',
-                            text: "دسته با موفقیت ایجاد شد",
-                            bgColor: '#3DC3A1',
-                            textColor: '#fff',
-                        });
-                        $('html, body').animate({scrollTop: '0px'}, 300);
+                        // $.toast({
+                        //     heading: 'موفق!',
+                        //     text: "دسته با موفقیت ایجاد شد",
+                        //     bgColor: '#3DC3A1',
+                        //     textColor: '#fff',
+                        // });
+                        // $('html, body').animate({scrollTop: '0px'}, 300);
                         $('#category_form').trigger("reset");
+                        window.location.href = "{{ route('staff.categories.index') }}";
+
 
                         $(".appended-box").each(function () {
                             $(this).remove();

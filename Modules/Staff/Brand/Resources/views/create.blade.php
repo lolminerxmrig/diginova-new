@@ -459,7 +459,7 @@ $('#brand_form').on('submit', function(e){
     categories.length = 0;
 
     $("input[name='category_group']").each(function(i, element) {
-        var id = $(element).attr('value'); // Set a data-id attribute on each li
+        var id = $(element).attr('value');
         var i = i;
         categories[i] = id;
     });
@@ -476,7 +476,7 @@ $('#brand_form').on('submit', function(e){
     //     var type = 0;
     // }
 
-    if (name && en_name && description && slug && image && (image !== '0') )
+    if (name && en_name && slug && image && (image !== '0') )
     {
         $.ajax({
             method: "POST",
@@ -491,25 +491,26 @@ $('#brand_form').on('submit', function(e){
                 categories: categories,
             },
             success: function(response) {
-                $.toast({
-                    heading: 'موفق!',
-                    text: "برند با موفقیت ایجاد شد",
-                    bgColor: '#3DC3A1',
-                    textColor: '#fff',
-                });
+                // $.toast({
+                //     heading: 'موفق!',
+                //     text: "برند با موفقیت ایجاد شد",
+                //     bgColor: '#3DC3A1',
+                //     textColor: '#fff',
+                // });
 
                 $('#brand_form').trigger("reset");
-                $("li[data-cat-id]").remove();
-                $("#imagesSection").hide();
-                $('#preview_uploading').attr('data-id', '0');
-                $("input[name='type']").removeAttr('checked');
-
-                $(".category_group").each(function() {
-                    $(this).remove();
-                });
-
-                var hidden_input = '<input type="text" name="category_group" class="category_group" id="hidden_cat_group" style="visibility: hidden">';
-                $("#top-fields").append(hidden_input);
+                // $("li[data-cat-id]").remove();
+                // $("#imagesSection").hide();
+                // $('#preview_uploading').attr('data-id', '0');
+                // $("input[name='type']").removeAttr('checked');
+                window.location.href = "{{ route('staff.brands.index') }}";
+                //
+                // $(".category_group").each(function() {
+                //     $(this).remove();
+                // });
+                //
+                // var hidden_input = '<input type="text" name="category_group" class="category_group" id="hidden_cat_group" style="visibility: hidden">';
+                // $("#top-fields").append(hidden_input);
 
             }
         });

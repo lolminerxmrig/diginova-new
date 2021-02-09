@@ -26,10 +26,6 @@ var CategoryFormAction = {
                     required: true,
                 },
 
-                'description': {
-                    required: true,
-                },
-
                 'category_group': {
                     required: true,
                 },
@@ -53,10 +49,6 @@ var CategoryFormAction = {
 
                 'category_group': {
                     'required': 'وارد نمودن گروه کالایی فعال برند اجباری است',
-                },
-
-                'description': {
-                    'required': 'وارد نمودن شرح برند اجباری است',
                 },
 
                 'image': {
