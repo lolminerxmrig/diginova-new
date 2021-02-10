@@ -413,192 +413,171 @@
 @endsection
 
 @section('script')
-    <script>
+<script>
 
-        // تغییر پدینگ فیلد نامک
-        $(function () {
-            var buttonWidth = $('#button-urls').width() + 20;
-            $(".url-inputs").css({
-                'padding-left': buttonWidth
-            });
+// تغییر پدینگ فیلد نامک
+$(function () {
+    var buttonWidth = $('#button-urls').width() + 20;
+    $(".url-inputs").css({
+        'padding-left': buttonWidth
+    });
 
-        });
+});
 
-        // پنهان کردن دسته بندی وقتی روی چک باکس کلیک شد
-        function valueChanged() {
-            if ($("#is_main").is(":checked")) {
-                $(".category-box").hide();
-                $("#stepImagesAccordion").hide();
-            } else {
-                $(".category-box").show();
-                $("#stepImagesAccordion").show();
-            }
-        }
+// پنهان کردن دسته بندی وقتی روی چک باکس کلیک شد
+function valueChanged() {
+    if ($("#is_main").is(":checked")) {
+        $(".category-box").hide();
+        $("#stepImagesAccordion").hide();
+    } else {
+        $(".category-box").show();
+        $("#stepImagesAccordion").show();
+    }
+}
 
-        // تغییر آدرس دسته بندی در راهنمای فیلد نامک
-        $(document).on('click', "#is_main", function (e) {
-            if ($("#is_main").is(":checked")) {
-                $(".button-urls").val('/{{ config('app.url') }}' + '/main');
-            } else {
-                $(".button-urls").val('-{{ config('app.url') }}' + '/search/category');
-            }
-            var buttonWidth = $('#button-urls').width() + 20;
-            $(".url-inputs").css({
-                'padding-left': buttonWidth
-            });
-        });
+// تغییر آدرس دسته بندی در راهنمای فیلد نامک
+$(document).on('click', "#is_main", function (e) {
+    if ($("#is_main").is(":checked")) {
+        $(".button-urls").val('/{{ config('app.url') }}' + '/main');
+    } else {
+        $(".button-urls").val('-{{ config('app.url') }}' + '/search/category');
+    }
+    var buttonWidth = $('#button-urls').width() + 20;
+    $(".url-inputs").css({
+        'padding-left': buttonWidth
+    });
+});
 
-        // اضافه کردن توکن به درخواست های ایجکس
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+// اضافه کردن توکن به درخواست های ایجکس
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
-        // ایجکس فرم اصلی
-        $('#category_form').on('submit', function (e) {
-            e.preventDefault();
+// ایجکس فرم اصلی
+$('#category_form').on('submit', function (e) {
+    e.preventDefault();
 
-            if ($("input:checked[type='checkbox']").val()) {
-                var selectedCategory = 0;
-            } else {
-                var selectedCategory = $("input:checked[type='radio']").val();
-            }
+    if ($("input:checked[type='checkbox']").val()) {
+        var selectedCategory = 0;
+    } else {
+        var selectedCategory = $("input:checked[type='radio']").val();
+    }
 
-            if ($("#stepImagesAccordion").is(":hidden")) {
-                var image = 'not_required';
-            } else {
-                var image = $("img[name='uploaded']").attr('data-id');
-            }
+    if ($("#stepImagesAccordion").is(":hidden")) {
+        var image = 'not_required';
+    } else {
+        var image = $("img[name='uploaded']").attr('data-id');
+    }
 
-            var name = $("input[name='name']").val();
-            var slug = $("input[name='slug']").val();
-            var en_name = $("input[name='en_name']").val();
-            var description = $("textarea[name='description']").val();
-
-
-            if (name && slug && en_name && ((image > 0) || (image == 'not_required'))) {
-                $.ajax({
-                    method: "post",
-                    url: '{{route('staff.categories.store')}}',
-                    data: {
-                        name: name,
-                        slug: slug,
-                        en_name: en_name,
-                        image: image,
-                        parent_id: selectedCategory,
-                        description: description,
-                    },
-                    success: function (response) {
-                        // $.toast({
-                        //     heading: 'موفق!',
-                        //     text: "دسته با موفقیت ایجاد شد",
-                        //     bgColor: '#3DC3A1',
-                        //     textColor: '#fff',
-                        // });
-                        // $('html, body').animate({scrollTop: '0px'}, 300);
-                        $('#category_form').trigger("reset");
-                        window.location.href = "{{ route('staff.categories.index') }}";
+    var name = $("input[name='name']").val();
+    var slug = $("input[name='slug']").val();
+    var en_name = $("input[name='en_name']").val();
+    var description = $("textarea[name='description']").val();
 
 
-                        $(".appended-box").each(function () {
-                            $(this).remove();
-                        });
+    if (name && slug && en_name && ((image > 0) || (image == 'not_required'))) {
+        $.ajax({
+            method: "post",
+            url: '{{route('staff.categories.store')}}',
+            data: {
+                name: name,
+                slug: slug,
+                en_name: en_name,
+                image: image,
+                parent_id: selectedCategory,
+                description: description,
+            },
+            success: function (response) {
+                // $.toast({
+                //     heading: 'موفق!',
+                //     text: "دسته با موفقیت ایجاد شد",
+                //     bgColor: '#3DC3A1',
+                //     textColor: '#fff',
+                // });
+                // $('html, body').animate({scrollTop: '0px'}, 300);
+                $('#category_form').trigger("reset");
+                window.location.href = "{{ route('staff.categories.index') }}";
 
-                        $(".error").each(function () {
-                            $(this).remove();
-                        });
 
-                        $("#stepImagesAccordion").show();
-                        $("#imagesSection").hide();
-                        $('#preview_uploading').attr('data-id', 0);
-                        $("img[name='uploaded']").attr('data-id', 0);
-
-
-                        $.ajax({
-                            type: 'post',
-                            url: '{{route('staff.categories.mainCatLoader')}}',
-                            success: function (response) {
-                                $('.c-content-categories__wrapper').replaceWith(response);
-                            }
-                        });
-                        $(".category-box").show();
-                    },
+                $(".appended-box").each(function () {
+                    $(this).remove();
                 });
-            }
+
+                $(".error").each(function () {
+                    $(this).remove();
+                });
+
+                $("#stepImagesAccordion").show();
+                $("#imagesSection").hide();
+                $('#preview_uploading').attr('data-id', 0);
+                $("img[name='uploaded']").attr('data-id', 0);
+
+
+                $.ajax({
+                    type: 'post',
+                    url: '{{route('staff.categories.mainCatLoader')}}',
+                    success: function (response) {
+                        $('.c-content-categories__wrapper').replaceWith(response);
+                    }
+                });
+                $(".category-box").show();
+            },
         });
+    }
+});
 
-        // تابع تبدیل بایت
-        function formatBytes(bytes, decimals = 0) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const dm = decimals < 0 ? 0 : decimals;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-        }
+// تابع تبدیل بایت
+function formatBytes(bytes, decimals = 0) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
 
-        // نمایش نام و حجم عکس در فرانت
-        $(document).on("change", "#uploadImage", function () {
-            $('.js-upload-size').text(formatBytes(this.files[0].size));
-            var filename = $("#uploadImage").val().split('\\').pop();
-            $('.js-upload-name').text(filename);
-        });
+// نمایش نام و حجم عکس در فرانت
+$(document).on("change", "#uploadImage", function () {
+    $('.js-upload-size').text(formatBytes(this.files[0].size));
+    var filename = $("#uploadImage").val().split('\\').pop();
+    $('.js-upload-name').text(filename);
+});
 
-        // ایجکس آپلود عکس
-        $(document).on("change", "#uploadImage", function () {
-            $("#imagesSection").show();
-            $(".li-error").removeClass('has-error');
-            $(".error-image").html('');
+// ایجکس آپلود عکس
+$(document).on("change", "#uploadImage", function () {
+    $("#imagesSection").show();
+    $(".li-error").removeClass('has-error');
+    $(".error-image").html('');
 
 
-            var form_data = new FormData();
-            var input_image = $("#uploadImage").prop("files")[0];
+    var form_data = new FormData();
+    var input_image = $("#uploadImage").prop("files")[0];
 
-            form_data.append("image", input_image);
+    form_data.append("image", input_image);
 
-            var old_img = $("img[name='uploaded']").attr('data-id');
+    var old_img = $("img[name='uploaded']").attr('data-id');
 
-            if (old_img) {
-                form_data.append("old_img", old_img);
-                console.log(form_data);
-            }
+    if (old_img) {
+        form_data.append("old_img", old_img);
+        console.log(form_data);
+    }
 
-            $.ajax({
-                url: '{{route('staff.categories.ajaxupload')}}',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function (data) {
-                    $("#imagesSection").replaceWith(data);
-                    $(".c-content-upload__title").find('.error-text').remove();
-                },
-                error: function (data) {
-                    $(".li-error").addClass('has-error');
-                    $(".error-image").html('تصویری که انتخاب کرید شرایط لازم را ندارد');
-
-                    $.ajax({
-                        url: '{{route('staff.categories.ajaxdelete')}}',
-                        type: 'post',
-                        data: {
-                            id: $("img[name='uploaded']").attr('data-id'),
-                        },
-                        success: function (data) {
-                            $("input[name='image']").val('');
-                            // $("#imagesSection").hide();
-                            $('#preview_uploading').attr('data-id', 0);
-                            $("img[name='uploaded']").attr('data-id', 0);
-                        },
-                    });
-                }
-            });
-
-        });
-
-        // ایجکس حذف عکس
-        $(document).on("click", ".js-remove-upload", function () {
+    $.ajax({
+        url: '{{route('staff.categories.ajaxupload')}}',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function (data) {
+            $("#imagesSection").replaceWith(data);
+            $(".c-content-upload__title").find('.error-text').remove();
+        },
+        error: function (data) {
+            $(".li-error").addClass('has-error');
+            $(".error-image").html('تصویری که انتخاب کرید شرایط لازم را ندارد');
 
             $.ajax({
                 url: '{{route('staff.categories.ajaxdelete')}}',
@@ -608,105 +587,126 @@
                 },
                 success: function (data) {
                     $("input[name='image']").val('');
-                    $("#imagesSection").hide();
-                },
-                error: function () {
-                    $("input[name='image']").val('');
-                    $("#imagesSection").hide();
-                    $('.uploadImage').attr('data-id', 0);
-                }
-            });
-
-        });
-
-        // ایجکس دسته ها
-        $(document).on('change', "input[name='category']", function (e) {
-
-            $(this).closest("div").nextAll().remove();
-            $(this).closest(".c-content-categories__list").find('li').removeClass('is-active');
-            $(this).closest("li").addClass("is-active");
-
-            var categorySelected = $("input[name='category']:checked").val();
-
-            $.ajax({
-                method: "POST",
-                url: '{{route('staff.categories.childCatsLoader')}}',
-                data: {
-                    id: categorySelected,
-                },
-                success: function (response) {
-                    $('.c-content-categories__container').append(response);
+                    // $("#imagesSection").hide();
+                    $('#preview_uploading').attr('data-id', 0);
+                    $("img[name='uploaded']").attr('data-id', 0);
                 },
             });
+        }
+    });
+
+});
+
+// ایجکس حذف عکس
+$(document).on("click", ".js-remove-upload", function () {
+
+    $.ajax({
+        url: '{{route('staff.categories.ajaxdelete')}}',
+        type: 'post',
+        data: {
+            id: $("img[name='uploaded']").attr('data-id'),
+        },
+        success: function (data) {
+            $("input[name='image']").val('');
+            $("#imagesSection").hide();
+        },
+        error: function () {
+            $("input[name='image']").val('');
+            $("#imagesSection").hide();
+            $('.uploadImage').attr('data-id', 0);
+        }
+    });
+
+});
+
+// ایجکس دسته ها
+$(document).on('change', "input[name='category']", function (e) {
+
+    $(this).closest("div").nextAll().remove();
+    $(this).closest(".c-content-categories__list").find('li').removeClass('is-active');
+    $(this).closest("li").addClass("is-active");
+
+    var categorySelected = $("input[name='category']:checked").val();
+
+    $.ajax({
+        method: "POST",
+        url: '{{route('staff.categories.childCatsLoader')}}',
+        data: {
+            id: categorySelected,
+        },
+        success: function (response) {
+            $('.c-content-categories__container').append(response);
+        },
+    });
 
 
-        });
+});
 
-        // ایجکس breadcrumb
-        $(document).on('change', "input[type='radio']", function (e) {
+// ایجکس breadcrumb
+$(document).on('change', "input[type='radio']", function (e) {
 
-            var bread_id = $("input[type='radio']:checked").val();
+    var bread_id = $("input[type='radio']:checked").val();
 
-            $.ajax({
-                method: "POST",
-                url: '{{route('staff.categories.breadcrumbLoader')}}',
-                data: {
-                    id: bread_id,
-                },
-                success: function (response) {
-                    $('#breadcrumbs').replaceWith(response);
-                },
-            });
+    $.ajax({
+        method: "POST",
+        url: '{{route('staff.categories.breadcrumbLoader')}}',
+        data: {
+            id: bread_id,
+        },
+        success: function (response) {
+            $('#breadcrumbs').replaceWith(response);
+        },
+    });
 
-        });
+});
 
-        // ایجکس سرچ
-        $('#searchKeyword').on('keyup', function () {
+// ایجکس سرچ
+$('#searchKeyword').on('keyup', function () {
 
-            var searchValue = $(this).val();
+    var searchValue = $(this).val();
 
-            if (searchValue.length > 2) {
-                $.ajax({
-                    type: 'post',
-                    url: '{{route('staff.categories.ajaxsearch')}}',
-                    data: {
-                        'search': searchValue
-                    },
-                    success: function (response) {
-                        $(".c-content-categories__wrapper").each(function () {
-                            $(this).remove();
-                        });
-                        $('.c-content-categories__container').append(response);
-                    }
+    if (searchValue.length > 2) {
+        $.ajax({
+            type: 'post',
+            url: '{{route('staff.categories.ajaxsearch')}}',
+            data: {
+                'search': searchValue
+            },
+            success: function (response) {
+                $(".c-content-categories__wrapper").each(function () {
+                    $(this).remove();
                 });
-            }
-
-            if (searchValue.length == 0) {
-                $.ajax({
-                    type: 'post',
-                    url: '{{route('staff.categories.mainCatLoader')}}',
-                    success: function (response) {
-                        $('.c-content-categories__wrapper').replaceWith(response);
-                    }
-                });
+                $('.c-content-categories__container').append(response);
             }
         });
+    }
 
-        // ریست کامل لیست دسته بندی ها
-        $(document).on('click', ".reset-box", function (e) {
-            $.ajax({
-                type: 'post',
-                url: '{{route('staff.categories.mainCatLoader')}}',
-                success: function (response) {
-                    $('.c-content-categories__wrapper').replaceWith(response);
-                }
-            });
-            $(".category-box").show();
-            $(".appended-box").each(function () {
-                $(this).remove();
-            });
-
+    if (searchValue.length == 0) {
+        $.ajax({
+            type: 'post',
+            url: '{{route('staff.categories.mainCatLoader')}}',
+            success: function (response) {
+                $('.c-content-categories__wrapper').replaceWith(response);
+            }
         });
+    }
+});
 
-    </script>
+// ریست کامل لیست دسته بندی ها
+$(document).on('click', ".reset-box", function (e) {
+    $.ajax({
+        type: 'post',
+        url: '{{route('staff.categories.mainCatLoader')}}',
+        success: function (response) {
+            $('.c-content-categories__wrapper').replaceWith(response);
+        }
+    });
+    $(".category-box").show();
+    $(".appended-box").each(function () {
+        $(this).remove();
+    });
+
+});
+
+</script>
 @endsection

@@ -40,5 +40,4 @@ Route::domain('staff.diginova.test')->prefix('types')->name('staff.types.')
 
     Route::post('ajax-search', [StaffTypeController::class, 'ajaxSearch'])
         ->name('ajaxsearch');
-
 });

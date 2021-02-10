@@ -61,10 +61,5 @@ class Category extends Model
         return $this->morphToMany(Media::class, 'mediable');
     }
 
-    protected static function booted() { //booted method, no need to call parent boot
-        static::deleting( function ($category) {
-            $category->children()->delete();
-        });
-    }
 }
 

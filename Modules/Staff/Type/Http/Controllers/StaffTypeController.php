@@ -5,7 +5,6 @@ namespace Modules\Staff\Type\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Modules\Staff\Type\Http\Requests\StaffTypeRequest;
 use Modules\Staff\Category\Models\Category;
@@ -18,18 +17,29 @@ class StaffTypeController extends Controller
     public function index()
     {
         $categories = Category::all();
-
         return view('stafftype::index', compact('categories'));
     }
 
     public function store(Request $request)
     {
+        $positionArray = str_replace('item[]=', '', $request->sort_data);
+        $positionArray = str_replace('&', ',', $positionArray);
+        $positionArray = explode(',', $positionArray);
+        // تبدیل آرایه ای از اعداد با فرمت رشته به آرایه عددی
+        $positionArray = array_map(function($value) {
+            return intval($value);
+        }, $positionArray);
+
+        // فیلد جدید داشتیم
         if(!is_null($request->type_fields))
         {
-            foreach (array_reverse(array_filter($request->type_fields)) as $key => $type) {
+            $new_data_array = array_filter($request->type_fields);
 
+            foreach ($new_data_array as $key => $type)
+            {
                 $insert_type = Type::create([
                     'name' => $type,
+                    'position' => array_search($key, $positionArray),
                 ]);
 
                 $category = Category::find($request->category);
@@ -37,32 +47,35 @@ class StaffTypeController extends Controller
             }
         }
 
-//        if ($request->database_data) {
+        if (isset($request->database_data) && !is_null($request->database_data)) {
             return $this->update($request);
-            Log::info('go to update method');
-//        }
-
+        }
     }
 
     public function update($request)
     {
         if (isset($request->database_data) && !is_null($request->database_data)){
+
+            $positionArray = str_replace('item[]=', '', $request->sort_data);
+            $positionArray = str_replace('&', ',', $positionArray);
+            $positionArray = explode(',', $positionArray);
+            // تبدیل آرایه ای از اعداد با فرمت رشته به آرایه عددی
+            $positionArray = array_map(function($value) {
+                return intval($value);
+            }, $positionArray);
+
             $data = array_filter($request->database_data);
-            foreach ($data as $key => $value){
-                Log::info('key: ' . $key);
-                Log::info('value: ' . $value);
-
+            foreach ($data as $key => $value)
+            {
                 if ($value == 'deleted'){
-                    Category::find($data)->types()->where('id', $key)->delete();
+                    Category::find($request->category)->types()->where('id', $key)->delete();
                 }
-
-                if (!is_null($value)){
+                elseif (!is_null($value)){
                     Type::find($key)->update([
                         'name' => $value,
+                        'position' => array_search($key, $positionArray),
                     ]);
                 } else {
-                    Log::info('is null: '. $key);
-
                     Category::find($request->category)->types()->where('id', $key)->delete();
                 }
             }
@@ -95,7 +108,6 @@ class StaffTypeController extends Controller
     public function ajaxSearch(Request $request)
     {
         $categories = Category::query()->where('name', 'LIKE', "%{$request->search}%")->get();
-
         if($categories)
         {
             return View::make("stafftype::layouts.ajax.category-box.search", compact('categories'));
@@ -108,11 +120,8 @@ class StaffTypeController extends Controller
         if ($category->types())
         {
             return View::make('stafftype::ajax-content', compact('category'));
-        }
-        else
-        {
+        } else {
             return response()->json('saved data not found', 200);
         }
     }
-
 }
