@@ -11,17 +11,17 @@
     <script src="https://unpkg.com/@yaireo/dragsort"></script>
 
     <style>
-        .select2-search {
-            display: none;
-        }
+        /*.select2-search {*/
+        /*    display: none;*/
+        /*}*/
 
         .select2-selection__arrow {
             display: block !important;
         }
 
-        .select2-search--dropdown {
-            display: none;
-        }
+        /*.select2-search--dropdown {*/
+        /*    display: none;*/
+        /*}*/
 
 
         .select2-selection--single {
@@ -118,11 +118,11 @@ color: #606265;">اطلاعات گروه ویژگی
                     </div>
                 </div>
 
-                <div class="js-table-container" data-select2-id="37">
+                <div class="js-table-container">
 
                     {{--                    <div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25">--}}
                     {{--                        <p style="line-height: 27px;">توجه: لطفا برای ایجاد یکپارچگی و ورود صحیح--}}
-                    {{--                            اصلاعات ابتدا تمامی گروه ها و زیر گروه های مدنظرتان را ایجاد کرده سپس بران آنها ویژگی ایجاد کنید. <br>--}}
+                    {{--                            اطلاعات ابتدا تمامی گروه ها و زیر گروه های مدنظرتان را ایجاد کرده سپس بران آنها ویژگی ایجاد کنید. <br>--}}
                     {{--                            توجه: در صورتی که نوع نمایش را عبارت بلند یا کوتاه انتخاب کردید، فیلد مقادیر ورودی را وارد نکنید.--}}
                     {{--                            <br>--}}
                     {{--                        </p>--}}
@@ -137,7 +137,7 @@ color: #606265;">اطلاعات گروه ویژگی
 	margin-top: 8px;
 ">
                             <li>لطفا برای ایجاد یکپارچگی و ورود صحیح
-                                اصلاعات ابتدا تمامی گروه ها و زیر گروه های مدنظرتان را ایجاد کرده سپس بران آنها ویژگی ایجاد کنید. <li>در صورتی که نوع نمایش را عبارت بلند یا کوتاه انتخاب کردید، فیلد مقادیر ورودی را وارد نکنید.</li></li>
+                                اطلاعات ابتدا تمامی گروه ها و زیر گروه های مدنظرتان را ایجاد کرده سپس بران آنها ویژگی ایجاد کنید. <li>در صورتی که نوع نمایش را عبارت بلند یا کوتاه انتخاب کردید، فیلد مقادیر ورودی را وارد نکنید.</li></li>
                         </ul>
                     </div>
 
@@ -175,21 +175,23 @@ color: #606265;">اطلاعات گروه ویژگی
                                                         class="table-header-searchable uk-text-nowrap ">قابل فیلتر</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
+                                                        class="table-header-searchable uk-text-nowrap ">برگزیده</span>
+                                                </th>
+                                                <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap ">مقادیر ورودی</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap ">حذف</span></th>
-
                                             </tr>
                                             </thead>
 
                                             <tbody id="tbody">
-
-
                                               @if(isset($attributes) && !is_null($attributes))
                                                 @foreach($attributes->unique() as $attribute)
-                                                  <tr name="row db-row"
+                                                  <tr name="row db-row" id="item-{{$attribute->id}}"
                                                     class="c-ui-table__row c-ui-table__row--body c-join__table-row row">
+                                                    <input name="attribute_id" value="{{ $attribute->id }}" hidden>
+                                                      <input name="row" class="position-row" value="db" hidden>
                                                     <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
                                                         <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
                                                             <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
@@ -200,13 +202,13 @@ color: #606265;">اطلاعات گروه ویژگی
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
                                                         <input type="text" name="db_attr_name" value="{{ ($attribute->name)? $attribute->name : '' }}" class="c-content-input__origin js-attribute-old-value attr_name">
                                                     </td>
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15 td-select"
-                                                        style="text-align: right;">
+                                                    <td class="c-ui-table__cell c-ui-table__cell--small-text"
+                                                        style="text-align: right; min-width: 200px;">
 
                                                         <select name="db_attr_type"
-                                                                class="uk-input uk-input--select js-select-origin select2-hidden-accessible attr_type"
+                                                                class="uk-input uk-input--select js-select-origin select2-hidden-accessible"
                                                                 tabindex="-1" aria-hidden="true"
-                                                                aria-invalid="false">
+                                                                aria-invalid="false" disabled>
                                                             <option value="1" {{ ($attribute->types == 1)? 'selected' : '' }}>متن کوتاه (text)</option>
                                                             <option value="2" {{ ($attribute->types == 2)? 'selected' : '' }}>متن بلند (textarea)</option>
                                                             <option value="3" {{ ($attribute->types == 3)? 'selected' : '' }}>تک انتخابی (select box)</option>
@@ -226,8 +228,6 @@ color: #606265;">اطلاعات گروه ویژگی
                                                             </div>
                                                         </div>
                                                     </td>
-
-
                                                     <td class="c-ui-table__cell c-ui-table__cell--small-text">
                                                         <div class="c-ui-tooltip__anchor">
                                                             <div class="c-ui-toggle__group">
@@ -240,16 +240,24 @@ color: #606265;">اطلاعات گروه ویژگی
 
                                                         </div>
                                                     </td>
+                                                    <td class="c-ui-table__cell c-ui-table__cell--small-text">
+                                                        <div class="c-ui-tooltip__anchor">
+                                                            <div class="c-ui-toggle__group">
+                                                                <label class="c-ui-toggle">
+                                                                    <input class="c-ui-toggle__origin js-toggle-active-product attr_filterable"
+                                                                        type="checkbox" name="db_attr_favorite"  {{ ($attribute->is_favorite)? 'checked' : '' }}>
+                                                                    <span class="c-ui-toggle__check"></span>
+                                                                </label>
+                                                            </div>
 
-
+                                                        </div>
+                                                    </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                         <div class="uk-flex uk-flex-column">
-                                                            <input name='drag-sort' value='{{ $attribute->values }}' class="drag-sort db_attr_input_tag">
+                                                            <input name='drag-sort' value='{{ $attribute->values }}' class="drag-sort db_attr_input_tag db_value_field val_field">
                                                         </div>
 
                                                     </td>
-
-
                                                     <td class="c-ui-table__cell">
                                                         <div class="c-promo__actions" style="width: 50%; margin: auto;">
                                                             <button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button>
@@ -271,10 +279,7 @@ color: #606265;">اطلاعات گروه ویژگی
                                                 جدید
                                             </div>
                                         </a>
-
-
                                     </div>
-
 
                                 </div>
                             </div>
@@ -323,9 +328,7 @@ color: #606265;">اطلاعات گروه ویژگی
         <div class="uk-modal-dialog uk-modal-dialog--flex">
             <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
 
-            <div class="uk-modal-body" data-gtm-vis-recent-on-screen-9662696_13="79003"
-                 data-gtm-vis-first-on-screen-9662696_13="79004"
-                 data-gtm-vis-total-visible-time-9662696_13="100" data-gtm-vis-has-fired-9662696_13="1">
+            <div class="uk-modal-body">
                 <div class="c-modal-notification">
                     <div class="c-modal-notification__content c-modal-notification__content--limited">
                         <h2 class="c-modal-notification__header">هشدار</h2>
@@ -344,232 +347,217 @@ color: #606265;">اطلاعات گروه ویژگی
             </div>
         </div>
     </div>
+
+    <select name="attr_unit" class="uk-input uk-input--select js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
+        @if(isset($units) && count($units))
+        @foreach($units as $unit)
+        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+        @endforeach
+        @endif
+    </select>
 @endsection
 @section('script')
 
 <script>
 
-    // اضافه کردن توکن به درخواست های ایجکس
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+// اضافه کردن توکن به درخواست های ایجکس
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
-    // ایجکس فرم اصلی
-    $('#submit-form').on('click', function (e) {
-        // e.preventDefault();
+// ایجکس فرم اصلی
+$('#submit-form').on('click', function (e) {
+    // e.preventDefault();
 
+    var category_id = $("input[name='group_id']").val();
 
-        var category_id = $("input[name='group_id']").val();
-        var group_name = $("input[name='attr_group_name']").val();
-        var group_desc = $("textarea[name='attr_group_desc']").val();
+    var group_name = $("input[name='attr_group_name']").val();
 
-        var attr_name = $("input[name='attr_name']").map(function(){return $(this).val();}).get();
-        var attr_type = $("select[name='attr_type']").map(function(){return $(this).val();}).get();
+    var group_desc = $("textarea[name='attr_group_desc']").val();
 
-        var attr_required = $("input[name='attr_required']").map(function(){
-            if($(this).is(':checked')){return 1;}else{return 0;}
-        }).get();
+    var attr_name = $("input[name='attr_name']").map(function(){return $(this).val();}).get();
 
-        var attr_filterable = $("input[name='attr_filterable']").map(function(){
-            if($(this).is(':checked')){return 1;}else{return 0;}
-        }).get();
+    var attr_type = $("select[name='attr_type']").map(function(){return $(this).val();}).get();
 
-        var attr_input_tag = $("input[name='drag-sort']").map(function(){return $(this).val();}).get();
+    var attr_required = $("input[name='attr_required']").map(function(){
+        if($(this).is(':checked')){return 1;}else{return 0;}
+    }).get();
 
-        // if (name && slug && en_name) {
-        $.ajax({
-            method: "post",
-            url: '{{route('staff.attributes.store')}}',
-            data: {
-                category_id: category_id,
-                group_name: group_name,
-                group_desc: group_desc,
-                attr_names: attr_name,
-                attr_types: attr_type,
-                attr_requireds: attr_required,
-                attr_filterables: attr_filterable,
-                attr_values: attr_input_tag,
-            },
+    var attr_filterable = $("input[name='attr_filterable']").map(function(){
+        if($(this).is(':checked')){return 1;}else{return 0;}
+    }).get();
 
-            success: function () {
-                $.toast({
-                    heading: 'موفق!',
-                    text: "نوع کالا با موفقیت ذخیره شد",
-                    bgColor: '#3DC3A1',
-                    textColor: '#fff',
-                });
+    var attr_favorite = $("input[name='attr_favorite']").map(function(){
+        if($(this).is(':checked')){return 1;}else{return 0;}
+    }).get();
 
+    var attr_input_tag = $("input.attr_input_tag").map(function(){return $(this).val();}).get();
 
-                {{--var data = $("tbody").sortable('serialize');--}}
-                {{--$.ajax({--}}
-                {{--    data: data,--}}
-                {{--    type: 'post',--}}
-                {{--    url: '{{route('staff.attributes.indexChangePosition')}}'--}}
-                {{--});--}}
+    var db_attr_name = $("input[name='db_attr_name']").map(function(){return $(this).val();}).get();
 
-                // $('#category_form').trigger("reset");
+    var db_attr_type = $("select[name='db_attr_type']").map(function(){return $(this).val();}).get();
 
-            },
-        });
-        // }
+    var db_attr_required = $("input[name='db_attr_required']").map(function(){
+        if($(this).is(':checked')){return 1;}else{return 0;}
+    }).get();
 
-    });
+    var db_attr_filterable = $("input[name='db_attr_filterable']").map(function(){
+        if($(this).is(':checked')){return 1;}else{return 0;}
+    }).get();
 
-    $(document).on('click', '.remove-btn', function () {
-        $(".uk-modal-container").addClass('uk-open');
-        $(".uk-modal-container").css('display', 'block');
-        $('.c-header__nav').hide();
-        $(this).closest("tr").addClass('hide-tr');
+    var db_attr_favorite = $("input[name='db_attr_favorite']").map(function(){
+        if($(this).is(':checked')){return 1;}else{return 0;}
+    }).get();
 
-        $(document).on('click', '.yes', function (){
-            $(".remove-btn").closest(".hide-tr").remove();
+    var db_attr_input_tag = $("input.db_attr_input_tag").map(function(){return $(this).val();}).get();
 
-            $('.c-header__nav').show();
-        });
+    var attribute_ids = $("input[name='attribute_id']").map(function(){return $(this).val();}).get();
 
-        $(document).on('click', '.no', function () {
-            $('.c-header__nav').show();
-            $(".remove-btn").closest(".hide-tr").removeClass('hide-tr');
-
-        });
-
-        $(document).on('click', '.uk-close', function () {
-            $('.c-header__nav').show();
-            $(".remove-btn").closest(".hide-tr").removeClass('hide-tr');
-
-        });
-
-    });
-
-    $("tbody").sortable({
-        group: 'no-drop',
-        handle: '.c-content-upload__drag-handler',
-        connectWith: 'tbody',
-        scroll: false,
-        containment: 'tbody',
-    });
-
-    $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
-        var tr = '<tr name="row" class="c-ui-table__row c-ui-table__row--body c-join__table-row row"><td class="c-ui-table__cell" style="padding-right:0;padding-left:23px">' +
-            '<div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer"><span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span> ' +
-            '<span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down">' +
-            '</span></div></td><td class="c-ui-table__cell" style="min-width:90px"><input class="c-content-input__origin js-attribute-old-value attr_name" name="attr_name"></td>' +
-            '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15 td-select" style="text-align:right"><select name="attr_type" class="uk-input uk-input--select js-select-origin select2-hidden-accessible attr_type" ' +
-            'tabindex="-1" aria-hidden="true" aria-invalid="false"><option value="1" selected>عبارت کوتاه (text)</option><option value="2">عبارت بلند (textarea)</option>' +
-            '<option value="3">تک انتخابی (select box)</option><option value="4">چند انتخابی (select box)</option></select></td><td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle">' +
-            '<input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox" name="attr_required" value="1"> <span class="c-ui-toggle__check"></span></label></div></div>' +
-            '</td><td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product attr_filterable" type="checkbox" name="attr_filterable" value="1"> ' +
-            '<span class="c-ui-toggle__check"></span></label></div></div></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">' +
-            '<div class="uk-flex uk-flex-column"><input name="drag-sort" class="drag-sort new-tag-input attr_input_tag"></div></td><td class="c-ui-table__cell"><div class="c-promo__actions" style="width:50%;margin:auto">' +
-            '<button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button></div></td></tr>';
+    // var position = $(".position-row").map(function(){return $(this).val();}).get();
 
 
-        $("#tbody").append(tr);
-        generateSelectUi();
 
-        var input = document.querySelector('.new-tag-input');
-        tagify = new Tagify(input);
+    // var position = [];
+    // position.length = 0;
+    // $(".position-row").each(function (i, element) {
+    //     var id = $(element).attr('value');
+    //     var i = i;
+    //     position[i] = id;
+    // });
 
-        var dragsort = new DragSort(tagify.DOM.scope, {
-            selector: '.' + tagify.settings.classNames.tag,
-            callbacks: {
-                dragEnd: onDragEnd
-            }
-        });
 
-        function onDragEnd(elm) {
-            tagify.updateValueByDOMTags()
-        }
+    {{--    var data = $("tbody").sortable('serialize');--}}
 
-        $(".drag-sort").removeClass("new-tag-input");
 
-    });
+    var position = $("tbody").sortable('serialize');
 
-    function generateSelectUi() {
-        $('.js-select-origin').each(function () {
-            const $this = $(this);
-            const isMultiSelect = $this.attr('multiple');
-            const $placeholder = $this.attr('data-placeholder') || '';
-            const inProductStep = $this.hasClass('js-in-product');
 
-            $this.select2({
-                placeholder: $placeholder,
-                closeOnSelect: !isMultiSelect,
-                allowClear: (isMultiSelect && inProductStep),
-                sorter: function (data) {
-                    return data.sort(function (a, b) {
-                        a = $(a).prop('selected');
-                        b = $(b).prop('selected');
-                        return b - a;
-                    });
-                }
-            }).on('select2:opening', function () {
-                $('body').addClass('ui-select');
-            }).on('select2:select', function () {
-                let $sortedOptions = $('li.select2-results__option').sort(function (a, b) {
-                    return ($(b).attr('aria-selected') === 'true') - ($(a).attr('aria-selected') === 'true');
-                });
-                $('.select2-results__options').prepend($sortedOptions);
-            }).on('select2:unselect', function () {
-                let $sortedOptions = $('li.select2-results__option').sort(function (a, b) {
-                    return ($(b).attr('aria-selected') === 'true') - ($(a).attr('aria-selected') === 'true');
-                });
-                $('.select2-results__options').prepend($sortedOptions);
-            }).on('change', function () {
-                if (isMultiSelect && inProductStep) {
-                    let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
-                    const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
+    // if (name && slug && en_name) {
+    $.ajax({
+        method: "post",
+        url: '{{route('staff.attributes.store')}}',
+        data: {
+            category_id: category_id,
+            group_name: group_name,
+            group_desc: group_desc,
 
-                    $selections.removeClass('hidden');
-                    $selections.each(function () {
-                        $selectionsContainerWidth -= $(this).outerWidth(true);
-                        if ($selectionsContainerWidth < 0) {
-                            $(this).addClass('hidden');
-                        }
-                    });
+            position:position,
+            attr_names: attr_name,
+            attr_types: attr_type,
+            attr_requireds: attr_required,
+            attr_filterables: attr_filterable,
+            attr_favorites: attr_favorite,
+            attr_values: attr_input_tag,
 
-                    let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
-                    let $counter = $this.siblings('.select-counter');
+            db_attr_names: db_attr_name,
+            db_attr_types: db_attr_type,
+            db_attr_requireds: db_attr_required,
+            db_attr_filterables: db_attr_filterable,
+            db_attr_favorites: db_attr_favorite,
+            db_attr_values: db_attr_input_tag,
+            db_attribute_ids: attribute_ids,
+        },
 
-                    if ($selectionsCount > 0) {
-                        $counter.css('display', 'flex');
-                    } else {
-                        $counter.css('display', 'none');
-                    }
-                    $counter.text($selectionsCount.toLocaleString('fa-IR'));
-                }
-                $(this).trigger('blur');
-            }).on('select2:close', function () {
-                $(this).valid();
-                $('body').removeClass('ui-select');
+        success: function () {
+            $.toast({
+                heading: 'موفق!',
+                text: "نوع کالا با موفقیت ذخیره شد",
+                bgColor: '#3DC3A1',
+                textColor: '#fff',
             });
 
-            if (isMultiSelect && inProductStep) {
-                let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
-                const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
 
-                $selections.removeClass('hidden');
-                $selections.each(function () {
-                    $selectionsContainerWidth -= $(this).outerWidth(true);
-                    if ($selectionsContainerWidth < 0) {
-                        $(this).addClass('hidden');
-                    }
-                });
+            {{--var data = $("tbody").sortable('serialize');--}}
+            {{--$.ajax({--}}
+            {{--    data: data,--}}
+            {{--    type: 'post',--}}
+            {{--    url: '{{route('staff.attributes.indexChangePosition')}}'--}}
+            {{--});--}}
 
-                let $counter = $this.siblings('.select-counter');
-                let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
+            // $('#category_form').trigger("reset");
 
-                if ($selectionsCount > 0) {
-                    $counter.text($selectionsCount.toLocaleString('fa-IR'));
-                    $counter.css('display', 'flex');
-                }
-            }
+        },
+    });
+    // }
 
-        });
+});
+
+$(document).on('click', '.remove-btn', function () {
+    $(".uk-modal-container").addClass('uk-open');
+    $(".uk-modal-container").css('display', 'block');
+    $('.c-header__nav').hide();
+    $(this).closest("tr").addClass('hide-tr');
+
+    $(document).on('click', '.yes', function (){
+        $(".remove-btn").closest(".hide-tr").hide();
+        $(".hide-tr").find("input[name='db_attr_name']").val('deleted');
+
+        $('.c-header__nav').show();
+    });
+
+    $(document).on('click', '.no', function () {
+        $('.c-header__nav').show();
+        $(".remove-btn").closest(".hide-tr").removeClass('hide-tr');
+
+    });
+
+    $(document).on('click', '.uk-close', function () {
+        $('.c-header__nav').show();
+        $(".remove-btn").closest(".hide-tr").removeClass('hide-tr');
+
+    });
+
+});
+
+$("tbody").sortable({
+    group: 'no-drop',
+    handle: '.c-content-upload__drag-handler',
+    connectWith: 'tbody',
+    scroll: false,
+    containment: 'tbody',
+});
+
+$(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
+    var new_id = Math.floor((Math.random() * 1) + 10000);
+    var tr = '<tr name="row" id="item-n' + new_id + '" class="c-ui-table__row c-ui-table__row--body c-join__table-row row"><td class="c-ui-table__cell" style="padding-right:0;padding-left:23px">' +
+        '<div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer"><span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span> ' +
+        '<span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down">' +
+        '</span></div></td><td class="c-ui-table__cell" style="min-width:90px"><input class="c-content-input__origin js-attribute-old-value attr_name" name="attr_name"></td>' +
+        '<td class="c-ui-table__cell c-ui-table__cell--small-text td-select" style="text-align:right; min-width: 200px;"><input name="row" class="position-row" value="new" hidden><select name="attr_type" class="uk-input uk-input--select js-select-origin attr_type select2-hidden-accessible" ' +
+        'tabindex="-1" aria-hidden="true" aria-invalid="false"><option value="" selected>انتخاب کنید</option><option value="1">عبارت کوتاه (text)</option><option value="2">عبارت بلند (textarea)</option>' +
+        '<option value="3">تک انتخابی (select box)</option><option value="4">چند انتخابی (select box)</option><option value="5">متن کوتاه با واحد</option></select></td><td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle">' +
+        '<input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox" name="attr_required" value="1"> <span class="c-ui-toggle__check"></span></label></div></div>' +
+        '</td><td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product attr_filterable" type="checkbox" name="attr_filterable" value="1"> ' +
+        '<span class="c-ui-toggle__check"></span></label></div></div></td>' +
+        '<td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product attr_filterable" type="checkbox" name="attr_favorite"><span class="c-ui-toggle__check"></span></label></div></div></td>' +
+        '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">' +
+        '<div class="uk-flex uk-flex-column values-td"><input name="drag-sort" class="drag-sort new-tag-input attr_input_tag val_field"></div></td><td class="c-ui-table__cell"><div class="c-promo__actions" style="width:50%;margin:auto">' +
+        '<button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button></div></td></tr>';
+
+    $("#tbody").append(tr);
+    generateSelectUi();
+
+    var input = document.querySelector('.new-tag-input');
+    tagify = new Tagify(input);
+
+    var dragsort = new DragSort(tagify.DOM.scope, {
+        selector: '.' + tagify.settings.classNames.tag,
+        callbacks: {
+            dragEnd: onDragEnd
+        }
+    });
+
+    function onDragEnd(elm) {
+        tagify.updateValueByDOMTags()
     }
 
+    $(".drag-sort").removeClass("new-tag-input");
+
+});
+
+function generateSelectUi() {
     $('.js-select-origin').each(function () {
         const $this = $(this);
         const isMultiSelect = $this.attr('multiple');
@@ -650,11 +638,90 @@ color: #606265;">اطلاعات گروه ویژگی
         }
 
     });
+}
 
-</script>
+$('.js-select-origin').each(function () {
+    const $this = $(this);
+    const isMultiSelect = $this.attr('multiple');
+    const $placeholder = $this.attr('data-placeholder') || '';
+    const inProductStep = $this.hasClass('js-in-product');
 
-<script>
-    $("input[name=drag-sort]").each(function () {
+    $this.select2({
+        placeholder: $placeholder,
+        closeOnSelect: !isMultiSelect,
+        allowClear: (isMultiSelect && inProductStep),
+        sorter: function (data) {
+            return data.sort(function (a, b) {
+                a = $(a).prop('selected');
+                b = $(b).prop('selected');
+                return b - a;
+            });
+        }
+    }).on('select2:opening', function () {
+        $('body').addClass('ui-select');
+    }).on('select2:select', function () {
+        let $sortedOptions = $('li.select2-results__option').sort(function (a, b) {
+            return ($(b).attr('aria-selected') === 'true') - ($(a).attr('aria-selected') === 'true');
+        });
+        $('.select2-results__options').prepend($sortedOptions);
+    }).on('select2:unselect', function () {
+        let $sortedOptions = $('li.select2-results__option').sort(function (a, b) {
+            return ($(b).attr('aria-selected') === 'true') - ($(a).attr('aria-selected') === 'true');
+        });
+        $('.select2-results__options').prepend($sortedOptions);
+    }).on('change', function () {
+        if (isMultiSelect && inProductStep) {
+            let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
+            const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
+
+            $selections.removeClass('hidden');
+            $selections.each(function () {
+                $selectionsContainerWidth -= $(this).outerWidth(true);
+                if ($selectionsContainerWidth < 0) {
+                    $(this).addClass('hidden');
+                }
+            });
+
+            let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
+            let $counter = $this.siblings('.select-counter');
+
+            if ($selectionsCount > 0) {
+                $counter.css('display', 'flex');
+            } else {
+                $counter.css('display', 'none');
+            }
+            $counter.text($selectionsCount.toLocaleString('fa-IR'));
+        }
+        $(this).trigger('blur');
+    }).on('select2:close', function () {
+        $(this).valid();
+        $('body').removeClass('ui-select');
+    });
+
+    if (isMultiSelect && inProductStep) {
+        let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
+        const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
+
+        $selections.removeClass('hidden');
+        $selections.each(function () {
+            $selectionsContainerWidth -= $(this).outerWidth(true);
+            if ($selectionsContainerWidth < 0) {
+                $(this).addClass('hidden');
+            }
+        });
+
+        let $counter = $this.siblings('.select-counter');
+        let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
+
+        if ($selectionsCount > 0) {
+            $counter.text($selectionsCount.toLocaleString('fa-IR'));
+            $counter.css('display', 'flex');
+        }
+    }
+
+});
+
+$("input[name=drag-sort]").each(function () {
         var input = document.querySelector('input[name=drag-sort]'),
             tagify = new Tagify(this);
 
@@ -669,25 +736,73 @@ color: #606265;">اطلاعات گروه ویژگی
             tagify.updateValueByDOMTags()
         }
     });
-</script>
+
+$('tbody').sortable({
+    // group: 'no-drop',
+    handle: '.c-content-upload__drag-handler',
+    // connectWith: 'tbody',
+    // scroll: true,
+    // containment: 'tbody',
+    // axis: 'y',
+    {{--update: function (event, ui) {--}}
+    {{--    var data = $("tbody").sortable('serialize');--}}
+    {{--    $.ajax({--}}
+    {{--        data: data,--}}
+    {{--        type: 'post',--}}
+    {{--        url: '{{route('staff.attributes.indexChangePosition')}}'--}}
+    {{--    });--}}
+    {{--}--}}
+});
+
+$(document).on('change', '.attr_type', function (){
+    console.log('running');
+    if (($(this).val() == 1) || ($(this).val() == 2))
+    {
+        $(this).closest('.row').find(".tagify").remove();
+        var disabled_field = '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin c-ui-input--deactive val_field" disabled=""></td>';
+        $(this).closest('.row').find(".values-td").replaceWith(disabled_field);
+    }
+
+    if (($(this).val() == 3) || ($(this).val() == 4))
+    {
+        $(this).closest('.row').find(".tagify").remove();
+        var tag_field = '<div class="uk-flex uk-flex-column values-td"><input name="drag-sort" class="drag-sort new-tag-input attr_input_tag val_field"></td>';
+        $(this).closest('.row').find(".values-td").replaceWith(tag_field);
+        var input = document.querySelector('.new-tag-input');
+        tagify = new Tagify(input)
+    }
+
+    if ($(this).val() == 5)
+    {
+        {{--$.ajax({--}}
+        {{--    method: "post",--}}
+        {{--    url: '{{route('staff.attributes.unitSelector')}}',--}}
+
+        {{--    success: function (response) {--}}
+        {{--        $(this).closest('.row').find(".tagify").remove();--}}
+        {{--        // var select_field = $(".unit-select-hide").clone().removeAttr('style');--}}
+        {{--        $(this).closest('.row').find(".values-td").replaceWith(response);--}}
+        {{--        generateSelectUi();--}}
+        {{--    },--}}
+        {{--});--}}
+
+        var xxx = $("select[name='attr_unit']:last").clone();
+        $(this).closest('.row').find(".values-td").replaceWith(xxx);
+        generateSelectUi();
 
 
-<script>
-    $('tbody').sortable({
-        group: 'no-drop',
-        handle: '.c-content-upload__drag-handler',
-        connectWith: 'tbody',
-        scroll: false,
-        containment: 'tbody',
-        axis: 'y',
-        {{--update: function (event, ui) {--}}
-        {{--    var data = $("tbody").sortable('serialize');--}}
-        {{--    $.ajax({--}}
-        {{--        data: data,--}}
-        {{--        type: 'post',--}}
-        {{--        url: '{{route('staff.attributes.indexChangePosition')}}'--}}
-        {{--    });--}}
-        {{--}--}}
-    });
+
+
+        {{--<select name="attr_unit" class="uk-input uk-input--select js-select-origin select2-hidden-accessible unit-select-hide" tabindex="-1" aria-hidden="true" aria-invalid="false" style="display: none">--}}
+        {{--    @if(isset($units) && count($units))--}}
+        {{--    @foreach($units as $unit)--}}
+        {{--    <option value="{{ $unit->id }}">{{ $unit->name }}</option>--}}
+        {{--    @endforeach--}}
+        {{--    @endif--}}
+        {{--</select>--}}
+    }
+});
+
+
 </script>
 @endsection

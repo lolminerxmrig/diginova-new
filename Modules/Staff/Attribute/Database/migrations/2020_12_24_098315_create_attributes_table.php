@@ -19,8 +19,12 @@ class CreateAttributesTable extends Migration
             $table->integer('types')->default(1);
             $table->boolean('is_required')->default(0);
             $table->boolean('is_filterable')->default(0);
-            $table->text('position')->nullable();
+            $table->boolean('is_favorite')->default(0);
+            $table->unsignedBigInteger('group_id');
+            $table->integer('position')->nullable();
             $table->timestamps();
+
+            $table->foreign('group_id')->references('id')->on('attribute_groups');
         });
     }
 

@@ -13,7 +13,7 @@ class Attribute extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'types', 'is_required', 'is_filterable'];
+    protected $fillable = ['name', 'types', 'is_required', 'is_filterable', 'is_favorite', 'group_id'];
 
     public function categories()
     {
@@ -22,7 +22,7 @@ class Attribute extends Model
 
     public function values()
     {
-      return $this->hasMany(AttributeValue::class);
+      return $this->hasMany(AttributeValue::class)->select('id', 'value');
     }
 
     public function products()

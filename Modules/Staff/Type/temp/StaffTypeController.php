@@ -49,8 +49,6 @@ class StaffTypeController extends Controller
         if (isset($request->database_data) && !is_null($request->database_data)){
             $data = array_filter($request->database_data);
             foreach ($data as $key => $value){
-                Log::info('key: ' . $key);
-                Log::info('value: ' . $value);
 
                 if ($value == 'deleted'){
                     Category::find($data)->types()->where('id', $key)->delete();
@@ -61,8 +59,6 @@ class StaffTypeController extends Controller
                         'name' => $value,
                     ]);
                 } else {
-                    Log::info('is null: '. $key);
-
                     Category::find($request->category)->types()->where('id', $key)->delete();
                 }
             }
@@ -77,7 +73,6 @@ class StaffTypeController extends Controller
         if (count(Category::where('parent_id', $id)->get()) !== 0)
         {
             return View::make("stafftype::layouts.ajax.category-box.child", compact('id', 'categories'));
-//            return View::make("stafftype::child-cat-loaader", compact('id', 'categories'));
         }
     }
 

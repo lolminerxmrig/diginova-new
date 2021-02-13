@@ -21,7 +21,7 @@ class AttributeGroup extends Model
 
     public function attributes()
     {
-        return $this->morphToMany(Attribute::class, 'attributable');
+        return $this->hasMany(Attribute::class);
     }
 }
 

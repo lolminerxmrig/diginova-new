@@ -1,7 +1,6 @@
 @extends('layouts.staff.master')
 
 @section('head')
-<script src="{{ asset('seller/js/create-category-validation.js') }}"></script>
 <script src="{{ asset('seller/js/tags3.js') }}"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
 <script src="https://unpkg.com/@yaireo/dragsort"></script>
@@ -491,14 +490,14 @@ $(document).on('click', '.cancell-btn', function (){
 
 $("#sortable1").sortable({
     connectWith: ".connectedSortable",
-    update: function (event, ui) {
-        var data = $("#sortable1").sortable('serialize');
-        $.ajax({
-            data: data,
-            type: 'post',
-            url: '{{route('staff.units.indexChangePosition')}}'
-        });
-    }
+    {{--update: function (event, ui) {--}}
+    {{--    var data = $("#sortable1").sortable('serialize');--}}
+    {{--    $.ajax({--}}
+    {{--        data: data,--}}
+    {{--        type: 'post',--}}
+    {{--        url: '{{route('staff.units.indexChangePosition')}}'--}}
+    {{--    });--}}
+    {{--}--}}
 });
 
 </script>

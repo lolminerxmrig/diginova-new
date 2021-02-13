@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Staff\Attribute\Http\Controllers\StaffAttributeController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,5 +54,10 @@ Route::domain('staff.diginova.test')->prefix('attributes')->name('staff.attribut
 
     Route::post('ajax-search', [StaffAttributeController::class, 'ajaxSearch'])
         ->name('ajaxsearch');
+
+    Route::post('unit-selector', [StaffAttributeController::class, 'unitSelector'])
+        ->name('unitSelector');
+
+
 
 });
