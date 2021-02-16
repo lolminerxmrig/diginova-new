@@ -177,6 +177,8 @@ return [
         Modules\Staff\Attribute\Providers\StaffAttributeServiceProvider::class,
         Modules\Staff\Product\Providers\StaffProductServiceProvider::class,
         Modules\Staff\Unit\Providers\StaffUnitServiceProvider::class,
+        Modules\Staff\Page\Providers\StaffPageServiceProvider::class,
+
 
 
         /*

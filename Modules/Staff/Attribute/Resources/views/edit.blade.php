@@ -2,13 +2,16 @@
 @section('head')
     <script src="{{ asset('seller/js/tags4.js') }}"></script>
     <script src="{{ asset('seller/js/create-category-validation.js') }}"></script>
-    <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
 
-    <link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
 
     <script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
+
     <script src="https://unpkg.com/@yaireo/dragsort"></script>
+
+
 
     <style>
         /*.select2-search {*/
@@ -735,7 +738,7 @@ $("input[name=drag-sort]").each(function () {
         function onDragEnd(elm) {
             tagify.updateValueByDOMTags()
         }
-    });
+});
 
 $('tbody').sortable({
     // group: 'no-drop',
@@ -769,7 +772,21 @@ $(document).on('change', '.attr_type', function (){
         var tag_field = '<div class="uk-flex uk-flex-column values-td"><input name="drag-sort" class="drag-sort new-tag-input attr_input_tag val_field"></td>';
         $(this).closest('.row').find(".values-td").replaceWith(tag_field);
         var input = document.querySelector('.new-tag-input');
-        tagify = new Tagify(input)
+        tagify = new Tagify(input);
+
+        var dragsort = new DragSort(tagify.DOM.scope, {
+            selector: '.' + tagify.settings.classNames.tag,
+            callbacks: {
+                dragEnd: onDragEnd
+            }
+        });
+
+        function onDragEnd(elm) {
+            tagify.updateValueByDOMTags()
+        }
+
+        $(".drag-sort").removeClass("new-tag-input");
+
     }
 
     if ($(this).val() == 5)

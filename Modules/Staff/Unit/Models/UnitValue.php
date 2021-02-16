@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Staff\Category\Models\Category;
 
 
-class Unit extends Model
+class UnitValue extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type', 'value', 'position'];
+    protected $fillable = ['unit_id','value', 'position'];
 
-    public function values()
+    protected $table = 'unit_values';
+
+    public function unit()
     {
-        return $this->hasMany(UnitValue::class);
+        return $this->belongsTo(Unit::class);
     }
 }
