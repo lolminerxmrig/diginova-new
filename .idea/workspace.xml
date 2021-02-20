@@ -281,8 +281,8 @@
       <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/Resources/views/layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Unit/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/temp" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Unit/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/layouts/ajax/image-box" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Category/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Category" />
@@ -512,7 +512,7 @@
       <workItem from="1613657830690" duration="11436000" />
       <workItem from="1613711367984" duration="15814000" />
       <workItem from="1613748099430" duration="14067000" />
-      <workItem from="1613792470920" duration="23167000" />
+      <workItem from="1613792470920" duration="25678000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -535,6 +535,17 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Modules/Staff/Type/Resources/views/index.blade.php</url>
+          <line>414</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
