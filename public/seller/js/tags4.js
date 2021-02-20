@@ -10,7 +10,7 @@
 *
 * TODO: Create Submit() method
 * */
-
+console.log('file reloaded');
 
 function Tags(selector, position, validation) {
     if (!selector) {

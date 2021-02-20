@@ -1,4 +1,3 @@
-
 /*[PATH @digikala/supernova-digikala-marketplace/assets/local/js/tags.js]*/
 /*
 * Tags class

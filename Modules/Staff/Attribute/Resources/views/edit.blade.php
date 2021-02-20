@@ -1,7 +1,7 @@
 @extends('layouts.staff.master')
 @section('head')
-<script src="{{ asset('seller/js/tags4.js') }}" xmlns="http://www.w3.org/1999/html"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
 <link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
 <script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
 <script src="{{ asset('seller/js/tagify.min.js') }}"></script>
@@ -207,7 +207,7 @@ margin-bottom: 8px;
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
+                                                <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;">
                                                     <div class="uk-flex uk-flex-column">
                                                         @if(($attribute->type == 1) || ($attribute->type == 2))
                                                             <input type="text" class="c-content-input__origin attr_input_tag c-ui-input--deactive val_field" value="" disabled>
@@ -216,10 +216,10 @@ margin-bottom: 8px;
 {{--                                                            <input name='drag-sort' value='{{ $attribute->values }}' class="drag-sort attr_input_tag value_field val_field">--}}
 {{--                                                            <input name='drag-sort' class="unit_input_tag" value='{{ $unit->values }}'>--}}
                                                         @elseif($attribute->type == 5)
-                                                            <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
+                                                            <select name="attr_unit" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
                                                                 @if(isset($units) && count($units))
                                                                     @foreach($units as $unit)
-                                                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                                                        <option value="{{ $unit->id }}" {{ ($attribute->unit_id == $unit->id)? 'selected' : '' }}>{{ $unit->name }}</option>
                                                                     @endforeach
                                                                 @endif
                                                             </select>
@@ -302,19 +302,26 @@ margin-bottom: 8px;
         </div>
     </div>
 </div>
-<div class="uk-flex uk-flex-column values-td select-unit">
+<div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
 
-{{--<select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">--}}
-{{--    @if(isset($units) && count($units))--}}
-{{--    @foreach($units as $unit)--}}
-{{--    <option value="{{ $unit->id }}">{{ $unit->name }}</option>--}}
-{{--    @endforeach--}}
-{{--    @endif--}}
-{{--</select>--}}
+<select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
+    @if(isset($units) && count($units))
+    @foreach($units as $unit)
+    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+    @endforeach
+    @endif
+</select>
 </div>
 @endsection
 @section('script')
 <script>
+
+$(document).ready(function (){
+    $(".tagify").each(function (){
+        $(this).removeClass('attr_input_tag');
+    });
+});
+
 $(".attr_type").each(function () {
     if ($(this).val() == 1) {
         $(this).closest('.row').find("input[name='attr_filterable']").attr('disabled', 'true');
@@ -324,10 +331,6 @@ $(".attr_type").each(function () {
         $(this).closest('.row').find("input[name='attr_favorite']").attr('disabled', 'true');
         $(this).closest('.row').find("input[name='attr_filterable']").attr('disabled', 'true');
     }
-});
-
-$(".tags").each(function (){
-    $(this).removeClass('attr_input_tag');
 });
 
 // اضافه کردن توکن به درخواست های ایجکس
@@ -694,7 +697,7 @@ $(document).on('change', '.attr_type', function (){
         }
 
         $(".drag-sort").removeClass("new-tag-input");
-        $("tags").each(function (){
+        $(".tagify").each(function (){
             $(this).removeClass('attr_input_tag');
         });
 
@@ -708,8 +711,7 @@ $(document).on('change', '.attr_type', function (){
         var xxx = $(".select-unit:last").clone();
         $(this).closest('.row').find(".values-td").replaceWith(xxx);
         $(this).closest('.row').find(".select2-container").remove();
-        // $(this).closest('.row').find(".js-select-origin").addClass('attr_input_tag');
-        generateSelectUi();
+        $(this).closest('.row').find(".select-unit").show();
 
         $('.js-select-origin').each(function () {
             const $this = $(this);
@@ -791,26 +793,21 @@ $(document).on('change', '.attr_type', function (){
             }
 
         });
+        generateSelectUi();
 
 
-$("tags").each(function (){
-    $(this).removeClass('attr_input_tag');
-});
-
-
-        {{--var attr_input_tag = $("input.attr_input_tag").map(function(){return $(this).val();}).get();--}}
-        {{--<select name="attr_unit[]" class="uk-input uk-input--select js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">--}}
-        {{--    @if(isset($units) && count($units))--}}
-        {{--    @foreach($units as $unit)--}}
-        {{--    <option value="{{ $unit->id }}">{{ $unit->name }}</option>--}}
-        {{--    @endforeach--}}
-        {{--    @endif--}}
-        {{--</select>--}}
+        $("tags").each(function (){
+            $(this).removeClass('attr_input_tag');
+        });
 
     }
 });
 
-
+$(document).on('click', '.tagify__tag__removeBtn', function (){
+    var deleted_id = $(this).closest('tag').attr('id');
+    var deleted_tag = '<input name="deleted_val" value="' + deleted_id + '" hidden>';
+    $('.c-main').append(deleted_tag);
+});
 
 </script>
 @endsection
