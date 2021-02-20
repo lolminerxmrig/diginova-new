@@ -11,7 +11,7 @@ class AttributeValue extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['attribute_id', 'value', 'position'];
+    protected $fillable = ['attribute_id', 'value', 'position', 'unit_id'];
 
 }
 

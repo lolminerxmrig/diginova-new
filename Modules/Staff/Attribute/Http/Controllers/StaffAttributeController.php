@@ -32,8 +32,7 @@ class StaffAttributeController extends Controller
     {
         $attributeGroup = AttributeGroup::where('id', $id)->firstOrFail();
 
-        if (count($attributes = Attribute::where('group_id', $id)->get()))
-        {
+        if (count($attributes = Attribute::where('group_id', $id)->get())) {
             $attributes = Attribute::where('group_id', $id)->get();
         } else {
             $attributes = collect();
@@ -140,8 +139,74 @@ class StaffAttributeController extends Controller
         ]);
     }
 
+    public function unitSelector()
+    {
+        $units = Unit::all();
+        return view::make('staffattribute::layouts.ajax.unit-selector', compact('units'));
+    }
+
+
+//    public function store(Request $request)
+//    {
+//        // update attribute group
+//        if (!is_null($request->group_name)) {
+//            AttributeGroup::where('id', $request->category_id)->update([
+//                'name' => $request->group_name,
+//                'description' => $request->group_desc,
+//            ]);
+//        }
+//
+//        $i = 0;
+//        if (isset($request->attr_names)) {
+//            foreach ($request->attr_names as $attr_name) {
+//
+//                if ($attr_name == null) {
+//                    $i++;
+//                    continue;
+//                }
+//
+//                $created_attr = Attribute::create([
+//                    'name' => $request->attr_names[$i],
+//                    'type' => $request->attr_types[$i],
+//                    'is_required' => $request->attr_requireds[$i],
+//                    'is_filterable' => $request->attr_filterables[$i],
+//                    'is_favorite' => $request->attr_favorites[$i],
+//                    'group_id' => $request->category_id,
+//                ]);
+//
+//                $created_attr->categories()->attach($created_attr);
+//
+//                if (!is_null($request->attr_values[$i]) && ($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4)) {
+//                    foreach (json_decode($request->attr_values[$i]) as $attr_value) {
+//                        $val = [];
+//                        foreach ($attr_value as $attr_val) {
+//                            if (($request->attr_types[$i] == 1 || $request->attr_types[$i] == 2) && is_null($attr_val)) {
+//                                continue;
+//                            }
+//
+//                            $val[] = $attr_val;
+//
+//                            if (isset($val[0]) && !is_null($val[0])) {
+//                                $value = new AttributeValue();
+//                                $value->value = $val[0];
+//                                $value->attribute_id = $created_attr->id;
+//                                Attribute::find($created_attr->id)->values()->save($value);
+//                            }
+//
+//                            $attr_group = AttributeGroup::find($request->category_id);
+//                            $attr_group->attributes()->attach($created_attr->id);
+//                        }
+//                    }
+//                }
+//                $i++;
+//            }
+//        }
+//    }
+
+
     public function store(Request $request)
     {
+
         // update attribute group
         if (!is_null($request->group_name)) {
             AttributeGroup::where('id', $request->category_id)->update([
@@ -150,188 +215,155 @@ class StaffAttributeController extends Controller
             ]);
         }
 
-
-        if (isset($request->db_attr_names))
-        {
-            return $this->update($request);
+        // delete attribute
+        if (isset($request->deleted_rows) && (!is_null($request->deleted_row))) {
+            foreach ($request->deleted_rows as $deleted_row) {
+                Attribute::find($deleted_row)->values()->delete();
+                Attribute::find($deleted_row)->delete();
+            }
         }
 
-        $i = 0;
-        if (isset($request->attr_names)) {
+        // delete value
+        if (isset($request->deleted_values)) {
+            foreach ($request->deleted_values as $deleted_value) {
+                AttributeValue::find($deleted_value)->delete();
+            }
+        }
+
+        // output: array clean position
+        $positions = str_replace('item[]=', '', $request->positions);
+        $positions = str_replace('&', ',', $positions);
+        $positions = explode(',', $positions);
+        $positions = array_map(function ($value) {
+            return intval($value);
+        }, $positions);
+
+
+        if (!is_null($request->attr_names) && count($request->attr_names)) {
+            $i = 0;
             foreach ($request->attr_names as $attr_name) {
-
                 if ($attr_name == null) {
+                    $i++;
+                    continue;
+                } // if is null unit name ignore
+                $type = $request->attr_types[$i];
+
+                if (((($type == 3) || ($type == 4)) && (is_null($request->attr_values[$i])))) {
                     $i++;
                     continue;
                 }
 
-                $created_attr = Attribute::create([
-                    'name' => $request->attr_names[$i],
-                    'types' => $request->attr_types[$i],
-                    'is_required' => $request->attr_requireds[$i],
-                    'is_filterable' => $request->attr_filterables[$i],
-                    'is_favorite' => $request->attr_favorites[$i],
-                    'group_id' => $request->category_id,
-                ]);
+                if ($positions[$i] == 0) {
 
-                $created_attr->categories()->attach($created_attr);
-
-                if (!is_null($request->attr_values[$i]) && ($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4)) {
-                    foreach (json_decode($request->attr_values[$i]) as $attr_value) {
-                        $val = [];
-                        foreach ($attr_value as $attr_val) {
-                            if (($request->attr_types[$i] == 1 || $request->attr_types[$i] == 2) && is_null($attr_val)) {
-                                continue;
-                            }
-
-                            $val[] = $attr_val;
-
-                            if (isset($val[0]) && !is_null($val[0])) {
-                                $value = new AttributeValue();
-                                $value->value = $val[0];
-                                $value->attribute_id = $created_attr->id;
-                                Attribute::find($created_attr->id)->values()->save($value);
-                            }
-
-                            $attr_group = AttributeGroup::find($request->category_id);
-                            $attr_group->attributes()->attach($created_attr->id);
-                        }
-                    }
-                }
-                $i++;
-            }
-        }
-    }
-
-    public function update($request)
-    {
-        $i = 0;
-        if ($request->db_attr_names) {
-            foreach ($request->db_attr_names as $attr_name) {
-                if ($attr_name == null) {
-                    $i++;
-                    continue;
-                }
-
-                if ($attr_name == 'deleted')
-                {
-                    Attribute::find($request->db_attribute_ids[$i])->delete();
-                }
-
-
-                Attribute::find($request->db_attribute_ids[$i])->update([
-                    'name' => $request->db_attr_names[$i],
-                    'types' => $request->db_attr_types[$i],
-                    'is_required' => $request->db_attr_requireds[$i],
-                    'is_filterable' => $request->db_attr_filterables[$i],
-                ]);
-
-
-                if (!is_null($request->db_attr_values[$i])) {
-
-                    foreach (json_decode($request->db_attr_values[$i]) as $attr_value) {
-                        $val = [];
-                        foreach ($attr_value as $attr_val) {
-
-                            if (($request->db_attr_values[$i] == 1 || $request->db_attr_values[$i] == 2) && is_null($attr_val)) {
-                                continue;
-                            }
-
-                            $val[] = $attr_val;
-
-                            if (isset($val[1]) && !is_null($val[1])) {
-                                AttributeValue::find($val[0])->update([
-                                    'value' => $val[1],
-                                    'attribute_id' => $request->db_attribute_ids[$i],
-                                ]);
-                            }
-                        }
-                    }
-                }
-
-                $i++;
-            }
-        }
-    }
-
-    public function unitSelector()
-    {
-        $units = Unit::all();
-        return view::make('staffattribute::layouts.ajax.unit-selector', compact('units'));
-    }
-
-
-    public function updatetemp($request)
-    {
-        $i = 0;
-        if ($request->db_attr_names) {
-            foreach ($request->db_attr_names as $attr_name) {
-                if ($attr_name == null) {
-                    $i++;
-                    continue;
-                }
-
-                if (!is_null($request->attr_values[$i])) {
-
-                    $id = Attribute::insertGetId([
-                        'name' => $request->attr_names[$i],
-                        'types' => $request->attr_types[$i],
-                        'is_required' => $request->attr_requireds[$i],
-                        'is_filterable' => $request->attr_filterables[$i],
-                    ]);
-
-                    Categorizable::create([
-                        'category_id' => $request->category_id,
-                        'categorizable_type' => 'Attribute',
-                        'categorizable_id' => $id,
-                    ]);
-
-
-
-                    foreach (json_decode($request->attr_values[$i]) as $attr_value) {
-                        $val = [];
-                        foreach ($attr_value as $attr_val) {
-
-                            if (($request->attr_types[$i] == 1 || $request->attr_types[$i] == 2) && is_null($attr_val)) {
-                                continue;
-                            }
-
-                            $val[] = $attr_val;
-
-                            if (isset($val[0]) && !is_null($val[0])) {
-                                $value = new AttributeValue();
-                                $value->value = $val[0];
-                                $value->attribute_id = $id;
-                                Attribute::find($id)->values()->save($value);
-                            }
-
-                            $attr_group = AttributeGroup::find($request->category_id);
-                            $attr_group->attributes()->attach($id);
-                        }
-                    }
-                } elseif ($request->attr_types[$i] == 1 || $request->attr_types[$i] == 2) {
+                    // اگه جدید بود
                     $created_attr = Attribute::create([
-                        'name' => $request->attr_names[$i],
-                        'types' => $request->attr_types[$i],
+                        'name' => $attr_name,
+                        'type' => $request->attr_types[$i],
+                        'position' => $i,
                         'is_required' => $request->attr_requireds[$i],
                         'is_filterable' => $request->attr_filterables[$i],
                         'is_favorite' => $request->attr_favorites[$i],
+                        'group_id' => $request->category_id,
                     ]);
 
-                    $attr_group = AttributeGroup::find($request->category_id);
-                    $attr_group->attributes()->attach($created_attr);
 
-                    Categorizable::create([
-                        'category_id' => $request->category_id,
-                        'categorizable_type' => 'Attribute',
-                        'categorizable_id' => $created_attr->id,
+                    if (($request->attr_types[$i] == 1) || ($request->attr_types[$i] == 2)) {
+                        $i++;
+                        continue;
+                    } elseif (($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4)) {
+                        foreach (json_decode($request->attr_values[$i]) as $attr_value) {
+                            $val = [];
+                            $val_position = 0;
+                            foreach ($attr_value as $attr_val) {
+                                $val[] = $attr_val;
+                                if (isset($val[0]) && !is_null($attr_val)) {
+                                    AttributeValue::create([
+                                        'value' => $attr_val,
+                                        'attribute_id' => $created_attr->id,
+                                        'position' => $val_position,
+                                    ]);
+                                    $val_position++;
+                                }
+                            }
+                        }
+                    } elseif ($request->attr_types[$i] == 5) {
+//                            Attribute::find($created_attr->id)::update([
+//                                'unit_id' => '',
+//                            ]);
+                    }
+                    $i++;
+                } else {  // اگه سطر جدید نبود
+                    Log::info('ffff');
+                    Log::info($positions[$i]);
+
+                    if (!Attribute::find($positions[$i])) {
+                        $i++;
+                        continue;
+                    }
+
+                    Attribute::find($positions[$i])->update([
+                        'name' => $attr_name,
+                        'type' => $request->attr_types[$i],
+                        'position' => $i,
+                        'is_required' => $request->attr_requireds[$i],
+                        'is_filterable' => $request->attr_filterables[$i],
+                        'is_favorite' => $request->attr_favorites[$i],
+                        'group_id' => $request->category_id,
                     ]);
+
+                    $attr = Attribute::find($positions[$i]);
+
+                    if ($request->attr_types[$i] == 1 || $request->attr_types[$i] == 2) {
+                        $i++;
+                        continue;
+                    }
+
+                    if ($request->attr_types[$i] == 5) {
+                        $val_position = 0;
+
+                        if (is_string($request->attr_values[$i])) {
+                            $attr_value = (array)$request->attr_values[$i];
+                            if (isset($attr_value['id'])) { // جدید نیست
+                                AttributeValue::find($attr_value['id'])->update([
+                                    'value' => $attr_value['value'],
+                                    'attribute_id' => $attr->id,
+                                    'position' => $val_position,
+                                ]);
+                            } else {  // جدیده
+                                AttributeValue::create([
+                                    'value' => $attr_value[0],
+                                    'attribute_id' => $attr->id,
+                                    'position' => $val_position,
+                                ]);
+                            }
+                            $val_position++;
+                        } else {
+                            Log::info($request->attr_types[$i]);
+                            foreach (json_decode($request->attr_values[$i]) as $attr_value) {
+                                $attr_value = (array)$attr_value;
+                                if (isset($attr_value['id'])) { // جدید نیست
+                                    AttributeValue::find($attr_value['id'])->update([
+                                        'value' => $attr_value['value'],
+                                        'unit_id' => $attr->id,
+                                        'position' => $val_position,
+                                    ]);
+                                } else {  // جدیده
+                                    AttributeValue::create([
+                                        'value' => $attr_value['value'],
+                                        'unit_id' => $attr->id,
+                                        'position' => $val_position,
+                                    ]);
+                                }
+                                $val_position++;
+                            }
+                        }
+
+                    }
+
+                    $i++;
                 }
-
-                $i++;
             }
         }
     }
-
 
 }

@@ -56,6 +56,7 @@
 
         // ایجکس دسته ها
         $(document).on('change', "input[name='category']", function (e) {
+
             $(this).closest("div").nextAll().remove();
             $(this).closest(".c-content-categories__list").find('li').removeClass('is-active');
             $(this).closest("li").addClass("is-active");

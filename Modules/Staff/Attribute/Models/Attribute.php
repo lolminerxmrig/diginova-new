@@ -13,7 +13,7 @@ class Attribute extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'types', 'is_required', 'is_filterable', 'is_favorite', 'group_id'];
+    protected $fillable = ['name', 'type', 'is_required', 'is_filterable', 'is_favorite', 'group_id'];
 
     public function categories()
     {

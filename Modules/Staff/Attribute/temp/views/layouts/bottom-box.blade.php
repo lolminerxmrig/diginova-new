@@ -1,7 +1,7 @@
 <div class="content-section">
 </div>
 <div id="newAttributeRequestModal" class="marketplace-redesign uk-modal c-variant" uk-modal="" style="display: none;">
-    <div class="uk-modal-dialog uk-modal-dialog--confirm uk-modal-body c-content-modal" id="newBrandRequestModalContent">
+    <div class="uk-modal-dialog uk-modal-dialog--confirm uk-modal-body c-content-modal" id="newBrandRequestModalContent" data-gtm-vis-recent-on-screen-9662696_13="389496" data-gtm-vis-first-on-screen-9662696_13="389496" data-gtm-vis-total-visible-time-9662696_13="100" data-gtm-vis-has-fired-9662696_13="1">
         <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
         <form id="newBrandRequestForm" novalidate="novalidate">
             <input type="hidden" name="brand[product_id]" value="">

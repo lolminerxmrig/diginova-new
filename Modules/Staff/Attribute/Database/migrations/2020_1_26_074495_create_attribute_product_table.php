@@ -18,6 +18,7 @@ class CreateAttributeProductTable extends Migration
             $table->unsignedBigInteger('attribute_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('value_id')->nullable();
+            $table->unsignedBigInteger('unit_value_id')->nullable();
             $table->string('value')->nullable();
             $table->timestamps();
 
@@ -28,6 +29,9 @@ class CreateAttributeProductTable extends Migration
               ->onDelete('cascade');
 
             $table->foreign('value_id')->references('id')->on('attribute_values')
+                ->onDelete('cascade');
+
+            $table->foreign('unit_value_id')->references('id')->on('unit_values')
                 ->onDelete('cascade');
         });
     }

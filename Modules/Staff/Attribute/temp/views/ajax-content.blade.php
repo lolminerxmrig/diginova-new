@@ -72,7 +72,7 @@
                                 </div>
                             </td>
                             <td class="c-ui-table__cell">
-                                {{ (count($attrGroup->attributes))? persianNum(count($attrGroup->attributes)) : persianNum(0) }}
+
                             </td>
                             <td class="c-ui-table__cell">
                                 {{ ($attrGroup->description)? $attrGroup->description : '' }}

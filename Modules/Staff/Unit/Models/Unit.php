@@ -15,6 +15,6 @@ class Unit extends Model
 
     public function values()
     {
-        return $this->hasMany(UnitValue::class);
+        return $this->hasMany(UnitValue::class)->select('id', 'value', 'unit_id');
     }
 }

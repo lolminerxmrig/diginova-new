@@ -65,8 +65,19 @@ Route::domain('staff.diginova.test')->prefix('pages')->name('staff.pages.')
     Route::post('upload-update', [StaffPageController::class, 'uploadUpdate'])
         ->name('uploadUpdate');
 
-
-        Route::post('ajaxdelete', [StaffPageController::class, 'deleteImage'])
-        ->name('ajaxdelete');
+    Route::post('ajaxdelete', [StaffPageController::class, 'deleteImage'])
+    ->name('ajaxdelete');
 
 });
+
+
+
+//Route::domain('staff.diginova.test')->name('staff.pages.')
+//    ->middleware('web', 'staff')->group(function () {
+//
+//    Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
+//        ->name('ckfinder_connector');
+//
+//    Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
+//        ->name('ckfinder_browser');
+//});

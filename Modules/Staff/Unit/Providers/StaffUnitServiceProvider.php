@@ -21,9 +21,5 @@ class StaffUnitServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
 
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffunit');
-
-//        Relation::morphMap([
-//            'AttributeGroups' => 'Modules\Staff\Attribute\Models\AttributeGroup',
-//        ]);
     }
 }

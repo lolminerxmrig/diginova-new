@@ -540,10 +540,9 @@ $('#brand_form').on('submit', function(e){
         .create(
             document.querySelector( '#editor' ), {
                 language: 'fa',
-                // cloudServices: {
-                //     tokenUrl: 'https://example.com/cs-token-endpoint',
-                //     uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/'
-                // }
+                ckfinder: {
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                },
             }
         )
         .catch( error => {
@@ -553,7 +552,6 @@ $('#brand_form').on('submit', function(e){
 
 </script>
 
-<script src="https://ckeditor.com/docs/ckeditor5/latest/snippets/features/easy-image/snippet.js"></script>
 
 @endsection
 
