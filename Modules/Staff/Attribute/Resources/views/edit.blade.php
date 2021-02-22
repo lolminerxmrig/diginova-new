@@ -394,7 +394,7 @@ $('#submit-form').on('click', function (e) {
         },
 
         success: function () {
-{{--            window.location.href = "{{ route('staff.attributes.edit') }}";--}}
+            window.location.href = "{{ route('staff.attributes.index') }}";
         },
     });
 
@@ -405,7 +405,6 @@ $(document).on('click', '.remove-btn', function () {
     $(".uk-modal-container").css('display', 'block');
     $('.c-header__nav').hide();
     $(this).closest("tr").addClass('hide-tr');
-    console.log('eee');
 
     $(document).on('click', '.yes', function (){
         if ($(document).find('.hide-tr').hasClass('db-row'))
@@ -655,7 +654,7 @@ $(document).on('change', '.attr_type', function (){
             attr.prop('checked', false);
         }
         $(this).closest('.row').find(".tagify").remove();
-        var disabled_field = '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin c-ui-input--deactive val_field" disabled=""></td>';
+        var disabled_field = '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin attr_input_tag c-ui-input--deactive val_field" disabled=""></td>';
         $(this).closest('.row').find(".values-td").replaceWith(disabled_field);
     }
 

@@ -242,30 +242,31 @@ $('#submit-form').on('click', function (e) {
             database_data: database_data,
         },
         success: function () {
-            $.toast({
-                heading: 'موفق!',
-                text: "نوع کالا با موفقیت ذخیره شد",
-                bgColor: '#3DC3A1',
-                textColor: '#fff',
-            });
+            window.location.href = "{{ route('staff.types.index') }}";
+        {{--$.toast({--}}
+            {{--    heading: 'موفق!',--}}
+            {{--    text: "نوع کالا با موفقیت ذخیره شد",--}}
+            {{--    bgColor: '#3DC3A1',--}}
+            {{--    textColor: '#fff',--}}
+            {{--});--}}
 
-            $(".edit-form-section").hide();
+            {{--$(".edit-form-section").hide();--}}
 
-            $('#category_form').trigger("reset");
+            {{--$('#category_form').trigger("reset");--}}
 
-            $(".type-field-box").each(function () {
-                $(this).remove();
-            });
+            {{--$(".type-field-box").each(function () {--}}
+            {{--    $(this).remove();--}}
+            {{--});--}}
 
-            $.ajax({
-                type: 'post',
-                url: '{{route('staff.types.mainCatLoader')}}',
-                success: function (response) {
-                    $('.c-content-categories__wrapper').replaceWith(response);
-                }
-            });
+            {{--$.ajax({--}}
+            {{--    type: 'post',--}}
+            {{--    url: '{{route('staff.types.mainCatLoader')}}',--}}
+            {{--    success: function (response) {--}}
+            {{--        $('.c-content-categories__wrapper').replaceWith(response);--}}
+            {{--    }--}}
+            {{--});--}}
 
-            $(".category-box").show();
+            {{--$(".category-box").show();--}}
         },
     });
 

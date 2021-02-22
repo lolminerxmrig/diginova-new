@@ -21,12 +21,6 @@ class BrandFactory extends Factory
      */
     public function definition()
     {
-//        return [
-//            'name' => $this->faker->company,
-//            'en_name' => $this->faker->company,
-//            'slug' => $this->faker->company,
-//            'description' => 'تست',
-//            'type'=> rand(0,1),
-//        ];
+        //
     }
 }

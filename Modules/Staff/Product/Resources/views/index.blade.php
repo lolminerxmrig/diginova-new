@@ -144,7 +144,7 @@
                                                         <span class="table-header-searchable uk-text-nowrap "></span>
                                                     </th>
                                                     <th class="c-ui-table__header"><span
-                                                            class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا (DKP) </span>
+                                                            class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا (DNP) </span>
                                                     </th>
                                                     <th class="c-ui-table__header"><span
                                                             class="table-header-searchable uk-text-nowrap"> گروه کالایی </span>
@@ -187,7 +187,7 @@
                                                                     <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                                 </a>
                                                                 <div class="uk-flex">
-{{--                                                                    <span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap" style="margin: auto;">DKP-4335203</span>                                                      </div>--}}
+                                                                    <span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap" style="margin: auto;">DNP-{{ $product->product_code }}</span>                                                      </div>
                                                             </div>
                                                         </td>
 

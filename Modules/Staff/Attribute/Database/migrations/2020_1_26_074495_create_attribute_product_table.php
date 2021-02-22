@@ -15,10 +15,11 @@ class CreateAttributeProductTable extends Migration
     {
         Schema::create('attribute_product', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('attribute_id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('value_id')->nullable();
-            $table->unsignedBigInteger('unit_value_id')->nullable();
+            $table->foreignId('attribute_id');
+            $table->foreignId('product_id');
+            $table->foreignId('value_id')->nullable();
+            $table->foreignId('unit_id')->nullable();
+            $table->foreignId('unit_value_id')->nullable();
             $table->string('value')->nullable();
             $table->timestamps();
 
@@ -29,6 +30,9 @@ class CreateAttributeProductTable extends Migration
               ->onDelete('cascade');
 
             $table->foreign('value_id')->references('id')->on('attribute_values')
+                ->onDelete('cascade');
+
+            $table->foreign('unit_id')->references('id')->on('units')
                 ->onDelete('cascade');
 
             $table->foreign('unit_value_id')->references('id')->on('unit_values')

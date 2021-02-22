@@ -569,34 +569,26 @@
                                                             کالای شما:</label>
                                                         <div class="search-form__autocomplete-container">
                                                             <div class="search-form__autocomplete js-autosuggest-box">
-                                                                <input id="searchKeyword"
-                                                                       class="c-content-input__origin js-prevent-submit"
-                                                                       type="text"
-                                                                       placeholder="نام کالا،  دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل"
+                                                                <input id="searchKeyword" class="c-content-input__origin js-prevent-submit"
+                                                                       type="text" placeholder="نام کالا،  دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل"
                                                                        disabled>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="c-card__body c-card__body--content">
                                                         <div id="categoriesContainer" class="c-content-categories">
-                                                            <div class="c-content-categories__container"
-                                                                 id="categoriesContainerContent">
+                                                            <div class="c-content-categories__container" id="categoriesContainerContent">
                                                                 @foreach($all_parent as $parent)
                                                                     @if($categories->where('parent_id', $parent)->count() > 0)
-                                                                        <div
-                                                                            class="c-content-categories__wrapper js-category-column">
+                                                                        <div class="c-content-categories__wrapper js-category-column">
                                                                             <ul class="c-content-categories__list">
                                                                                 @foreach($categories->where('parent_id',$parent) as $category)
                                                                                     <li class="c-content-categories__item
                                                                                      {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}
                                                                                     {{ in_array($category->id, $all_parent) ? 'is-active' : '' }}">
-                                                                                        <label
-                                                                                            class="c-content-categories__link js-category-link">
-                                                                                            <input type="radio"
-                                                                                                   class="uk-hidden js-category-data"
-                                                                                                   data-id="{{ $category->id }}"
-                                                                                                   value="{{ $category->name }}"
-                                                                                                   data-theme="">
+                                                                                        <label class="c-content-categories__link js-category-link">
+                                                                                            <input type="radio" class="uk-hidden js-category-data"
+                                                                                                   data-id="{{ $category->id }}" value="{{ $category->name }}" data-theme="">
                                                                                             {{ $category->name }}
                                                                                         </label>
                                                                                     </li>
@@ -796,16 +788,11 @@
                                                                         اصالت کالا:
                                                                     </label>
 
-                                                                    <div
-                                                                        class="field-wrapper field-wrapper--justify field-wrapper--background">
-                                                                        <label
-                                                                            class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto"
-                                                                            id="productIsFakeLabel">
-                                                                            <input type="checkbox"
-                                                                                   class="c-ui-checkbox__origin"
-                                                                                   name="product[fake]"
-                                                                                   id="productIsFake" value="1"
-                                                                                   data-brand-other-id="0">
+                                                                    <div class="field-wrapper field-wrapper--justify field-wrapper--background">
+                                                                        <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto"
+                                                                               id="productIsFakeLabel">
+                                                                            <input type="checkbox" class="c-ui-checkbox__origin" name="product[fake]"
+                                                                                   id="productIsFake" value="1" data-brand-other-id="0">
                                                                             <span class="c-ui-checkbox__check"></span>
                                                                             <span class="c-ui-checkbox__label">
                                                                         نشان کالای غیراصل
@@ -825,25 +812,15 @@
                                                                            class="uk-form-label uk-flex uk-flex-between">
                                                                         برند یا نام سازنده کالا:
                                                                         <span class="uk-form-label__required"></span>
-                                                                        <a href="{{ route('staff.brands.create') }}"
-                                                                           target="_blank" class="search-link">ایجاد
-                                                                            برند جدید</a>
+                                                                        <a href="{{ route('staff.brands.create') }}" target="_blank" class="search-link">ایجاد برند جدید</a>
                                                                     </label>
                                                                     <div
                                                                         class="field-wrapper ui-select ui-select__container">
-                                                                        <select name="product[brand_id]"
-                                                                                id="brandsSelect"
-                                                                                class="uk-input uk-input--select js-select-origin"
-                                                                                required>
-                                                                            <option value="">برند کالا را انتخاب کنید
-                                                                            </option>
-                                                                            <option value="0">متفرقه (Miscellaneous)
-                                                                            </option>
+                                                                        <select name="product[brand_id]" id="brandsSelect" class="uk-input uk-input--select js-select-origin" required>
+                                                                            <option value="">برند کالا را انتخاب کنید</option>
+                                                                            <option value="0">متفرقه (Miscellaneous)</option>
                                                                             @foreach($product->category[0]->brands as $brand)
-                                                                                <option
-                                                                                    value="{{ $brand->id }}" {{ ($product->brand_id == $brand->id )? 'selected' : '' }}>{{ $brand->name }}
-                                                                                    ({{ $brand->en_name }})
-                                                                                </option>
+                                                                                <option value="{{ $brand->id }}" {{ ($product->brand_id == $brand->id )? 'selected' : '' }}>{{ $brand->name }} ({{ $brand->en_name }})</option>
                                                                             @endforeach
                                                                         </select>
                                                                         <div class="js-select-options"></div>
@@ -882,21 +859,17 @@
                                                             <div class="c-grid__row c-grid__row--gap-lg">
                                                                 <div
                                                                     class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 ">
-                                                                    <label for=""
-                                                                           class="uk-form-label uk-flex uk-flex-between">
+                                                                    <label for="" class="uk-form-label uk-flex uk-flex-between">
                                                                         نوع کالا:
                                                                         <span class="uk-form-label__required"></span>
                                                                     </label>
 
-                                                                    <div
-                                                                        class="field-wrapper ui-select ui-select__container ui-select__container--product">
-                                                                        <select name="product[types][]"
-                                                                                id="categoryProductTypesSelect"
+                                                                    <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
+                                                                        <select name="product[types][]" id="categoryProductTypesSelect"
                                                                                 class="uk-input uk-input--select js-select-origin js-in-product"
                                                                                 {{ (count($product->category[0]->types) == 0)? 'disabled' : '' }}
                                                                                 multiple="multiple">
-                                                                            <option value="">نوع کالا را انتخاب کنید
-                                                                            </option>
+                                                                            <option value="">نوع کالا را انتخاب کنید</option>
                                                                             @php
                                                                                 if(isset($product->type) && !is_null($product->type)) {
                                                                                   foreach ($product->type as $type)
@@ -908,8 +881,7 @@
 
                                                                             @if(isset($product->type) && !is_null($product->type))
                                                                                 @foreach($product->category[0]->types as $type)
-                                                                                    <option
-                                                                                        value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>
+                                                                                    <option value="{{ $type->id }}" {{ (in_array($type->id, $this_product_types))? 'selected' : '' }}>{{ $type->name }}</option>
                                                                                 @endforeach
                                                                             @endif
 
@@ -976,14 +948,8 @@
                                                                                 id="isIranian"
                                                                                 class="uk-input uk-input--select js-select-origin js-in-product">
                                                                             <option></option>
-                                                                            <option
-                                                                                value="1" {{ ($product->is_iranian == 1 )? 'selected' : '' }}>
-                                                                                ایرانی
-                                                                            </option>
-                                                                            <option
-                                                                                value="0" {{ ($product->is_iranian == 0 )? 'selected' : '' }}>
-                                                                                خارجی
-                                                                            </option>
+                                                                            <option value="1" {{ ($product->is_iranian == 1 )? 'selected' : '' }}>ایرانی</option>
+                                                                            <option value="0" {{ ($product->is_iranian == 0 )? 'selected' : '' }}>خارجی</option>
                                                                         </select>
                                                                         <span class="select-counter"></span>
                                                                         <div class="js-select-options"></div>
@@ -1025,22 +991,16 @@
                                                                             class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6">
                                                                             <label for="" class="uk-form-label">
                                                                                 ابعاد بسته‌بندی (سانتیمتر):
-                                                                                <span
-                                                                                    class="uk-form-label__required"></span>
+                                                                                <span class="uk-form-label__required"></span>
                                                                             </label>
-                                                                            <div
-                                                                                class="c-grid__row c-grid__row--gap-small c-grid__row--nowrap-sm">
-                                                                                <div
-                                                                                    class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial">
+                                                                            <div class="c-grid__row c-grid__row--gap-small c-grid__row--nowrap-sm">
+                                                                                <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial">
                                                                                     <div class="field-wrapper">
                                                                                         <label class="c-content-input">
                                                                                     <span
                                                                                         class="c-content-input__text c-content-input__text--overlay">طول</span>
-                                                                                            <input type="text"
-                                                                                                   placeholder=""
-                                                                                                   class="c-content-input__origin c-content-input__origin--overlay"
-                                                                                                   value="{{ $product->length }}"
-                                                                                                   name="product[package_length]">
+                                                                                            <input type="text" placeholder="" class="c-content-input__origin c-content-input__origin--overlay"
+                                                                                                   value="{{ $product->length }}" name="product[package_length]">
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
@@ -1120,43 +1080,62 @@
                                                                     <label for="" class="uk-form-label">
                                                                         نقاط قوت:
                                                                     </label>
-                                                                    <div class="field-wrapper field-wrapper--textarea">
-                                                                        <div class="c-ui-tag__textarea c-ui-tag__textarea--inline js-textarea-tags">
+                                                                    <div
+                                                                        class="field-wrapper field-wrapper--textarea enabled">
+                                                                        <div
+                                                                            class="c-ui-tag__textarea c-ui-tag__textarea--inline js-textarea-tags">
                                                                             <input type="text"
                                                                                    class="js-textarea-tags-pros c-ui-tag__input c-ui-tag__input--inline">
-                                                                            <button type="button" class="c-ui-tag__submit js-tag-submit-btn">+</button>
+                                                                            <button type="button"
+                                                                                    class="c-ui-tag__submit js-tag-submit-btn">
+                                                                                +
+                                                                            </button>
                                                                         </div>
-                                                                        <div class="c-ui-tag__textarea js-textarea-tags-container"></div>
-                                                                        <select name="product[advantages][]" multiple=""
-                                                                                class="js-textarea-tags-select c-ui-tag__select" required="">
-
+                                                                        <div
+                                                                            class="c-ui-tag__textarea js-textarea-tags-container"></div>
+                                                                        <select name="product[advantages][]" multiple class="js-textarea-tags-select c-ui-tag__select" required>
+{{--                                                                            @if(!is_null($product->advantages))--}}
+{{--                                                                                @foreach($product->advantages as $advantage )--}}
+{{--                                                                                    <option value="{{ $advantage }}" selected="selected">{{ $advantage }}</option>--}}
+{{--                                                                                @endforeach--}}
+{{--                                                                            @endif--}}
                                                                         </select>
                                                                     </div>
                                                                     <div>
-                                                                    </div>
+{{--                                                                    </div>--}}
                                                                 </div>
                                                                 <div
                                                                     class="c-grid__col c-grid__col--gap-attr c-grid__col--flex-initial c-grid__col--sm-6 c-grid__col--xs-gap">
                                                                     <label for="" class="uk-form-label">
                                                                         نقات ضعف:
                                                                     </label>
-                                                                    <div class="field-wrapper field-wrapper--textarea">
-                                                                        <div class="c-ui-tag__textarea c-ui-tag__textarea--inline js-textarea-tags">
+                                                                    <div
+                                                                        class="field-wrapper field-wrapper--textarea enabled">
+                                                                        <div
+                                                                            class="c-ui-tag__textarea c-ui-tag__textarea--inline js-textarea-tags">
                                                                             <input type="text"
                                                                                    class="js-textarea-tags-cons c-ui-tag__input c-ui-tag__input--inline">
-                                                                            <button type="button" class="c-ui-tag__submit js-tag-submit-btn">+</button>
+                                                                            <button type="button"
+                                                                                    class="c-ui-tag__submit js-tag-submit-btn">
+                                                                                +
+                                                                            </button>
                                                                         </div>
-                                                                        <div class="c-ui-tag__textarea js-textarea-tags-container"></div>
-                                                                        <select name="product[disadvantages][]" multiple=""
-                                                                                class="js-textarea-tags-select c-ui-tag__select" required="">
-
+                                                                        <div
+                                                                            class="c-ui-tag__textarea js-textarea-tags-container"></div>
+                                                                        <select name="product[disadvantages][]" multiple
+                                                                                class="js-textarea-tags-select c-ui-tag__select"
+                                                                                required>
+{{--                                                                            @if(!is_null($product->disadvantages))--}}
+{{--                                                                                @foreach($product->disadvantages as $disadvantage )--}}
+{{--                                                                                    <option value="{{ $disadvantage }}" selected="selected">{{ $disadvantage }}</option>--}}
+{{--                                                                                @endforeach--}}
+{{--                                                                            @endif--}}
                                                                         </select>
                                                                     </div>
-                                                                    <div>
+                                                                      <div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </form>
                                                     </div>
                                                     <div class="c-content-accordion__step-controls">
@@ -1216,8 +1195,7 @@
                                                                 class="c-content-modal__header c-content-modal__header--overflow">
                                                                 <h3 class="c-content-modal__title"> درخواست ایجاد برند
                                                                     جدید</h3>
-                                                                <a href="{{ route('staff.brands.create') }}"
-                                                                   class="search-link">ایجاد برند جدید</a>
+                                                                <a href="{{ route('staff.brands.create') }}" class="search-link">ایجاد برند جدید</a>
 
                                                             </div>
                                                             <div
@@ -1512,37 +1490,32 @@
                                                         {{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="attributes"></span>--}}
                                                     </div>
                                                 </h2>
-                                                <div class="c-content-accordion__content" id="stepAttributesContainer" style="min-height: auto;">
+                                                <div class="c-content-accordion__content" id="stepAttributesContainer">
                                                     <div class="c-card__body  c-card__body--content"
                                                          id="stepAttributesContent">
                                                         <form id="stepAttributesForm">
 
                                                             @foreach($attr_groups as $atrr_group)
                                                                 <div class="c-grid__row c-grid__row--gap-lg">
-                                                                    <div
-                                                                        class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
+                                                                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
                                                                         <h3 class="product-form__section-title product-form__section-title--dot">{{ $atrr_group->name }}</h3>
                                                                     </div>
                                                                 </div>
 
 
-                                                                <div
-                                                                    class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr">
+                                                                <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr">
 
                                                                     @foreach($atrr_group->attributes->unique() as $attribute)
 
 
                                                                         @if($attribute->types == 3 )
 
-                                                                            <div
-                                                                                class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
-                                                                                <label
-                                                                                    class="uk-form-label uk-flex uk-flex-between">
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                                                                <label class="uk-form-label uk-flex uk-flex-between">
                                                                                     {{ $attribute->name }}
 
                                                                                     @if($attribute->is_required)
-                                                                                        <span
-                                                                                            class="uk-form-label__required"></span>
+                                                                                        <span class="uk-form-label__required"></span>
                                                                                     @endif
 
                                                                                     {{--            @if(...)--}}
@@ -1552,17 +1525,14 @@
                                                                                 </label>
                                                                                 @foreach($attribute->values as $value)
                                                                                     {{ dd($attribute) }}
-                                                                                    {{--                                                                                    <option value="{{ $value->id }}" {{ $attribute->pivot->value_id == $value->id ? 'selected' :  '' }} >{{ $value->value }}</option>--}}
+{{--                                                                                    <option value="{{ $value->id }}" {{ $attribute->pivot->value_id == $value->id ? 'selected' :  '' }} >{{ $value->value }}</option>--}}
                                                                                 @endforeach
                                                                                 <div class="field-wrapper ui-select ui-select__container">
-                                                                                    <select class="uk-input uk-input--select js-select-origin select2-hidden-accessible {{ ($attribute->is_required)? 'js-required-attribute' : '' }}"
-                                                                                        name="attributes[{{$attribute->id}}]" data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true">
-                                                                                        <option value="">یکی از گزینه ها
-                                                                                            را انتخاب کنید
-                                                                                        </option>
+                                                                                    <select class="uk-input uk-input--select js-select-origin select2-hidden-accessible {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]" data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true">
+                                                                                        <option value="">یکی از گزینه ها را انتخاب کنید</option>
 
                                                                                         @foreach($attribute->values as $value)
-                                                                                            <option alue="{{ $value->id }}" {{ $attribute->pivot->value_id == $value->id ? 'selected' :  '' }} >{{ $value->value }}</option>
+                                                                                            <option value="{{ $value->id }}" {{ $attribute->pivot->value_id == $value->id ? 'selected' :  '' }} >{{ $value->value }}</option>
                                                                                         @endforeach
 
                                                                                     </select>
@@ -1580,8 +1550,7 @@
                                                                                     {{ $attribute->name }}
 
                                                                                     @if($attribute->is_required)
-                                                                                        <span
-                                                                                            class="uk-form-label__required"></span>
+                                                                                        <span class="uk-form-label__required"></span>
                                                                                     @endif
 
                                                                                     {{--            @if(...)--}}
@@ -1595,31 +1564,18 @@
                                                                                     @endforeach
                                                                                 @endforeach
 
-                                                                                <div
-                                                                                    class="field-wrapper ui-select ui-select__container ui-select__container--product">
+                                                                                <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
                                                                                     <select class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product select2-hidden-accessible
-                                                                                         {{ ($attribute->is_required)? 'js-required-attribute' : '' }}"
-                                                                                            multiple=""
-                                                                                            name="attributes[{{$attribute->id}}]"
-                                                                                            data-placeholder="انتخاب کنید"
-                                                                                            tabindex="-1"
-                                                                                            aria-hidden="true"
-                                                                                            aria-describedby="attributes[{{$attribute->id}}]-error"
-                                                                                            aria-invalid="false">
+                                                                                         {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" multiple="" name="attributes[{{$attribute->id}}]"
+                                                                                            data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true" aria-describedby="attributes[{{$attribute->id}}]-error" aria-invalid="false">
                                                                                         @foreach($attribute->values as $value)
-                                                                                            <option
-                                                                                                value="{{ $value->id }}" {{ in_array($value->id, $array) ? 'selected' :  '' }} >{{ $value->value }}</option>
+                                                                                            <option value="{{ $value->id }}" {{ in_array($value->id, $array) ? 'selected' :  '' }} >{{ $value->value }}</option>
                                                                                         @endforeach
                                                                                     </select>
 
-                                                                                    <span class="select-counter"
-                                                                                          style="display: none;">۰</span>
-                                                                                    <div
-                                                                                        class="js-select-options"></div>
-                                                                                    <div id="attributes[33887][]-error"
-                                                                                         class="error error-msg"
-                                                                                         style="display: none;"></div>
-                                                                                </div>
+                                                                                    <span class="select-counter" style="display: none;">۰</span>
+                                                                                    <div class="js-select-options"></div>
+                                                                                    <div id="attributes[33887][]-error" class="error error-msg" style="display: none;"></div></div>
                                                                                 <div>
                                                                                 </div>
                                                                             </div>
@@ -1627,15 +1583,12 @@
 
 
                                                                         @if($attribute->types == 1)
-                                                                            <div
-                                                                                class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
-                                                                                <label
-                                                                                    class="uk-form-label uk-flex uk-flex-between">
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                                                                <label class="uk-form-label uk-flex uk-flex-between">
                                                                                     {{ $attribute->name }}
 
                                                                                     @if($attribute->is_required)
-                                                                                        <span
-                                                                                            class="uk-form-label__required"></span>
+                                                                                        <span class="uk-form-label__required"></span>
                                                                                     @endif
 
                                                                                     {{--            @if(...)--}}
@@ -1645,8 +1598,7 @@
                                                                                 </label>
                                                                                 <div class="field-wrapper">
                                                                                     <input type="text" class="c-content-input__origin js-attribute-old-value
-                                                                                        {{ ($attribute->is_required)? 'js-required-attribute' : '' }}"
-                                                                                           name="attributes[{{$attribute->id}}]"
+                                                                                        {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]"
                                                                                            value="{{ (isset($product->attributes->find($attribute->id)->pivot->value))? $product->attributes->find($attribute->id)->pivot->value : ''  }}">
                                                                                 </div>
                                                                                 <div>
@@ -1656,15 +1608,12 @@
 
 
                                                                         @if($attribute->types == 2)
-                                                                            <div
-                                                                                class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
-                                                                                <label
-                                                                                    class="uk-form-label uk-flex uk-flex-between">
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+                                                                                <label class="uk-form-label uk-flex uk-flex-between">
                                                                                     {{ $attribute->name }}
 
                                                                                     @if($attribute->is_required)
-                                                                                        <span
-                                                                                            class="uk-form-label__required"></span>
+                                                                                        <span class="uk-form-label__required"></span>
                                                                                     @endif
 
                                                                                     {{--            @if(...)--}}
@@ -1672,9 +1621,7 @@
                                                                                     {{--            @endif--}}
                                                                                 </label>
                                                                                 <div class="field-wrapper">
-                                                                                    <textarea
-                                                                                        class="uk-textarea uk-textarea--attr {{ ($attribute->is_required)? 'js-required-attribute' : '' }}"
-                                                                                        name="attributes[{{$attribute->id}}]">{{ (isset($product->attributes->find($attribute->id)->pivot->value))? $product->attributes->find($attribute->id)->pivot->value : ''  }}</textarea>
+                                                                                    <textarea class="uk-textarea uk-textarea--attr {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]">{{ (isset($product->attributes->find($attribute->id)->pivot->value))? $product->attributes->find($attribute->id)->pivot->value : ''  }}</textarea>
                                                                                 </div>
                                                                                 <div>
                                                                                 </div>
@@ -1686,26 +1633,15 @@
                                                                 </div>
                                                             @endforeach
                                                             @if(!$attr_groups->count())
-                                                                <div
-                                                                    class="c-grid__row c-grid__row--gap-lg js-auto-title-message">
+                                                                <div class="c-grid__row c-grid__row--gap-lg js-auto-title-message">
                                                                     <div
                                                                         class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
-                                                                        <div class="c-content-product__auto-title-msg">
-                                                                            برای این گروه کالایی شما هیچ ویژگی ایجاد
-                                                                            نکرده اید پیشنهاد می شود حتما ابتدا برای
-                                                                            دسته بندی ها ویژگی ایجاد کنید سپس اقدام به
-                                                                            ایجاد محصول کنید و یا پس از ذخیره این صفحه و
-                                                                            ایجاد ویژگی برای آن نسبت به ویرایش محصول
-                                                                            اقدام کنید.
-                                                                        </div>
+                                                                        <div class="c-content-product__auto-title-msg">برای این گروه کالایی شما هیچ ویژگی ایجاد نکرده اید پیشنهاد می شود حتما ابتدا برای دسته بندی ها ویژگی ایجاد کنید سپس اقدام به ایجاد محصول کنید و یا پس از ذخیره این صفحه و ایجاد ویژگی برای آن نسبت به ویرایش محصول اقدام کنید.</div>
                                                                     </div>
                                                                 </div>
                                                             @endif
-                                                            <div
-                                                                class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">
-                                                                <button
-                                                                    class="c-ui-btn c-ui-btn--next mr-a goToTitleStep"
-                                                                    id="attributesStepNext">
+                                                            <div class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">
+                                                                <button class="c-ui-btn c-ui-btn--next mr-a goToTitleStep" id="attributesStepNext">
                                                                     ادامه دادن
                                                                 </button>
                                                             </div>
@@ -1795,8 +1731,7 @@
                                                                         <input type="text"
                                                                                placeholder="Syntax for naming product : Brand+Model+Division"
                                                                                class="c-content-input__origin js-suggested-title-en js-edit-mode-title-en"
-                                                                               value="{{ $product->title_en }}"
-                                                                               name="title[title_en]"
+                                                                               value="{{ $product->title_en }}" name="title[title_en]"
                                                                         >
                                                                     </div>
                                                                     <div>
@@ -1966,73 +1901,43 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div id="imagesSection"
-                                                                                 class="c-content-upload__uploads js-uploaded-section">
+                                                                            <div id="imagesSection" class="c-content-upload__uploads js-uploaded-section">
                                                                                 <h3 class="product-form__section-title product-form__section-title--gap">
                                                                                     تصاویر بارگذاری شده
                                                                                 </h3>
-                                                                                <input type="hidden"
-                                                                                       name="images[main_image]"
-                                                                                       id="mainImageContainer"
-                                                                                       value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09"/>
-                                                                                <input type="hidden"
-                                                                                       name="images[order]"
-                                                                                       id="imagesOrderContainer"/>
-                                                                                <ul id="imagesContainer"
-                                                                                    class="c-content-upload__gallery-list js-uploaded-list js-sortable-list">
+                                                                                <input type="hidden" name="images[main_image]" id="mainImageContainer" value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09"/>
+                                                                                <input type="hidden" name="images[order]" id="imagesOrderContainer"/>
+                                                                                <ul id="imagesContainer" class="c-content-upload__gallery-list js-uploaded-list js-sortable-list">
                                                                                     @foreach($product->media as $image)
                                                                                         <li class="c-content-upload__gallery-row js-uploads-row
                                                                                             {{ ($image->pivot->is_main == 1)? 'primary' : '' }}
                                                                                             " id="{{ $image->id }}">
-                                                                                            <input type="hidden"
-                                                                                                   name="images[images][]"
-                                                                                                   value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09"
-                                                                                                   class="js-image-id-input"/>
-                                                                                            <div
-                                                                                                class="c-content-upload__img-container">
-                                                                                                <img
-                                                                                                    src="{{ env('APP_URL') . '/' .$image->path . '/' . $image->name }}"
-                                                                                                    alt=""
-                                                                                                    class="c-content-upload__img">
+                                                                                            <input type="hidden" name="images[images][]" value="Y2pmQWd1QklCRjRWd256NXBneVBLdz09" class="js-image-id-input"/>
+                                                                                            <div class="c-content-upload__img-container">
+                                                                                                <img src="{{ env('APP_URL') . '/' .$image->path . '/' . $image->name }}" alt="" class="c-content-upload__img">
                                                                                             </div>
-                                                                                            <div
-                                                                                                class="c-content-upload__mid-container">
-                                                                                                <div
-                                                                                                    class="c-content-upload__mid-container--top">
-                                                                                                    <div
-                                                                                                        class="c-content-upload__desc">
-                                                                                                        <div
-                                                                                                            class="c-content-upload__desc--top">
-                                                                                                            <div
-                                                                                                                class="right">
-                                                                                                                <div
-                                                                                                                    class="c-content-upload__name"></div>
-                                                                                                                <div
-                                                                                                                    class="c-content-upload__size"></div>
+                                                                                            <div class="c-content-upload__mid-container">
+                                                                                                <div class="c-content-upload__mid-container--top">
+                                                                                                    <div class="c-content-upload__desc">
+                                                                                                        <div class="c-content-upload__desc--top">
+                                                                                                            <div class="right">
+                                                                                                                <div class="c-content-upload__name"></div>
+                                                                                                                <div class="c-content-upload__size"></div>
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="c-content-upload__select"></div>
+                                                                                                            <div class="c-content-upload__select"></div>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <ul class="c-content-upload__list c-content-upload__list--errors js-upload-error-list"></ul>
-                                                                                            <div
-                                                                                                class="c-content-upload__controls">
-                                                                                                <button type="button"
-                                                                                                        class="c-content-upload__btn c-content-upload__btn--flag show js-flag-primary {{ ($image->pivot->is_main == 1)? 'checked' : '' }}"></button>
-                                                                                                <button type="button"
-                                                                                                        class="c-content-upload__btn c-content-upload__btn--remove show js-remove-upload"></button>
-                                                                                                <button type="button"
-                                                                                                        class="c-content-upload__btn c-content-upload__btn--undo js-undo-remove"></button>
-                                                                                                <div
-                                                                                                    class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
-                                                                                                    <span
-                                                                                                        class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
-                                                                                                    <span
-                                                                                                        class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
-                                                                                                    <span
-                                                                                                        class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
+                                                                                            <div class="c-content-upload__controls">
+                                                                                                <button type="button" class="c-content-upload__btn c-content-upload__btn--flag show js-flag-primary {{ ($image->pivot->is_main == 1)? 'checked' : '' }}"></button>
+                                                                                                <button type="button" class="c-content-upload__btn c-content-upload__btn--remove show js-remove-upload"></button>
+                                                                                                <button type="button" class="c-content-upload__btn c-content-upload__btn--undo js-undo-remove"></button>
+                                                                                                <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
+                                                                                                    <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
+                                                                                                    <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
+                                                                                                    <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </li>
@@ -2617,7 +2522,7 @@
         });
 
 
-        $(document).ready(function () {
+        $(document).ready(function (){
             var model = $("input[name='product[model]']").val();
             var full_brand = $("#brandsSelect option:selected").text();
             var brand = full_brand.substring(0, full_brand.indexOf(" ("));
@@ -2630,6 +2535,9 @@
             }
             $(".persian-title").val(product_title);
         });
+
+
+
 
 
         $(document).on('change', ".title-creator", function () {

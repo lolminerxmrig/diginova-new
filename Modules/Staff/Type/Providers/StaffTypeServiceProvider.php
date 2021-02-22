@@ -3,7 +3,6 @@
 namespace Modules\Staff\Type\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 
@@ -22,8 +21,8 @@ class StaffTypeServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'stafftype');
 
-//        Relation::morphMap([
-//            'Type' => 'Modules\Staff\Type\Models\Type',
-//        ]);
+        Relation::morphMap([
+            'Type' => 'Modules\Staff\Type\Models\Type',
+        ]);
     }
 }

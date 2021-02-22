@@ -36,6 +36,7 @@ class Product extends Model
       'height',
       'weight',
       'description',
+      'product_code'
     ];
 
 

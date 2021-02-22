@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('height');
             $table->integer('weight');
             $table->integer('brand_id');
+            $table->integer('product_code');
             $table->json('advantages')->nullable();
             $table->json('disadvantages')->nullable();
             $table->text('description')->nullable();

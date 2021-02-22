@@ -25,7 +25,6 @@ class StaffBrandServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffbrand');
 
         Relation::morphMap([
-            'attributeGroup' => 'Modules\Staff\Attribute\Models\AttributeGroup',
             'Brand' => 'Modules\Staff\Brand\Models\Brand',
         ]);
     }

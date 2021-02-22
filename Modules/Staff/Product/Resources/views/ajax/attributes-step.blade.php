@@ -1,66 +1,3 @@
-{{--<div class="c-grid__row c-grid__row--gap-lg">--}}
-{{--    <div class="c-grid__col c-grid__col--gap-attr c-grid__col--flex-initial">--}}
-{{--        <h3 class="product-form__section-title product-form__section-title--dot">مشخصات فیزیکی کالا</h3>--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--<div class="c-grid__row c-grid__row--gap-lg">--}}
-{{--    <div class="c-grid__col c-grid__col--gap-attr c-grid__col--flex-initial c-grid__col--lg-6">--}}
-{{--        <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">--}}
-{{--            <div class="c-grid__col c-grid__col--gap-attr c-grid__col--flex-initial c-grid__col--lg-8">--}}
-{{--                <label for="" class="uk-form-label">--}}
-{{--                    ابعاد (میلی متر):--}}
-{{--                    <span class="uk-form-label__required"></span>                        --}}
-{{--                </label>--}}
-{{--                <div class="c-grid__row c-grid__row--gap-small c-grid__row--nowrap-sm">--}}
-{{--                    <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">--}}
-{{--                        <div class="field-wrapper">--}}
-{{--                            <label class="c-content-input">--}}
-{{--                                <span class="c-content-input__text c-content-input__text--overlay">طول</span>--}}
-{{--                                <input type="text" placeholder="" class="c-content-input__origin c-content-input__origin--overlay js-required-attribute-length" name="attributes[length]" value="">--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">--}}
-{{--                        <div class="field-wrapper">--}}
-{{--                            <label class="c-content-input">--}}
-{{--                                <span class="c-content-input__text c-content-input__text--overlay">عرض</span>--}}
-{{--                                <input type="text" placeholder="" class="c-content-input__origin c-content-input__origin--overlay js-required-attribute-width" name="attributes[width]" value="">--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">--}}
-{{--                        <div class="field-wrapper">--}}
-{{--                            <label class="c-content-input">--}}
-{{--                                <span class="c-content-input__text c-content-input__text--overlay">ارتفاع</span>--}}
-{{--                                <input type="text" placeholder="" class="c-content-input__origin c-content-input__origin--overlay js-required-attribute-height" name="attributes[height]" value="">--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="c-grid__col c-grid__col--gap-attr c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">--}}
-{{--                <label for="" class="uk-form-label">--}}
-{{--                    وزن (گرم):--}}
-{{--                    <span class="uk-form-label__required"></span>                        --}}
-{{--                </label>--}}
-{{--                <div class="field-wrapper">--}}
-{{--                    <label class="c-content-input">--}}
-{{--                        <span class="c-content-input__text c-content-input__text--overlay">وزن</span>--}}
-{{--                        <input type="text" placeholder="" name="attributes[weight]" class="c-content-input__origin c-content-input__origin--overlay js-required-attribute-weight" value="">--}}
-{{--                    </label>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-
-
-
-
-
-
-
-
 @foreach($attr_groups as $atrr_group)
 <div class="c-grid__row c-grid__row--gap-lg">
     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
@@ -71,21 +8,16 @@
 
 <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr">
 
-  @foreach($atrr_group->attributes->unique() as $attribute)
+  @foreach($atrr_group->attributes->sortBy('position') as $attribute)
 
-    @if($attribute->types == 3 )
+    @if($attribute->type == 3 )
     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
         <label class="uk-form-label uk-flex uk-flex-between">
-            {{ $attribute->name }}
+            {{ $attribute->name }}:
 
             @if($attribute->is_required)
                 <span class="uk-form-label__required"></span>
             @endif
-
-{{--            @if(...)--}}
-{{--                <span class="uk-float-left uk-padding-medium-left">...</span>--}}
-{{--            @endif--}}
-
         </label>
 
         <div class="field-wrapper ui-select ui-select__container">
@@ -103,18 +35,14 @@
     @endif
 
 
-    @if($attribute->types == 4 )
-    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+    @if($attribute->type == 4 )
+    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
         <label class="uk-form-label uk-flex uk-flex-between">
-            {{ $attribute->name }}
+            {{ $attribute->name }}:
 
             @if($attribute->is_required)
                 <span class="uk-form-label__required"></span>
             @endif
-
-{{--            @if(...)--}}
-{{--                <span class="uk-float-left uk-padding-medium-left">...</span>--}}
-{{--            @endif--}}
         </label>
 
         <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
@@ -127,7 +55,8 @@
             </select>
             <span class="select-counter" style="display: none;">۰</span>
             <div class="js-select-options"></div>
-            <div id="attributes[33887][]-error" class="error error-msg" style="display: none;"></div></div>
+            <div id="attributes[33887][]-error" class="error error-msg" style="display: none;"></div>
+        </div>
         <div>
 
         </div>
@@ -135,19 +64,14 @@
     @endif
 
 
-    @if($attribute->types == 1)
+    @if($attribute->type == 1)
     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
         <label class="uk-form-label uk-flex uk-flex-between">
-            {{ $attribute->name }}
+            {{ $attribute->name }}:
 
             @if($attribute->is_required)
                 <span class="uk-form-label__required"></span>
             @endif
-
-{{--            @if(...)--}}
-{{--            <span class="uk-float-left uk-padding-medium-left">...</span>--}}
-{{--            @endif--}}
-
         </label>
         <div class="field-wrapper">
             <input type="text" class="c-content-input__origin js-attribute-old-value
@@ -159,18 +83,59 @@
     @endif
 
 
-    @if($attribute->types == 2)
+    @if($attribute->type == 5)
+        @if($attribute->unit->type == 0)
+            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                <label class="uk-form-label uk-flex uk-flex-between">
+                    {{ $attribute->name }}:
+
+                    @if($attribute->is_required)
+                        <span class="uk-form-label__required"></span>
+                    @endif
+
+                    <span class="uk-float-left uk-padding-medium-left">{{ $attribute->unit->name }}</span>
+                </label>
+                <div class="field-wrapper">
+                    <input type="text" class="c-content-input__origin js-attribute-old-value
+                    {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]" value="">
+                </div>
+            </div>
+        @else
+            <div class="c-grid__col c-grid__col--gap-attr c-grid__col--flex-initial c-grid__col--lg-6">
+                <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
+                    <div class="c-grid__col c-grid__col--gap-attr c-grid__col--flex-initial c-grid__col--lg-12">
+                        <label for="" class="uk-form-label">
+                            {{ $attribute->name }}:
+                            @if($attribute->is_required)
+                                <span class="uk-form-label__required"></span>
+                            @endif
+                        </label>
+                        <div class="c-grid__row c-grid__row--gap-small c-grid__row--nowrap-sm">
+                          @foreach($attribute->unit->values as $value)
+                            <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">
+                                <div class="field-wrapper">
+                                    <label class="c-content-input">
+                                        <span class="c-content-input__text c-content-input__text--overlay">{{ $value->value }}</span>
+                                        <input type="text" placeholder="" class="c-content-input__origin c-content-input__origin--overlay {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}][]" value="">
+                                    </label>
+                                </div>
+                            </div>
+                          @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+    @endif
+
+    @if($attribute->type == 2)
     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
         <label class="uk-form-label uk-flex uk-flex-between">
-            {{ $attribute->name }}
+            {{ $attribute->name }}:
 
             @if($attribute->is_required)
                 <span class="uk-form-label__required"></span>
             @endif
-
-{{--            @if(...)--}}
-{{--                <span class="uk-float-left uk-padding-medium-left">...</span>--}}
-{{--            @endif--}}
         </label>
         <div class="field-wrapper">
             <textarea class="uk-textarea uk-textarea--attr {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]"></textarea>
@@ -184,7 +149,8 @@
 
 </div>
 @endforeach
-@if(! $attr_groups->count())
+
+@if($attr_groups->count() == 0)
 <div class="c-grid__row c-grid__row--gap-lg js-auto-title-message">
   <div
     class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
@@ -192,20 +158,6 @@
   </div>
 </div>
 @endif
-{{--<div class="c-grid__row c-grid__row--gap-lg">--}}
-{{--  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">--}}
-{{--    <label for="" class="uk-form-label">سایر توضیحات:</label>--}}
-{{--    <div class="field-wrapper field-wrapper--textarea">--}}
-{{--                                    <textarea name="product[description]"--}}
-{{--                                              placeholder="برای معرفی بهتر کالا به مشتریان، پیشنهاد می‌‌شود 150 کلمه درباره‌ کالای خود بنویسید."--}}
-{{--                                              class="c-content-input__origin c-content-input__origin--textarea js-textarea-words"--}}
-{{--                                              rows="5" maxlength="2000"></textarea>--}}
-{{--      <span class="textarea__wordcount">--}}
-{{--                        <span class="js-wordcount-target">0</span>/2000--}}
-{{--                    </span>--}}
-{{--    </div>--}}
-{{--  </div>--}}
-{{--</div>--}}
 
 
 <div class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">

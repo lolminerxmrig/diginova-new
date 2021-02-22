@@ -11,13 +11,12 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Response;
 
 use App\Models\Media;
+use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Attribute\Models\AttributeProduct;
-use Modules\Staff\Brand\Models\BrandProduct;
 use Modules\Staff\Category\Models\Categorizable;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
-use Modules\Staff\Attribute\Models\AttributeValue;
 use Modules\Staff\Product\Models\ProductType;
 
 
@@ -38,7 +37,6 @@ class StaffProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-
         $category = $product->category[0];
         do {
             $main_cat=$category->parent;
@@ -105,7 +103,6 @@ class StaffProductController extends Controller
         return view('staffproduct::create', compact('categories'));
     }
 
-
     /**
      * Return the tree structure View for category select section.
      * @return Response
@@ -116,7 +113,6 @@ class StaffProductController extends Controller
         $id = $request->parent_id;
         return View::make("staffproduct::ajax.child-cat-loader", compact('id', 'categories'));
     }
-
 
     /**
      * Return the result for category search section.
@@ -132,7 +128,6 @@ class StaffProductController extends Controller
             return View::make("staffproduct::ajax.main-cat-loader", compact('categories'));
         }
     }
-
 
     /**
      * Return the result for step two in create page.
@@ -213,7 +208,6 @@ class StaffProductController extends Controller
         return response()->json($jayParsedAry, 200);
     }
 
-
     public function stepAttributes(Request $request)
     {
         $category = Category::find($request->category_id);
@@ -222,7 +216,6 @@ class StaffProductController extends Controller
 
         return View::make("staffproduct::ajax.attributes-step", compact('attr_groups'));
     }
-
 
     public function stepUploadImages(Request $request)
     {
@@ -284,20 +277,46 @@ class StaffProductController extends Controller
         return response()->json($data, 200);
     }
 
-
-    public function savePost(Request $request)
+    public function store(Request $request)
     {
-
-        if (isset($request->product['advantages'])) {
-            $advantages = json_encode($request->product['advantages']);
-        } else {
+        Log::info($request['attributes']);
+        if (isset($request->product['advantages']) && !is_null($request->product['advantages']))
+        {
+            foreach ($request->product['advantages'] as $advantage) {
+                if ((strlen($advantage) >= 5) && (strlen($advantage) <= 50)){
+                    $advantages[] = $advantage;
+                }
+                else {
+                    continue;
+                }
+            }
+            $advantages = json_encode($advantages);
+        }
+        else {
             $advantages = null;
         }
 
-        if (isset($request->product['disadvantages'])) {
-            $disadvantages = json_encode($request->product['disadvantages']);
-        } else {
+        if (isset($request->product['disadvantages']) && !is_null($request->product['disadvantages']))
+        {
+            foreach ($request->product['disadvantages'] as $disadvantage) {
+                if ((strlen($disadvantage) >= 5) && (strlen($disadvantage) <= 50)){
+                    $disadvantages[] = $disadvantage;
+                }
+                else {
+                    continue;
+                }
+            }
+            $disadvantages = json_encode($disadvantages);
+        }
+        else {
             $disadvantages = null;
+        }
+
+        // product code
+        if(count(Product::all())){
+            $product_code = Product::max('product_code')+1;
+        } else {
+            $product_code = 1000000;
         }
 
         $product = Product::create([
@@ -315,7 +334,10 @@ class StaffProductController extends Controller
             'height' => $request->product['package_height'],
             'weight' => $request->product['package_weight'],
             'description' => $request->product['description'],
+            'product_code' => $product_code,
         ]);
+
+        $category = Category::find($request->product['category_id']);
 
         Categorizable::create([
            'category_id' => $request->product['category_id'],
@@ -323,29 +345,59 @@ class StaffProductController extends Controller
            'categorizable_id' => $product->id,
         ]);
 
-        $category = Category::find($request->product['category_id']);
-
-
-        if (isset($request->attributes)) {
+        if (isset($request->attributes) && !is_null($request->attributes))
+        {
             foreach ($request['attributes'] as $id => $value) {
                 if(is_array($value)){
-                    foreach($value as $val) {
-                        AttributeProduct::create([
-                            'attribute_id' => $id,
-                            'product_id' => $product->id,
-                            'value_id' => $val,
-                        ]);
+                    Log::info('iss array');
+                    if (Attribute::find($id)->unit)
+                    {
+                        $unit = Attribute::find($id)->unit;
+                        if ($unit->type == 1) {
+                            $val_position = 0;
+                            foreach ($unit->values()->orderBy('position')->get() as $val) {
+                                AttributeProduct::create([
+                                    'attribute_id' => $id,
+                                    'product_id' => $product->id,
+                                    'unit_id' => $unit->id,
+                                    'unit_value_id' => $val->id,
+                                    'value' => $value[$val_position],
+                                ]);
+                                $val_position++;
+                            }
+                        }
+
+                    }
+                    else {
+                        foreach ($value as $val) {
+                            AttributeProduct::create([
+                                'attribute_id' => $id,
+                                'product_id' => $product->id,
+                                'value_id' => $val,
+                            ]);
+                        }
                     }
                 }
                 elseif (!is_array($value) && !is_null($value)) {
-                    AttributeProduct::create([
-                        'attribute_id' => $id,
-                        'product_id' => $product->id,
-                        'value' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
-                    ]);
+                    $unit = Attribute::find($id)->unit;
+                    if (Attribute::find($id)->unit) {
+                        if ($unit->type == 0) {
+                            AttributeProduct::create([
+                                'attribute_id' => $id,
+                                'product_id' => $product->id,
+                                'unit_id' => $unit->id,
+                                'value' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
+                            ]);
+                        }
+                    }
+                    else {
+                        AttributeProduct::create([
+                            'attribute_id' => $id,
+                            'product_id' => $product->id,
+                            'value' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
+                        ]);
+                    }
                 }
-
-
             }
         }
 
@@ -357,7 +409,6 @@ class StaffProductController extends Controller
                 ]);
             }
         }
-
 
         foreach ($request->images['images'] as $key => $value)
         {
@@ -403,10 +454,6 @@ class StaffProductController extends Controller
         }
     }
 
-
-
-
-
     public function ajaxPagination(Request $request)
     {
         if ($request->paginatorNum) {
@@ -428,7 +475,6 @@ class StaffProductController extends Controller
 
     }
 
-
     public function filterByType(Request $request)
     {
         if ($request->search_type == 'all') {
@@ -446,13 +492,11 @@ class StaffProductController extends Controller
         }
     }
 
-
     public function trash()
     {
         $products = Product::onlyTrashed()->paginate(10);
         return view('staffproduct::trash', compact('products'));
     }
-
 
     public function trashPagination()
     {
@@ -460,14 +504,11 @@ class StaffProductController extends Controller
         return View::make('staffproduct::ajax.ajax-trash-content', compact('products'));
     }
 
-
     public function moveToTrash(Request $request)
     {
         Product::find($request->id)->delete();
         return $this->ajaxPagination($request);
-
     }
-
 
     public function restoreFromTrash(Request $request)
     {
@@ -476,7 +517,6 @@ class StaffProductController extends Controller
         return View::make('staffproduct::ajax.ajax-trash-content', compact('products'));
     }
 
-
     public function removeFromTrash(Request $request)
     {
         ProductType::where('product_id', $request->id)->forceDelete();
@@ -484,7 +524,6 @@ class StaffProductController extends Controller
         $products = Product::onlyTrashed()->paginate(10);
         return View::make('staffproduct::ajax.ajax-trash-content', compact('products'));
     }
-
 
     public function productSearch(Request $request, Brand $brands)
     {
@@ -499,7 +538,6 @@ class StaffProductController extends Controller
                 compact('products', 'pageType', 'trashed_products'));
         }
     }
-
 
     public function productCatSearch(Request $request, Product $products)
     {

@@ -266,7 +266,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Attribute/temp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Attribute/Database/seeders" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -274,18 +274,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/Database/seeders" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/temp/views" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Unit/Models" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Unit/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/Resources/views/layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Unit/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Brand/Resources/views/layouts/ajax/image-box" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Category/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Category" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Staff">
@@ -512,7 +512,11 @@
       <workItem from="1613657830690" duration="11436000" />
       <workItem from="1613711367984" duration="15814000" />
       <workItem from="1613748099430" duration="14067000" />
-      <workItem from="1613792470920" duration="25678000" />
+      <workItem from="1613792470920" duration="38114000" />
+      <workItem from="1613884058277" duration="17165000" />
+      <workItem from="1613911172551" duration="10127000" />
+      <workItem from="1613966514420" duration="1177000" />
+      <workItem from="1613973249262" duration="35639000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -535,17 +539,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/Modules/Staff/Type/Resources/views/index.blade.php</url>
-          <line>414</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

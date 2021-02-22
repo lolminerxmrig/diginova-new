@@ -206,16 +206,12 @@ class StaffAttributeController extends Controller
                         'is_favorite' => $request->attr_favorites[$i],
                         'group_id' => $request->category_id,
                     ]);
-                    Log::info($request->attr_values);
 
                     if (($request->attr_types[$i] == 1) || ($request->attr_types[$i] == 2)) {
                         $i++;
                         continue;
                     }
                     elseif (($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4)) {
-                        Log::info($request->attr_values[$i]);
-                        Log::info($request->attr_types[$i]);
-                        Log::info($request->attr_names[$i]);
                         foreach (json_decode($request->attr_values[$i]) as $attr_value) {
                             $attr_value = (array)$attr_value;
                             $val = [];

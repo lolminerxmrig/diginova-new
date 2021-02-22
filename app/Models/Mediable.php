@@ -10,4 +10,6 @@ class Mediable extends Model
     use HasFactory;
 
     protected $fillable = ['media_id', 'mediable_type', 'mediable_id', 'position', 'is_main'];
+
+    public $timestamps = false;
 }

@@ -1650,6 +1650,15 @@ let IndexAction = {
             });
         });
 
+        $('.js-required-attribute').each(function () {
+            $(this).rules('add', {
+                required: true,
+                messages: {
+                    required: 'وارد کردن مقدار اجباری است',
+                }
+            });
+        });
+
         $('.js-required-attribute-width').each(function () {
             $(this).rules('add', {
                 required: true,

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Attribute\Models\ProductAttributes;
+use Modules\Staff\Unit\Models\Unit;
 
 
 class Attribute extends Model
@@ -28,6 +29,11 @@ class Attribute extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
     }
 
 //    public function products()

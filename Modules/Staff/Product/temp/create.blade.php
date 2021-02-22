@@ -531,7 +531,7 @@
 @endsection
 
 @section('content')
-<main class="c-content-layout">
+  <main class="c-content-layout">
     <div class="uk-container uk-container-large">
       <div class="c-grid">
         <div class="c-content-page c-content-page--plain c-grid__row">
@@ -865,7 +865,6 @@
                                     <select name="product[is_iranian]" id="isIranian"
                                             class="uk-input uk-input--select js-select-origin js-in-product select2-hidden-accessible"
                                             tabindex="-1" aria-hidden="true">
-                                      <option value="">انتخاب کنید</option>
                                       <option value="1">ایرانی</option>
                                       <option value="0">خارجی</option>
                                     </select>
@@ -1859,7 +1858,7 @@
 @endsection
 
 @section('script')
-<script>
+  <script>
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -1886,5 +1885,12 @@
 
     });
 
-</script>
+  </script>
+
 @endsection
+
+
+
+
+
+

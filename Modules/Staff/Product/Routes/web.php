@@ -51,8 +51,8 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     Route::post('create/step/images/upload/images', [StaffProductController::class, 'stepUploadImages'])
       ->name('stepUploadImages');
 
-    Route::post('create/product/save', [StaffProductController::class, 'savePost'])
-      ->name('savePost');
+    Route::post('create/product/save', [StaffProductController::class, 'store'])
+      ->name('store');
 
 
 
