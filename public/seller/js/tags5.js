@@ -2303,7 +2303,7 @@ let IndexAction = {
         };
 
         Services.ajaxPOSTRequestJSON(
-            '/content/create/product/step/attributes/save/',
+            '/products/update',
             $that.serializeForm(true, true, true),
             /**
              * @param data

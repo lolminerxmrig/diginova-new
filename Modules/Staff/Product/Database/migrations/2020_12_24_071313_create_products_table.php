@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('title_en')->nullable();
             $table->string('nature');
             $table->string('model');
-            $table->boolean('is_iranian');
+            $table->integer('is_iranian')->nullable();
             $table->boolean('status');
             $table->integer('length');
             $table->integer('width');

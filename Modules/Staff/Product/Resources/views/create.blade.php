@@ -867,7 +867,7 @@
                                             tabindex="-1" aria-hidden="true">
                                       <option value="">انتخاب کنید</option>
                                       <option value="1">ایرانی</option>
-                                      <option value="0">خارجی</option>
+                                      <option value="2">خارجی</option>
                                     </select>
                                     <span class="select-counter"></span>
                                     <div class="js-select-options"></div>

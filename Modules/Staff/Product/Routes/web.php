@@ -18,7 +18,10 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     ->middleware('web', 'staff')->group(function () {
 
     Route::get('/', [StaffProductController::class, 'index'])
-        ->name('index');
+    ->name('index');
+
+    Route::post('update', [StaffProductController::class, 'update'])
+        ->name('update');
 
     Route::get('create', [StaffProductController::class, 'create'])
         ->name('create');
@@ -34,7 +37,6 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
 
     Route::post('search-categories', [StaffProductController::class, 'searchCategories'])
         ->name('searchCategories');
-
 
     Route::post('create/step/product', [StaffProductController::class, 'stepProduct'])
         ->name('stepProduct');
@@ -54,14 +56,8 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     Route::post('create/product/save', [StaffProductController::class, 'store'])
       ->name('store');
 
-
-
-
     Route::get('edit/{id}', [StaffProductController::class, 'edit'])
       ->name('edit');
-
-    Route::post('update', [StaffProductController::class, 'update'])
-      ->name('update');
 
     Route::post('delete', [StaffProductController::class, 'moveToTrash'])
       ->name('moveToTrash');
@@ -81,7 +77,6 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     Route::post('ajax-pagination', [StaffProductController::class, 'ajaxPagination'])
       ->name('ajaxPagination');
 
-
     Route::post('filter', [StaffProductController::class, 'filterByType'])
       ->name('filterByType');
 
@@ -90,4 +85,5 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
 
     Route::post('product-cat-search', [StaffProductController::class, 'productCatSearch'])
         ->name('productCatSearch');
+
   });

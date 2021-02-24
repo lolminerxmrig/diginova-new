@@ -41,10 +41,10 @@ class StaffProductController extends Controller
         do {
             $main_cat=$category->parent;
             $lists[] = $category;
+            $parent_category = $category;
             $category = $category->parent;
         } while (isset($category));
         $lists = array_reverse($lists,true);
-        $aa = [0];
 
         foreach ($lists as $list) {
             $all_parent[] = $list->id;
@@ -54,11 +54,7 @@ class StaffProductController extends Controller
         $categories = Category::all();
         $attr_groups = $product->category[0]->attributeGroups;
 
-
-
-
-
-
+//        dd($attr_groups[1]->attributes);
 
 //        dd(count($product->attributes));
 //        foreach ($product->attributes as $attribut) {
@@ -74,23 +70,7 @@ class StaffProductController extends Controller
 //            }
 //        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        return view('staffproduct::edit', compact('product', 'all_parent', 'categories', 'attr_groups'));
+        return view('staffproduct::edit', compact('product', 'all_parent', 'categories', 'attr_groups', 'parent_category'));
     }
 
     /**
@@ -279,15 +259,11 @@ class StaffProductController extends Controller
 
     public function store(Request $request)
     {
-        Log::info($request['attributes']);
         if (isset($request->product['advantages']) && !is_null($request->product['advantages']))
         {
-            foreach ($request->product['advantages'] as $advantage) {
-                if ((strlen($advantage) >= 5) && (strlen($advantage) <= 50)){
+            foreach ($request->product['advantages'] as $key => $advantage) {
+                if (mb_strlen($advantage) >= 5 && mb_strlen($advantage) <= 50){
                     $advantages[] = $advantage;
-                }
-                else {
-                    continue;
                 }
             }
             $advantages = json_encode($advantages);
@@ -299,11 +275,8 @@ class StaffProductController extends Controller
         if (isset($request->product['disadvantages']) && !is_null($request->product['disadvantages']))
         {
             foreach ($request->product['disadvantages'] as $disadvantage) {
-                if ((strlen($disadvantage) >= 5) && (strlen($disadvantage) <= 50)){
+                if (mb_strlen($disadvantage) >= 5 && mb_strlen($disadvantage) <= 50){
                     $disadvantages[] = $disadvantage;
-                }
-                else {
-                    continue;
                 }
             }
             $disadvantages = json_encode($disadvantages);
@@ -345,12 +318,11 @@ class StaffProductController extends Controller
            'categorizable_id' => $product->id,
         ]);
 
-        if (isset($request->attributes) && !is_null($request->attributes))
+        if (isset($request['attributes']) && !is_null($request['attributes']))
         {
             foreach ($request['attributes'] as $id => $value) {
                 if(is_array($value)){
-                    Log::info('iss array');
-                    if (Attribute::find($id)->unit)
+                    if (Attribute::find($id)->unit()->count())
                     {
                         $unit = Attribute::find($id)->unit;
                         if ($unit->type == 1) {
@@ -380,7 +352,7 @@ class StaffProductController extends Controller
                 }
                 elseif (!is_array($value) && !is_null($value)) {
                     $unit = Attribute::find($id)->unit;
-                    if (Attribute::find($id)->unit) {
+                    if (Attribute::find($id)->unit()->count()) {
                         if ($unit->type == 0) {
                             AttributeProduct::create([
                                 'attribute_id' => $id,
@@ -389,6 +361,14 @@ class StaffProductController extends Controller
                                 'value' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
                             ]);
                         }
+                    }
+                    elseif (Attribute::find($id)->values()->count()) {
+
+                        AttributeProduct::create([
+                            'attribute_id' => $id,
+                            'product_id' => $product->id,
+                            'value_id' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
+                        ]);
                     }
                     else {
                         AttributeProduct::create([
@@ -451,6 +431,173 @@ class StaffProductController extends Controller
                 }
             }
 
+        }
+    }
+
+    public function update(Request $request)
+    {
+        Log::info($request->all());
+
+        if (isset($request->product['advantages']) && !is_null($request->product['advantages']))
+        {
+            foreach ($request->product['advantages'] as $key => $advantage) {
+                if (mb_strlen($advantage) >= 5 && mb_strlen($advantage) <= 50){
+                    $advantages[] = $advantage;
+                }
+            }
+            $advantages = json_encode($advantages);
+        }
+        else {
+            $advantages = null;
+        }
+
+        if (isset($request->product['disadvantages']) && !is_null($request->product['disadvantages']))
+        {
+            foreach ($request->product['disadvantages'] as $disadvantage) {
+                if (mb_strlen($disadvantage) >= 5 && mb_strlen($disadvantage) <= 50){
+                    $disadvantages[] = $disadvantage;
+                }
+            }
+            $disadvantages = json_encode($disadvantages);
+        }
+        else {
+            $disadvantages = null;
+        }
+
+
+        Product::find($request->product['product_id'])->update([
+//            'status' => $request->publish_status,
+            'title_fa' => $request->product['title_fa'],
+            'title_en' => $request->product['title_en'],
+            'nature' => $request->product['product_nature'],
+            'advantages' => $advantages,
+            'disadvantages' => $disadvantages,
+            'brand_id' => $request->product['brand_id'],
+            'model' => $request->product['model'],
+            'is_iranian' => $request->product['is_iranian'],
+            'length' => $request->product['package_length'],
+            'width' => $request->product['package_width'],
+            'height' => $request->product['package_height'],
+            'weight' => $request->product['package_weight'],
+            'description' => $request->product['description'],
+        ]);
+
+        $product = Product::find($request->product['product_id']);
+
+        //        $category = Category::find($request->product['category_id']);
+
+
+        if (isset($request['attributes']) && !is_null($request['attributes']))
+        {
+            foreach ($request['attributes'] as $id => $value) {
+                if(is_array($value)){
+                    if (Attribute::find($id)->unit()->count())
+                    {
+                        $unit = Attribute::find($id)->unit;
+                        if ($unit->type == 1) {
+                            $attribute_products = AttributeProduct::where('product_id', $product->id)->where('attribute_id', $id)
+                                ->select('unit_value_id', 'value')->get();
+                            if (count($attribute_products)){
+                                foreach (json_decode($attribute_products) as $attribute_product) {
+                                    $attribute_product = (array) $attribute_product;
+                                    AttributeProduct::where('product_id', $product->id)
+                                        ->where('attribute_id', $id)
+                                        ->where('unit_value_id', $attribute_product['unit_value_id'])
+                                        ->update([
+                                            'value' => $request['attributes'][$id][$attribute_product['unit_value_id']],
+                                        ]);
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        AttributeProduct::where('product_id', $product->id)->where('attribute_id', $id)->delete();
+                        foreach ($value as $val) {
+                            AttributeProduct::create([
+                                'attribute_id' => $id,
+                                'product_id' => $product->id,
+                                'value_id' => $val,
+                            ]);
+                        }
+                    }
+                }
+                elseif (!is_array($value) && !is_null($value)) {
+                    $unit = Attribute::find($id)->unit;
+                    if (Attribute::find($id)->unit()->count()) {
+                        if ($unit->type == 0) {
+                            AttributeProduct::where('product_id', $product->id)
+                                ->where('attribute_id', $id)
+                                ->update([
+                                'value' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
+                            ]);
+                        }
+                    }
+                    elseif (Attribute::find($id)->values()->count()) {
+                        AttributeProduct::where('product_id', $product->id)
+                            ->where('attribute_id', $id)
+                            ->update([
+                            'value_id' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
+                        ]);
+                    }
+                    else {
+                        AttributeProduct::where('product_id', $product->id)
+                            ->where('attribute_id', $id)
+                            ->update([
+                            'value' => (isset($request['attributes'][$id])) ? $request['attributes'][$id] : '',
+                        ]);
+                    }
+                }
+            }
+        }
+
+        if (isset($request->product['types'])) {
+            ProductType::where('product_id', $product->id)->delete();
+            foreach ($request->product['types'] as $key => $type) {
+                ProductType::create([
+                    'product_id' => $product->id,
+                    'type_id' => $type,
+                ]);
+            }
+        }
+
+        Mediable::where('mediable_type', 'Product')->where('mediable_id', $product->id)->delete();
+
+        foreach ($request->images['images'] as $key => $value)
+        {
+            if($request['images']['main_image'] == $value){
+                $is_main = 1;
+            } else {
+                $is_main = 0;
+            }
+
+            Mediable::create([
+                'media_id' => $value,
+                'mediable_type' => 'Product',
+                'mediable_id' => $product->id,
+                'position' => $key,
+                'is_main' => $is_main,
+            ]);
+
+            Media::where('id', $value)->update([
+                'status' => 1,
+            ]);
+
+            $user_id = auth()->guard('staff')->user()->id;
+            $all_images = $request['images']['order'];
+            $all_images = explode(',', $all_images);
+            $available_images = $request['images']['images'];
+
+            $only_trashed = array_diff($all_images, $available_images);
+
+            foreach ($only_trashed as $item)
+            {
+                $media = Media::find($item);
+                if(($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id))
+                {
+                    unlink(public_path("$media->path/"). $media->name);
+                    $media->delete();
+                }
+            }
         }
     }
 

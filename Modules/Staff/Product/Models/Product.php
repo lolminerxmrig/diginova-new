@@ -39,7 +39,6 @@ class Product extends Model
       'product_code'
     ];
 
-
     protected $casts = [
         'advantages' => 'array',
         'disadvantages' => 'array',
@@ -78,7 +77,7 @@ class Product extends Model
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'attribute_product')
-            ->withPivot('value_id');
+            ->withPivot('value_id', 'value', 'unit_id', 'unit_value_id');
     }
 
 }

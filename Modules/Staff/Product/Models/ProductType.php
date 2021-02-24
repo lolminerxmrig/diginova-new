@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductType extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $fillable = ['product_id', 'type_id'];
 
