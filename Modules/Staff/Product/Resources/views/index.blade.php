@@ -137,29 +137,29 @@
                                                    data-search-url="/ajax/product/search/">
                                                 <thead>
                                                 <tr class="c-ui-table__row" style="text-align: center;">
-                                                    <th class="c-ui-table__header"><span
-                                                            class="table-header-searchable uk-text-nowrap "> ردیف </span>
+                                                    <th class="c-ui-table__header">
+                                                        <span class="table-header-searchable uk-text-nowrap "> ردیف </span>
                                                     </th>
                                                     <th class="c-ui-table__header">
                                                         <span class="table-header-searchable uk-text-nowrap "></span>
                                                     </th>
-                                                    <th class="c-ui-table__header"><span
-                                                            class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا (DNP) </span>
+                                                    <th class="c-ui-table__header">
+                                                        <span class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا (DNP) </span>
                                                     </th>
-                                                    <th class="c-ui-table__header"><span
-                                                            class="table-header-searchable uk-text-nowrap"> گروه کالایی </span>
+                                                    <th class="c-ui-table__header">
+                                                        <span class="table-header-searchable uk-text-nowrap"> گروه کالایی </span>
                                                     </th>
-                                                    <th class="c-ui-table__header"><span
-                                                            class="table-header-searchable uk-text-nowrap ">برند کالا</span>
+                                                    <th class="c-ui-table__header">
+                                                        <span class="table-header-searchable uk-text-nowrap ">برند کالا</span>
                                                     </th>
-                                                    <th class="c-ui-table__header"><span
-                                                            class="table-header-searchable uk-text-nowrap "> انتشار </span>
+                                                    <th class="c-ui-table__header">
+                                                        <span class="table-header-searchable uk-text-nowrap "> انتشار </span>
                                                     </th>
-                                                    <th class="c-ui-table__header"><span
-                                                            class="table-header-searchable uk-text-nowrap "> تعداد تنوع </span>
+                                                    <th class="c-ui-table__header">
+                                                        <span class="table-header-searchable uk-text-nowrap "> تعداد تنوع </span>
                                                     </th>
-                                                    <th class="c-ui-table__header"><span
-                                                            class="table-header-searchable uk-text-nowrap ">عملیات</span>
+                                                    <th class="c-ui-table__header">
+                                                        <span class="table-header-searchable uk-text-nowrap ">عملیات</span>
                                                     </th>
                                                 </tr>
                                                 </thead>

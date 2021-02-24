@@ -55,7 +55,7 @@
             </select>
             <span class="select-counter" style="display: none;">۰</span>
             <div class="js-select-options"></div>
-            <div id="attributes[33887][]-error" class="error error-msg" style="display: none;"></div>
+            <div id="attributes[{{$attribute->id}}][]-error" class="error error-msg" style="display: none;"></div>
         </div>
         <div>
 
