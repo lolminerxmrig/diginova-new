@@ -4,7 +4,14 @@
     <script src="{{ asset('seller/js/tableView.js') }}"></script>
 @endsection
 @section('content')
-    <main class="c-main">
+
+@php
+    $site_url = $settings->where('name', 'site_url')->first()->value;
+    $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
+    $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
+@endphp
+
+<main class="c-main">
         <div class="uk-container uk-container-large">
             <div class="c-grid " data-select2-id="13">
                 <div class="c-grid__row">
@@ -144,7 +151,7 @@
                                                         <span class="table-header-searchable uk-text-nowrap "></span>
                                                     </th>
                                                     <th class="c-ui-table__header">
-                                                        <span class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا (DNP) </span>
+                                                        <span class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا ({{ $product_code_prefix }}) </span>
                                                     </th>
                                                     <th class="c-ui-table__header">
                                                         <span class="table-header-searchable uk-text-nowrap"> گروه کالایی </span>
@@ -180,14 +187,14 @@
 
                                                         <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                             <div class="uk-flex uk-flex-column">
-                                                                <a href="https://www.digikala.com/product/dkp-4335203/" target="_blank">
+                                                                <a href="{{$site_url}}/{{ $product_code_prefix }}-{{ $product->product_code }}/" target="_blank">
                                                           <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial" style="margin:auto;">
                                                                {{ $product->title_fa }}
                                                           </span>
                                                                     <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                                 </a>
                                                                 <div class="uk-flex">
-                                                                    <span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap" style="margin: auto;">DNP-{{ $product->product_code }}</span>                                                      </div>
+                                                                    <span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap" style="margin: auto;">{{ $product_code_prefix }}-{{ $product->product_code }}</span>                                                      </div>
                                                             </div>
                                                         </td>
 
@@ -429,9 +436,10 @@
             </div>
         </div>
     </main>
+
 @endsection
 @section('script')
-    <script>
+<script>
 
         // تبدیل اعداد انگلیسی به فارسی
         function ConvertNumberToPersion() {
@@ -523,35 +531,6 @@
             });
         });
 
-        //حذف محصول
-        {{--$(document).on('click','.delete-btn' , function (){--}}
-        {{--    var product_id = $(this).val();--}}
-
-        {{--    $.ajax({--}}
-        {{--        method: 'post',--}}
-        {{--        url: "{{route('staff.products.moveToTrash')}}",--}}
-        {{--        data: {--}}
-        {{--            'id': product_id,--}}
-        {{--        },--}}
-        {{--        success: function (result){--}}
-        {{--            $('.js-table-container').replaceWith(result);--}}
-        {{--            // $("tr[id="+ id +"]").remove();--}}
-        {{--            //--}}
-        {{--            // var total_count = $("span[name='total']").attr('data-id');--}}
-        {{--            // var new_count = total_count-1;--}}
-        {{--            //--}}
-        {{--            // var total = '<span name="total" data-id=" + new_count + ">' + new_count + ' مورد</span>';--}}
-        {{--            //--}}
-        {{--            // $("span[name='total']").replaceWith(total);--}}
-        {{--            //--}}
-        {{--            // ConvertNumberToPersion();--}}
-
-        {{--        },--}}
-        {{--    });--}}
-        {{--});--}}
-
-
-
         $(document).on('click', '.delete-btn', function () {
             $(this).closest('.c-ui-table__cell').find('.uk-modal-container').addClass('uk-open');
             $(this).closest('.c-ui-table__cell').find('.uk-modal-container').css('display', 'block');
@@ -587,11 +566,6 @@
 
 
         });
-
-
-
-
-
 
         //دکمه سرچ
         $("#search-btn").on('click', function (){

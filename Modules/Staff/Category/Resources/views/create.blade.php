@@ -119,20 +119,14 @@
                                                         </div>
                                                     </div>
 
-                                                    <div
-                                                        class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                         <label class="uk-form-label uk-flex uk-flex-between">
                                                             نامک:
                                                             <span class="uk-form-label__required"></span>
                                                         </label>
                                                         <div class="field-wrapper">
-                                                            <input type="text"
-                                                                   class="c-content-input__origin js-attribute-old-value url-inputs"
-                                                                   name="slug" dir="ltr">
-                                                            <input type="button" id="button-urls" style="width: auto;"
-                                                                   class="c-ui-tag__submit js-tag-submit-btn button-urls"
-                                                                   value="-{{ config('app.url') }}/search/category"
-                                                                   disabled>
+                                                            <input type="text" class="c-content-input__origin js-attribute-old-value url-inputs" name="slug" dir="ltr">
+                                                            <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="-{{ config('app.url') }}/search/category" disabled>
                                                         </div>
                                                         <div>
                                                         </div>

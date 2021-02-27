@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMediaTable extends Migration
+class CreateSeoContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('seo_contents', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('path');
-            $table->string('person_role');
-            $table->integer('person_id');
-            $table->boolean('status')->nullable();
+            $table->string('title')->nullable();
+            $table->string('keyword')->nullable();
+            $table->string('description')->nullable();
+            $table->text('custom_code')->nullable();
+            $table->nullableMorphs('seoable');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('seo_contents');
     }
 }

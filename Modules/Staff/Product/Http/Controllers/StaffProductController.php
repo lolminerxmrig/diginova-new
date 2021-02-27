@@ -3,9 +3,10 @@
 namespace Modules\Staff\Product\Http\Controllers;
 
 use App\Models\Mediable;
+use App\Models\SeoContent;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Response;
@@ -31,7 +32,8 @@ class StaffProductController extends Controller
     {
         $products = Product::orderBy('created_at', 'desc')->paginate(10);
         $trashed_products = Product::distinct('title_fa')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
-        return view('staffproduct::index', compact('products', 'trashed_products'));
+        $settings = Setting::select('name', 'value')->get();
+        return view('staffproduct::index', compact('products', 'trashed_products', 'settings'));
     }
 
     public function edit($id)
@@ -54,23 +56,9 @@ class StaffProductController extends Controller
         $categories = Category::all();
         $attr_groups = $product->category[0]->attributeGroups;
 
-//        dd($attr_groups[1]->attributes);
+        $settings = Setting::select('name', 'value')->get();
 
-//        dd(count($product->attributes));
-//        foreach ($product->attributes as $attribut) {
-//            if (!is_null($attribut->pivot->value))
-//            {
-//
-//            }
-//            else {
-//                $x = $attribut->values;
-//                foreach ($attribut->values as $valu) {
-//                    dd($valu->value);
-//                }
-//            }
-//        }
-
-        return view('staffproduct::edit', compact('product', 'all_parent', 'categories', 'attr_groups', 'parent_category'));
+        return view('staffproduct::edit', compact('product', 'all_parent', 'categories', 'attr_groups', 'parent_category', 'settings'));
     }
 
     /**
@@ -80,7 +68,8 @@ class StaffProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('staffproduct::create', compact('categories'));
+        $settings = Setting::select('name', 'value')->get();
+        return view('staffproduct::create', compact('categories', 'settings'));
     }
 
     /**
@@ -259,6 +248,50 @@ class StaffProductController extends Controller
 
     public function store(Request $request)
     {
+
+        if (!is_null($request->slug)) {
+            $slug = $request->slug;
+        } else {
+            if ($request->product['brand_id'] == 0) {
+                $slug = $request->product['product_nature'] . ' مدل ' . $request->product['model'];
+            } else {
+                $brand = Brand::find($request->product['brand_id'])->name;
+                $slug = $request->product['product_nature'] . ' ' . $brand . ' مدل ' . $request->product['model'];
+                $slug = str_replace(' ', '-', $slug);
+            }
+        }
+
+        if (!is_null($request->seo_title)) {
+            $seo_title = $request->seo_title;
+        } else {
+            $predix = Setting::where('name','product_title_prefix')->first()->value;
+            if ($request->product['brand_id'] == 0) {
+                $seo_title = $predix . ' ' . $request->product['product_nature'] . ' مدل ' . $request->product['model'];
+            } else {
+                $brand = Brand::find($request->product['brand_id'])->name;
+                $seo_title = $predix . ' ' . $request->product['product_nature'] . ' ' . $brand . ' مدل ' . $request->product['model'];
+            }
+        }
+
+        if (!is_null($request->seo_keyword_meta)) {
+            $this_key = '';
+            foreach (json_decode($request->seo_keyword_meta) as $keyword) {
+                $seo_keyword_meta = (array)$keyword;
+                foreach ($keyword as $key) {
+                    $val[] = $key;
+                    if (isset($val[0]) && !is_null($key)) {
+                        $this_key = $this_key . ',' . $key;
+                    }
+                }
+                $seo_keyword_meta = ltrim($this_key, ',');
+
+            }
+        }
+        else {
+            $seo_keyword_meta = '';
+        }
+
+
         if (isset($request->product['advantages']) && !is_null($request->product['advantages']))
         {
             foreach ($request->product['advantages'] as $key => $advantage) {
@@ -308,6 +341,16 @@ class StaffProductController extends Controller
             'weight' => $request->product['package_weight'],
             'description' => $request->product['description'],
             'product_code' => $product_code,
+            'slug' => $slug,
+        ]);
+
+        SeoContent::create([
+            'title' => $seo_title,
+            'keyword' => $seo_keyword_meta,
+            'description' => $request->seo_description_meta,
+            'custom_code' => $request->seo_custom_meta,
+            'seoable_type' => 'Product',
+            'seoable_id' => $product->id,
         ]);
 
         $category = Category::find($request->product['category_id']);
@@ -432,11 +475,38 @@ class StaffProductController extends Controller
             }
 
         }
+
+
+        $json_response = [
+            "status" => true,
+            "data" => [
+                "save" => [
+                    "status" => true,
+                    "id" => $product->product_code,
+                ]
+            ]
+        ];
+
+        return response()->json($json_response, 200);
+
     }
 
     public function update(Request $request)
     {
-        Log::info($request->all());
+
+        if (!is_null($request->slug)) {
+            $slug = $request->product['slug'];
+        } else {
+            $slug = $request->product['suggest_slug'];
+        }
+
+        if (!is_null($request->seo_title)) {
+            $seo_title = $request->product['seo_title'];
+
+        } else {
+            $seo_title = $request->product['suggest_seo_title'];
+        }
+
 
         if (isset($request->product['advantages']) && !is_null($request->product['advantages']))
         {
@@ -480,12 +550,17 @@ class StaffProductController extends Controller
             'height' => $request->product['package_height'],
             'weight' => $request->product['package_weight'],
             'description' => $request->product['description'],
+            'slug' => $slug,
+        ]);
+
+        Product::find($request->product['product_id'])->seo()->update([
+            'title' => $request->product['seo_title'],
+            'keyword' => $request->product['seo_keyword_meta'],
+            'description'=> $request->product['seo_description_meta'],
+            'custom_code' => $request->product['seo_custom_meta'],
         ]);
 
         $product = Product::find($request->product['product_id']);
-
-        //        $category = Category::find($request->product['category_id']);
-
 
         if (isset($request['attributes']) && !is_null($request['attributes']))
         {
@@ -667,8 +742,11 @@ class StaffProductController extends Controller
     public function removeFromTrash(Request $request)
     {
         ProductType::where('product_id', $request->id)->forceDelete();
+        SeoContent::where('seoable_type', 'Product')->where('seoable_id', $request->id)->delete();
+        AttributeProduct::where('product_id', $request->id)->delete();
         Product::withTrashed()->find($request->id)->forceDelete();
         $products = Product::onlyTrashed()->paginate(10);
+
         return View::make('staffproduct::ajax.ajax-trash-content', compact('products'));
     }
 

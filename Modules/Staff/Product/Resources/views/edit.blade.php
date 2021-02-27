@@ -7,6 +7,14 @@
     }
 </style>
 <script src="{{ asset('seller/js/tags5.js') }}"></script>
+
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
+<script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
+<script src="{{ asset('seller/js/tagify.min.js') }}"></script>
+<link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
+<script src="https://unpkg.com/@yaireo/dragsort"></script>
+
 {{--<script>--}}
 {{--    var module_hash_id_storage = 1;--}}
 {{--    var module_no_replace_update_command_status = 1;--}}
@@ -531,6 +539,13 @@
 @endsection
 
 @section('content')
+
+@php
+    $site_name = $settings->where('name', 'site_url')->first()->value;
+    $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
+    $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
+@endphp
+
 <main class="c-content-layout">
     <div class="uk-container uk-container-large">
         <div class="c-grid">
@@ -1156,6 +1171,16 @@
                                                         <div class="c-grid__row c-grid__row--gap-lg js-step-product-title uk-hidden">
                                                             <input type="text" name="product[title_fa]" value="{{ $product->title_fa }}">
                                                             <input type="text" name="product[title_en]" value="{{ $product->title_en }}">
+
+                                                            <input type="text" name="product[suggest_slug]" value="">
+                                                            <input type="text" name="product[slug]" value="{{ $product->slug }}">
+
+                                                            <input type="text" name="product[suggest_seo_title]" value="">
+                                                            <input type="text" name="product[seo_title]" value="{{ $product->seo_title }}">
+
+                                                            <input type="text" name="product[seo_keyword_meta]" value="{{ $product->seo_keyword_meta }}">
+                                                            <input type="text" name="product[seo_description_meta]" value="{{ $product->seo_description_meta }}">
+                                                            <input type="text" name="product[seo_custom_meta]" value="{{ $product->seo_custom_meta }}">
                                                         </div>
                                                     </form>
                                                 </div>
@@ -1740,7 +1765,7 @@
                                                  id="stepTitleAccordion">
                                             <h2 class="c-content-accordion__title">
                                                 <div class="c-content-accordion__title-text js-step-title-header">
-                                                    گام چهارم: عنوان پیشنهادی کالا
+                                                    گام چهارم: عنوان پیشنهادی و سئو
                                                     {{--                                                        <span class="c-content-accordion__guid-line js-guideline-icon" data-guideline-modal="auto_title"></span>--}}
                                                 </div>
                                             </h2>
@@ -1750,6 +1775,11 @@
                                                 <div class="c-card__body  c-card__body--content"
                                                      id="stepTitleContent">
                                                     <form id="titleForm">
+                                                        <div class="c-grid__row c-grid__row--gap-lg" style="margin-bottom: 25px;">
+                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
+                                                                <h3 class="product-form__section-title product-form__section-title--dot">عنوان کالا</h3>
+                                                            </div>
+                                                        </div>
                                                         <ul id="ajaxErrorTitle"
                                                             class="c-content-error c-content-error--list hidden">
                                                         </ul>
@@ -1777,14 +1807,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div
-                                                            class="c-grid__row c-grid__row--gap-lg  js-edite-title-suggested"
-                                                            data-edit-mode="true" data-status="approved">
-                                                            <div
-                                                                class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6">
+                                                        <div class="c-grid__row c-grid__row--gap-lg  js-edite-title-suggested" data-edit-mode="true" data-status="approved">
+                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6">
                                                                 <label for="" class="uk-form-label">
                                                                     نام فارسی کالا:
-                                                                    <span class="uk-form-label__required"></span>
                                                                 </label>
                                                                 <div class="field-wrapper">
                                                                     <input type="text" placeholder="شیوه نامگذاری صحیح کالا : ماهیت کالا + برند + کلمه مدل+مدل کالا" class="c-content-input__origin js-suggested-title-fa js-edit-mode-title-fa"
@@ -1794,25 +1820,111 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div
-                                                                class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap">
-                                                                <label for="" class="uk-form-label">نام انگلیسی
-                                                                    کالا:</label>
+
+                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap">
+                                                                <label for="" class="uk-form-label">
+                                                                    نام انگلیسی کالا:
+                                                                </label>
                                                                 <div class="field-wrapper">
-                                                                    <input type="text"
-                                                                           placeholder="Syntax for naming product : Brand+Model+Division"
-                                                                           class="c-content-input__origin js-suggested-title-en js-edit-mode-title-en"
-                                                                           value="{{ $product->title_en }}"
-                                                                           name="title[title_en]"
-                                                                    >
+                                                                    <input type="text" placeholder="Syntax for naming product : Brand+Model+Division" class="c-content-input__origin js-suggested-title-en js-edit-mode-title-en" value="{{ $product->title_en }}" name="title[title_en]">
                                                                 </div>
                                                                 <div>
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        <!-- seo section  -->
+                                                        <div class="c-grid__row c-grid__row--gap-lg" style="margin-bottom: 25px;">
+                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
+                                                                <h3 class="product-form__section-title product-form__section-title--dot">نامک</h3>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__col c-grid__col--gap-lg">
+                                                            <label class="uk-form-label uk-flex uk-flex-between">نامک پیشنهادی:</label>
+                                                            <div class="field-wrapper" style="margin-bottom: 15px;">
+                                                                <input type="text" name="suggest_slug" class="c-content-input__origin c-ui-input--deactive url-inputs suggest_slug" dir="ltr" disabled>
+                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_name }}/product/{{ $product_code_prefix }}-code">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__col c-grid__col--gap-lg">
+                                                            <label class="uk-form-label uk-flex uk-flex-between">نامک:</label>
+                                                            <div class="field-wrapper" style="margin-bottom: 15px;">
+                                                                <input type="text" name="slug" class="c-content-input__origin url-inputs" dir="ltr" value="{{ $product->slug }}">
+                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_name }}/product/{{ $product_code_prefix }}-code">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__row c-grid__row--gap-lg" style="margin-bottom: 25px;">
+                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
+                                                                <h3 class="product-form__section-title product-form__section-title--dot">عنوان سئو:</h3>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+                                                            <label class="uk-form-label uk-flex uk-flex-between">
+                                                                عنوان سئو پیشنهادی:
+                                                            </label>
+                                                            <div class="field-wrapper">
+                                                                <input name="suggest_seo_title" type="text" class="c-content-input__origin c-ui-input--deactive suggest_seo_title" value="" disabled>
+                                                            </div>
+                                                            <div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+                                                            <label class="uk-form-label uk-flex uk-flex-between">
+                                                                عنوان سئو:
+                                                            </label>
+                                                            <div class="field-wrapper">
+                                                                <input type="text" name="seo_title" class="c-content-input__origin js-suggested-title-fa js-edit-mode-title-fa" value="{{ $product->seo->title }}">
+                                                            </div>
+                                                            <div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__row c-grid__row--gap-lg" style="margin-bottom: 25px;">
+                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
+                                                                <h3 class="product-form__section-title product-form__section-title--dot">سایر</h3>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+                                                            <label class="uk-form-label uk-flex uk-flex-between">
+                                                                کلمات کلیدی
+                                                            </label>
+                                                            <div class="field-wrapper">
+                                                                <input name='seo_keyword_meta' value="{{ $product->seo->keyword }}">
+                                                            </div>
+                                                            <div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+                                                            <label class="uk-form-label uk-flex uk-flex-between">
+                                                                متا توضیحات (meta description):
+                                                            </label>
+
+                                                            <div class="field-wrapper">
+                                                                <textarea class="uk-textarea uk-textarea--attr" name="seo_description_meta">{{ $product->seo->description }}</textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
+                                                            <label class="uk-form-label uk-flex uk-flex-between">
+                                                                متا تگ های سفارشی (Code):
+                                                            </label>
+
+                                                            <div class="field-wrapper">
+                                                                <textarea class="uk-textarea uk-textarea--attr" name="seo_custom_meta" placeholder='<meta name="robots" content="index, follow">'>{{ $product->seo->custom_code }}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end seo section  -->
+
+
                                                     </form>
-                                                    <div
-                                                        class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">
+                                                    <div class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">
                                                         <button class="c-ui-btn c-ui-btn--gray uk-hidden disabled"
                                                                 id="cancelEditSubjectSuggested">
                                                             انصراف
@@ -2526,23 +2638,17 @@
                                     </video>
                                 </figure>
                             </div>
-                            <div
-                                class="o-spacing-m-t-5 c-content-accordion__modal-guidelines js-modal-item uk-hidden"
-                                data-item="items">
-                                <div
-                                    class="o-spacing-p-t-4 o-spacing-p-b-4 c-content-accordion__modal-guidelines-separator c-content-accordion__modal-guidelines-separator-bottom">
+                            <div class="o-spacing-m-t-5 c-content-accordion__modal-guidelines js-modal-item uk-hidden" data-item="items">
+                                <div class="o-spacing-p-t-4 o-spacing-p-b-4 c-content-accordion__modal-guidelines-separator c-content-accordion__modal-guidelines-separator-bottom">
                                     <div class="uk-flex uk-flex-between js-expand-item">
                                         <p class="c-content-accordion__modal-guidelines-item"></p>
                                         <span class="c-content-accordion__modal-guidelines-expand-icon"></span>
                                     </div>
-                                    <div
-                                        class="c-content-accordion__modal-text o-spacing-m-t-3 uk-hidden js-guideline-desc"></div>
+                                    <div class="c-content-accordion__modal-text o-spacing-m-t-3 uk-hidden js-guideline-desc"></div>
                                 </div>
                             </div>
 
-                            <div
-                                class="o-spacing-m-t-6 c-content-accordion__modal-guidelines-separator uk-hidden js-modal-item"
-                                data-item="gallery">
+                            <div class="o-spacing-m-t-6 c-content-accordion__modal-guidelines-separator uk-hidden js-modal-item" data-item="gallery">
 
                                 <div class="swiper-container js-swiper-container" dir="rtl">
                                     <div class="swiper-wrapper o-spacing-m-t-5 uk-flex uk-flex-bottom">
@@ -2584,15 +2690,39 @@
         </div>
     </div>
 </main>
+
+
+<input name="product_title_prefix" value="{{ $product_title_prefix }}" hidden>
+
 @endsection
 
 @section('script')
 <script>
 
-// $(document).ready(function (){
-//     $("#mainImageContainer").val($(".primary").id());
-// });
+// تغییر پدینگ فیلد نامک
+$(function () {
+    var buttonWidth = $('#button-urls').width() + 20;
+    $(".url-inputs").css({
+        'padding-left': buttonWidth
+    });
 
+});
+
+$("input[name=seo_keyword_meta]").each(function () {
+    var input = document.querySelector('input[name=drag-sort]'),
+        tagify = new Tagify(this);
+
+    var dragsort = new DragSort(tagify.DOM.scope, {
+        selector: '.' + tagify.settings.classNames.tag,
+        callbacks: {
+            dragEnd: onDragEnd
+        }
+    })
+
+    function onDragEnd(elm) {
+        tagify.updateValueByDOMTags()
+    }
+});
 
 $(document).on('change', "input[name='title[title_fa]']", function (){
     var field_val = $("input[name='title[title_fa]']").val();
@@ -2603,7 +2733,6 @@ $(document).on('change', "input[name='title[title_en]']", function (){
     var field_val = $("input[name='title[title_en]']").val();
     $("input[name='product[title_en]']").val(field_val);
 });
-
 
 $.ajaxSetup({
     headers: {
@@ -2623,7 +2752,46 @@ $(document).ready(function () {
     } else {
         var product_title = nature + ' ' + brand + ' مدل ' + model;
     }
+
     $(".persian-title").val(product_title);
+
+    var suggest_slug = $(".persian-title").val();
+    suggest_slug = suggest_slug.replace(/ /g,"-");
+    $(".suggest_slug").val(suggest_slug);
+
+    var suggest_seo_title = $("input[name='product_title_prefix']").val() + ' ' + $(".persian-title").val();
+    $(".suggest_seo_title").val(suggest_seo_title);
+});
+
+$(document).ready(function () {
+    // suggest_slug
+    var suggest_slug = $("input[name='suggest_slug']").val();
+    $("input[name='product[suggest_slug]']").val(suggest_slug);
+
+    // slug
+    var slug = $("input[name='slug']").val();
+    $("input[name='product[slug]']").val(slug);
+
+    // suggest_seo_title
+    var suggest_seo_title = $("input[name='suggest_seo_title']").val();
+    $("input[name='product[suggest_seo_title]']").val(suggest_seo_title);
+
+    // seo_title
+    var seo_title = $("input[name='seo_title']").val();
+    $("input[name='product[seo_title]").val(seo_title);
+
+    // seo_keyword_meta
+    var seo_keyword_meta = $("input[name='seo_keyword_meta']").val();
+    $("input[name='product[seo_keyword_meta]").val(seo_keyword_meta);
+
+    // seo_description_meta
+    var seo_description_meta = $("input[name='seo_description_meta']").val();
+    $("input[name='product[seo_description_meta]").val(seo_description_meta);
+
+    // seo_custom_meta
+    var seo_custom_meta = $("input[name='seo_custom_meta']").val();
+    $("input[name='product[seo_custom_meta]").val(seo_custom_meta);
+
 });
 
 $(document).on('change', ".title-creator", function () {

@@ -2,6 +2,7 @@
 
 namespace Modules\Staff\Product\Models;
 
+use App\Models\SeoContent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,7 +37,8 @@ class Product extends Model
       'height',
       'weight',
       'description',
-      'product_code'
+      'product_code',
+      'slug',
     ];
 
     protected $casts = [
@@ -64,7 +66,6 @@ class Product extends Model
         return $this->morphToMany(Category::class, 'categorizable');
     }
 
-
     /**
      * The types that belong to the products.
      */
@@ -73,11 +74,14 @@ class Product extends Model
         return $this->belongsToMany(Type::class, 'product_type');
     }
 
-
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'attribute_product')
             ->withPivot('value_id', 'value', 'unit_id', 'unit_value_id');
     }
 
+    public function seo()
+    {
+        return $this->morphOne(SeoContent::class, 'seoable');
+    }
 }

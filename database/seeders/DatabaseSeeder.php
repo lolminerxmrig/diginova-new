@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\SettingsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call('Modules\Staff\Type\Database\seeders\TypeSeeder');
         $this->call('Modules\Staff\Unit\Database\seeders\UnitSeeder');
         $this->call('Modules\Staff\Attribute\Database\seeders\AttributeSeeder');
+
+        $this->call(SettingsSeeder::class);
     }
 }

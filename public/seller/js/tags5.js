@@ -1513,6 +1513,10 @@ let IndexAction = {
                             stepImagesHeader = 'گام پنجم: بارگذاری تصاویر';
                             $('.js-step-product-title').hide();
                             $('#stepTitleAccordion').show();
+                            var buttonWidth = $('#button-urls').width() + 20;
+                            $(".url-inputs").css({
+                                'padding-left': buttonWidth
+                            });
 
                             $divisionsSelect.removeClass('uk-hidden');
                             $divisionsSelect.find('select').attr('disabled', false);
@@ -1691,7 +1695,7 @@ let IndexAction = {
         let $form = $('#titleForm');
         let rules = {
             'title[title_fa]': {
-                required: true,
+                required: false,
                 minlength: 7,
                 maxlength: 255,
                 not_same_as_old_value: true
@@ -2206,6 +2210,11 @@ let IndexAction = {
           $('#stepAttributesAccordion .c-content-progress').removeClass('active failed').addClass('passed');
           $('#stepTitleAccordion .c-content-progress').removeClass('passed failed').addClass('active');
 
+            var buttonWidth = $('#button-urls').width() + 20;
+            $(".url-inputs").css({
+                'padding-left': buttonWidth
+            });
+
           let $stepContainer = $('#stepTitleAccordion');
           $('#stepProductAccordion').removeClass('uk-open');
           $stepContainer.addClass('uk-open');
@@ -2219,7 +2228,10 @@ let IndexAction = {
           $setSubjectStepNext.removeClass('disabled');
           $('#editSubjectSuggested').removeClass('disabled');
           $that.scrollTo($stepContainer, 55);
-
+            var buttonWidth = $('#button-urls').width() + 20;
+            $(".url-inputs").css({
+                'padding-left': buttonWidth
+            });
             return false;
         });
     },
@@ -2230,11 +2242,19 @@ let IndexAction = {
         let $confirmBtn = $('#setSubjectStepNext');
         let $cancelBtn = $('#cancelEditSubjectSuggested');
         let $editBtn = $('#editSubjectSuggested');
+        var buttonWidth = $('#button-urls').width() + 20;
+        $(".url-inputs").css({
+            'padding-left': buttonWidth
+        });
 
         $editBtn.on('click', function () {
             $('.js-edite-title-suggested').removeClass('uk-hidden disabled').addClass('uk-open');
             $cancelBtn.removeClass('uk-hidden disabled');
             $editBtn.addClass('uk-hidden')
+            var buttonWidth = $('#button-urls').width() + 20;
+            $(".url-inputs").css({
+                'padding-left': buttonWidth
+            });
         });
 
         $cancelBtn.on('click', function () {
@@ -2246,6 +2266,10 @@ let IndexAction = {
 
         $('#stepTitleContainer').on('click', '#setSubjectStepNext', function () {
             $('.js-guide-line').addClass('uk-hidden');
+            var buttonWidth = $('#button-urls').width() + 20;
+            $(".url-inputs").css({
+                'padding-left': buttonWidth
+            });
             $form.submit();
             return false;
         });
@@ -2275,7 +2299,10 @@ let IndexAction = {
           $('#saveButton').removeClass('disabled');
           $('#stepTitleAccordion .c-content-progress').removeClass('active failed').addClass('passed');
           $('#stepImagesAccordion .c-content-progress').removeClass('passed failed').addClass('active');
-
+            var buttonWidth = $('#button-urls').width() + 20;
+            $(".url-inputs").css({
+                'padding-left': buttonWidth
+            });
 
             return false;
         });
@@ -2414,6 +2441,10 @@ let IndexAction = {
             if(isModuleActive('auto_title_suggestion') && ($('.js-edit-mode-title-fa').val() !== '')) {
                 if (!$('#titleForm').valid()) {
                     $that.scrollTo($('#stepTitleAccordion'), 55);
+                    var buttonWidth = $('#button-urls').width() + 20;
+                    $(".url-inputs").css({
+                        'padding-left': buttonWidth
+                    });
                     return false;
                 }
             } else if (isModuleActive('auto_title_suggestion') && ($('.js-edit-mode-title-fa').val() === '') && (!$('.js-edite-title-suggested').data('edit-mode'))) {
@@ -2490,6 +2521,10 @@ let IndexAction = {
                 if (!$('.js-edite-title-suggested').parents('section#stepTitleAccordion').hasClass('disabled')) {
                     $that.initGetAutoTitleEditMode();
                     $that.scrollTo($('#stepTitleAccordion'), 55);
+                    var buttonWidth = $('#button-urls').width() + 20;
+                    $(".url-inputs").css({
+                        'padding-left': buttonWidth
+                    });
                     return false;
                 }
             }
@@ -2536,11 +2571,17 @@ let IndexAction = {
                                 $that.showSuccessModal();
                                 return false;
                             } else {
-                                if (data.save.redirectTo !== 'undefined') {
-                                    window.location.href = data.save.redirectTo;
-                                } else {
-                                    window.location.reload();
-                                }
+                                // if (data.save.redirectTo !== 'undefined') {
+                                //     window.location.href = data.save.redirectTo;
+                                // } else {
+                                //     window.location.reload();
+                                // }
+                                // return false;
+
+                                $that.data.saved = true;
+                                let $dkpcText = $('#afterSaveProductId');
+                                $dkpcText.text(data.save.id);
+                                $that.showSuccessModal();
                                 return false;
                             }
                         } else {
@@ -3980,4 +4021,8 @@ let IndexAction = {
 
 $(function () {
     IndexAction.init();
+    var buttonWidth = $('#button-urls').width() + 20;
+    $(".url-inputs").css({
+        'padding-left': buttonWidth
+    });
 });

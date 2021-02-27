@@ -56,7 +56,7 @@
                                     <span class="table-header-searchable uk-text-nowrap "></span>
                                 </th>
                                 <th class="c-ui-table__header"><span
-                                        class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا (DKP) </span>
+                                        class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا ({{ $product_code_prefix }}) </span>
                                 </th>
                                 <th class="c-ui-table__header"><span
                                         class="table-header-searchable uk-text-nowrap"> گروه کالایی </span>
@@ -92,14 +92,14 @@
 
                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                         <div class="uk-flex uk-flex-column">
-                                            <a href="https://www.digikala.com/product/dkp-4335203/" target="_blank">
+                                            <a href="{{$site_url}}/{{ $product_code_prefix }}-{{ $product->product_code }}/" target="_blank">
                                                           <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial" style="margin:auto;">
                                                                {{ $product->title_fa }}
                                                           </span>
                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                             </a>
                                             <div class="uk-flex">
-                                                {{--                                                                    <span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap" style="margin: auto;">DKP-4335203</span>                                                      </div>--}}
+                                                <span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap" style="margin: auto;">{{ $product_code_prefix }}-{{ $product->product_code }}</span>                                                      </div>
                                             </div>
                                     </td>
 

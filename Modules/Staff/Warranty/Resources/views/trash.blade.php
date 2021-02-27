@@ -10,15 +10,13 @@
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت محصولاتی حذف شده<span>
-                                از این صفحه می توانید محصولاتی حذف شده را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت برند های حذف شده<span>
+                                از این صفحه می توانید برند های حذف شده را مدیریت کنید</span>
                         </h1>
                     </div>
                 </div>
             </div>
-            @if ($products->count())
-
-
+            @if ($brands->count())
 {{--                <div class="c-grid__row">--}}
 {{--                    <div class="c-grid__col">--}}
 {{--                        <div class="c-card" id="consignment-step-1">--}}
@@ -38,8 +36,8 @@
 {{--                                                    class="c-ui-select c-ui-select--common c-ui-select--small js-form-clearable select2-hidden-accessible"--}}
 {{--                                                    name="searchGroup" data-select2-id="1" tabindex="-1"--}}
 {{--                                                    aria-hidden="true" id="searchGroup">--}}
-{{--                                                    <option value="product_name" selected>نام محصول</option>--}}
-{{--                                                    <option value="product_category">گروه کالا</option>--}}
+{{--                                                    <option value="brand_name" selected>نام برند</option>--}}
+{{--                                                    <option value="brand_category">گروه کالا</option>--}}
 {{--                                                </select>--}}
 {{--                                            </div>--}}
 {{--                                            <div--}}
@@ -70,12 +68,12 @@
 {{--                                    <div--}}
 {{--                                        class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">--}}
 {{--                                        <div class="c-join__filter">--}}
-{{--                                            <p class="c-ui-form__label">نمایش محصول:</p>--}}
+{{--                                            <p class="c-ui-form__label">نمایش برند:</p>--}}
 {{--                                            <div class="c-join__filter-container">--}}
 {{--                                                <label class="c-join__radio-label">--}}
 {{--                                                    <input class="c-join__radio search_type" type="radio"--}}
 {{--                                                           name="search_type" value="all" checked>--}}
-{{--                                                    <span class="c-join__radio-option">همه محصولها</span>--}}
+{{--                                                    <span class="c-join__radio-option">همه برندها</span>--}}
 {{--                                                </label>--}}
 {{--                                                <label class="c-join__radio-label">--}}
 {{--                                                    <input class="c-join__radio search_type" type="radio" name="search_type" value="only_special">--}}
@@ -97,14 +95,14 @@
                                 <div class="c-card__wrapper">
                                     <div class="c-card__header c-card__header--table">
                                         <div class="c-grid__col c-grid__col--lg-4">
-                                            <a href="{{ route('staff.products.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت محصولات</a>
+                                            <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برند ها</a>
                                         </div>
 
-{{--                                        {{ $products->links('staffproduct::layouts.pagination.pagination') }}--}}
+{{--                                        {{ $brands->links('staffbrand::layouts.pagination.pagination') }}--}}
 
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
                                             </div>
 {{--                                            <div class="c-ui-paginator__select" data-select2-id="15">--}}
 {{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
@@ -130,25 +128,21 @@
                                         <table class="c-ui-table js-search-table js-table-fixed-header c-join__table"
                                                data-search-url="/ajax/product/search/">
                                             <thead>
-                                            <tr class="c-ui-table__row" style="text-align: center;">
+                                            <tr class="c-ui-table__row">
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap "> ردیف </span>
                                                 </th>
-                                                <th class="c-ui-table__header">
-                                                    <span class="table-header-searchable uk-text-nowrap "></span>
+                                                <th class="c-ui-table__header"><span
+                                                        class="table-header-searchable uk-text-nowrap ">لوگو برند</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap"> عنوان و کد کالا ({{ $product_code_prefix }}) </span>
+                                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام برند (Brand)</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap"> گروه کالایی </span>
+                                                        class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap ">برند کالا</span>
-                                                </th>
-
-                                                <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap "> تعداد تنوع </span>
+                                                        class="table-header-searchable uk-text-nowrap ">تعداد کالا</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap ">عملیات</span>
@@ -156,109 +150,68 @@
                                             </tr>
                                             </thead>
                                             <tbody id="tbody">
-                                            @foreach($products as $key => $product)
-                                                <tr name="row" id="{{$product->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
+                                            @foreach($brands as $key => $brand)
+                                                <tr name="row" id="{{$brand->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                     <td class="c-ui-table__cell">
-                                                        <span class="c-wallet__body-card-row-item"> {{ persianNum($products->firstItem() + $key) }} </span>
+                                                        <span class="c-wallet__body-card-row-item"> {{ persianNum($brands->firstItem() + $key) }} </span>
                                                     </td>
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                        @foreach($product->media as $image)
-                                                            @if($product->media && ($image->pivot->is_main == 1))
-                                                                <img src="{{ env('APP_URL') . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
-                                                            @endif
-                                                        @endforeach
-                                                    </td>
+                                                        @if(count($brand->media))
+                                                            <img src="{{ env('APP_URL') . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}" width="65" height="65">
+                                                        @endif                                                    </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#" target="_blank">
-                                                          <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial" style="margin:auto;">
-                                                               {{ $product->title_fa }}
-                                                          </span>
+                                                                <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                                                                {{ $brand->name }}
+                                                                    @if($brand->type == 1)
+                                                                        <span style="color: red; font-size: 11px;"> (ویژه) </span>
+                                                                    @endif
+                                                                </span>
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                             </a>
-                                                            <div class="uk-flex">
-                                                                <span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap" style="margin: auto;">{{ $product_code_prefix }}-{{ $product->product_code }}</span>                                                      </div>
-                                                            </div>
+                                                        </div>
                                                     </td>
-                                                    <td class="c-ui-table__cell">
-                                                        <a href="#">
-                                                        <span class="c-wallet__body-card-row-item c-ui--initial">
-                                                           {{ ($product->category()->first())? $product->category()->first()->name : '' }}
-                                                        </span>
-                                                        </a>
-                                                    </td>
-
-
                                                     <td class="c-ui-table__cell">
                                                         <a href="#">
                                                             <div class="uk-flex uk-flex-column">
-                                                          <span class="c- -card-row-item" style="margin: auto;">
-                                                              @if(!is_null($product->brand))
-                                                                  {{ $product->brand->name }}
-                                                              @else
-                                                                  {{ 'متفرقه' }}
-                                                              @endif
-                                                          </span>
-                                                                <span class="c-wallet__body-card-row-item" style="margin: auto;">
-                                                            @if(!is_null($product->brand))
-                                                                        {{ $product->brand->en_name }}
-                                                                    @else
-                                                                        {{ 'Miscellaneous' }}
-                                                                    @endif
-                                                          </span>
+                                                                  <span class="c- -card-row-item" style="line-height: 23px;">
+                                                                      @foreach($brand->categories as $category)
+                                                                          {{ $category->name }}&nbsp;<br>
+                                                                      @endforeach
+                                                                  </span>
                                                             </div>
                                                         </a>
                                                     </td>
 
-                                                    <td class="c-ui-table__cell">
-                                                        <span class="c-wallet__body-card-row-item"> ۱ </span>
+                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> ۱ </span>
                                                     </td>
-
+                                                    <div class="modal-section">
                                                     <td class="c-ui-table__cell">
                                                         <div class="c-promo__actions">
-
                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn"
-                                                                value="{{ $product->id }}">بازگردانی</button>
+                                                                value="{{ $brand->id }}">بازگردانی</button>
 
                                                             <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
                                                               c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                               value="{{ $product->id }}">حذف کامل</button>
+                                                               value="{{ $brand->id }}">حذف کامل</button>
                                                         </div>
-
-                                                        <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification" style="display: none;">
-                                                            <div class="uk-modal-dialog uk-modal-dialog--flex">
-                                                                <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
-
-                                                                <div class="uk-modal-body" data-gtm-vis-recent-on-screen-9662696_13="79003" data-gtm-vis-first-on-screen-9662696_13="79004"
-                                                                     data-gtm-vis-total-visible-time-9662696_13="100" data-gtm-vis-has-fired-9662696_13="1">
-                                                                    <div class="c-modal-notification">
-                                                                        <div class="c-modal-notification__content c-modal-notification__content--limited">
-                                                                            <h2 class="c-modal-notification__header">هشدار</h2>
-
-                                                                            <p class="c-modal-notification__text">با حذف محصول ، تمامی تنوع های آن نیز حذف خواهد شد. آیا از حذف آن اطمینان دارید؟</p>
-                                                                            <div class="c-modal-notification__actions">
-                                                                                <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
-                                                                                <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
                                                     </td>
+                                                    </div>
                                                 </tr>
                                             @endforeach
+                                            @include('staffbrand::layouts.modal')
+
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="c-card__footer" style="width: auto;">
-                                        <a href="{{ route('staff.products.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت محصولات</a>
+                                        <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برند ها</a>
 
-                                        {{ $products->links('staffproduct::layouts.pagination.pagination') }}
+                                        {{ $brands->links('staffbrand::layouts.pagination.pagination') }}
                                         <div class="c-ui-paginator js-paginator" data-select2-id="25">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
                                             </div>
 {{--                                            <div class="c-ui-paginator__select" data-select2-id="24">--}}
 {{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
@@ -299,20 +252,20 @@
                                 <div class="c-grid__col">
                                   --}}
                                 {{--
-                                <h2 class="c-card__title c-join__tab-card-title">مدیریت محصولها</h2>
+                                <h2 class="c-card__title c-join__tab-card-title">مدیریت برندها</h2>
                                 --}}
                                 {{--
                                 <ul class="uk-tab c-promo__tabs">
                                   --}}
                                 {{--
                                 <li class="c-promo__tab-item c-promo__tab-item--promotions uk-active" data-tab="1">--}}
-                                {{--                                            <a href="/promotion-management/">همه محصولها</a>--}}
+                                {{--                                            <a href="/promotion-management/">همه برندها</a>--}}
                                 {{--
                               </li>
                               --}}
                                 {{--
                                 <li class="c-promo__tab-item c-promo__tab-item--products" data-tab="2">--}}
-                                {{--                                            <a href="/promotion-management/products/">محصولهای حذف شده</a>--}}
+                                {{--                                            <a href="/promotion-management/products/">برندهای حذف شده</a>--}}
                                 {{--
                               </li>
                               --}}
@@ -334,10 +287,10 @@
                                                         نتیجه ای برای نمایش وجود ندارد!
                                                     </p>
                                                     <p class="c-join__promotion-info-statement">
-                                                        برای مدیریت محصولات روی دکمه زیر کلیک کنید.
+                                                        برای مدیریت برند ها روی دکمه زیر کلیک کنید.
                                                     </p>
                                                     <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
-                                                       href="{{ route('staff.products.index') }}">مدیریت محصولها</a>
+                                                       href="{{ route('staff.brands.index') }}">مدیریت برندها</a>
                                             </div>
                                         </div>
                                     </div>
@@ -353,14 +306,6 @@
 @endsection
 @section('script')
 <script>
-// توکن csrf
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
-
 // تبدیل اعداد انگلیسی به فارسی
 function ConvertNumberToPersion() {
     persian = { 0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹' };
@@ -379,13 +324,20 @@ function ConvertNumberToPersion() {
     traverse(document.body);
 }
 
+// توکن csrf
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 // پجینیشن
 $(document).on('click', '.c-ui-paginator__control a', function(e){
     e.preventDefault();
 
     var page = $(this).attr('href').split('page=')[1];
 
-    var url = "{{route('staff.products.trashPagination')}}?page="+page;
+    var url = "{{route('staff.brands.trashPagination')}}?page="+page;
 
         var data = {
             page: page,
@@ -403,55 +355,15 @@ $(document).on('click', '.c-ui-paginator__control a', function(e){
 });
 
 
-$(document).on('click', '.delete-btn', function () {
-    $(this).closest('.c-ui-table__cell').find('.uk-modal-container').addClass('uk-open');
-    $(this).closest('.c-ui-table__cell').find('.uk-modal-container').css('display', 'block');
-    $('.c-header__nav').hide();
-
-    $(document).on('click', '.yes', function (){
-
-        $('.c-header__nav').show();
-
-
-        var product_id = $(this).closest('.c-ui-table__cell').find('.delete-btn').val();
-
-        $.ajax({
-            method: 'post',
-            url: "{{route('staff.products.removeFromTrash')}}",
-            data: {
-                'id': product_id,
-            },
-            success: function (result){
-                $('.js-table-container').replaceWith(result);
-            },
-        });
-
-    });
-
-    $(document).on('click', '.uk-modal-close-default', function (){
-        $('.c-header__nav').show();
-    });
-
-    $(document).on('click', '.no', function (){
-        $('.c-header__nav').show();
-    });
-
-});
-
-
-
-
-
-
-//حذف محصول
+//حذف برند
 {{--$(document).on('click','.delete-btn' , function (){--}}
-{{--    var product_id = $(this).val();--}}
+{{--    var brand_id = $(this).val();--}}
 
 {{--    $.ajax({--}}
 {{--        method: 'post',--}}
-{{--        url: "{{route('staff.products.removeFromTrash')}}",--}}
+{{--        url: "{{route('staff.brands.removeFromTrash')}}",--}}
 {{--        data: {--}}
-{{--            'id': product_id,--}}
+{{--            'id': brand_id,--}}
 {{--        },--}}
 {{--        success: function (response){--}}
 {{--            $('.js-table-container').replaceWith(response);--}}
@@ -461,15 +373,66 @@ $(document).on('click', '.delete-btn', function () {
 
 
 
+$(document).on('click', '.delete-btn', function () {
+
+    $('.c-header__nav').hide();
+    $(".uk-modal-container").addClass('uk-open');
+    $(".uk-modal-container").css('display', 'block');
+
+
+    $(document).on('click', '.uk-close', function () {
+        $('.c-header__nav').show();
+        brand_id = null;
+    });
+
+    $(document).on('click', '.no', function () {
+        $('.c-header__nav').show();
+        brand_id = null;
+    });
+
+    var brand_id = $(this).val();
+
+    $(document).on('click', '.yes', function () {
+
+        $('.c-header__nav').show();
+
+        if (brand_id !== null)
+        {
+            $.ajax({
+                method: 'post',
+                url: "{{route('staff.brands.removeFromTrash')}}",
+                data: {
+                    'id': brand_id,
+                },
+                success: function (response){
+                    $('.js-table-container').replaceWith(response);
+
+                    $.toast({
+                        heading: 'موفق!',
+                        text: "برند با موفقیت حذف شد",
+                        bgColor: '#3DC3A1',
+                        textColor: '#fff',
+                    });
+                },
+            });
+
+        }
+
+    });
+});
+
+
+
+
 // بازگردانی
 $(document).on('click','.restore-btn' , function (){
-    var product_id = $(this).val();
+    var brand_id = $(this).val();
 
     $.ajax({
         method: 'post',
-        url: "{{route('staff.products.restoreFromTrash')}}",
+        url: "{{route('staff.brands.restoreFromTrash')}}",
         data: {
-            'id': product_id,
+            'id': brand_id,
         },
         success: function (response){
             $('.js-table-container').replaceWith(response);
@@ -479,11 +442,11 @@ $(document).on('click','.restore-btn' , function (){
 
 
     {{--<button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn"--}}
-    {{--value="{{ $product->id }}">بازگردانی</button>--}}
+    {{--value="{{ $brand->id }}">بازگردانی</button>--}}
 
     {{--    <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete--}}
     {{--c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"--}}
-    {{--value="{{ $product->id }}">حذف کامل</button>--}}
+    {{--value="{{ $brand->id }}">حذف کامل</button>--}}
     {{--</script>--}}
 
 </script>

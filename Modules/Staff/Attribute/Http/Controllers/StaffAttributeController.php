@@ -213,9 +213,6 @@ class StaffAttributeController extends Controller
                         continue;
                     }
                     elseif (($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4)) {
-                        Log::info($request->attr_values[$i]);
-                        Log::info($request->attr_types[$i]);
-                        Log::info($request->attr_names[$i]);
                         foreach (json_decode($request->attr_values[$i]) as $attr_value) {
                             $attr_value = (array)$attr_value;
                             $val = [];
