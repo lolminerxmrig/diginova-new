@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Staff\Brand\Http\Requests;
+namespace Modules\Staff\Warranty\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StaffBrandImageRequest extends FormRequest
+class StaffWarrantyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class StaffBrandImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|image|mimes:jpg|max:2048|dimensions:min_width=115,min_height=115,ratio=1/1',
-//            'old_img' => 'required',
+            'name' => 'required',
+            'time' => 'required',
+            'has_insurance' => 'nullable',
+            'categories' => 'nullable',
         ];
     }
 

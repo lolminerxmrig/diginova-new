@@ -11,12 +11,12 @@
                 <div class="c-grid__col">
                     <input type="hidden" value="" name="has-warehouses">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت برندها<span>از این صفحه می توانید برند ها را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت گارانتی ها<span>از این صفحه می توانید گارانتی ها را مدیریت کنید</span>
                         </h1>
                     </div>
                 </div>
             </div>
-            @if ($brands->count())
+            @if ($warranties->count())
                 <div class="c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-card" id="consignment-step-1">
@@ -36,8 +36,8 @@
                                                     class="c-ui-select c-ui-select--common c-ui-select--small js-form-clearable select2-hidden-accessible"
                                                     name="searchGroup" data-select2-id="1" tabindex="-1"
                                                     aria-hidden="true" id="searchGroup">
-                                                    <option value="brand_name" selected>نام برند</option>
-                                                    <option value="brand_category">گروه کالا</option>
+                                                    <option value="warranty_name" selected>نام گارانتی</option>
+                                                    <option value="warranty_category">گروه کالا</option>
                                                 </select>
                                             </div>
                                             <div
@@ -68,12 +68,12 @@
 
 {{--                                    <div class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">--}}
 {{--                                        <div class="c-join__filter">--}}
-{{--                                            <p class="c-ui-form__label">نمایش برند:</p>--}}
+{{--                                            <p class="c-ui-form__label">نمایش گارانتی:</p>--}}
 {{--                                            <div class="c-join__filter-container">--}}
 {{--                                                <label class="c-join__radio-label">--}}
 {{--                                                    <input class="c-join__radio search_type" type="radio"--}}
 {{--                                                           name="search_type" value="all" checked>--}}
-{{--                                                    <span class="c-join__radio-option">همه برندها</span>--}}
+{{--                                                    <span class="c-join__radio-option">همه گارانتیها</span>--}}
 {{--                                                </label>--}}
 {{--                                                <label class="c-join__radio-label">--}}
 {{--                                                    <input class="c-join__radio search_type" type="radio" name="search_type" value="only_special">--}}
@@ -96,22 +96,22 @@
                             <div class="c-card">
                                 <div class="c-card__wrapper">
                                     <div class="c-card__header c-card__header--table">
-                                        <a href="{{ route('staff.brands.create') }}" target="_blank">
+                                        <a href="{{ route('staff.warranties.create') }}" target="_blank">
                                             <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                                                ایجاد برند جدید
+                                                ایجاد گارانتی جدید
                                             </div>
                                         </a>
-                                        @if($trashed_brands->count())
+                                        @if($trashed_warranties->count())
                                         <div class="c-grid__col c-grid__col--lg-4">
-                                            <a href="{{ route('staff.brands.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت برند های حذف شده</a>
+                                            <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی های حذف شده</a>
                                         </div>
                                         @endif
 
-{{--                                        {{ $brands->links('staffbrand::layouts.pagination.pagination') }}--}}
+{{--                                        {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}--}}
 
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                                             </div>
 {{--                                            <div class="c-ui-paginator__select" data-select2-id="15">--}}
 {{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
@@ -142,10 +142,7 @@
                                                         class="table-header-searchable uk-text-nowrap "> ردیف </span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap ">لوگو برند</span>
-                                                </th>
-                                                <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام برند (Brand)</span>
+                                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام گارانتی (Warranty)</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>
@@ -165,22 +162,17 @@
                                             </tr>
                                             </thead>
                                             <tbody id="tbody">
-                                            @foreach($brands as $key => $brand)
-                                                <tr name="row" id="{{$brand->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
+                                            @foreach($warranties as $key => $warranty)
+                                                <tr name="row" id="{{$warranty->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                     <td class="c-ui-table__cell">
-                                                        <span class="c-wallet__body-card-row-item"> {{ persianNum($brands->firstItem() + $key) }} </span>
-                                                    </td>
-                                                    <td class="c-ui-table__cell" style="min-width: 90px">
-                                                            @if(count($brand->media))
-                                                            <img src="{{ env('APP_URL') . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}" width="65" height="65">
-                                                            @endif
+                                                        <span class="c-wallet__body-card-row-item"> {{ persianNum($warranties->firstItem() + $key) }} </span>
                                                     </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#" target="_blank">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                                {{ $brand->name }}
-                                                                    @if($brand->type == 1)
+                                                                {{ $warranty->name }}
+                                                                    @if($warranty->type == 1)
                                                                         <span style="color: red; font-size: 11px;"> (ویژه) </span>
                                                                     @endif
                                                                 </span>
@@ -192,9 +184,9 @@
                                                         <a href="#">
                                                             <div class="uk-flex uk-flex-column">
                                                                   <span class="c- -card-row-item" style="line-height: 23px;">
-{{--                                                                      {{ $brand->name }}--}}
-{{--                                                                      {{ count($brand->categories) }}--}}
-                                                                    @foreach($brand->categories as $category)
+{{--                                                                      {{ $warranty->name }}--}}
+{{--                                                                      {{ count($warranty->categories) }}--}}
+                                                                    @foreach($warranty->categories as $category)
                                                                           {{ $category->name }}&nbsp;<br>
                                                                       @endforeach
                                                                   </span>
@@ -215,11 +207,9 @@
                                                     </td>
                                                     <td class="c-ui-table__cell">
                                                         <div class="c-promo__actions">
-                                                            <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit
-                          c-join__btn--secondary-greenish" href="{{ route('staff.brands.edit', $brand->en_name) }}">ویرایش</a>
-                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
-                                                              c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                               value="{{ $brand->id }}">حذف</button>
+                                                            <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.warranties.edit', $warranty->id) }}">ویرایش</a>
+                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
+                                                               value="{{ $warranty->id }}">حذف</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -228,22 +218,22 @@
                                         </table>
                                     </div>
                                     <div class="c-card__footer" style="width: auto;">
-                                        <a href="{{ route('staff.brands.create') }}">
+                                        <a href="{{ route('staff.warranties.create') }}">
                                             <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                                                ایجاد برند جدید
+                                                ایجاد گارانتی جدید
                                             </div>
                                         </a>
 
-                                        @if($trashed_brands->count())
+                                        @if($trashed_warranties->count())
                                             <div class="c-grid__col c-grid__col--lg-4">
-                                                <a href="{{ route('staff.brands.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت برند های حذف شده</a>
+                                                <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی های حذف شده</a>
                                             </div>
                                         @endif
 
-                                        {{ $brands->links('staffbrand::layouts.pagination.pagination') }}
+                                        {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
                                         <div class="c-ui-paginator js-paginator" data-select2-id="25">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                                             </div>
 {{--                                            <div class="c-ui-paginator__select" data-select2-id="24">--}}
 {{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
@@ -284,20 +274,20 @@
                                 <div class="c-grid__col">
                                   --}}
                                 {{--
-                                <h2 class="c-card__title c-join__tab-card-title">مدیریت برندها</h2>
+                                <h2 class="c-card__title c-join__tab-card-title">مدیریت گارانتیها</h2>
                                 --}}
                                 {{--
                                 <ul class="uk-tab c-promo__tabs">
                                   --}}
                                 {{--
                                 <li class="c-promo__tab-item c-promo__tab-item--promotions uk-active" data-tab="1">--}}
-                                {{--                                            <a href="/promotion-management/">همه برندها</a>--}}
+                                {{--                                            <a href="/promotion-management/">همه گارانتیها</a>--}}
                                 {{--
                               </li>
                               --}}
                                 {{--
                                 <li class="c-promo__tab-item c-promo__tab-item--products" data-tab="2">--}}
-                                {{--                                            <a href="/promotion-management/products/">برندهای حذف شده</a>--}}
+                                {{--                                            <a href="/promotion-management/products/">گارانتیهای حذف شده</a>--}}
                                 {{--
                               </li>
                               --}}
@@ -315,22 +305,22 @@
                                         <div class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible" data-tab="1">
                                             <div class="c-join__promotion-info-box c-join__promotion-info-box--empty">
                                                 <img class="c-join__promotion-info-img" src="https://seller.digikala.com/static/files/ac21f0e6.svg" alt="Empty">
-                                                 @if($trashed_brands->count())
+                                                 @if($trashed_warranties->count())
                                                     <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
                                                         نتیجه ای برای نمایش وجود ندارد!
                                                     </p>
                                                     <p class="c-join__promotion-info-statement">
-                                                        شما تعداد {{ persianNum($trashed_brands->count()) }} برند حذف شده در Trash دارید برای مدیریت و بازگردانی آنها بر روی دکمه زیر کلیک کنید
+                                                        شما تعداد {{ persianNum($trashed_warranties->count()) }} گارانتی حذف شده در Trash دارید برای مدیریت و بازگردانی آنها بر روی دکمه زیر کلیک کنید
                                                     </p>
                                                     <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
-                                                       href="{{ route('staff.brands.trash') }}">ورود به صفحه Trash</a>
+                                                       href="{{ route('staff.warranties.trash') }}">ورود به صفحه Trash</a>
                                                 @else
-                                                    <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">شما تا به حال هیچ برندی ایجاد نکرده‌اید</p>
+                                                    <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">شما تا به حال هیچ گارانتی ایجاد نکرده‌اید</p>
                                                     <p class="c-join__promotion-info-statement">
-                                                        برای ایجاد برند جدید روی دکمه زیر کلیک کنید.
+                                                        برای ایجاد گارانتی جدید روی دکمه زیر کلیک کنید.
                                                     </p>
                                                     <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
-                                                       href="{{ route('staff.brands.create') }}">ایجاد برند جدید</a>
+                                                       href="{{ route('staff.warranties.create') }}">ایجاد گارانتی جدید</a>
                                                 @endif
                                             </div>
                                         </div>
@@ -382,19 +372,19 @@ $(document).on('click', '.c-ui-paginator__control a', function(e){
     var pageType = $("input[name='page_type']").val();
 
     if (pageType == 'index'){
-        var url = "{{route('staff.brands.ajaxPagination')}}?page="+page;
+        var url = "{{route('staff.warranties.ajaxPagination')}}?page="+page;
     }
     else if (pageType == 'only_special') {
-        var url = "{{route('staff.brands.filterByType')}}?page="+page;
+        var url = "{{route('staff.warranties.filterByType')}}?page="+page;
     }
-    else if(pageType == 'brandSearch') {
-        var url = "{{route('staff.brands.brandSearch')}}?page="+page;
+    else if(pageType == 'warrantySearch') {
+        var url = "{{route('staff.warranties.warrantySearch')}}?page="+page;
     }
-    else if(pageType == 'brandCatSearch') {
-        var url = "{{route('staff.brands.brandCatSearch')}}?page="+page;
+    else if(pageType == 'warrantyCatSearch') {
+        var url = "{{route('staff.warranties.warrantyCatSearch')}}?page="+page;
     }
 
-    if(pageType == 'brandCatSearch' || pageType == 'brandSearch')
+    if(pageType == 'warrantyCatSearch' || pageType == 'warrantySearch')
     {
         var searchValue = $("#searchKeyword").val();
         var data = {
@@ -421,14 +411,14 @@ $(document).on('click', '.c-ui-paginator__control a', function(e){
     });
 });
 
-// نمایش برند: ویژه و همه
+// نمایش گارانتی: ویژه و همه
 $(".search_type").on('change', function (){
 
     var searchType = $("input:checked[name='search_type']").val();
 
     $.ajax({
         type: 'post',
-        url: '{{route('staff.brands.filterByType')}}',
+        url: '{{route('staff.warranties.filterByType')}}',
         data: {
             search_type: searchType,
         },
@@ -439,15 +429,15 @@ $(".search_type").on('change', function (){
 });
 
 
-//حذف برند
+//حذف گارانتی
 $(document).on('click','.delete-btn' , function (){
-    var brand_id = $(this).val();
+    var warranty_id = $(this).val();
 
     $.ajax({
         method: 'post',
-        url: "{{route('staff.brands.moveToTrash')}}",
+        url: "{{route('staff.warranties.moveToTrash')}}",
         data: {
-            'id': brand_id,
+            'id': warranty_id,
         },
         success: function (result){
             $('.js-table-container').replaceWith(result);
@@ -472,13 +462,13 @@ $("#search-btn").on('click', function (){
     var searchValue = $("#searchKeyword").val();
     var searchGroup = $("#searchGroup").val();
 
-    if (searchGroup == 'brand_name')
+    if (searchGroup == 'warranty_name')
     {
-        var url = "{{route('staff.brands.brandSearch')}}";
+        var url = "{{route('staff.warranties.warrantySearch')}}";
     }
-    else if(searchGroup == 'brand_category')
+    else if(searchGroup == 'warranty_category')
     {
-        var url = "{{route('staff.brands.brandCatSearch')}}";
+        var url = "{{route('staff.warranties.warrantyCatSearch')}}";
     }
 
     $.ajax({
@@ -502,7 +492,7 @@ $("#search-btn").on('click', function (){
 $("#searchClear").on('click', function () {
     $.ajax({
         method: 'post',
-        url: "{{route('staff.brands.ajaxPagination')}}",
+        url: "{{route('staff.warranties.ajaxPagination')}}",
         success:function(result)
         {
             $(".js-table-container").html(result);
@@ -533,7 +523,7 @@ $('#searchKeyword').on('keyup', function () {
 
         $.ajax({
             type: 'post',
-            url: '{{route('staff.brands.ajaxPagination')}}',
+            url: '{{route('staff.warranties.ajaxPagination')}}',
             success: function (result) {
                 $(".js-table-container").replaceWith(result);
             }
@@ -549,7 +539,7 @@ $("select[name='paginator-select-pages']").on('change', function (){
 
     $.ajax({
         type: 'post',
-        url: "{{route('staff.brands.ajaxPagination')}}",
+        url: "{{route('staff.warranties.ajaxPagination')}}",
         data: {
             paginatorNum: selectedPaginator,
         },

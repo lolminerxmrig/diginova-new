@@ -93,6 +93,21 @@
                       <a href="{{ route('staff.units.index') }}">واحد ها</a>
                     </li>
 
+                    <li>
+                      <a href="#">گارانتی ها</a>
+                      <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade
+                       uk-animation-enter menu-child-margin">
+                          <ul class="uk-nav uk-navbar-dropdown-nav">
+                              <li>
+                                  <a href="{{ route('staff.warranties.index') }}">مدیریت گارانتی ها</a>
+                              </li>
+                              <li>
+                                  <a href="{{ route('staff.warranties.create') }}">ایجاد گارانتی جدید</a>
+                              </li>
+                          </ul>
+                      </div>
+                    </li>
+
                   </ul>
                 </div>
               </li>

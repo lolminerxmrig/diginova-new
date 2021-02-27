@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Staff\Brand\Providers;
+namespace Modules\Staff\Warranty\Providers;
 
 use Faker\Factory;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory as ModelFactory;
 
 
 
-class StaffBrandServiceProvider extends ServiceProvider
+class StaffWarrantyServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -22,10 +22,10 @@ class StaffBrandServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
 
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffbrand');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffwarranty');
 
         Relation::morphMap([
-            'Brand' => 'Modules\Staff\Brand\Models\Brand',
+            'Warranty' => 'Modules\Staff\Warranty\Models\Warranty',
         ]);
     }
 

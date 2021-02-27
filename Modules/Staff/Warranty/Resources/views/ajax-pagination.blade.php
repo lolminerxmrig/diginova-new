@@ -1,1 +1,1 @@
-{{ $brands->links('staffbrand::layouts.pagination.pagination') }}
+{{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
