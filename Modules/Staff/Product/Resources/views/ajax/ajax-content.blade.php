@@ -189,7 +189,7 @@
                                         <div class="c-promo__actions">
                                             <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit
 {{--                          c-join__btn--secondary-greenish" href="">ویرایش</a>--}}
-                                                c-join__btn--secondary-greenish" href="{{ route('staff.products.edit', $product->id) }}">ویرایش</a>
+                                                c-join__btn--secondary-greenish" href="{{ route('staff.products.edit', $product->product_code) }}">ویرایش</a>
                                             <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
                                                               c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
                                                     value="{{ $product->id }}">حذف</button>

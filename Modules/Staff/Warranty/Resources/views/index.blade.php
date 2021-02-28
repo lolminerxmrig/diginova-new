@@ -142,7 +142,7 @@
                                                         class="table-header-searchable uk-text-nowrap "> ردیف </span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام گارانتی (Warranty)</span>
+                                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام گارانتی</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>
@@ -172,9 +172,6 @@
                                                             <a href="#" target="_blank">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
                                                                 {{ $warranty->name }}
-                                                                    @if($warranty->type == 1)
-                                                                        <span style="color: red; font-size: 11px;"> (ویژه) </span>
-                                                                    @endif
                                                                 </span>
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                             </a>

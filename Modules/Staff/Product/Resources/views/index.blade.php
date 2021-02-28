@@ -5,13 +5,13 @@
 @endsection
 @section('content')
 
-@php
-    $site_url = $settings->where('name', 'site_url')->first()->value;
-    $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
-    $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
-@endphp
+    @php
+        $site_url = $settings->where('name', 'site_url')->first()->value;
+        $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
+        $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
+    @endphp
 
-<main class="c-main">
+    <main class="c-main">
         <div class="uk-container uk-container-large">
             <div class="c-grid " data-select2-id="13">
                 <div class="c-grid__row">
@@ -38,7 +38,7 @@
                                             <div class="c-ui-form__row" data-select2-id="10">
                                                 <div
                                                     class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--xs c-ui-form__col--wrap-xs"
-                                                    style="min-width: 175px" >
+                                                    style="min-width: 175px">
                                                     <select
                                                         class="c-ui-select c-ui-select--common c-ui-select--small js-form-clearable select2-hidden-accessible"
                                                         name="searchGroup" data-select2-id="1" tabindex="-1"
@@ -52,15 +52,18 @@
                   c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
                                                     <label>
                                                         <div class="c-ui-input">
-                                                            <input type="text" name="searchKeyword" class="c-ui-input__field c-ui-input__field--order js-form-clearable"
-                                                                   id="searchKeyword" value="" placeholder="عنوان را بنویسید ...">
+                                                            <input type="text" name="searchKeyword"
+                                                                   class="c-ui-input__field c-ui-input__field--order js-form-clearable"
+                                                                   id="searchKeyword" value=""
+                                                                   placeholder="عنوان را بنویسید ...">
                                                         </div>
                                                     </label>
                                                 </div>
                                                 <div
                                                     class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
-                                                    <button class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--search-form"
-                                                            id="search-btn" disabled>
+                                                    <button
+                                                        class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--search-form"
+                                                        id="search-btn" disabled>
                                                         <span>جستجو</span>
                                                     </button>
                                                 </div>
@@ -72,7 +75,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">
+                                        <div
+                                            class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">
                                             {{--                                        <div class="c-join__filter">--}}
                                             {{--                                            <p class="c-ui-form__label">نمایش محصول:</p>--}}
                                             {{--                                            <div class="c-join__filter-container">--}}
@@ -108,12 +112,13 @@
                                             </a>
                                             @if($trashed_products->count())
                                                 <div class="c-grid__col c-grid__col--lg-4">
-                                                    <a href="{{ route('staff.products.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت محصول های حذف شده</a>
+                                                    <a href="{{ route('staff.products.trash') }}"
+                                                       class="c-ui-btn js-view-all-orders">مدیریت محصول های حذف شده</a>
                                                 </div>
                                             @endif
 
 
-{{--                                            {{ $products->links('staffproduct::layouts.pagination.pagination') }}--}}
+                                            {{--                                            {{ $products->links('staffproduct::layouts.pagination.pagination') }}--}}
 
                                             <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                                 <div class="c-ui-paginator__total" data-rows="۶">
@@ -140,12 +145,14 @@
                                             </div>
                                         </div>
                                         <div class="c-card__body c-ui-table__wrapper">
-                                            <table class="c-ui-table js-search-table js-table-fixed-header c-join__table"
-                                                   data-search-url="/ajax/product/search/">
+                                            <table
+                                                class="c-ui-table js-search-table js-table-fixed-header c-join__table"
+                                                data-search-url="/ajax/product/search/">
                                                 <thead>
                                                 <tr class="c-ui-table__row" style="text-align: center;">
                                                     <th class="c-ui-table__header">
-                                                        <span class="table-header-searchable uk-text-nowrap "> ردیف </span>
+                                                        <span
+                                                            class="table-header-searchable uk-text-nowrap "> ردیف </span>
                                                     </th>
                                                     <th class="c-ui-table__header">
                                                         <span class="table-header-searchable uk-text-nowrap "></span>
@@ -157,44 +164,58 @@
                                                         <span class="table-header-searchable uk-text-nowrap"> گروه کالایی </span>
                                                     </th>
                                                     <th class="c-ui-table__header">
-                                                        <span class="table-header-searchable uk-text-nowrap ">برند کالا</span>
+                                                        <span
+                                                            class="table-header-searchable uk-text-nowrap ">برند کالا</span>
                                                     </th>
                                                     <th class="c-ui-table__header">
-                                                        <span class="table-header-searchable uk-text-nowrap "> انتشار </span>
+                                                        <span
+                                                            class="table-header-searchable uk-text-nowrap "> انتشار </span>
                                                     </th>
                                                     <th class="c-ui-table__header">
                                                         <span class="table-header-searchable uk-text-nowrap "> تعداد تنوع </span>
                                                     </th>
                                                     <th class="c-ui-table__header">
-                                                        <span class="table-header-searchable uk-text-nowrap ">عملیات</span>
+                                                        <span
+                                                            class="table-header-searchable uk-text-nowrap ">عملیات</span>
                                                     </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody id="tbody">
                                                 @foreach($products as $key => $product)
-                                                    <tr name="row" id="{{$product->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
+                                                    <tr name="row" id="{{$product->id}}"
+                                                        class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                         <td class="c-ui-table__cell">
-                                                            <span class="c-wallet__body-card-row-item"> {{ persianNum($products->firstItem() + $key) }} </span>
+                                                            <span
+                                                                class="c-wallet__body-card-row-item"> {{ persianNum($products->firstItem() + $key) }} </span>
                                                         </td>
 
                                                         <td class="c-ui-table__cell" style="min-width: 90px">
                                                             @foreach($product->media as $image)
                                                                 @if($product->media && ($image->pivot->is_main == 1))
-                                                                    <img src="{{ env('APP_URL') . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
+                                                                    <img
+                                                                        src="{{ env('APP_URL') . '/' .$image->path . '/' . $image->name }}"
+                                                                        width="75" height="75">
                                                                 @endif
                                                             @endforeach
                                                         </td>
 
                                                         <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                             <div class="uk-flex uk-flex-column">
-                                                                <a href="{{$site_url}}/{{ $product_code_prefix }}-{{ $product->product_code }}/" target="_blank">
-                                                          <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial" style="margin:auto;">
+                                                                <a href="{{$site_url}}/{{ $product_code_prefix }}-{{ $product->product_code }}/"
+                                                                   target="_blank">
+                                                          <span
+                                                              class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"
+                                                              style="margin:auto;">
                                                                {{ $product->title_fa }}
                                                           </span>
-                                                                    <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
+                                                                    <span
+                                                                        class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                                 </a>
                                                                 <div class="uk-flex">
-                                                                    <span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap" style="margin: auto;">{{ $product_code_prefix }}-{{ $product->product_code }}</span>                                                      </div>
+                                                                    <span
+                                                                        class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap"
+                                                                        style="margin: auto;">{{ $product_code_prefix }}-{{ $product->product_code }}</span>
+                                                                </div>
                                                             </div>
                                                         </td>
 
@@ -217,7 +238,8 @@
                                                                   {{ 'متفرقه' }}
                                                               @endif
                                                           </span>
-                                                                    <span class="c-wallet__body-card-row-item" style="margin: auto;">
+                                                                    <span class="c-wallet__body-card-row-item"
+                                                                          style="margin: auto;">
                                                             @if(!is_null($product->brand))
                                                                             {{ $product->brand->en_name }}
                                                                         @else
@@ -265,8 +287,11 @@
                                                             <div class="c-ui-tooltip__anchor">
                                                                 <div class="c-ui-toggle__group">
                                                                     <label class="c-ui-toggle">
-                                                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox"
-                                                                               name="status" {{ ($product->status)? 'checked' : '' }} data-product-id="{{$product->id}}"
+                                                                        <input
+                                                                            class="c-ui-toggle__origin js-toggle-active-product"
+                                                                            type="checkbox"
+                                                                            name="status"
+                                                                            {{ ($product->status)? 'checked' : '' }} data-product-id="{{$product->id}}"
                                                                         >
                                                                         <span class="c-ui-toggle__check"></span>
                                                                     </label>
@@ -284,27 +309,54 @@
                                                             <div class="c-promo__actions">
                                                                 <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit
 {{--                          c-join__btn--secondary-greenish" href="">ویرایش</a>--}}
-                                                                    c-join__btn--secondary-greenish" href="{{ route('staff.products.edit', $product->id) }}">ویرایش</a>
-                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
-                                                              c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                                        value="{{ $product->id }}">حذف</button>
-
+                                                                    c-join__btn--secondary-greenish"
+                                                                   href="{{ route('staff.products.edit', $product->product_code) }}">ویرایش</a>
+                                                                <a class="uk-padding-remove" href="{{ route('staff.products.variant', $product->product_code) }}"
+                                                                   style="width: 25px;margin-right: -10px;margin-left: 10px;">
+                                                                    <div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"
+                                                                        aria-expanded="false"></div>
+                                                                    <div
+                                                                        class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack uk-animation-fade uk-animation-enter"
+                                                                        uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;"
+                                                                        style="left: 152.844px; top: 74px; animation-duration: 200ms;">
+                                                                        افزودن تنوع
+                                                                    </div>
+                                                                </a>
+                                                                <button
+                                                                    class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
+                                                                    value="{{ $product->id }}">حذف
+                                                                </button>
                                                             </div>
 
-                                                            <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification" style="display: none;">
+                                                            <div uk-modal="esc-close: true; bg-close: true;"
+                                                                 class="uk-modal-container uk-modal-container--message js-common-modal-notification"
+                                                                 style="display: none;">
                                                                 <div class="uk-modal-dialog uk-modal-dialog--flex">
-                                                                    <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
+                                                                    <button
+                                                                        class="uk-modal-close-default uk-close uk-icon"
+                                                                        type="button" uk-close=""></button>
 
-                                                                    <div class="uk-modal-body" data-gtm-vis-recent-on-screen-9662696_13="79003" data-gtm-vis-first-on-screen-9662696_13="79004"
-                                                                         data-gtm-vis-total-visible-time-9662696_13="100" data-gtm-vis-has-fired-9662696_13="1">
+                                                                    <div class="uk-modal-body">
                                                                         <div class="c-modal-notification">
-                                                                            <div class="c-modal-notification__content c-modal-notification__content--limited">
-                                                                                <h2 class="c-modal-notification__header">هشدار</h2>
+                                                                            <div
+                                                                                class="c-modal-notification__content c-modal-notification__content--limited">
+                                                                                <h2 class="c-modal-notification__header">
+                                                                                    هشدار</h2>
 
-                                                                                <p class="c-modal-notification__text">با حذف محصول ، تمامی تنوع های آن نیز حذف خواهد شد. آیا از حذف آن اطمینان دارید؟</p>
-                                                                                <div class="c-modal-notification__actions">
-                                                                                    <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
-                                                                                    <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
+                                                                                <p class="c-modal-notification__text">با
+                                                                                    حذف محصول ، تمامی تنوع های آن نیز
+                                                                                    حذف خواهد شد. آیا از حذف آن اطمینان
+                                                                                    دارید؟</p>
+                                                                                <div
+                                                                                    class="c-modal-notification__actions">
+                                                                                    <button
+                                                                                        class="c-modal-notification__btn no uk-modal-close">
+                                                                                        خیر
+                                                                                    </button>
+                                                                                    <button
+                                                                                        class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">
+                                                                                        بله
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -327,7 +379,8 @@
 
                                             @if($trashed_products->count())
                                                 <div class="c-grid__col c-grid__col--lg-4">
-                                                    <a href="{{ route('staff.products.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت محصول های حذف شده</a>
+                                                    <a href="{{ route('staff.products.trash') }}"
+                                                       class="c-ui-btn js-view-all-orders">مدیریت محصول های حذف شده</a>
                                                 </div>
                                             @endif
 
@@ -363,7 +416,7 @@
                             </div>
                         </div>
                     </div>
-                    @else
+                @else
                     <div class="c-grid c-join__grid">
                         <div class="c-grid__row">
                             <div class="c-grid__col">
@@ -403,29 +456,39 @@
                                   --}}
                                     <div class="c-card__body">
                                         <div class="c-grid__col">
-                                            <div class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible" data-tab="1">
-                                                <div class="c-join__promotion-info-box c-join__promotion-info-box--empty">
-                                                    <img class="c-join__promotion-info-img" src="https://seller.digikala.com/static/files/ac21f0e6.svg" alt="Empty">
+                                            <div
+                                                class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible"
+                                                data-tab="1">
+                                                <div
+                                                    class="c-join__promotion-info-box c-join__promotion-info-box--empty">
+                                                    <img class="c-join__promotion-info-img"
+                                                         src="https://seller.digikala.com/static/files/ac21f0e6.svg"
+                                                         alt="Empty">
                                                     @if($trashed_products->count())
                                                         <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
                                                             نتیجه ای برای نمایش وجود ندارد!
                                                         </p>
                                                         <p class="c-join__promotion-info-statement">
-                                                            شما تعداد {{ persianNum($trashed_products->count()) }} محصول حذف شده در Trash دارید برای مدیریت و بازگردانی آنها بر روی دکمه زیر کلیک کنید
+                                                            شما تعداد {{ persianNum($trashed_products->count()) }} محصول
+                                                            حذف شده در Trash دارید برای مدیریت و بازگردانی آنها بر روی
+                                                            دکمه زیر کلیک کنید
                                                         </p>
                                                         <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
-                                                           href="{{ route('staff.products.trash') }}">ورود به صفحه Trash</a>
+                                                           href="{{ route('staff.products.trash') }}">ورود به صفحه
+                                                            Trash</a>
                                                     @else
-                                                        <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">شما تا به حال هیچ محصولی ایجاد نکرده‌اید</p>
+                                                        <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
+                                                            شما تا به حال هیچ محصولی ایجاد نکرده‌اید</p>
                                                         <p class="c-join__promotion-info-statement">
                                                             برای ایجاد محصول جدید روی دکمه زیر کلیک کنید.
                                                         </p>
                                                         <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
-                                                           href="{{ route('staff.products.create') }}">ایجاد محصول جدید</a>
+                                                           href="{{ route('staff.products.create') }}">ایجاد محصول
+                                                            جدید</a>
                                                     @endif
                                                 </div>
 
-                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -439,11 +502,12 @@
 
 @endsection
 @section('script')
-<script>
+    <script>
 
         // تبدیل اعداد انگلیسی به فارسی
         function ConvertNumberToPersion() {
-            persian = { 0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹' };
+            persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
             function traverse(el) {
                 if (el.nodeType == 3) {
                     var list = el.data.match(/[0-9]/g);
@@ -456,6 +520,7 @@
                     traverse(el.childNodes[i]);
                 }
             }
+
             traverse(document.body);
         }
 
@@ -467,36 +532,30 @@
         });
 
         // پجینیشن
-        $(document).on('click', '.c-ui-paginator__control a', function(e){
+        $(document).on('click', '.c-ui-paginator__control a', function (e) {
             e.preventDefault();
 
             var page = $(this).attr('href').split('page=')[1];
 
             var pageType = $("input[name='page_type']").val();
 
-            if (pageType == 'index'){
-                var url = "{{route('staff.products.ajaxPagination')}}?page="+page;
-            }
-            else if (pageType == 'only_special') {
-                var url = "{{route('staff.products.filterByType')}}?page="+page;
-            }
-            else if(pageType == 'productsearch') {
-                var url = "{{route('staff.products.productSearch')}}?page="+page;
-            }
-            else if(pageType == 'productCatSearch') {
-                var url = "{{route('staff.products.productCatSearch')}}?page="+page;
+            if (pageType == 'index') {
+                var url = "{{route('staff.products.ajaxPagination')}}?page=" + page;
+            } else if (pageType == 'only_special') {
+                var url = "{{route('staff.products.filterByType')}}?page=" + page;
+            } else if (pageType == 'productsearch') {
+                var url = "{{route('staff.products.productSearch')}}?page=" + page;
+            } else if (pageType == 'productCatSearch') {
+                var url = "{{route('staff.products.productCatSearch')}}?page=" + page;
             }
 
-            if(pageType == 'productCatSearch' || pageType == 'productsearch')
-            {
+            if (pageType == 'productCatSearch' || pageType == 'productsearch') {
                 var searchValue = $("#searchKeyword").val();
                 var data = {
                     page: page,
                     search_keyword: searchValue,
                 }
-            }
-            else
-            {
+            } else {
                 var data = {
                     page: page,
                 }
@@ -506,8 +565,7 @@
                 method: 'post',
                 url: url,
                 data: data,
-                success:function(result)
-                {
+                success: function (result) {
                     $(".js-table-container").html(result);
                     window.pagination_type = 'withoutFilter';
                 }
@@ -515,7 +573,7 @@
         });
 
         // نمایش محصول: ویژه و همه
-        $(".search_type").on('change', function (){
+        $(".search_type").on('change', function () {
 
             var searchType = $("input:checked[name='search_type']").val();
 
@@ -525,7 +583,7 @@
                 data: {
                     search_type: searchType,
                 },
-                success:function (result) {
+                success: function (result) {
                     $(".js-table-container").replaceWith(result);
                 }
             });
@@ -536,7 +594,7 @@
             $(this).closest('.c-ui-table__cell').find('.uk-modal-container').css('display', 'block');
             $('.c-header__nav').hide();
 
-            $(document).on('click', '.yes', function (){
+            $(document).on('click', '.yes', function () {
 
                 $('.c-header__nav').show();
 
@@ -549,18 +607,18 @@
                     data: {
                         'id': product_id,
                     },
-                    success: function (result){
+                    success: function (result) {
                         $('.js-table-container').replaceWith(result);
                     },
                 });
 
             });
 
-            $(document).on('click', '.uk-modal-close-default', function (){
+            $(document).on('click', '.uk-modal-close-default', function () {
                 $('.c-header__nav').show();
             });
 
-            $(document).on('click', '.no', function (){
+            $(document).on('click', '.no', function () {
                 $('.c-header__nav').show();
             });
 
@@ -568,17 +626,14 @@
         });
 
         //دکمه سرچ
-        $("#search-btn").on('click', function (){
+        $("#search-btn").on('click', function () {
 
             var searchValue = $("#searchKeyword").val();
             var searchGroup = $("#searchGroup").val();
 
-            if (searchGroup == 'product_name')
-            {
+            if (searchGroup == 'product_name') {
                 var url = "{{route('staff.products.productSearch')}}";
-            }
-            else if(searchGroup == 'product_category')
-            {
+            } else if (searchGroup == 'product_category') {
                 var url = "{{route('staff.products.productCatSearch')}}";
             }
 
@@ -591,8 +646,7 @@
                 },
                 success: function (result) {
                     $(".js-table-container").replaceWith(result);
-                    if ($(".search_type:checked").val())
-                    {
+                    if ($(".search_type:checked").val()) {
                         $(this).removeAttr('checked');
                     }
                 }
@@ -604,8 +658,7 @@
             $.ajax({
                 method: 'post',
                 url: "{{route('staff.products.ajaxPagination')}}",
-                success:function(result)
-                {
+                success: function (result) {
                     $(".js-table-container").html(result);
                 }
             });
@@ -644,7 +697,7 @@
         });
 
         // انتخاب تعداد نمایش: غیرفعال
-        $("select[name='paginator-select-pages']").on('change', function (){
+        $("select[name='paginator-select-pages']").on('change', function () {
             //selectbox paginator val
             var selectedPaginator = $(this).val();
 
@@ -654,7 +707,7 @@
                 data: {
                     paginatorNum: selectedPaginator,
                 },
-                success: function (result){
+                success: function (result) {
                     $("js-table-container").replaceWith(result);
                 }
             });
@@ -662,11 +715,9 @@
 
 
         $(document).on('change', 'input[name="status"]', function () {
-            if($(this).is(':checked'))
-            {
+            if ($(this).is(':checked')) {
                 var status = 1;
-            }
-            else{
+            } else {
                 var status = 0;
             }
             var data_product_id = $(this).attr('data-product-id');
@@ -676,7 +727,7 @@
                 url: "{{ route('staff.products.statusProduct') }}",
                 data: {
                     'status': status,
-                    'product_id' : data_product_id,
+                    'product_id': data_product_id,
                 },
             });
 

@@ -38,7 +38,7 @@ class StaffProductController extends Controller
 
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('product_code',$id)->firstOrFail();
         $category = $product->category[0];
         do {
             $main_cat=$category->parent;
@@ -784,6 +784,12 @@ class StaffProductController extends Controller
         Product::where('id', $request->product_id)->update([
             'status' => $request->status,
         ]);
+    }
+
+    public function variant($id){
+        $product = Product::where('product_code',$id)->firstOrFail();
+        $settings = Setting::select('name', 'value')->get();
+        return view('staffproduct::variant', compact('settings', 'product'));
     }
 
 }

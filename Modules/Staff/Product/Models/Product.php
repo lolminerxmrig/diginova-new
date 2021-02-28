@@ -46,6 +46,11 @@ class Product extends Model
         'disadvantages' => 'array',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'product_code';
+    }
+
     public function category()
     {
       return $this->morphToMany(Category::class, 'categorizable');

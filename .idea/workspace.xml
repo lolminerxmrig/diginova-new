@@ -39,7 +39,7 @@
     <execution />
   </component>
   <component name="EditorConfigPreviewManager">
-    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/Modules/Staff/Category/Http/Controllers/StaffCategoryController.php" />
+    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/index.blade.php" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -266,19 +266,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Warranty/Resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Product/Resources/views" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Warranty/Resources/views" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Warranty/temp" />
-      <recent name="$PROJECT_DIR$/public/seller/js" />
-      <recent name="$PROJECT_DIR$/public/staff/js" />
-      <recent name="$PROJECT_DIR$/Modules/Staff" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Variant" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Database/migrations" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Database" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Modules/Staff/Warranty/temp" />
@@ -525,7 +525,9 @@
       <workItem from="1614312070343" duration="24666000" />
       <workItem from="1614397992976" duration="41000" />
       <workItem from="1614398059076" duration="999000" />
-      <workItem from="1614400373593" duration="22077000" />
+      <workItem from="1614400373593" duration="29878000" />
+      <workItem from="1614440971124" duration="10130000" />
+      <workItem from="1614487883128" duration="3933000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />

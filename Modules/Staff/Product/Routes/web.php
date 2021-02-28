@@ -29,6 +29,9 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     Route::get('edit/{id}', [StaffProductController::class, 'edit'])
         ->name('create');
 
+    Route::get('variant/{id}', [StaffProductController::class, 'variant'])
+        ->name('variant');
+
     Route::post('status-product', [StaffProductController::class, 'statusProduct'])
         ->name('statusProduct');
 
