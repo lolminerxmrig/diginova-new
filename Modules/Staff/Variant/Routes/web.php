@@ -19,6 +19,15 @@ Route::domain('staff.diginova.test')->prefix('variants')->name('staff.variants.'
     Route::get('/', [StaffVariantController::class, 'index'])
         ->name('index');
 
+    Route::get('config-category', [StaffVariantController::class, 'variantCategory'])
+        ->name('variantCategory');
+
+    Route::post('save-config', [StaffVariantController::class, 'saveConfig'])
+        ->name('saveConfig');
+
+    Route::post('load-category-variant', [StaffVariantController::class, 'loadCategoryVariant'])
+        ->name('loadCategoryVariant');
+
     Route::post('index-change-position', [StaffVariantController::class, 'indexChangePosition'])
         ->name('indexChangePosition');
 

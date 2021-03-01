@@ -97,6 +97,7 @@
                                                                                     <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-group-id="{{ $variantGroup->id }}" name="status" {{ ($variantGroup->status)? 'checked' : '' }}>
                                                                                     <span class="c-ui-toggle__check"></span>
                                                                                 </label>
+                                                                                </label>
                                                                             </div>
 
                                                                         </div>

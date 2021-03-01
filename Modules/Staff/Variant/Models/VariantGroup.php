@@ -3,6 +3,7 @@
 namespace Modules\Staff\Variant\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Staff\Category\Models\Category;
 
 
 class VariantGroup extends Model
@@ -14,5 +15,11 @@ class VariantGroup extends Model
     {
       return $this->hasMany(Variant::class, 'group_id');
     }
+
+    public function categories()
+    {
+        return $this->morphTo(Category::class, 'categorizable');
+    }
+
 
 }

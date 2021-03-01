@@ -12,6 +12,7 @@ use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
+use Modules\Staff\Variant\Models\VariantGroup;
 
 
 class Category extends Model
@@ -59,6 +60,11 @@ class Category extends Model
     public function media()
     {
         return $this->morphToMany(Media::class, 'mediable');
+    }
+
+    public function variantGroup()
+    {
+        return $this->morphedByMany(VariantGroup::class, 'categorizable')->select('name', 'id');
     }
 
 }

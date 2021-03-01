@@ -171,4 +171,29 @@ class StaffVariantController extends Controller
             }
         }
     }
+
+    public function variantCategory()
+    {
+        $categories = Category::all();
+        return view('staffvariant::variant-category', compact('categories'));
+    }
+
+    public function loadCategoryVariant(Request $request)
+    {
+        $category = Category::findOrFail($request->category_id);
+        $variantGroups = VariantGroup::all();
+        if (!count($variantGroups)) {
+            $variantGroups = [];
+        }
+
+        return View::make('staffvariant::ajax-config-content', compact('category', 'variantGroups'));
+    }
+
+    public function saveConfig(Request $request) {
+        $category = Category::find($request->category_id);
+        $variantGroup = VariantGroup::find($request->variant_g_id);
+
+        $category->variantGroup()->detach();
+        $category->variantGroup()->attach($variantGroup);
+    }
 }
