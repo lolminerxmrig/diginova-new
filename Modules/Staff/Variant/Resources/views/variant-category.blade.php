@@ -212,6 +212,7 @@ $(document).on('change', "input[name='category']", function (e) {
     if($(document).find('.ajax-box')) {
         $(".ajax-box").remove();
     }
+
 });
 
 // ایجکس breadcrumb

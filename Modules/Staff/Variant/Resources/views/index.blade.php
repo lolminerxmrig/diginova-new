@@ -27,14 +27,20 @@
                                     <div class="c-grid__row">
                                         <div class="c-card">
                                             <div class="c-card__wrapper">
-                                                <div class="c-card__header c-card__header--table">
-                                                    <a>
+                                                <div class="c-card__header c-card__header--table" style="display: flow-root;">
+                                                    <a style="float: right">
                                                         <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                                                            ایجاد گروه تنوع جدید
+                                                                ایجاد گروه تنوع جدید
                                                         </div>
                                                     </a>
 
-                                                    <div class="c-ui-paginator js-paginator" data-select2-id="16">
+                                                    <a href="{{ route('staff.variants.variantCategory') }}" target="_blank" style="float: right;margin-right: 13px;">
+                                                        <div class="c-mega-campaigns__btns-green uk-margin-remove" style="line-height: 1.771 !important;background-color: #e04747e6;box-shadow: 0 6px 12px 0 rgb(211 0 97 / 20%);color: white;">
+                                                            تعیین تنوع مجاز
+                                                        </div>
+                                                    </a>
+
+                                                    <div class="c-ui-paginator js-paginator" style="margin-top: 10px;">
                                                         <div class="c-ui-paginator__total" data-rows="۶">
                                                             تعداد نتایج: <span name="total" data-id="{{ $variant_groups->count() }}">{{ persianNum($variant_groups->count()) }} مورد</span>
                                                         </div>
