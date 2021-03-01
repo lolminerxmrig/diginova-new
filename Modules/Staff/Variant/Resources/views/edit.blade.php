@@ -175,10 +175,11 @@ margin-bottom: 7px;
                                                         </div>
                                                     </div>
                                                 </td>
-                                                  @if($variant->type == 1)
+                                                  @if($variantGroup->type == 1)
                                                   <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;">
                                                     <div class="uk-flex uk-flex-column">
-                                                        <input type="text" name="variant_value" value="{{ (!is_null($variant->value))? $variant->value : '' }}" class="c-content-input__origin js-variant-old-value variant_value">
+
+                                                        <input type="color" name="variant_value" value="{{ (!is_null($variant->value))? $variant->value : '' }}" class="c-content-input__origin js-variant-old-value variant_value">
                                                     </div>
                                                   </td>
                                                   @endif
@@ -264,36 +265,6 @@ margin-bottom: 7px;
 @section('script')
 <script>
 
-$(".attr_type").each(function () {
-    if ($(this).val() == 1) {
-        $(this).closest('.row').find("input[name='variant_filterable']").attr('disabled', 'true');
-    }
-
-    if ($(this).val() == 2) {
-        $(this).closest('.row').find("input[name='variant_favorite']").attr('disabled', 'true');
-        $(this).closest('.row').find("input[name='variant_filterable']").attr('disabled', 'true');
-    }
-});
-
-$(document).on('change', '.attr_type', function (){
-    if (($(this).val() == 1))
-    {
-        $(this).closest('.row').find(".active-field").remove();
-        var disabled_field = '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin variant_input_tag c-ui-input--deactive val_field deactive-field" disabled=""></td>';
-        $(this).closest('.row').find(".values-td").replaceWith(disabled_field);
-    }
-
-    if ($(this).val() == 2){
-        $(this).closest('.row').find(".deactive-field").remove();
-        var disabled_field = '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin variant_input_tag val_field active-field"></td>';
-        $(this).closest('.row').find(".values-td").replaceWith(disabled_field);
-    }
-
-
-
-});
-
-
 // اضافه کردن توکن به درخواست های ایجکس
 $.ajaxSetup({
     headers: {
@@ -336,7 +307,7 @@ $('#submit-form').on('click', function (e) {
         },
 
         success: function () {
-            {{--window.location.href = "{{ route('staff.variants.index') }}";--}}
+            window.location.href = "{{ route('staff.variants.index') }}";
         },
     });
 
@@ -385,7 +356,7 @@ $("tbody").sortable({
 $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
 
     if($("select[name='variant_type']").val() == 1) {
-        var td = '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column values-td"><input class="c-content-input__origin js-variant-old-value variant_value" name="variant_value"></div></td>';
+        var td = '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column values-td"><input type="color" class="c-content-input__origin js-variant-old-value variant_value" name="variant_value"></div></td>';
     } else {
         var td = '';
     }

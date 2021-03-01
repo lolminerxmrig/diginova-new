@@ -10,7 +10,7 @@ class VariantGroup extends Model
 
     protected $fillable = ['name', 'description', 'type', 'status', 'position'];
 
-    public function variant()
+    public function variants()
     {
       return $this->hasMany(Variant::class, 'group_id');
     }
