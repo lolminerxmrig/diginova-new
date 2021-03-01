@@ -135,14 +135,14 @@ margin-bottom: 7px;
                                             <th class="c-ui-table__header">
                                                 <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان تنوع</span>
                                             </th>
-                                            @if($variantGroup->type == 1)
-                                            <th class="c-ui-table__header">
-                                                <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان تنوع</span>
-                                            </th>
-                                            @endif
                                             <th class="c-ui-table__header">
                                                 <span class="table-header-searchable uk-text-nowrap">فعال/غیر فعال</span>
                                             </th>
+                                            @if($variantGroup->type == 1)
+                                                <th class="c-ui-table__header">
+                                                    <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">کد رنگ</span>
+                                                </th>
+                                            @endif
                                             <th class="c-ui-table__header">
                                                 <span class="table-header-searchable uk-text-nowrap">حذف</span>
                                             </th>
@@ -168,8 +168,8 @@ margin-bottom: 7px;
                                                     <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                             <label class="c-ui-toggle">
-                                                                <input class="c-ui-toggle__origin js-toggle-active-product variant_favorite"
-                                                                    type="checkbox" name="variant_status"  {{ ($variant->is_favorite)? 'checked' : '' }}>
+                                                                <input class="c-ui-toggle__origin js-toggle-active-product variant_status"
+                                                                    type="checkbox" name="variant_status"  {{ ($variant->status)? 'checked' : '' }}>
                                                                 <span class="c-ui-toggle__check"></span>
                                                             </label>
                                                         </div>
@@ -178,7 +178,7 @@ margin-bottom: 7px;
                                                   @if($variant->type == 1)
                                                   <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;">
                                                     <div class="uk-flex uk-flex-column">
-                                                        <input type="text" name="variant_name" value="{{ ($variant->name)? $variant->name : '' }}" class="c-content-input__origin js-variant-old-value variant_name">
+                                                        <input type="text" name="variant_value" value="{{ (!is_null($variant->value))? $variant->value : '' }}" class="c-content-input__origin js-variant-old-value variant_value">
                                                     </div>
                                                   </td>
                                                   @endif
@@ -383,12 +383,20 @@ $("tbody").sortable({
 });
 
 $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
+
+    if($("select[name='variant_type']").val() == 1) {
+        var td = '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column values-td"><input class="c-content-input__origin js-variant-old-value variant_value" name="variant_value"></div></td>';
+    } else {
+        var td = '';
+    }
+
     var tr = '<tr name="row" id="item-new" class="c-ui-table__row c-ui-table__row--body c-join__table-row row"><td class="c-ui-table__cell" style="padding-right:0;padding-left:23px">' +
         '<div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer"><span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span> ' +
         '<span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down">' +
         '</span></div></td><td class="c-ui-table__cell" style="min-width:90px"><input class="c-content-input__origin js-variant-old-value variant_name" name="variant_name"></td>' +
-        '<td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product variant_filterable" type="checkbox" name="variant_filterable" value="1"> ' +
+        '<td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product variant_status" type="checkbox" name="variant_status" checked> ' +
         '<span class="c-ui-toggle__check"></span></label></div></div></td>' +
+        td +
         // '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin c-ui-input--deactive val_field" disabled=""></div></td>' +
         '<td class="c-ui-table__cell"><div class="c-promo__actions" style="width:50%;margin:auto">' +
         '<button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button></div></td></tr>';
@@ -397,6 +405,7 @@ $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
     generateSelectUi();
 
 });
+
 
 function generateSelectUi() {
     $('.js-select-origin').each(function () {

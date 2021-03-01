@@ -105,7 +105,7 @@ class StaffVariantController extends Controller
 
         // update variant group
         if (!is_null($request->group_name)) {
-            VariantGroup::where('id', $request->category_id)->update([
+            VariantGroup::where('id', $request->group_id)->update([
                 'name' => $request->group_name,
                 'description' => $request->group_desc,
             ]);
@@ -114,18 +114,7 @@ class StaffVariantController extends Controller
         // delete variant
         if (isset($request->deleted_rows) && (!is_null($request->deleted_rows))) {
             foreach ($request->deleted_rows as $deleted_row) {
-                Variant::find($deleted_row)->values()->delete();
                 Variant::find($deleted_row)->delete();
-            }
-        }
-
-        // delete value
-        if (isset($request->deleted_values)) {
-            foreach ($request->deleted_values as $deleted_value) {
-                $this_attr_id = VariantValue::find($deleted_value)->variant_id;
-                if (VariantValue::where('variant_id', $this_attr_id)->count() > 2){
-                    VariantValue::find($deleted_value)->delete();
-                }
             }
         }
 
@@ -137,64 +126,32 @@ class StaffVariantController extends Controller
             return intval($value);
         }, $positions);
 
-
-        if (count($request->attr_names)) {
+        if (count($request->variant_names)) {
             $i = 0;
-            foreach ($request->attr_names as $attr_name) {
-                if ($attr_name == null) {
+            foreach ($request->variant_names as $variant_name) {
+                if ($variant_name == null) {
                     $i++;
                     continue;
                 }
 
-                $type = $request->attr_types[$i];
-
-                if (($type == 3 || $type == 4 || $type == 5) && is_null($request->attr_values[$i])) {
-                    $i++;
-                    continue;
+                // اگه جدید بود
+                if (VariantGroup::find($request->group_id)->type == 0) {
+                    $value = '';
+                } else {
+                    $value = $request->variant_values[$i];
+                    if (!str_starts_with($value, '#')){
+                        $value = '#' . $value;
+                    }
                 }
-
 
                 if ($positions[$i] == 0) {
-                    // اگه جدید بود
-                    $created_attr = Variant::create([
-                        'name' => $attr_name,
-                        'type' => $request->attr_types[$i],
+                    Variant::create([
+                        'name' => $variant_name,
+                        'value' => $value,
+                        'status' => $request->variant_status[$i],
                         'position' => $i,
-                        'is_required' => $request->attr_requireds[$i],
-                        'is_filterable' => $request->attr_filterables[$i],
-                        'is_favorite' => $request->attr_favorites[$i],
-                        'group_id' => $request->category_id,
+                        'group_id' => $request->group_id,
                     ]);
-                    Log::info($request->attr_values);
-
-                    if (($request->attr_types[$i] == 1) || ($request->attr_types[$i] == 2)) {
-                        $i++;
-                        continue;
-                    }
-                    elseif (($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4)) {
-                        foreach (json_decode($request->attr_values[$i]) as $attr_value) {
-                            $attr_value = (array)$attr_value;
-                            $val = [];
-                            $val_position = 0;
-                            foreach ($attr_value as $attr_val) {
-                                $val[] = $attr_val;
-                                if (isset($val[0]) && !is_null($attr_val)) {
-                                    VariantValue::create([
-                                        'value' => $attr_val,
-                                        'variant_id' => $created_attr->id,
-                                        'position' => $val_position,
-                                    ]);
-                                    $val_position++;
-                                }
-                            }
-                        }
-                    }
-                    elseif ($request->attr_types[$i] == 5) {
-                        Variant::find($created_attr->id)->update([
-                            'unit_id' => $request->attr_values[$i],
-                        ]);
-                    }
-
                 }
                 else {  // اگه سطر جدید نبود
                     if (!Variant::find($positions[$i])) {
@@ -203,54 +160,15 @@ class StaffVariantController extends Controller
                     }
 
                     Variant::find($positions[$i])->update([
-                        'name' => $attr_name,
-                        'type' => $request->attr_types[$i],
+                        'name' => $variant_name,
+                        'value' => $value,
+                        'status' => $request->variant_status[$i],
                         'position' => $i,
-                        'is_required' => $request->attr_requireds[$i],
-                        'is_filterable' => $request->attr_filterables[$i],
-                        'is_favorite' => $request->attr_favorites[$i],
-                        'group_id' => $request->category_id,
+                        'group_id' => $request->group_id,
                     ]);
-
-                    $attr = Variant::find($positions[$i]);
-
-                    if ($request->attr_types[$i] == 1 || $request->attr_types[$i] == 2) {
-                        $i++;
-                        continue;
-                    }
-
-                    if ($request->attr_types[$i] == 5) {
-                        Variant::find($positions[$i])->update([
-                            'unit_id' => $request->attr_values[$i],
-                        ]);
-                    }
-
-                    if ($request->attr_types[$i] == 3 || $request->attr_types[$i] == 4) {
-                        $val_position = 0;
-
-                        foreach (json_decode($request->attr_values[$i]) as $attr_value) {
-                            $attr_value = (array)$attr_value;
-                            if (isset($attr_value['id'])) { // جدید نیست
-                                VariantValue::find($attr_value['id'])->update([
-                                    'variant_id' => $attr->id,
-                                    'value' => $attr_value['value'],
-                                    'position' => $val_position,
-                                ]);
-                            } else {  // جدیده
-                                VariantValue::create([
-                                    'variant_id' => $attr->id,
-                                    'value' => $attr_value['value'],
-                                    'position' => $val_position,
-                                ]);
-                            }
-                            $val_position++;
-                        }
-                    }
                 }
-
                 $i++;
             }
         }
     }
-
 }

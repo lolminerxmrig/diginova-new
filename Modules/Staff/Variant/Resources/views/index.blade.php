@@ -386,12 +386,7 @@
     });
 
     $('tbody').sortable({
-        group: 'no-drop',
         handle: '.c-content-upload__drag-handler',
-        connectWith: 'tbody',
-        scroll: false,
-        containment: 'tbody',
-        axis: 'y',
         update: function (event, ui) {
             var data = $("tbody").sortable('serialize');
             $.ajax({
