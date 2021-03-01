@@ -16,7 +16,8 @@ class CreateVariantGroupsTable extends Migration
         Schema::create('variant_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
+            $table->boolean('type');
             $table->integer('status')->nullable();
             $table->string('position')->nullable();
             $table->timestamps();

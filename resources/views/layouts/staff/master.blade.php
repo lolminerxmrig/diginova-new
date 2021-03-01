@@ -108,6 +108,10 @@
                       </div>
                     </li>
 
+                    <li>
+                      <a href="{{ route('staff.variants.index') }}">تنوع</a>
+                  </li>
+
                   </ul>
                 </div>
               </li>

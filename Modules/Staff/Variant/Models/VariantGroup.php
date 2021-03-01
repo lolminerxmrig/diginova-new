@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VariantGroup extends Model
 {
 
-    protected $fillable = ['name', 'description', 'status', 'position'];
+    protected $fillable = ['name', 'description', 'type', 'status', 'position'];
 
     public function variant()
     {
