@@ -7,6 +7,7 @@ use App\Models\SeoContent;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Response;
@@ -143,6 +144,19 @@ class StaffProductController extends Controller
             array_unshift($types, $defualt_types);
         }
 
+        if ($category->variantGroup()->first()){
+            $variant_group = $category->variantGroup()->first();
+        } else {
+            $variant_group = '';
+        }
+
+
+        if ($category->variantGroup()->first() && !is_null($category->variantGroup()->first()->description)) {
+            $categoryThemeDescription = "<strong>تنوع $variant_group->name: </strong>$variant_group->description";
+        } else {
+            $categoryThemeDescription = '';
+        }
+
 
         $jayParsedAry = [
             "status" => true,
@@ -160,11 +174,10 @@ class StaffProductController extends Controller
                         ],
                     ],
                     "span" => [
-                        "categoryTheme" => "sized",
-                        "categoryThemeTranslated" => "سایز",
-                        "categoryTitle" => "اکسسوری ورزشی مردانه",
-                        "categoryThemeDescription" => "<strong>تنوع سایز: </strong>تنوع سایز برای کالاهایی استفاده می‌شود که ظاهر مشابه دارند اما در سایزهای مختلف فروخته می‌شوند. از این تنوع برای درج کالاهایی مثل انواع لباس استفاده می‌شود. لباس‌ها ظاهری یکسان دارند اما بر اساس سایز طبقه‌بندی می‌شوند و قرار دادن آن‌ها در یک محصول می‌تواند فرآیند انتخاب را برای خریدار ساده‌تر کند.
-"
+//                        "categoryTheme" => "sized",
+                        "categoryThemeTranslated" => (isset($variant_group->name))? $variant_group->name : '',
+                        "categoryTitle" => $category->name,
+                        "categoryThemeDescription" => $categoryThemeDescription
                     ],
                     "extra" => [
                         "allow_fake" => true,
@@ -786,10 +799,24 @@ class StaffProductController extends Controller
         ]);
     }
 
-    public function variant($id){
+    public function variant($id)
+    {
         $product = Product::where('product_code',$id)->firstOrFail();
+        $category = $product->category()->first();
+        while ($category->parent) {
+            $category = $category->parent;
+        }
+
+        if ($category->parent_id == 0) {
+            if (count($category->warranties)) {
+                $warranties = $category->warranties;
+            } else {
+                $warranties = [];
+            }
+        }
+
         $settings = Setting::select('name', 'value')->get();
-        return view('staffproduct::variant', compact('settings', 'product'));
+        return view('staffproduct::variant', compact('settings', 'product', 'warranties'));
     }
 
 }

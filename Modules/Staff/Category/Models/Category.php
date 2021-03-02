@@ -13,6 +13,7 @@ use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 use Modules\Staff\Variant\Models\VariantGroup;
+use Modules\Staff\Warranty\Models\Warranty;
 
 
 class Category extends Model
@@ -64,8 +65,12 @@ class Category extends Model
 
     public function variantGroup()
     {
-        return $this->morphedByMany(VariantGroup::class, 'categorizable')->select('name', 'id');
+        return $this->morphedByMany(VariantGroup::class, 'categorizable')->select('name','description' , 'id');
     }
 
+    public function warranties()
+    {
+        return $this->morphedByMany(Warranty::class, 'categorizable');
+    }
 }
 

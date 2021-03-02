@@ -108,8 +108,19 @@
                       </div>
                     </li>
 
-                    <li>
-                      <a href="{{ route('staff.variants.index') }}">تنوع</a>
+                  <li>
+                      <a href="#">تنوع</a>
+                      <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade
+                   uk-animation-enter menu-child-margin">
+                          <ul class="uk-nav uk-navbar-dropdown-nav">
+                              <li>
+                                  <a href="{{ route('staff.variants.index') }}">مدیریت تنوع</a>
+                              </li>
+                              <li>
+                                  <a href="{{ route('staff.variants.variantCategory') }}">تعیین تنوع مجاز</a>
+                              </li>
+                          </ul>
+                      </div>
                   </li>
 
                   </ul>

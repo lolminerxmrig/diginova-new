@@ -711,9 +711,8 @@
                                 </div>
                               </div>
 
-                              <div class="c-grid__row c-grid__row--gap-lg">
-                                <div
-                                  class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
+                              <div class="c-grid__row c-grid__row--gap-lg variant-message">
+                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
                                   <div class="c-content-product__selected-category">
                                     <div class="c-content-product__msg c-content-product__msg--focus">
                                       گروه کالایی انتخابی شما
@@ -1958,7 +1957,6 @@
 
 
 <input name="product_title_prefix" value="{{ $product_title_prefix }}" hidden>
-
 
 @endsection
 
