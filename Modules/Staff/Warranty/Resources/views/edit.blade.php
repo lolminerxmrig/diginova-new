@@ -1,3 +1,4 @@
+
 @extends('layouts.staff.master')
 
 @section('head')
@@ -55,7 +56,7 @@ $warranty->name = persianNum($warranty->name);
                                   c-grid__col--sm-6">
                                   <label class="uk-form-label uk-flex uk-flex-between">
                                       مدت گارانتی:
-                                      <span class="uk-form-label__required"></span>
+{{--                                      <span class="uk-form-label__required"></span>--}}
                                   </label>
                                     <div class="field-wrapper">
                                         <label class="c-content-input">
@@ -216,7 +217,7 @@ $('#warranty_form').on('submit', function(e){
     var name = $("input[name='name']").val();
     var time = $("input[name='time']").val();
 
-    if (name && time)
+    if (name)
     {
         $.ajax({
             method: "POST",

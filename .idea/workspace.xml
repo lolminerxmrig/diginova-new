@@ -266,7 +266,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Product/Models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views/layouts" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
@@ -274,18 +274,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views/layouts" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/temp" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Models" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views/layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/layouts" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/ajax" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Variant/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Warranty/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Attribute/temp" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Staff">
@@ -533,7 +533,8 @@
       <workItem from="1614577311098" duration="35677000" />
       <workItem from="1614660425304" duration="15939000" />
       <workItem from="1614682840566" duration="25103000" />
-      <workItem from="1614745858114" duration="5113000" />
+      <workItem from="1614745858114" duration="55186000" />
+      <workItem from="1614804614744" duration="4516000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -564,11 +565,6 @@
           <url>file://$PROJECT_DIR$/Modules/Staff/Product/Resources/views/edit.blade.php</url>
           <line>1766</line>
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/Modules/Staff/Warranty/Routes/web.php</url>
-          <line>2</line>
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/seller/js/tags5.js</url>

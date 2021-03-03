@@ -89,4 +89,13 @@ Route::domain('staff.diginova.test')->prefix('products')->name('staff.products.'
     Route::post('variant/save', [StaffProductController::class, 'variantSave'])
         ->name('variantSave');
 
+    Route::post('variant/update', [StaffProductController::class, 'variantUpdate'])
+        ->name('variantUpdate');
+
+    Route::post('variant/variants-list', [StaffProductController::class, 'ajaxVariantsList'])
+        ->name('ajaxVariantsList');
+
+    Route::post('variant/delete', [StaffProductController::class, 'variantDelete'])
+        ->name('variantDelete');
+
   });

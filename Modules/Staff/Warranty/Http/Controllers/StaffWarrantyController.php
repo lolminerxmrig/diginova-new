@@ -37,7 +37,7 @@ class StaffWarrantyController extends Controller
 
         $warranty = Warranty::create([
             'name' => $request->name,
-            'month' => $request->time,
+            'month' => (!is_null($request->time))? $request->time : null,
             'has_insurance' => $request->has_insurance,
         ]);
 
@@ -73,7 +73,7 @@ class StaffWarrantyController extends Controller
 
         Warranty::find($request->id)->update([
             'name' => $request->name,
-            'month' => $request->time,
+            'month' => (!is_null($request->time))? $request->time : null,
             'has_insurance' => $request->has_insurance,
         ]);
 

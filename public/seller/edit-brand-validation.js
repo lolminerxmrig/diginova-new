@@ -1,3 +1,19 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var CategoryFormAction = {
     init: function () {
         this.initForgotForm();

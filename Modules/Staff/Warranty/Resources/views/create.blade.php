@@ -63,11 +63,11 @@
                                   c-grid__col--sm-6">
                                   <label class="uk-form-label uk-flex uk-flex-between">
                                       مدت گارانتی:
-                                      <span class="uk-form-label__required"></span>
+{{--                                      <span class="uk-form-label__required"></span>--}}
                                   </label>
                                     <div class="field-wrapper">
                                         <label class="c-content-input">
-                                            <input type="text" placeholder="" class="c-content-input__origin js-required-attribute" name="time" value="">
+                                            <input type="text" placeholder="" class="c-content-input__origin" name="time" value="">
                                             <span class="c-content-input__text c-content-input__text--overlay" style="left: 0 !important;right: unset !important;">بر حسب ماه</span>
                                         </label>
                                     </div>
@@ -215,7 +215,7 @@ $('#warranty_form').on('submit', function(e){
     var name = $("input[name='name']").val();
     var time = $("input[name='time']").val();
 
-    if (name && time)
+    if (name)
     {
         $.ajax({
             method: "POST",

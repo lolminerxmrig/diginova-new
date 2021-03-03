@@ -772,9 +772,15 @@ var noColorNoSizeMode = true;
                                                                 <th class="c-ui-table__header c-ui-table__header--nowrap ">
                                                                     <span class="js-search-table-column">کد تنوع ({{ $product_code_prefix }}C)</span>
                                                                 </th>
+                                                                {{--                        <th class="c-ui-table__header c-ui-table__header--nowrap ">--}}
+                                                                {{--                            <span class="js-search-table-column">کد فروشنده</span>--}}
+                                                                {{--                        </th>--}}
                                                                 <th class="c-ui-table__header c-ui-table__header--nowrap ">
                                                                     <span class="js-search-table-column">ارسال توسط</span>
                                                                 </th>
+                                                                {{--                        <th class="c-ui-table__header c-ui-table__header--nowrap ">--}}
+                                                                {{--                            <span class="js-search-table-column">کانال فروش</span>--}}
+                                                                {{--                        </th>--}}
                                                                 <th class="c-ui-table__header c-ui-table__header--nowrap ">
                                                                     <span class="js-search-table-column">وضعیت</span>
                                                                 </th>
@@ -804,8 +810,11 @@ var noColorNoSizeMode = true;
                                                                         <td class="c-variation-diversity__warranty"> گارانتی {{ $product_variant->warranty->name }} </td>
                                                                     @endif
                                                                     <td class="c-variation-diversity__code">{{ $product_variant->variant_code }}</td>
+                                                                    {{--                            <td class="c-variation-diversity__code js-view-supplier-code"></td>--}}
                                                                     <td>
                                                                         <span>{{ ($product_variant->shipping_type == 'site')? $site_name : 'فروشنده'  }}</span>
+                                                                        {{--                                    <span class="c-variation-diversity__channel dk js-view-shipping-type-digikala active"></span>--}}
+                                                                        {{--                                    <span class="c-variation-diversity__channel seller js-view-shipping-type-seller"></span>--}}
                                                                     </td>
                                                                     <td class="status_lable">
                                                                         <center>
@@ -816,18 +825,27 @@ var noColorNoSizeMode = true;
                                                                             @endif
                                                                         </center>
                                                                     </td>
-{{--                                                                    <td class="c-variation-diversity__status js-view-active" style="display: flex;align-items: center;align-content: center;width: 88%;">--}}
-                                                                    <td class="c-variation-diversity__status js-view-active" style="">
-                                                                        <div style="margin:auto;">
-                                                                            <button type="button" class="c-ui-btn c-ui-btn--delete js-variant-remove-btn delete-btn" data-id="{{ $product_variant->id }}" style="float: right;border-color: #e6eaef;background-color: #f9fafc;width: 35px;height: 34px;">
-                                                                                <span class="c-variant__tooltip c-variant__tooltip--btn" style="margin-left: -9px;">حدف تنوع</span>
-                                                                            </button>
-                                                                            <button type="button" class="c-ui-btn c-ui-btn--edit js-variant-edit-btn" data-id="{{ $product_variant->id }}" style="float: right;margin-right: 11px;">
+                                                                    <td class="c-variation-diversity__status js-view-active">
+                                                                        <center style="width: 79%;margin: auto;">
+                                                                            {{--                                    <button type="button" class="c-ui-btn c-ui-btn--delete" data-id="2276294" style="">--}}
+                                                                            {{--                                        <span class="c-variant__tooltip c-variant__tooltip--btn" style="margin-left: -9px;">حذف تنوع</span>--}}
+                                                                            {{--                                    </button>--}}
+                                                                            {{--                                    <span class="c-variation-diversity__status-ui js-td-active inactive" style="float: right;margin-left: 7px;height: 35px;width: 35px;"></span>--}}
+                                                                            <button type="button" class="c-ui-btn c-ui-btn--edit js-variant-edit-btn" data-id="{{ $product_variant->id }}" style="">
                                                                                 <span class="c-variant__tooltip c-variant__tooltip--btn" style="margin-left: -9px;">ویرایش تنوع</span>
                                                                             </button>
-                                                                            @include('staffproduct::layouts.modal')
-                                                                        </div>
+                                                                        </center>
                                                                     </td>
+
+                                                                    {{--                            <td class="c-variation-diversity__status js-view-active">--}}
+                                                                    {{--                                <span class="c-variation-diversity__status-ui js-td-active inactive"></span>--}}
+                                                                    {{--                            </td>--}}
+                                                                    {{--                            <td class="c-variation-diversity__action">--}}
+                                                                    {{--                                <button type="button" class="c-ui-btn c-ui-btn--edit js-variant-edit-btn"--}}
+                                                                    {{--                                        data-id="{{ $product_variant->id }}">--}}
+                                                                    {{--                                    <span class="c-variant__tooltip c-variant__tooltip--btn">ویرایش تنوع</span>--}}
+                                                                    {{--                                </button>--}}
+                                                                    {{--                            </td>--}}
                                                                 </tr>
                                                                 <tr class="c-variation-diversity__item c-variation-diversity__item--bottom js-variant-row" id="productVariantEditRow_{{ $product_variant->id }}" data-size="">
                                                                     <td colspan="9">
@@ -866,6 +884,37 @@ var noColorNoSizeMode = true;
                                                                                 <div class="c-variant__secondary-info c-variant__secondary-info--edit"
                                                                                      id="metaEditFormVariant_{{ $product_variant->id }}">
                                                                                     <div class="c-grid__row c-grid__row--gap-lg">
+                                                                                        {{--                                                <div class="c-grid__col c-grid__col--sm-4 c-grid__col--flex-initial">--}}
+                                                                                        {{--                                                    <label class="uk-form-label">کانال فروش:--}}
+                                                                                        {{--                                                        <span class="uk-form-label__required"></span>--}}
+                                                                                        {{--                                                    </label>--}}
+                                                                                        {{--                                                    <div class="field-wrapper field-wrapper--background uk-flex uk-flex-middle js-radio-group disabled">--}}
+                                                                                        {{--                                                        <label class="c-ui-radio c-ui-radio--gap-sm disabled">--}}
+                                                                                        {{--                                                            <input type="radio" class="c-ui-radio__origin js-site-digikala"--}}
+                                                                                        {{--                                                                   name="product_variant[site]" value="digikala"--}}
+                                                                                        {{--                                                                   data-default-value="1"--}}
+                                                                                        {{--                                                                   checked                                                     disabled/>--}}
+                                                                                        {{--                                                            <span class="c-ui-radio__check c-ui-radio__check--small"></span>--}}
+                                                                                        {{--                                                            <span class="c-ui-radio__label">دیجی‌کالا</span>--}}
+                                                                                        {{--                                                        </label>--}}
+                                                                                        {{--                                                        <label class="c-ui-radio c-ui-radio--gap-sm disabled">--}}
+                                                                                        {{--                                                            <input type="radio" class="c-ui-radio__origin js-site-digistyle"--}}
+                                                                                        {{--                                                                   name="product_variant[site]" value="seller"--}}
+                                                                                        {{--                                                                   data-default-value="0"--}}
+                                                                                        {{--                                                                   disabled/>--}}
+                                                                                        {{--                                                            <span class="c-ui-radio__check c-ui-radio__check--small"></span>--}}
+                                                                                        {{--                                                            <span class="c-ui-radio__label">دیجی‌استایل</span>--}}
+                                                                                        {{--                                                        </label>--}}
+                                                                                        {{--                                                        <label class="c-ui-radio c-ui-radio--gap-sm disabled">--}}
+                                                                                        {{--                                                            <input type="radio" class="c-ui-radio__origin js-site-both"--}}
+                                                                                        {{--                                                                   name="product_variant[site]" value="both"--}}
+                                                                                        {{--                                                                   data-default-value="0"--}}
+                                                                                        {{--                                                                   disabled/>--}}
+                                                                                        {{--                                                            <span class="c-ui-radio__check c-ui-radio__check--small"></span>--}}
+                                                                                        {{--                                                            <span class="c-ui-radio__label">دیجی‌کالا و دیجی‌استایل</span>--}}
+                                                                                        {{--                                                        </label>--}}
+                                                                                        {{--                                                    </div>--}}
+                                                                                        {{--                                                </div>--}}
                                                                                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--flex-initial">
                                                                                             <label class="uk-form-label">ارسال توسط:
                                                                                                 <span class="uk-form-label__required"></span>
@@ -926,6 +975,23 @@ var noColorNoSizeMode = true;
                                                                                                        value="{{ $product_variant->stock_count }}">
                                                                                             </div>
                                                                                         </div>
+{{--                                                                                        <div class="c-grid__col c-ui--mt-20 c-grid__col--sm-2 c-grid__col--flex-initial">--}}
+{{--                                                                                            <span class="uk-form-label">کد محصول فروشنده:--}}
+{{--                                                                                            </span>--}}
+{{--                                                                                            <div class="field-wrapper">--}}
+{{--                                                                                                <input type="text" name="product_variant[supplier_code]" class="uk-input js-edit-seller-code disabled"--}}
+{{--                                                                                                       data-default-value="" value="">--}}
+{{--                                                                                            </div>--}}
+{{--                                                                                        </div>--}}
+{{--                                                                                        <div class="c-grid__col c-ui--mt-20 c-grid__col--sm-2 c-grid__col--flex-initial">--}}
+{{--                                                                                            <span class="uk-form-label">قیمت مرجع (ریال):</span>--}}
+{{--                                                                                            <div class="field-wrapper">--}}
+{{--                                                                                                <div class="uk-input uk-flex uk-flex-middle">--}}
+{{--                                                                                                    <span dir="ltr" data-debug="350000">۳۵۰,۰۰۰</span>--}}
+{{--                                                                                                </div>--}}
+{{--                                                                                            </div>--}}
+{{--                                                                                        </div>--}}
+
                                                                                         <div class="c-grid__col c-ui--mt-20 c-grid__col--sm-2 c-grid__col--flex-initial">
                                                                                             <label class="uk-form-label">
                                                                                                 قیمت خرید (ریال):
@@ -977,6 +1043,22 @@ var noColorNoSizeMode = true;
                                                                 <div class="c-ui-paginator__total" data-rows="۱">
                                                                     تعداد نتایج: <span>{{ persianNum(count($product->variants)) }} مورد</span>
                                                                 </div>
+
+                                                                {{--                        <div class="c-ui-paginator__select">--}}
+                                                                {{--                            <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
+                                                                {{--                            <div class="c-ui-paginator__select-pages">--}}
+                                                                {{--                                <div class="field-wrapper ui-select ui-select__container">--}}
+                                                                {{--                                    <select class="c-ui-select c-ui-select--common c-ui-select--small js-search-items-per-page" name="paginator-select-pages">--}}
+                                                                {{--                                        <option value="10" selected>۱۰</option>--}}
+                                                                {{--                                        <option value="20">۲۰</option>--}}
+                                                                {{--                                        <option value="50">۵۰</option>--}}
+                                                                {{--                                        <option value="100">۱۰۰</option>--}}
+                                                                {{--                                    </select>--}}
+                                                                {{--                                    <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
+                                                                {{--                                </div>--}}
+                                                                {{--                            </div>--}}
+                                                                {{--                        </div>--}}
+
                                                             </div>
 
                                                         </div>
@@ -1042,7 +1124,7 @@ var noColorNoSizeMode = true;
                                                 <option value="{{ $warranty->id }}">گارانتی {{ persianNum($warranty->month) }} ماهه {{ $warranty->name }}</option>
                                             @else
                                                 <option value="{{ $warranty->id }}">گارانتی {{ $warranty->name }}</option>
-                                            @endif
+=                                           @endif
                                         @endforeach
                                     @endif
                                 </select>
@@ -1474,75 +1556,236 @@ var noColorNoSizeMode = true;
 @endsection
 @section('script')
 <script>
-// تبدیل اعداد انگلیسی به فارسی
-function ConvertNumberToPersion() {
-    persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
 
-    function traverse(el) {
-        if (el.nodeType == 3) {
-            var list = el.data.match(/[0-9]/g);
-            if (list != null && list.length != 0) {
-                for (var i = 0; i < list.length; i++)
-                    el.data = el.data.replace(list[i], persian[list[i]]);
+        // تبدیل اعداد انگلیسی به فارسی
+        function ConvertNumberToPersion() {
+            persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
+            function traverse(el) {
+                if (el.nodeType == 3) {
+                    var list = el.data.match(/[0-9]/g);
+                    if (list != null && list.length != 0) {
+                        for (var i = 0; i < list.length; i++)
+                            el.data = el.data.replace(list[i], persian[list[i]]);
+                    }
+                }
+                for (var i = 0; i < el.childNodes.length; i++) {
+                    traverse(el.childNodes[i]);
+                }
             }
+
+            traverse(document.body);
         }
-        for (var i = 0; i < el.childNodes.length; i++) {
-            traverse(el.childNodes[i]);
-        }
-    }
 
-    traverse(document.body);
-}
-
-// توکن csrf
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
-$(document).on('click', '.delete-btn', function () {
-    $(this).closest('.c-variation-diversity__status').find('.uk-modal-container').addClass('uk-open');
-    $(this).closest('.c-variation-diversity__status').find('.uk-modal-container').css('display', 'block');
-    $('.c-header__nav').hide();
-
-    $(document).on('click', '.yes', function () {
-
-        $('.c-header__nav').show();
-
-
-        var variant_id = $(this).closest('.c-variation-diversity__status').find('.delete-btn').attr('data-id');
-        console.log('ee');
-        console.log(variant_id);
-        console.log('vvv');
-
-        var product_id = $("input[name='product_variants[product_id]']").val();
-        console.log(product_id);
-
-
-            $.ajax({
-            method: 'post',
-            url: "{{route('staff.products.variantDelete')}}",
-            data: {
-                id: variant_id,
-                product_id: product_id,
-            },
-            success: function (result) {
-                $('.js-table-container').replaceWith(result);
-            },
+        // توکن csrf
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
 
-    });
+        // پجینیشن
+        $(document).on('click', '.c-ui-paginator__control a', function (e) {
+            e.preventDefault();
 
-    $(document).on('click', '.uk-modal-close-default', function () {
-        $('.c-header__nav').show();
-    });
+            var page = $(this).attr('href').split('page=')[1];
 
-    $(document).on('click', '.no', function () {
-        $('.c-header__nav').show();
-    });
+            var pageType = $("input[name='page_type']").val();
+
+            if (pageType == 'index') {
+                var url = "{{route('staff.products.ajaxPagination')}}?page=" + page;
+            } else if (pageType == 'only_special') {
+                var url = "{{route('staff.products.filterByType')}}?page=" + page;
+            } else if (pageType == 'productsearch') {
+                var url = "{{route('staff.products.productSearch')}}?page=" + page;
+            } else if (pageType == 'productCatSearch') {
+                var url = "{{route('staff.products.productCatSearch')}}?page=" + page;
+            }
+
+            if (pageType == 'productCatSearch' || pageType == 'productsearch') {
+                var searchValue = $("#searchKeyword").val();
+                var data = {
+                    page: page,
+                    search_keyword: searchValue,
+                }
+            } else {
+                var data = {
+                    page: page,
+                }
+            }
+
+            $.ajax({
+                method: 'post',
+                url: url,
+                data: data,
+                success: function (result) {
+                    $(".js-table-container").html(result);
+                    window.pagination_type = 'withoutFilter';
+                }
+            });
+        });
+
+        // نمایش محصول: ویژه و همه
+        $(".search_type").on('change', function () {
+
+            var searchType = $("input:checked[name='search_type']").val();
+
+            $.ajax({
+                type: 'post',
+                url: '{{route('staff.products.filterByType')}}',
+                data: {
+                    search_type: searchType,
+                },
+                success: function (result) {
+                    $(".js-table-container").replaceWith(result);
+                }
+            });
+        });
+
+        $(document).on('click', '.delete-btn', function () {
+            $(this).closest('.c-ui-table__cell').find('.uk-modal-container').addClass('uk-open');
+            $(this).closest('.c-ui-table__cell').find('.uk-modal-container').css('display', 'block');
+            $('.c-header__nav').hide();
+
+            $(document).on('click', '.yes', function () {
+
+                $('.c-header__nav').show();
 
 
-});
-</script>
+                var product_id = $(this).closest('.c-ui-table__cell').find('.delete-btn').val();
+
+                $.ajax({
+                    method: 'post',
+                    url: "{{route('staff.products.moveToTrash')}}",
+                    data: {
+                        'id': product_id,
+                    },
+                    success: function (result) {
+                        $('.js-table-container').replaceWith(result);
+                    },
+                });
+
+            });
+
+            $(document).on('click', '.uk-modal-close-default', function () {
+                $('.c-header__nav').show();
+            });
+
+            $(document).on('click', '.no', function () {
+                $('.c-header__nav').show();
+            });
+
+
+        });
+
+        //دکمه سرچ
+        $("#search-btn").on('click', function () {
+
+            var searchValue = $("#searchKeyword").val();
+            var searchGroup = $("#searchGroup").val();
+
+            if (searchGroup == 'product_name') {
+                var url = "{{route('staff.products.productSearch')}}";
+            } else if (searchGroup == 'product_category') {
+                var url = "{{route('staff.products.productCatSearch')}}";
+            }
+
+            $.ajax({
+                type: 'post',
+                url: url,
+                data: {
+                    'search_keyword': searchValue,
+                    'searchGroup': searchGroup,
+                },
+                success: function (result) {
+                    $(".js-table-container").replaceWith(result);
+                    if ($(".search_type:checked").val()) {
+                        $(this).removeAttr('checked');
+                    }
+                }
+            });
+        });
+
+        // دکمه حذف سرچ
+        $("#searchClear").on('click', function () {
+            $.ajax({
+                method: 'post',
+                url: "{{route('staff.products.ajaxPagination')}}",
+                success: function (result) {
+                    $(".js-table-container").html(result);
+                }
+            });
+        });
+
+        // ایجکس سرچ
+        $('#searchKeyword').on('keyup', function () {
+
+            var searchValue = $(this).val();
+
+            if (searchValue.length > 0) {
+                $("#search-btn").removeAttr('disabled');
+                $("#searchClear").removeAttr('disabled');
+
+                $("#searchClear").on('click', function () {
+                    $("#searchKeyword").val('');
+                    $("#search-btn").attr('disabled', true);
+                    $("#searchClear").attr('disabled', true);
+                });
+
+            }
+
+            if (searchValue.length == 0) {
+                $("#search-btn").attr('disabled', true);
+                $("#searchClear").attr('disabled', true);
+
+                $.ajax({
+                    type: 'post',
+                    url: '{{route('staff.products.ajaxPagination')}}',
+                    success: function (result) {
+                        $(".js-table-container").replaceWith(result);
+                    }
+                });
+            }
+
+        });
+
+        // انتخاب تعداد نمایش: غیرفعال
+        $("select[name='paginator-select-pages']").on('change', function () {
+            //selectbox paginator val
+            var selectedPaginator = $(this).val();
+
+            $.ajax({
+                type: 'post',
+                url: "{{route('staff.products.ajaxPagination')}}",
+                data: {
+                    paginatorNum: selectedPaginator,
+                },
+                success: function (result) {
+                    $("js-table-container").replaceWith(result);
+                }
+            });
+        });
+
+
+        $(document).on('change', 'input[name="status"]', function () {
+            if ($(this).is(':checked')) {
+                var status = 1;
+            } else {
+                var status = 0;
+            }
+            var data_product_id = $(this).attr('data-product-id');
+
+            $.ajax({
+                method: 'post',
+                url: "{{ route('staff.products.statusProduct') }}",
+                data: {
+                    'status': status,
+                    'product_id': data_product_id,
+                },
+            });
+
+        });
+
+
+    </script>
 @endsection

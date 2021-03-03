@@ -18,10 +18,10 @@ var CategoryFormAction = {
                     required: true,
                 },
 
-                'time': {
-                    required: true,
-                    regex: '^[0-9]{6}-[0-9]{4}$',
-                },
+                // 'time': {
+                    // required: true,
+                    // regex: '^[0-9]{6}-[0-9]{4}$',
+                // },
             },
             messages: {
                 'name': {

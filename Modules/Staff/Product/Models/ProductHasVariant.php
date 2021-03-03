@@ -15,6 +15,9 @@ use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
+use Modules\Staff\Variant\Models\Variant;
+use Modules\Staff\Warranty\Models\Warranty;
+use function _HumbugBox7eb78fbcc73e\iter\rewindable\product;
 
 
 class ProductHasVariant extends Model
@@ -33,6 +36,17 @@ class ProductHasVariant extends Model
       'stock_count',
       'variantable_type',
       'variantable_id',
+      'variant_code',
     ];
+
+    protected $table = "product_has_variants";
+
+    public function warranty(){
+        return $this->belongsTo(Warranty::class);
+    }
+
+    public function variant(){
+        return $this->belongsTo(Variant::class);
+    }
 
 }

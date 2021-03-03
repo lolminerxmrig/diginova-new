@@ -822,21 +822,124 @@ class StaffProductController extends Controller
 
     public function variantSave(Request $request)
     {
-        Log::info($request->all());
-//        foreach($request->product_variants as $product_variant) {
+        // variant code
+        if(count(ProductHasVariant::all())){
+            $variant_code = ProductHasVariant::max('variant_code')+1;
+        } else {
+            $variant_code = 2000000;
+        }
+
+        $i = 0;
+        foreach($request->product_variants as $product_variant) {
+            if (!isset($request->product_variants["variant_{$i}_attribute"])) {
+                break;
+            }
             ProductHasVariant::create([
                 'product_id' => $request->product_variants['product_id'],
-                'variant_id' => $request->product_variants['variants'][0],
+                'variant_id' => $request->product_variants["variant_{$i}_attribute"],
+                'status' => $request->product_variants["variant_{$i}_active"],
+                'post_time' => $request->product_variants["variant_{$i}_post_time"],
+                'max_order_count' => $request->product_variants["variant_{$i}_order_limit"],
+                'buy_price' => $request->product_variants["variant_{$i}_buy_price"],
+                'sale_price' => $request->product_variants["variant_{$i}_price"],
+                'warranty_id' => $request->product_variants["variant_{$i}_warranty_id"],
+                'stock_count' => $request->product_variants["variant_{$i}_marketplace_seller_stock"],
+                'variant_code' => $variant_code,
                 'shipping_type' => 'site',
-                'status' => $request->product_variants['variant_0_active'],
-                'post_time' => $request->product_variants['variant_0_post_time'],
-                'max_order_count' => $request->product_variants['variant_0_order_limit'],
-                'buy_price' => $request->product_variants['variant_0_buy_price'],
-                'sale_price' => $request->product_variants['variant_0_price'],
                 'variantable_type' => 'staff',
                 'variantable_id' => auth()->guard('staff')->user()->id,
             ]);
-//        }
+            $i++;
+        }
+
+        $product_variants = ProductHasVariant::where('product_id', $request->product_variants['product_id'])->get();
+
+        Log::info($product_variants);
+
+        foreach ($product_variants as $pr_variant) {
+            $product_array_variants[] = array($pr_variant => "1");
+        }
+
+
+        $jsonResponse= [
+            "status" => true,
+            "data" => [
+                "variationData" => [
+//                    "variation_pairs" => $product_array_variants,
+                    "total_variants" => count($product_variants),
+                ]
+            ]
+        ];
+
+        return response()->json($jsonResponse, 200);
+
+    }
+
+    public function ajaxVariantsList(Request $request){
+        $settings = Setting::select('name', 'value')->get();
+        $product = Product::find($request->search['product_id']);
+        return View::make("staffproduct::ajax.variant.ajax-variant-list", compact('product', 'settings'));
+    }
+
+    public function variantUpdate(Request $request)
+    {
+        $status = (isset($request->product_variant['active']))? 1 : 0;
+        ProductHasVariant::where('id', $request->product_variant['product_variant_id'])->update([
+            'status' => $status,
+            'post_time' => $request->product_variant['lead_time'],
+            'max_order_count' => $request->product_variant['order_limit'],
+            'buy_price' => $request->product_variant['buy_price'],
+            'sale_price' => $request->product_variant['price'],
+//            'warranty_id' => $request->product_variant["warranty_id"],
+            'stock_count' => $request->product_variant['marketplace_seller_stock'],
+        ]);
+
+        $product_variants = ProductHasVariant::where('product_id', $request->product_variant['product_id'])->get();
+        $product_variant = ProductHasVariant::find($request->product_variant['product_variant_id']);
+
+        $jsonResponse= [
+            "status" => true,
+            "data" => [
+                "product_variant_id" => $request->product_variant['product_variant_id'],
+                "active" => ($product_variant->status)? true : false,
+                "active_int" => ($product_variant->status)? 1 : 0,
+                "lead_time" => $product_variant->post_time,
+                "lead_time_fa" => persianNum($product_variant->post_time),
+                "marketplace_seller_stock" => $product_variant->stock_count,
+                "marketplace_seller_stock_fa" => persianNum($product_variant->stock_count),
+                "sale_price" => $product_variant->sale_price,
+                "sale_price_fa" => persianNum($product_variant->sale_price),
+                "buy_price" => $product_variant->buy_price,
+                "buy_price_fa" => persianNum($product_variant->buy_price),
+                "order_limit" => $product_variant->max_order_count,
+                "order_limit_fa" => persianNum($product_variant->max_order_count),
+                "shipping_type" => [
+                    "dk_shipping" => 1,
+                    "seller_shipping" => 1,
+                ],
+                "channels" => [
+                    "dk_channel_disabled" => true,
+                    "dk_channel_checked" => 1,
+                    "dk_channel_active" => true,
+                    "ds_channel_disabled" => true,
+                    "ds_channel_checked" => 0,
+                    "ds_channel_active" => false,
+                    "both_channel_disabled" => true,
+                    "both_channel_checked" => 0
+                ],
+            ],
+        ];
+
+        return response()->json($jsonResponse, 200);
+
+    }
+
+    public function variantDelete(Request $request)
+    {
+        ProductHasVariant::find($request->id)->delete();
+        $settings = Setting::select('name', 'value')->get();
+        $product = Product::findOrFail($request->product_id);
+        return View::make("staffproduct::ajax.variant.ajax-variant-list", compact('product', 'settings'));
     }
 
 }

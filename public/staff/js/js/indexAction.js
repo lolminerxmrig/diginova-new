@@ -1271,7 +1271,7 @@ var IndexAction = {
                     rules['product_variant[lead_time]'] = {
                         digits: true,
                         min: 1,
-                        max: 10,
+                        max: 365,
                     };
 
                     rules['product_variant[shipping_type_digikala]'] = {
@@ -1287,7 +1287,7 @@ var IndexAction = {
                         'required': 'وارد کردن بازه‌ی زمانی ارسال اجباری است',
                         'digits': 'فقط مجاز به استفاده از عدد برای بازه‌ی زمانی ارسال هستید',
                         'min': 'بازه‌ی زمانی ارسال نمی‌تواند کمتر از یک روز باشد',
-                        'max': 'بازه‌ی زمانی ارسال نمی‌تواند بیشتر از ده روز باشد'
+                        'max': 'بازه‌ی زمانی ارسال نمی‌تواند بیشتر از سیصد و شست و پنج روز باشد'
                     },
                     'product_variant[fbs_lead_time]': {
                         'required': 'وارد کردن بازه‌ی زمانی ارسال اجباری است',
@@ -1314,6 +1314,11 @@ var IndexAction = {
                         'required': 'وارد کردن قیمت اجباری است',
                         'digits': 'فقط مجاز به استفاده از عدد برای قیمت هستید',
                         'min': 'قیمت نمی‌تواند کمتر‌تر از ۱۰۰ ریال باشد',
+                        'price_mod_hundred': 'فرمت وارد شده برای قیمت صحیح نیست، قیمت باید به 00 ختم شود',
+                    },
+
+                    'product_variant[buy_price]': {
+                        'digits': 'فقط مجاز به استفاده از عدد برای قیمت هستید',
                         'price_mod_hundred': 'فرمت وارد شده برای قیمت صحیح نیست، قیمت باید به 00 ختم شود',
                     },
                     'product_variant[length]': {
@@ -1360,7 +1365,7 @@ var IndexAction = {
                         required: true,
                             digits: true,
                             min: 1,
-                            max: 10,
+                            // max: 10,
                     },
                     'product_variant[order_limit]': {
                         required: true,
@@ -1508,7 +1513,7 @@ var IndexAction = {
             });
 
             Services.ajaxPOSTRequestJSON(
-                '/content/edit/product/variant/save/',
+                'update',
                 formData,
                 /**
                  * @param data
@@ -1545,12 +1550,16 @@ var IndexAction = {
 
                     $jsActiveCheckbox.data('default-value', data.active_int);
 
-                    if (data.active) {
-                        $activeIndicator.addClass('active');
-                        $jsActiveCheckbox.prop('checked', true);
+                    if (data.active_int) {
+                        console.log('is true');
+                        $('#span_' + productVariantId).removeClass("c-wallet__body-card-status-no-circle--danger");
+                        $('#span_' + productVariantId).addClass("c-wallet__body-card-status-no-circle--active");
+                        $('#span_' + productVariantId).text('فعال');
                     } else {
-                        $activeIndicator.addClass('inactive');
-                        $jsActiveCheckbox.prop('checked', false);
+                        console.log('is false');
+                        $('#span_' + productVariantId).removeClass("c-wallet__body-card-status-no-circle--active");
+                        $('#span_' + productVariantId).addClass("c-wallet__body-card-status-no-circle--danger");
+                        $('#span_' + productVariantId).text('غیر فعال');
                     }
 
                     if (window.dimensionLevel === 'item') {
@@ -1621,6 +1630,19 @@ var IndexAction = {
                     let $jsPriceInput = $productVariantEditRow.find('.js-edit-price:first');
                     $jsPriceInput.val(data.sale_price);
                     $jsPriceInput.data('default-value', data.sale_price);
+
+
+
+
+                    let $buyPriceText = $productVariantEditRow.find('.js-view-buy-price:first');
+                    $buyPriceText.text(data.buy_price_fa);
+
+                    let $ByPriceInput = $productVariantEditRow.find('.js-edit-buy-price:first');
+                    $ByPriceInput.val(data.buy_price);
+                    $ByPriceInput.data('default-value', data.buy_price);
+
+
+
 
                     let $jsShippingTypeDigikalaCheckbox = $productVariantEditRow.find('.js-shipping-type-digikala:first');
                     let $shippingTypeDigikalaIndicator = $productVariantViewRow.find('.js-view-shipping-type-digikala:first');
@@ -1729,6 +1751,12 @@ var IndexAction = {
                         $variantRow.find('.js-variant-info-gold-ngw').html(Services.convertToFaDigit($variantRow.find('input.js-variant-edit-gold-price-info[data-name=ngw]').val()));
                         $variantRow.find('.js-variant-info-profit').html(Services.convertToFaDigit($variantRow.find('input.js-variant-edit-gold-price-info[data-name=profit]').val()));
                     }
+
+
+                    if (data.active_int) {
+                        $('#status_' + productVariantId).prop('checked', true);
+                    }
+
                 },
                 function (data) {
                     if (typeof data.globalErrors !== 'undefined') {

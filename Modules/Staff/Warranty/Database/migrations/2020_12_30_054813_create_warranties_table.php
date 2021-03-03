@@ -16,7 +16,7 @@ class CreateWarrantiesTable extends Migration
         Schema::create('warranties', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('month');
+            $table->integer('month')->nullable();
             $table->boolean('has_insurance');
             $table->timestamps();
             $table->softDeletes();

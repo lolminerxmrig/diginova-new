@@ -835,8 +835,7 @@
                                                                     <td class="c-variation-diversity__status js-view-active">
                                                                         <center style="width: 79%;margin: auto;">
                                                                             <span class="c-variation-diversity__status-ui js-td-active inactive" style="float: right;margin-left: 7px;height: 35px;width: 35px;"></span>
-                                                                            <button type="button" class="c-ui-btn c-ui-btn--edit js-variant-edit-btn" data-id="2276294" style="
-">
+                                                                            <button type="button" class="c-ui-btn c-ui-btn--edit js-variant-edit-btn" data-id="2276294" style=""
                                                                                 <span class="c-variant__tooltip c-variant__tooltip--btn" style="margin-left: -9px;">ویرایش تنوع</span>
                                                                             </button>
                                                                         </center>
@@ -888,8 +887,7 @@
                                                                                     <div
                                                                                         class="c-variant__secondary-item">
                                                                                         <span class="c-variant__info">موجودی نزد شما (عدد):</span>
-                                                                                        <span
-                                                                                            class="c-variant__info--main js-view-marketplace-seller-stock">۱</span>
+                                                                                        <span class="c-variant__info--main js-view-marketplace-seller-stock">۱</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div

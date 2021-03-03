@@ -3,6 +3,7 @@
 namespace Modules\Staff\Variant\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Staff\Product\Models\ProductHasVariant;
 
 
 class Variant extends Model
@@ -13,6 +14,11 @@ class Variant extends Model
     public function variant_group()
     {
       return $this->belongsTo(VariantGroup::class);
+    }
+
+    public function productVariant()
+    {
+        return $this->hasMany(ProductHasVariant::class);
     }
 
 }

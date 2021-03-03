@@ -89,4 +89,9 @@ class Product extends Model
     {
         return $this->morphOne(SeoContent::class, 'seoable');
     }
+
+
+    public function variants(){
+        return $this->hasMany(ProductHasVariant::class);
+    }
 }
