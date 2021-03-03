@@ -266,7 +266,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Product/Models" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
@@ -274,11 +274,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views/layouts" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Variant/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views" />
@@ -531,7 +531,9 @@
       <workItem from="1614503115270" duration="12491000" />
       <workItem from="1614531209875" duration="10176000" />
       <workItem from="1614577311098" duration="35677000" />
-      <workItem from="1614660425304" duration="12081000" />
+      <workItem from="1614660425304" duration="15939000" />
+      <workItem from="1614682840566" duration="25103000" />
+      <workItem from="1614745858114" duration="5113000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />

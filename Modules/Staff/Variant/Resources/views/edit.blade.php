@@ -88,8 +88,9 @@ margin-bottom: 7px;
                                                 <label class="c-content-input">
                                                     <select name="variant_type" class="uk-input uk-input--select variant_type js-select-origin select2-hidden-accessible"
                                                             tabindex="-1" aria-hidden="true" aria-invalid="false" disabled>
-                                                        <option value="0" {{ ($variantGroup->type == 0)? 'selected' : '' }}>متن</option>
-                                                        <option value="1" {{ ($variantGroup->type == 1)? 'selected' : '' }}>کد رنگ</option>
+                                                        <option value="0" {{ ($variantGroup->type == 0)? 'selected' : '' }}>بدون تنوع</option>
+                                                        <option value="1" {{ ($variantGroup->type == 1)? 'selected' : '' }}>متن</option>
+                                                        <option value="2" {{ ($variantGroup->type == 2)? 'selected' : '' }}>کد رنگ</option>
                                                     </select>
                                                 </label>
                                             </div>
@@ -111,8 +112,8 @@ margin-bottom: 7px;
                 </div>
             </div>
 
-            <div class="js-table-container">
 
+            <div class="js-table-container {{ ($variantGroup->type == 0)? 'uk-hidden' : '' }}">
                 <div class="c-grid__row" style="margin-top:30px">
                     <div class="c-grid__col">
                         <div class="c-card">
@@ -138,7 +139,7 @@ margin-bottom: 7px;
                                             <th class="c-ui-table__header">
                                                 <span class="table-header-searchable uk-text-nowrap">فعال/غیر فعال</span>
                                             </th>
-                                            @if($variantGroup->type == 1)
+                                            @if($variantGroup->type == 2)
                                                 <th class="c-ui-table__header">
                                                     <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">کد رنگ</span>
                                                 </th>
@@ -175,7 +176,7 @@ margin-bottom: 7px;
                                                         </div>
                                                     </div>
                                                 </td>
-                                                  @if($variantGroup->type == 1)
+                                                  @if($variantGroup->type == 2)
                                                   <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;">
                                                     <div class="uk-flex uk-flex-column">
 
@@ -355,7 +356,7 @@ $("tbody").sortable({
 
 $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
 
-    if($("select[name='variant_type']").val() == 1) {
+    if($("select[name='variant_type']").val() == 2) {
         var td = '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column values-td"><input type="color" class="c-content-input__origin js-variant-old-value variant_value" name="variant_value"></div></td>';
     } else {
         var td = '';

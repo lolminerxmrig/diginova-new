@@ -21,6 +21,8 @@ class CreateProductHasVariantsTable extends Migration
             $table->string('shipping_type')->default('site');
             $table->string('status')->default('1');
             $table->integer('post_time');
+            $table->integer('buy_price');
+            $table->integer('sale_price');
             $table->integer('max_order_count');
             $table->integer('stock_count');
             $table->morphs('variantable');

@@ -17,7 +17,7 @@ class CreateVariantGroupsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->boolean('type');
+            $table->integer('type');
             $table->integer('status')->nullable();
             $table->string('position')->nullable();
             $table->timestamps();

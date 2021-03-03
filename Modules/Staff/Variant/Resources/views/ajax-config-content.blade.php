@@ -10,14 +10,14 @@
 
                 <div class="field-wrapper">
                     <label class="c-content-input">
+                        @php
+                            $cat_variant_g = $category->variantGroup()->first();
+                        @endphp
                         <select name="variant_group" class="uk-input uk-input--select variant_type js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
                         <option value="">انتخاب کنید</option>
                         @if(count($variantGroups))
-                            @php
-                                $cat_variant_g = $category->variantGroup()->first();
-                            @endphp
 
-                            @foreach($variantGroups as $variantGroup)
+                            @foreach($variantGroups->where('status', 1) as $variantGroup)
                                 <option value="{{ $variantGroup->id }}" {{ (!is_null($cat_variant_g) && ($cat_variant_g->id == $variantGroup->id))? 'selected' : '' }}>{{ $variantGroup->name }}</option>
                             @endforeach
                         @endif

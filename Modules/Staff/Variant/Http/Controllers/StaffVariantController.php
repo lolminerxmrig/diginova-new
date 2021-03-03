@@ -126,7 +126,7 @@ class StaffVariantController extends Controller
             return intval($value);
         }, $positions);
 
-        if (count($request->variant_names)) {
+        if (isset($request->variant_names) && count($request->variant_names)) {
             $i = 0;
             foreach ($request->variant_names as $variant_name) {
                 if ($variant_name == null) {
@@ -135,16 +135,18 @@ class StaffVariantController extends Controller
                 }
 
                 // اگه جدید بود
-                if (VariantGroup::find($request->group_id)->type == 0) {
-                    $value = '';
-                } else {
+                if (VariantGroup::find($request->group_id)->type == 1) {
+                    $value = null;
+                } elseif (VariantGroup::find($request->group_id)->type == 2) {
                     $value = $request->variant_values[$i];
                     if (!str_starts_with($value, '#')){
                         $value = '#' . $value;
                     }
+                } else {
+                    $value = null;
                 }
 
-                if ($positions[$i] == 0) {
+                if (!is_null($positions) && $positions[$i] == 0) {
                     Variant::create([
                         'name' => $variant_name,
                         'value' => $value,

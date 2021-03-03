@@ -19,6 +19,7 @@ use Modules\Staff\Category\Models\Categorizable;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
+use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Product\Models\ProductType;
 
 
@@ -817,6 +818,25 @@ class StaffProductController extends Controller
 
         $settings = Setting::select('name', 'value')->get();
         return view('staffproduct::variant', compact('settings', 'product', 'warranties'));
+    }
+
+    public function variantSave(Request $request)
+    {
+        Log::info($request->all());
+//        foreach($request->product_variants as $product_variant) {
+            ProductHasVariant::create([
+                'product_id' => $request->product_variants['product_id'],
+                'variant_id' => $request->product_variants['variants'][0],
+                'shipping_type' => 'site',
+                'status' => $request->product_variants['variant_0_active'],
+                'post_time' => $request->product_variants['variant_0_post_time'],
+                'max_order_count' => $request->product_variants['variant_0_order_limit'],
+                'buy_price' => $request->product_variants['variant_0_buy_price'],
+                'sale_price' => $request->product_variants['variant_0_price'],
+                'variantable_type' => 'staff',
+                'variantable_id' => auth()->guard('staff')->user()->id,
+            ]);
+//        }
     }
 
 }

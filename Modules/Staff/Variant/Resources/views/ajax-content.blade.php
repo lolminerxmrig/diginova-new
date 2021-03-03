@@ -93,7 +93,7 @@
                                             c-join__btn--secondary-greenish" href="{{ route('staff.variants.edit', $variantGroup->id) }}">ویرایش</a>
                                                             <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
                                             c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                                    value="{{ $variantGroup->id }}">حذف</button>
+                                                                    value="{{ $variantGroup->id }}" {{ ($variantGroup->type == 0)? 'disabled' : '' }}>حذف</button>
                                                             </button>
                                                         </div>
                                                     </td>

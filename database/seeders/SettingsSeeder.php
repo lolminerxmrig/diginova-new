@@ -21,7 +21,7 @@ class SettingsSeeder extends Seeder
 
         Setting::create([
             'name' => 'site_url',
-            'value' => 'https://diginova.test',
+            'value' => 'http://diginova.test',
         ]);
 
         Setting::create([
@@ -38,5 +38,6 @@ class SettingsSeeder extends Seeder
             'name' => 'product_title_prefix',
             'value' => 'مشخصات، قیمت و خرید',
         ]);
+
     }
 }

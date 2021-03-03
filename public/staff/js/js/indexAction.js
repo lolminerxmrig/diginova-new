@@ -326,7 +326,7 @@ var IndexAction = {
                 required: true,
                 digits: true,
                 min: 1,
-                max: 30,
+                // max: 30,
                 messages: {
                     required: 'وارد کردن تعداد برای سفارش مشتریان اجباری است',
                     digits : 'فقط مجاز به استفاده از عدد برای سفارش مشتریان هستید',
@@ -334,6 +334,28 @@ var IndexAction = {
                     max: 'حداکثر تعداد سفارش مشتریان نمی‌تواند بیشتر از 30 باشد'
                 }
             });
+
+
+
+
+            let $postTimeInput = $productVariantTemplate.find('.js-variant-post-time:first');
+
+            $postTimeInput.prop('name', $productVariantIteratorKey + '_post_time]');
+
+            $postTimeInput.rules('add', {
+                required: true,
+                digits: true,
+                min: 1,
+                max: 365,
+                messages: {
+                    required: 'وارد کردن تعداد برای بازه زمانی ارسال اجباری است',
+                    digits : 'فقط مجاز به استفاده از عدد برای بازه زمانی ارسال هستید',
+                    min: 'حداقل بازه زمانی ارسال نمی‌تواند کمتر از 1 باشد',
+                    max: 'حداکثر بازه زمانی ارسال نمی‌تواند بیشتر از 365 باشد'
+                }
+            });
+
+
 
             let $sellerStockInput = $productVariantTemplate.find('.js-variant-marketplace-seller-stock:first');
 
@@ -380,6 +402,30 @@ var IndexAction = {
                     price_mod_hundred: 'فرمت وارد شده برای قیمت صحیح نیست، قیمت باید به 00 ختم شود',
                 }
             });
+
+
+
+
+            let $buyPriceInput = $productVariantTemplate.find('.js-variant-buy-price:first');
+
+            $buyPriceInput.prop('name', $productVariantIteratorKey + '_buy_price]');
+
+            window.Main.initThousandSeparator();
+            $buyPriceInput.rules('add', {
+                // required: true,
+                digits: true,
+                min: 100,
+                // price_mod_hundred: true,
+                messages: {
+                    required: 'وارد کردن قیمت اجباری است',
+                    digits: 'فقط مجاز به استفاده از عدد برای قیمت هستید',
+                    min: 'قیمت نمی‌تواند کمتر‌تر از ۱۰۰ ریال باشد',
+                    price_mod_hundred: 'فرمت وارد شده برای قیمت صحیح نیست، قیمت باید به 00 ختم شود',
+                }
+            });
+
+
+
 
             let $warrantySelect = $productVariantTemplate.find('.js-variant-warranty:first');
 
@@ -585,7 +631,7 @@ var IndexAction = {
             });
 
             Services.ajaxPOSTRequestJSON(
-                '/content/create/product/variant/save/',
+                'save',
                 formData,
                 /**
                  * @param data.variationData variation data
@@ -1178,7 +1224,7 @@ var IndexAction = {
                         required: true,
                         digits: true,
                         min: 1,
-                        max: 30,
+                        // max: 30,
                     },
                     'product_variant[marketplace_seller_stock]': {
                         required: true,
@@ -1320,7 +1366,7 @@ var IndexAction = {
                         required: true,
                             digits: true,
                             min: 1,
-                            max: 30,
+                            // max: 30,
                     },
                     'product_variant[marketplace_seller_stock]': {
                         required: true,

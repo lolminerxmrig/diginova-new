@@ -111,11 +111,8 @@
 
                                                                     <td class="c-ui-table__cell">
                                                                         <div class="c-promo__actions">
-                                                                            <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit
-                                                c-join__btn--secondary-greenish" href="{{ route('staff.variants.edit', $variantGroup->id) }}">ویرایش</a>
-                                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
-                                                c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                                                    value="{{ $variantGroup->id }}">حذف</button>
+                                                                            <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.variants.edit', $variantGroup->id) }}">ویرایش</a>
+                                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn" value="{{ $variantGroup->id }}" {{ ($variantGroup->type == 0)? 'disabled' : '' }}>حذف</button>
                                                                             </button>
                                                                         </div>
                                                                     </td>
@@ -196,12 +193,12 @@
                                 </label>
                                 <div id="brandOrigin" class="field-wrapper">
                                     <label class="c-ui-radio c-ui-radio--content c-ui-checkbox--auto">
-                                        <input type="radio" class="c-ui-radio__origin js-brand-origin" name="variant_type" value="0" id="iranianBrandContainer" checked="">
+                                        <input type="radio" class="c-ui-radio__origin js-brand-origin" name="variant_type" value="1" id="iranianBrandContainer" checked="">
                                         <span class="c-ui-radio__check c-ui-radio__check--content"></span>
                                         <span class="c-ui-radio__label c-ui-radio__label--content">متن</span>
                                     </label>
                                     <label class="c-ui-radio c-ui-radio--content c-ui-checkbox--auto">
-                                        <input type="radio" class="c-ui-radio__origin js-brand-origin" name="variant_type" id="foreignBrandContainer" value="1">
+                                        <input type="radio" class="c-ui-radio__origin js-brand-origin" name="variant_type" id="foreignBrandContainer" value="2">
                                         <span class="c-ui-radio__check c-ui-radio__check--content"></span>
                                         <span class="c-ui-radio__label c-ui-radio__label--content">کد رنگ</span>
                                     </label>

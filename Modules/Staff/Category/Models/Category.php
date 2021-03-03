@@ -65,7 +65,7 @@ class Category extends Model
 
     public function variantGroup()
     {
-        return $this->morphedByMany(VariantGroup::class, 'categorizable')->select('name','description' , 'id');
+        return $this->morphedByMany(VariantGroup::class, 'categorizable');
     }
 
     public function warranties()

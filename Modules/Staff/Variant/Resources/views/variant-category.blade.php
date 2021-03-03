@@ -171,10 +171,6 @@ $('#submit-form').on('click', function (e) {
 
     var category_id = $("input[name='selected-cat']").val();
 
-    console.log(variant_group_id);
-    console.log(category_id);
-
-
     $.ajax({
         method: "post",
         url: '{{route('staff.variants.saveConfig')}}',
