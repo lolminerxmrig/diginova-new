@@ -5,6 +5,7 @@ namespace Modules\Staff\Product\Models;
 use App\Models\SeoContent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Modules\Staff\Attribute\Models\Attribute;
@@ -47,6 +48,21 @@ class ProductHasVariant extends Model
 
     public function variant(){
         return $this->belongsTo(Variant::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+//    public function product_variant_category()
+//    {
+//        return $this->hasManyThrough(Category::class, Product::class);
+//    }
+
+    public function categories()
+    {
+        return $this->hasManyThrough(ProductHasVariant::class, Product::class)->where('categorizable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
     }
 
 }

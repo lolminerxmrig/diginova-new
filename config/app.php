@@ -179,6 +179,8 @@ return [
         Modules\Staff\Unit\Providers\StaffUnitServiceProvider::class,
         Modules\Staff\Warranty\Providers\StaffWarrantyServiceProvider::class,
         Modules\Staff\Variant\Providers\StaffVariantServiceProvider::class,
+        Modules\Staff\Comment\Providers\StaffCommentServiceProvider::class,
+        Modules\Staff\Promotion\Providers\StaffPromotionServiceProvider::class,
         Modules\Staff\Page\Providers\StaffPageServiceProvider::class,
 
 

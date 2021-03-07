@@ -31,7 +31,7 @@ class SettingsSeeder extends Seeder
 
         Setting::create([
             'name' => 'product_code_prefix',
-            'value' => 'dnp',
+            'value' => 'DNP',
         ]);
 
         Setting::create([

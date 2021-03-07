@@ -854,11 +854,11 @@ class StaffProductController extends Controller
 
         $product_variants = ProductHasVariant::where('product_id', $request->product_variants['product_id'])->get();
 
-        Log::info($product_variants);
-
-        foreach ($product_variants as $pr_variant) {
-            $product_array_variants[] = array($pr_variant => "1");
-        }
+//        Log::info($product_variants);
+//
+//        foreach ($product_variants as $pr_variant) {
+//            $product_array_variants[] = array($pr_variant => "1");
+//        }
 
 
         $jsonResponse= [
@@ -866,7 +866,7 @@ class StaffProductController extends Controller
             "data" => [
                 "variationData" => [
 //                    "variation_pairs" => $product_array_variants,
-                    "total_variants" => count($product_variants),
+//                    "total_variants" => count($product_variants),
                 ]
             ]
         ];

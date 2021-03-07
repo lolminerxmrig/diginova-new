@@ -123,9 +123,51 @@
                       </div>
                   </li>
 
+
+                  <li>
+                      <a href="{{ route('staff.comments.index') }}">دیدگاه ها</a>
+                  </li>
+
+
+
                   </ul>
                 </div>
               </li>
+
+
+                <li class="first-level">
+                    <a href="#" class="" aria-expanded="false">بازاریابی
+                        <span class="chevron-down"></span>
+                    </a>
+                    <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li>
+                                <a>کمپین ها</a>
+                                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter menu-child-margin">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li>
+                                            <a href="{{ route('staff.brands.index') }}">مدیریت کمپین ها</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('staff.brands.create') }}">ایجاد کمپین</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های هوشمند</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('staff.types.index') }}">ساخت صفحه سفارشی</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
             </ul>
           </div>
           <div class="uk-navbar-left">

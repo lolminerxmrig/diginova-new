@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $settings = Setting::select('name', 'value')->get();
+        view()->share('site_name', $settings->where('name', 'site_name')->first()->value);
+        view()->share('site_url', $settings->where('name', 'site_url')->first()->value);
+        view()->share('product_code_prefix', $settings->where('name', 'product_code_prefix')->first()->value);
     }
 }

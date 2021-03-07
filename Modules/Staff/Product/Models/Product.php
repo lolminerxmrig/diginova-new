@@ -13,6 +13,7 @@ use Modules\Staff\Attribute\Models\AttributeProduct;
 use Modules\Staff\Attribute\Models\ProductAttributes;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
+use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 
@@ -90,8 +91,12 @@ class Product extends Model
         return $this->morphOne(SeoContent::class, 'seoable');
     }
 
-
     public function variants(){
         return $this->hasMany(ProductHasVariant::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -4,12 +4,14 @@ namespace Modules\Staff\Category\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Modules\Staff\Attribute\Models\AttributeGroup;
 use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Product\Models\Product;
+use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 use Modules\Staff\Variant\Models\VariantGroup;
@@ -71,6 +73,13 @@ class Category extends Model
     public function warranties()
     {
         return $this->morphedByMany(Warranty::class, 'categorizable');
+    }
+
+    public function product_variants()
+    {
+//        return $this->hasMany(ProductHasVariant::class);
+        return $this->hasManyThrough(ProductHasVariant::class, Product::class)->where('categorizable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
+
     }
 }
 
