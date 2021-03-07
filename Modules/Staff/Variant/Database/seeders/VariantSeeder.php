@@ -15,10 +15,10 @@ class VariantSeeder extends Seeder
      */
     public function run()
     {
-        $variants_table = __DIR__ . '/../variants.sql';
-        DB::unprepared(file_get_contents($variants_table));
-
         $variant_groups_table = __DIR__ . '/../variant_groups.sql';
         DB::unprepared(file_get_contents($variant_groups_table));
+
+        $variants_table = __DIR__ . '/../variants.sql';
+        DB::unprepared(file_get_contents($variants_table));
     }
 }

@@ -14,70 +14,21 @@ use Modules\Staff\Landing\Http\Controllers\StaffLandingController;
 |
 */
 
-//Route::domain('staff.diginova.test')->prefix('promotions')->name('staff.promotions.')
-//    ->middleware('web', 'staff')->group(function () {
-//
-//    Route::get('/', [StaffLandingController::class, 'index'])
-//        ->name('index');
-//
-//    Route::post('filter', [StaffLandingController::class, 'filterByType'])
-//        ->name('filterByType');
-//
-//    Route::post('promotion-search', [StaffLandingController::class, 'promotionSearch'])
-//        ->name('promotionSearch');
-//
-//    Route::post('promotion-cat-search', [StaffLandingController::class, 'promotionCatSearch'])
-//        ->name('promotionCatSearch');
-//
-//    Route::post('ajax-pagination', [StaffLandingController::class, 'ajaxPagination'])
-//        ->name('ajaxPagination');
-//
-//    Route::get('create', [StaffLandingController::class, 'create'])
-//        ->name('create');
-//
-//    Route::post('store', [StaffLandingController::class, 'store'])
-//        ->name('store');
-//
-//    Route::get('edit/{id}', [StaffLandingController::class, 'edit'])
-//        ->name('edit');
-//
-//    Route::post('update', [StaffLandingController::class, 'update'])
-//        ->name('update');
-//
-//    Route::post('delete', [StaffLandingController::class, 'moveToTrash'])
-//        ->name('moveToTrash');
-//
-//    Route::get('trash', [StaffLandingController::class, 'trash'])
-//        ->name('trash');
-//
-//    Route::post('trash-pagination', [StaffLandingController::class, 'trashPagination'])
-//        ->name('trashPagination');
-//
-//    Route::post('force-delete', [StaffLandingController::class, 'removeFromTrash'])
-//        ->name('removeFromTrash');
-//
-//    Route::post('restore', [StaffLandingController::class, 'restoreFromTrash'])
-//        ->name('restoreFromTrash');
-//
-//    Route::post('ajaxupload', [StaffLandingController::class, 'uploadImage'])
-//        ->name('ajaxupload');
-//
-//    Route::post('upload-update', [StaffLandingController::class, 'uploadUpdate'])
-//        ->name('uploadUpdate');
-//
-//
-//    Route::post('ajaxdelete', [StaffLandingController::class, 'deleteImage'])
-//    ->name('ajaxdelete');
-//
-//});
 
-
-
-Route::domain('staff.diginova.test')->prefix('periodic-prices')->name('staff.periodic-prices.')
+Route::domain('staff.diginova.test')->prefix('landings')->name('staff.landings.')
     ->middleware('web', 'staff')->group(function () {
 
-    Route::get('/active', [StaffLandingController::class, 'active'])
+    Route::get('/', [StaffLandingController::class, 'index'])
         ->name('index');
+
+    Route::get('create', [StaffLandingController::class, 'create'])
+        ->name('create');
+
+    Route::get('{id}', [StaffLandingController::class, 'manageLanding'])
+        ->name('manageLanding');
+
+
+
 
     Route::post('/active/search', [StaffLandingController::class, 'search'])
         ->name('search');

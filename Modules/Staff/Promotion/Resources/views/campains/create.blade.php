@@ -1,13 +1,6 @@
 @extends('layouts.staff.master')
-@section('head')
-<script src="{{ asset('staff/js/js/dk.price.js') }}"></script>
-<script src="{{ asset('staff/js/js/bundle.min.js') }}"></script>
-<style>
-    .select2-search--dropdown{
-        display: none !important;
-    }
-</style>
 
+@section('head')
 <script>
     var module_hash_id_storage = 1;
     var module_no_replace_update_command_status = 1;
@@ -17,6 +10,7 @@
     var module_online_shipment_cancellation = 1;
     var module_fc_supplier_invoice = 1;
     var module_internal_trade_qc = 1;
+    var module_internal_trade_seller_qc = 1;
     var module_internal_trade_submit_trade = 1;
     var module_internal_trade_generate_serial = 1;
     var module_digistyle = 1;
@@ -566,7 +560,6 @@
     var module_cpc_modal_use_ajax_for_fetching_data = 1;
     var module_marketplace_wallet = 1;
 </script>
-
 <script>
     var supernova_mode = "production";
     var supernova_tracker_url = "";
@@ -578,84 +571,187 @@
     var newSeller = 1;
     var is_yalda = 0;
 </script>
+<script src="{{ asset('seller/js/tableView.js') }}"></script>
+<script src="{{ asset('seller/js/tags.js') }}"></script>
 @endsection
+
 @section('content')
 <main class="c-main">
         <div class="uk-container uk-container-large">
-            <div class="page-layout layout-empty c-grid c-join__grid" style="">
+
+            <div class="c-grid c-join__grid">
                 <div class="c-grid__row">
                     <div class="c-grid__col">
-                        <div class="c-card c-join-smart-joined__container">
-                            <img src="https://seller.digikala.com/static/files/7c0b3151.svg" alt="">
-                            <div class="c-join-smart-emty__des-title">تخفیف های تعیین شده بر روی کالاهای انتخابی شما اعمال شد</div>
-                            <div class="c-join-smart-emty__des-sub-title c-join-smart-joined--no-with-limitation">خلاصه ی وضعیت تخفیف ها و پروموشن ها و کمپین های شرکت داده شده به شرح زیر می باشد:</div>
-                            <div class="c-join-smart-joined__detail">
-                                <div class="c-join-smart-joined__detail-type">
-                                    <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--discount"></div>
-                                    <div class="c-join-smart-joined__detail-type-count">۶</div>
-                                    <div class="c-join-smart-joined__detail-type-title">تنوع کالا با تخفیف نمایش داده می شوند</div>
-                                    <div class="c-join-smart-joined__detail-type-des">این کالاها با قیمت خط خورده و با درصد تخفیف در وب سایت {{ $site_name }} نمایش داده می شوند.</div>
-                                </div>
-                                <div class="c-join-smart-joined__detail-type c-join-smart-joined__detail--br">
-                                    <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--promotion"></div>
-                                    <div class="c-join-smart-joined__detail-type-count">-۶</div>
-                                    <div class="c-join-smart-joined__detail-type-title">تنوع کالا به پروموشن فروش ویژه اضافه شدند</div>
-                                    <div class="c-join-smart-joined__detail-type-des">
-                                        این کالاها علاوه بر نمایش به صورت تخفیف خورده
-                                        <b>
-                                            در صورت تایید
-                                        </b>
-                                        به لیست کالاهای فروش ویژه نیز اضافه می شوند.
+                        <div class="c-card c-card--transparent">
+                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">ایجاد کمپین
+                                <span class="c-card__title-sub c-card__title-sub--no-spacing">از این صفحه می توانید کمپین خود را ایجاد کنید.</span>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="c-grid__row js-table-container" id="table-view-container">
+                    <div class="c-grid__col">
+                        <div class="c-card c-card--padding">
+                            <div class="c-card__wrapper">
+
+                                <div class="c-add-products__header-section" style="border:none;">
+                                    <h3 class="c-add-products__title">تعیین نام و زمان‌بندی نمایش صفحه</h3>
+
+                                    <form class="c-add-products__form c-add-products__form--no-spacing js-create-plp-form">
+                                        <div class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--group-item c-ui-form__col--wrap-xs c-ui-form__col--xs-full" style="width: 445px">
+                                            <label class="c-ui-form__label" for="product_page_title">نام کمپین</label>
+                                            <label>
+                                                <div class="c-ui-input">
+                                                    <input type="text" name="productList[title]" value="" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable" id="product_page_title" placeholder="نام کمپین">
+                                                </div>
+                                            </label>
+                                        </div>
+
+
+                                        <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
+                                            <label for="form-field-productList[start_at]" class="c-ui-form__label">تاریخ و زمان شروع</label>
+                                            <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="1" data-date="1" data-name="productList_start_at_" value="" id="form-field-dt-26888" autocomplete="off">
+                                            <input name="productList[start_at]" id="productList_start_at_" type="hidden" value="">
+                                        </span>
+
+                                        <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
+                                            <label for="form-field-productList[end_at]" class="c-ui-form__label">تاریخ و زمان پایان</label>
+                                            <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="1" data-date="1" data-name="productList_end_at_" value="" id="form-field-dt-93319" autocomplete="off">
+                                            <input name="productList[end_at]" id="productList_end_at_" type="hidden" value="">
+                                        </span>
+
+
+
+                                        <div class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--group-item c-ui-form__col--wrap-xs c-ui-form__col--xs-full" style="width: 215px">
+                                            <label class="c-ui-form__label" for="product_page_title">وضعیت</label>
+                                            <select id="product-status" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="productList[platform]" data-select2-id="product-status" tabindex="-1" aria-hidden="true">
+                                                <option class="option-control" value="digikala" ٰٰselected>فعال</option>
+                                                <option class="option-control" value="digistyle">غیرفعال</option>
+                                            </select>
+                                        </div>
+
+
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                            <label class="uk-form-label uk-flex uk-flex-between">
+                                                ss:
+
+                                                    <span class="uk-form-label__required"></span>
+                                            </label>
+
+                                            <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
+                                                <select class="uk-input uk-input--select uk-input--checkboxlist js-select-origin js-in-product select2-hidden-accessible" multiple="" name="attributes[][]"
+                                                        data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true" aria-describedby="attributes[]-error" aria-invalid="false">
+                                                    <option value="1"> ss </option>
+                                                    <option value="2"> s </option>
+                                                    {{--                                                    @foreach($attribute->values as $item)--}}
+{{--                                                        <option value="{{ $item->id }}"> {{ $item->value }} </option>--}}
+{{--                                                    @endforeach--}}
+                                                </select>
+
+                                                <span class="select-counter" style="display: none;">۰</span>
+                                                <div class="js-select-options"></div>
+                                                <div id="attributes[][]-error" class="error error-msg" style="display: none;"></div>
+                                            </div>
+
+                                            <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
+                                                <select name="product[types][]" id="categoryProductTypesSelect"
+                                                        class="uk-input uk-input--select js-select-origin js-in-product select2-hidden-accessible"
+                                                        multiple="" disabled="" data-select2-id="categoryProductTypesSelect"
+                                                        tabindex="-1" aria-hidden="true">
+                                                </select>
+                                                <span class="select-counter"></span>
+                                                <div class="js-select-options"></div>
+                                            </div>
+                                            <div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </form>
+
+                                    <div class="c-join__buttons">
+                                        <button class="c-join__btn c-join__btn--secondary c-join__btn--secondary-greenish c-join__btn--icon-left js-save-list-page-button">تایید و ساخت کمپین</button>
+                                    </div>
+                                    <div class="c-join__loading c-loading c-loading--hidden">
+                                        <div class="c-loading__container">
+                                            <div class="loading"></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="c-join-smart-joined__detail-type c-join-smart-joined__detail--br">
-                                    <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--campaign"></div>
-                                    <div class="c-join-smart-joined__detail-type-count">۰</div>
-                                    <div class="c-join-smart-joined__detail-type-title">تنوع کالا به کمپین های {{ $site_name }} اضافه شدند</div>
-                                    <div class="c-join-smart-joined__detail-type-des">
-                                        این کالاها علاوه بر نمایش به صورت تخفیف خورده
-                                        <b>
-                                            در صورت تایید
-                                        </b>
-                                        به کمپین های {{ $site_name }} نیز اضافه می شوند
-                                    </div>
-                                </div>
+
                             </div>
-                            <div class="c-mega-campaigns__btns-green c-join-smart-joined--mt-70 js-back-promotion-management">
-                                <a href="/periodic-prices/active/">تایید و بازگشت به مدیریت تخفیف ها </a></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+
+
+
+            <div id="js-select-products" uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message uk-modal-container--relative-height uk-modal">
+                <div class="uk-modal-dialog uk-modal-dialog--flex">
+                    <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
+
+                    <div class="uk-modal-body">
+
+                        <div class="c-modal-notification c-join-promotion__modal">
+                            <div class="c-card__header">
+                                <h2 class="c-card__title">انتخاب کالا از لیست</h2>
+                            </div>
+                            <div class="c-card__body">
+                                <form action="" class="c-ui-form" id="select-search-form">
+                                    <div class="c-ui-form__row">
+                                        <div class="c-ui-form__col c-ui-form__col-4">
+                                            <label class="c-ui-form__label" for="search_input">جستجو:</label>
+                                            <div class="c-ui-input">
+                                                <input type="search" name="query" class="c-ui-input__field c-ui-input__field--order js-form-clearable c-join__input" id="search_input" placeholder="جستجوی کد کالا، کد تنوع و ..." style="width: 400px;">
+                                                <button class="uk-icon-button c-join__search-btn uk-icon" uk-icon="icon: search"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle> <path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path></svg></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="c-join__sort-products">
+                                        <div>مرتب‌سازی بر اساس:</div>
+                                        <div class="c-join__sort-options c-join__filter-container js-search-sort">
+                                            <label class="c-join__radio-label">
+                                                <input class="c-join__radio" type="radio" name="sort" value="latest" checked="">
+                                                <span class="c-join__radio-option">جدیدترین</span>
+                                            </label>
+                                            <label class="c-join__radio-label">
+                                                <input class="c-join__radio" type="radio" name="sort" value="price_low">
+                                                <span class="c-join__radio-option">ارزان‌ترین</span>
+                                            </label>
+                                            <label class="c-join__radio-label">
+                                                <input class="c-join__radio" type="radio" name="sort" value="price_high">
+                                                <span class="c-join__radio-option">گرانترین</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="js-products-content">
+
+                            </div>
+                            <div class="c-card__loading js-modal-loading"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
 @endsection
+
 @section('script')
 <script>
-// توکن csrf
+// // اضافه کردن توکن به درخواست های ایجکس
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-
-$(document).on('change', 'input[name="variant[status]"]', function (){
-    if ($(this).is(":checked")) {
-        $(this).closest('.c-ui-table__row').find('.start_at').removeAttr('disabled');
-        $(this).closest('.c-ui-table__row').find('.start_at').removeClass('disabled');
-        $(this).closest('.c-ui-table__row').find('.end_at').removeAttr('disabled');
-        $(this).closest('.c-ui-table__row').find('.end_at').removeClass('disabled');
-    } else {
-        $(this).closest('.c-ui-table__row').find('.start_at').attr('disabled', true);
-        $(this).closest('.c-ui-table__row').find('.start_at').addClass('disabled');
-        $(this).closest('.c-ui-table__row').find('.end_at').attr('disabled', true);
-        $(this).closest('.c-ui-table__row').find('.end_at').addClass('disabled');
-
-        $(this).closest('.c-ui-table__row').find('.start_at').val('');
-        $(this).closest('.c-ui-table__row').find('.end_at').val('');
-
-    }
-});
 </script>
 @endsection
+

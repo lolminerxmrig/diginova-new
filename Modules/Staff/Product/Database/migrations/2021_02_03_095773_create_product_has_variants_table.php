@@ -26,7 +26,6 @@ class CreateProductHasVariantsTable extends Migration
             $table->integer('max_order_count');
             $table->integer('stock_count');
             $table->integer('variant_code');
-            $table->morphs('variantable');
             $table->timestamps();
 
             $table->foreign('variant_id')->references('id')->on('variants');

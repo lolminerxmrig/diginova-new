@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Media;
 use Illuminate\Database\Seeder;
-use Database\Seeders\SettingsSeeder;
+use Database\Seeders\MediaSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,12 @@ class DatabaseSeeder extends Seeder
         $this->call('Modules\Staff\Type\Database\seeders\TypeSeeder');
         $this->call('Modules\Staff\Unit\Database\seeders\UnitSeeder');
         $this->call('Modules\Staff\Attribute\Database\seeders\AttributeSeeder');
+        $this->call('Modules\Staff\Variant\Database\seeders\VariantSeeder');
+        $this->call('Modules\Staff\Warranty\Database\seeders\WarrantySeeder');
+        $this->call('Modules\Staff\Product\Database\seeders\ProductSeeder');
+        $this->call('Modules\Staff\Promotion\Database\seeders\PromotionSeeder');
 
         $this->call(SettingsSeeder::class);
+        $this->call(MediaSeeder::class);
     }
 }

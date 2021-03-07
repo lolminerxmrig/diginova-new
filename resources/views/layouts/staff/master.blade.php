@@ -146,10 +146,10 @@
                                 <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter menu-child-margin">
                                     <ul class="uk-nav uk-navbar-dropdown-nav">
                                         <li>
-                                            <a href="{{ route('staff.brands.index') }}">مدیریت کمپین ها</a>
+                                            <a href="{{ route('staff.campains.index') }}">مدیریت کمپین ها</a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('staff.brands.create') }}">ایجاد کمپین</a>
+                                            <a href="{{ route('staff.campains.create') }}">ایجاد کمپین</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -160,7 +160,7 @@
                             </li>
 
                             <li>
-                                <a href="{{ route('staff.types.index') }}">ساخت صفحه سفارشی</a>
+                                <a href="{{ route('staff.landings.index') }}">صفحه سفارشی</a>
                             </li>
 
                         </ul>

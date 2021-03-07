@@ -16,14 +16,14 @@ use Modules\Staff\Landing\Models\Landing;
 class StaffLandingController extends Controller
 {
 
-    public function active()
+    public function index()
     {
         if (count(Landing::all())) {
-            $promotions = Landing::all();
+            $landings = Landing::all();
         } else {
-            $promotions = [];
+            $landings = [];
         }
-        return view('staffpromotion::periodic-prices.active', compact('promotions'));
+        return view('stafflanding::index', compact('landings'));
     }
 
     public function loadProductVariants(Request $request, ProductHasVariant $product_variant)
@@ -87,7 +87,7 @@ class StaffLandingController extends Controller
         (!is_null($request['query'])? $query = $request['query'] : $query = '');
             (!is_null($request['type'])? $type = $request['type'] : $type = '');
 
-        return view('staffpromotion::periodic-prices.ajax-load-variants',
+        return view('stafflanding::periodic-prices.ajax-load-variants',
              compact('product_variants', 'query', 'type'));
 
     }
@@ -99,7 +99,7 @@ class StaffLandingController extends Controller
             $product_variants = ProductHasVariant::all();
             return response()->json([
                 'status' => true,
-                'data' => view('staffpromotion::periodic-prices.render-add-variants-rows', compact('variantIds', 'product_variants'))->render(),
+                'data' => view('stafflanding::periodic-prices.render-add-variants-rows', compact('variantIds', 'product_variants'))->render(),
             ]);
         } else {
             return response()->json([
@@ -116,21 +116,21 @@ class StaffLandingController extends Controller
 
         $messages = [
             'after' => 'زمان پایان باید بیشتر از زمان شروع باشد.',
-            'promotion_limit.required' => 'وارد کردن فیلد تعداد در تخفیف اجباری است.',
-            'promotion_limit.integer' => 'وارد کردن فیلد تعداد در تخفیف اجباری است.',
-            'promotion_order_limit.required' => 'وارد کردن فیلد تعداد در سبد اجباری است.',
-            'promotion_price.ends_with' => 'دو رقم انتهای قیمت باید ۰ باشد.',
-            'promotion_price.required' => 'وارد کردن فیلد قیمت پس از تخفیف اجباری است.',
+            'landing_limit.required' => 'وارد کردن فیلد تعداد در تخفیف اجباری است.',
+            'landing_limit.integer' => 'وارد کردن فیلد تعداد در تخفیف اجباری است.',
+            'landing_order_limit.required' => 'وارد کردن فیلد تعداد در سبد اجباری است.',
+            'landing_price.ends_with' => 'دو رقم انتهای قیمت باید ۰ باشد.',
+            'landing_price.required' => 'وارد کردن فیلد قیمت پس از تخفیف اجباری است.',
             'start_at.required_if' => 'در حالت زمان دار وارد کردن زمان شروع و پایان اجباری است.',
         ];
 
         $validator = Validator::make($request->all(), [
             'status' => 'required',
-            'promotion_price' => 'required|ends_with:00',
+            'landing_price' => 'required|ends_with:00',
             'start_at' => 'nullable|required_if:time_status,1|date',
             'end_at' => 'nullable|required_if:time_status,1|date|after:start_at',
-            'promotion_limit' => 'required',
-            'promotion_order_limit' => 'required',
+            'landing_limit' => 'required',
+            'landing_order_limit' => 'required',
         ], $messages);
 
         if ($validator->fails()) {
@@ -145,18 +145,18 @@ class StaffLandingController extends Controller
 
 
         $product_variant = ProductHasVariant::find($request->id);
-        if ($product_variant->stock_count < $request->promotion_limit)
+        if ($product_variant->stock_count < $request->landing_limit)
         {
             $errors = 'عددی که برای تعداد در تخفیف در نظر گرفته اید از ';
         }
 
-            Landing::updateOrCreate(['id' => $request->promotion_variant_id], [
-                'promotion_price' => $request->promotion_price,
+            Landing::updateOrCreate(['id' => $request->landing_variant_id], [
+                'landing_price' => $request->landing_price,
                 'start_at' => $request->start_at,
                 'end_at' => $request->end_at,
-                'percent' => $request->promotion_percent,
-                'promotion_limit' => $request->promotion_limit,
-                'promotion_order_limit' => $request->promotion_order_limit,
+                'percent' => $request->landing_percent,
+                'landing_limit' => $request->landing_limit,
+                'landing_order_limit' => $request->landing_order_limit,
                 'status' => $request->status,
                 'product_variant_id' => $request->id,
             ]);
@@ -165,18 +165,18 @@ class StaffLandingController extends Controller
         return response()->json([
             'status' => true,
             'data' => [
-                'promotion_variant_id' => 0,
+                'landing_variant_id' => 0,
             ]
         ]);
     }
 
     public function done()
     {
-        return view('staffpromotion::periodic-prices.done');
+        return view('stafflanding::periodic-prices.done');
     }
 
     public function delete(Request $request){
-        Landing::find($request->promotionVariantId)->delete();
+        Landing::find($request->landingVariantId)->delete();
         return response()->json([
            'status' => true,
            'data' => true,
@@ -186,11 +186,11 @@ class StaffLandingController extends Controller
     public function ended()
     {
         if (count(Landing::all())) {
-            $promotions = Landing::all();
+            $landings = Landing::all();
         } else {
-            $promotions = [];
+            $landings = [];
         }
-        return view('staffpromotion::periodic-prices.ended', compact('promotions'));
+        return view('stafflanding::periodic-prices.ended', compact('landings'));
     }
 
     public function search(Request $request)
@@ -253,8 +253,18 @@ class StaffLandingController extends Controller
         (!is_null($request->search['title'])? $query = $request->search['title'] : $query = '');
         (!is_null($request['type'])? $request['type'] : $type = '');
 
-        return view('staffpromotion::periodic-prices.ajax-load-promotions',
-            compact('promotions', 'query', 'type'));
+        return view('stafflanding::periodic-prices.ajax-load-landings',
+            compact('landings', 'query', 'type'));
 
+    }
+
+    public function create()
+    {
+        return view('stafflanding::create');
+    }
+
+    public function manageLanding($id)
+    {
+        return view('stafflanding::manageLanding');
     }
 }

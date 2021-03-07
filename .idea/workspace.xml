@@ -266,7 +266,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Promotion/Database/migrations" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
@@ -274,11 +274,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Database/migrations" />
-      <recent name="$PROJECT_DIR$/Modules/Staff" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/periodic-prices" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/Database/migrations" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views/layouts" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Routes" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Landing/Resources/views" />
+      <recent name="$PROJECT_DIR$/database" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/periodic-prices" />
@@ -542,7 +542,7 @@
       <workItem from="1614927071835" duration="41919000" />
       <workItem from="1615011470702" duration="5965000" />
       <workItem from="1615024427025" duration="37978000" />
-      <workItem from="1615096388313" duration="2384000" />
+      <workItem from="1615096388313" duration="20933000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />

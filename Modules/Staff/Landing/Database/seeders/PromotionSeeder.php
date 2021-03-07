@@ -15,7 +15,7 @@ class LandingSeeder extends Seeder
      */
     public function run()
     {
-//        $promotions_table = __DIR__.'/../promotions.sql';
-//        DB::unprepared(file_get_contents($promotions_table));
+//        $landings_table = __DIR__.'/../landings.sql';
+//        DB::unprepared(file_get_contents($landings_table));
     }
 }

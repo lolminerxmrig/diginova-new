@@ -10,7 +10,17 @@ INSERT INTO `categorizables` (`category_id`, `categorizable_type`, `categorizabl
 (1, 'Brand', 1),
 (1, 'Brand', 2),
 (1, 'Brand', 3),
-(6, 'Brand', 3);
+(6, 'Brand', 3),
+(6, 'Product', 1),
+(6, 'VariantGroup', 1),
+(1, 'Warranty', 1),
+(6, 'Warranty', 1),
+(6, 'Warranty', 2),
+(6, 'Warranty', 3),
+(6, 'Warranty', 4),
+(6, 'Product', 2),
+(6, 'Product', 3);
+
 
 --
 -- Indexes for table `categorizables`

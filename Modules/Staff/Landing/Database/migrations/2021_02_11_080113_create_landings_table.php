@@ -13,7 +13,7 @@ class CreateLandingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('promotions', function (Blueprint $table) {
+        Schema::create('landings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug');
@@ -21,10 +21,10 @@ class CreateLandingsTable extends Migration
             $table->timestamp('end_at')->nullable();
             $table->string('status');
             $table->string('type')->nullable();
-            $table->foreignId('campain_id');
+            $table->foreignId('campain_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('campain_id')->references('id')->on('campaines');
+            $table->foreign('campain_id')->references('id')->on('campains');
         });
     }
 
@@ -35,6 +35,6 @@ class CreateLandingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promotions');
+        Schema::dropIfExists('landings');
     }
 }

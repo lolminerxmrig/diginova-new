@@ -579,10 +579,10 @@
                 <div class="c-grid__row c-join__top-details c-join__top-details--sm">
                     <div class="c-grid__col c-join__flex-space-between">
                         <h1 class="c-card__title c-card__title--dark c-card__title--desc c-add-products__title">
-                            صفحه سفارشی
-                            <span class="c-card__title-sub c-card__title-sub--no-spacing">صفحه سفارشی جدید بسازید و یا صفحه‌های سفارشی ساخته شده را ویرایش کنید.</span></h1>
-                            <a href="{{ route('staff.landings.create') }}" class="c-join__btn c-join__btn--secondary-greenish c-join__btn--icon-left c-join__btn--icon-plus">
-                            ساخت صفحه سفارشی
+                            کمپین
+                            <span class="c-card__title-sub c-card__title-sub--no-spacing">کمپین جدید بسازید و یا صفحه‌های سفارشی ساخته شده را ویرایش کنید.</span></h1>
+                            <a href="{{ route('staff.campains.create') }}" class="c-join__btn c-join__btn--secondary-greenish c-join__btn--icon-left c-join__btn--icon-plus">
+                            ساخت کمپین
                         </a>
                     </div>
                 </div>

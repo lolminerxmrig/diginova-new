@@ -181,6 +181,7 @@ return [
         Modules\Staff\Variant\Providers\StaffVariantServiceProvider::class,
         Modules\Staff\Comment\Providers\StaffCommentServiceProvider::class,
         Modules\Staff\Promotion\Providers\StaffPromotionServiceProvider::class,
+        Modules\Staff\Landing\Providers\StaffLandingServiceProvider::class,
         Modules\Staff\Page\Providers\StaffPageServiceProvider::class,
 
 

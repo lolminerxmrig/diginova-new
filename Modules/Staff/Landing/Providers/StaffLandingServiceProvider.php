@@ -22,7 +22,7 @@ class StaffLandingServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
 
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffpromotion');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'stafflanding');
 
         Relation::morphMap([
             'Landing' => 'Modules\Staff\Landing\Models\Landing',

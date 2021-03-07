@@ -13,8 +13,8 @@ use Modules\Staff\Product\Models\ProductHasVariant;
 class Landing extends Model
 {
 
-    protected $table = 'promotions';
-    protected $fillable = ['promotion_price', 'percent', 'start_at', 'end_at', 'promotion_limit', 'promotion_order_limit', 'status', 'product_variant_id'];
+    protected $table = 'landings';
+    protected $fillable = ['name', 'slug', 'start_at', 'end_at', 'status', 'type', 'campain_id'];
 
 
     public function media()
