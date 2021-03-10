@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-<ul class="c-ui-paginator__control js-sub-search-pager">
+<ul class="c-ui-paginator__control js-search-pager">
     {{-- صفحه قبل --}}
     @if ($paginator->onFirstPage())
         <li class="c-ui-paginator__control-item">

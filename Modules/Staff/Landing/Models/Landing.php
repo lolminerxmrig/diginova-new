@@ -22,22 +22,9 @@ class Landing extends Model
         return $this->morphToMany(Media::class, 'mediable');
     }
 
-
-    public function categories()
+    public function productVariants()
     {
-        return $this->morphToMany(Category::class, 'categorizable');
+        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
     }
-
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'product_variant_id');
-    }
-
-    public function variant()
-    {
-        return $this->belongsTo(ProductHasVariant::class, 'product_variant_id');
-    }
-
 
 }

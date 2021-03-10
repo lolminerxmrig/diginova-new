@@ -246,6 +246,14 @@
       <path value="$PROJECT_DIR$/vendor/league/flysystem-cached-adapter" />
       <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
       <path value="$PROJECT_DIR$/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
+      <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -266,7 +274,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/staff/js/js" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
@@ -274,18 +282,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Http/Controllers" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Routes" />
+      <recent name="$PROJECT_DIR$/public/staff/js/js" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Landing/Resources/views/layouts/pagination" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Landing/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Landing/Resources/views" />
-      <recent name="$PROJECT_DIR$/database" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Landing/temp" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/periodic-prices" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/layouts" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/ajax" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Variant/Resources/views" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Staff">
@@ -542,7 +550,11 @@
       <workItem from="1614927071835" duration="41919000" />
       <workItem from="1615011470702" duration="5965000" />
       <workItem from="1615024427025" duration="37978000" />
-      <workItem from="1615096388313" duration="20933000" />
+      <workItem from="1615096388313" duration="45783000" />
+      <workItem from="1615184950022" duration="19522000" />
+      <workItem from="1615211064694" duration="29944000" />
+      <workItem from="1615267712137" duration="51554000" />
+      <workItem from="1615353547220" duration="7949000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />

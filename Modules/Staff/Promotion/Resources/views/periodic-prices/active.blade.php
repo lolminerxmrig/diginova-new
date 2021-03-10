@@ -980,7 +980,7 @@
                                                         </td>
                                                         <td class="c-ui-table__cell">
                                                             {{ $promotion->variant->product->title_fa . '|' . $promotion->variant->warranty->name }}
-                                                            <span class="c-mega-campaigns-join-list__container-table-dkpc">DKPC-{{ $promotion->variant->variant_code }}</span>
+                                                            <span class="c-mega-campaigns-join-list__container-table-dkpc">{{ $product_code_prefix }}C-{{ $promotion->variant->variant_code }}</span>
                                                             <div class="c-mega-campaigns-join-list__container-table-error uk-text-nowrap uk-hidden added-by-js-messages-{{ $promotion->id }}">
                                                             </div>
                                                         </td>

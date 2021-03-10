@@ -25,4 +25,25 @@ Route::domain('staff.diginova.test')->prefix('campains')->name('staff.campains.'
     Route::get('create', [StaffCampainController::class, 'create'])
         ->name('create');
 
+    Route::post('update/{id}', [StaffCampainController::class, 'update'])
+        ->name('update');
+
+    Route::get('{id}', [StaffCampainController::class, 'manage'])
+        ->name('manage');
+
+    Route::get('{id}/search', [StaffCampainController::class, 'search'])
+        ->name('search');
+
+    Route::post('addVariant/{id}', [StaffCampainController::class, 'addVariant'])
+        ->name('addVariant');
+
+    Route::get('variants/{id}', [StaffCampainController::class, 'variants'])
+        ->name('variants');
+
+    Route::post('removeVariant/{id}', [StaffCampainController::class, 'removeVariant'])
+    ->name('removeVariant');
+
+    Route::post('removeAll/{id}', [StaffCampainController::class, 'removeAll'])
+        ->name('removeAll');
+
 });

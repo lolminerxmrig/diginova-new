@@ -24,36 +24,37 @@ Route::domain('staff.diginova.test')->prefix('landings')->name('staff.landings.'
     Route::get('create', [StaffLandingController::class, 'create'])
         ->name('create');
 
-    Route::get('{id}', [StaffLandingController::class, 'manageLanding'])
-        ->name('manageLanding');
+    Route::post('update/{id}', [StaffLandingController::class, 'update'])
+        ->name('update');
 
+    Route::get('{id}', [StaffLandingController::class, 'manage'])
+        ->name('manage');
 
-
-
-    Route::post('/active/search', [StaffLandingController::class, 'search'])
+    Route::get('{id}/search', [StaffLandingController::class, 'search'])
         ->name('search');
 
-    Route::get('/active/search', [StaffLandingController::class, 'search'])
-        ->name('search');
+    Route::post('addVariant/{id}', [StaffLandingController::class, 'addVariant'])
+        ->name('addVariant');
 
-    Route::get('/ended', [StaffLandingController::class, 'ended'])
-        ->name('ended');
+    Route::get('variants/{id}', [StaffLandingController::class, 'variants'])
+        ->name('variants');
 
-    Route::post('{id}/load-product-variants', [StaffLandingController::class, 'loadProductVariants'])
-        ->name('loadProductVariants');
+    Route::post('removeVariant/{id}', [StaffLandingController::class, 'removeVariant'])
+        ->name('removeVariant');
 
-    Route::get('{id}/load-product-variants', [StaffLandingController::class, 'loadProductVariants'])
-        ->name('loadProductVariants');
+    Route::post('removeAll/{id}', [StaffLandingController::class, 'removeAll'])
+        ->name('removeAll');
 
-    Route::post('render-add-variants-rows', [StaffLandingController::class, 'renderAddVariantsRows'])
-        ->name('renderAddVariantsRows');
+    Route::get('searchLanding', [StaffLandingController::class, 'searchLanding'])
+        ->name('searchLanding');
 
-    Route::post('save', [StaffLandingController::class, 'save'])
-        ->name('save');
+    Route::post('searchLanding', [StaffLandingController::class, 'searchLanding'])
+        ->name('searchLanding');
 
-    Route::post('{id}/delete', [StaffLandingController::class, 'delete'])
-        ->name('delete');
+    Route::post('removeLanding/{id}', [StaffLandingController::class, 'removeLanding'])
+        ->name('removeLanding');
 
-    Route::get('done/index', [StaffLandingController::class, 'done'])
-        ->name('done');
+    Route::post('statusGroup', [StaffLandingController::class, 'statusGroup'])
+        ->name('statusGroup');
+
 });

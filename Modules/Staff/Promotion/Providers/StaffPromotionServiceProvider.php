@@ -27,6 +27,7 @@ class StaffPromotionServiceProvider extends ServiceProvider
 
         Relation::morphMap([
             'Promotion' => 'Modules\Staff\Promotion\Models\Promotion',
+            'Campain' => 'Modules\Staff\Promotion\Models\Campain',
         ]);
     }
 

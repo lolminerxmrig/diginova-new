@@ -19,7 +19,7 @@ class StaffBrandController extends Controller
 
     public function index()
     {
-        $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate(10);
+        $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate(1);
         $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
         $media = Media:: all();
         $categories = Category:: all();

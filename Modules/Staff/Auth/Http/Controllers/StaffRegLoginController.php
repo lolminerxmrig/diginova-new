@@ -29,9 +29,8 @@ class StaffRegLoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('staff')->attempt($credentials)) {
+        if (Auth::guard('staff')->attempt($credentials, true)) {
             $request->session()->regenerate();
-
             return redirect()->route('staff.dashboardPage');
         }
 

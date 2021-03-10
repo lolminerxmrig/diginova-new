@@ -571,7 +571,6 @@
     var is_yalda = 0;
 </script>
 <script src="{{ asset('seller/js/tableView.js') }}"></script>
-<script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
 @endsection
 @section('content')
 <main class="c-main">
@@ -606,7 +605,7 @@
                                                     <div class="c-ui-form__col c-ui-form__col-4">
                                                         <label class="c-ui-form__label">جستجو:</label>
                                                         <div class="c-ui-input">
-                                                            <input type="search" name="title" class="c-ui-input__field c-ui-input__field--order js-form-clearable c-join__input" id="search_input" placeholder="جستجوی نام صفحه" style="width: 400px;">
+                                                            <input type="search" name="title" class="c-ui-input__field c-ui-input__field--order js-form-clearable c-join__input" id="search_input" placeholder="جستجوی نام، کد تنوع و ..." style="width: 400px;">
                                                             <button class="uk-icon-button c-join__search-btn uk-icon" uk-tooltip="title: جستجو;" uk-icon="icon: search" id="submitButton" title="" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle> <path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path></svg></button>
                                                         </div>
                                                     </div>
@@ -623,6 +622,16 @@
                                                         <input name="end_at" id="end_at" type="hidden" value="">
                                                     </span>
 
+
+
+                                                    <div class="c-ui-form__col c-ui-form__col-2" style="width: 215px">
+                                                        <label class="c-ui-form__label">وضعیت کمپین‌
+                                                        </label>
+                                                        <select name="status" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                                            <option class="option-control" value="" data-select2-id="3">نمایش همه</option>
+                                                        </select>
+                                                    </div>
+
                                                 </div>
                                             </form>
                                         </div>
@@ -630,17 +639,36 @@
                                         <div class="js-table-container" id="product-list-items">
                                             <br>
                                             <div class="c-ui-paginator js-paginator">
-                                                <div class="c-ui-paginator__total" data-rows="{{ persianNum(count($landings)) }}">
-                                                    تعداد نتایج: <span>{{ persianNum($landings->total()) }} مورد</span>
+                                                <div class="c-ui-paginator__total" data-rows="۱">
+                                                    تعداد نتایج: <span>۱ مورد</span>
                                                 </div>
+
+                                                <div class="c-ui-paginator__select">
+                                                    <div class="c-ui-paginator__select-label">تعداد نمایش</div>
+                                                    <div class="c-ui-paginator__select-pages">
+                                                        <div class="field-wrapper ui-select ui-select__container">
+                                                            <select class="c-ui-select c-ui-select--common c-ui-select--small js-search-items-per-page select2-hidden-accessible" name="paginator-select-pages" data-select2-id="4" tabindex="-1" aria-hidden="true">
+                                                                <option value="10" selected="" data-select2-id="6">۱۰</option>
+                                                                <option value="20" data-select2-id="11">۲۰</option>
+                                                                <option value="50" data-select2-id="12">۵۰</option>
+                                                                <option value="100" data-select2-id="13">۱۰۰</option>
+                                                            </select>
+                                                            <div class="js-select-options c-ui-paginator__dropdown-container"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
 
                                             <div class="c-grid__row c-promo__row--m-sm">
-                                                <table class="c-ui-table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ route('staff.landings.searchLanding') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
+                                                <table class="c-ui-table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="/ajax/product-list/search/" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
                                                     <thead>
                                                     <tr class="c-ui-table__row">
                                                         <th class="c-ui-table__header  ">
-                                                            <span class="js-search-table-column">عنوان صفحه فرود</span>
+                                                            <span class="js-search-table-column">عنوان و وضعیت صفحه فرود</span>
+                                                        </th>
+                                                        <th class="c-ui-table__header  ">
+                                                            <span class="js-search-table-column">پلتفرم نمایش</span>
                                                         </th>
                                                         <th class="c-ui-table__header c-ui-table__header--nowrap ">
                                                             <span class="js-search-table-column">لینک صفحه فرود</span>
@@ -652,7 +680,7 @@
                                                             <span class="js-search-table-column">وضعیت کالاها</span>
                                                         </th>
                                                         <th class="c-ui-table__header  ">
-                                                            <span class="js-search-table-column">فعال / غیرفعال</span>
+                                                            <span class="js-search-table-column">خروجی اکسل از کالاها</span>
                                                         </th>
                                                         <th class="c-ui-table__header c-ui-table__header--nowrap ">
                                                             <span class="js-search-table-column">عملیات</span>
@@ -660,25 +688,27 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @if(count($landings))
-                                                      @foreach($landings as $landing)
-                                                        <tr class="c-ui-table__row c-ui-table__row--body c-join__table-row">
+
+                                                    <tr class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                         <td class="c-ui-table__cell">
-                                                            <div style="font-weight: bold;">{{ $landing->name }}</div>
-                                                            <div class="c-join__landing-state c-ui-table__cell--text-warning">
-                                                                @if($landing->end_at < now())
-                                                                <span class="c-join__has-icon c-join__has-icon--clock"  style="padding-right: 25px;">پایان یافته</span>
-                                                                @endif
+                                                            <div>تستیی</div>
+                                                            <div class="c-join__landing-state ">
+                                                                <span class="c-join__has-icon c-join__has-icon--clock">پایان یافته</span>
                                                             </div>
                                                         </td>
+                                                        <td class="c-ui-table__cell">
+                                                            <label class="c-product-variants__place">
+                                                                <span class="c-product-variants__place-check c-product-variants__place-check--dk"></span>
+                                                            </label>
+                                                        </td>
                                                         <td class="c-ui-table__cell c-ui-table__cell--text-blue">
-                                                            <a class="c-join__promotion-link" href="{{ $site_url . '/product-list/' . $landing->slug }}" target="_blank">{{ $site_url . '/product-list/' . $landing->slug }}</a>
-                                                            <a class="c-join__promotion-copy-btn js-copy-btn" href="#" data-link="{{ $site_url . '/product-list/' . $landing->slug }}">کپی لینک</a>
+                                                            <a class="c-join__promotion-link" href="https://www.digikala.com/product-list/plp_3871629/" target="_blank">https://www.digikala.com/product-list/plp_3871629/</a>
+                                                            <a class="c-join__promotion-copy-btn js-copy-btn" href="#" data-link="https://www.digikala.com/product-list/plp_3871629/">کپی لینک</a>
                                                         </td>
                                                         <td class="c-ui-table__cell c-join-promotion__date-range">
-                                                            <span class="c-ui-table__date-f rom span-time" data-value="{{ $landing->start_at }}" data-type="شروع"></span>
+                                                            <span class="c-ui-table__date-from">شروع ۱۳۹۹/۱۲/۱۵ ۲۱:۵۰</span>
                                                             <br>
-                                                            <span class="c-ui-table__date-to span-time" data-value="{{ $landing->end_at }}" data-type="پایان"></span>
+                                                            <span class="c-ui-table__date-to">پایان ۱۳۹۹/۱۲/۱۶ ۲۱:۵۰</span>
                                                         </td>
                                                         <td class="c-ui-table__cell">
                                                             <div class="c-join__status-cell">
@@ -686,60 +716,47 @@
                                                                 <span class="c-join__status"><span class="c-join__status-counter c-join__status-counter--approving"></span>ناموجود</span>
                                                             </div>
                                                         </td>
-                                                        <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                                                            <div class="c-ui-tooltip__anchor">
-                                                                <div class="c-ui-toggle__group">
-                                                                    <label class="c-ui-toggle">
-                                                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-id="{{ $landing->id }}" name="status" {{ ($landing->status)? 'checked' : '' }}>
-                                                                        <span class="c-ui-toggle__check"></span>
-                                                                    </label>
-                                                                </div>
-                                                                <input type="hidden" value="0" class="js-active-input">
-                                                            </div>
+                                                        <td class="c-ui-table__cell">
+                                                            <a href="/product-list/3871629/excel/export/" class="c-join__download-file c-join__download-file--icon-excel c-join__download-file--icon-excel-down">دانلود فایل</a>
                                                         </td>
                                                         <td class="c-ui-table__cell">
                                                             <div class="c-promo__actions">
-                                                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.landings.manage', ['id' => $landing->id]) }}">ویرایش</a>
-                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="{{ route('staff.landings.removeLanding', ['id' => $landing->id]) }}">حذف صفحه</button>
+                                                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="/product-list/3871629/">ویرایش</a>
+                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="/product-list/delete/3871629/">حذف صفحه</button>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                      @endforeach
-                                                    @endif
+
                                                     </tbody>
                                                 </table>
                                                 <div class="c-card__loading"></div>
 
                                             </div>
                                             <br>
+                                            <div class="c-ui-paginator js-paginator">
+                                                <div class="c-ui-paginator__total" data-rows="۱">
+                                                    تعداد نتایج: <span>۱ مورد</span>
+                                                </div>
 
-
-                                            <div class="c-card__footer" style="width: auto;">
-                                                <a href="#" style="visibility: hidden;">
-                                                    <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                                                    </div>
-                                                </a>
-
-                                                {{ $landings->links('stafflanding::layouts.pagination.custom-pagination') }}
-                                                <div class="c-ui-paginator js-paginator">
-                                                    <div class="c-ui-paginator js-paginator">
-                                                        @if(count($landings))
-                                                            <div class="c-ui-paginator__total" data-rows="">
-                                                                تعداد نتایج: <span>{{ persianNum($landings->total()) }} مورد</span>
-                                                            </div>
-                                                        @else
-                                                            <div class="c-ui-paginator__total" data-rows="۰">
-                                                                جستجو نتیجه ای نداشت
-                                                            </div>
-                                                        @endif
+                                                <div class="c-ui-paginator__select">
+                                                    <div class="c-ui-paginator__select-label">تعداد نمایش</div>
+                                                    <div class="c-ui-paginator__select-pages">
+                                                        <div class="field-wrapper ui-select ui-select__container">
+                                                            <select class="c-ui-select c-ui-select--common c-ui-select--small js-search-items-per-page select2-hidden-accessible" name="paginator-select-pages" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                                                <option value="10" selected="" data-select2-id="9">۱۰</option>
+                                                                <option value="20" data-select2-id="15">۲۰</option>
+                                                                <option value="50" data-select2-id="16">۵۰</option>
+                                                                <option value="100" data-select2-id="17">۱۰۰</option>
+                                                            </select>
+                                                            <div class="js-select-options c-ui-paginator__dropdown-container"></div>
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                             </div>
 
-
-                                            </div>
                                         </div>
+
 
                                     </div>
                                 </div>
@@ -761,54 +778,5 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-
-function persianNum() {
-    String.prototype.toPersianDigits= function(){
-        var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-        return this.replace(/[0-9]/g, function(w){
-            return id[+w]
-        });
-    }
-}
-function convertDate() {
-    $(".span-time").each(function (){
-        var output="";
-        var input = $(this).attr('data-value');
-        var m = moment(input);
-        var m = moment(input);
-        if(m.isValid()){
-            m.locale('fa');
-            output = $(this).attr('data-type') + ' ' + m.format("YYYY/M/D HH:mm");
-        }
-        $(this).text(output.toPersianDigits());
-    });
-}
-
-persianNum();
-convertDate();
-
-
-$(document).on('change', 'input[name="status"]', function () {
-    if($(this).is(':checked'))
-    {
-        var status = 1;
-    }
-    else{
-        var status = 0;
-    }
-    var data_id = $(this).attr('data-id');
-
-    $.ajax({
-        method: 'post',
-        url: "{{ route('staff.landings.statusGroup') }}",
-        data: {
-            'status': status,
-            'id' : data_id,
-        }
-    });
-});
-
-
-
 </script>
 @endsection
