@@ -16,12 +16,6 @@ class Landing extends Model
     protected $table = 'landings';
     protected $fillable = ['name', 'slug', 'start_at', 'end_at', 'status', 'type', 'campain_id'];
 
-
-    public function media()
-    {
-        return $this->morphToMany(Media::class, 'mediable');
-    }
-
     public function productVariants()
     {
         return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');

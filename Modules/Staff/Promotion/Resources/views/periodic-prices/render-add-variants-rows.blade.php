@@ -17,7 +17,7 @@
                 {{ $product_variant->warranty->name }}
             " class="c-mega-campaigns-join-list__container-table-image">
     </td>
-    <td class="c-ui-table__cell">
+    <td class="c-ui-table__cell" style="text-align: right;">
         {{ $product_variant->product->title_fa }} | {{ $product_variant->variant->name }} | گارانتی
         {{ (!is_null($product_variant->warranty->month))? persianNum($product_variant->warranty->month) . ' ماهه' : '' }}
         {{ $product_variant->warranty->name }}

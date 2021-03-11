@@ -25,6 +25,9 @@
                 <th class="c-ui-table__header c-ui-table__header--smaller">
                     <span class="js-search-table-column">قیمت فروش شما</span>
                 </th>
+                <th class="c-ui-table__header  ">
+                    <span class="js-search-table-column">قیمت پروموشن فعال (ریال)</span>
+                </th>
                 <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
                     <span class="js-search-table-column">رنگ/سایز</span>
                 </th>
@@ -58,8 +61,9 @@
                         {{ $product_variant->warranty->name }}
                         <span class="c-join-promotion__dkpc-number">{{ $product_code_prefix }}C-{{ $product_variant->variant_code  }}</span>
                     </td>
-                    <td class="c-ui-table__cell">{{ persianNum($product_variant->buy_price) }}</td>
-                    <td class="c-ui-table__cell">{{ persianNum($product_variant->sale_price) }}</td>
+                    <td class="c-ui-table__cell">{{ persianNum(number_format($product_variant->buy_price)) }}</td>
+                    <td class="c-ui-table__cell">{{ persianNum(number_format($product_variant->sale_price)) }}</td>
+                    <td class="c-ui-table__cell">-</td>
                     <td class="c-ui-table__cell">
                         @if(!is_null($product_variant->variant->value))
                         <span class="c-join__color-variant" style="background-color: {{ $product_variant->variant->value }}"></span>

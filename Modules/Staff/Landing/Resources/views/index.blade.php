@@ -775,7 +775,6 @@ function convertDate() {
         var output="";
         var input = $(this).attr('data-value');
         var m = moment(input);
-        var m = moment(input);
         if(m.isValid()){
             m.locale('fa');
             output = $(this).attr('data-type') + ' ' + m.format("YYYY/M/D HH:mm");

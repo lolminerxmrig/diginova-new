@@ -27,6 +27,12 @@ Route::domain('staff.diginova.test')->prefix('periodic-prices')->name('staff.per
     Route::get('/active/search', [StaffPromotionController::class, 'search'])
         ->name('search');
 
+    Route::post('/ended/search', [StaffPromotionController::class, 'endedSearch'])
+        ->name('endedSearch');
+
+    Route::get('/ended/search', [StaffPromotionController::class, 'endedSearch'])
+        ->name('endedSearch');
+
     Route::get('/ended', [StaffPromotionController::class, 'ended'])
         ->name('ended');
 

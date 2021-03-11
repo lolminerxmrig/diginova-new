@@ -18,8 +18,8 @@
                                                 <div class="c-ui-form__row c-ui-form__row--group c-ui-form__row--nowrap c-ui-form__row--wrap-xs">
                                                     <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-search-type">
                                                         <select class="js-form-clearable js-re-init-select2-after-ajax c-ui-select c-ui-select--common c-ui-select--small c-ui-select--search" name="type"                                                                >
-                                                            <option value="all" {{ (isset($type) && ($type == 'all'))? 'selected' : ''  }}>همه موارد</option>
-{{--                                                            <option value="product_name" {{ (isset($type) && ($type == 'product_name'))? 'selected' : ''  }}>نام محصول</option>--}}
+                                                            <option value="all" {{ (isset($type) && ($type == 'all'))? 'selected' : ''  }}  {{ (!isset($type))? 'selected' : '' }}>همه موارد</option>
+                                                            <option value="product_name" {{ (isset($type) && ($type == 'product_name'))? 'selected' : ''  }}>نام محصول</option>
                                                             <option value="product_id" {{ (isset($type) && ($type == 'product_id'))? 'selected' : ''  }}>کد محصول</option>
                                                             <option value="product_variant_id" {{ (isset($type) && ($type == 'product_variant_id'))? 'selected' : ''  }}>کد تنوع</option>
 {{--                                                            <option value="product_category">گروه کالا</option>--}}
@@ -43,14 +43,14 @@
                                         </div>
 
 
-{{--                                        <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select c-mega-campaigns--mr-30">--}}
-{{--                                            <label class="c-ui-form__label uk-text-right">مرتب‌‌سازی کالاها بر اساس:</label>--}}
-{{--                                            <select class="js-form-clearable js-re-init-select2-after-ajax c-ui-select c-ui-select--common c-ui-select--small" name="sort">--}}
-{{--                                                <option value="latest">جدیدترین</option>--}}
-{{--                                                <option value="price_low">ارزان‌ترین</option>--}}
-{{--                                                <option value="price_high">گرانترین</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
+                                        <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select c-mega-campaigns--mr-30">
+                                            <label class="c-ui-form__label uk-text-right">مرتب‌‌سازی کالاها بر اساس:</label>
+                                            <select class="js-form-clearable js-re-init-select2-after-ajax c-ui-select c-ui-select--common c-ui-select--small" name="sort">
+                                                <option value="desc" selected>جدیدترین</option>
+                                                <option value="price_low">ارزان‌ترین</option>
+                                                <option value="price_high">گرانترین</option>
+                                            </select>
+                                        </div>
                                     </div>
 
 {{--                                    <div class="c-join-smart-select__notif">--}}
@@ -94,6 +94,15 @@
                             <span class="js-search-table-column">قیمت فروش شما (ریال)</span>
                         </th>
                         <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">قیمت پروموشن فعال (ریال)</span>
+                        </th>
+                        <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
+                            <span class="js-search-table-column">رنگ/سایز</span>
+                        </th>
+                        <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
+                            <span class="js-search-table-column">گارانتی</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
                             <span class="js-search-table-column">تعداد فروش ۷ روز گذشته</span>
                         </th>
                     </tr>
@@ -104,6 +113,7 @@
                       <tr data-variant-id="{{ $product_variant->id  }}" class="c-ui-table__row c-ui-table__row--body c-ui-table__row--with-hover c-join__table-row ">
                         <td class="c-ui-table__cell">
                             <label class="c-ui-checkbox js-checkbox-{{ $product_variant->id  }}">
+{{--                                {{ (!is_null($promotions->productVariants->find($product_variant)))? 'checked disabled' : '' }}--}}
                                 <input type="checkbox"  value="{{ $product_variant->id  }}" class="js-selected-item c-ui-checkbox__origin all-checkbox">
                                 <span class="c-ui-checkbox__check"></span>
                             </label>
@@ -115,15 +125,33 @@
                             {{ $product_code_prefix . '-' . $product_variant->product->product_code }}
                         </td>
 
-                        <td class="c-ui-table__cell ">
-                            {{ $product_variant->product->title_fa }} | {{ $product_variant->variant->name }} | گارانتی
-                            {{ (!is_null($product_variant->warranty->month))? persianNum($product_variant->warranty->month) . ' ماهه' : '' }}
-                            {{ $product_variant->warranty->name }}
-                            <span class="c-join-promotion__dkpc-number">{{ $product_code_prefix }}C-{{ $product_variant->variant_code  }}</span>
-                        </td>
-                        <td class="c-ui-table__cell">{{ (!is_null($product_variant->buy_price)? persianNum($product_variant->buy_price) : '') }}</td>
-                        <td class="c-ui-table__cell">{{ persianNum($product_variant->sale_price) }}</td>
-                        <td class="c-ui-table__cell"></td>
+{{--                        <td class="c-ui-table__cell ">--}}
+{{--                            {{ $product_variant->product->title_fa }}--}}
+{{--                            <span class="c-join-promotion__dkpc-number">{{ $product_code_prefix }}C-{{ $product_variant->variant_code  }}</span>--}}
+{{--                        </td>--}}
+                        <td class="c-ui-table__cell " style="text-align: right;">
+                              {{ $product_variant->product->title_fa }} | {{ $product_variant->variant->name }} | گارانتی
+                              {{ (!is_null($product_variant->warranty->month))? persianNum($product_variant->warranty->month) . ' ماهه' : '' }}
+                              {{ $product_variant->warranty->name }}
+                              <span class="c-join-promotion__dkpc-number">{{ $product_code_prefix }}C-{{ $product_variant->variant_code  }}</span>
+                          </td>
+                        <td class="c-ui-table__cell">{{ (!is_null($product_variant->buy_price)? persianNum(number_format($product_variant->buy_price)) : '') }}</td>
+                        <td class="c-ui-table__cell">{{ persianNum(number_format($product_variant->sale_price)) }}</td>
+                        <td class="c-ui-table__cell">-</td>
+                        <td class="c-ui-table__cell">
+                          @if(!is_null($product_variant->variant->value))
+                              <span class="c-join__color-variant" style="background-color: {{ $product_variant->variant->value }}"></span>
+                          @endif
+                          {{ $product_variant->variant->name }}
+                      </td>
+                        <td class="c-ui-table__cell">
+                          @if(!is_null($product_variant->warranty->month))
+                              گارانتی {{ persianNum($product_variant->warranty->month) }} ماهه {{ $product_variant->warranty->name }}
+                          @else
+                              گارانتی {{ $product_variant->warranty->name }}
+                          @endif
+                      </td>
+                        <td class="c-ui-table__cell">-</td>
                       </tr>
                     @endforeach
                     @endif

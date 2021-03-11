@@ -6,11 +6,10 @@ namespace Modules\Staff\Promotion\Http\Controllers;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
-use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Product\Models\ProductHasVariant;
+use Modules\Staff\Promotion\Models\Campain;
 use Modules\Staff\Promotion\Models\Promotion;
 
 class StaffPromotionController extends Controller
@@ -18,74 +17,80 @@ class StaffPromotionController extends Controller
 
     public function active()
     {
-        if (count(Promotion::all())) {
-            $promotions = Promotion::all();
+        if (count(Promotion::where('status', '!=', 'ended')->get())) {
+            $promotions = Promotion::where('status', '!=', 'ended')->paginate(10);
         } else {
             $promotions = [];
         }
-        return view('staffpromotion::periodic-prices.active', compact('promotions'));
+
+        if (count(Promotion::where('status', 'ended')->get())) {
+            $ended_status = true;
+        } else {
+            $ended_status = false;
+        }
+
+        return view('staffpromotion::periodic-prices.active', compact('promotions', 'ended_status'));
     }
 
-    public function loadProductVariants(Request $request, ProductHasVariant $product_variant)
+    public function loadProductVariants(Request $request, ProductHasVariant $product_variants)
     {
-        ($request->paginatorNum)? $paginatorNum = $request->paginatorNum : $paginatorNum = 2;
+        (!$request->paginatorNum)? $request->paginatorNum = 10 : '';
 
-//        if(isset($request->type) && !is_null($request->type) && ($request->type !== 'product_name')){
-        if(isset($request->type) && !is_null($request->type) && ($request->type !== 'all')){
-            $search_keyword = $request['query'];
-            if (isset($request->type) && isset($search_keyword)) {
-                if ($request->type == 'product_id') {
-                    $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
-                    $product_variants = $product_variant->whereHas('product', function ($query) use ($search_keyword) {
-                        $query->where('product_code', 'LIKE', '%' . $search_keyword . '%');
-                    })->paginate(3);
-                    if (!count($product_variants)){
-                        Log::info('pos 4');
-                        $product_variants = [];
-                    }
-                }
-                elseif ($request->type == 'product_variant_id') {
-                    Log::info('pos 5');
-                    $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
-                    $product_variants = ProductHasVariant::query()->where('variant_code', 'LIKE', "%{$search_keyword}%")->paginate(3);
-                }
-                elseif ($request->type == 'product_category') {
-                    Log::info('pos 6');
-                }
-            }
-        }
-        elseif ($request->type == 'product_name') {
-            if (!is_null($request['query'])) {
-                Log::info('pos 8');
-                $search_keyword = $request['query'];
-                $product_variants = Product::where('title_fa', 'like', "گوشی موبایل")->get();
-                Log::info($product_variants);
-
-//                $products = Product::query()->where('name', 'LIKE', "%{$search_keyword}%")->paginate(10);
-                $product_variants = Product::query()->where('title_fa', 'LIKE', "%{$search_keyword}%")->with('variants')->paginate(10);
-                $products = Product::query()->where('title_fa', 'LIKE', "%{$search_keyword}%")->with('variants')->variants->paginate(10);
-                Log::info('product');
-                Log::info($product_variants);
-            } else {
-                $product_variants = ProductHasVariant::orderBy('created_at', 'desc')->paginate($paginatorNum);
-                Log::info('pos 8.5');
-            }
-        }
-        elseif (count(ProductHasVariant::all())) {
-            Log::info('pos 7');
-            $product_variants = ProductHasVariant::orderBy('created_at', 'desc')->paginate($paginatorNum);
-        }
-        else {
-            Log::info('pos 9');
-            $product_variants = [];
-        }
-
+        $product_variants = $this->ProductVariantsSearch($request, $product_variants);
 
         (!is_null($request['query'])? $query = $request['query'] : $query = '');
-            (!is_null($request['type'])? $type = $request['type'] : $type = '');
+        (!is_null($request['type'])? $type = $request['type'] : $type = '');
 
         return view('staffpromotion::periodic-prices.ajax-load-variants',
              compact('product_variants', 'query', 'type'));
+    }
+
+    public function ProductVariantsSearch($request, $product_variants)
+    {
+        $product_variants = $product_variants->newQuery();
+
+        $search_keyword = ltrim($request['query'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
+        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
+
+        if ($request->type == 'all' && !is_null($request['query'])) {
+            $product_variants = $product_variants->whereHas('product', function ($query) use ($search_keyword) {
+                $query->where('product_code', 'LIKE', '%' . $search_keyword . '%');
+                $query->orWhere('title_fa', 'LIKE', '%' . $search_keyword . '%');
+            });
+            $product_variants = $product_variants->orWhere('variant_code', 'LIKE', "%{$search_keyword}%");
+        }
+
+        if ($request->type == 'product_id' && !is_null($request['query'])) {
+            $product_variants = $product_variants->whereHas('product', function ($query) use ($search_keyword) {
+                $query->where('product_code', 'LIKE', '%' . $search_keyword . '%');
+            });
+        }
+
+        if ($request->type == 'product_name' && !is_null($request['query'])) {
+            $product_variants = $product_variants->whereHas('product', function ($query) use ($search_keyword) {
+                $query->where('title_fa', 'LIKE', '%' . $search_keyword . '%');
+            });
+        }
+
+        if ($request->type == 'product_variant_id' && !is_null($request['query'])) {
+            $product_variants = $product_variants->where('variant_code', 'LIKE', "%{$search_keyword}%");
+        }
+
+        if (!is_null($request->sort)) {
+            if ($request->sort == 'desc') {
+                $product_variants->orderBy('created_at', 'desc');
+            }
+
+            if ($request->sort == 'price_low') {
+                $product_variants->orderBy('sale_price', 'asc');
+            }
+
+            if ($request->sort == 'price_high') {
+                $product_variants->orderBy('sale_price', 'desc');
+            }
+        }
+
+        return $product_variants->paginate($request->paginatorNum);
 
     }
 
@@ -108,6 +113,9 @@ class StaffPromotionController extends Controller
 
     public function save(Request $request)
     {
+        $start_at = $request->start_at;
+        $end_at = $request->end_at;
+
         $request->start_at = date_create($request->start_at);
         $request->end_at = date_create($request->end_at);
 
@@ -140,24 +148,56 @@ class StaffPromotionController extends Controller
             ]);
         }
 
-
         $product_variant = ProductHasVariant::find($request->id);
+
         if ($product_variant->stock_count < $request->promotion_limit)
         {
             $errors = 'عددی که برای تعداد در تخفیف در نظر گرفته اید از ';
         }
 
-            Promotion::updateOrCreate(['id' => $request->promotion_variant_id], [
-                'promotion_price' => $request->promotion_price,
-                'start_at' => $request->start_at,
-                'end_at' => $request->end_at,
-                'percent' => $request->promotion_percent,
-                'promotion_limit' => $request->promotion_limit,
-                'promotion_order_limit' => $request->promotion_order_limit,
-                'status' => $request->status,
-                'product_variant_id' => $request->id,
+        if (!Campain::where('type', 'amazing_offer')->first())
+        {
+            Campain::create([
+                'name' => 'تخفیف شگفت انگیز',
+                'type' => 'amazing_offer',
+                'status' => 'active',
             ]);
+        }
 
+        if (!Campain::where('type', 'special_offer')->first())
+        {
+            Campain::create([
+                'name' => 'تخفیف شگفت انگیز',
+                'type' => 'special_offer',
+                'status' => 'active',
+            ]);
+        }
+
+        if (!is_null($start_at) && !is_null($end_at)) {
+            $campain_id = Campain::where('type', 'amazing_offer')->first()->id;
+        } else {
+            $campain_id = Campain::where('type', 'special_offer')->first()->id;
+        }
+
+        if ($request->status == 0) {
+            $status = 'inactive';
+        } elseif ($request->status == 1) {
+            $status = 'active';
+        }
+
+        $promotion = Promotion::updateOrCreate(['id' => $request->promotion_variant_id], [
+            'promotion_price' => $request->promotion_price,
+            'start_at' => $start_at,
+            'end_at' => $end_at,
+            'percent' => $request->promotion_percent,
+            'promotion_limit' => $request->promotion_limit,
+            'promotion_order_limit' => $request->promotion_order_limit,
+            'status' => $status,
+            'campain_id' => $campain_id,
+        ]);
+
+        $product_variant = ProductHasVariant::find($request->id);
+        $promotion->productVariants()->sync($product_variant);
 
         return response()->json([
             'status' => true,
@@ -165,6 +205,7 @@ class StaffPromotionController extends Controller
                 'promotion_variant_id' => 0,
             ]
         ]);
+
     }
 
     public function done()
@@ -182,76 +223,123 @@ class StaffPromotionController extends Controller
 
     public function ended()
     {
-        if (count(Promotion::all())) {
-            $promotions = Promotion::all();
+        if (count(Promotion::where('status', 'ended')->get())) {
+            $promotions = Promotion::where('status', 'ended')->paginate(10);
         } else {
             $promotions = [];
         }
+
         return view('staffpromotion::periodic-prices.ended', compact('promotions'));
     }
 
-    public function search(Request $request)
+    public function search(Request $request, Promotion $promotions)
     {
-        ($request->paginatorNum)? $paginatorNum = $request->paginatorNum : $paginatorNum = 2;
+        $paginate_type = 'active';
+        (!$request->paginatorNum)? $request->paginatorNum = 10 : '';
+        $promotions = $promotions->with('productVariants');
 
-//        if(isset($request->search['type']) && !is_null($request->search['type']) && ($request->search['type'] !== 'product_name')){
-        if(isset($request->search['type']) && !is_null($request->search['type']) && ($request->search['type'] !== 'all')){
-            Log::info('pos 1');
-            $search_keyword = $request->search['title'];
-            if (isset($request->search['type']) && isset($search_keyword)) {
-                Log::info('pos 2');
-                if ($request->search['type'] == 'product_id') {
-                    Log::info('pos 3');
-                    $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
-                    $products = Product::where('product_code', $search_keyword)->get();
+        $search_keyword = ltrim($request->search['title'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
+        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
 
-                    if (!count($product_variants)){
-                        Log::info('pos 4');
-                        $product_variants = [];
-                    }
-                }
-                elseif ($request->search['type'] == 'product_variant_id') {
-                    Log::info('pos 5');
-                    $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
-                    $product_variants = ProductHasVariant::query()->where('variant_code', 'LIKE', "%{$search_keyword}%")->paginate(3);
-                }
-                elseif ($request->search['type'] == 'product_category') {
-                    Log::info('pos 6');
-                }
-            }
-        }
-        elseif ($request->search['type'] == 'product_name') {
-            if (!is_null($request->search['title'])) {
-                Log::info('pos 8');
-                $search_keyword = $request->search['title'];
-                $product_variants = Product::where('title_fa', 'LIKE', "%{$search_keyword}%")->get();
-                Log::info($product_variants);
+        $promotions = $this->promotionSearch($request, $promotions, $paginate_type);
 
-//                $products = Product::query()->where('name', 'LIKE', "%{$search_keyword}%")->paginate(10);
-                $product_variants = Product::query()->where('title_fa', 'LIKE', "%{$search_keyword}%")->with('variants')->paginate(10);
-                $products = Product::query()->where('title_fa', 'LIKE', "%{$search_keyword}%")->with('variants')->variants->paginate(10);
-                Log::info('product');
-                Log::info($product_variants);
-            } else {
-                $product_variants = ProductHasVariant::orderBy('created_at', 'desc')->paginate($paginatorNum);
-                Log::info('pos 8.5');
-            }
-        }
-        elseif (count(ProductHasVariant::all())) {
-            Log::info('pos 7');
-            $product_variants = ProductHasVariant::orderBy('created_at', 'desc')->paginate($paginatorNum);
-        }
-        else {
-            Log::info('pos 9');
-            $product_variants = [];
-        }
+
+        (!is_null($request->search['title'])? $query = $request->search['title'] : $query = '');
+        (!is_null($request['type'])? $request['type'] : $type = '');
+
+        $paginate_type = 'active';
+
+        return view('staffpromotion::periodic-prices.ajax-load-promotions',
+            compact('promotions', 'query', 'type', 'paginate_type'));
+
+    }
+
+    public function endedSearch(Request $request, Promotion $promotions)
+    {
+        $paginate_type = 'ended';
+        (!$request->paginatorNum)? $request->paginatorNum = 10 : '';
+        $promotions = $promotions->with('productVariants');
+
+        $search_keyword = ltrim($request->search['title'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
+        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
+
+        $promotions = $this->promotionSearch($request, $promotions, $paginate_type);
 
 
         (!is_null($request->search['title'])? $query = $request->search['title'] : $query = '');
         (!is_null($request['type'])? $request['type'] : $type = '');
 
         return view('staffpromotion::periodic-prices.ajax-load-promotions',
-            compact('promotions', 'query', 'type'));
+            compact('promotions', 'query', 'type', 'paginate_type'));
 
     }
+
+    public function promotionSearch($request, $promotions, $paginate_type)
+    {
+        $promotions = $promotions->newQuery();
+
+        $search_keyword = ltrim($request->search['title'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
+        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
+
+        if ($request->search['type'] == 'all' && !is_null($search_keyword)) {
+            $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {
+                $query->whereHas('product', function ($query) use ($search_keyword) {
+                    $query->where('title_fa', 'LIKE', '%' . $search_keyword . '%');
+                    $query->orWhere('product_code', 'LIKE', '%' . $search_keyword . '%');
+                });
+                $query->orWhere('variant_code', 'LIKE', "%{$search_keyword}%");
+            });
+
+            if ($paginate_type == 'active') {
+                $promotions->where('status', '!=', 'ended');
+            }
+        }
+
+        if ($request->search['type'] == 'product_id' && !is_null($search_keyword)) {
+            $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {
+                $query->whereHas('product', function ($query) use ($search_keyword) {
+                    $query->where('product_code', 'LIKE', '%' . $search_keyword . '%');
+                });
+            });
+        }
+
+        if ($request->search['type'] == 'product_name' && !is_null($search_keyword)) {
+            $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {
+                $query->whereHas('product', function ($query) use ($search_keyword) {
+                    $query->where('title_fa', 'LIKE', '%' . $search_keyword . '%');
+                });
+            });
+        }
+
+        if ($request->search['type'] == 'product_variant_id' && !is_null($search_keyword)) {
+            $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {
+                $query->where('variant_code', 'LIKE', "%{$search_keyword}%");
+            });
+        }
+
+        if (isset($request->search['status']) && $request->search['status'] == 'active') {
+            if ($paginate_type == 'active') {
+                $promotions->where('status', 'active');
+            }
+        }
+
+        if (isset($request->search['status']) && $request->search['status'] == 'inactive') {
+            $promotions->where('status', 'inactive');
+        }
+
+        if (isset($request->search['status']) && !is_null($request->search['start_from'])) {
+            $promotions->where('start_at', '>=', $request->search['start_from']);
+        }
+
+        if (isset($request->search['status']) && !is_null($request->search['end_to'])) {
+            $promotions->where('start_at', '<=', $request->search['end_to']);
+        }
+
+        if ($paginate_type == 'ended') {
+            $promotions->where('status', 'ended');
+        }
+
+        return $promotions->paginate($request->paginatorNum);
+    }
+
 }

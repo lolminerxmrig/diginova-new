@@ -15,7 +15,7 @@ class StaffLandingController extends Controller
 {
     public function index()
     {
-        $landings = Landing::paginate(10);
+        $landings = Landing::paginate(1);
         return view('stafflanding::index', compact('landings'));
     }
 
@@ -224,7 +224,6 @@ class StaffLandingController extends Controller
             $product_variants->orWhere('variant_code', 'LIKE', '%' . $request['query'] . '%');
         }
 
-//        return $product_variants->toSql();
         return $product_variants->paginate($request->paginatorNum);
 
 

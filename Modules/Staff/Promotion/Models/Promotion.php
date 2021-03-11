@@ -14,29 +14,12 @@ class Promotion extends Model
 {
 
     protected $table = 'promotions';
-    protected $fillable = ['promotion_price', 'percent', 'start_at', 'end_at', 'promotion_limit', 'promotion_order_limit', 'status', 'product_variant_id'];
+    protected $fillable = ['promotion_price', 'percent', 'start_at', 'end_at', 'promotion_limit', 'promotion_order_limit', 'status', 'campain_id'];
 
 
-    public function media()
+    public function productVariants()
     {
-        return $this->morphToMany(Media::class, 'mediable');
-    }
-
-
-    public function categories()
-    {
-        return $this->morphToMany(Category::class, 'categorizable');
-    }
-
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'product_variant_id');
-    }
-
-    public function variant()
-    {
-        return $this->belongsTo(ProductHasVariant::class, 'product_variant_id');
+        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
     }
 
 

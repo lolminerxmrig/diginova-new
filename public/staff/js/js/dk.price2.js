@@ -256,8 +256,8 @@ var dk = dk || {};
 
             var pointsTooltip_minDk = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>پایین ترین قیمت دیجی‌کالا</div><div>' + dk.core.basics.toPersianCurrency(minDk) + '</div></div> <div class="title"> ' + minDkTitle + '</div>    </div>');
             var pointsTooltip_maxDk = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>بالاترین قیمت دیجی‌کالا</div><div>' + dk.core.basics.toPersianCurrency(maxDk) + '</div></div> <div class="title"> ' + maxDkTitle + '</div>    </div>');
-            var pointsTooltip_minOther = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>پایین ترین قیمت بازار</div><div>' + dk.core.basics.toPersianCurrency(minOther) + '</div></div>  <div class="title"> ' + minOtherTitle + '</div> </div>');//
-            var pointsTooltip_maxOther = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>بالاترین قیمت بازار</div><div>' + dk.core.basics.toPersianCurrency(maxOther) + '</div></div> <div class="title"> ' + maxOtherTitle + '</div>   </div>');//
+            var pointsTooltip_minOther = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>پایین ترین قیمت بازار</div><div>' + dk.core.basics.toPersianCurrency(minOther) + '</div></div>  <div class="title"> ' + minOtherTitle + '</div> </div>');//   
+            var pointsTooltip_maxOther = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>بالاترین قیمت بازار</div><div>' + dk.core.basics.toPersianCurrency(maxOther) + '</div></div> <div class="title"> ' + maxOtherTitle + '</div>   </div>');// 
 
 
             if (minOther == null && maxOther == null) {
@@ -2394,7 +2394,7 @@ var EligibleVariantsModal = {
             UIkit.modal('#js-select-products').hide();
         });
 
-        var url =  promotionId + '/load-product-variants';
+        var url = '/promotion/' + promotionId + '/eligible-variants/search/';
         $('.js-select-products').on('click', function (e) {
             e.preventDefault();
             var params = {'page': 1};
@@ -2483,7 +2483,7 @@ $(function () {
 });
 
 
-console.log('rrtttyyu');
+
 /*[PATH @digikala/supernova-digikala-marketplace/assets/local/js/controllers/periodicPricesController/indexAction.js]*/
 var IndexAction = {
     init: function () {
@@ -2505,7 +2505,7 @@ var IndexAction = {
 
     initModal: function () {
         $('.js-select-products').on('click', function (e) {
-
+            
             UIkit.modal('#js-select-products').show();
         });
     },
@@ -2533,7 +2533,7 @@ var IndexAction = {
             }
         }
         Services.ajaxPOSTRequestJSON(
-            '/periodic-prices/render-add-variants-rows',
+            '/ajax/periodic-prices/render-add-variants-rows/',
             {'variantIds': nonExistVariantIds},
             function (response) {
                 if (isModuleActive('collective_promotions_module')) {
@@ -2628,7 +2628,6 @@ var IndexAction = {
     },
     initRedirectToSuccessPage: function () {
         $(document).on('onSuccessfullyAdd', '.js-save-promotion-price-record-changes', function (e) {
-
             if ($('tr.added-by-js').length === $('tr.js-successfully-added').length && $('tr.js-successfully-added').length !== 0) {
                 window.location.href = '/periodic-prices/done/index';
             }
@@ -2678,7 +2677,7 @@ var IndexAction = {
 
             self.closest('tbody').children('tr.is-active-swap').removeClass('is-active-swap');
             Services.ajaxPOSTRequestJSON(
-                '/periodic-prices/save',
+                '/ajax/periodic-prices/save/',
                 data,
                 function (response) {
                     var viewer = self.closest('tr').siblings('[data-variant="' + data.promotion_variant_id + '"]');
@@ -2706,36 +2705,10 @@ var IndexAction = {
 
                     self.closest('tr').find('.js-edit-actions button').prop('disabled', true);
 
-                    if (self.closest('tr').find(".variant_status").first().is(":checked")) {
-                        self.closest('tr').find(".variant_status").first().attr('data-reset', 'checked');
-                    } else if (!self.closest('tr').find(".variant_status").first().is(":checked")) {
-                        self.closest('tr').find(".variant_status").first().attr('data-reset', 'not-checked');
-                    }
-
-
-                    if (self.closest('tr').find(".time_status").first().is(":checked")) {
-                        self.closest('tr').find(".time_status").first().attr('data-reset', 'checked');
-                    } else if(!self.closest('tr').find(".time_status").first().is(":checked")){
-                        self.closest('tr').find(".time_status").first().attr('data-reset', 'not-checked');
-
-                        self.closest('tr').find(".start_at").first().val('');
-                        self.closest('tr').find(".start_at_hidden").first().val('');
-                        self.closest('tr').find(".end_at").first().val('');
-                        self.closest('tr').find(".end_at_hidden").first().val('');
-
-                        self.closest('.c-ui-table__row').find('.start_at').val('');
-                        self.closest('.c-ui-table__row').find('.start_at_hidden').val('');
-                        self.closest('.c-ui-table__row').find('.end_at_hidden').val('');
-                        self.closest('.c-ui-table__row').find('.end_at').val('');
-
-                    }
-
-
-
                     if (isModuleActive('collective_promotions_module')) {
                         $('.added-by-js-messages-' + self.data('productVariantId'))
                             .removeClass('uk-hidden')
-                            .html('با موفقیت ذخیره شد.')
+                            .html('کالای جدید با موفقیت اضافه شد.')
                             .removeClass('c-mega-campaigns-join-list__container-table-error')
                             .addClass('c-mega-campaigns-join-modal__body-table-input--success');
                         $('.added-by-js-messages-' + self.data('productVariantId')).parents('tr')
@@ -2845,7 +2818,7 @@ var IndexAction = {
         if(!$close) return;
 
         $close.on('click', function(){
-
+            
             $('.js-guide-container').fadeOut(500, function(){
                 $(this).addClass('uk-hidden');
             });
@@ -2994,25 +2967,12 @@ var detailsAction = {
             e.preventDefault();
             $(this).closest('tr').find('.js-edit-actions button').prop('disabled', true);
 
-            if ($(this).closest('tr').find(".time_status").first().attr('data-reset') == 'checked') {
-                $(this).closest('tr').find(".time_status").first().prop('checked', true);
-            } else {
-                $(this).closest('tr').find(".time_status").first().prop('checked', false);
-            }
-
-            if ($(this).closest('tr').find(".variant_status").first().attr('data-reset') == 'checked') {
-                $(this).closest('tr').find(".variant_status").first().prop('checked', true);
-            } else {
-                $(this).closest('tr').find(".variant_status").first().prop('checked', false);
-            }
-
             thiz.resetInputs($(this));
         });
 
         $('.js-variant-save-changes').off();
         $(document).on('click', '.js-variant-save-changes', function (e) {
             e.preventDefault();
-
             var self = $(this);
             var isToggleRow = self.closest('tr').hasClass('js-table-swap-row');
             var toggleHandleContainerRow = isToggleRow ? self.closest('tr').prev('tr') : self.closest('tr');
@@ -3105,7 +3065,7 @@ var detailsAction = {
             self.closest('tr').find('.js-edit-actions button').prop('disabled', true);
             timeOuts[promotionVariantId] = setTimeout(function () {
                 Services.ajaxPOSTRequestJSON(
-                    promotionId + '/delete',
+                    '/ajax/seller/' + promotionId + '/delete/variant/',
                     {
                         promotionVariantId: promotionVariantId
                     },

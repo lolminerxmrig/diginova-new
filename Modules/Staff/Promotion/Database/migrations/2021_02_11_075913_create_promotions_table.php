@@ -22,10 +22,10 @@ class CreatePromotionsTable extends Migration
             $table->integer('promotion_limit');
             $table->integer('promotion_order_limit');
             $table->string('status');
-            $table->foreignId('product_variant_id');
+            $table->foreignId('campain_id');
             $table->timestamps();
 
-            $table->foreign('product_variant_id')->references('id')->on('product_has_variants');
+            $table->foreign('campain_id')->references('id')->on('campains');
         });
     }
 
