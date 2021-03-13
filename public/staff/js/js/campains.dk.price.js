@@ -2394,7 +2394,9 @@ var EligibleVariantsModal = {
             UIkit.modal('#js-select-products').hide();
         });
 
-        var url =  promotionId + '/load-product-variants';
+        var campainId = $("input[name='campain_id']").val();
+
+        var url =  campainId + '/load-product-variants';
         $('.js-select-products').on('click', function (e) {
             e.preventDefault();
             var params = {'page': 1};
@@ -2532,7 +2534,7 @@ var IndexAction = {
             }
         }
         Services.ajaxPOSTRequestJSON(
-            '/periodic-prices/render-add-variants-rows',
+            '/campains/render-add-variants-rows',
             {'variantIds': nonExistVariantIds},
             function (response) {
                 if (isModuleActive('collective_promotions_module')) {
@@ -2602,7 +2604,7 @@ var IndexAction = {
             var file = (el && el.files != undefined) ? el.files[0] : null;
             formData.append('periodic_price_excel_file', file);
             $.ajax({
-                url: '/ajax/periodic-prices/excel/import/',
+                url: '/ajax/campains/excel/import/',
                 type: 'POST',
                 data: formData,
                 cache: false,
@@ -2629,7 +2631,7 @@ var IndexAction = {
         $(document).on('onSuccessfullyAdd', '.js-save-promotion-price-record-changes', function (e) {
 
             if ($('tr.added-by-js').length === $('tr.js-successfully-added').length && $('tr.js-successfully-added').length !== 0) {
-                window.location.href = '/periodic-prices/done/index';
+                window.location.href = '/campains/done/index';
             }
         });
     },
@@ -2655,6 +2657,7 @@ var IndexAction = {
             var data = {
                 promotion_variant_id: self.data('promotion-variant-id'),
                 id: self.data('product-variant-id'),
+                campain_id: $("input[name='campain_id']").val(),
                 promotion_order_limit: 0,
                 promotion_limit: 0,
                 promotion_price: 0,
@@ -2677,7 +2680,7 @@ var IndexAction = {
 
             self.closest('tbody').children('tr.is-active-swap').removeClass('is-active-swap');
             Services.ajaxPOSTRequestJSON(
-                '/periodic-prices/save',
+                '/campains/save',
                 data,
                 function (response) {
                     var viewer = self.closest('tr').siblings('[data-variant="' + data.promotion_variant_id + '"]');
@@ -2882,17 +2885,17 @@ var IndexAction = {
             location.href = '/dkstatic/smart-promotion/list/'
         });
 
-        if (location.href.includes('/periodic-prices/active/#select')) {
+        if (location.href.includes('/campains/active/#select')) {
             UIkit.modal('#js-select-periodic-price-products-modal').show();
         }
 
         $('.js-back-to-select-product-modal').on('click', function () {
 
-            if (location.href.includes('/periodic-prices/active/')) {
+            if (location.href.includes('/campains/active/')) {
                 UIkit.modal('#js-active-campaign-list-modal').hide();
                 UIkit.modal('#js-select-periodic-price-products-modal').show();
             } else {
-                location.href = '/periodic-prices/active/#select'
+                location.href = '/campains/active/#select'
             }
         });
 
@@ -2901,7 +2904,7 @@ var IndexAction = {
         });
 
         $('.js-back-to-campaign-list').on('click', function () {
-            location.href = '/periodic-prices/active/';
+            location.href = '/campains';
         });
 
         $('.js-back-promotion-management').on('click', function () {
@@ -2909,7 +2912,7 @@ var IndexAction = {
         });
 
         $('.js-add-product-to-promotion-list').on('click', function () {
-            location.href = '/periodic-prices/active/';
+            location.href = '/campains/active/';
         });
     },
 

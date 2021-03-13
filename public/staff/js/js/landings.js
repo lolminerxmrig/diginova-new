@@ -375,7 +375,7 @@ ProductListController = {
 
     initPager: function () {
         var self = this;
-        var url = '/ajax/product-list/' + self.promotion.id + '/search/';
+        var url = self.promotion.id + '/search';
         var $spinner = $('.js-modal-loading');
 
         $(document).on('click', '.js-adservice-pager a', function (e) {

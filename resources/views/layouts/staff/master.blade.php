@@ -156,12 +156,23 @@
                             </li>
 
                             <li>
-                                <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های هوشمند</a>
+                                <a>صفحه سفارشی</a>
+                                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter menu-child-margin">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li>
+                                            <a href="{{ route('staff.landings.index') }}">مدیریت صفحه سفارشی</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('staff.landings.create') }}">ایجاد صفحه سفارشی</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
 
                             <li>
-                                <a href="{{ route('staff.landings.index') }}">صفحه سفارشی</a>
+                                <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های هوشمند</a>
                             </li>
+
 
                         </ul>
                     </div>

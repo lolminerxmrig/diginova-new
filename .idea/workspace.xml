@@ -274,7 +274,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/layouts/pagination" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
@@ -282,18 +282,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/layouts/pagination" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/periodic-prices" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
+      <recent name="$PROJECT_DIR$/public/seller/js" />
       <recent name="$PROJECT_DIR$/public/staff/js/js" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Landing/Resources/views/layouts/pagination" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Landing/temp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Landing/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/periodic-prices" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/layouts" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/ajax" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Staff">
@@ -557,7 +557,12 @@
       <workItem from="1615353547220" duration="40818000" />
       <workItem from="1615405422894" duration="2313000" />
       <workItem from="1615437524786" duration="10257000" />
-      <workItem from="1615451282474" duration="31150000" />
+      <workItem from="1615451282474" duration="42386000" />
+      <workItem from="1615524423875" duration="28643000" />
+      <workItem from="1615566530206" duration="5230000" />
+      <workItem from="1615573008547" duration="5628000" />
+      <workItem from="1615605957054" duration="25607000" />
+      <workItem from="1615645887297" duration="9500000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -588,6 +593,11 @@
           <url>file://$PROJECT_DIR$/Modules/Staff/Product/Resources/views/edit.blade.php</url>
           <line>1766</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains/manageCampain.blade.php</url>
+          <line>701</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/seller/js/tags5.js</url>

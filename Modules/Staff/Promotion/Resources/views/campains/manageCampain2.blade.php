@@ -1,6 +1,6 @@
 @extends('layouts.staff.master')
 @section('head')
-<script src="{{ asset('staff/js/js/dk.price.js') }}"></script>
+<script src="{{ asset('staff/js/js/campains.dk.price.js') }}"></script>
 <script src="{{ asset('staff/js/js/bundle.min.js') }}"></script>
 <style>
     .select2-search--dropdown{
@@ -586,13 +586,35 @@
     var newSeller = 1;
     var is_yalda = 0;
 </script>
+<style>
+    .c-grid__col--gap-lg {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+</style>
 @endsection
 @section('content')
-<main class="c-main">
+@php
+    if(isset($campain->productVariants) && count($campain->productVariants)){
+        $content_status = true;
+        if (count($product_variants)) {
+            $product_variants = $product_variants;
+        } else {
+            $product_variants = $campain->productVariants;
+        }
+    } else {
+        $content_status = false;
+    }
+@endphp
+
+
+<main class="c-content-layout">
     <div class="uk-container uk-container-large">
 
         <div class="page-layout layout-empty c-grid c-join__grid" style="display: none">
+
             <div class="c-grid__row c-join__top-details c-join__top-details--sm">
+
                 <div class="c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-card c-card--transparent">
@@ -602,6 +624,246 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="c-grid__row js-table-container" id="table-view-container">
+                    <div class="c-grid__col">
+                        <div class="c-card c-card--padding">
+                            <div class="c-card__wrapper">
+
+                                <div class="c-add-products__header-section" style="border:none;">
+                                    <h3 class="c-add-products__title" style="margin-bottom: 25px !important;">مدیریت کمپین</h3>
+
+                                    <form class="js-create-plp-form">
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="width: 400px !important;float: right;">
+                                            <label class="c-ui-form__label" for="product_page_title">نام کمپین</label>
+                                            <label>
+                                                <div class="c-ui-input">
+                                                    <input type="text" name="name" value="{{ $campain->name }}" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable" id="product_page_title" placeholder="نام کمپین">
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="width: 215px;float: right;">
+                                            <label for="form-field-productList[start_at]" class="c-ui-form__label">تاریخ و زمان شروع</label>
+                                            <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="1" data-date="1" data-name="productList_start_at_{{ rand(10000, 99999) }}" value="{{ $campain->start_at }}" id="form-field-dt-{{ rand(10000, 99999) }}" autocomplete="off">
+                                            <input name="start_at" id="productList_start_at_{{ rand(10000, 99999) }}" type="hidden" value="{{ $campain->start_at }}">
+                                        </div>
+
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="width: 215px;float: right;">
+                                            <label for="form-field-productList[end_at]" class="c-ui-form__label">تاریخ و زمان پایان</label>
+                                            <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="1" data-date="1" data-name="productList_end_at_{{ rand(10000, 99999) }}" value="{{ $campain->end_at }}" id="form-field-dt-{{ rand(10000, 99999) }}" autocomplete="off">
+                                            <input name="end_at" id="productList_end_at_{{ rand(10000, 99999) }}" type="hidden" value="{{ $campain->end_at }}">
+                                        </div>
+
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="float: right;width: 166px;">
+                                            <label class="c-ui-form__label" for="status">وضعیت</label>
+                                            <select id="product-status" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="status" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;">
+                                                <option class="option-control" value="1" {{ ($campain->status == 'active')? 'selected' : '' }}>فعال</option>
+                                                <option class="option-control" value="0" {{ ($campain->status == 'active')? 'selected' : '' }}>غیرفعال</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="width: 166px;float: right;">
+                                            <label class="c-ui-form__label" for="product_page_title">ایجاد صفحه سفارشی</label>
+                                            <select id="has_landing" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="has_landing" tabindex="-1" aria-hidden="true">
+                                                <option class="option-control" value="0" {{ (!$campain->landing)? 'selected' : '' }}>خیر</option>
+                                                <option class="option-control" value="1" {{ ($campain->landing)? 'selected' : '' }}>بله</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="product-form slug-section" style="{{ (!$campain->landing)? 'display: none' : '' }}">
+                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                                <label class="uk-form-label uk-flex uk-flex-between">
+                                                    نامک
+                                                </label>
+                                                <div class="field-wrapper" style="width: 605px;">
+                                                    <input type="text" value="{{ ($campain->landing)? $campain->landing->slug : '' }}" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable url-inputs js-form-clearable" name="slug" dir="ltr">
+                                                    <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="{{ '/' . $site_url . '/product-list' }}" disabled="">
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input name="campain_id" id="campain_id" value="{{ $campain->id }}" hidden>
+
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6 div-space"></div>
+
+                                    </form>
+
+                                    <div class="c-join__buttons">
+                                        <button class="c-join__btn c-join__btn--secondary c-join__btn--secondary-greenish c-join__btn--icon-left js-save-list-page-button saveCampain">تایید و ذخیره کمپین</button>
+                                    </div>
+                                    <div class="c-join__loading c-loading c-loading--hidden">
+                                        <div class="c-loading__container">
+                                            <div class="loading"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <h3 class="c-add-products__title js-empty-list  {{ (!$content_status)? 'uk-hidden' : '' }}">افزودن کالا به صفحه</h3>
+                                <div class="c-join__upload-bar uk-hidden js-upload-status-bar">
+                                    <div class="c-join__upload-status">وضعیت بارگذاری:
+                                        <span class="c-join__status-statement c-join__status-statement--error js-upload-status-error">خطایی در بارگذاری فایل رخ داد.</span>
+                                    </div>
+                                </div>
+                                <div class="c-join__product-selection js-empty-list  {{ (!$content_status)? 'uk-hidden' : '' }}">
+                                    <div class="c-join__product-select c-join__product-select--manual">
+                                        <div class="c-join__select-area">
+                                            <div class="c-join__select-image c-join__select-image--list"></div>
+                                            <span class="c-join__select-title">روش اول: انتخاب کالاها از طریق پنل</span>
+                                            <span class="c-join__select-subtitle">کالاها را به صورت دستی از میان کالاهای مجاز انتخاب کنید.</span>
+                                            <div>
+                                                <button class="c-join__btn c-join__btn--secondary c-join__btn--icon-right c-join__btn--icon-list js-select-products-modal-trigger js-empty-selected-products">انتخاب کالاها از لیست</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="c-join__select-separator"></span>
+
+                                    <div class="c-join__product-select c-join__product-select--upload">
+                                        <div class="c-join__select-area">
+                                            <div class="c-join__select-image c-join__select-image--excel"></div>
+                                            <span class="c-join__select-title">روش دوم: بارگذاری گروهی کالاها با فایل اکسل</span>
+                                            <span class="c-join__select-subtitle">فایل اکسل حاوی محصولات مورد نظرتان را بارگذاری کنید.</span>
+                                            {{--                                            <label class="c-join__btn c-join__btn--deactive c-join__btn--icon-right c-join__btn--icon-excel-up" style="color: #606265 !important;">--}}
+                                            <label class="c-join__btn c-join__btn--deactive c-join__btn--icon-right" style="color: #606265 !important;">
+                                                <input type="file" class="c-join-promotion__upload-input js-products-file js-import-excel-file">
+                                                &nbsp;&nbsp; به زودی... &nbsp;&nbsp;
+                                            </label>
+                                            {{--                                            <p class="c-join__help-text">فایل اکسل باید مشابه نمونه زیر تنظیم شده باشد.</p>--}}
+                                            {{--                                            <a href="/product-list/3909519/excel/sample/" class="c-join__download-sample">دانلود  فایل اکسل نمونه</a>--}}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="c-add-products__header-section js-fill-list {{ (!$content_status)? 'uk-hidden' : '' }}">
+                                    <h3 class="c-add-products__title">انتخاب کالا</h3>
+                                    <div class="c-join__upload-buttons">
+                                        <button class="c-join__btn c-join__btn--primary c-join__btn--icon-right c-join__btn--icon-list js-select-products-modal-trigger">
+                                            افزودن کالا از لیست
+                                        </button>
+                                        {{--                                        <label type="button" class="c-join__btn c-join__btn--primary c-join__btn--icon-right c-join__btn--icon-excel-up js-import-excel">--}}
+                                        {{--                                            بارگذاری فایل اکسل--}}
+                                        {{--                                            <input type="file" style="display: none;" class="js-import-excel-file">--}}
+                                        {{--                                        </label>--}}
+                                        {{--                                        <div class="c-join__download-excel">--}}
+                                        {{--                                            <a class="c-join__download-sample" href="/product-list/3909519/excel/sample/">دانلود  فایل اکسل نمونه</a>--}}
+                                        {{--                                        </div>--}}
+                                    </div>
+                                </div>
+
+                                <div class="c-add-products__header-section c-add-products__header-section--no-border js-fill-list  {{ (!$content_status)? 'uk-hidden' : '' }}">
+                                    <form class="c-ui-form" method="GET" id="addedProductsSearchForm">
+                                        <div class="c-ui-form__row">
+                                            <div class="c-ui-form__col c-ui-form__col-4">
+                                                <label class="c-ui-form__label">جستجو:</label>
+                                                <div class="c-ui-input">
+                                                    <input type="search" name="product_id" class="c-ui-input__field c-ui-input__field--order js-form-clearable c-join__input" id="search_input" placeholder="جستجوی کد تنوع" style="width: 400px;">
+                                                    <button class="uk-icon-button c-join__search-btn uk-icon" uk-tooltip="title: جستجو;" uk-icon="icon: search" id="submitButton" title="" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle> <path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path></svg></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="c-add-products__grid-section">
+                                    <div class="js-added-products-list js-fill-list {{ (!$content_status)? 'uk-hidden' : '' }}">
+                                        <div class="c-add-products__info-bar">
+                                            <div class="c-add-products__product-count">
+                                            <span class="c-add-products__product-count-value">
+                                                @if($content_status)
+                                                    {{ persianNum(count($campain->productVariants)) }}
+                                                @else
+                                                    {{ persianNum(0) }}
+                                                @endif
+                                                کالا</span>برای قرارگیری در صفحه کالای اختصاصی انتخاب شده‌اند.
+                                            </div>
+                                            <div class="c-add-products__delete-products">
+                                                <a class="c-add-products__delete-products-btn js-remove-all-added-product" href="#">حذف همه کالاها</a>
+                                                <a class="c-add-products-item__undo-delete uk-hidden js-undo-remove-all" href="#">لغو حذف همه کالاها</a>
+                                            </div>
+                                        </div>
+                                        <ul class="c-add-products__list">
+                                            @if(!is_null($content_status))
+
+                                                {{--                                            @foreach($product_variants as $product_variant)--}}
+                                                {{--                                            <li class="c-add-products-item js-product-item">--}}
+                                                {{--                                                <a class="c-add-products-item__image-link" href="{{ $site_url . '/product-list/' . $product_variant->slug }}" target="_blank">--}}
+                                                {{--                                                    <img class="c-add-products-item__image" src="{{ $site_url . '/' . $product_variant->product->media()->first()->path . '/' . $product_variant->product->media()->first()->name }}" alt="">--}}
+                                                {{--                                                </a>--}}
+
+                                                {{--                                                <span class="c-add-products-item__brand"> {{ $product_variant->product->brand->name }} </span>--}}
+                                                {{--                                                <div class="c-add-products-item__details">--}}
+                                                {{--                                                    <a class="c-add-products-item__title" href="#">--}}
+                                                {{--                                                        {{ $product_variant->product->title_fa }}--}}
+                                                {{--                                                    </a>--}}
+                                                {{--                                                    <div class="c-add-products-item__variants">--}}
+                                                {{--                                                        <span class="c-add-products-item__dkp">{{ $product_code_prefix }}C-{{ $product_variant->variant_code }}</span>--}}
+                                                {{--                                                        <span class="c-add-products-item__color">--}}
+                                                {{--                                                            @if(!is_null($product_variant->variant->value))--}}
+                                                {{--                                                            <span class="c-add-products-item__color-square" style="background: {{ $product_variant->variant->value }}"></span>--}}
+                                                {{--                                                            @endif--}}
+                                                {{--                                                            {{ $product_variant->variant->name }}--}}
+                                                {{--                                                        </span>--}}
+                                                {{--                                                    </div>--}}
+                                                {{--                                                    <div class="c-add-products-item__guarantee">--}}
+                                                {{--                                                        @if(!is_null($product_variant->warranty->month))--}}
+                                                {{--                                                            گارانتی {{ persianNum($product_variant->warranty->month) }} ماهه {{ $product_variant->warranty->name }}--}}
+                                                {{--                                                        @else--}}
+                                                {{--                                                            گارانتی {{ $product_variant->warranty->name }}--}}
+                                                {{--                                                        @endif--}}
+                                                {{--                                                    </div>--}}
+                                                {{--                                                </div>--}}
+                                                {{--                                                <div class="c-add-products-item__price">--}}
+                                                {{--                                                    <span class="c-add-products-item__new-price"><span class="c-add-products-item__new-price-value">{{ persianNum(number_format($product_variant->sale_price/10 )) }}</span> تومان</span>--}}
+                                                {{--                                                </div>--}}
+                                                {{--                                                <div class="c-add-products-item__action">--}}
+                                                {{--                                                    <button class="c-add-products-item__delete-btn js-remove-product" data-variant_id="14846318" data-promotion_variant_id="{{ $product_variant->id }}"></button>--}}
+                                                {{--                                                    --}}{{--                                                    <button class="c-add-products-item__delete-btn js-remove-product" data-variant_id="{{ $product_variant->id }}" data-promotion_variant_id="{{ $product_variant->id }}"></button>--}}
+                                                {{--                                                    <div class="c-join__has-more-info uk-hidden">--}}
+                                                {{--                                                        <div class="c-join__has-floating-box c-join__more-info c-join__more-info--details c-join__more-info--shown c-add-products-item__more-info">--}}
+                                                {{--                                                            <div class="c-join__floating-box c-add-products-item__floating-box">--}}
+                                                {{--                                                                <div class="c-join__floating-content">--}}
+                                                {{--                                                                    <span>--}}
+                                                {{--                                                                        کد کالا ({{ $product_code_prefix }}): {{ $product_variant->product->product_code }}--}}
+                                                {{--                                                                    </span>--}}
+                                                {{--                                                                </div>--}}
+                                                {{--                                                                <div class="c-join__floating-content" class="uk-hidden">--}}
+                                                {{--                                                                    <span>--}}
+                                                {{--                                                                        بازدید ۷ روز گذشته: ۴۱--}}
+                                                {{--                                                                    </span>--}}
+                                                {{--                                                                    <span>--}}
+                                                {{--                                                                        فروش ۷ روز گذشته: ۰--}}
+                                                {{--                                                                    </span>--}}
+                                                {{--                                                                </div>--}}
+                                                {{--                                                            </div>--}}
+                                                {{--                                                        </div>--}}
+                                                {{--                                                    </div>--}}
+                                                {{--                                                </div>--}}
+                                                {{--                                                <div class="uk-hidden js-remove-overlay">--}}
+                                                {{--                                                    <div class="c-add-products-item__overlay">--}}
+
+                                                {{--                                                    </div>--}}
+                                                {{--                                                    <div class="c-add-products-item__action c-add-products-item__action--overlay">--}}
+                                                {{--                                                        <span class="c-add-products-item__deleted">کالا حذف شد</span>--}}
+                                                {{--                                                        <a href="#" class="c-add-products-item__undo-delete js-undo-remove-button" data-promotion_variant_id="{{ $product_variant->id }}">لغو حذف</a>--}}
+                                                {{--                                                    </div>--}}
+                                                {{--                                                </div>--}}
+                                                {{--                                            </li>--}}
+                                                {{--                                            @endforeach--}}
+                                            @endif
+                                        </ul>
+                                    </div>
+                                    <div class="c-card__loading js-added-products-loading"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="c-grid__row js-empty-smart-promotion">
                     <div class="c-grid__col">
                         <div class="c-card c-join-smart-emty__container">
@@ -622,6 +884,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
         <div class="page-layout layout-add c-grid c-join__grid" style="display: none;">
@@ -752,17 +1016,15 @@
                 </div>
             </div>
         </div>
-        {{--            @if(!$promotions->count())--}}
         <div class="page-layout layout-active c-grid c-join__grid" style="">
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card">
                         <div class="c-mega-campaigns-join-empty__body-card ">
-                            <div class="c-join-smart-products__header">کالاهای دارای تخفیف هوشمند</div>
+                            <div class="c-join-smart-products__header">کالاهای کمپین {{ $campain->name }}</div>
                             <div class="c-mega-campaigns-join-list__options js-remove-in-add-form">
-                                <a href="{{ route('staff.periodic-prices.index') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">تخفیف‌های هوشمند فعال/آغاز نشده</a>
-                                <a href="{{ route('staff.periodic-prices.ended') }}" class="c-mega-campaigns-join-list__options-item">تخفیف‌های هوشمند پایان‌یافته</a>
-{{--                                <a href="{{ route('staff.periodic-prices.ended') }}" class="c-mega-campaigns-join-list__options-item {{ (!$ended_status)? 'uk-hidden' : '' }}">تخفیف‌های هوشمند پایان‌یافته</a>--}}
+{{--                                    <a href="{{ route('staff.campains.index') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">تخفیف‌های هوشمند فعال/آغاز نشده</a>--}}
+{{--                                    <a href="{{ route('staff.campains.ended') }}" class="c-mega-campaigns-join-list__options-item {{ (!$ended_status)? 'uk-hidden' : '' }}">تخفیف‌های هوشمند پایان‌یافته</a>--}}
                             </div>
                             <div class="c-mega-campaigns-join-list__container">
                                 <div class="uk-flex uk-flex-bottom">
@@ -809,12 +1071,12 @@
                                         <div class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--wrap-xs uk-padding-remove-right c-mega-campaigns--mr-10">
                                             <label class="c-ui-form__label">بازه زمانی تخفیف:</label>
                                             <div class="c-mega-campaigns-join-list__container-filters-date">
-                                        <span>
-                                            <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" data-date="1" data-name="search_start_from_" value="" id="form-field-dt-59517" autocomplete="off" placeholder="از تاریخ">
-                                        <input name="search[start_from]" id="search_start_from_" type="hidden" value="">
-                                        </span>
+                                    <span>
+                                        <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" data-date="1" data-name="search_start_from_" value="" id="form-field-dt-59517" autocomplete="off" placeholder="از تاریخ">
+                                    <input name="search[start_from]" id="search_start_from_" type="hidden" value="">
+                                    </span>
                                                 <span><input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" data-date="1" data-name="search_end_to_" value="" id="form-field-dt-20335" autocomplete="off" placeholder="تا تاریخ">
-                                                <input name="search[end_to]" id="search_end_to_" type="hidden" value=""></span>
+                                            <input name="search[end_to]" id="search_end_to_" type="hidden" value=""></span>
                                             </div>
                                         </div>
 
@@ -839,12 +1101,12 @@
                                             </div>
 
                                             <div class="c-join-smart-list--mr-15 uk-flex uk-flex-column uk-flex-start">
-                                    <span class="c-join-smart-list__type-title c-join-smart-list__type-title--normal">
-                                        تخفیف عادی
-                                    </span>
+                                <span class="c-join-smart-list__type-title c-join-smart-list__type-title--normal">
+                                    تخفیف عادی
+                                </span>
                                                 <span class="c-join-smart-list__type-sub-title">
-                                        نمایش به صورت تخفیف‌خورده
-                                      </span>
+                                    نمایش به صورت تخفیف‌خورده
+                                  </span>
                                             </div>
                                         </div>
 
@@ -854,12 +1116,12 @@
                                             </div>
 
                                             <div class="c-join-smart-list--mr-15 uk-flex uk-flex-column uk-flex-start">
-                                    <span class="c-join-smart-list__type-title c-join-smart-list__type-title--good">
-                                        تخفیف خوب
-                                    </span>
+                                <span class="c-join-smart-list__type-title c-join-smart-list__type-title--good">
+                                    تخفیف خوب
+                                </span>
                                                 <span class="c-join-smart-list__type-sub-title">
-                                        شانس نمایش در لیست فروش ویژه
-                                    </span>
+                                    شانس نمایش در لیست فروش ویژه
+                                </span>
                                             </div>
                                         </div>
 
@@ -869,12 +1131,12 @@
                                             </div>
 
                                             <div class="c-join-smart-list--mr-15 uk-flex uk-flex-column uk-flex-start">
-                                    <span class="c-join-smart-list__type-title c-join-smart-list__type-title--excellent">
-                                        تخفیف عالی
-                                    </span>
+                                <span class="c-join-smart-list__type-title c-join-smart-list__type-title--excellent">
+                                    تخفیف عالی
+                                </span>
                                                 <span class="c-join-smart-list__type-sub-title">
-                                        شانس شرکت در کمپین‌های {{ $site_name }}
-                                    </span>
+                                    شانس شرکت در کمپین‌های {{ $site_name }}
+                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -895,7 +1157,7 @@
                                                     افزودن کالای جدید به لیست تخفیف‌ها
                                                 </div>
                                             </div>
-                                            <div class="c-ui-paginator js-paginator" style="margin-left: 25px;">
+                                            <div class="c-ui-paginator js-paginator" style="margin-left: 24px !important;">
                                                 <div class="c-ui-paginator js-paginator">
                                                     @if(count($promotions))
                                                         <div class="c-ui-paginator__total" data-rows="">
@@ -911,7 +1173,8 @@
                                         </div>
 
                                         <div class="c-promo__row--m-sm">
-                                            <table class="c-ui-table c-periodic-prices__table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ route('staff.periodic-prices.search') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
+                                            <table class="c-ui-table c-periodic-prices__table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ route('staff.campains.search') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
+{{--                                            <table class="c-ui-table c-periodic-prices__table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ route('staff.campains.search', ['id' => $campain->id]) }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">--}}
                                                 <thead>
                                                 <tr class="c-ui-table__row">
                                                     <th class="c-ui-table__header  ">
@@ -987,8 +1250,8 @@
                                                     <td class="c-ui-table__cell"></td>
                                                 </tr>
 
-                                                @if(!is_null($promotions) && count($promotions))
-                                                    @foreach($promotions as $promotion)
+
+                                                @foreach($promotions as $promotion)
                                                     <tr class="c-ui-table__row c-ui-table__row--body js-edit-row  added-by-js-{{ $promotion->id }}" data-id="{{ $promotion->id }}">
                                                         <td class="c-ui-table__cell">
                                                             <img src="{{ $site_url . '/' . $promotion->productVariants()->first()->product->media()->first()->path . '/' . $promotion->productVariants()->first()->product->media()->first()->name }}" alt="{{ $promotion->productVariants()->first()->product->title_fa . '|' . $promotion->productVariants()->first()->warranty->name }}" class="c-mega-campaigns-join-list__container-table-image">
@@ -1000,9 +1263,9 @@
                                                             </div>
                                                         </td>
                                                         <td class="c-ui-table__cell">
-                                                            <span class="c-mega-campaigns-join-list__container-table-row-item">
-                                                                {{ persianNum(number_format($promotion->productVariants()->first()->sale_price)) }}
-                                                            </span>
+                                                <span class="c-mega-campaigns-join-list__container-table-row-item">
+                                                    {{ persianNum(number_format($promotion->productVariants()->first()->sale_price)) }}
+                                                </span>
                                                         </td>
                                                         <td class="c-ui-table__cell uk-padding-remove">
                                                             <div class="c-mega-campaigns--mh-105 uk-flex">
@@ -1012,7 +1275,7 @@
                                                                             <input name="variant[promotion_percent]" type="number" min="0" max="100" class="js-discount-value js-number-input" value="{{ $promotion->percent }}">
                                                                         </div>
                                                                         <span class="c-mega-campaigns-join-modal__body-table-input-sub-title">
-                                                                </span>
+                                                            </span>
                                                                     </div>
                                                                     <span class="c-mega-campaigns-join-modal__body-table-input-link c-mega-campaigns--mr-5"></span>
                                                                 </div>
@@ -1025,8 +1288,8 @@
                                                                         <input type="text" name="variant[promotion_price]" class="js-promotion-price js-numeric-input" value="{{ $promotion->promotion_price }}" data-selling_price="{{ $promotion->productVariants()->first()->sale_price }}" data-crossed_price="{{ $promotion->productVariants()->first()->sale_price }}">
                                                                     </div>
                                                                     <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">
-                                                                حداکثر قیمت مجاز:۴۸۰,۲۰۰ریال
-                                                            </span>
+                                                            حداکثر قیمت مجاز:۴۸۰,۲۰۰ریال
+                                                        </span>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -1035,7 +1298,7 @@
                                                         <td class="c-ui-table__cell uk-padding-remove">
                                                             <div class="c-ui-tooltip__anchor">
                                                                 <div class="c-ui-toggle__group">
-                                                                        <label class="c-ui-toggle">
+                                                                    <label class="c-ui-toggle">
                                                                         <input class="c-ui-toggle__origin js-toggle-active-product time_status" type="checkbox" data-group-id="" name="variant[time_status]" data-reset="{{ (!is_null($promotion->start_at))? 'checked' : 'not_checked' }}" {{ (!is_null($promotion->start_at))? 'checked' : '' }}>
                                                                         <span class="c-ui-toggle__check"></span>
                                                                     </label>
@@ -1045,17 +1308,17 @@
                                                         </td>
 
                                                         <td class="c-ui-table__cell c-join-promotion__price-cell c-join-promotion__price-cell--date c-join-promotion__price-cell--date-picker">
-                                                            <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
-                                                                <label for="form-field-variant[start_at][{{ $promotion->id }}]" class="c-ui-form__label">از</label>
-                                                                <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element start_at time-section {{ is_null($promotion->start_at)? 'disabled' : '' }}" data-format="YYYY/MM/DD" data-time="1" data-from-today="1" data-date="1" data-name="variant_start_at__{{ $promotion->id }}_" value="{{ $promotion->start_at }}" id="form-field-dt-{{ rand(10000, 99999) }}" autocomplete="off" {{ is_null($promotion->start_at)? 'disabled' : '' }}>
-                                                                <input name="variant[start_at][{{ $promotion->id }}]" id="variant_start_at__{{ $promotion->id }}_" class="start_at_hidden time-section" type="hidden" value="{{ $promotion->start_at }}">
-                                                            </span>
+                                                        <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
+                                                            <label for="form-field-variant[start_at][{{ $promotion->id }}]" class="c-ui-form__label">از</label>
+                                                            <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element start_at time-section" data-format="YYYY/MM/DD" data-time="1" data-from-today="1" data-date="1" data-name="variant_start_at__{{ $promotion->id }}_" value="2021-03-06 22:47:38" id="form-field-dt-{{ rand(10000, 99999) }}" autocomplete="off">
+                                                            <input name="variant[start_at][{{ $promotion->id }}]" id="variant_start_at__{{ $promotion->id }}_" class="start_at_hidden time-section" type="hidden" value="2021-03-06 22:47:38">
+                                                        </span>
 
                                                             <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
-                                                                <label for="form-field-variant[end_at][{{ $promotion->id }}]" class="c-ui-form__label">تا</label>
-                                                                <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element end_at time-section  {{ is_null($promotion->end_at)? 'disabled' : '' }}" data-format="YYYY/MM/DD" data-time="1" data-from-today="1" data-date="1" data-name="variant_end_at__{{ $promotion->id }}_" value="{{ $promotion->end_at }}" id="form-field-dt-{{ rand(10000, 99999) }}" autocomplete="off" {{ is_null($promotion->end_at)? 'disabled' : '' }}>
-                                                                <input name="variant[end_at][{{ $promotion->id }}]" id="variant_end_at__{{ $promotion->id }}_" class="end_at_hidden time-section" type="hidden" value="{{ $promotion->end_at }}">
-                                                            </span>
+                                                            <label for="form-field-variant[end_at][{{ $promotion->id }}]" class="c-ui-form__label">تا</label>
+                                                            <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element end_at time-section" data-format="YYYY/MM/DD" data-time="1" data-from-today="1" data-date="1" data-name="variant_end_at__{{ $promotion->id }}_" value="2021-03-15 22:47:38" id="form-field-dt-{{ rand(10000, 99999) }}" autocomplete="off">
+                                                            <input name="variant[end_at][{{ $promotion->id }}]" id="variant_end_at__{{ $promotion->id }}_" class="end_at_hidden time-section" type="hidden" value="2021-03-15 22:47:38">
+                                                        </span>
                                                         </td>
 
                                                         <td class="c-ui-table__cell uk-padding-remove">
@@ -1072,9 +1335,9 @@
 
                                                         <td class="c-ui-table__cell">
                                                             <div class="c-join-smart-products--middle-item-height uk-flex uk-flex-column uk-flex-center">
-                                                        <span class="c-mega-campaigns-join-list__container-table-row-item">
-                                                            {{ persianNum($promotion->productVariants()->first()->stock_count) }}
-                                                        </span>
+                                                    <span class="c-mega-campaigns-join-list__container-table-row-item">
+                                                        {{ persianNum($promotion->productVariants()->first()->stock_count) }}
+                                                    </span>
                                                             </div>
                                                         </td>
 
@@ -1095,33 +1358,24 @@
                                                         <td class="c-ui-table__cell uk-padding-remove">
                                                             <div class="uk-flex uk-flex-between uk-flex-middle c-join-smart-products--middle-item-height js-edit-actions">
                                                                 <div class=" c-mega-campaigns-join-modal__body-table-btn-separator c-mega-campaigns--ml-10">
-                                                                    <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--save c-mega-campaigns--ml-10 c-mega-campaigns--mr-10 js-edit-button button js-save-promotion-price-record-changes" data-promotion="3856494" data-product-variant-id="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}" disabled=""></button>
+                                                                    <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--save c-mega-campaigns--ml-10 c-mega-campaigns--mr-10 js-edit-button button js-save-promotion-price-record-changes" data-promotion="" data-campain-id="{{ $campain->id }}" data-product-variant-id="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}" disabled=""></button>
                                                                     <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--cancle c-mega-campaigns--ml-10 js-edit-cancel-button js-table-swap-row-handle" disabled=""></button>
-                                                                </div>
-
-                                                                <button class="c-mega-campaigns-join-list__container-table-btn  js-stop-promotion js-tool-tip-archive" style="margin-top: 7px;" data-promotion="3856494" data-variant="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}">
-                                                                    <img src="{{ asset('staff/icon/archive.svg') }}">
-                                                                </button>
-                                                                <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive; pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 128.172px; top: 80px;">
-                                                                    پایان دادن
-                                                                </div>
-                                                                <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--delete js-remove-variant" style="margin-right: 10px; margin-top: 7px;" data-promotion="3856494" data-variant="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}" data-product-id="768562"></button>
+    ‍                                                                </div>
+                                                                <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--delete js-remove-variant" data-promotion="3856494" data-variant="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}" data-product-id="768562"></button>
                                                             </div>
                                                         </td>
-
                                                         <td class="c-ui-table__cell c-ui-table__cell--operations c-ui-table__cell--text-error">
-                                                            <div class="uk-hidden js-undo-remove">
+                                                            <div class="uk-hidden js-unduho-remove">
                                                                 <div class="c-join__flex-end">
                                                                     <span>کالا حذف شد</span>
                                                                 </div>
                                                                 <div class="c-join__flex-end">
-                                                                    <a href="#" class="c-promo__table-action c-promo__table-action--undo js-undo-remove-button" data-promotion-variant-id="{{ $promotion->id }}">لغو حذف</a>
+                                                                    <a href="#" class="c-promo__table-action c-promo__table-action--undo js-undo-remove-button" data-campain-id="{{ $promotion->id }} data-promotion-variant-id="{{ $promotion->id }}">لغو حذف</a>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                 @endforeach
-                                                @endif
 
                                                 </tbody>
                                             </table>
@@ -1135,7 +1389,7 @@
                                                 </div>
                                             </a>
                                             @if(count($promotions))
-                                            {{ $promotions->links('staffpromotion::layouts.pagination.custom-pagination') }}
+                                                {{ $promotions->links('staffpromotion::layouts.pagination.custom-pagination') }}
                                             @endif
                                             <div class="c-ui-paginator js-paginator">
                                                 <div class="c-ui-paginator js-paginator">
@@ -1166,7 +1420,6 @@
                 </div>
             </div>
         </div>
-        {{--            @endif--}}
 
         <div id="js-select-products" uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message uk-modal">
             <div class="uk-modal-dialog uk-modal-dialog--flex">
@@ -1194,55 +1447,16 @@
 
     </div>
 </main>
+
 @endsection
 @section('script')
 <script>
+
 // توکن csrf
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-});
-
-$(document).on('click', '.js-stop-promotion', function (e) {
-    e.preventDefault();
-    console.log('dddff');
-    var self = $(this),
-        promotionVariantId = self.data('promotion-variant-id');
-    if (typeof promotionVariantId == 'undefined' || promotionVariantId.length === 0) {
-        return;
-    }
-    var promotionId = !!window.promotionId ? window.promotionId : (self.data('promotion') || 0);
-
-    // self.closest('tr').remove();
-    // self.closest('tr').addClass('c-join__table-row--is-deleted');
-    // self.closest('tr').find('.js-action-buttons').addClass('uk-hidden');
-    // self.closest('tr').find('.js-undo-remove').removeClass('uk-hidden');
-    // self.closest('tr').find('.js-edit-actions button').prop('disabled', true);
-    setTimeout(function () {
-        Services.ajaxPOSTRequestJSON(
-            'moveToEnds',
-            // promotionId + '/moveToEnds',
-            {
-                promotionVariantId: promotionVariantId
-            },
-            function (response) {
-                self.closest('tr').remove();
-                self.closest('tr').hide('slow', function(){
-                    self.closest('tr').remove();
-                });
-
-            },
-            function (error) {
-                UIkit.notification({
-                    message: error.errors,
-                    status: 'danger',
-                    pos: 'bottom-right',
-                    timeout: 8000
-                });
-            }
-        );
-    }, 50);
 });
 
 $(document).on('change', 'input[name="variant[time_status]"]', function (){
@@ -1273,9 +1487,11 @@ function persianNum() {
         });
     }
 }
+
 function convertDate() {
     $(".time-section").each(function (){
         var output="";
+        var m = moment(input);
         var m = moment(input);
         if(m.isValid()){
             m.locale('fa');
@@ -1285,11 +1501,73 @@ function convertDate() {
     });
 }
 
-persianNum();
-convertDate();
+$(document).ready(function (){
+    // تغییر پدینگ فیلد نامک
+    var buttonWidth = $('#button-urls').width() + 20;
+    $(".url-inputs").css({
+        'padding-left': buttonWidth,
+        'padding-top' : '2px',
+    });
+
+    persianNum();
+    convertDate();
+
+});
+
+$("#has_landing").on('change', function (){
+    if ($(this).val() == 1){
+        $(".slug-section").show();
+        $(".div-space").hide();
+
+        var buttonWidth = $('#button-urls').width() + 20;
+        $(".url-inputs").css({
+            'padding-left': buttonWidth,
+            'padding-top' : '2px',
+        });
+
+    } else if ($(this).val() == 0){
+        $(".slug-section").hide();
+        $(".div-space").show();
+        $(".url-inputs").val('');
+    }
+});
 
 
+$('.js-save-list-page-button').on('click', function () {
+    updateCampain();
+    $('.js-create-plp-form').submit();
+});
+function updateCampain () {
+    var self = this;
+    var $submitButton = $('.js-save-list-page-button');
 
+    $('.js-create-plp-form').submit(function (e) {
+        e.preventDefault();
+
+        $submitButton.prop('disabled', true);
+
+        Services.ajaxPOSTRequestJSON(
+            'update/' + (!!self.promotion && self.promotion.id ? self.promotion.id : 0),
+            $(this).serialize(),
+            function (response) {
+                UIkit.notification({
+                    message: 'تغییرات شما ثبت گردید',
+                    status: 'success',
+                    pos: 'top-left',
+                    timeout: 3000
+                });
+
+                setTimeout(function () {
+                    window.location.href = response.redirectUrl;
+                }, 3000);
+            },
+            function (errors) {
+                Promotion.displayError(errors.errors);
+                $submitButton.prop('disabled', false);
+            }
+        )
+    });
+}
 
 
 </script>

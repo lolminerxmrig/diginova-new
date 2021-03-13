@@ -181,7 +181,7 @@
                         </div>
                         @endif
                         @if(!is_null($product_variants) && count($product_variants))
-                        {{ $product_variants->links('staffpromotion::periodic-prices.custom-pagination') }}
+                        {{ $product_variants->links('staffpromotion::campains.custom-modal-pagination') }}
                         @endif
 
                     </div>

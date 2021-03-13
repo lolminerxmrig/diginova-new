@@ -8,6 +8,7 @@ use App\Models\Media;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Product\Models\ProductHasVariant;
+use Modules\Staff\Promotion\Models\Campain;
 
 
 class Landing extends Model
@@ -19,6 +20,11 @@ class Landing extends Model
     public function productVariants()
     {
         return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
+    }
+
+    public function campain()
+    {
+        return $this->belongsTo(Campain::class);
     }
 
 }

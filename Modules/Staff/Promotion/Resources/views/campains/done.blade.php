@@ -592,7 +592,7 @@
                             <div class="c-join-smart-joined__detail">
                                 <div class="c-join-smart-joined__detail-type">
                                     <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--discount"></div>
-                                    <div class="c-join-smart-joined__detail-type-count">{{ persianNum(count($promotions->each->productVariants)) }}</div>
+                                    <div class="c-join-smart-joined__detail-type-count">۶</div>
                                     <div class="c-join-smart-joined__detail-type-title">تنوع کالا با تخفیف نمایش داده می شوند</div>
                                     <div class="c-join-smart-joined__detail-type-des">این کالاها با قیمت خط خورده و با درصد تخفیف در وب سایت {{ $site_name }} نمایش داده می شوند.</div>
                                 </div>
@@ -637,24 +637,6 @@
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
-$(document).on('change', 'input[name="variant[status]"]', function (){
-    if ($(this).is(":checked")) {
-        $(this).closest('.c-ui-table__row').find('.start_at').removeAttr('disabled');
-        $(this).closest('.c-ui-table__row').find('.start_at').removeClass('disabled');
-        $(this).closest('.c-ui-table__row').find('.end_at').removeAttr('disabled');
-        $(this).closest('.c-ui-table__row').find('.end_at').removeClass('disabled');
-    } else {
-        $(this).closest('.c-ui-table__row').find('.start_at').attr('disabled', true);
-        $(this).closest('.c-ui-table__row').find('.start_at').addClass('disabled');
-        $(this).closest('.c-ui-table__row').find('.end_at').attr('disabled', true);
-        $(this).closest('.c-ui-table__row').find('.end_at').addClass('disabled');
-
-        $(this).closest('.c-ui-table__row').find('.start_at').val('');
-        $(this).closest('.c-ui-table__row').find('.end_at').val('');
-
     }
 });
 </script>

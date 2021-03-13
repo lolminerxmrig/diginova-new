@@ -2,7 +2,7 @@
     <br>
     <div class="c-ui-paginator js-paginator">
         @if(count($landings))
-            <div class="c-ui-paginator__total" data-rows="{{ persianNum($landings->total()) }}">
+            <div class="c-ui-paginator__total" data-rows="{{ persianNum($landings->total()) }}" style="margin-left: 25px;">
                 تعداد نتایج: <span>{{ persianNum($landings->total()) }} مورد</span>
             </div>
         @else
@@ -57,8 +57,16 @@
                         </td>
                         <td class="c-ui-table__cell">
                             <div class="c-join__status-cell">
-                                <span class="c-join__status"><span class="c-join__status-counter c-join__status-counter--approved"></span>موجود</span>
-                                <span class="c-join__status"><span class="c-join__status-counter c-join__status-counter--approving"></span>ناموجود</span>
+                                @php
+                                    $ziro_count = $landing->productVariants()->where('stock_count', 0)->get();
+                                    $true_count = $landing->productVariants()->where('stock_count', '>' , 0)->get();
+                                @endphp
+                                @if(!is_null($ziro_count) && count($ziro_count))
+                                    <span class="c-join__status"><span class="c-join__status-counter c-join__status-counter--approving"></span>ناموجود</span>
+                                @endif
+                                @if(!is_null($true_count) && count($true_count))
+                                    <span class="c-join__status"><span class="c-join__status-counter c-join__status-counter--approved"></span>موجود</span>
+                                @endif
                             </div>
                         </td>
                         <td class="c-ui-table__cell c-ui-table__cell--small-text">

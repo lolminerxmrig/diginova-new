@@ -173,7 +173,7 @@ class StaffLandingController extends Controller
 
     public function searchLanding(Request $request, Landing $landings)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
+        (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
 
         $landings = $this->Landingfilter($request, $landings);
 
@@ -184,7 +184,7 @@ class StaffLandingController extends Controller
     // search for add product variant to landings
     public function search($id, Request $request, ProductHasVariant $product_variants)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
+        (!$request->paginatorNum) ? $request->paginatorNum = 2 : '';
 
         $product_variants = $this->productVariantFilter($request, $product_variants);
         $landing = Landing::find($id);

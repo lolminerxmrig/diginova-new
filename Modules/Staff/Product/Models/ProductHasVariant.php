@@ -16,6 +16,7 @@ use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Landing\Models\Landing;
 use Modules\Staff\Promotion\Models\Campain;
+use Modules\Staff\Promotion\Models\Promotion;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 use Modules\Staff\Variant\Models\Variant;
@@ -74,11 +75,13 @@ class ProductHasVariant extends Model
 
     public function landings()
     {
-//        return $this->morphedByMany(Landing::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id');
-
         return $this->morphedByMany(Landing::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
     }
 
+    public function promotions()
+    {
+        return $this->morphedByMany(Promotion::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id');
+    }
 
 
 }

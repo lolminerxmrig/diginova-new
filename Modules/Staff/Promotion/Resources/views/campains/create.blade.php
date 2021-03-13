@@ -572,10 +572,16 @@
         var is_yalda = 0;
     </script>
     <script src="{{ asset('staff/js/js/promotions.js') }}"></script>
+    <style>
+        .c-grid__col--gap-lg {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+        }
+    </style>
 @endsection
 
 @section('content')
-    <main class="c-main">
+    <main class="c-content-layout">
         <div class="uk-container uk-container-large">
 
             <div class="c-grid c-join__grid">
@@ -595,10 +601,10 @@
                             <div class="c-card__wrapper">
 
                                 <div class="c-add-products__header-section" style="border:none;">
-                                    <h3 class="c-add-products__title">تعیین نام و زمان‌بندی و وضعیت کمپین</h3>
+                                    <h3 class="c-add-products__title" style="margin-bottom: 25px !important;">ایجاد کمپین</h3>
 
-                                    <form class="c-add-products__form c-add-products__form--no-spacing js-create-plp-form">
-                                        <div class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--group-item c-ui-form__col--wrap-xs c-ui-form__col--xs-full" style="width: 445px">
+                                    <form class="js-create-plp-form">
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="width: 400px !important;float: right;">
                                             <label class="c-ui-form__label" for="product_page_title">نام کمپین</label>
                                             <label>
                                                 <div class="c-ui-input">
@@ -607,34 +613,50 @@
                                             </label>
                                         </div>
 
-
-                                        <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="width: 215px;float: right;">
                                             <label for="form-field-productList[start_at]" class="c-ui-form__label">تاریخ و زمان شروع</label>
                                             <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="1" data-date="1" data-name="productList_start_at_" value="" id="form-field-dt-26888" autocomplete="off">
-                                            <input name="start_at" id="productList_start_at_" type="hidden" value="">
-                                        </span>
+                                            <input name="start_at" id="productList_start_at_" type="hidden" value="2021-03-11 20:06:48">
+                                        </div>
 
-                                        <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="width: 215px;float: right;">
                                             <label for="form-field-productList[end_at]" class="c-ui-form__label">تاریخ و زمان پایان</label>
                                             <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="1" data-date="1" data-name="productList_end_at_" value="" id="form-field-dt-93319" autocomplete="off">
-                                            <input name="end_at" id="productList_end_at_" type="hidden" value="">
-                                        </span>
+                                            <input name="end_at" id="productList_end_at_" type="hidden" value="2021-03-10 20:06:48">
+                                        </div>
 
-                                        <div class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--group-item c-ui-form__col--wrap-xs c-ui-form__col--xs-full" style="width: 215px">
-                                            <label class="c-ui-form__label" for="product_page_title">وضعیت</label>
-                                            <select id="product-status" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="status" data-select2-id="product-status" tabindex="-1" aria-hidden="true">
-                                                <option class="option-control" value="1" selected>فعال</option>
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="float: right;width: 166px;">
+                                            <label class="c-ui-form__label" for="status">وضعیت</label>
+                                            <select id="product-status" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="status" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;">
+                                                <option class="option-control" value="1"selected>فعال</option>
                                                 <option class="option-control" value="0">غیرفعال</option>
                                             </select>
                                         </div>
 
-                                        <div class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--group-item c-ui-form__col--wrap-xs c-ui-form__col--xs-full" style="width: 215px">
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="width: 166px;float: right;">
                                             <label class="c-ui-form__label" for="product_page_title">ایجاد صفحه سفارشی</label>
                                             <select id="has_landing" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="has_landing" data-select2-id="has_landing" tabindex="-1" aria-hidden="true">
                                                 <option class="option-control" value="0" selected>خیر</option>
                                                 <option class="option-control" value="1">بله</option>
                                             </select>
                                         </div>
+
+                                        <div class="product-form slug-section" style="display: none;">
+                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
+                                                <label class="uk-form-label uk-flex uk-flex-between">
+                                                    نامک
+                                                </label>
+                                                <div class="field-wrapper" style="width: 605px;">
+                                                    <input type="text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable url-inputs js-form-clearable" name="slug" dir="ltr">
+                                                    <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="{{ '/' . $site_url . '/product-list' }}" disabled="">
+                                                </div>
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6 div-space"></div>
+
                                     </form>
 
                                     <div class="c-join__buttons">
@@ -707,736 +729,35 @@
 @endsection
 
 @section('script')
-    <div id="js-wallet-click-advertising-modal" uk-modal="esc-close: true; bg-close: false;" class="uk-modal-container uk-modal-container--message c-wallet-modal--click-advertising uk-modal">
-        <div class="uk-modal-dialog uk-modal-dialog--flex">
-            <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-
-            <div class="uk-modal-body">
-                <div class="c-wallet-modal c-wallet-modal--refund">
-                    <div class="c-wallet-modal c-wallet-modal--charge">
-                        <form class="c-wallet-modal__form c-wallet-modal__small-form" id="wallet-advertising-form">
-                            <h2 class="c-wallet-modal__title js-advertiser-co">پنل بازاریابی کلیکی
-                            </h2>
-                            <div class="c-wallet-modal__description uk-margin-remove-bottom">
-                                فروشنده عزیز، امکان استفاده از بازاریابی کلیکی از طریق پنلی جداگانه ‌فراهم شده است. همچنین برای استفاده از
-                                <br>
-                                این امکان باید حساب شما در پنل بازاریابی کلیکی موجودی کافی داشته باشد.
-                            </div>
-                            <div class="c-wallet-modal__light-text c-ui--mt-20">
-                                موجودی فعلی حساب شما در پنل بازاریابی کلیکی
-                            </div>
-                            <div class="c-wallet-modal__secondary-text c-wallet--mb-9 js-wallet-cpc-credit">
-                            </div>
-                            <div class="c-wallet-modal__form-row uk-margin-remove">
-                                <div class="c-wallet-modal__dark-form-field">
-                                    <div class="c-wallet-modal__light-text c-wallet-modal__light-text--bold c-wallet--mb-25">
-                                        انتقال موجودی و ورود به پنل
-                                    </div>
-                                    <label class="c-wallet-modal__input-label" for="wallet-deposit-value">موجودی کیف پول شما در پنل دیجی‌کالا (ریال)</label>
-                                    <input id="wallet-deposit-value" class="c-wallet-modal__input-field js-wallet-credit" disabled="" type="text" name="wallet-deposit-value" value="">
-
-                                    <div class="c-wallet-modal__dark-text c-ui--mt-10 js-empty-wallet-credit uk-hidden">
-                                        با توجه به اینکه کیف پول شما در پنل دیجی‌کالا فاقد موجودی است امکان انتقال موجودی به پنل بازاریابی کلیکی برای شما امکان پذیر نیست
-                                    </div>
-
-                                    <div class="js-wallet-has-credit uk-hidden">
-                                        <label class="c-wallet-modal__input-label c-wallet--mt-15" for="wallet-charge-click-advertising">
-                                            مبلغ مورد نظر برای انتقال به پنل بازاریابی کلیکی (ریال)
-                                            <span data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="" data-icon="guide-new" class="o-font-size-16 o-text-color-n-700 o-spacing-m-r-1" style="vertical-align: bottom;">
-                                    <span data-tooltip-body="" class="o-font-size-12" style="width: 250px">
-                                        درحال حاضر مبلغ محاسبه شده برای شما با احتساب ارزش افزوده می‌باشد. ولی در آینده ارزش افزوده به مبلغ درخواست‌های جدید شما اضافه خواهد شد.
-                                    </span>
-                                </span>
-                                        </label>
-                                        <input id="wallet-charge-click-advertising" class="o-spacing-m-t-1 c-wallet-modal__input-field js-wallet-input js-charge-ad-input" name="wallet-charge-click-advertising" type="text" data-deposit="" data-type="refund" placeholder="مبلغ مورد نظر را به عدد وارد کنید...">
-                                        <span class="c-wallet-modal__input-message js-wallet-input-message">مبلغ وارد شده، بیش از موجودی کیف پول شماست.</span>
-                                    </div>
-
-                                    <button class="c-wallet-modal__button c-wallet-modal__button--secondary
-                                        js-wallet-modal-submit js-charge-click-advertising-panel" data-type="twoStepRedirectToAdPanel" type="button" disabled="">
-                                        تایید انتقال و ورود به پنل
-                                    </button>
-                                    <div class="c-wallet-modal__light-text js-warning-cpc-message uk-text-bold c-ui--mt-10">
-                                        بعد از تایید انتقال مبلغ قابل برگشت به کیف پول نیست
-                                    </div>
-                                </div>
-                                <div class="c-wallet-modal__dark-form-field c-ui--mr-10">
-                                    <div class="c-wallet-modal__light-text c-wallet-modal__light-text--bold c-wallet--mb-25">
-                                        ورود به پنل بدون انتقال موجودی
-                                    </div>
-                                    <div class="c-wallet-modal__light-text c-wallet-modal__light-text--medium js-check-cpc-panel">
-                                        چنانچه موجودی حساب شما در پنل بازاریابی کلیکی کافی است و یا فقط قصد بررسی این پنل را دارید می‌توانید بدون انتقال موجودی به آن مراجعه کنید.
-                                    </div>
-                                    <button class="c-wallet-modal__button c-wallet-modal__button--large-active" type="button">
-                                        <a href="/cpc/thirdParties/redirect/">
-                                            ورود به پنل بدون انتقال مبلغ
-                                        </a>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="c-content-loader">
-                    <div class="c-content-loader__logo"></div>
-                    <div class="c-content-loader__spinner"></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div id="js-wallet-charge-advertising-success-modal" uk-modal="esc-close: true; bg-close: false;" class="uk-modal-container uk-modal-container--message c-wallet-modal--click-advertising uk-modal">
-        <div class="uk-modal-dialog uk-modal-dialog--flex">
-            <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-
-            <div class="uk-modal-body">
-                <div class="c-wallet-modal c-wallet-modal--refund">
-                    <div class="c-wallet-modal c-wallet-modal--charge">
-                        <div class="c-wallet-modal__form c-wallet-modal__small-form uk-flex uk-flex-column uk-flex-middle">
-                            <img src="https://seller.digikala.com/static/files/e107b672.svg">
-                            <div class="c-wallet__payment-status-title c-wallet--mt-40">
-                                انتقال مبلغ به حساب پنل بازاریابی کلیکی با موفقیت انجام شد.
-                            </div>
-                            <div class="c-wallet__payment-status-sub-title uk-flex uk-flex-center">مبلغ مورد نظر شما با شماره پیگیری
-                                <span class="c-wallet__payment-status-sub-title-traking-num js-trackingCode"></span>
-                                به حساب پنل بازاریابی کلیکی منتقل شد.
-                            </div>
-                            <div class="c-wallet--mt-35 uk-flex uk-flex-center uk-margin-remove-bottom">
-                                <div class="c-wallet--small-item">
-                                    <label class="c-wallet-modal__input-label" for="wallet-advertising-deposit-value">انتقال یافته از کیف پول دیجی‌کالا (ریال)</label>
-                                    <input class="c-wallet-modal__input-field c-wallet-modal__input-field--small js-cpc-charged" name="wallet-advertising-deposit-value" type="text" value="" disabled="">
-                                </div>
-                                <div class="c-wallet--small-item c-ui--mr-10">
-                                    <label class="c-wallet-modal__input-label" for="wallet-advertising-deposit-value">موجودی حساب پنل بازاریابی کلیکی (ریال)</label>
-                                    <input class="c-wallet-modal__input-field c-wallet-modal__input-field--small js-cpc-current-credit" name="wallet-advertising-deposit-value" type="text" value="" disabled="">
-                                </div>
-                            </div>
-
-                            <div class="c-wallet-modal__progress c-wallet--mt-80">
-                                <span class="c-wallet-modal__progress--passed js-progress-passed"></span>
-                            </div>
-
-                            <div class="c-wallet-modal__light-text c-wallet-modal__light-text--medium c-ui--mt-15 uk-flex">
-                                انتقال به پنل بازاریابی کلیکی تا&nbsp;
-                                <div class="c-wallet-modal__light-text--secondary">
-                    <span class="js-time-to-redirect">
-                        21
-                    </span>
-                                    ثانیه دیگر
-                                </div>
-                            </div>
-
-                            <button class="c-wallet-modal__button c-wallet-modal__button--secondary c-ui--mt-30">
-                                <a href="" class="js-redirect-to-ad-panel">
-                                    تایید انتقال و ورود به پنل
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="js-wallet-charge-advertising-failed-modal" uk-modal="esc-close: true; bg-close: false;" class="uk-modal-container uk-modal-container--message c-wallet-modal--click-advertising uk-modal">
-        <div class="uk-modal-dialog uk-modal-dialog--flex">
-            <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-
-            <div class="uk-modal-body">
-                <div class="c-wallet-modal c-wallet-modal--refund">
-                    <div class="c-wallet-modal c-wallet-modal--charge">
-                        <div class="c-wallet-modal__form c-wallet-modal__small-form uk-flex uk-flex-column uk-flex-middle">
-                            <img src="https://seller.digikala.com/static/files/a2fa83da.svg">
-                            <div class="c-wallet__payment-status-title c-wallet--mt-35">
-                                انتقال مبلغ به حساب پنل بازاریابی کلیکی انجام نشد.
-                            </div>
-                            <div class="c-wallet__payment-status-sub-title">تراکنش مورد نظر شما بنا به دلایلی انجام نشده و با خطا مواجه شده است.
-                            </div>
-                            <div class="c-wallet--mt-50 uk-flex uk-flex-center">
-                                <button class="c-wallet__payment-status-btn c-wallet__payment-status-btn-redirect js-retry-charge-ad-panel" data-type="twoStepRedirectToAdPanel">
-                                    تلاش مجدد برای انتقال
-                                </button>
-                                <button class="c-wallet__payment-status-btn c-wallet__payment-status-btn-outline c-ui--mr-15">
-                                    <a href="/cpc/thirdParties/redirect/">
-                                        ورود به پنل بدون انتقال مبلغ
-                                    </a>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="non-original-warning" uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message uk-modal">
-        <div class="uk-modal-dialog uk-modal-dialog--flex">
-            <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-
-            <div class="uk-modal-body">
-                <div class="c-modal-notification">
-                    <div class="c-modal-notification__content c-modal-notification__content--limited">
-                        <div class="c-modal-notification__img">
-                            <img src="https://seller.digikala.com/static/files/422f7e40.svg" alt="">
-                        </div>
-
-                        <h2 class="c-modal-notification__header">توجه!</h2>
-                        <p class="c-modal-notification__text c-modal-notification__text--center">
-                            همانطور که مطلع هستید <em>فروش کالای غیر اصل به اسم کالای اصل در دیجی‌کالا اکیدا ممنوع است</em>. از شما تقاضا داریم نهایت دقت را در رعایت این قانون مبذول فرمایید.<br>
-                            در صورت فروش کالای غیر اصل، فروشنده موظف به <em>پرداخت جریمه‌ای معادل با 10 برابر کل درآمد حاصل از فروش کالای غیر اصل خواهد بود</em> و دیجی‌کالا مجاز به فسخ بلافاصله قرارداد همکاری با فروشنده می‌باشد.<br>
-                            امکان فروش کالای غیراصل فقط با شرط استفاده از <em>"نشان کالای غیراصل"</em> هنگام درج کالا وجود دارد. برای اطلاعات بیشتر مقاله <a target="_blank" href="https://selleracademy.digikala.com/%D9%81%D8%B1%D9%88%D8%B4-%DA%A9%D8%A7%D9%84%D8%A7%DB%8C-%D8%BA%DB%8C%D8%B1%D8%A7%D8%B5%D9%84-%D8%AF%D8%B1-%D8%AF%DB%8C%D8%AC%DB%8C%E2%80%8C%DA%A9%D8%A7%D9%84%D8%A7/">"شرایط فروش کالاهای های غیراصل در دیجی‌کالا"</a> را مطالعه کنید.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal">
-        <div class="uk-modal-dialog uk-modal-dialog--flex">
-            <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-
-            <div class="uk-modal-body">
-                <div class="c-modal-notification">
-                    <div class="c-modal-notification__content c-modal-notification__content--limited">
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="national-id-restriction-modal" uk-modal="esc-close: false; bg-close: false;" class="uk-modal-container uk-modal" data-id="" data-status="hoda_none">
-        <div class="uk-modal-dialog uk-modal-dialog--form c-interactive-status--mw-850">
-
-            <div class="uk-modal-body uk-modal-body--align-normal">
-                <div class="uk-flex uk-flex-center uk-flex-middle uk-flex-column">
-                    <img class="uk-margin-small-top" src="https://seller.digikala.com/static/files/a2fa83da.svg">
-                    <div class="o-spacing-m-t-4 c-interactive-status__modal-title">احراز هویت انجام نشده است</div>
-                    <div class="o-spacing-m-t-4 uk-text-center o-text-color-n-600">
-                        فروشنده گرامی،
-                        <br>
-                        متاسفانه به علت عدم احراز هویت شما در ۷ روز گذشته، دسترسی شما به پنل مسدود شده است.
-                        <br>
-                        لطفا در صورتی که سفارشات ارسال نشده در پنل دارید، نسبت به ارسال آنها در اسرع وقت اقدام فرمایید.
-                    </div>
-                    <div class="o-spacing-m-t-4 c-interactive-status__modal-des">
-                        جهت دسترسی مجدد به پنل، لطفا مراحل احراز هویت را تکمیل کنید.
-                    </div>
-                    <div class="o-spacing-m-t-4 c-interactive-status__modal-warning js-second-restriction-notif uk-hidden">
-                        پس از تکمیل و تایید احراز هویت در سامانه، دسترسی شما به پنل به صورت خودکار ایجاد شده و شما
-                        <br>
-                        می‌توانید کالاهای خود را مجدداً فعال کنید.
-                    </div>
-                    <a href="https://selleracademy.digikala.com/%d8%a7%d8%ad%d8%b1%d8%a7%d8%b2-%d9%87%d9%88%db%8c%d8%aa-%d9%81%d8%b1%d9%88%d8%b4%d9%86%d8%af%da%af%d8%a7%d9%86-%d8%ad%d9%82%db%8c%d9%82%db%8c-%d8%aa%d9%88%d8%b3%d8%b7-%d8%a7%d8%af%d8%a7%d8%b1%d9%87/" class="o-text-color-seller-primary o-spacing-m-t-4 o-font-size-14">
-                        آموزش نحوه احراز هویت فروشندگان حقیقی توسط سازمان ثبت احوال
-                    </a>
-                    <div class="uk-flex o-spacing-m-t-6">
-                        <a href="" target="_blank" class="c-interactive-status__modal-btn c-interactive-status__modal-btn--primery">
-                            احراز هویت حساب کاربری
-                        </a>
-                        <div class="c-interactive-status__modal-btn c-interactive-status__modal-btn--gray o-spacing-m-r-3 js-close-restriction-modal">
-                            بعداً انجام می‌دهم
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="persianDateInstance-779" class="datepicker-container pwt-hide" style="left: 636px; top: 341px;"><div id="plotId" class="datepicker-plot-area  datepicker-state-no-meridian  datepicker-state-no-second datepicker-persian">
-            <div data-navigator="" class="datepicker-navigator">
-                <div class="pwt-btn pwt-btn-next">&lt;</div>
-                <div class="pwt-btn pwt-btn-switch">۱۳۹۹ اسفند</div>
-                <div class="pwt-btn pwt-btn-prev">&gt;</div>
-            </div>
-            <div class="datepicker-grid-view">
-                <div class="datepicker-day-view">
-                    <div class="month-grid-box">
-                        <div class="header">
-                            <div class="title"></div>
-                            <div class="header-row">
-                                <div class="header-row-cell">ش</div>
-                                <div class="header-row-cell">ی</div>
-                                <div class="header-row-cell">د</div>
-                                <div class="header-row-cell">س</div>
-                                <div class="header-row-cell">چ</div>
-                                <div class="header-row-cell">پ</div>
-                                <div class="header-row-cell">ج</div>
-                            </div>
-                        </div>
-                        <table cellspacing="0" class="table-days">
-                            <tbody>
-
-                            <tr>
-                                <td data-date="1399,11,25" data-unix="1613161800000" class="disabled">
-                                    <span class="other-month">۲۵</span>
-                                </td>
-
-                                <td data-date="1399,11,26" data-unix="1613248200000" class="disabled">
-                                    <span class="other-month">۲۶</span>
-                                </td>
-
-                                <td data-date="1399,11,27" data-unix="1613334600000" class="disabled">
-                                    <span class="other-month">۲۷</span>
-                                </td>
-
-                                <td data-date="1399,11,28" data-unix="1613421000000" class="disabled">
-                                    <span class="other-month">۲۸</span>
-                                </td>
-
-                                <td data-date="1399,11,29" data-unix="1613507400000" class="disabled">
-                                    <span class="other-month">۲۹</span>
-                                </td>
-
-                                <td data-date="1399,11,30" data-unix="1613593800000" class="disabled">
-                                    <span class="other-month">۳۰</span>
-                                </td>
-
-                                <td data-date="1399,12,1" data-unix="1613751924725" class="disabled">
-                                    <span class="">۱</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,2" data-unix="1613838324725" class="disabled">
-                                    <span class="">۲</span>
-                                </td>
-
-                                <td data-date="1399,12,3" data-unix="1613924724725" class="disabled">
-                                    <span class="">۳</span>
-                                </td>
-
-                                <td data-date="1399,12,4" data-unix="1614011124725" class="disabled">
-                                    <span class="">۴</span>
-                                </td>
-
-                                <td data-date="1399,12,5" data-unix="1614097524725" class="disabled">
-                                    <span class="">۵</span>
-                                </td>
-
-                                <td data-date="1399,12,6" data-unix="1614183924725" class="disabled">
-                                    <span class="">۶</span>
-                                </td>
-
-                                <td data-date="1399,12,7" data-unix="1614270324725" class="disabled">
-                                    <span class="">۷</span>
-                                </td>
-
-                                <td data-date="1399,12,8" data-unix="1614356724725" class="disabled">
-                                    <span class="">۸</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,9" data-unix="1614443124725" class="disabled">
-                                    <span class="">۹</span>
-                                </td>
-
-                                <td data-date="1399,12,10" data-unix="1614529524725" class="disabled">
-                                    <span class="">۱۰</span>
-                                </td>
-
-                                <td data-date="1399,12,11" data-unix="1614615924725" class="disabled">
-                                    <span class="">۱۱</span>
-                                </td>
-
-                                <td data-date="1399,12,12" data-unix="1614702324725" class="disabled">
-                                    <span class="">۱۲</span>
-                                </td>
-
-                                <td data-date="1399,12,13" data-unix="1614788724725" class="disabled">
-                                    <span class="">۱۳</span>
-                                </td>
-
-                                <td data-date="1399,12,14" data-unix="1614875124725" class="disabled">
-                                    <span class="">۱۴</span>
-                                </td>
-
-                                <td data-date="1399,12,15" data-unix="1614961524725" class="disabled">
-                                    <span class="">۱۵</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,16" data-unix="1615047924725" class="disabled">
-                                    <span class="">۱۶</span>
-                                </td>
-
-                                <td data-date="1399,12,17" data-unix="1615134324725" class="selected today">
-                                    <span class="">۱۷</span>
-                                </td>
-
-                                <td data-date="1399,12,18" data-unix="1615220724725">
-                                    <span class="">۱۸</span>
-                                </td>
-
-                                <td data-date="1399,12,19" data-unix="1615307124725">
-                                    <span class="">۱۹</span>
-                                </td>
-
-                                <td data-date="1399,12,20" data-unix="1615393524725">
-                                    <span class="">۲۰</span>
-                                </td>
-
-                                <td data-date="1399,12,21" data-unix="1615479924725">
-                                    <span class="">۲۱</span>
-                                </td>
-
-                                <td data-date="1399,12,22" data-unix="1615566324725">
-                                    <span class="">۲۲</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,23" data-unix="1615652724725">
-                                    <span class="">۲۳</span>
-                                </td>
-
-                                <td data-date="1399,12,24" data-unix="1615739124725">
-                                    <span class="">۲۴</span>
-                                </td>
-
-                                <td data-date="1399,12,25" data-unix="1615825524725">
-                                    <span class="">۲۵</span>
-                                </td>
-
-                                <td data-date="1399,12,26" data-unix="1615911924725">
-                                    <span class="">۲۶</span>
-                                </td>
-
-                                <td data-date="1399,12,27" data-unix="1615998324725">
-                                    <span class="">۲۷</span>
-                                </td>
-
-                                <td data-date="1399,12,28" data-unix="1616084724725">
-                                    <span class="">۲۸</span>
-                                </td>
-
-                                <td data-date="1399,12,29" data-unix="1616171124725">
-                                    <span class="">۲۹</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,30" data-unix="1616257524725">
-                                    <span class="">۳۰</span>
-                                </td>
-
-                                <td data-date="1400,1,1" data-unix="1616358599000">
-                                    <span class="other-month">۱</span>
-                                </td>
-
-                                <td data-date="1400,1,3" data-unix="1616527799000">
-                                    <span class="other-month">۳</span>
-                                </td>
-
-                                <td data-date="1400,1,4" data-unix="1616614199000">
-                                    <span class="other-month">۴</span>
-                                </td>
-
-                                <td data-date="1400,1,5" data-unix="1616700599000">
-                                    <span class="other-month">۵</span>
-                                </td>
-
-                                <td data-date="1400,1,6" data-unix="1616786999000">
-                                    <span class="other-month">۶</span>
-                                </td>
-
-                                <td data-date="1400,1,7" data-unix="1616873399000">
-                                    <span class="other-month">۷</span>
-                                </td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div class="datepicker-time-view">
-                <div class="hour time-segment" data-time-key="hour">
-                    <div class="up-btn" data-time-key="hour">▲</div>
-                    <input value="۱۹" type="text" placeholder="hour" class="hour-input">
-                    <div class="down-btn" data-time-key="hour">▼</div>
-                </div>
-                <div class="divider">
-                    <span>:</span>
-                </div>
-                <div class="minute time-segment" data-time-key="minute">
-                    <div class="up-btn" data-time-key="minute">▲</div>
-                    <input disabled="" value="۵۵" type="text" placeholder="minute" class="minute-input">
-                    <div class="down-btn" data-time-key="minute">▼</div>
-                </div>
-                <div class="divider second-divider">
-                    <span>:</span>
-                </div>
-            </div>
-
-            <div class="toolbox">
-                <div class="pwt-btn-submit">تایید</div>
-            </div>
-        </div></div>
-
-    <div id="persianDateInstance-794" class="datepicker-container pwt-hide" style="left: 421px; top: 341px;"><div id="plotId" class="datepicker-plot-area  datepicker-state-no-meridian  datepicker-state-no-second datepicker-persian">
-            <div data-navigator="" class="datepicker-navigator">
-                <div class="pwt-btn pwt-btn-next">&lt;</div>
-                <div class="pwt-btn pwt-btn-switch">۱۳۹۹ اسفند</div>
-                <div class="pwt-btn pwt-btn-prev">&gt;</div>
-            </div>
-            <div class="datepicker-grid-view">
-                <div class="datepicker-day-view">
-                    <div class="month-grid-box">
-                        <div class="header">
-                            <div class="title"></div>
-                            <div class="header-row">
-                                <div class="header-row-cell">ش</div>
-                                <div class="header-row-cell">ی</div>
-                                <div class="header-row-cell">د</div>
-                                <div class="header-row-cell">س</div>
-                                <div class="header-row-cell">چ</div>
-                                <div class="header-row-cell">پ</div>
-                                <div class="header-row-cell">ج</div>
-                            </div>
-                        </div>
-                        <table cellspacing="0" class="table-days">
-                            <tbody>
-
-                            <tr>
-                                <td data-date="1399,11,25" data-unix="1613161800000" class="disabled">
-                                    <span class="other-month">۲۵</span>
-                                </td>
-
-                                <td data-date="1399,11,26" data-unix="1613248200000" class="disabled">
-                                    <span class="other-month">۲۶</span>
-                                </td>
-
-                                <td data-date="1399,11,27" data-unix="1613334600000" class="disabled">
-                                    <span class="other-month">۲۷</span>
-                                </td>
-
-                                <td data-date="1399,11,28" data-unix="1613421000000" class="disabled">
-                                    <span class="other-month">۲۸</span>
-                                </td>
-
-                                <td data-date="1399,11,29" data-unix="1613507400000" class="disabled">
-                                    <span class="other-month">۲۹</span>
-                                </td>
-
-                                <td data-date="1399,11,30" data-unix="1613593800000" class="disabled">
-                                    <span class="other-month">۳۰</span>
-                                </td>
-
-                                <td data-date="1399,12,1" data-unix="1613751924756" class="disabled">
-                                    <span class="">۱</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,2" data-unix="1613838324756" class="disabled">
-                                    <span class="">۲</span>
-                                </td>
-
-                                <td data-date="1399,12,3" data-unix="1613924724756" class="disabled">
-                                    <span class="">۳</span>
-                                </td>
-
-                                <td data-date="1399,12,4" data-unix="1614011124756" class="disabled">
-                                    <span class="">۴</span>
-                                </td>
-
-                                <td data-date="1399,12,5" data-unix="1614097524756" class="disabled">
-                                    <span class="">۵</span>
-                                </td>
-
-                                <td data-date="1399,12,6" data-unix="1614183924756" class="disabled">
-                                    <span class="">۶</span>
-                                </td>
-
-                                <td data-date="1399,12,7" data-unix="1614270324756" class="disabled">
-                                    <span class="">۷</span>
-                                </td>
-
-                                <td data-date="1399,12,8" data-unix="1614356724756" class="disabled">
-                                    <span class="">۸</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,9" data-unix="1614443124756" class="disabled">
-                                    <span class="">۹</span>
-                                </td>
-
-                                <td data-date="1399,12,10" data-unix="1614529524756" class="disabled">
-                                    <span class="">۱۰</span>
-                                </td>
-
-                                <td data-date="1399,12,11" data-unix="1614615924756" class="disabled">
-                                    <span class="">۱۱</span>
-                                </td>
-
-                                <td data-date="1399,12,12" data-unix="1614702324756" class="disabled">
-                                    <span class="">۱۲</span>
-                                </td>
-
-                                <td data-date="1399,12,13" data-unix="1614788724756" class="disabled">
-                                    <span class="">۱۳</span>
-                                </td>
-
-                                <td data-date="1399,12,14" data-unix="1614875124756" class="disabled">
-                                    <span class="">۱۴</span>
-                                </td>
-
-                                <td data-date="1399,12,15" data-unix="1614961524756" class="disabled">
-                                    <span class="">۱۵</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,16" data-unix="1615047924756" class="disabled">
-                                    <span class="">۱۶</span>
-                                </td>
-
-                                <td data-date="1399,12,17" data-unix="1615134324756" class="selected today">
-                                    <span class="">۱۷</span>
-                                </td>
-
-                                <td data-date="1399,12,18" data-unix="1615220724756">
-                                    <span class="">۱۸</span>
-                                </td>
-
-                                <td data-date="1399,12,19" data-unix="1615307124756">
-                                    <span class="">۱۹</span>
-                                </td>
-
-                                <td data-date="1399,12,20" data-unix="1615393524756">
-                                    <span class="">۲۰</span>
-                                </td>
-
-                                <td data-date="1399,12,21" data-unix="1615479924756">
-                                    <span class="">۲۱</span>
-                                </td>
-
-                                <td data-date="1399,12,22" data-unix="1615566324756">
-                                    <span class="">۲۲</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,23" data-unix="1615652724756">
-                                    <span class="">۲۳</span>
-                                </td>
-
-                                <td data-date="1399,12,24" data-unix="1615739124756">
-                                    <span class="">۲۴</span>
-                                </td>
-
-                                <td data-date="1399,12,25" data-unix="1615825524756">
-                                    <span class="">۲۵</span>
-                                </td>
-
-                                <td data-date="1399,12,26" data-unix="1615911924756">
-                                    <span class="">۲۶</span>
-                                </td>
-
-                                <td data-date="1399,12,27" data-unix="1615998324756">
-                                    <span class="">۲۷</span>
-                                </td>
-
-                                <td data-date="1399,12,28" data-unix="1616084724756">
-                                    <span class="">۲۸</span>
-                                </td>
-
-                                <td data-date="1399,12,29" data-unix="1616171124756">
-                                    <span class="">۲۹</span>
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td data-date="1399,12,30" data-unix="1616257524756">
-                                    <span class="">۳۰</span>
-                                </td>
-
-                                <td data-date="1400,1,1" data-unix="1616358599000">
-                                    <span class="other-month">۱</span>
-                                </td>
-
-                                <td data-date="1400,1,3" data-unix="1616527799000">
-                                    <span class="other-month">۳</span>
-                                </td>
-
-                                <td data-date="1400,1,4" data-unix="1616614199000">
-                                    <span class="other-month">۴</span>
-                                </td>
-
-                                <td data-date="1400,1,5" data-unix="1616700599000">
-                                    <span class="other-month">۵</span>
-                                </td>
-
-                                <td data-date="1400,1,6" data-unix="1616786999000">
-                                    <span class="other-month">۶</span>
-                                </td>
-
-                                <td data-date="1400,1,7" data-unix="1616873399000">
-                                    <span class="other-month">۷</span>
-                                </td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div class="datepicker-time-view">
-                <div class="hour time-segment" data-time-key="hour">
-                    <div class="up-btn" data-time-key="hour">▲</div>
-                    <input value="۱۹" type="text" placeholder="hour" class="hour-input">
-                    <div class="down-btn" data-time-key="hour">▼</div>
-                </div>
-                <div class="divider">
-                    <span>:</span>
-                </div>
-                <div class="minute time-segment" data-time-key="minute">
-                    <div class="up-btn" data-time-key="minute">▲</div>
-                    <input disabled="" value="۵۵" type="text" placeholder="minute" class="minute-input">
-                    <div class="down-btn" data-time-key="minute">▼</div>
-                </div>
-                <div class="divider second-divider">
-                    <span>:</span>
-                </div>
-            </div>
-
-            <div class="toolbox">
-                <div class="pwt-btn-submit">تایید</div>
-            </div>
-        </div></div>
-
-    <script>
-        // // اضافه کردن توکن به درخواست های ایجکس
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+<script>
+// // اضافه کردن توکن به درخواست های ایجکس
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+
+
+$("#has_landing").on('change', function (){
+    if ($(this).val() == 1){
+        console.log('t');
+        $(".slug-section").show();
+        $(".div-space").hide();
+
+        var buttonWidth = $('#button-urls').width() + 20;
+        $(".url-inputs").css({
+            'padding-left': buttonWidth,
+            'padding-top' : '2px',
         });
-    </script>
+
+    } else if ($(this).val() == 0){
+        console.log('f');
+        $(".slug-section").hide();
+        $(".div-space").show();
+        $(".url-inputs").val('');
+    }
+});
+</script>
 @endsection
 

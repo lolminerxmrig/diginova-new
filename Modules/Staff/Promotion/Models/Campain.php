@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Media;
 use Modules\Staff\Category\Models\Category;
+use Modules\Staff\Landing\Models\Landing;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Product\Models\ProductHasVariant;
 
@@ -32,10 +33,18 @@ class Campain extends Model
         return $this->morphTo(ProductHasVariant::class);
     }
 
-    public function promotions()
+//    public function promotions()
+//    {
+//        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
+//    }
+
+    public function landing()
     {
-        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
+        return $this->hasOne(Landing::class);
     }
 
+    public function promotions() {
+        return $this->hasMany(Promotion::class);
+    }
 
 }

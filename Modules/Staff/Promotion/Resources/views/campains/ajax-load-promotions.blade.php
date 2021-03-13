@@ -8,8 +8,11 @@
             </div>
 
         </div>
+
+        <input id="join-promotions-container" data-promotion-id="5" hidden>
+
         <div class="c-promo__row--m-sm">
-            <table class="c-ui-table c-periodic-prices__table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ ($paginate_type == 'active')? route('staff.periodic-prices.search') : route('staff.periodic-prices.endedSearch') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
+            <table class="c-ui-table c-periodic-prices__table c-join__table js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ ($paginate_type == 'active')? route('staff.campains.search') : route('staff.campains.endedSearch') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
                 <thead>
                 <tr class="c-ui-table__row">
                     <th class="c-ui-table__header  ">
@@ -26,12 +29,6 @@
                     </th>
                     <th class="c-ui-table__header  ">
                         <span class="js-search-table-column">قیمت پس  از تخفیف (ریال)</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">زمان دار</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">بازه زمانی تخفیف</span>
                     </th>
                     <th class="c-ui-table__header  ">
                         <span class="js-search-table-column">وضعیت</span>
@@ -97,9 +94,9 @@
                             </div>
                         </td>
                         <td class="c-ui-table__cell">
-                                                        <span class="c-mega-campaigns-join-list__container-table-row-item">
-                                                            {{ persianNum(number_format($promotion->productVariants()->first()->sale_price)) }}
-                                                        </span>
+                            <span class="c-mega-campaigns-join-list__container-table-row-item">
+                                {{ persianNum(number_format($promotion->productVariants()->first()->sale_price)) }}
+                            </span>
                         </td>
                         <td class="c-ui-table__cell uk-padding-remove">
                             <div class="c-mega-campaigns--mh-105 uk-flex">
@@ -109,7 +106,7 @@
                                             <input name="variant[promotion_percent]" type="number" min="0" max="100" class="js-discount-value js-number-input" value="{{ $promotion->percent }}">
                                         </div>
                                         <span class="c-mega-campaigns-join-modal__body-table-input-sub-title">
-                                                                    </span>
+                                        </span>
                                     </div>
                                     <span class="c-mega-campaigns-join-modal__body-table-input-link c-mega-campaigns--mr-5"></span>
                                 </div>
@@ -122,39 +119,11 @@
                                         <input type="text" name="variant[promotion_price]" class="js-promotion-price js-numeric-input" value="{{ $promotion->promotion_price }}" data-selling_price="{{ $promotion->productVariants()->first()->sale_price }}" data-crossed_price="{{ $promotion->productVariants()->first()->sale_price }}">
                                     </div>
                                     <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">
-                                                                    حداکثر قیمت مجاز:۴۸۰,۲۰۰ریال
-                                                                </span>
+                                        حداکثر قیمت مجاز:۴۸۰,۲۰۰ریال
+                                    </span>
                                 </div>
                             </div>
                         </td>
-
-
-                        <td class="c-ui-table__cell uk-padding-remove">
-                            <div class="c-ui-tooltip__anchor">
-                                <div class="c-ui-toggle__group">
-                                    <label class="c-ui-toggle">
-                                        <input class="c-ui-toggle__origin js-toggle-active-product time_status" type="checkbox" data-group-id="" name="variant[time_status]" data-reset="{{ (!is_null($promotion->start_at))? 'checked' : 'not_checked' }}" {{ (!is_null($promotion->start_at))? 'checked' : '' }}>
-                                        <span class="c-ui-toggle__check"></span>
-                                    </label>
-                                </div>
-                                <input type="hidden" value="0" class="js-active-input">
-                            </div>
-                        </td>
-
-                        <td class="c-ui-table__cell c-join-promotion__price-cell c-join-promotion__price-cell--date c-join-promotion__price-cell--date-picker">
-                            <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
-                                <label for="form-field-variant[start_at][{{ $promotion->id }}]" class="c-ui-form__label">از</label>
-                                <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element start_at time-section {{ is_null($promotion->start_at)? 'disabled' : '' }}" data-format="YYYY/MM/DD" data-time="1" data-from-today="1" data-date="1" data-name="variant_start_at__{{ $promotion->id }}_" value="{{ $promotion->start_at }}" id="form-field-dt-{{ rand(10000, 99999) }}" autocomplete="off" {{ is_null($promotion->start_at)? 'disabled' : '' }}>
-                                <input name="variant[start_at][{{ $promotion->id }}]" id="variant_start_at__{{ $promotion->id }}_" class="start_at_hidden time-section" type="hidden" value="{{ $promotion->start_at }}">
-                            </span>
-
-                            <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
-                                <label for="form-field-variant[end_at][{{ $promotion->id }}]" class="c-ui-form__label">تا</label>
-                                <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element end_at time-section  {{ is_null($promotion->end_at)? 'disabled' : '' }}" data-format="YYYY/MM/DD" data-time="1" data-from-today="1" data-date="1" data-name="variant_end_at__{{ $promotion->id }}_" value="{{ $promotion->end_at }}" id="form-field-dt-{{ rand(10000, 99999) }}" autocomplete="off" {{ is_null($promotion->end_at)? 'disabled' : '' }}>
-                                <input name="variant[end_at][{{ $promotion->id }}]" id="variant_end_at__{{ $promotion->id }}_" class="end_at_hidden time-section" type="hidden" value="{{ $promotion->end_at }}">
-                            </span>
-                        </td>
-
 
                         <td class="c-ui-table__cell uk-padding-remove">
                             <div class="c-ui-tooltip__anchor">
@@ -168,12 +137,11 @@
                             </div>
                         </td>
 
-
                         <td class="c-ui-table__cell">
                             <div class="c-join-smart-products--middle-item-height uk-flex uk-flex-column uk-flex-center">
-                                                            <span class="c-mega-campaigns-join-list__container-table-row-item">
-                                                                {{ persianNum($promotion->productVariants()->first()->stock_count) }}
-                                                            </span>
+                                <span class="c-mega-campaigns-join-list__container-table-row-item">
+                                    {{ persianNum($promotion->productVariants()->first()->stock_count) }}
+                                </span>
                             </div>
                         </td>
 
@@ -197,13 +165,7 @@
                                     <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--save c-mega-campaigns--ml-10 c-mega-campaigns--mr-10 js-edit-button button js-save-promotion-price-record-changes" data-promotion="3856494" data-product-variant-id="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}" disabled=""></button>
                                     <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--cancle c-mega-campaigns--ml-10 js-edit-cancel-button js-table-swap-row-handle" disabled=""></button>
                                 </div>
-                                <button class="c-mega-campaigns-join-list__container-table-btn  js-stop-promotion js-tool-tip-archive" style="margin-top: 7px;" data-promotion="3856494" data-variant="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}">
-                                    <img src="{{ asset('staff/icon/archive.svg') }}">
-                                </button>
-                                <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive; pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 128.172px; top: 80px;">
-                                    پایان دادن
-                                </div>
-                                <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--delete js-remove-variant" style="margin-right: 10px; margin-top: 7px;" data-promotion="3856494" data-variant="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}" data-product-id="768562"></button>
+                                <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--delete js-remove-variant" data-promotion="3856494" data-variant="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}" data-product-id="768562"></button>
                             </div>
                         </td>
                         <td class="c-ui-table__cell c-ui-table__cell--operations c-ui-table__cell--text-error">
@@ -231,7 +193,7 @@
                 </div>
             </a>
 
-            {{ $promotions->links('staffpromotion::layouts.pagination.custom-pagination') }}
+            {{ $promotions->links('staffpromotion::pagination.custom-modal-pagination') }}
             <div class="c-ui-paginator js-paginator">
                 <div class="c-ui-paginator js-paginator">
                     @if(count($promotions))

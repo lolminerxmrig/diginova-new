@@ -20,7 +20,7 @@ class StaffPromotionServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
 
-        $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/../Routes/periodicPrices.php');
         $this->loadRoutesFrom(__DIR__.'/../Routes/campains.php');
 
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffpromotion');

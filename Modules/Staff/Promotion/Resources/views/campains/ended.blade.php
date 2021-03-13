@@ -598,8 +598,8 @@
                             </div>
 
                             <div class="c-mega-campaigns-join-list__options js-remove-in-add-form">
-                                <a href="{{ route('staff.campains.index') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">کمپین های فعال/آغاز نشده</a>
-                                <a href="{{ route('staff.campains.ended') }}" class="c-mega-campaigns-join-list__options-item">کمپین های پایان‌یافته</a>
+                                <a href="{{ route('staff.campains.index') }}" class="c-mega-campaigns-join-list__options-item">کمپین های فعال/آغاز نشده</a>
+                                <a href="{{ route('staff.campains.ended') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">کمپین های پایان‌یافته</a>
                             </div>
 
                             <div class="c-card__body">
@@ -637,7 +637,7 @@
                                             <br>
                                             <div class="c-ui-paginator js-paginator">
                                                 @if(!is_null($campains) && count($campains))
-                                                    <div class="c-ui-paginator__total" data-rows="">
+                                                    <div class="c-ui-paginator__total" data-rows="" style="margin-left: 25px;">
                                                         تعداد نتایج: <span>{{ persianNum($campains->total()) }} مورد</span>
                                                     </div>
                                                 @else
@@ -648,29 +648,20 @@
                                             </div>
 
                                             <div class="c-grid__row c-promo__row--m-sm">
-                                                <table class="c-ui-table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ route('staff.campains.searchCampain') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
+                                                <table class="c-ui-table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ route('staff.campains.endedCampainSearch') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
                                                     <thead>
                                                     <tr class="c-ui-table__row">
                                                         <th class="c-ui-table__header  ">
                                                             <span class="js-search-table-column">نام کمپین</span>
                                                         </th>
                                                         <th class="c-ui-table__header  ">
-                                                            <span class="js-search-table-column">تعداد کالاهای موجود</span>
-                                                        </th>
-                                                        <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                                            <span class="js-search-table-column">لینک صفحه سفارشی</span>
+                                                            <span class="js-search-table-column">تعداد کالاها</span>
                                                         </th>
                                                         <th class="c-ui-table__header c-ui-table__header--nowrap ">
                                                             <span class="js-search-table-column-sortable table-header-searchable" data-sort-column="start_end_at" data-sort-order="desc">تاریخ نمایش کمپین</span>
                                                         </th>
                                                         <th class="c-ui-table__header  ">
-                                                            <span class="js-search-table-column">وضعیت کالاها</span>
-                                                        </th>
-                                                        <th class="c-ui-table__header  ">
-                                                            <span class="js-search-table-column">فعال / غیرفعال</span>
-                                                        </th>
-                                                        <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                                            <span class="js-search-table-column">عملیات</span>
+                                                            <span class="js-search-table-column">مجموع تعداد فروش</span>
                                                         </th>
                                                     </tr>
                                                     </thead>
@@ -679,7 +670,7 @@
                                                       @foreach($campains as $campain)
                                                         <tr class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                         <td class="c-ui-table__cell">
-                                                            <div style="font-weight: bold;">{{ $campain->name }}</div>
+                                                            <div style="font-weight: bold !important;">{{ $campain->name }}</div>
                                                             <div class="c-join__landing-state c-ui-table__cell--text-warning">
                                                                 @if(!is_null($campain->end_at) && $campain->end_at < now())
                                                                 <span class="c-join__has-icon c-join__has-icon--clock"  style="padding-right: 25px;">پایان یافته</span>
@@ -687,14 +678,10 @@
                                                             </div>
                                                         </td>
                                                         <td class="c-ui-table__cell">
-                                                            {{ ($campain->promotions()->exists())? persianNum(count($campain->promotions)) : persianNum(0) }}
-                                                        </td>
-                                                        <td class="c-ui-table__cell {{ ($campain->landing()->exists())? 'c-ui-table__cell--text-blue' : '' }}">
-                                                            @if($campain->landing()->exists())
-                                                            <a class="c-join__promotion-link" href="{{ $site_url . '/product-list/' . $campain->slug }}" target="_blank">{{ $site_url . '/product-list/' . $campain->slug }}</a>
-                                                            <a class="c-join__promotion-copy-btn js-copy-btn" href="#" data-link="{{ $site_url . '/product-list/' . $campain->slug }}">کپی لینک</a>
+                                                            @if($campain->promotions()->exists())
+                                                                {{ persianNum(count($campain->promotions)) }}
                                                             @else
-                                                                ندارد
+                                                                {{ persianNum(0) }}
                                                             @endif
                                                         </td>
                                                         <td class="c-ui-table__cell c-join-promotion__date-range">
@@ -702,35 +689,8 @@
                                                             <br>
                                                             <span class="c-ui-table__date-to span-time" data-value="{{ $campain->end_at }}" data-type="پایان"></span>
                                                         </td>
-                                                        <td class="c-ui-table__cell">
-                                                            <div class="c-join__status-cell">
-                                                                <span class="c-join__status"><span class="c-join__status-counter c-join__status-counter--approved"></span>موجود</span>
-                                                                <span class="c-join__status"><span class="c-join__status-counter c-join__status-counter--approving"></span>ناموجود</span>
-                                                            </div>
-                                                        </td>
-                                                        <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                                                            <div class="c-ui-tooltip__anchor">
-                                                                <div class="c-ui-toggle__group">
-                                                                    <label class="c-ui-toggle">
-                                                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-id="{{ $campain->id }}" name="status" {{ ($campain->status)? 'checked' : '' }}>
-                                                                        <span class="c-ui-toggle__check"></span>
-                                                                    </label>
-                                                                </div>
-                                                                <input type="hidden" value="0" class="js-active-input">
-                                                            </div>
-                                                        </td>
-                                                        <td class="c-ui-table__cell">
-                                                            <div class="c-promo__actions">
-                                                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.campains.manage', ['id' => $campain->id]) }}">ویرایش</a>
-                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="{{ route('staff.campains.removeCampain', ['id' => $campain->id]) }}">حذف کمپین</button>
-
-                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--primary js-tool-tip-archive js-stop-promotion" style="margin-top: 1px;width: 30px;" data-promotion="3856494" data-variant="1" data-promotion-variant-id="{{ $campain->id }}" aria-expanded="false">
-                                                                    <img src="{{ asset('staff/icon/archive.svg') }}">
-                                                                </button>
-                                                                <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive; pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 128.172px; top: 80px;">
-                                                                    پایان دادن
-                                                                </div>
-                                                            </div>
+                                                        <td class="c-ui-table__cell c-join-promotion__date-range">
+                                                            {{ persianNum(0) }}
                                                         </td>
                                                     </tr>
                                                       @endforeach
@@ -749,7 +709,10 @@
                                                     </div>
                                                 </a>
 
-                                                {{ $campains->links('stafflanding::layouts.pagination.custom-pagination') }}
+                                                @if(count($campains))
+                                                  {{ $campains->links('stafflanding::layouts.pagination.custom-pagination') }}
+                                                @endif
+
                                                 <div class="c-ui-paginator js-paginator">
                                                     <div class="c-ui-paginator js-paginator">
                                                         @if(count($campains))
@@ -791,47 +754,30 @@ $.ajaxSetup({
     }
 });
 
-
-
-$(document).on('click', '.js-stop-promotion', function (e) {
-    e.preventDefault();
-
-    var self = $(this),
-        promotionVariantId = self.data('promotion-variant-id');
-    if (typeof promotionVariantId == 'undefined' || promotionVariantId.length === 0) {
-        return;
+function persianNum() {
+    String.prototype.toPersianDigits= function(){
+        var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+        return this.replace(/[0-9]/g, function(w){
+            return id[+w]
+        });
     }
-    var promotionId = !!window.promotionId ? window.promotionId : (self.data('promotion') || 0);
+}
+function convertDate() {
+    $(".span-time").each(function (){
+        var output="";
+        var input = $(this).attr('data-value');
+        var m = moment(input);
+        if(m.isValid()){
+            m.locale('fa');
+            output = $(this).attr('data-type') + ' ' + m.format("YYYY/M/D HH:mm");
+        }
+        $(this).text(output.toPersianDigits());
+    });
+}
 
-    // self.closest('tr').remove();
-    // self.closest('tr').addClass('c-join__table-row--is-deleted');
-    // self.closest('tr').find('.js-action-buttons').addClass('uk-hidden');
-    // self.closest('tr').find('.js-undo-remove').removeClass('uk-hidden');
-    // self.closest('tr').find('.js-edit-actions button').prop('disabled', true);
-    setTimeout(function () {
-        Services.ajaxPOSTRequestJSON(
-            'campains/moveToEnds',
-            // promotionId + '/moveToEnds',
-            {
-                promotionVariantId: promotionVariantId
-            },
-            function (response) {
-                self.closest('tr').remove();
-                self.closest('tr').hide('slow', function(){
-                    self.closest('tr').remove();
-                });
-
-            },
-            function (error) {
-                UIkit.notification({
-                    message: error.errors,
-                    status: 'danger',
-                    pos: 'bottom-right',
-                    timeout: 8000
-                });
-            }
-        );
-    }, 50);
+$(document).ready(function (){
+    persianNum();
+    convertDate();
 });
 
 
@@ -855,30 +801,6 @@ $(document).on('change', 'input[name="status"]', function () {
         }
     });
 });
-
-function persianNum() {
-    String.prototype.toPersianDigits= function(){
-        var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-        return this.replace(/[0-9]/g, function(w){
-            return id[+w]
-        });
-    }
-}
-function convertDate() {
-    $(".span-time").each(function (){
-        var output="";
-        var input = $(this).attr('data-value');
-        var m = moment(input);
-        if(m.isValid()){
-            m.locale('fa');
-            output = $(this).attr('data-type') + ' ' + m.format("YYYY/M/D HH:mm");
-        }
-        $(this).text(output.toPersianDigits());
-    });
-}
-
-persianNum();
-convertDate();
 
 
 

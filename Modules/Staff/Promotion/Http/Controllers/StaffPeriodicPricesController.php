@@ -2,7 +2,6 @@
 
 namespace Modules\Staff\Promotion\Http\Controllers;
 
-
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -12,7 +11,7 @@ use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Promotion\Models\Campain;
 use Modules\Staff\Promotion\Models\Promotion;
 
-class StaffPromotionController extends Controller
+class StaffPeriodicPricesController extends Controller
 {
 
     public function active()
@@ -32,9 +31,9 @@ class StaffPromotionController extends Controller
         return view('staffpromotion::periodic-prices.active', compact('promotions', 'ended_status'));
     }
 
-    public function loadProductVariants(Request $request, ProductHasVariant $product_variants)
+    public function loadProductVariants(Request $request, ProductHasVariant $product_variants, $id)
     {
-        (!$request->paginatorNum)? $request->paginatorNum = 10 : '';
+        (!$request->paginatorNum)? $request->paginatorNum = 2 : '';
 
         $product_variants = $this->ProductVariantsSearch($request, $product_variants);
 
@@ -150,10 +149,10 @@ class StaffPromotionController extends Controller
 
         $product_variant = ProductHasVariant::find($request->id);
 
-        if ($product_variant->stock_count < $request->promotion_limit)
-        {
-            $errors = 'عددی که برای تعداد در تخفیف در نظر گرفته اید از ';
-        }
+//        if ($product_variant->stock_count < $request->promotion_limit)
+//        {
+//            $errors = 'عددی که برای تعداد در تخفیف در نظر گرفته اید از ';
+//        }
 
         if (!Campain::where('type', 'amazing_offer')->first())
         {
@@ -210,7 +209,11 @@ class StaffPromotionController extends Controller
 
     public function done()
     {
-        return view('staffpromotion::periodic-prices.done');
+        $promotions = Promotion::withCount('productVariants')->get();
+
+        $productVariants = ProductHasVariant::whereHas('promotions')->get();
+
+        return view('staffpromotion::periodic-prices.done', compact('promotions'));
     }
 
     public function delete(Request $request){
@@ -340,6 +343,17 @@ class StaffPromotionController extends Controller
         }
 
         return $promotions->paginate($request->paginatorNum);
+    }
+
+    public function moveToEnds(Request $request)
+    {
+        Promotion::find($request->promotionVariantId)->update([
+           'status' => 'ended',
+        ]);
+
+        return response()->json([
+            'status' => true,
+        ]);
     }
 
 }

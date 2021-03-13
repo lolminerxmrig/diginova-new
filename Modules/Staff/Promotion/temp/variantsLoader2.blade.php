@@ -85,7 +85,7 @@
         </table>
     </div>
 </div>
-<div class="c-card__footer c-join__table-footer" style="width: unset;">
+<div class="c-card__footer c-join__table-footer">
     <div class="c-grid__row c-grid__row--align-center">
         <button class="js-add-variant-to-promotion c-join__btn c-join__btn--secondary c-join__btn--icon-left c-join__btn--icon-plus uk-disabled js-submit-selected-items">افزودن به صفحه کالا</button>
         <p class="c-join-promotion__selected-products-text">
@@ -93,17 +93,7 @@
             از {{ persianNum(count($product_variants)) }} کالا انتخاب شده اند
         </p>
         <div class="c-card__paginator">
-            <div class="c-ui-paginator">
-                @if(!is_null($product_variants) && count($product_variants))
-                    <div class="c-ui-paginator__total" data-rows="{{ persianNum($product_variants->total()) }}">
-                        تعداد نتایج: <span>{{ persianNum($product_variants->total()) }} مورد</span>
-                    </div>
-                @endif
-                @if(!is_null($product_variants) && count($product_variants))
-                    {{ $product_variants->links('stafflanding::layouts.pagination.modal-pagination') }}
-                @endif
 
-            </div>
         </div>
     </div>
 </div>

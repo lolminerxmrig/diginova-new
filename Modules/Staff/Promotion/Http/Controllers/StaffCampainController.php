@@ -9,16 +9,83 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
-use Modules\Staff\Product\Models\Product;
-use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Promotion\Models\Campain;
+use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Promotion\Models\Promotion;
 
 class StaffCampainController extends Controller
 {
+    // goods
+    public function campainStatus(Request $request)
+    {
+        Campain::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+    }
+
+    public function endedCampainSearch(Request $request, Campain $campains)
+    {
+        $campains->where('end_at', '<', now())->orWhere('status', 'ended')->get();
+        (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
+
+        $campains = $this->campainFilter($request, $campains);
+
+        return view('staffpromotion::campains.endedSearchResult', compact('campains'));
+    }
+
+    public function searchCampain(Request $request, Campain $campains)
+    {
+        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
+
+        $campains = $this->campainFilter($request, $campains);
+
+        return view('staffpromotion::campains.searchResult', compact('campains'));
+    }
+
+    public function moveToEnds(Request $request)
+    {
+        Campain::find($request->promotionVariantId)->update([
+            'status' => 'ended',
+        ]);
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+
+    public function campainFilter($request, $campains)
+    {
+        $campains = $campains->newQuery();
+
+        if (!is_null($request->title)) {
+            $campains->where("name", "LIKE", "%{$request->title}%");
+        }
+
+        if (!is_null($request->start_at)) {
+            $campains->where('start_at', '>=', $request->start_at);
+        }
+
+        if (!is_null($request->end_at)) {
+            $campains->where('end_at', '<=', $request->end_at);
+        }
+
+        return $campains->paginate($request->paginatorNum);
+    }
+
+    public function removeCampain($id)
+    {
+        Campain::findOrFail($id)->delete();
+
+        return response()->json([
+            'status' => true,
+            'data' => true,
+        ]);
+    }
+
     public function index()
     {
-        return view('staffpromotion::campains.index');
+        $campains = Campain::where('end_at', '<', now())->orWhere('status', 'active')->paginate(10);
+        return view('staffpromotion::campains.index', compact('campains'));
     }
 
     public function create()
@@ -28,6 +95,10 @@ class StaffCampainController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        $start_at = $request->start_at;
+        $end_at = $request->end_at;
+
         $request->start_at = date_create($request->start_at);
         $request->end_at = date_create($request->end_at);
 
@@ -37,13 +108,16 @@ class StaffCampainController extends Controller
             'status.required' => 'وضعیت کمپین الزامی است.',
             'start_at.required' => 'تاریخ و زمان شروع کمپین الزامی است.',
             'end_at.required' => 'تاریخ و زمان پایان کمپین الزامی است.',
+            'slug.required_if' => 'در حالت انتخابی وارد کردن نامک الزامی است.',
         ];
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'status' => 'required',
+            'has_landing' => 'required',
             'start_at' => 'required|date',
             'end_at' => 'required|date|after:start_at',
+            'slug' => 'nullable|required_if:has_landing,1',
         ], $messages);
 
         if ($validator->fails()) {
@@ -56,92 +130,393 @@ class StaffCampainController extends Controller
             ]);
         }
 
-        $campain = Campain::updateOrCreate(['id' => $id], [
+        ($request->status)? $status='active' : $status='inactive';
+
+        $campain = Campain::updateOrCreate(['id' => $request->campain_id], [
             'name' => $request->name,
-            'min_percent' => null,
             'start_at' => $request->start_at,
             'end_at' => $request->end_at,
             'type' => 'custom',
-            'status' => $request->status,
+            'status' => $status,
         ]);
+
+        if (Campain::find($request->campain_id)) {
+            $campain = Campain::find($request->campain_id);
+        }
+
+        if (isset($request->has_landing) && ($request->has_landing == '1')) {
+            if (!$campain->landing) {
+                Campain::updateOrCreate(['campain_id' => $campain->id],[
+                    'name' => $request->name,
+                    'slug' => $request->slug,
+                    'start_at' => $start_at,
+                    'end_at' => $end_at,
+                    'type' => 'custom',
+                    'status' => $status,
+                    'campain_id' => $campain->id,
+                ]);
+            }
+        }
+
+        elseif (isset($request->has_landing) && ($request->has_landing !== '1')) {
+            Log::info('gghhhkk');
+            Log::info($campain->id);
+//            campain->landing->slug
+            if ($campain->landing) {
+                Log::info('rrrr');
+
+                $campain->landing->delete();
+            }
+        }
 
         return response()->json([
             'status' => true,
             'data' => [
-                'redirectUrl' => $campain->id,
+                'redirectUrl' => '',
             ],
         ]);
-
     }
 
     public function manage($id)
     {
-        $campain = Campain::find($id);
-        return view('staffpromotion::campains.manageCampain', compact('campain'));
+        $campain = Campain::findOrFail($id);
+        $promotions = $campain->promotions()->paginate(10);
+
+        return view('staffpromotion::campains.manageCampain', compact('campain', 'promotions'));
     }
 
-    public function search(Request $request)
+    public function renderAddVariantsRows(Request $request)
     {
-        ($request->paginatorNum)? $paginatorNum = $request->paginatorNum : $paginatorNum = 2;
-        if($request->sort == 'desc') { $sort_type = 'created_at'; $sort_value = 'desc'; }
-        if($request->sort == 'price_low') { $sort_type = 'sale_price'; $sort_value = 'asc'; }
-        if($request->sort == 'price_high') { $sort_type = 'sale_price'; $sort_value = 'desc'; }
-
-
-        if(is_null($request['query']))
-        {
-            $product_variants = ProductHasVariant::orderBy($sort_type, $sort_value)->paginate($paginatorNum);
+        if (isset($request->variantIds)){
+            $variantIds = $request->variantIds;
+            $product_variants = ProductHasVariant::all();
+            return response()->json([
+                'status' => true,
+                'data' => view('staffpromotion::campains.render-add-variants-rows', compact('variantIds', 'product_variants'))->render(),
+            ]);
+        } else {
+            return response()->json([
+                'status' => true,
+                'data' => "\n\n\n\n\n",
+            ]);
         }
-        else
-        {
-            $product_variants = ProductHasVariant::orderBy($sort_type, $sort_value)->paginate($paginatorNum);
-        }
-
-        (is_null($product_variants))? $product_variants = [] : '';
-        return view('staffpromotion::campains.variantsLoader',
-            compact('product_variants'));
-
     }
 
+    public function save(Request $request)
+    {
+        $messages = [
+            'promotion_limit.required' => 'وارد کردن فیلد تعداد در تخفیف اجباری است.',
+            'promotion_limit.integer' => 'وارد کردن فیلد تعداد در تخفیف اجباری است.',
+            'promotion_order_limit.required' => 'وارد کردن فیلد تعداد در سبد اجباری است.',
+            'promotion_price.ends_with' => 'دو رقم انتهای قیمت باید ۰ باشد.',
+            'promotion_price.required' => 'وارد کردن فیلد قیمت پس از تخفیف اجباری است.',
+        ];
 
-    public function addVariant(Request $request, $id) {
-        $campain = Campain::find($id);
-        foreach ($request->variantIds as $variantId) {
-            $product_variant = ProductHasVariant::find($variantId);
-            $product_variant->campains()->attach($campain);
+        $validator = Validator::make($request->all(), [
+            'status' => 'required',
+            'promotion_price' => 'required|ends_with:00',
+            'promotion_limit' => 'required',
+            'promotion_order_limit' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors()->first();
+            return response()->json([
+                'status' => false,
+                'data' => [
+                    'errors' => $errors,
+                ]
+            ]);
         }
+
+        $product_variant = ProductHasVariant::find($request->id);
+
+//        if ($product_variant->stock_count < $request->promotion_limit)
+//        {
+//            $errors = 'عددی که برای تعداد در تخفیف در نظر گرفته اید از ';
+//        }
+
+        if ($request->status == 0) {
+            $status = 'inactive';
+        } elseif ($request->status == 1) {
+            $status = 'active';
+        }
+
+        $promotion = Promotion::updateOrCreate(['id' => $request->promotion_variant_id], [
+            'promotion_price' => $request->promotion_price,
+            'percent' => $request->promotion_percent,
+            'promotion_limit' => $request->promotion_limit,
+            'promotion_order_limit' => $request->promotion_order_limit,
+            'status' => $status,
+            'campain_id' => $request->campain_id,
+        ]);
+
+        $product_variant = ProductHasVariant::find($request->id);
+
+        $promotion->productVariants()->sync($product_variant);
 
         return response()->json([
-           'status' => true,
-            'data' => [],
+            'status' => true,
+            'data' => [
+                'promotion_variant_id' => $request->campain_id,
+            ]
         ]);
     }
 
-    public function variants(Request $request, $id) {
-        $product_variants = Campain::find($id)->productVariants;
-        return view('staffpromotion::campains.addVariants', compact('product_variants'));
+    public function ended()
+    {
+        if (count(Campain::where('status', 'ended')->get())) {
+            $campains = Campain::where('status', 'ended')->paginate(1);
+        } else {
+            $campains = [];
+        }
+
+        return view('staffpromotion::campains.ended', compact('campains'));
     }
 
-    public function removeVariant(Request $request,$id)
+//
+//    public function search(Request $request)
+//    {
+//        ($request->paginatorNum)? $paginatorNum = $request->paginatorNum : $paginatorNum = 2;
+//        if($request->sort == 'desc') { $sort_type = 'created_at'; $sort_value = 'desc'; }
+//        if($request->sort == 'price_low') { $sort_type = 'sale_price'; $sort_value = 'asc'; }
+//        if($request->sort == 'price_high') { $sort_type = 'sale_price'; $sort_value = 'desc'; }
+//
+//
+//        if(is_null($request['query']))
+//        {
+//            $product_variants = ProductHasVariant::orderBy($sort_type, $sort_value)->paginate($paginatorNum);
+//        }
+//        else
+//        {
+//            $product_variants = ProductHasVariant::orderBy($sort_type, $sort_value)->paginate($paginatorNum);
+//        }
+//
+//        (is_null($product_variants))? $product_variants = [] : '';
+//        return view('staffpromotion::campains.variantsLoader',
+//            compact('product_variants'));
+//
+//    }
+
+//    public function addVariant(Request $request, $id) {
+//        $campain = Campain::find($id);
+//        foreach ($request->variantIds as $variantId) {
+//            $product_variant = ProductHasVariant::find($variantId);
+//            $product_variant->campains()->attach($campain);
+//        }
+//
+//        return response()->json([
+//           'status' => true,
+//            'data' => [],
+//        ]);
+//    }
+//
+//    public function variants(Request $request, $id) {
+//        $product_variants = Campain::find($id)->productVariants;
+//        return view('staffpromotion::campains.addVariants', compact('product_variants'));
+//    }
+//
+//    public function removeVariant(Request $request,$id)
+//    {
+//        $variant_id = $request->promotionVariantId;
+//        Log::info($variant_id);
+//        $campain = Campain::find($id);
+//        Log::info($campain);
+//        $campain->productVariants()->delete(1);
+//        return response()->json([
+//            'status' => true,
+//            'data' => true,
+//        ]);
+//    }
+//
+//    public function removeAll($id)
+//    {
+//        Campain::find($id)->productVariants()->detach();
+//        return response()->json([
+//           'status' => true,
+//           'data' => true,
+//        ]);
+//    }
+
+
+
+
+
+
+
+
+
+    public function loadProductVariants(Request $request, ProductHasVariant $product_variants, $id)
     {
-        $variant_id = $request->promotionVariantId;
-        Log::info($variant_id);
-        $campain = Campain::find($id);
-        Log::info($campain);
-        $campain->productVariants()->delete(1);
+        (!$request->paginatorNum)? $request->paginatorNum = 2 : '';
+
+        $product_variants = $this->ProductVariantsSearch($request, $product_variants);
+
+        (!is_null($request['query'])? $query = $request['query'] : $query = '');
+        (!is_null($request['type'])? $type = $request['type'] : $type = '');
+
+        return view('staffpromotion::campains.ajax-load-variants',
+            compact('product_variants', 'query', 'type'));
+    }
+
+    public function ProductVariantsSearch($request, $product_variants)
+    {
+        $product_variants = $product_variants->newQuery();
+
+        $search_keyword = ltrim($request['query'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
+        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
+
+        if ($request->type == 'all' && !is_null($request['query'])) {
+            $product_variants = $product_variants->whereHas('product', function ($query) use ($search_keyword) {
+                $query->where('product_code', 'LIKE', '%' . $search_keyword . '%');
+                $query->orWhere('title_fa', 'LIKE', '%' . $search_keyword . '%');
+            });
+            $product_variants = $product_variants->orWhere('variant_code', 'LIKE', "%{$search_keyword}%");
+        }
+
+        if ($request->type == 'product_id' && !is_null($request['query'])) {
+            $product_variants = $product_variants->whereHas('product', function ($query) use ($search_keyword) {
+                $query->where('product_code', 'LIKE', '%' . $search_keyword . '%');
+            });
+        }
+
+        if ($request->type == 'product_name' && !is_null($request['query'])) {
+            $product_variants = $product_variants->whereHas('product', function ($query) use ($search_keyword) {
+                $query->where('title_fa', 'LIKE', '%' . $search_keyword . '%');
+            });
+        }
+
+        if ($request->type == 'product_variant_id' && !is_null($request['query'])) {
+            $product_variants = $product_variants->where('variant_code', 'LIKE', "%{$search_keyword}%");
+        }
+
+        if (!is_null($request->sort)) {
+            if ($request->sort == 'desc') {
+                $product_variants->orderBy('created_at', 'desc');
+            }
+
+            if ($request->sort == 'price_low') {
+                $product_variants->orderBy('sale_price', 'asc');
+            }
+
+            if ($request->sort == 'price_high') {
+                $product_variants->orderBy('sale_price', 'desc');
+            }
+        }
+
+        return $product_variants->paginate($request->paginatorNum);
+
+    }
+
+
+
+
+
+    public function done()
+    {
+        return view('staffpromotion::campains.done', compact('promotions'));
+    }
+
+    public function delete(Request $request){
+        Promotion::find($request->promotionVariantId)->delete();
         return response()->json([
             'status' => true,
             'data' => true,
         ]);
     }
 
-    public function removeAll($id)
+
+
+    public function search(Request $request, Promotion $promotions)
     {
-        Campain::find($id)->productVariants()->detach();
-        return response()->json([
-           'status' => true,
-           'data' => true,
-        ]);
+        $paginate_type = 'active';
+        (!$request->paginatorNum)? $request->paginatorNum = 10 : '';
+        $promotions = $promotions->with('productVariants');
+
+        $search_keyword = ltrim($request->search['title'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
+        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
+
+        $promotions = $this->promotionSearch($request, $promotions, $paginate_type);
+
+
+        (!is_null($request->search['title'])? $query = $request->search['title'] : $query = '');
+        (!is_null($request['type'])? $request['type'] : $type = '');
+
+        $paginate_type = 'active';
+
+        return view('staffpromotion::campains.ajax-load-promotions',
+            compact('promotions', 'query', 'type', 'paginate_type'));
+
     }
+
+
+    public function promotionSearch($request, $promotions, $paginate_type)
+    {
+        $promotions = $promotions->newQuery();
+
+        $search_keyword = ltrim($request->search['title'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
+        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
+
+        if ($request->search['type'] == 'all' && !is_null($search_keyword)) {
+            $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {
+                $query->whereHas('product', function ($query) use ($search_keyword) {
+                    $query->where('title_fa', 'LIKE', '%' . $search_keyword . '%');
+                    $query->orWhere('product_code', 'LIKE', '%' . $search_keyword . '%');
+                });
+                $query->orWhere('variant_code', 'LIKE', "%{$search_keyword}%");
+            });
+
+            if ($paginate_type == 'active') {
+                $promotions->where('status', '!=', 'ended');
+            }
+        }
+
+        if ($request->search['type'] == 'product_id' && !is_null($search_keyword)) {
+            $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {
+                $query->whereHas('product', function ($query) use ($search_keyword) {
+                    $query->where('product_code', 'LIKE', '%' . $search_keyword . '%');
+                });
+            });
+        }
+
+        if ($request->search['type'] == 'product_name' && !is_null($search_keyword)) {
+            $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {
+                $query->whereHas('product', function ($query) use ($search_keyword) {
+                    $query->where('title_fa', 'LIKE', '%' . $search_keyword . '%');
+                });
+            });
+        }
+
+        if ($request->search['type'] == 'product_variant_id' && !is_null($search_keyword)) {
+            $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {
+                $query->where('variant_code', 'LIKE', "%{$search_keyword}%");
+            });
+        }
+
+        if (isset($request->search['status']) && $request->search['status'] == 'active') {
+            if ($paginate_type == 'active') {
+                $promotions->where('status', 'active');
+            }
+        }
+
+        if (isset($request->search['status']) && $request->search['status'] == 'inactive') {
+            $promotions->where('status', 'inactive');
+        }
+
+        if (isset($request->search['status']) && !is_null($request->search['start_from'])) {
+            $promotions->where('start_at', '>=', $request->search['start_from']);
+        }
+
+        if (isset($request->search['status']) && !is_null($request->search['end_to'])) {
+            $promotions->where('start_at', '<=', $request->search['end_to']);
+        }
+
+        if ($paginate_type == 'ended') {
+            $promotions->where('status', 'ended');
+        }
+
+        return $promotions->paginate($request->paginatorNum);
+    }
+
 
 }

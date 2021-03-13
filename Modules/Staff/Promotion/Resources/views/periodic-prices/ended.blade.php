@@ -866,7 +866,11 @@
                                             </div>
                                         </a>
 
-                                        {{ $promotions->links('staffpromotion::layouts.pagination.custom-pagination') }}
+
+                                        @if(count($promotions))
+                                         {{ $promotions->links('staffpromotion::layouts.pagination.custom-pagination') }}
+                                        @endif
+
                                         <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator js-paginator">
                                                 @if(count($promotions))

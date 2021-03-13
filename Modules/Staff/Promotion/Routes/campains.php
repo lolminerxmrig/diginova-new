@@ -22,8 +22,14 @@ Route::domain('staff.diginova.test')->prefix('campains')->name('staff.campains.'
     Route::get('/', [StaffCampainController::class, 'index'])
         ->name('index');
 
+    Route::post('moveToEnds', [StaffCampainController::class, 'moveToEnds'])
+        ->name('moveToEnds');
+
     Route::get('create', [StaffCampainController::class, 'create'])
         ->name('create');
+
+    Route::get('ended', [StaffCampainController::class, 'ended'])
+        ->name('ended');
 
     Route::post('update/{id}', [StaffCampainController::class, 'update'])
         ->name('update');
@@ -31,19 +37,65 @@ Route::domain('staff.diginova.test')->prefix('campains')->name('staff.campains.'
     Route::get('{id}', [StaffCampainController::class, 'manage'])
         ->name('manage');
 
-    Route::get('{id}/search', [StaffCampainController::class, 'search'])
+
+
+    Route::get('searchCampain', [StaffCampainController::class, 'searchCampain'])
+        ->name('searchCampain');
+
+    Route::post('searchCampain', [StaffCampainController::class, 'searchCampain'])
+        ->name('searchCampain');
+
+    Route::post('campainStatus', [StaffCampainController::class, 'campainStatus'])
+        ->name('campainStatus');
+
+    Route::post('removeCampain/{id}', [StaffCampainController::class, 'removeCampain'])
+        ->name('removeCampain');
+
+    Route::post('render-add-variants-rows', [StaffCampainController::class, 'renderAddVariantsRows'])
+        ->name('renderAddVariantsRows');
+
+    Route::get('ended/search', [StaffCampainController::class, 'endedCampainSearch'])
+        ->name('endedCampainSearch');
+
+    Route::post('ended/campainSearch', [StaffCampainController::class, 'endedCampainSearch'])
+        ->name('endedCampainSearch');
+
+    Route::post('search', [StaffCampainController::class, 'search'])
         ->name('search');
 
-    Route::post('addVariant/{id}', [StaffCampainController::class, 'addVariant'])
-        ->name('addVariant');
+    Route::get('search', [StaffCampainController::class, 'search'])
+        ->name('search');
 
-    Route::get('variants/{id}', [StaffCampainController::class, 'variants'])
-        ->name('variants');
 
-    Route::post('removeVariant/{id}', [StaffCampainController::class, 'removeVariant'])
-    ->name('removeVariant');
 
-    Route::post('removeAll/{id}', [StaffCampainController::class, 'removeAll'])
-        ->name('removeAll');
+//
+//
+//    Route::post('{id}/load-product-variants', [StaffCampainController::class, 'loadProductVariants'])
+//        ->name('loadProductVariants');
+//
+//    Route::get('{id}/load-product-variants', [StaffCampainController::class, 'loadProductVariants'])
+//        ->name('loadProductVariants');
+//
+//
+//
+//
+//    Route::post('{id}/delete', [StaffCampainController::class, 'delete'])
+//        ->name('delete');
+//
+//    Route::get('done/index', [StaffCampainController::class, 'done'])
+//        ->name('done');
+//
+//
+//
+//
+//    Route::post('save', [StaffCampainController::class, 'save'])
+//        ->name('save');
+//
+
+
+
+
+
+
 
 });
