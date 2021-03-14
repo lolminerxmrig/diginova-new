@@ -274,7 +274,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Voucher/Resources/views" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
@@ -282,11 +282,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Voucher/Resources/views" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Voucher" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
       <recent name="$PROJECT_DIR$/public/seller/js" />
       <recent name="$PROJECT_DIR$/public/staff/js/js" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Landing/Resources/views/layouts/pagination" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/temp" />
@@ -563,6 +563,10 @@
       <workItem from="1615573008547" duration="5628000" />
       <workItem from="1615605957054" duration="25607000" />
       <workItem from="1615645887297" duration="9500000" />
+      <workItem from="1615660772937" duration="12641000" />
+      <workItem from="1615698912803" duration="14644000" />
+      <workItem from="1615725668150" duration="15825000" />
+      <workItem from="1615742740566" duration="11981000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -608,6 +612,15 @@
           <url>file://$PROJECT_DIR$/public/seller/js/tags5.js</url>
           <line>2212</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/Modules/Staff/Landing/Http/Controllers/StaffLandingController.php</url>
+          <line>145</line>
+          <properties>
+            <option name="className" value="\Modules\Staff\Landing\Http\Controllers\StaffLandingController" />
+            <option name="methodName" value="statusGroup" />
+          </properties>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

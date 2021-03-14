@@ -173,6 +173,19 @@
                                 <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های هوشمند</a>
                             </li>
 
+                            <li>
+                                <a>کد تخفیف</a>
+                                <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter menu-child-margin">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li>
+                                            <a href="{{ route('staff.vouchers.index') }}">مدیریت کد‌تخفیف</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('staff.vouchers.create') }}">ایجاد کد‌تخفیف</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
 
                         </ul>
                     </div>

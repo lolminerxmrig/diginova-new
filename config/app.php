@@ -183,6 +183,7 @@ return [
         Modules\Staff\Promotion\Providers\StaffPromotionServiceProvider::class,
         Modules\Staff\Landing\Providers\StaffLandingServiceProvider::class,
         Modules\Staff\Page\Providers\StaffPageServiceProvider::class,
+        Modules\Staff\Voucher\Providers\StaffVoucherServiceProvider::class,
 
 
 

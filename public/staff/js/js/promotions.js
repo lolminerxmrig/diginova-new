@@ -331,7 +331,6 @@ ProductListController = {
                 },
                 function (errors) {
                     Promotion.displayError(errors.errors);
-                    $submitButton.prop('disabled', false);
                 }
             )
         });
