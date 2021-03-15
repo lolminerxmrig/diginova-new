@@ -573,13 +573,13 @@
 <script src="{{ asset('seller/js/tableView.js') }}"></script>
 <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
 <style>
-/*.c-ui-table__cell {*/
-/*    text-align: right !important;*/
-/*}*/
+.c-ui-table__cell {
+    text-align: right !important;
+}
 
-/*.c-ui-table__header {*/
-/*    text-align: right !important;*/
-/*}*/
+.c-ui-table__header {
+    text-align: right !important;
+}
 </style>
 @endsection
 @section('content')

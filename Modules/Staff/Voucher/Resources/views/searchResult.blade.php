@@ -21,7 +21,7 @@
                 <th class="c-ui-table__header  ">
                     <span class="js-search-table-column">عنوان کد تخفیف</span>
                 </th>
-                <th class="c-ui-table__header  ">
+                <th class="c-ui-table__header c-ui-table__header--nowrap  ">
                     <span class="js-search-table-column">میزان تخفیف</span>
                 </th>
                 <th class="c-ui-table__header c-ui-table__header--nowrap ">
@@ -87,12 +87,12 @@
                         </td>
                         <td class="c-ui-table__cell">
                             <div class="c-join__status-cell">
-                                <span style="text-align: center">{{ (!is_null($voucher->max_usable))? 'قابل استفاده: ' . persianNum($voucher->max_usable) . ' نفر' : '' }}</span>
-                                {{--                                                                <span style="text-align: center">{{ (!is_null($voucher->max_usable))? 'بیشترین تعداد استفاده: ' . persianNum($voucher->max_usable) . ' عدد' : '' }}</span>--}}
-                                <span style="text-align: center">{{ (!is_null($voucher->type) && ($voucher->type == 'first_purchase'))? 'فقط برای خرید اول' : '' }}</span>
-                                <span style="text-align: center">{{ (!is_null($voucher->freeـshipping) && ($voucher->freeـshipping == 'true'))? 'با هزینه ارسال رایگان' : '' }}</span>
+                                <span style="text-align: right">{{ (!is_null($voucher->max_usable))? 'قابل استفاده: ' . persianNum($voucher->max_usable) . ' نفر' : '' }}</span>
+                                {{--                                                                <span style="text-align: right">{{ (!is_null($voucher->max_usable))? 'بیشترین تعداد استفاده: ' . persianNum($voucher->max_usable) . ' عدد' : '' }}</span>--}}
+                                <span style="text-align: right">{{ (!is_null($voucher->type) && ($voucher->type == 'first_purchase'))? 'فقط برای خرید اول' : '' }}</span>
+                                <span style="text-align: right">{{ (!is_null($voucher->freeـshipping) && ($voucher->freeـshipping == 'true'))? 'با هزینه ارسال رایگان' : '' }}</span>
                                 @if($voucher->categories()->exists())
-                                    <span style="text-align: center"> فعال برای دسته: {{ $voucher->categories()->first()->name }} </span>
+                                    <span style="text-align: right"> فعال برای دسته: {{ $voucher->categories()->first()->name }} </span>
                                 @endif
                                 {{--                                                                {{ (!!is_null($voucher->max_usable) && ($voucher->type !== 'first_purchase') && ($voucher->freeـshipping !== 'true'))? '-' : '' }}--}}
                             </div>

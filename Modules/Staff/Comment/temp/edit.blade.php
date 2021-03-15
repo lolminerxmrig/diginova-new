@@ -198,21 +198,21 @@
                                                         <div class="c-content-categories__summary">
                                                             <div class="c-content-categories__summary-breadcrumbs">
                                                                 <span class="">دسته های انتخابی شما:</span>
-                                                                <ul class="js-selected-category c-content-categories__selected-list"
-                                                                    id="breadcrumbs">
-                                                                    <!-- ajax -->
-                                                                    @foreach($comment->categories as $category)
-                                                                        <li class="select2-selection__choice" data-cat-id="{{ $category->id }}" style="background: #889098;
-                                                                        color: #ffffff;height: 25px;border-radius: 33px;font-size: 12px;
-                                                                        padding: 5px 11px 0px 11px;margin-left: 5px;">
-                                                                            <span class="select2-selection__choice__remove" role="presentation">{{ $category->name }}</span>
-                                                                            <a class="select2-selection__choice__remove remove-breadcrumb" data-cat-id="{{ $category->id }}"
-                                                                               role="presentation" style="margin-right: 5px; font-weight: bold; padding-right: 2px;
-                                                                                color: white;">×</a>
-                                                                        </li>
-                                                                    @endforeach
+{{--                                                                <ul class="js-selected-category c-content-categories__selected-list"--}}
+{{--                                                                    id="breadcrumbs">--}}
+{{--                                                                    <!-- ajax -->--}}
+{{--                                                                    @foreach($comment->categories as $category)--}}
+{{--                                                                        <li class="select2-selection__choice" data-cat-id="{{ $category->id }}" style="background: #889098;--}}
+{{--                                                                        color: #ffffff;height: 25px;border-radius: 33px;font-size: 12px;--}}
+{{--                                                                        padding: 5px 11px 0px 11px;margin-left: 5px;">--}}
+{{--                                                                            <span class="select2-selection__choice__remove" role="presentation">{{ $category->name }}</span>--}}
+{{--                                                                            <a class="select2-selection__choice__remove remove-breadcrumb" data-cat-id="{{ $category->id }}"--}}
+{{--                                                                               role="presentation" style="margin-right: 5px; font-weight: bold; padding-right: 2px;--}}
+{{--                                                                                color: white;">×</a>--}}
+{{--                                                                        </li>--}}
+{{--                                                                    @endforeach--}}
 
-                                                                </ul>
+{{--                                                                </ul>--}}
                                                             </div>
 
                                                             <div
@@ -234,10 +234,10 @@
                                                     </div>
                                                 </div>
 
-                                                @foreach($comment->categories as $category)
-                                                    <input type="text" name="category_group" class="category_group"
-                                                           value="{{ $category->id }}"  style="visibility: hidden">
-                                                @endforeach
+{{--                                                @foreach($comment->categories as $category)--}}
+{{--                                                    <input type="text" name="category_group" class="category_group"--}}
+{{--                                                           value="{{ $category->id }}"  style="visibility: hidden">--}}
+{{--                                                @endforeach--}}
 
                                             </section>
 

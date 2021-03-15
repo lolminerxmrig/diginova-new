@@ -72,9 +72,9 @@ class StaffCommentController extends Controller
         return view('staffcomment::create', compact('categories'));
     }
 
-    public function edit($comment)
+    public function edit($id)
     {
-        $comment = Comment::where('en_name', $comment)->first();
+        $comment = Comment::find($id);
         $comments = Comment::all();
         $categories = Category::get()->unique('name');
         $media = Media:: all();

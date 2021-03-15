@@ -15,16 +15,17 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('parent_id')->nullable();
+            $table->integer('parent_id')->default(0);
             $table->text('text');
             $table->string('title')->nullable();
             $table->json('advantages')->nullable();
             $table->json('disadvantages')->nullable();
             $table->boolean('is_anonymous')->default(0);
-            $table->boolean('is_recommended')->nullable();
-            $table->integer('publish_status')->default(0);
+            $table->string('is_recommended')->nullable();
+            $table->string('publish_status')->default('not_checked');
             $table->foreignId('product_id');
             $table->foreignId('customer_id');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
