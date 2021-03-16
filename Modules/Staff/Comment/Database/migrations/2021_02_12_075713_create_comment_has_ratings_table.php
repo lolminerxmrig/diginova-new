@@ -23,7 +23,7 @@ class CreateCommentHasRatingsTable extends Migration
 //            $table->softDeletes();
 
             $table->foreign('comment_id')->references('id')->on('comments');
-            $table->foreign('rating_id')->references('id')->on('comment_ratings');
+            $table->foreign('rating_id')->references('id')->on('comment_has_ratings');
             $table->foreign('product_id')->references('id')->on('products');
         });
     }

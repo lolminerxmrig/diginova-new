@@ -1,6 +1,6 @@
 @extends('sellerauth::layouts.auth')
 
-@section('title') دیجی‌کالا @endsection
+@section('title') {{ $site_name }} @endsection
 
 @section('head')
 <script src="{{ asset('seller/js/loginAction.js') }}"></script>
@@ -14,7 +14,7 @@
         <a href="#" class="c-new-login__logo">
         <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
         </a>
-        <h1 class="c-new-login__header">به مرکز فروشندگان دیجی‌کالا <br> خوش آمدید!</h1>
+        <h1 class="c-new-login__header">به مرکز فروشندگان {{ $site_name }} <br> خوش آمدید!</h1>
       </header>
 
       <div class="c-new-login__sidebar-center">
@@ -34,7 +34,7 @@
         <a href="#" class="c-new-login__logo">
         <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
         </a>
-        <h1 class="c-new-login__header">به مرکز فروشندگان دیجی‌کالا <br> خوش آمدید!</h1>
+        <h1 class="c-new-login__header">به مرکز فروشندگان {{ $site_name }} <br> خوش آمدید!</h1>
       </header>
     </div>
   </aside>
@@ -104,7 +104,7 @@
     <a target="_blank" href="#">ثبت رسید سفارش</a>
   </li>
   <li class="c-new-login__content-footer-item">
-    <a target="_blank" href="#">فروشگاه اینترنتی دیجی‌کالا</a>
+    <a target="_blank" href="#">فروشگاه اینترنتی {{ $site_name }}</a>
   </li>
   <li class="c-new-login__content-footer-item">
     <a target="_blank" href="#">مرکز آموزش فروشندگان</a>

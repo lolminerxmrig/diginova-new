@@ -1,6 +1,6 @@
 @extends('customerauth::layouts.auth')
 
-@section('title') ورود/ثبت‌نام | فروشگاه اینترنتی دیجی‌کالا @endsection
+@section('title') ورود/ثبت‌نام | فروشگاه اینترنتی {{ $site_name }} @endsection
 
 @section('head')
 <script src="{{ asset('assets/js/otpAction.js') }} "></script>

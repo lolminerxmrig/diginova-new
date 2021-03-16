@@ -19,7 +19,7 @@ class StaffRatingServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
 
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'stafftype');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffrating');
 
         Relation::morphMap([
             'Rating' => 'Modules\Staff\Rating\Models\Rating',

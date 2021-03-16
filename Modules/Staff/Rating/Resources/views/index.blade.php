@@ -14,9 +14,9 @@
             <div class="c-content-page c-content-page--plain c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-content-page__header">
-                        <span class="c-content-page__header-action">مدیریت گزینه های کالا</span>
+                        <span class="c-content-page__header-action">مدیریت گزینه های امتیازدهی</span>
                         <span
-                            class="c-content-page__header-desc">از این صفحه می توانید گزینه های کالا را مدیریت، ویرایش و حذف کنید</span>
+                            class="c-content-page__header-desc">از این صفحه می توانید گزینه های امتیازدهی کالا ها را مدیریت، ویرایش و حذف کنید</span>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 ">
                                                 <div style="
                   color: #606265;
-                  ">مدیریت گزینه های کالا
+                  ">مدیریت گزینه های امتیازدهی
                                                 </div>
                                             </h2>
                                             <div
@@ -126,17 +126,17 @@
                                                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6 edit-form-section">
 
                                                         <div class="field-wrapper" style="margin-right: 15px;">
-                                                            <label for="type-field" class="uk-form-label" style="margin-right: 10px; margin-top: 30px;"> افزودن گزینه های</label>
+                                                            <label for="type-field" class="uk-form-label" style="margin-right: 10px; margin-top: 30px;">افزودن گزینه</label>
                                                             <input type="text" class="c-content-input__origin js-attribute-old-value" id="type-field" name="type-field" style="width: 61%;margin-right: 10px;float: right;">
 
-                                                            <a class="c-ui-btn c-ui-btn--next mr-a js-continue-btn create-field " style="margin-right: 10px;">ایجاد گزینه های</a>
+                                                            <a class="c-ui-btn c-ui-btn--next mr-a js-continue-btn create-field " style="margin-right: 10px;">ایجاد گزینه</a>
 
                                                         </div>
                                                         <div>
                                                         </div>
                                                     </div>
 
-                                                    <label class="uk-form-label edit-form-section" style="margin-bottom: 15px;margin-top: 40px;margin-right: 40px;">لیست گزینه های:</label>
+                                                    <label class="uk-form-label edit-form-section" style="margin-bottom: 15px;margin-top: 40px;margin-right: 40px;">لیست گزینه:</label>
 
                                                     <div id="dragable_section" class="ui-sortable">
     {{--                                                            <div class="ajax-append connectedSortable" id="sortable2"></div>--}}
@@ -158,7 +158,7 @@
                                                                     <div class="c-modal-notification__content c-modal-notification__content--limited">
                                                                         <h2 class="c-modal-notification__header">هشدار</h2>
 
-                                                                        <p class="c-modal-notification__text">با حذف گزینه های مورد نظر ، این گزینه های از فیلتر محصولات دسته انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
+                                                                        <p class="c-modal-notification__text">با حذف گزینه مورد نظر ، این گزینه از نمودار امتیازدهی محصولات دسته انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
                                                                         <div class="c-modal-notification__actions">
                                                                             <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
                                                                             <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
@@ -245,7 +245,7 @@ $('#submit-form').on('click', function (e) {
             window.location.href = "{{ route('staff.ratings.index') }}";
         {{--$.toast({--}}
             {{--    heading: 'موفق!',--}}
-            {{--    text: "گزینه های کالا با موفقیت ذخیره شد",--}}
+            {{--    text: "گزینه های امتیازدهی با موفقیت ذخیره شد",--}}
             {{--    bgColor: '#3DC3A1',--}}
             {{--    textColor: '#fff',--}}
             {{--});--}}
@@ -408,7 +408,7 @@ $(".create-field").on('click', function (){
     field += '<div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer ui-sortable-handle" style="margin-right: 0px;"> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up ui-sortable-handle" style="margin-top: -23px;"></span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg ui-sortable-handle" style="padding-top: 2px;padding-bottom: 2px;"></span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down ui-sortable-handle"></span></div>';
     field += '<div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">';
     field += '<div class="field-wrapper"><input type="text" data-id="' + new_id + '" value="' + type_field + '" class="c-content-input__origin c-ui-input--deactive js-suggested-title-fa js-edit-mode-suggested-title-fa type_field" name="type_field" style="margin-left: 10px;" disabled>';
-    field +='<a class="c-ui-btn c-ui-btn--outline-blue edit-field-btn">ویرایش گزینه های</a><a type="button" class="c-content-categories__search-reset remove-field-btn" style="min-height: 39px !important;height: 39px;"></a></div></div></div>';
+    field +='<a class="c-ui-btn c-ui-btn--outline-blue edit-field-btn">ویرایش گزینه</a><a type="button" class="c-content-categories__search-reset remove-field-btn" style="min-height: 39px !important;height: 39px;"></a></div></div></div>';
 
     if(type_field.length > 1){
         $(".fields-box").append(field);
@@ -470,7 +470,7 @@ $(document).on('click', '.confirm-btn', function (){
     $(this).closest('.field-wrapper').find('input').addClass('c-ui-input--deactive');
 
 
-    var chenge_btn = '<a class="c-ui-btn c-ui-btn--outline-blue edit-field-btn">ویرایش گزینه های</a>';
+    var chenge_btn = '<a class="c-ui-btn c-ui-btn--outline-blue edit-field-btn">ویرایش گزینه</a>';
     $(this).closest('.field-wrapper').find(".cancell-btn").remove();
     $(this).closest('.field-wrapper').find(".confirm-btn").replaceWith(chenge_btn);
 });
@@ -483,7 +483,7 @@ $(document).on('click', '.cancell-btn', function (){
     var confirm_btn_val = $(this).closest('.field-wrapper').find('input').attr('data-old');
     $(this).closest('.field-wrapper').find('input').val(confirm_btn_val);
 
-    var chenge_btn = '<a class="c-ui-btn c-ui-btn--outline-blue edit-field-btn">ویرایش گزینه های</a>';
+    var chenge_btn = '<a class="c-ui-btn c-ui-btn--outline-blue edit-field-btn">ویرایش گزینه</a>';
     $(this).closest('.field-wrapper').find(".confirm-btn").replaceWith(chenge_btn);
     $(this).remove();
 

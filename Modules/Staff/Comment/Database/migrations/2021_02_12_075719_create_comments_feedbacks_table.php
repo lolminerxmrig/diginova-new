@@ -15,7 +15,7 @@ class CreateCommentsFeedbacksTable extends Migration
     {
         Schema::create('comments_feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->integer('status')->nullable();
+            $table->string('status')->nullable();
             $table->foreignId('comment_id');
             $table->foreignId('customer_id');
             $table->timestamps();

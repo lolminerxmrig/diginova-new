@@ -12,6 +12,7 @@ use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Product\Models\ProductHasVariant;
+use Modules\Staff\Rating\Models\Rating;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 use Modules\Staff\Variant\Models\VariantGroup;
@@ -53,6 +54,11 @@ class Category extends Model
     public function types()
     {
         return $this->morphedByMany(Type::class, 'categorizable');
+    }
+
+    public function ratings()
+    {
+        return $this->morphedByMany(Rating::class, 'categorizable');
     }
 
     public function products()

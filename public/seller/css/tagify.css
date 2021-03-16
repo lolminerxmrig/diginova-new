@@ -22,7 +22,7 @@
     --tag--max-width: auto;
     --tag-hide-transition: 0.3s;
     --placeholder-color: rgba(0, 0, 0, 0.4);
-    --placeholder-color-focus: rgba(0, 0, 0, 0.25);
+    /*--placeholder-color-focus: rgba(0, 0, 0, 0.25);*/
     --loader-size: 0.8em;
     display: flex;
     align-items: flex-start;
@@ -56,11 +56,11 @@
     }
 }
 
-.tagify.tagify--focus {
-    transition: 0s;
-    border-color: #7fe7f6;
-    border-color: var(--tags-focus-border-color);
-}
+/*.tagify.tagify--focus {*/
+/*    transition: 0s;*/
+/*    border-color: #7fe7f6;*/
+/*    border-color: var(--tags-focus-border-color);*/
+/*}*/
 .tagify[readonly]:not(.tagify--mix) {
     cursor: default;
 }
@@ -149,8 +149,8 @@
     -webkit-user-select: text;
     user-select: text;
     cursor: text;
-    margin: -2px;
-    padding: 2px;
+    /*margin: -2px;*/
+    /*padding: 2px;*/
     max-width: 350px;
 }
 
@@ -213,9 +213,9 @@
 .tagify__tag.tagify--noAnim > div::before {
     animation: none;
 }
-.tagify__tag.tagify--notAllowed:not(.tagify__tag--editable) div > span {
-    opacity: 0.5;
-}
+/*.tagify__tag.tagify--notAllowed:not(.tagify__tag--editable) div > span {*/
+/*    opacity: 0.5;*/
+/*}*/
 
 .tagify__tag[readonly] .tagify__tag__removeBtn {
     display: none;
@@ -225,21 +225,21 @@
     box-shadow: none;
     filter: brightness(0.95);
 }
-.tagify__tag--editable > div {
-    color: #000;
-    color: var(--tag-text-color--edit, #000);
-}
-.tagify__tag--editable > div::before {
-    box-shadow: 0 0 0 2px #d3e2e2 inset !important;
-    box-shadow: 0 0 0 2px var(--tag-hover, #d3e2e2) inset !important;
-}
-.tagify__tag--editable > .tagify__tag__removeBtn {
-    pointer-events: none;
-}
-.tagify__tag--editable > .tagify__tag__removeBtn::after {
-    opacity: 0;
-    transform: translateX(100%) translateX(5px);
-}
+/*.tagify__tag--editable > div {*/
+/*    color: #000;*/
+/*    color: var(--tag-text-color--edit, #000);*/
+/*}*/
+/*.tagify__tag--editable > div::before {*/
+/*    box-shadow: 0 0 0 2px #d3e2e2 inset !important;*/
+/*    box-shadow: 0 0 0 2px var(--tag-hover, #d3e2e2) inset !important;*/
+/*}*/
+/*.tagify__tag--editable > .tagify__tag__removeBtn {*/
+/*    pointer-events: none;*/
+/*}*/
+/*.tagify__tag--editable > .tagify__tag__removeBtn::after {*/
+/*    opacity: 0;*/
+/*    transform: translateX(100%) translateX(5px);*/
+/*}*/
 
 .tagify__tag__removeBtn {
     order: 5;
@@ -303,36 +303,36 @@
 .tagify--mix .tagify__input:empty::before {
     display: inline-block;
 }
-.tagify__input:focus {
-    outline: 0;
-}
-.tagify__input:focus::before {
-    transition: 0.2s ease-out;
-    opacity: 0;
-    transform: translatex(6px);
-}
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    .tagify__input:focus::before {
-        display: none;
-    }
-}
-@supports (-ms-ime-align: auto) {
-    .tagify__input:focus::before {
-        display: none;
-    }
-}
-.tagify__input:focus:empty::before {
-    transition: 0.2s ease-out;
-    opacity: 1;
-    transform: none;
-    color: rgba(0, 0, 0, 0.25);
-    color: var(--placeholder-color-focus);
-}
-@-moz-document url-prefix() {
-    .tagify__input:focus:empty::after {
-        display: none;
-    }
-}
+/*.tagify__input:focus {*/
+/*    outline: 0;*/
+/*}*/
+/*.tagify__input:focus::before {*/
+/*    transition: 0.2s ease-out;*/
+/*    opacity: 0;*/
+/*    transform: translatex(6px);*/
+/*}*/
+/*@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {*/
+/*    .tagify__input:focus::before {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+/*@supports (-ms-ime-align: auto) {*/
+/*    .tagify__input:focus::before {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+/*.tagify__input:focus:empty::before {*/
+/*    transition: 0.2s ease-out;*/
+/*    opacity: 1;*/
+/*    transform: none;*/
+/*    color: rgba(0, 0, 0, 0.25);*/
+/*    color: var(--placeholder-color-focus);*/
+/*}*/
+/*@-moz-document url-prefix() {*/
+/*    .tagify__input:focus:empty::after {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
 .tagify__input::before {
     content: attr(data-placeholder);
     height: 1em;

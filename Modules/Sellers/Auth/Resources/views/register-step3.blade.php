@@ -3,7 +3,7 @@
 <html class="uk-modal-page" style="" dir="rtl">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>دیجی‌کالا</title>
+    <title>{{ $site_name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('seller/icon/caf67ad9.ico') }}" type="image/icon">
     <link rel="stylesheet" href="{{ asset('seller/css/select2.css') }}">
@@ -34,7 +34,7 @@
             <li class="c-reg-steps__item c-reg-steps__item--next">
               <div class="c-reg-steps__icon c-reg-steps__icon--checkout"></div>
               <h2 class="c-reg-steps__header">۳. اتمام ثبت نام</h2>
-              <p class="c-reg-steps__description">به جمع فروشندگان دیجی‌کالا خوش آمدید.</p>
+              <p class="c-reg-steps__description">به جمع فروشندگان {{ $site_name }} خوش آمدید.</p>
             </li>
           </ul>
           <footer class="c-new-login__footer">
@@ -569,7 +569,7 @@
               <div class="c-reg-form__col c-reg-form__col--12">
                 <label class="c-reg-form__text" for="business_name">نام فروشگاه</label>
                 <div class="c-ui-input">
-                  <input type="text" name="register[business_name]" class="c-ui-input__field" id="business_name" value="لبقیسمال" placeholder="نام فروشگاه شما در سایت دیجی‌کالا" maxlength="255" required="">
+                  <input type="text" name="register[business_name]" class="c-ui-input__field" id="business_name" value="لبقیسمال" placeholder="نام فروشگاه شما در سایت {{ $site_name }}" maxlength="255" required="">
                 </div>
               </div>
             </div>
@@ -600,7 +600,7 @@
                 <div id="fmcg-type-notification" class="c-reg-form__error uk-hidden">
                   توجه! فروشنده گرامی، برای مشاهده مواد خوراکی مجاز و مدارک مورد نیاز برای فروش در سایت، لطفا به مقاله
                   <a href="https://selleracademy.digikala.com/%d8%b4%d8%b1%d8%a7%db%8c%d8%b7-%d9%81%d8%b1%d9%88%d8%b4-%d9%85%d9%88%d8%a7%d8%af-%d8%ae%d9%88%d8%b1%d8%a7%da%a9%db%8c-%d8%af%d8%b1-%d8%af%db%8c%d8%ac%db%8c-%da%a9%d8%a7%d9%84%d8%a7/" target="_blank">
-                  "شرایط فروش مواد خوراکی در دیجی کالا"
+                  "شرایط فروش مواد خوراکی در {{ $site_name }}"
                   </a>
                   مراجعه کنید
                   در نظر داشته باشید تنها فروش چای دمنوش و قهوه در این گروه نیاز به ارائه مدرک ندارد و سایر مواد خوراکی نیاز به ارائه مدارک جهت فروش دارند.
@@ -635,7 +635,7 @@
             <a target="_blank" href="https://seller.digikala.com/fbs-courier/">ثبت رسید سفارش</a>
           </li>
           <li class="c-new-login__content-footer-item">
-            <a target="_blank" href="http://www.digikala.com/">فروشگاه اینترنتی دیجی‌کالا</a>
+            <a target="_blank" href="http://www.digikala.com/">فروشگاه اینترنتی {{ $site_name }}</a>
           </li>
           <li class="c-new-login__content-footer-item">
             <a target="_blank" href="https://selleracademy.digikala.com/">مرکز آموزش فروشندگان</a>
@@ -726,9 +726,9 @@
         <form class="uk-modal-body uk-modal-body--flex" method="POST" action="https://seller.digikala.com/registration/verify/contract/">
           <input type="hidden" name="action" id="econtract-action">
           <div class="c-econtract">
-            <p class="c-econtract__desc"><strong class="c-econtract__header">فروشنده عزیز،</strong> در راستای اجرای بهینه قرارداد فی مابین و تسهیل ارائه خدمات بهتر به مشتریان، قرارداد همکاری با دیجی‌کالا به صورت الکترونیک در اختیار شما قرار گرفته و در صورت مطالعه و تایید شما، از لحاظ قانونی الزام آور می باشد.</p>
-            <p class="c-econtract__desc">دیجی‌کالا حق تغییر مفاد قرارداد را در هر زمانی داشته و این تغییرات و همچنین اطلاعیه ها و ابلاغیه ها توسط دیجی‌کالا در پنل فروشندگان اعلام می شود که به منزله ی ابلاغ به فروشنده می باشد. فروشندگان متعهد هستند تمامی اطلاعیه ها را با دقت مطالعه نموده و طبق آن عمل نمایند. تغییرات به طور خودکار روی پنل اختصاصی فروشنده قرار گرفته و به منزله ی اصلاحیه و الحاقیه قرارداد محسوب شده و فروشنده متعهد به رعایت مقررات به روز شده می باشد و نیاز به هیچگونه تشریفات دیگری جهت امضا و ابلاغ نمی باشد.</p>
-            <p class="c-econtract__desc">لطفا توجه فرمایید که عدم پذیرش قرارداد همکاری به منزله عدم تمایل شما به همکاری با دیجی‌کالا تلقی شده و تا زمان پذیرش قرارداد امکان استفاده از پنل فروشندگان برای شما میسر نمی باشد.</p>
+            <p class="c-econtract__desc"><strong class="c-econtract__header">فروشنده عزیز،</strong> در راستای اجرای بهینه قرارداد فی مابین و تسهیل ارائه خدمات بهتر به مشتریان، قرارداد همکاری با {{ $site_name }} به صورت الکترونیک در اختیار شما قرار گرفته و در صورت مطالعه و تایید شما، از لحاظ قانونی الزام آور می باشد.</p>
+            <p class="c-econtract__desc">{{ $site_name }} حق تغییر مفاد قرارداد را در هر زمانی داشته و این تغییرات و همچنین اطلاعیه ها و ابلاغیه ها توسط {{ $site_name }} در پنل فروشندگان اعلام می شود که به منزله ی ابلاغ به فروشنده می باشد. فروشندگان متعهد هستند تمامی اطلاعیه ها را با دقت مطالعه نموده و طبق آن عمل نمایند. تغییرات به طور خودکار روی پنل اختصاصی فروشنده قرار گرفته و به منزله ی اصلاحیه و الحاقیه قرارداد محسوب شده و فروشنده متعهد به رعایت مقررات به روز شده می باشد و نیاز به هیچگونه تشریفات دیگری جهت امضا و ابلاغ نمی باشد.</p>
+            <p class="c-econtract__desc">لطفا توجه فرمایید که عدم پذیرش قرارداد همکاری به منزله عدم تمایل شما به همکاری با {{ $site_name }} تلقی شده و تا زمان پذیرش قرارداد امکان استفاده از پنل فروشندگان برای شما میسر نمی باشد.</p>
             <div class="c-econtract__contract-wrapper">
               <div class="c-econtract__contract" id="econtract-content"></div>
             </div>

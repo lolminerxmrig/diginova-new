@@ -9,15 +9,14 @@ use App\Models\Media;
 use Modules\Customers\Auth\Models\Customer;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\Product;
-use Modules\Staff\Comment\Models\CommentHasRating;
 
 
-class Comment extends Model
+class CommentFeedback extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'comments';
-    protected $fillable = ['parent_id', 'text', 'title', 'advantages', 'disadvantages', 'is_anonymous', 'recommend_status', 'publish_status', 'product_id', 'customer_id'];
+    protected $table = 'comments_feedbacks';
+    protected $fillable = ['parent_id', 'text', 'title', 'advantages', 'disadvantages', 'is_anonymous', 'is_recommended', 'publish_status', 'product_id', 'customer_id'];
 
     public function media()
     {
@@ -34,14 +33,9 @@ class Comment extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function feedbacks()
+    public function comment()
     {
-        return $this->hasMany(CommentFeedback::class);
-    }
-
-    public function ratings()
-    {
-        return $this->hasMany(CommentHasRating::class, 'rating_id');
+        return $this->belongsTo(Comment::class);
     }
 
 }

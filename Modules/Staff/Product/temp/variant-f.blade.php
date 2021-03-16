@@ -895,7 +895,7 @@ var noColorNoSizeMode = true;
                                                                                         {{--                                                                   data-default-value="1"--}}
                                                                                         {{--                                                                   checked                                                     disabled/>--}}
                                                                                         {{--                                                            <span class="c-ui-radio__check c-ui-radio__check--small"></span>--}}
-                                                                                        {{--                                                            <span class="c-ui-radio__label">دیجی‌کالا</span>--}}
+                                                                                        {{--                                                            <span class="c-ui-radio__label">{{ $site_name }}</span>--}}
                                                                                         {{--                                                        </label>--}}
                                                                                         {{--                                                        <label class="c-ui-radio c-ui-radio--gap-sm disabled">--}}
                                                                                         {{--                                                            <input type="radio" class="c-ui-radio__origin js-site-digistyle"--}}
@@ -911,7 +911,7 @@ var noColorNoSizeMode = true;
                                                                                         {{--                                                                   data-default-value="0"--}}
                                                                                         {{--                                                                   disabled/>--}}
                                                                                         {{--                                                            <span class="c-ui-radio__check c-ui-radio__check--small"></span>--}}
-                                                                                        {{--                                                            <span class="c-ui-radio__label">دیجی‌کالا و دیجی‌استایل</span>--}}
+                                                                                        {{--                                                            <span class="c-ui-radio__label">{{ $site_name }} و دیجی‌استایل</span>--}}
                                                                                         {{--                                                        </label>--}}
                                                                                         {{--                                                    </div>--}}
                                                                                         {{--                                                </div>--}}
@@ -1272,7 +1272,7 @@ var noColorNoSizeMode = true;
                                     <li>عنوان گارانتی، مدت زمان، شماره تماس، آدرس مرکز خدمات پس از فروش و شرایط
                                         گارانتی کالا بایستی روی تصویر کارت گارانتی بارگذاری شده، وجود داشته باشد.
                                     </li>
-                                    <li>گارانتی‌هایی با مدت زمان کمتر از شش ماه مورد تایید دیجی کالا نیستند.</li>
+                                    <li>گارانتی‌هایی با مدت زمان کمتر از شش ماه مورد تایید {{ $site_name }} نیستند.</li>
                                     <li>
                                         برای کالاهایی که گارانتی مورد تایید اتحادیه دارند، استفاده از گارانتی‌های
                                         متفرقه امکان‌پذیر نیست.

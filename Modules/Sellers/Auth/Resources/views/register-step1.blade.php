@@ -1,6 +1,6 @@
 @extends('sellerauth::layouts.auth')
 
-@section('title') دیجی‌کالا @endsection
+@section('title') {{ $site_name }} @endsection
 
 @section('head')
 <script src="{{ asset('seller/js/indexAction.js') }}"></script>
@@ -29,7 +29,7 @@
         <li class="c-reg-steps__item c-reg-steps__item--next">
           <div class="c-reg-steps__icon c-reg-steps__icon--checkout"></div>
           <h2 class="c-reg-steps__header">۳. اتمام ثبت نام</h2>
-          <p class="c-reg-steps__description">به جمع فروشندگان دیجی‌کالا خوش آمدید.</p>
+          <p class="c-reg-steps__description">به جمع فروشندگان {{ $site_name }} خوش آمدید.</p>
         </li>
       </ul>
       <footer class="c-new-login__footer">
@@ -120,7 +120,7 @@
         <a target="_blank" href="#">ثبت رسید سفارش</a>
       </li>
       <li class="c-new-login__content-footer-item">
-        <a target="_blank" href="#">فروشگاه اینترنتی دیجی‌کالا</a>
+        <a target="_blank" href="#">فروشگاه اینترنتی {{ $site_name }}</a>
       </li>
       <li class="c-new-login__content-footer-item">
         <a target="_blank" href="#">مرکز آموزش فروشندگان</a>

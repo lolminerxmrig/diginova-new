@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
-    <title>دیجی‌کالا</title>
+    <title>{{ $site_name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ asset('seller/icon/caf67ad9.ico') }}" type="image/icon">
     <link rel="stylesheet" href="{{ asset('seller/css/select2.css') }}">
@@ -54,13 +54,13 @@
   </main>
   <footer class="c-new-login__main-footer">
     <div class="c-new-login__main-footer-row">
-      <div class="c-new-login__main-footer-contact">ارتباط با مرکز فروشندگان دیجی‌کالا</div>
+      <div class="c-new-login__main-footer-contact">ارتباط با مرکز فروشندگان {{ $site_name }}</div>
       <div class="c-new-login__main-footer-contact c-new-login__main-footer-contact--phone">۹۱۰۲۰۰۲۰ - ۰۲۱</div>
       <a href="mailto:>SellerSupport@digikala.com"class="c-new-login__main-footer-contact c-new-login__main-footer-contact--email">SellerSupport@digikala.com</a>
     </div>
 
     <div class="c-new-login__main-footer-row">
-      <div class="c-new-login__main-footer-copyright c-new-login__main-footer-copyright--bold">کليه حقوق اين سايت به <em>شرکت نوآوران فن آوازه (فروشگاه آنلاین دیجی‌کالا)</em> تعلق دارد.</div>
+      <div class="c-new-login__main-footer-copyright c-new-login__main-footer-copyright--bold">کليه حقوق اين سايت به <em>شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $site_name }})</em> تعلق دارد.</div>
       <div class="c-new-login__main-footer-copyright">Copyright © 2006 - 2020 Digikala.com</div>
     </div>
   </footer>

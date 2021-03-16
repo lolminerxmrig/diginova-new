@@ -1,6 +1,6 @@
 @extends('customerauth::layouts.auth')
 
-@section('title') ورود/ثبت‌نام | فروشگاه اینترنتی دیجی‌کالا @endsection
+@section('title') ورود/ثبت‌نام | فروشگاه اینترنتی {{ $site_name }} @endsection
 
 @section('head')
 <script src="{{ asset('assets/js/rememberPasswordAction.js') }} "></script>
@@ -19,5 +19,5 @@
         لطفاً به صندوق الکترونیکی خود مراجعه کرده و بر روی لینک ارسال شده کلیک نمائید.
     </p>
 
-    <a href="{{ route('indexPage') }}" class="o-btn o-btn--full-width o-btn--outlined-red-lg">بازگشت به دیجی کالا</a>
+    <a href="{{ route('indexPage') }}" class="o-btn o-btn--full-width o-btn--outlined-red-lg">بازگشت به {{ $site_name }}</a>
 @endsection

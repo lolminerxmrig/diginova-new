@@ -21,7 +21,7 @@ class CreateCommentsTable extends Migration
             $table->json('advantages')->nullable();
             $table->json('disadvantages')->nullable();
             $table->boolean('is_anonymous')->default(0);
-            $table->string('is_recommended')->nullable();
+            $table->string('recommend_status')->nullable();
             $table->string('publish_status')->default('not_checked');
             $table->foreignId('product_id');
             $table->foreignId('customer_id');

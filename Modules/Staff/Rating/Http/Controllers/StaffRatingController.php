@@ -17,7 +17,7 @@ class StaffRatingController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('stafftype::index', compact('categories'));
+        return view('staffrating::index', compact('categories'));
     }
 
     public function store(Request $request)
@@ -37,13 +37,13 @@ class StaffRatingController extends Controller
 
             foreach ($new_data_array as $key => $rating)
             {
-                $insert_type = Rating::create([
+                $insert_rating = Rating::create([
                     'name' => $rating,
                     'position' => array_search($key, $positionArray),
                 ]);
 
                 $category = Category::find($request->category);
-                $category->ratings()->save($insert_type);
+                $category->ratings()->save($insert_rating);
             }
         }
 
@@ -89,20 +89,20 @@ class StaffRatingController extends Controller
         // حل مشکل ستون های خالی
         if (count(Category::where('parent_id', $id)->get()) !== 0)
         {
-            return View::make("stafftype::layouts.ajax.category-box.child", compact('id', 'categories'));
+            return View::make("staffrating::layouts.ajax.category-box.child", compact('id', 'categories'));
         }
     }
 
     public function breadcrumbLoader(Request $request)
     {
         $category = Category::find($request->id);
-        return View::make("stafftype::layouts.ajax.category-box.breadcrumb", compact('category'));
+        return View::make("staffrating::layouts.ajax.category-box.breadcrumb", compact('category'));
     }
 
     public function mainCatReloader(Request $request)
     {
         $categories = Category::get()->unique('name');
-        return View::make("stafftype::layouts.ajax.category-box.main", compact('categories'));
+        return View::make("staffrating::layouts.ajax.category-box.main", compact('categories'));
     }
 
     public function ajaxSearch(Request $request)
@@ -110,7 +110,7 @@ class StaffRatingController extends Controller
         $categories = Category::query()->where('name', 'LIKE', "%{$request->search}%")->get();
         if($categories)
         {
-            return View::make("stafftype::layouts.ajax.category-box.search", compact('categories'));
+            return View::make("staffrating::layouts.ajax.category-box.search", compact('categories'));
         }
     }
 
@@ -119,7 +119,7 @@ class StaffRatingController extends Controller
         $category = Category::findOrFail($request->category_id);
         if ($category->ratings())
         {
-            return View::make('stafftype::ajax-content', compact('category'));
+            return View::make('staffrating::ajax-content', compact('category'));
         } else {
             return response()->json('saved data not found', 200);
         }

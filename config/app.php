@@ -184,6 +184,7 @@ return [
         Modules\Staff\Landing\Providers\StaffLandingServiceProvider::class,
         Modules\Staff\Page\Providers\StaffPageServiceProvider::class,
         Modules\Staff\Voucher\Providers\StaffVoucherServiceProvider::class,
+        Modules\Staff\Rating\Providers\StaffRatingServiceProvider::class,
 
 
 

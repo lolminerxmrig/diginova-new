@@ -46,6 +46,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -274,19 +275,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Voucher/Resources" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Voucher/Resources/views" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Voucher" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains" />
-      <recent name="$PROJECT_DIR$/public/seller/js" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Voucher/Resources" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/Resources/views" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/Resources" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/temp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Modules/Staff/Comment/temp" />
@@ -567,7 +569,10 @@
       <workItem from="1615698912803" duration="14644000" />
       <workItem from="1615725668150" duration="15825000" />
       <workItem from="1615742740566" duration="12315000" />
-      <workItem from="1615779790702" duration="14165000" />
+      <workItem from="1615779790702" duration="23514000" />
+      <workItem from="1615873816069" duration="18342000" />
+      <workItem from="1615893323648" duration="13300000" />
+      <workItem from="1615912562137" duration="17952000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -603,6 +608,10 @@
           <url>file://$PROJECT_DIR$/Modules/Staff/Promotion/Resources/views/campains/manageCampain.blade.php</url>
           <line>701</line>
           <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Modules/Staff/Comment/Models/CommentFeedback.php</url>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/seller/js/tags5.js</url>

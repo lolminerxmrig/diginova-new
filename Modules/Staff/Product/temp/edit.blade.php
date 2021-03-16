@@ -1202,7 +1202,7 @@
                                                                 class="c-content-modal__body c-content-modal__body--overflow">
                                                                 <div class="c-content-modal__body-container">
                                                                     <div class="c-content-modal__intro">فروشگاه اینترنتی
-                                                                        دیجی‌کالا این امکان را برای فروشنده فراهم
+                                                                        {{ $site_name }} این امکان را برای فروشنده فراهم
                                                                         کرده
                                                                         تا کالایش را با برند (نام
                                                                         تجاری) خودش نمایش دهد و به فروش برساند. برای
@@ -1800,14 +1800,14 @@
                                                             {{--                                                                        <span--}}
                                                             {{--                                                                            class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
                                                             {{--                                                                        <span--}}
-                                                            {{--                                                                            class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط دیجی‌کالا</span>--}}
+                                                            {{--                                                                            class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط {{ $site_name }}</span>--}}
                                                             {{--                                                                    </label>--}}
                                                             {{--                                                                </div>--}}
                                                             {{--                                                            </div>--}}
                                                             <div class="hidden" id="imagesDKServiceContainer">
                                                                 <div class="c-content-upload__digikala">
                                                                     در صورتی که تمایل دارید عکاسی از محصول شما توسط
-                                                                    دیجی‌کالا انجام شود، با کلیک بر روی دکمه
+                                                                    {{ $site_name }} انجام شود، با کلیک بر روی دکمه
                                                                     به صفحه ارسال <span class="em">«درخواست عکاسی توسط دیجی‌کالا»</span>درخواست
                                                                     هدایت می‌شوید. پس
                                                                     از تکمیل و ارسال فرم درخواست کارشناسان مربوطه در

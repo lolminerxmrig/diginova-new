@@ -19,7 +19,7 @@ class StaffRatingController extends Controller
     {
         $categories = Category::all();
 
-        return view('stafftype::index', compact('categories'));
+        return view('staffrating::index', compact('categories'));
     }
 
     public function store(Request $request)
@@ -72,20 +72,20 @@ class StaffRatingController extends Controller
         // حل مشکل ستون های خالی
         if (count(Category::where('parent_id', $id)->get()) !== 0)
         {
-            return View::make("stafftype::layouts.ajax.category-box.child", compact('id', 'categories'));
+            return View::make("staffrating::layouts.ajax.category-box.child", compact('id', 'categories'));
         }
     }
 
     public function breadcrumbLoader(Request $request)
     {
         $category = Category::find($request->id);
-        return View::make("stafftype::layouts.ajax.category-box.breadcrumb", compact('category'));
+        return View::make("staffrating::layouts.ajax.category-box.breadcrumb", compact('category'));
     }
 
     public function mainCatReloader(Request $request)
     {
         $categories = Category::get()->unique('name');
-        return View::make("stafftype::layouts.ajax.category-box.main", compact('categories'));
+        return View::make("staffrating::layouts.ajax.category-box.main", compact('categories'));
     }
 
     public function ajaxSearch(Request $request)
@@ -94,7 +94,7 @@ class StaffRatingController extends Controller
 
         if($categories)
         {
-            return View::make("stafftype::layouts.ajax.category-box.search", compact('categories'));
+            return View::make("staffrating::layouts.ajax.category-box.search", compact('categories'));
         }
     }
 
@@ -103,7 +103,7 @@ class StaffRatingController extends Controller
         $category = Category::findOrFail($request->category_id);
         if ($category->ratings())
         {
-            return View::make('stafftype::ajax-content', compact('category'));
+            return View::make('staffrating::ajax-content', compact('category'));
         }
         else
         {

@@ -1,253 +1,595 @@
 @extends('layouts.staff.master')
 @section('head')
-<script src="{{ asset('staff/js/js/bundle.min.js') }}"></script>
-<script src="{{ asset('staff/js/js/master-indexAction.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
+<script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
+<script src="{{ asset('seller/js/tagify.min.js') }}"></script>
+<script src="{{ asset('staff/js/js/master-ratingAction.js') }}"></script>
+<script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
+<style>
+
+    tags {
+        background: white;
+        border-color: #e6e9ed!important;
+    }
+
+    .tagify .tagify__tag {
+        background-color: #ebedf3;
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 0 .5rem !!important;
+        border-radius: .42rem !important;
+    }
+
+    .select2-search--dropdown {
+        display: none !important;
+    }
+
+</style>
 @endsection
 @section('content')
-<main class="c-main">
-        <div class="uk-container uk-container-large">
 
-            <div class="c-grid ">
-                <div class="c-grid__row c-product-list--align-header">
+    <main class="c-main">
+        <div class="uk-container uk-container-large">
+            <div class="c-grid">
+                <div class="c-grid__row">
                     <div class="c-grid__col">
-                        <div class="c-card c-card--transparent">
-                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت محصولات
-                                <span>
-                                برای ویرایش و مدیریت مشخصات ، گروه ، تصویر محصولات و درج تنوع (گارانتی ، به همراه رنگ یا سایز) از این قسمت استفاده نمایید
-                            </span>
+                        <div class="c-card c-card--transparent c-ui--my-5">
+                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">
+                                جزییات امتیاز محصول <span>در این بخش می توانید جزییات امتیاز و نظرات مربوط به کالای خود را ببینید.</span>
                             </h1>
                         </div>
                     </div>
                 </div>
-                <div class="c-grid__row"><div class="c-grid__col"><div class="c-card"><div class="c-card__header"><div class="c-card__title">جستجو و فیلتر</div></div><div class="c-card__body"><form class="js-search-product-form" id="searchForm"><div class="c-ui-form__row c-ui-form__row--nowrap c-ui-form__row--wrap-xs"><div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--xs-12 c-ui-form__col--shrink c-product-text-search-container"><label class="c-ui-form__label">جستجو در</label><div class="c-ui-form__row c-ui-form__row--group"><div class="c-ui-form__col uk-width-1-5 uk-padding-remove"><select class="js-form-clearable c-ui-select--with-svg-icon c-ui-select c-ui-select--common c-ui-select--small c-ui-select--search select2-hidden-accessible" name="search[type]" data-select2-id="1" tabindex="-1" aria-hidden="true"><option value="all" data-select2-id="3">همه موارد</option><option value="title">عنوان</option><option value="product_id">کد محصول</option></select><span class="select2 select2-container select2-container--default" dir="rtl" data-select2-id="2" style="width: 248.188px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-searchtype-ha-container"><span class="select2-selection__rendered" id="select2-searchtype-ha-container" role="textbox" aria-readonly="true" title="همه موارد">همه موارد</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div><div class="c-ui-form__col c-ui-form__col--shrink c-ui-form__col--9 c-ui-form__col--xs-12 c-ui-form__col--group-item c-ui-form__col--wrap-xs c-ui-form__col--xs-full uk-padding-remove-right c-ui--mr-10"><label><div class="c-ui-input"><input type="text" name="search[value]" class="c-ui-input__field c-ui-input__field--order js-form-clearable" id="variants-search" value="" placeholder="عبارت مورد نظرتان را وارد کنید..."></div></label></div><div class="c-ui-form__col c-ui-form__col--xs-6 c-ui-form__col--group-item c-ui-form__col--wrap-xs"><button class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--search-form" id="submitButton" disabled=""><span>جستجو</span></button></div></div></div></div><div class="c-mega-campaigns--p-20 uk-flex uk-padding-remove-left uk-padding-remove-right  uk-flex-bottom uk-flex-left c-ui--pb-10"><div class="c-ui-form__col uk-width-1-5 c-ui-form__col--wrap-xs c-ui-form__col--xs-full uk-padding-remove-left uk-padding-remove-right"><label class="c-ui-form__label">گروه کالایی:</label><select class="c-ui-select c-ui-select--common c-ui-select--small c-ui-select--search c-ui-select--with-svg-icon select2-hidden-accessible" name="search[category_id]" data-select2-id="4" tabindex="-1" aria-hidden="true"><option value="" selected="" data-select2-id="6">انتخاب کنید</option><option value="9588">جوراب نوزاد</option><option value="48">دوربین عکاسی</option><option value="77">کیف و کاور گوشی</option><option value="80">کابل و مبدل</option><option value="156">ساعت های تزئینی</option><option value="6501">پارچه قلمکار</option><option value="6810">استیکر و تابلو کودک و نوزاد</option><option value="8157">خاک و کود</option><option value="8432">تابلو شاسی</option><option value="9371">کفش پاشنه دار زنانه</option><option value="9403">گل سینه زنانه</option><option value="9880">کوسن کودک</option></select><span class="select2 select2-container select2-container--default" dir="rtl" data-select2-id="5" style="width: 246.188px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-searchcategory_id-ss-container"><span class="select2-selection__rendered" id="select2-searchcategory_id-ss-container" role="textbox" aria-readonly="true" title="انتخاب کنید">انتخاب کنید</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div><div class="c-ui-form__col uk-width-1-5 c-ui-form__col--wrap-xs c-ui-form__col--xs-full uk-padding-remove-left uk-padding-remove-right c-ui--mr-30"><label class="c-ui-form__label">برند کالا:</label><select class="c-ui-select c-ui-select--common c-ui-select--small c-ui-select--search c-ui-select--with-svg-icon select2-hidden-accessible" name="search[brand_id]" data-select2-id="7" tabindex="-1" aria-hidden="true"><option value="" selected="" data-select2-id="9">انتخاب کنید</option><option value="719">متفرقه</option><option value="1">سونی</option><option value="12">کانن</option><option value="242">هوکو</option><option value="2445">عطریان</option><option value="4463">کارامل</option><option value="4989">کی اچ</option><option value="7749">تتاکو</option><option value="10196">روشن</option></select><span class="select2 select2-container select2-container--default" dir="rtl" data-select2-id="8" style="width: 246.188px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-searchbrand_id-2u-container"><span class="select2-selection__rendered" id="select2-searchbrand_id-2u-container" role="textbox" aria-readonly="true" title="انتخاب کنید">انتخاب کنید</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div><div class="c-ui-form__col uk-width-1-5 c-ui-form__col--wrap-xs c-ui-form__col--xs-full uk-padding-remove-left uk-padding-remove-right c-ui--mr-30"><label class="c-ui-form__label">وضعیت تأیید کالا:</label><select class="c-ui-select c-ui-select--common c-ui-select--small c-ui-select--search c-ui-select--with-svg-icon select2-hidden-accessible" name="search[moderation_status]" data-select2-id="10" tabindex="-1" aria-hidden="true"><option value="" selected="" data-select2-id="12">انتخاب کنید</option><option value="draft">پیش نویس</option><option value="in_review">بررسی مجدد</option><option value="waiting_for_confirm">در انتظار تایید</option><option value="edit_after_approved">ویرایش پس از تایید</option><option value="approved">تایید شده</option><option value="in_review_after_approved">بررسی مجدد بعد از تایید</option><option value="duplicate">تکراری</option><option value="removed">حذف شده</option></select><span class="select2 select2-container select2-container--default" dir="rtl" data-select2-id="11" style="width: 246.188px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-searchmoderation_status-7q-container"><span class="select2-selection__rendered" id="select2-searchmoderation_status-7q-container" role="textbox" aria-readonly="true" title="انتخاب کنید">انتخاب کنید</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div><div class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container"><div class="c-join__filter"><p class="c-ui-form__label">اصالت کالا:</p><div class="c-join__filter-container"><label class="c-join__radio-label"><input class="c-join__radio js-auto-submit" type="radio" name="search[fake_status]" checked="checked" value=""><span class="c-join__radio-option">همه کالاها</span></label><label class="c-join__radio-label"><input class="c-join__radio js-auto-submit" type="radio" name="search[fake_status]" value="0"><span class="c-join__radio-option">اصل</span></label><label class="c-join__radio-label"><input class="c-join__radio js-auto-submit" type="radio" name="search[fake_status]" value="1"><span class="c-join__radio-option">غیراصل</span></label></div></div></div></div></form></div><div class="c-product-list__search-items-container uk-hidden" id="searchFilterBar"><div class="uk-flex uk-flex-middle">
-                                    فیلترهای اعمال شده:
 
-                                    <div class="c-product-list__search-item c-ui--mr-20 uk-hidden uk-text-nowrap js-filter-bar-item" name="search[category_id]"><span class="js-filter-title">گروه کالایی: </span><span class="js-selected-filter"></span><span class="c-product-list__search-item-colse js-remove-filter"></span></div><div class="c-product-list__search-item c-ui--mr-20 uk-hidden uk-text-nowrap js-filter-bar-item" name="search[brand_id]"><span class="js-filter-title">برند کالا: </span><span class="js-selected-filter"></span><span class="c-product-list__search-item-colse js-remove-filter"></span></div><div class="c-product-list__search-item c-ui--mr-20 uk-hidden uk-text-nowrap js-filter-bar-item" name="search[moderation_status]"><span class="js-filter-title">وضعیت تأیید کالا: </span><span class="js-selected-filter"></span><span class="c-product-list__search-item-colse js-remove-filter"></span></div><div class="c-product-list__search-item c-ui--mr-20 uk-hidden uk-text-nowrap js-filter-bar-item" name="search[fake_status]"><span class="js-filter-title">اصالت کالا: </span><span class="js-selected-filter"></span><span class="c-product-list__search-item-colse js-remove-filter"></span></div><div class="c-product-list__search-item c-ui--mr-20 uk-hidden uk-text-nowrap js-filter-bar-item" name="search[type]"><span class="js-filter-title"></span><span class="js-selected-filter"></span><span class="c-product-list__search-item-colse js-remove-filter"></span></div></div><div class="c-ui--mr-20"><div class="c-product-list__search-item js-remove-all-filters">
-                                        حذف همه فیلترها
-                                        <span class="c-product-list__search-item-colse"></span></div></div></div></div></div></div><div class="js-table-container"><div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25">
-                        محصول با وضعیت پیش نویس فقط برای شما قابل نمایش است و توسط مرکز فروشندگان قابل رویت نیست. محصول پیش نویس
-                        خود را انتشار داده و منتظر تأیید آن باشید.
-                    </div><div class="c-grid__row"><div class="c-grid__col"><div class="c-card"><div class="c-card__wrapper"><div class="c-card__header c-card__header--table"><a href="/content/create/product/" target="_blank"><div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                                                ایجاد کالای جدید
-                                            </div></a><div class="c-ui-paginator js-paginator"><div class="c-ui-paginator__total" data-rows="۲۰">
-                                                تعداد نتایج: <span>۲۰ مورد</span></div><div class="c-ui-paginator__select"><div class="c-ui-paginator__select-label">تعداد نمایش</div><div class="c-ui-paginator__select-pages"><div class="field-wrapper ui-select ui-select__container"><select class="c-ui-select c-ui-select--common c-ui-select--small js-search-items-per-page select2-hidden-accessible" name="paginator-select-pages" data-select2-id="13" tabindex="-1" aria-hidden="true"><option value="10" selected="" data-select2-id="15">۱۰</option><option value="20">۲۰</option><option value="50">۵۰</option><option value="100">۱۰۰</option></select><span class="select2 select2-container select2-container--default" dir="rtl" data-select2-id="14" style="width: 60px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-paginator-select-pages-se-container"><span class="select2-selection__rendered" id="select2-paginator-select-pages-se-container" role="textbox" aria-readonly="true" title="۱۰">۱۰</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span><div class="js-select-options c-ui-paginator__dropdown-container"></div></div></div></div><ul class="c-ui-paginator__control js-search-pager"><li class="c-ui-paginator__control-item"><a class="c-ui-paginator__control-prev c-ui-paginator__control-prev--disabled" data-page=""></a></li><li class="c-ui-paginator__control-item uk-active"><a data-page="1" class="c-ui-paginator__control-digit c-ui-paginator__control-digit--current">۱</a></li><li class="c-ui-paginator__control-item"><a data-page="2" class="c-ui-paginator__control-digit">۲</a></li><li class="c-ui-paginator__control-item"><a class="c-ui-paginator__control-next" data-page="2"></a></li></ul></div></div><div class="c-card__body c-ui-table__wrapper"><table class="c-ui-table  js-search-table js-table-fixed-header c-join__table" data-search-url="/ajax/product/search/"><thead><tr class="c-ui-table__row"><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap ">
-                    ردیف
-                </span></th><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap "></span></th><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">
-                    عنوان و کد کالا (DKP)
-                </span></th><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap ">
-                    گروه کالایی
-                </span></th><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap ">
-                    برند کالا
-                </span></th><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap ">
-                    کانال فروش
-                </span></th><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap ">
-                    وضعيت
-                </span></th><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap ">
-                    تعداد تنوع
-                </span></th><th class="c-ui-table__header"><span class="table-header-searchable uk-text-nowrap table-header-searchable--desc"></span></th></tr></thead><tbody><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۱
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/37385809fbbb25d97d0a737bf2b55d2990581a63_1614319229.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-4557867/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            دوربین دیجیتال سونی مدل ننینین ینینیسس
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-4557867
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=5966"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            دوربین عکاسی
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=1"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                سونی
-                            </span><span class="c-wallet__body-card-row-item">
-                                Sony
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--deactive uk-text-nowrap">
-                                                            پیش نویس
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۰
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/product/edit/4557867/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--small-edit c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                ویرایش محصول
-                                                            </div></a><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--release c-mega-campaigns-join-list__container-table-btn--release-active c-ui--mr-10 js-tool-tip-desc js-publish" data-id="4557867"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                            انتشار
-                                                        </div></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۲
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/de916cf728ac4d9a3562e0bb380dc2fa093cf872_1611775144.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-4335203/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            دوربین دیجیتال سونی مدل ننینین ینینی
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-4335203
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=5966"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            دوربین عکاسی
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=1"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                سونی
-                            </span><span class="c-wallet__body-card-row-item">
-                                Sony
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--alert uk-text-nowrap">
-                                                            بررسی مجدد
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۰
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/product/edit/4335203/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--small-edit c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                ویرایش محصول
-                                                            </div></a></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۳
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/19f469a5bc81f24ceeae28ce3422daa9b47fd28b_1603190298.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-3585372/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            کفش زنانه روشن مدل پانیک کد 01
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-3585372
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=8749"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            کفش پاشنه دار زنانه
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=10196"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                روشن
-                            </span><span class="c-wallet__body-card-row-item">
-                                Roshan
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds c-product-list__platform--active"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
-                                                            تایید شده
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۰
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/content/create/product/variant/3585372/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                افزودن تنوع
-                                                            </div></a></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۴
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/120361841.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-2661133/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            کاور کوسن طرح کیتی مدل co464
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-2661133
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=6741"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            کوسن کودک
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=719"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                متفرقه
-                            </span><span class="c-wallet__body-card-row-item">
-                                Miscellaneous
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
-                                                            تایید شده
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۱۱
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/content/create/product/variant/2661133/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                افزودن تنوع
-                                                            </div></a></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۵
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/117958659.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-2399707/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            کاور مدل Silc مناسب برای گوشی موبایل سامسونگ Galaxy A20/A30
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-2399707
-                        </span><span class="c-mega-campaigns-join-list__container-table-fake c-ui--fit c-ui--mr-10 c-ui--nowrap uk-flex uk-flex-center">
-                                غیر اصل
-                            </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=5966"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            کیف و کاور گوشی
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=719"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                متفرقه
-                            </span><span class="c-wallet__body-card-row-item">
-                                Miscellaneous
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
-                                                            تایید شده
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۰
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/content/create/product/variant/2399707/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                افزودن تنوع
-                                                            </div></a></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۶
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/119909357.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-1653330/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            کاور کد 02b مناسب برای گوشی موبایل هوآوی P8 Lite
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-1653330
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=5966"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            کیف و کاور گوشی
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=719"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                متفرقه
-                            </span><span class="c-wallet__body-card-row-item">
-                                Miscellaneous
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
-                                                            تایید شده
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۱
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/content/create/product/variant/1653330/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                افزودن تنوع
-                                                            </div></a></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۷
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/110900334.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-1570746/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            پیکسل ماسا دیزاین طرح سایکدلیک اسکلت کد AS397
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                             MASA DESIGN Pixel Psychedelic music Musical style
-                        </span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-1570746
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=8749"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            گل سینه زنانه
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=719"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                متفرقه
-                            </span><span class="c-wallet__body-card-row-item">
-                                Miscellaneous
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
-                                                            تایید شده
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۰
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/content/create/product/variant/1570746/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                افزودن تنوع
-                                                            </div></a></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۸
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/5076202.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-1072654/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            پاپوش نوزادی طرح عروسکی کد 104
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-1072654
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=8749"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            جوراب نوزاد
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=719"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                متفرقه
-                            </span><span class="c-wallet__body-card-row-item">
-                                Miscellaneous
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
-                                                            تایید شده
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۲
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/product/edit/1072654/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--small-edit c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                ویرایش محصول
-                                                            </div></a><a class="uk-padding-remove" href="/content/create/product/variant/1072654/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                افزودن تنوع
-                                                            </div></a></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۹
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/5074673.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-1072366/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            پاپوش نوزادی طرح عروسکی کد 103
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-1072366
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=8749"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            جوراب نوزاد
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=719"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                متفرقه
-                            </span><span class="c-wallet__body-card-row-item">
-                                Miscellaneous
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
-                                                            تایید شده
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۱
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/product/edit/1072366/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--small-edit c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                ویرایش محصول
-                                                            </div></a><a class="uk-padding-remove" href="/content/create/product/variant/1072366/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;">
-                                                                افزودن تنوع
-                                                            </div></a></div></td></tr><tr class="c-ui-table__row c-ui-table__row--body c-join__table-row"><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                    ۱۰
-                </span></td><td class="c-ui-table__cell" style="min-width: 90px"><img src="https://dkstatics-public.digikala.com/digikala-products/5073791.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" alt=""></td><td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column"><a href="https://www.digikala.com/product/dkp-1072236/" target="_blank"><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            پاپوش نوزادی طرح عروسکی کد 102
-                        </span><span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span></a><div class="uk-flex"><span class="c-mega-campaigns-join-list__container-table-dkpc c-ui--fit c-ui--nowrap">
-                            DKP-1072236
-                        </span></div></div></td><td class="c-ui-table__cell"><a href="/product/?search%5Bcategory_id%5D=8749"><span class="c-wallet__body-card-row-item c-ui--initial">
-                            جوراب نوزاد
-                        </span></a></td><td class="c-ui-table__cell"><a href="/product/?search%5Bbrand_id%5D=719"><div class="uk-flex uk-flex-column"><span class="c- -card-row-item">
-                                متفرقه
-                            </span><span class="c-wallet__body-card-row-item">
-                                Miscellaneous
-                            </span></div></a></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-column"><div class="c-product-list__platform c-product-list__platform-dk c-product-list__platform--active"></div><div class="c-product-list__platform c-product-list__platform-ds"></div></div></td><td class="c-ui-table__cell"><div class=""><div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
-                                                            تایید شده
-                                                        </div></div></td><td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
-                     ۱
-                 </span></td><td class="c-ui-table__cell"><div class="uk-flex uk-flex-right uk-flex-middle"><a class="uk-padding-remove" href="/product/edit/1072236/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--small-edit c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-rating-chart__description-tooltip--top c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: top-center;delay-hide: 0;offset: 10;">
-                                                                ویرایش محصول
-                                                            </div></a><a class="uk-padding-remove" href="/content/create/product/variant/1072236/"><div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc"></div><div class="c-rating-chart__description-tooltip c-rating-chart__description-tooltip--top c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown" uk-dropdown="boundary: .js-tool-tip-desc; pos: top-center;delay-hide: 0;offset: 10;">
-                                                                افزودن تنوع
-                                                            </div></a></div></td></tr></tbody></table></div><div class="c-card__footer"><div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                                            ایجاد کالای جدید
-                                        </div><div class="c-ui-paginator js-paginator"><div class="c-ui-paginator__total" data-rows="۲۰">
-                                                تعداد نتایج: <span>۲۰ مورد</span></div><div class="c-ui-paginator__select"><div class="c-ui-paginator__select-label">تعداد نمایش</div><div class="c-ui-paginator__select-pages"><div class="field-wrapper ui-select ui-select__container"><select class="c-ui-select c-ui-select--common c-ui-select--small js-search-items-per-page select2-hidden-accessible" name="paginator-select-pages" data-select2-id="16" tabindex="-1" aria-hidden="true"><option value="10" selected="" data-select2-id="18">۱۰</option><option value="20">۲۰</option><option value="50">۵۰</option><option value="100">۱۰۰</option></select><span class="select2 select2-container select2-container--default" dir="rtl" data-select2-id="17" style="width: 60px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-paginator-select-pages-hx-container"><span class="select2-selection__rendered" id="select2-paginator-select-pages-hx-container" role="textbox" aria-readonly="true" title="۱۰">۱۰</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span><div class="js-select-options c-ui-paginator__dropdown-container"></div></div></div></div><ul class="c-ui-paginator__control js-search-pager"><li class="c-ui-paginator__control-item"><a class="c-ui-paginator__control-prev c-ui-paginator__control-prev--disabled" data-page=""></a></li><li class="c-ui-paginator__control-item uk-active"><a data-page="1" class="c-ui-paginator__control-digit c-ui-paginator__control-digit--current">۱</a></li><li class="c-ui-paginator__control-item"><a data-page="2" class="c-ui-paginator__control-digit">۲</a></li><li class="c-ui-paginator__control-item"><a class="c-ui-paginator__control-next" data-page="2"></a></li></ul></div></div></div></div></div></div></div>
-            </div>
-            <div id="pageLoader" class="c-content-loader c-content-loader--fixed">
-                <div class="c-content-loader__logo"></div>
-                <div class="c-content-loader__spinner"></div>
+
+
+                <div class="c-grid__row">
+                    <div class="c-grid__col">
+                        <div class="c-card">
+                            <div class="c-card__header">
+                                <div class="c-card__title">نظرات کاربران</div>
+                            </div>
+
+                            <div class="c-card__wrapper">
+                                <div class="c-card__header uk-flex uk-flex-bottom">
+                                    <form method="GET" id="searchForm">
+                                        <div class="uk-flex uk-flex-between">
+                                            <div class="uk-width-1-3 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
+                                                <label class="c-ui-form__label uk-text-right">مرتب سازی بر اساس:</label>
+                                                <div class="uk-flex">
+                                                    <div class="c-profile-rating__details-filter uk-text-nowrap js-user-comment" data-sort="buyers">
+                                                        نظرات خریداران
+                                                    </div>
+                                                    <div class="c-profile-rating__details-filter uk-text-nowrap js-user-comment" data-sort="">
+                                                        نظرات کاربران
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="search[mode]" class="js-filter-comment">
+                                            <input type="hidden" name="search[variantId]" value="14845985">
+                                            <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select">
+                                                <label class="c-ui-form__label uk-text-right">مرتب سازی بر اساس:</label>
+                                                <select id="sortType" class="js-select2 c-ui-select--with-svg-icon c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="sortType" tabindex="-1" aria-hidden="true">
+                                                    <option value="all">همه دیدگاه ها</option>
+                                                    <option value="not_checked">در انتظار برررسی</option>
+                                                    <option value="accepted">تایید شده</option>
+                                                    <option value="rejected">رد شده</option>
+                                                </select>
+                                            </div>
+                                        </div>`
+                                        <button id="submitButton" class="uk-icon-button uk-icon-button--search uk-invisible" uk-tooltip="title: جستجو; pos: top-center" type="submit" title="" aria-expanded="false"></button>
+                                    </form>
+                                </div>
+
+
+                                <div class="c-ui--px-5">
+                                    <div class="c-grid__row js-table-container">
+                                        <div class="c-grid__col">
+                                            <div class="c-card">
+                                                <div class="c-card__wrapper">
+                                                    <div class="c-card__header c-card__header--table">
+
+
+                                                        <div class="c-card__paginator">
+                                                            <div class="c-ui-paginator js-paginator">
+                                                                @if(count($comments))
+                                                                    <div class="c-ui-paginator__total" data-rows="">
+                                                                        تعداد نتایج: <span>{{ persianNum($comments->total()) }} مورد</span>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="c-ui-paginator__total" data-rows="۰">
+                                                                        جستجو نتیجه ای نداشت
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="c-card__body c-ui-table__wrapper">
+                                                        <table class="c-ui-table   js-search-table " data-sort-column="" data-sort-order="" data-search-url="{{ route('staff.comments.searchComment') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
+                                                            <thead>
+                                                            <tr class="c-ui-table__row">
+                                                                <th class="c-ui-table__header c-ui-table__header--nowrap ">
+                                                                    <span class="js-search-table-column">ردیف</span>
+                                                                </th>
+                                                                <th class="c-ui-table__header c-ui-table__header--nowrap " colspan="3">
+                                                                    <span class="js-search-table-column">عنوان دیدگاه</span>
+                                                                </th>
+                                                                <th class="c-ui-table__header c-ui-table__header--nowrap " colspan="3">
+                                                                    <span class="js-search-table-column">عنوان محصول</span>
+                                                                </th>
+                                                                <th class="c-ui-table__header c-ui-table__header--nowrap " colspan="2">
+                                                                    <span class="js-search-table-column">تاریخ ثبت نظر</span>
+                                                                </th>
+                                                                <th class="c-ui-table__header c-ui-table__header--nowrap " colspan="2">
+                                                                    <span class="js-search-table-column">وضعیت</span>
+                                                                </th>
+                                                                <th class="c-ui-table__header c-ui-table__header--nowrap " colspan="1">
+                                                                    <span class="js-search-table-column"></span>
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="c-ui-table__cell-gap"></td>
+                                                            </tr>
+
+                                                            @foreach($comments as $key => $comment)
+                                                                <tr class="c-ui-table__row c-ui-table__row--collapsable c-ui-table__row--body c-profile-rating__expanded-product-row">
+                                                                    <td class="c-ui-table__cell">
+                                                                        {{ persianNum($comments->firstItem() + $key) }}
+                                                                    </td>
+
+                                                                    <td class="c-ui-table__cell c-ui-table__cell--item-title uk-width-1-3" colspan="3">
+                                                                        {{ persianNum($comment->title) }}
+                                                                    </td>
+
+                                                                    <td class="c-ui-table__cell c-ui-table__cell--item-title c-ui-table__cell--text-blue uk-width-1-3" colspan="3">
+                                                                        <a href="#">{{ persianNum($comment->product->title_fa) }}</a>
+                                                                    </td>
+
+                                                                    <td class="c-ui-table__cell" colspan="2">
+                                                                        <span class="span-time"  data-value="{{ $comment->created_at }}"></span>
+                                                                    </td>
+
+
+
+                                                                    <td class="c-ui-table__cell" colspan="2">
+                                                                        @if($comment->publish_status == 'accepted')
+                                                                            <div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--active uk-text-nowrap">
+                                                                                تایید شده
+                                                                            </div>
+                                                                        @elseif($comment->publish_status == 'not_checked')
+                                                                            <div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--alert uk-text-nowrap">
+                                                                                در انتظار بررسی
+                                                                            </div>
+                                                                        @elseif($comment->publish_status == 'rejected')
+                                                                            <div class="c-wallet__body-card-status-no-circle c-wallet__body-card-status-no-circle--danger uk-text-nowrap">
+                                                                                رد شده
+                                                                            </div>
+                                                                        @endif
+                                                                    </td>
+                                                                    <td class="c-ui-table__cell c-ui-table__expander" data-expand="{{ $comment->id }}">
+                                                                        <span class="c-ui-table__expander-control js-expand-comment" data-id="{{ $comment->id }}"></span>
+                                                                        <span class="c-ui-table__expander-control  c-ui-table c-join__btn--icon-delete delete-btn" data-id="{{ $comment->id }}" style="margin-left: 15px;color: #60667a;font-weight: bold;"></span>                                                                </td>
+                                                                </tr>
+                                                                <tr class="c-ui-table__expand-row c-ui-table__expand-row--first c-ui-table__expand-row--last js-expanded-row c-ui-table__expand-row--hidden" data-expand-target="{{ $comment->id }}" style="color: #81858b !important;">
+                                                                    <td class="c-profile-rating__details-more second-td" colspan="12">
+                                                                        <table class="c-ui-table js-table-expandable js-search-table js-table-fixed-header">
+                                                                            <tbody>
+                                                                            <tr class="c-ui-table__row">
+                                                                                <td class="uk-flex uk-flex-middle" style="width: 26%;float: right;">
+                                                                                    {{ $comment->customer->email }}
+                                                                                    (خریدار) یادم نره درستش کنم
+                                                                                </td>
+
+                                                                                <td class="uk-flex uk-flex-middle" style="width: 15%;float: right;">
+                                                                                    <div class="c-profile-rating__vote c-profile-rating__vote--thumbs-up">
+                                                                                        {{ persianNum($comment->feedbacks()->where('status', 'like')->count()) }}
+                                                                                    </div>
+                                                                                </td>
+
+                                                                                <td class="uk-flex uk-flex-middle" style="width: 15%;float: right;">
+                                                                                    <div class="c-profile-rating__vote c-profile-rating__vote--thumbs-down" style="margin-top: 0px;">
+                                                                                        {{ persianNum($comment->feedbacks()->where('status', 'deslike')->count()) }}
+                                                                                    </div>
+                                                                                </td>
+
+                                                                                @if(!is_null($comment->recommend_status))
+                                                                                    <td class="uk-flex uk-flex-middle" style="width: 20%;float: right;">
+                                                                                        @if($comment->recommend_status == 'recommended')
+                                                                                            <div class="c-profile-rating__vote c-profile-rating__vote--thumbs-up c-profile-rating__vote--small uk-text-nowrap" style="margin-top: 0px;">
+                                                                                                توصیه می‌کنم
+                                                                                            </div>
+                                                                                        @elseif($comment->recommend_status == 'not_recommended')
+                                                                                            <div class="c-profile-rating__vote c-profile-rating__vote--thumbs-down c-profile-rating__vote--small uk-text-nowrap" style="margin-top: 0px;">
+                                                                                                توصیه نمی کنم
+                                                                                            </div>
+                                                                                        @elseif($comment->recommend_status == 'no_idea')
+                                                                                            <div class="c-profile-rating__vote c-profile-rating__vote--doubt c-profile-rating__vote--small uk-text-nowrap" style="margin-top: 0px;">
+                                                                                                مطمئن نیستم
+                                                                                            </div>
+                                                                                        @endif
+                                                                                    </td>
+                                                                                @endif
+
+                                                                                <td class="uk-flex uk-flex-middle" style="width: 7%;">
+                                                                                    <div class="c-profile-rating__details-user uk-text-nowrap c-profile-rating__details-user--normal">
+                                                                                        کاربر عادی
+                                                                                    </div>
+                                                                                </td>
+
+                                                                                <td class="uk-flex uk-flex-middle c-profile-rating__details-more-title" style="width: 100%;"></td>
+                                                                            </tr>
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                        <div class="c-grid__row c-grid__row--gap-lg" style="
+    width: 100%;
+    margin: auto;
+    margin-top: 28px;
+">
+
+
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="padding-right: 0px;float: right;">
+                                                                                <label class="uk-form-label uk-flex uk-flex-between" style="color: #81858b !important;">
+                                                                                    عنوان دیدگاه:
+                                                                                    <span class="uk-float-left uk-padding-medium-left"></span>
+                                                                                </label>
+                                                                                <div class="field-wrapper">
+                                                                                    <input type="text" class="c-content-input__origin js-attribute-old-value" name="title" id="title" value="{{ $comment->title }}" style="background: white;border-color: #e6e9ed!important;">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            @if(!is_null($comment->recommend_status))
+                                                                                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="padding-right: 0px;float: right;">
+                                                                                    <label class="uk-form-label uk-flex uk-flex-between" style="color: #81858b !important;">
+                                                                                        توصیه خرید
+                                                                                        <span class="uk-float-left uk-padding-medium-left"></span>
+                                                                                    </label>
+                                                                                    <div class="field-wrapper">
+                                                                                        <select name="recommend_status" id="recommend_status" class="js-select2 c-ui-select--with-svg-icon c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" tabindex="-1" aria-hidden="true" >
+                                                                                            <option value="recommended" {{ ($comment->recommend_status == 'recommended')? 'selected' : '' }}>پیشنهاد می کنم</option>
+                                                                                            <option value="not_recommended" {{ ($comment->recommend_status == 'not_recommended')? 'selected' : '' }}>پیشنهاد نمی کنم</option>
+                                                                                            <option value="no_idea" {{ ($comment->recommend_status == 'no_idea')? 'selected' : '' }}>نظری ندارم</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            @endif
+                                                                        </div>
+
+
+                                                                        <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%; margin: auto;">
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12 c-grid__col--xs-gap" style="padding-right: 0px;margin-top: 20px;">
+                                                                                <label for="" class="uk-form-label" style="color: #81858b !important;">متن دیدگاه:</label>
+                                                                                <div class="field-wrapper field-wrapper--textarea enabled">
+                                                                                    <textarea name="text" id="text" class="c-content-input__origin c-content-input__origin--textarea js-textarea-words" rows="5" maxlength="2000" style="background: white;border-color: #e6e9ed!important;">{{ $comment->text }}</textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%; margin: auto;">
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12 c-grid__col--xs-gap" style="padding-right: 0px;margin-top: 20px;">
+                                                                                <label for="" class="uk-form-label" style="color: #81858b !important;">نقاط قوت:</label>
+                                                                                <div class="field-wrapper field-wrapper--textarea enabled">
+                                                                                    <input id="advantages" class="form-control tagify" name="advantages" value="{{ $comment->advantages }}" autofocus="" style="background: white !important; border-color:#e6e9ed!important; width: 100% !important;">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%; margin: auto; margin-bottom: 40px !important;">
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12 c-grid__col--xs-gap" style="padding-right: 0px;margin-top: 20px;">
+                                                                                <label for="" class="uk-form-label" style="color: #81858b !important;">نقاط ضعف:</label>
+                                                                                <div class="field-wrapper field-wrapper--textarea enabled">
+                                                                                    <input id="disadvantages" class="form-control tagify" name="disadvantages" value="{{ $comment->disadvantages }}" autofocus="" style="background: white !important; border-color:#e6e9ed!important; width: 100% !important;">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        {{--                                                                    <div class="c-profile-rating__details-user-vote js-product-score-board" style="height: auto;min-height: 95px;width: 95%;margin: auto;margin-right: 0px !important;">--}}
+                                                                        @if(count($comment->ratings))
+                                                                            <div class="c-profile-rating__details-user-vote js-product-score-board" style="height: auto;min-height: 95px;width: 100%;margin: auto;margin-right: 0px !important; background: unset;">
+                                                                                @foreach($comment->ratings as $rating)
+                                                                                    <div class="c-rating-chart__details-bar c-rating-chart__details-bar--profile js-product-score-item" style="width: 45% !important;float: right;padding-top: 0px !important;margin-left: 5%;">
+                                                                                        <div class="c-profile-rating__details-user-vote-item c-profile-rating__details-user-vote-item--title js-product-score-item-label">{{ (strlen($rating->rating->name) > 35)? substr($rating->rating->name, 0, 31) . '...' : $rating->rating->name  }}</div>
+                                                                                        <div class="c-rating-chart__details-progress c-profile-rating__details-user-vote-score">
+                                                                                            <div class="c-profile-rating__details-user-vote-score--fill js-product-score-item-progress" style="width: {{ ($rating->score)*20 }}%;"></div>
+                                                                                        </div>
+                                                                                        <div class="c-rating-chart__details-value c-profile-rating__details-user-vote-item js-product-score-item-value uk-flex-right">
+                                                                                            {{ ($rating->score == 1)? 'خیلی بد' : (($rating->score == 2)? 'بد' : (($rating->score == 3)? 'معمولی' : (($rating->score == 4)? 'خوب' : 'عالی'  )))     }}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        @endif
+
+
+                                                                        <div class="c-variant__btn-controls" style="width: 99%;">
+                                                                            <button class="c-ui-btn c-ui-btn--bad-at mr-a cancell-btn" data-id="{{ $comment->id }}">لغو</button>
+                                                                            <button class="c-ui-btn c-ui-btn--next saveData" data-id="{{ $comment->id }}">
+                                                                                ذخیره
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="c-ui-table__cell-gap"></td>
+                                                                </tr>
+                                                            @endforeach
+
+
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+
+                                                    <div class="c-card__footer" style="width: auto;">
+                                                        <a href="#" style="visibility: hidden;">
+                                                            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
+                                                            </div>
+                                                        </a>
+
+                                                        {{ $comments->links('staffcomment::layouts.pagination.custom-pagination') }}
+                                                        <div class="c-ui-paginator js-paginator">
+                                                            <div class="c-ui-paginator js-paginator">
+                                                                @if(count($comments))
+                                                                    <div class="c-ui-paginator__total" data-rows="">
+                                                                        تعداد نتایج: <span>{{ persianNum($comments->total()) }} مورد</span>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="c-ui-paginator__total" data-rows="۰">
+                                                                        جستجو نتیجه ای نداشت
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                    <div class="c-card__loading"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @include('staffcomment::layouts.modal')
+                                <div class="c-card__loading"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-</main>
+    </main>
+
 @endsection
 @section('script')
+<script>
+// توکن csrf
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
+$(document).ready(function (){
+    tagifyLoader();
+});
+
+function persianNum() {
+    String.prototype.toPersianDigits= function(){
+        var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+        return this.replace(/[0-9]/g, function(w){
+            return id[+w]
+        });
+    }
+}
+function convertDate() {
+    $(".span-time").each(function (){
+        var output="";
+        var input = $(this).data('value');
+        var m = moment(input);
+        if(m.isValid()){
+            m.locale('fa');
+            output = m.format("YYYY/M/D");
+        }
+        $(this).text(output.toPersianDigits());
+    });
+}
+function tagifyLoader() {
+    var input = document.querySelector('input[name=advantages]');
+    new Tagify(input);
+
+    var input2 = document.querySelector('input[name=disadvantages]');
+    new Tagify(input2);
+}
+function initExpandRow() {
+    var $expandBtn = $('.js-expand-comment'),
+        $expandRow = $('.js-expanded-row');
+
+    $expandBtn.on('click', function () {
+        // toggle class of expand button parent row
+        $(this).parents('tr').toggleClass('c-profile-rating__expanded-product-row');
+
+        var expandeData = $(this).parent('td').data('expand'),
+            expandedRow = $(this).parents('tr').next();
+
+        $(this).toggleClass('c-ui-table__expander-control--expanded');
+        expandedRow.toggleClass('c-ui-table__expand-row--hidden');
+    });
+}
+function initSelect2() {
+
+    const $selects = $('select.c-ui-select--common');
+
+    if ($selects.length) {
+        for (let i = 0, len = $selects.length; i < len; i++) {
+            const $select = $($selects[i]);
+
+            $select.select2({
+                placeholder: $select.attr('placeholder'),
+                tags: true,
+                clear: true,
+                closeOnSelect: true
+            }).data('select2').$dropdown.addClass('c-ui-select__dropdown c-ui-select__dropdown--gap');
+        }
+    }
+}
+
+function displayError(errors) {
+    var message = '';
+    if (typeof errors === typeof  "") {
+        message = errors;
+    } else if (typeof errors === typeof {}) {
+        try {
+            message = Object.values(errors).join('<br/>');
+        } catch (e) {
+            message = errors;
+        }
+    }
+    UIkit.notification({
+        message: message,
+        status: 'danger',
+        pos: 'bottom-right',
+        timeout: 8000
+    });
+}
+
+persianNum();
+convertDate();
+
+$(document).on('change',"#sortType" ,function (){
+    console.log('cklicked...');
+    $.ajax({
+        type: 'post',
+        url: '{{ route('staff.comments.searchComment') }}',
+        data: {
+            sortType: $(this).val(),
+        },
+        success: function (response) {
+            $('.js-table-container').replaceWith(response);
+        }
+
+    });
+
+});
+
+$(document).on('click', '.saveData',function (){
+
+    var $this = $(this).closest('.second-td');
+
+    var title = $this.find("#title").val();
+    var recommend_status = $this.find("#recommend_status").val();
+    var text = $this.find("#text").val();
+    var advantages = $this.find("#advantages").val();
+    var disadvantages = $this.find("#disadvantages").val();
+    var comment_id = $(this).data('id');
+
+    $.ajax({
+        type: 'post',
+        url: '{{ route('staff.comments.update') }}',
+        data: {
+            title: title,
+            text: text,
+            advantages: advantages,
+            disadvantages: disadvantages,
+            comment_id: comment_id,
+            recommend_status: recommend_status,
+        },
+        success: function (response) {
+            $('.js-table-container').replaceWith(response);
+        },
+        error: function (errors) {
+            displayError(errors.responseJSON.data.errors);
+        }
+    });
+});
+
+$(document).on('click', '.cancell-btn', function () {
+    var comment_id = $(this).data('id');
+    $('span[data-id=' + comment_id + ']').removeClass('c-ui-table__expander-control--expanded');
+    $('tr[data-expand-target=' + comment_id + ']').addClass('c-ui-table__expand-row--hidden');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).on('click', '.delete-btn', function () {
+
+    var comment_id = $(this).data('id');
+
+
+    $('.c-header__nav').hide();
+    $(".uk-modal-container").addClass('uk-open');
+    $(".uk-modal-container").css('display', 'block');
+
+
+    $(document).on('click', '.uk-close', function () {
+        $('.c-header__nav').show();
+        comment_id = null;
+    });
+
+    $(document).on('click', '.no', function () {
+        $('.c-header__nav').show();
+        comment_id = null;
+    });
+
+
+    $(document).on('click', '.yes', function () {
+
+        $('.c-header__nav').show();
+
+        if (comment_id !== null)
+        {
+            $.ajax({
+                method: 'post',
+                url: "{{route('staff.comments.delete')}}",
+                data: {
+                    'id': comment_id,
+                },
+                success: function (response) {
+                    $('.js-table-container').replaceWith(response);
+                    $(window).scrollTop(0);
+                    UIkit.notification({
+                        message: 'دیدگاه حذف شد',
+                        status: 'success',
+                        pos: 'top-left',
+                        timeout: 3000
+                    });
+                },
+            });
+        }
+
+    });
+});
+
+
+
+</script>
 @endsection

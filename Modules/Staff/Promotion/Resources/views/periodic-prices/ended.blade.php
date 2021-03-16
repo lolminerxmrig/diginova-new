@@ -709,7 +709,7 @@
                                             تخفیف عالی
                                         </span>
                                             <span class="c-join-smart-list__type-sub-title">
-                                            شانس شرکت در کمپین‌های دیجی‌کالا
+                                            شانس شرکت در کمپین‌های {{ $site_name }}
                                         </span>
                                         </div>
                                     </div>

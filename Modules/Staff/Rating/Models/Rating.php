@@ -14,18 +14,12 @@ class Rating extends Model
 
     protected $fillable = ['name', 'position'];
 
-    public function categories()
-    {
-        return $this->morphedByMany(Category::class, 'typable');
-    }
-
-
     /**
      * The products that belong to the ratings.
      */
-    public function ratings()
-    {
-        return $this->belongsToMany(Product::class, 'product_type');
-    }
+//    public function ratings()
+//    {
+//        return $this->belongsToMany(Product::class, 'product_type');
+//    }
 }
 

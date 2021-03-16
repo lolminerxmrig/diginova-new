@@ -1,7 +1,7 @@
 <!Doctype html>
 <html  dir="rtl">
 <head>
-    <title>دیجی‌کالا</title>
+    <title>{{ $site_name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('seller/icon/caf67ad9.ico') }}" type="image/icon">
@@ -536,7 +536,7 @@
               </span>
               ۰۲۱ - ۹۱۰۲۰۰۲۰
             </li>
-            <li>ارتباط با مرکز فروشندگان دیجی‌کالا</li>
+            <li>ارتباط با مرکز فروشندگان {{ $site_name }}</li>
           </ul>
           <div>
             <a href="http://selleracademy.digikala.com/">
@@ -553,7 +553,7 @@
           <div>
             کليه حقوق اين
             <span style="color: rgba(243, 187, 97, 1)">
-            سايت به شرکت نوآوران فن آوازه (فروشگاه آنلاین دیجی‌کالا)
+            سايت به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $site_name }})
             </span>
             تعلق دارد.
           </div>
