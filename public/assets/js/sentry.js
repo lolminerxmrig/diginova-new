@@ -14,17 +14,17 @@ var Sentry = function (n) {
         }
       )(n, r)
     };
-  
+
     function r(n, r) {
       function e() {
         this.constructor = n
       }
-  
+
       t(n, r),
         n.prototype = null === r ? Object.create(r) : (e.prototype = r.prototype,
           new e)
     }
-  
+
     var e, i, o, u = function () {
       return (u = Object.assign || function (n) {
         for (var t, r = 1, e = arguments.length; r < e; r++)
@@ -33,7 +33,7 @@ var Sentry = function (n) {
         return n
       }).apply(this, arguments)
     };
-  
+
     function c(n, t) {
       var r = "function" == typeof Symbol && n[Symbol.iterator];
       if (!r)
@@ -58,13 +58,13 @@ var Sentry = function (n) {
       }
       return u
     }
-  
+
     function s() {
       for (var n = [], t = 0; t < arguments.length; t++)
         n = n.concat(c(arguments[t]));
       return n
     }
-  
+
     ! function (n) {
       n[n.None = 0] = "None",
         n[n.Error = 1] = "Error",
@@ -133,11 +133,11 @@ var Sentry = function (n) {
           a(e, r.prototype),
           e
       }
-  
+
       return r(t, n),
         t
     }(Error);
-  
+
     function h(n) {
       switch (Object.prototype.toString.call(n)) {
         case "[object Error]":
@@ -148,37 +148,37 @@ var Sentry = function (n) {
           return n instanceof Error
       }
     }
-  
+
     function l(n) {
       return "[object ErrorEvent]" === Object.prototype.toString.call(n)
     }
-  
+
     function v(n) {
       return "[object DOMError]" === Object.prototype.toString.call(n)
     }
-  
+
     function d(n) {
       return "[object String]" === Object.prototype.toString.call(n)
     }
-  
+
     function p(n) {
       return null === n || "object" != typeof n && "function" != typeof n
     }
-  
+
     function m(n) {
       return "[object Object]" === Object.prototype.toString.call(n)
     }
-  
+
     function y(n) {
       return Boolean(n && n.then && "function" == typeof n.then)
     }
-  
+
     var b = {};
-  
+
     function w() {
       return "[object process]" === Object.prototype.toString.call("undefined" != typeof process ? process : 0) ? global : "undefined" != typeof window ? window : "undefined" != typeof self ? self : b
     }
-  
+
     function g() {
       var n = w(),
         t = n.crypto || n.msCrypto;
@@ -199,7 +199,7 @@ var Sentry = function (n) {
         return ("x" === n ? t : 3 & t | 8).toString(16)
       })
     }
-  
+
     function E(n) {
       if (!n)
         return {};
@@ -215,7 +215,7 @@ var Sentry = function (n) {
         relative: t[5] + r + e
       }
     }
-  
+
     function x(n) {
       if (n.message)
         return n.message;
@@ -225,7 +225,7 @@ var Sentry = function (n) {
       }
       return n.event_id || "<unknown>"
     }
-  
+
     function j(n) {
       var t = w();
       if (!("console" in t))
@@ -242,7 +242,7 @@ var Sentry = function (n) {
         }),
         i
     }
-  
+
     function _(n, t, r, e) {
       void 0 === e && (e = {
           handled: !0,
@@ -255,14 +255,14 @@ var Sentry = function (n) {
         n.exception.values[0].type = n.exception.values[0].type || r || "Error",
         n.exception.values[0].mechanism = n.exception.values[0].mechanism || e
     }
-  
+
     var S = w(),
       O = "Sentry Logger ",
       k = function () {
         function n() {
           this.t = !1
         }
-  
+
         return n.prototype.disable = function () {
             this.t = !1
           },
@@ -299,7 +299,7 @@ var Sentry = function (n) {
           this.i = "function" == typeof WeakSet,
             this.o = this.i ? new WeakSet : []
         }
-  
+
         return n.prototype.memoize = function (n) {
             if (this.i)
               return !!this.o.has(n) || (this.o.add(n), !1);
@@ -321,7 +321,7 @@ var Sentry = function (n) {
           },
           n
       }();
-  
+
     function D(n, t, r) {
       if (t in n) {
         var e = n[t],
@@ -347,25 +347,25 @@ var Sentry = function (n) {
         n[t] = i
       }
     }
-  
+
     function I(n) {
       return function (n) {
         return ~-encodeURI(n).split(/%..|./).length
       }(JSON.stringify(n))
     }
-  
+
     function C(n, t, r) {
       void 0 === t && (t = 3),
         void 0 === r && (r = 102400);
       var e = L(n, t);
       return I(e) > r ? C(n, t - 1, r) : e
     }
-  
+
     function N(n, t) {
       return "domain" === t && "object" == typeof n && n.u ? "[Domain]" : "domainEmitter" === t ? "[DomainEmitter]" : "undefined" != typeof global && n === global ? "[Global]" : "undefined" != typeof window && n === window ? "[Window]" : "undefined" != typeof document && n === document ? "[Document]" : "undefined" != typeof Event && n instanceof Event ? Object.getPrototypeOf(n) ? n.constructor.name : "Event" : m(r = n) && "nativeEvent" in r && "preventDefault" in r && "stopPropagation" in r ? "[SyntheticEvent]" : Number.isNaN(n) ? "[NaN]" : void 0 === n ? "[undefined]" : "function" == typeof n ? "[Function: " + (n.name || "<unknown-function-name>") + "]" : n;
       var r
     }
-  
+
     function A(n, t, r, e) {
       if (void 0 === r && (r = 1 / 0),
         void 0 === e && (e = new R),
@@ -404,7 +404,7 @@ var Sentry = function (n) {
       return e.unmemoize(t),
         u
     }
-  
+
     function L(n, t) {
       try {
         return JSON.parse(JSON.stringify(n, function (n, r) {
@@ -414,13 +414,13 @@ var Sentry = function (n) {
         return "**non-serializable**"
       }
     }
-  
+
     var M, U = function () {
       function n(n) {
         this.s = n,
           this.h = []
       }
-  
+
       return n.prototype.isReady = function () {
           return void 0 === this.s || this.length() < this.s
         },
@@ -456,12 +456,12 @@ var Sentry = function (n) {
         },
         n
     }();
-  
+
     function F(n, t) {
       return void 0 === t && (t = 0),
         "string" != typeof n || 0 === t ? n : n.length <= t ? n : n.substr(0, t) + "..."
     }
-  
+
     function P(n, t) {
       if (!Array.isArray(n))
         return "";
@@ -475,7 +475,7 @@ var Sentry = function (n) {
       }
       return r.join(t)
     }
-  
+
     function $(n, t) {
       if (void 0 === t && (t = 40), !n.length)
         return "[object has no keys]";
@@ -488,13 +488,13 @@ var Sentry = function (n) {
       }
       return ""
     }
-  
+
     function q(n, t) {
       return r = t,
         "[object RegExp]" === Object.prototype.toString.call(r) ? t.test(n) : "string" == typeof t && n.includes(t);
       var r
     }
-  
+
     function H() {
       if (!("fetch" in w()))
         return !1;
@@ -506,7 +506,7 @@ var Sentry = function (n) {
         return !1
       }
     }
-  
+
     function W() {
       if (!H())
         return !1;
@@ -518,7 +518,7 @@ var Sentry = function (n) {
         return !1
       }
     }
-  
+
     ! function (n) {
       n.PENDING = "PENDING",
         n.RESOLVED = "RESOLVED",
@@ -558,7 +558,7 @@ var Sentry = function (n) {
             this.g(n)
           }
         }
-  
+
         return n.prototype.then = function (t, r) {
             var e = this;
             return new n(function (n, i) {
@@ -616,7 +616,7 @@ var Sentry = function (n) {
             this.T = r,
             this.R = e
         }
-  
+
         return n.prototype.setParent = function (n) {
             return this.R = n,
               this
@@ -660,7 +660,7 @@ var Sentry = function (n) {
             this.M = {},
             this.U = {}
         }
-  
+
         return n.prototype.addScopeListener = function (n) {
             this.I.push(n)
           },
@@ -821,18 +821,18 @@ var Sentry = function (n) {
           },
           n
       }();
-  
+
     function z() {
       var n = w();
       return n.__SENTRY__ = n.__SENTRY__ || {},
         n.__SENTRY__.globalEventProcessors = n.__SENTRY__.globalEventProcessors || [],
         n.__SENTRY__.globalEventProcessors
     }
-  
+
     function V(n) {
       z().push(n)
     }
-  
+
     var K = 3,
       Z = function () {
         function n(n, t, r) {
@@ -845,7 +845,7 @@ var Sentry = function (n) {
               scope: t
             })
         }
-  
+
         return n.prototype.G = function (n) {
             for (var t, r = [], e = 1; e < arguments.length; e++)
               r[e - 1] = arguments[e];
@@ -1021,7 +1021,7 @@ var Sentry = function (n) {
           },
           n
       }();
-  
+
     function Q() {
       var n = w();
       return n.__SENTRY__ = n.__SENTRY__ || {
@@ -1029,14 +1029,14 @@ var Sentry = function (n) {
         },
         n
     }
-  
+
     function Y(n) {
       var t = Q(),
         r = rn(t);
       return en(t, n),
         r
     }
-  
+
     function nn() {
       var n, t, r = Q();
       tn(r) && !rn(r).isOlderThan(K) || en(r, new Z);
@@ -1055,22 +1055,22 @@ var Sentry = function (n) {
         return rn(r)
       }
     }
-  
+
     function tn(n) {
       return !!(n && n.__SENTRY__ && n.__SENTRY__.hub)
     }
-  
+
     function rn(n) {
       return n && n.__SENTRY__ && n.__SENTRY__.hub ? n.__SENTRY__.hub : (n.__SENTRY__ = n.__SENTRY__ || {},
         n.__SENTRY__.hub = new Z,
         n.__SENTRY__.hub)
     }
-  
+
     function en(n, t) {
       return !!n && (n.__SENTRY__ = n.__SENTRY__ || {},
         n.__SENTRY__.hub = t, !0)
     }
-  
+
     function on(n) {
       for (var t = [], r = 1; r < arguments.length; r++)
         t[r - 1] = arguments[r];
@@ -1079,7 +1079,7 @@ var Sentry = function (n) {
         return e[n].apply(e, s(t));
       throw new Error("No hub defined or " + n + " was not found on the hub, please open a bug report.")
     }
-  
+
     function captureException(n) {
       var t;
       try {
@@ -1092,18 +1092,18 @@ var Sentry = function (n) {
         syntheticException: t
       })
     }
-  
+
     function un(n) {
       on("withScope", n)
     }
-  
+
     var cn = /^(?:(\w+):)\/\/(?:(\w+)(?::(\w+))?@)([\w\.-]+)(?::(\d+))?\/(.+)/,
       sn = function () {
         function n(n) {
           "string" == typeof n ? this.K(n) : this.Z(n),
             this.Y()
         }
-  
+
         return n.prototype.toString = function (n) {
             void 0 === n && (n = !1);
             var t = this,
@@ -1168,7 +1168,7 @@ var Sentry = function (n) {
           this.dsn = n,
             this.nn = new sn(n)
         }
-  
+
         return n.prototype.getDsn = function () {
             return this.nn
           },
@@ -1225,7 +1225,7 @@ var Sentry = function (n) {
           n
       }(),
       fn = [];
-  
+
     function hn(n) {
       var t = {};
       return function (n) {
@@ -1262,7 +1262,7 @@ var Sentry = function (n) {
         }),
         t
     }
-  
+
     var ln, vn = function () {
         function n(n, t) {
           this.rn = !1,
@@ -1271,7 +1271,7 @@ var Sentry = function (n) {
             t.dsn && (this.on = new sn(t.dsn)),
             this.un = hn(this.in)
         }
-  
+
         return n.prototype.captureException = function (n, t, r) {
             var e = this,
               i = t && t.event_id;
@@ -1450,7 +1450,7 @@ var Sentry = function (n) {
       }(),
       dn = function () {
         function t() {}
-  
+
         return t.prototype.sendEvent = function (t) {
             return Promise.resolve({
               reason: "NoopTransport: Event has been skipped because no Dsn is configured.",
@@ -1468,7 +1468,7 @@ var Sentry = function (n) {
             this.in.dsn || T.warn("No DSN provided, backend will not do anything."),
             this.dn = this.pn()
         }
-  
+
         return n.prototype.pn = function () {
             return new dn
           },
@@ -1492,7 +1492,7 @@ var Sentry = function (n) {
         function n() {
           this.name = n.id
         }
-  
+
         return n.prototype.setupOnce = function () {
             ln = Function.prototype.toString,
               Function.prototype.toString = function () {
@@ -1512,7 +1512,7 @@ var Sentry = function (n) {
             this.in = t,
             this.name = n.id
         }
-  
+
         return n.prototype.setupOnce = function () {
             V(function (t) {
               var r = nn();
@@ -1618,20 +1618,20 @@ var Sentry = function (n) {
       },
       xn = "?",
       jn = /^(?:[Uu]ncaught (?:exception: )?)?(?:((?:Eval|Internal|Range|Reference|Syntax|Type|URI|)Error): )?(.*)$/;
-  
+
     function _n(n, t) {
       return Object.prototype.hasOwnProperty.call(n, t)
     }
-  
+
     function Sn() {
       return "undefined" == typeof document || null == document.location ? "" : document.location.href
     }
-  
+
     En._n = function () {
         var n, t, r = [],
           e = null,
           i = null;
-  
+
         function o(n, t, e) {
           var i = null;
           if (!t || En.Sn) {
@@ -1646,7 +1646,7 @@ var Sentry = function (n) {
               throw i
           }
         }
-  
+
         function c(t, r, e, c, s) {
           var f = null;
           if (s = l(s) ? s.error : s,
@@ -1683,7 +1683,7 @@ var Sentry = function (n) {
           }
           return !!n && n.apply(this, arguments)
         }
-  
+
         function s(n) {
           var t = n && (n.detail ? n.detail.reason : n.reason) || n,
             r = En.On(t);
@@ -1691,7 +1691,7 @@ var Sentry = function (n) {
             r.message || (r.message = JSON.stringify(L(t))),
             o(r, !0, t)
         }
-  
+
         function a() {
           var n = i,
             t = e;
@@ -1699,7 +1699,7 @@ var Sentry = function (n) {
             e = null,
             o(n, !1, t)
         }
-  
+
         function f(n) {
           if (i) {
             if (e === n)
@@ -1714,7 +1714,7 @@ var Sentry = function (n) {
             }, t.incomplete ? 2e3 : 0),
             n
         }
-  
+
         return f.Rn = function (n) {
             r.push(n)
           },
@@ -1778,7 +1778,7 @@ var Sentry = function (n) {
             stack: f
           }) : null
         }
-  
+
         function t(n, t, r, e) {
           var i = {
             url: t,
@@ -1801,7 +1801,7 @@ var Sentry = function (n) {
           }
           return n.incomplete = !0, !1
         }
-  
+
         function r(n, e) {
           for (var i, o, u = /function\s+([_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*)?\s*\(/i, c = [], s = {}, a = !1, f = r.caller; f && !a; f = f.caller)
             if (f !== Rn && f !== En._n) {
@@ -1830,7 +1830,7 @@ var Sentry = function (n) {
           return t(h, n.sourceURL || n.fileName, n.line || n.lineNumber, n.message || n.description),
             h
         }
-  
+
         function e(t, e) {
           var i = null;
           e = null == e ? 0 : +e;
@@ -1931,7 +1931,7 @@ var Sentry = function (n) {
             mode: "failed"
           }
         }
-  
+
         return e.Tn = t,
           e.Cn = n,
           e
@@ -1943,7 +1943,7 @@ var Sentry = function (n) {
       Tn = En._n.In,
       Rn = En.On,
       Dn = 50;
-  
+
     function In(n) {
       var t = Nn(n.stack),
         r = {
@@ -1956,7 +1956,7 @@ var Sentry = function (n) {
         void 0 === r.type && "" === r.value && (r.value = "Unrecoverable error caught"),
         r
     }
-  
+
     function Cn(n) {
       return {
         exception: {
@@ -1964,7 +1964,7 @@ var Sentry = function (n) {
         }
       }
     }
-  
+
     function Nn(n) {
       if (!n || !n.length)
         return [];
@@ -1983,14 +1983,14 @@ var Sentry = function (n) {
           }
         }).slice(0, Dn).reverse()
     }
-  
+
     var An, Ln, Mn = function () {
         function n(n) {
           this.options = n,
             this.h = new U(30),
             this.url = new an(this.options.dsn).getStoreEndpointWithUrlEncodedAuth()
         }
-  
+
         return n.prototype.sendEvent = function (n) {
             throw new f("Transport Class has to implement `sendEvent` method")
           },
@@ -2004,7 +2004,7 @@ var Sentry = function (n) {
         function e() {
           return null !== t && t.apply(this, arguments) || this
         }
-  
+
         return r(e, t),
           e.prototype.sendEvent = function (t) {
             var r = {
@@ -2024,7 +2024,7 @@ var Sentry = function (n) {
         function e() {
           return null !== t && t.apply(this, arguments) || this
         }
-  
+
         return r(e, t),
           e.prototype.sendEvent = function (t) {
             var r = this;
@@ -2051,7 +2051,7 @@ var Sentry = function (n) {
         function e() {
           return null !== t && t.apply(this, arguments) || this
         }
-  
+
         return r(e, t),
           e.prototype.pn = function () {
             if (!this.in.dsn)
@@ -2142,7 +2142,7 @@ var Sentry = function (n) {
           return void 0 === t && (t = {}),
             n.call(this, qn, t) || this
         }
-  
+
         return r(t, n),
           t.prototype.hn = function (t, r, e) {
             return t.platform = t.platform || "javascript",
@@ -2180,7 +2180,7 @@ var Sentry = function (n) {
       }(vn),
       Bn = 1e3,
       Jn = 0;
-  
+
     function Xn(n, t, r) {
       if (void 0 === t && (t = {}),
         "function" != typeof n)
@@ -2249,9 +2249,9 @@ var Sentry = function (n) {
       } catch (n) {}
       return sentryWrapped
     }
-  
+
     var Gn = 0;
-  
+
     function zn(n, t) {
       return void 0 === t && (t = !1),
         function (r) {
@@ -2278,7 +2278,7 @@ var Sentry = function (n) {
           }
         }
     }
-  
+
     function Vn() {
       return function (n) {
         var t;
@@ -2295,7 +2295,7 @@ var Sentry = function (n) {
           }, Bn))
       }
     }
-  
+
     function Kn(n) {
       for (var t, r = n, e = [], i = 0, o = 0, u = " > ".length; r && i++ < 5 && !("html" === (t = Zn(r)) || i > 1 && o + e.length * u + t.length >= 80);)
         e.push(t),
@@ -2303,7 +2303,7 @@ var Sentry = function (n) {
         r = r.parentNode;
       return e.reverse().join(" > ")
     }
-  
+
     function Zn(n) {
       var t, r, e, i, o, u = [];
       if (!n || !n.tagName)
@@ -2320,7 +2320,7 @@ var Sentry = function (n) {
         (i = n.getAttribute(e)) && u.push("[" + e + '="' + i + '"]');
       return u.join("")
     }
-  
+
     var Qn = function () {
         function n(t) {
           this.name = n.id,
@@ -2329,7 +2329,7 @@ var Sentry = function (n) {
               onunhandledrejection: !0
             }, t)
         }
-  
+
         return n.prototype.setupOnce = function () {
             Error.stackTraceLimit = 50,
               On(function (t, r, e) {
@@ -2376,7 +2376,7 @@ var Sentry = function (n) {
           this.Ln = 0,
             this.name = n.id
         }
-  
+
         return n.prototype.Mn = function (n) {
             return function () {
               for (var t = [], r = 0; r < arguments.length; r++)
@@ -2459,7 +2459,7 @@ var Sentry = function (n) {
           n.id = "TryCatch",
           n
       }();
-  
+
     function nt(n) {
       try {
         return n && n.name || "<anonymous>"
@@ -2467,7 +2467,7 @@ var Sentry = function (n) {
         return "<anonymous>"
       }
     }
-  
+
     var tt, rt = w(),
       et = function () {
         function t(n) {
@@ -2481,7 +2481,7 @@ var Sentry = function (n) {
               xhr: !0
             }, n)
         }
-  
+
         return t.prototype.Pn = function () {
             "console" in rt && ["debug", "info", "warn", "error", "log", "assert"].forEach(function (r) {
               r in rt.console && D(rt.console, r, function (e) {
@@ -2647,7 +2647,7 @@ var Sentry = function (n) {
                 D(rt.history, "pushState", s),
                 D(rt.history, "replaceState", s)
             }
-  
+
             function s(n) {
               return function () {
                 for (var t = [], r = 0; r < arguments.length; r++)
@@ -2684,7 +2684,7 @@ var Sentry = function (n) {
                     for (var r = [], e = 0; e < arguments.length; e++)
                       r[e] = arguments[e];
                     var i = this;
-  
+
                     function o() {
                       if (4 === i.readyState) {
                         if (i.__sentry_own_request__)
@@ -2701,7 +2701,7 @@ var Sentry = function (n) {
                         })
                       }
                     }
-  
+
                     return i.__sentry_own_request__ && it(r[0]), ["onload", "onerror", "onprogress"].forEach(function (n) {
                         ! function (n, t) {
                           n in t && "function" == typeof t[n] && D(t, n, function (t) {
@@ -2748,7 +2748,7 @@ var Sentry = function (n) {
           t.id = "Breadcrumbs",
           t
       }();
-  
+
     function it(t) {
       try {
         var r = JSON.parse(t);
@@ -2764,7 +2764,7 @@ var Sentry = function (n) {
         T.error("Error while adding sentry type breadcrumb")
       }
     }
-  
+
     var ot = "cause",
       ut = 5,
       ct = function () {
@@ -2774,7 +2774,7 @@ var Sentry = function (n) {
             this.Bn = t.key || ot,
             this.s = t.limit || ut
         }
-  
+
         return n.prototype.setupOnce = function () {
             V(function (t, r) {
               var e = nn().getIntegration(n);
@@ -2802,7 +2802,7 @@ var Sentry = function (n) {
         function n() {
           this.name = n.id
         }
-  
+
         return n.prototype.setupOnce = function () {
             V(function (t) {
               if (nn().getIntegration(n)) {
@@ -2924,8 +2924,8 @@ var Sentry = function (n) {
       },
       n
   }({});
-  
-  
+
+
   /*[PATH @digikala/supernova/node_modules/jquery/dist/jquery.min.js]*/
   /*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */
   ! function (e, t) {
@@ -2961,14 +2961,14 @@ var Sentry = function (n) {
         nonce: !0,
         noModule: !0
       };
-  
+
     function b(e, t, n) {
       var r, i, o = (n = n || E).createElement("script");
       if (o.text = e, t)
         for (r in c)(i = t[r] || t.getAttribute && t.getAttribute(r)) && o.setAttribute(r, i);
       n.head.appendChild(o).parentNode.removeChild(o)
     }
-  
+
     function w(e) {
       return null == e ? e + "" : "object" == typeof e || "function" == typeof e ? n[o.call(e)] || "object" : typeof e
     }
@@ -2977,7 +2977,7 @@ var Sentry = function (n) {
         return new k.fn.init(e, t)
       },
       p = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-  
+
     function d(e) {
       var t = !!e && "length" in e && e.length,
         n = w(e);
@@ -3180,7 +3180,7 @@ var Sentry = function (n) {
           }
         }
       }
-  
+
       function se(t, e, n, r) {
         var i, o, a, s, u, l, c, f = e && e.ownerDocument,
           p = e ? e.nodeType : 9;
@@ -3213,18 +3213,18 @@ var Sentry = function (n) {
         }
         return g(t.replace(B, "$1"), e, n, r)
       }
-  
+
       function ue() {
         var r = [];
         return function e(t, n) {
           return r.push(t + " ") > b.cacheLength && delete e[r.shift()], e[t + " "] = n
         }
       }
-  
+
       function le(e) {
         return e[k] = !0, e
       }
-  
+
       function ce(e) {
         var t = C.createElement("fieldset");
         try {
@@ -3235,13 +3235,13 @@ var Sentry = function (n) {
           t.parentNode && t.parentNode.removeChild(t), t = null
         }
       }
-  
+
       function fe(e, t) {
         var n = e.split("|"),
           r = n.length;
         while (r--) b.attrHandle[n[r]] = t
       }
-  
+
       function pe(e, t) {
         var n = t && e,
           r = n && 1 === e.nodeType && 1 === t.nodeType && e.sourceIndex - t.sourceIndex;
@@ -3251,26 +3251,26 @@ var Sentry = function (n) {
             if (n === t) return -1;
         return e ? 1 : -1
       }
-  
+
       function de(t) {
         return function (e) {
           return "input" === e.nodeName.toLowerCase() && e.type === t
         }
       }
-  
+
       function he(n) {
         return function (e) {
           var t = e.nodeName.toLowerCase();
           return ("input" === t || "button" === t) && e.type === n
         }
       }
-  
+
       function ge(t) {
         return function (e) {
           return "form" in e ? e.parentNode && !1 === e.disabled ? "label" in e ? "label" in e.parentNode ? e.parentNode.disabled === t : e.disabled === t : e.isDisabled === t || e.isDisabled !== !t && ae(e) === t : e.disabled === t : "label" in e && e.disabled === t
         }
       }
-  
+
       function ve(a) {
         return le(function (o) {
           return o = +o, le(function (e, t) {
@@ -3280,7 +3280,7 @@ var Sentry = function (n) {
           })
         })
       }
-  
+
       function ye(e) {
         return e && "undefined" != typeof e.getElementsByTagName && e
       }
@@ -3629,14 +3629,14 @@ var Sentry = function (n) {
           submit: !0,
           reset: !0
         }) b.pseudos[e] = he(e);
-  
+
       function me() {}
-  
+
       function xe(e) {
         for (var t = 0, n = e.length, r = ""; t < n; t++) r += e[t].value;
         return r
       }
-  
+
       function be(s, e, t) {
         var u = e.dir,
           l = e.next,
@@ -3662,7 +3662,7 @@ var Sentry = function (n) {
                 } return !1
         }
       }
-  
+
       function we(i) {
         return 1 < i.length ? function (e, t, n) {
           var r = i.length;
@@ -3671,12 +3671,12 @@ var Sentry = function (n) {
           return !0
         } : i[0]
       }
-  
+
       function Te(e, t, n, r, i) {
         for (var o, a = [], s = 0, u = e.length, l = null != t; s < u; s++)(o = e[s]) && (n && !n(o, r, i) || (a.push(o), l && t.push(s)));
         return a
       }
-  
+
       function Ce(d, h, g, v, y, e) {
         return v && !v[k] && (v = Ce(v)), y && !y[k] && (y = Ce(y, e)), le(function (e, t, n, r) {
           var i, o, a, s = [],
@@ -3705,7 +3705,7 @@ var Sentry = function (n) {
           } else p = Te(p === t ? p.splice(l, p.length) : p), y ? y(null, t, p, r) : H.apply(t, p)
         })
       }
-  
+
       function Ee(e) {
         for (var i, t, n, r = e.length, o = b.relative[e[0].type], a = o || b.relative[" "], s = o ? 1 : 0, u = be(function (e) {
             return e === i
@@ -3837,12 +3837,12 @@ var Sentry = function (n) {
         return n
       },
       N = k.expr.match.needsContext;
-  
+
     function A(e, t) {
       return e.nodeName && e.nodeName.toLowerCase() === t.toLowerCase()
     }
     var D = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
-  
+
     function j(e, n, r) {
       return m(n) ? k.grep(e, function (e, t) {
         return !!n.call(e, t, e) !== r
@@ -3900,7 +3900,7 @@ var Sentry = function (n) {
         next: !0,
         prev: !0
       };
-  
+
     function P(e, t) {
       while ((e = e[t]) && 1 !== e.nodeType);
       return e
@@ -3982,15 +3982,15 @@ var Sentry = function (n) {
       }
     });
     var R = /[^\x20\t\r\n\f]+/g;
-  
+
     function M(e) {
       return e
     }
-  
+
     function I(e) {
       throw e
     }
-  
+
     function W(e, t, n, r) {
       var i;
       try {
@@ -4089,7 +4089,7 @@ var Sentry = function (n) {
             },
             then: function (t, n, r) {
               var u = 0;
-  
+
               function l(i, o, a, s) {
                 return function () {
                   var n = this,
@@ -4155,7 +4155,7 @@ var Sentry = function (n) {
       })
     };
     var F = k.Deferred();
-  
+
     function B() {
       E.removeEventListener("DOMContentLoaded", B), C.removeEventListener("load", B), k.ready()
     }
@@ -4184,18 +4184,18 @@ var Sentry = function (n) {
       },
       z = /^-ms-/,
       U = /-([a-z])/g;
-  
+
     function X(e, t) {
       return t.toUpperCase()
     }
-  
+
     function V(e) {
       return e.replace(z, "ms-").replace(U, X)
     }
     var G = function (e) {
       return 1 === e.nodeType || 9 === e.nodeType || !+e.nodeType
     };
-  
+
     function Y() {
       this.expando = k.expando + Y.uid++
     }
@@ -4238,7 +4238,7 @@ var Sentry = function (n) {
       J = new Y,
       K = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
       Z = /[A-Z]/g;
-  
+
     function ee(e, t, n) {
       var r, i;
       if (void 0 === n && 1 === e.nodeType)
@@ -4367,7 +4367,7 @@ var Sentry = function (n) {
         for (o in i = n.apply(e, r || []), t) e.style[o] = a[o];
         return i
       };
-  
+
     function le(e, t, n, r) {
       var i, o, a = 20,
         s = r ? function () {
@@ -4386,7 +4386,7 @@ var Sentry = function (n) {
       return n && (c = +c || +u || 0, i = n[1] ? c + (n[1] + 1) * n[2] : +n[2], r && (r.unit = l, r.start = c, r.end = i)), i
     }
     var ce = {};
-  
+
     function fe(e, t) {
       for (var n, r, i, o, a, s, u, l = [], c = 0, f = e.length; c < f; c++)(r = e[c]).style && (n = r.style.display, t ? ("none" === n && (l[c] = Q.get(r, "display") || null, l[c] || (r.style.display = "")), "" === r.style.display && se(r) && (l[c] = (u = a = o = void 0, a = (i = r).ownerDocument, s = i.nodeName, (u = ce[s]) || (o = a.body.appendChild(a.createElement(s)), u = k.css(o, "display"), o.parentNode.removeChild(o), "none" === u && (u = "block"), ce[s] = u)))) : "none" !== n && (l[c] = "none", Q.set(r, "display", n)));
       for (c = 0; c < f; c++) null != l[c] && (e[c].style.display = l[c]);
@@ -4416,18 +4416,18 @@ var Sentry = function (n) {
         td: [3, "<table><tbody><tr>", "</tr></tbody></table>"],
         _default: [0, "", ""]
       };
-  
+
     function ve(e, t) {
       var n;
       return n = "undefined" != typeof e.getElementsByTagName ? e.getElementsByTagName(t || "*") : "undefined" != typeof e.querySelectorAll ? e.querySelectorAll(t || "*") : [], void 0 === t || t && A(e, t) ? k.merge([e], n) : n
     }
-  
+
     function ye(e, t) {
       for (var n = 0, r = e.length; n < r; n++) Q.set(e[n], "globalEval", !t || Q.get(t[n], "globalEval"))
     }
     ge.optgroup = ge.option, ge.tbody = ge.tfoot = ge.colgroup = ge.caption = ge.thead, ge.th = ge.td;
     var me, xe, be = /<|&#?\w+;/;
-  
+
     function we(e, t, n, r, i) {
       for (var o, a, s, u, l, c, f = t.createDocumentFragment(), p = [], d = 0, h = e.length; d < h; d++)
         if ((o = e[d]) || 0 === o)
@@ -4450,15 +4450,15 @@ var Sentry = function (n) {
     var Te = /^key/,
       Ce = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
       Ee = /^([^.]*)(?:\.(.+)|)/;
-  
+
     function ke() {
       return !0
     }
-  
+
     function Se() {
       return !1
     }
-  
+
     function Ne(e, t) {
       return e === function () {
         try {
@@ -4466,7 +4466,7 @@ var Sentry = function (n) {
         } catch (e) {}
       }() == ("focus" === t)
     }
-  
+
     function Ae(e, t, n, r, i, o) {
       var a, s;
       if ("object" == typeof t) {
@@ -4481,7 +4481,7 @@ var Sentry = function (n) {
         k.event.add(this, t, i, r, n)
       })
     }
-  
+
     function De(e, i, o) {
       o ? (Q.set(e, i, !1), k.event.add(e, i, {
         namespace: !1,
@@ -4718,19 +4718,19 @@ var Sentry = function (n) {
       qe = /<script|<style|<link/i,
       Le = /checked\s*(?:[^=]|=\s*.checked.)/i,
       He = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
-  
+
     function Oe(e, t) {
       return A(e, "table") && A(11 !== t.nodeType ? t : t.firstChild, "tr") && k(e).children("tbody")[0] || e
     }
-  
+
     function Pe(e) {
       return e.type = (null !== e.getAttribute("type")) + "/" + e.type, e
     }
-  
+
     function Re(e) {
       return "true/" === (e.type || "").slice(0, 5) ? e.type = e.type.slice(5) : e.removeAttribute("type"), e
     }
-  
+
     function Me(e, t) {
       var n, r, i, o, a, s, u, l;
       if (1 === t.nodeType) {
@@ -4740,7 +4740,7 @@ var Sentry = function (n) {
         J.hasData(e) && (s = J.access(e), u = k.extend({}, s), J.set(t, u))
       }
     }
-  
+
     function Ie(n, r, i, o) {
       r = g.apply([], r);
       var e, t, a, s, u, l, c = 0,
@@ -4761,7 +4761,7 @@ var Sentry = function (n) {
       }
       return n
     }
-  
+
     function We(e, t, n) {
       for (var r, i = t ? k.filter(t, e) : e, o = 0; null != (r = i[o]); o++) n || 1 !== r.nodeType || k.cleanData(ve(r)), r.parentNode && (n && oe(r) && ye(ve(r, "script")), r.parentNode.removeChild(r));
       return e
@@ -4879,12 +4879,12 @@ var Sentry = function (n) {
         return t && t.opener || (t = C), t.getComputedStyle(e)
       },
       Be = new RegExp(re.join("|"), "i");
-  
+
     function _e(e, t, n) {
       var r, i, o, a, s = e.style;
       return (n = n || Fe(e)) && ("" !== (a = n.getPropertyValue(t) || n[t]) || oe(e) || (a = k.style(e, t)), !y.pixelBoxStyles() && $e.test(a) && Be.test(t) && (r = s.width, i = s.minWidth, o = s.maxWidth, s.minWidth = s.maxWidth = s.width = a, a = n.width, s.width = r, s.minWidth = i, s.maxWidth = o)), void 0 !== a ? a + "" : a
     }
-  
+
     function ze(e, t) {
       return {
         get: function () {
@@ -4900,7 +4900,7 @@ var Sentry = function (n) {
           n = "1%" !== e.top, a = 12 === t(e.marginLeft), u.style.right = "60%", o = 36 === t(e.right), r = 36 === t(e.width), u.style.position = "absolute", i = 12 === t(u.offsetWidth / 3), ie.removeChild(s), u = null
         }
       }
-  
+
       function t(e) {
         return Math.round(parseFloat(e))
       }
@@ -4927,7 +4927,7 @@ var Sentry = function (n) {
     var Ue = ["Webkit", "Moz", "ms"],
       Xe = E.createElement("div").style,
       Ve = {};
-  
+
     function Ge(e) {
       var t = k.cssProps[e] || Ve[e];
       return t || (e in Xe ? e : Ve[e] = function (e) {
@@ -4948,12 +4948,12 @@ var Sentry = function (n) {
         letterSpacing: "0",
         fontWeight: "400"
       };
-  
+
     function Ze(e, t, n) {
       var r = ne.exec(t);
       return r ? Math.max(0, r[2] - (n || 0)) + (r[3] || "px") : t
     }
-  
+
     function et(e, t, n, r, i, o) {
       var a = "width" === t ? 1 : 0,
         s = 0,
@@ -4962,7 +4962,7 @@ var Sentry = function (n) {
       for (; a < 4; a += 2) "margin" === n && (u += k.css(e, n + re[a], !0, i)), r ? ("content" === n && (u -= k.css(e, "padding" + re[a], !0, i)), "margin" !== n && (u -= k.css(e, "border" + re[a] + "Width", !0, i))) : (u += k.css(e, "padding" + re[a], !0, i), "padding" !== n ? u += k.css(e, "border" + re[a] + "Width", !0, i) : s += k.css(e, "border" + re[a] + "Width", !0, i));
       return !r && 0 <= o && (u += Math.max(0, Math.ceil(e["offset" + t[0].toUpperCase() + t.slice(1)] - o - u - s - .5)) || 0), u
     }
-  
+
     function tt(e, t, n) {
       var r = Fe(e),
         i = (!y.boxSizingReliable() || n) && "border-box" === k.css(e, "boxSizing", !1, r),
@@ -4975,7 +4975,7 @@ var Sentry = function (n) {
       }
       return (!y.boxSizingReliable() && i || "auto" === a || !parseFloat(a) && "inline" === k.css(e, "display", !1, r)) && e.getClientRects().length && (i = "border-box" === k.css(e, "boxSizing", !1, r), (o = s in e) && (a = e[s])), (a = parseFloat(a) || 0) + et(e, t, n || (i ? "border" : "content"), o, r, a) + "px"
     }
-  
+
     function nt(e, t, n, r, i) {
       return new nt.prototype.init(e, t, n, r, i)
     }
@@ -5108,17 +5108,17 @@ var Sentry = function (n) {
     }, k.fx = nt.prototype.init, k.fx.step = {};
     var rt, it, ot, at, st = /^(?:toggle|show|hide)$/,
       ut = /queueHooks$/;
-  
+
     function lt() {
       it && (!1 === E.hidden && C.requestAnimationFrame ? C.requestAnimationFrame(lt) : C.setTimeout(lt, k.fx.interval), k.fx.tick())
     }
-  
+
     function ct() {
       return C.setTimeout(function () {
         rt = void 0
       }), rt = Date.now()
     }
-  
+
     function ft(e, t) {
       var n, r = 0,
         i = {
@@ -5127,12 +5127,12 @@ var Sentry = function (n) {
       for (t = t ? 1 : 0; r < 4; r += 2 - t) i["margin" + (n = re[r])] = i["padding" + n] = e;
       return t && (i.opacity = i.width = e), i
     }
-  
+
     function pt(e, t, n) {
       for (var r, i = (dt.tweeners[t] || []).concat(dt.tweeners["*"]), o = 0, a = i.length; o < a; o++)
         if (r = i[o].call(n, t, e)) return r
     }
-  
+
     function dt(o, e, t) {
       var n, a, r = 0,
         i = dt.prefilters.length,
@@ -5371,15 +5371,15 @@ var Sentry = function (n) {
     });
     var vt = /^(?:input|select|textarea|button)$/i,
       yt = /^(?:a|area)$/i;
-  
+
     function mt(e) {
       return (e.match(R) || []).join(" ")
     }
-  
+
     function xt(e) {
       return e.getAttribute && e.getAttribute("class") || ""
     }
-  
+
     function bt(e) {
       return Array.isArray(e) ? e : "string" == typeof e && e.match(R) || []
     }
@@ -5596,7 +5596,7 @@ var Sentry = function (n) {
       At = /\r?\n/g,
       Dt = /^(?:submit|button|image|reset|file)$/i,
       jt = /^(?:input|select|textarea|keygen)/i;
-  
+
     function qt(n, e, r, i) {
       var t;
       if (Array.isArray(e)) k.each(e, function (e, t) {
@@ -5654,7 +5654,7 @@ var Sentry = function (n) {
       Wt = {},
       $t = "*/".concat("*"),
       Ft = E.createElement("a");
-  
+
     function Bt(o) {
       return function (e, t) {
         "string" != typeof e && (t = e, e = "*");
@@ -5664,11 +5664,11 @@ var Sentry = function (n) {
           while (n = i[r++]) "+" === n[0] ? (n = n.slice(1) || "*", (o[n] = o[n] || []).unshift(t)) : (o[n] = o[n] || []).push(t)
       }
     }
-  
+
     function _t(t, i, o, a) {
       var s = {},
         u = t === Wt;
-  
+
       function l(e) {
         var r;
         return s[e] = !0, k.each(t[e] || [], function (e, t) {
@@ -5678,7 +5678,7 @@ var Sentry = function (n) {
       }
       return l(i.dataTypes[0]) || !s["*"] && l("*")
     }
-  
+
     function zt(e, t) {
       var n, r, i = k.ajaxSettings.flatOptions || {};
       for (n in t) void 0 !== t[n] && ((i[n] ? e : r || (r = {}))[n] = t[n]);
@@ -5798,7 +5798,7 @@ var Sentry = function (n) {
             l(-1, e)
           }
         } else l(-1, "No Transport");
-  
+
         function l(e, t, n, r) {
           var i, o, a, s, u, l = t;
           h || (h = !0, d && C.clearTimeout(d), c = void 0, p = r || "", T.readyState = 0 < e ? 4 : 0, i = 200 <= e && e < 300 || 304 === e, n && (s = function (e, t, n) {
@@ -6159,8 +6159,8 @@ var Sentry = function (n) {
       return C.$ === k && (C.$ = Jt), e && C.jQuery === k && (C.jQuery = Qt), k
     }, e || (C.jQuery = C.$ = k), k
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/jquery.easing.1.3.min.js]*/
   jQuery.easing.jswing = jQuery.easing.swing, jQuery.extend(jQuery.easing, {
     def: "easeOutQuad",
@@ -6285,8 +6285,8 @@ var Sentry = function (n) {
       return e < a / 2 ? .5 * jQuery.easing.easeInBounce(n, 2 * e, 0, u, a) + t : .5 * jQuery.easing.easeOutBounce(n, 2 * e - a, 0, u, a) + .5 * u + t
     }
   });
-  
-  
+
+
   /*[PATH @digikala/supernova/node_modules/jquery-validation/dist/jquery.validate.min.js]*/
   /*! jQuery Validation Plugin - v1.19.1 - 6/15/2019
    * https://jqueryvalidation.org/
@@ -6894,8 +6894,8 @@ var Sentry = function (n) {
       return "abort" === e ? (c[f] && c[f].abort(), c[f] = b.apply(this, arguments), c[f]) : b.apply(this, arguments)
     }), a
   });
-  
-  
+
+
   /*[PATH @digikala/supernova/node_modules/jquery-validation/dist/additional-methods.js]*/
   /*!
    * jQuery Validation Plugin v1.19.1
@@ -6914,34 +6914,34 @@ var Sentry = function (n) {
       factory(jQuery);
     }
   }(function ($) {
-  
+
     (function () {
-  
+
       function stripHtml(value) {
-  
+
         // Remove html tags and space chars
         return value.replace(/<.[^<>]*?>/g, " ").replace(/&nbsp;|&#160;/gi, " ")
-  
+
           // Remove punctuation
           .replace(/[.(),;:!?%#$'\"_+=\/\-“”’]*/g, "");
       }
-  
+
       $.validator.addMethod("maxWords", function (value, element, params) {
         return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length <= params;
       }, $.validator.format("Please enter {0} words or less."));
-  
+
       $.validator.addMethod("minWords", function (value, element, params) {
         return this.optional(element) || stripHtml(value).match(/\b\w+\b/g).length >= params;
       }, $.validator.format("Please enter at least {0} words."));
-  
+
       $.validator.addMethod("rangeWords", function (value, element, params) {
         var valueStripped = stripHtml(value),
           regex = /\b\w+\b/g;
         return this.optional(element) || valueStripped.match(regex).length >= params[0] && valueStripped.match(regex).length <= params[1];
       }, $.validator.format("Please enter between {0} and {1} words."));
-  
+
     }());
-  
+
     /**
      * This is used in the United States to process payments, deposits,
      * or transfers using the Automated Clearing House (ACH) or Fedwire
@@ -6952,12 +6952,12 @@ var Sentry = function (n) {
       var checksum = 0;
       var tokens = value.split("");
       var length = tokens.length;
-  
+
       // Length Check
       if (length !== 9) {
         return false;
       }
-  
+
       // Calc the checksum
       // https://en.wikipedia.org/wiki/ABA_routing_transit_number
       for (var i = 0; i < length; i += 3) {
@@ -6965,30 +6965,30 @@ var Sentry = function (n) {
           parseInt(tokens[i + 1], 10) * 7 +
           parseInt(tokens[i + 2], 10);
       }
-  
+
       // If not zero and divisible by 10 then valid
       if (checksum !== 0 && checksum % 10 === 0) {
         return true;
       }
-  
+
       return false;
     }, "Please enter a valid routing number.");
-  
+
     // Accept a value from a file input based on a required mimetype
     $.validator.addMethod("accept", function (value, element, param) {
-  
+
       // Split mime on commas in case we have multiple types we can accept
       var typeParam = typeof param === "string" ? param.replace(/\s/g, "") : "image/*",
         optionalValue = this.optional(element),
         i, file, regex;
-  
+
       // Element is optional
       if (optionalValue) {
         return optionalValue;
       }
-  
+
       if ($(element).attr("type") === "file") {
-  
+
         // Escape string to be used in the regex
         // see: https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
         // Escape also "/*" as "/.*" as a wildcard
@@ -6996,13 +6996,13 @@ var Sentry = function (n) {
           .replace(/[\-\[\]\/\{\}\(\)\+\?\.\\\^\$\|]/g, "\\$&")
           .replace(/,/g, "|")
           .replace(/\/\*/g, "/.*");
-  
+
         // Check if the element has a FileList before checking each file
         if (element.files && element.files.length) {
           regex = new RegExp(".?(" + typeParam + ")$", "i");
           for (i = 0; i < element.files.length; i++) {
             file = element.files[i];
-  
+
             // Grab the mimetype from the loaded file, verify it matches
             if (!file.type.match(regex)) {
               return false;
@@ -7010,16 +7010,16 @@ var Sentry = function (n) {
           }
         }
       }
-  
+
       // Either return true because we've validated each file, or because the
       // browser does not support element.files and the FileList feature
       return true;
     }, $.validator.format("Please enter a value with a valid mimetype."));
-  
+
     $.validator.addMethod("alphanumeric", function (value, element) {
       return this.optional(element) || /^\w+$/i.test(value);
     }, "Letters, numbers, and underscores only please");
-  
+
     /*
      * Dutch bank account numbers (not 'giro' numbers) have 9 digits
      * and pass the '11 check'.
@@ -7033,7 +7033,7 @@ var Sentry = function (n) {
       if (!(/^[0-9]{9}|([0-9]{2} ){3}[0-9]{3}$/.test(value))) {
         return false;
       }
-  
+
       // Now '11 check'
       var account = value.replace(/ /g, ""), // Remove spaces
         sum = 0,
@@ -7046,13 +7046,13 @@ var Sentry = function (n) {
       }
       return sum % 11 === 0;
     }, "Please specify a valid bank account number");
-  
+
     $.validator.addMethod("bankorgiroaccountNL", function (value, element) {
       return this.optional(element) ||
         ($.validator.methods.bankaccountNL.call(this, value, element)) ||
         ($.validator.methods.giroaccountNL.call(this, value, element));
     }, "Please specify a valid bank or giro account number");
-  
+
     /**
      * BIC is the business identifier code (ISO 9362). This BIC check is not a guarantee for authenticity.
      *
@@ -7071,7 +7071,7 @@ var Sentry = function (n) {
     $.validator.addMethod("bic", function (value, element) {
       return this.optional(element) || /^([A-Z]{6}[A-Z2-9][A-NP-Z1-9])(X{3}|[A-WY-Z0-9][A-Z0-9]{2})?$/.test(value.toUpperCase());
     }, "Please specify a valid BIC code");
-  
+
     /*
      * Código de identificación fiscal ( CIF ) is the tax identification code for Spanish legal entities
      * Further rules can be found in Spanish on http://es.wikipedia.org/wiki/C%C3%B3digo_de_identificaci%C3%B3n_fiscal
@@ -7124,11 +7124,11 @@ var Sentry = function (n) {
      */
     $.validator.addMethod("cifES", function (value, element) {
       "use strict";
-  
+
       if (this.optional(element)) {
         return true;
       }
-  
+
       var cifRegEx = new RegExp(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/gi);
       var letter = value.substring(0, 1), // [ T ]
         number = value.substring(1, 8), // [ P ][ P ][ N ][ N ][ N ][ N ][ N ]
@@ -7139,125 +7139,125 @@ var Sentry = function (n) {
         i, n,
         control_digit,
         control_letter;
-  
+
       function isOdd(n) {
         return n % 2 === 0;
       }
-  
+
       // Quick format test
       if (value.length !== 9 || !cifRegEx.test(value)) {
         return false;
       }
-  
+
       for (i = 0; i < number.length; i++) {
         n = parseInt(number[i], 10);
-  
+
         // Odd positions
         if (isOdd(i)) {
-  
+
           // Odd positions are multiplied first.
           n *= 2;
-  
+
           // If the multiplication is bigger than 10 we need to adjust
           odd_sum += n < 10 ? n : n - 9;
-  
+
           // Even positions
           // Just sum them
         } else {
           even_sum += n;
         }
       }
-  
+
       all_sum = even_sum + odd_sum;
       control_digit = (10 - (all_sum).toString().substr(-1)).toString();
       control_digit = parseInt(control_digit, 10) > 9 ? "0" : control_digit;
       control_letter = "JABCDEFGHI".substr(control_digit, 1).toString();
-  
+
       // Control must be a digit
       if (letter.match(/[ABEH]/)) {
         return control === control_digit;
-  
+
         // Control must be a letter
       } else if (letter.match(/[KPQS]/)) {
         return control === control_letter;
       }
-  
+
       // Can be either
       return control === control_digit || control === control_letter;
-  
+
     }, "Please specify a valid CIF number.");
-  
+
     /*
      * Brazillian CNH number (Carteira Nacional de Habilitacao) is the License Driver number.
      * CNH numbers have 11 digits in total: 9 numbers followed by 2 check numbers that are being used for validation.
      */
     $.validator.addMethod("cnhBR", function (value) {
-  
+
       // Removing special characters from value
       value = value.replace(/([~!@#$%^&*()_+=`{}\[\]\-|\\:;'<>,.\/? ])+/g, "");
-  
+
       // Checking value to have 11 digits only
       if (value.length !== 11) {
         return false;
       }
-  
+
       var sum = 0,
         dsc = 0,
         firstChar,
         firstCN, secondCN, i, j, v;
-  
+
       firstChar = value.charAt(0);
-  
+
       if (new Array(12).join(firstChar) === value) {
         return false;
       }
-  
+
       // Step 1 - using first Check Number:
       for (i = 0, j = 9, v = 0; i < 9; ++i, --j) {
         sum += +(value.charAt(i) * j);
       }
-  
+
       firstCN = sum % 11;
       if (firstCN >= 10) {
         firstCN = 0;
         dsc = 2;
       }
-  
+
       sum = 0;
       for (i = 0, j = 1, v = 0; i < 9; ++i, ++j) {
         sum += +(value.charAt(i) * j);
       }
-  
+
       secondCN = sum % 11;
       if (secondCN >= 10) {
         secondCN = 0;
       } else {
         secondCN = secondCN - dsc;
       }
-  
+
       return (String(firstCN).concat(secondCN) === value.substr(-2));
-  
+
     }, "Please specify a valid CNH number");
-  
+
     /*
      * Brazillian value number (Cadastrado de Pessoas Juridica).
      * value numbers have 14 digits in total: 12 numbers followed by 2 check numbers that are being used for validation.
      */
     $.validator.addMethod("cnpjBR", function (value, element) {
       "use strict";
-  
+
       if (this.optional(element)) {
         return true;
       }
-  
+
       // Removing no number
       value = value.replace(/[^\d]+/g, "");
-  
+
       // Checking value to have 14 digits only
       if (value.length !== 14) {
         return false;
       }
-  
+
       // Elimina values invalidos conhecidos
       if (value === "00000000000000" ||
         value === "11111111111111" ||
@@ -7271,74 +7271,74 @@ var Sentry = function (n) {
         value === "99999999999999") {
         return false;
       }
-  
+
       // Valida DVs
       var tamanho = (value.length - 2);
       var numeros = value.substring(0, tamanho);
       var digitos = value.substring(tamanho);
       var soma = 0;
       var pos = tamanho - 7;
-  
+
       for (var i = tamanho; i >= 1; i--) {
         soma += numeros.charAt(tamanho - i) * pos--;
         if (pos < 2) {
           pos = 9;
         }
       }
-  
+
       var resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-  
+
       if (resultado !== parseInt(digitos.charAt(0), 10)) {
         return false;
       }
-  
+
       tamanho = tamanho + 1;
       numeros = value.substring(0, tamanho);
       soma = 0;
       pos = tamanho - 7;
-  
+
       for (var il = tamanho; il >= 1; il--) {
         soma += numeros.charAt(tamanho - il) * pos--;
         if (pos < 2) {
           pos = 9;
         }
       }
-  
+
       resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-  
+
       if (resultado !== parseInt(digitos.charAt(1), 10)) {
         return false;
       }
-  
+
       return true;
-  
+
     }, "Please specify a CNPJ value number");
-  
+
     /*
      * Brazillian CPF number (Cadastrado de Pessoas Físicas) is the equivalent of a Brazilian tax registration number.
      * CPF numbers have 11 digits in total: 9 numbers followed by 2 check numbers that are being used for validation.
      */
     $.validator.addMethod("cpfBR", function (value, element) {
       "use strict";
-  
+
       if (this.optional(element)) {
         return true;
       }
-  
+
       // Removing special characters from value
       value = value.replace(/([~!@#$%^&*()_+=`{}\[\]\-|\\:;'<>,.\/? ])+/g, "");
-  
+
       // Checking value to have 11 digits only
       if (value.length !== 11) {
         return false;
       }
-  
+
       var sum = 0,
         firstCN, secondCN, checkResult, i;
-  
+
       firstCN = parseInt(value.substring(9, 10), 10);
       secondCN = parseInt(value.substring(10, 11), 10);
-  
+
       checkResult = function (sum, cn) {
         var result = (sum * 10) % 11;
         if ((result === 10) || (result === 11)) {
@@ -7346,7 +7346,7 @@ var Sentry = function (n) {
         }
         return (result === cn);
       };
-  
+
       // Checking for dump data
       if (value === "" ||
         value === "00000000000" ||
@@ -7362,12 +7362,12 @@ var Sentry = function (n) {
       ) {
         return false;
       }
-  
+
       // Step 1 - using first Check Number:
       for (i = 1; i <= 9; i++) {
         sum = sum + parseInt(value.substring(i - 1, i), 10) * (11 - i);
       }
-  
+
       // If first Check Number (CN) is valid, move to Step 2 - using second Check Number:
       if (checkResult(sum, firstCN)) {
         sum = 0;
@@ -7377,34 +7377,34 @@ var Sentry = function (n) {
         return checkResult(sum, secondCN);
       }
       return false;
-  
+
     }, "Please specify a valid CPF number");
-  
+
     // https://jqueryvalidation.org/creditcard-method/
     // based on https://en.wikipedia.org/wiki/Luhn_algorithm
     $.validator.addMethod("creditcard", function (value, element) {
       if (this.optional(element)) {
         return "dependency-mismatch";
       }
-  
+
       // Accept only spaces, digits and dashes
       if (/[^0-9 \-]+/.test(value)) {
         return false;
       }
-  
+
       var nCheck = 0,
         nDigit = 0,
         bEven = false,
         n, cDigit;
-  
+
       value = value.replace(/\D/g, "");
-  
+
       // Basing min and max length on
       // https://dev.ean.com/general-info/valid-card-types/
       if (value.length < 13 || value.length > 19) {
         return false;
       }
-  
+
       for (n = value.length - 1; n >= 0; n--) {
         cDigit = value.charAt(n);
         nDigit = parseInt(cDigit, 10);
@@ -7413,14 +7413,14 @@ var Sentry = function (n) {
             nDigit -= 9;
           }
         }
-  
+
         nCheck += nDigit;
         bEven = !bEven;
       }
-  
+
       return (nCheck % 10) === 0;
     }, "Please enter a valid credit card number.");
-  
+
     /* NOTICE: Modified version of Castle.Components.Validator.CreditCardValidator
      * Redistributed under the Apache License 2.0 at http://www.apache.org/licenses/LICENSE-2.0
      * Valid Types: mastercard, visa, amex, dinersclub, enroute, discover, jcb, unknown, all (overrides all other settings)
@@ -7429,11 +7429,11 @@ var Sentry = function (n) {
       if (/[^0-9\-]+/.test(value)) {
         return false;
       }
-  
+
       value = value.replace(/\D/g, "");
-  
+
       var validTypes = 0x0000;
-  
+
       if (param.mastercard) {
         validTypes |= 0x0001;
       }
@@ -7490,7 +7490,7 @@ var Sentry = function (n) {
       }
       return false;
     }, "Please enter a valid credit card number.");
-  
+
     /**
      * Validates currencies with any given symbols by @jameslouiz
      * Symbols can be optional or required. Symbols required by default
@@ -7524,19 +7524,19 @@ var Sentry = function (n) {
         symbol = isParamString ? param : param[0],
         soft = isParamString ? true : param[1],
         regex;
-  
+
       symbol = symbol.replace(/,/g, "");
       symbol = soft ? symbol + "]" : symbol + "]?";
       regex = "^[" + symbol + "([1-9]{1}[0-9]{0,2}(\\,[0-9]{3})*(\\.[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\\.[0-9]{0,2})?|0(\\.[0-9]{0,2})?|(\\.[0-9]{1,2})?)$";
       regex = new RegExp(regex);
       return this.optional(element) || regex.test(value);
-  
+
     }, "Please specify a valid currency");
-  
+
     $.validator.addMethod("dateFA", function (value, element) {
       return this.optional(element) || /^[1-4]\d{3}\/((0?[1-6]\/((3[0-1])|([1-2][0-9])|(0?[1-9])))|((1[0-2]|(0?[7-9]))\/(30|([1-2][0-9])|(0?[1-9]))))$/.test(value);
     }, $.validator.messages.date);
-  
+
     /**
      * Return true, if the value is a valid date, also making this formal check dd/mm/yyyy.
      *
@@ -7576,48 +7576,48 @@ var Sentry = function (n) {
       }
       return this.optional(element) || check;
     }, $.validator.messages.date);
-  
+
     $.validator.addMethod("dateNL", function (value, element) {
       return this.optional(element) || /^(0?[1-9]|[12]\d|3[01])[\.\/\-](0?[1-9]|1[012])[\.\/\-]([12]\d)?(\d\d)$/.test(value);
     }, $.validator.messages.date);
-  
+
     // Older "accept" file extension method. Old docs: http://docs.jquery.com/Plugins/Validation/Methods/accept
     $.validator.addMethod("extension", function (value, element, param) {
       param = typeof param === "string" ? param.replace(/,/g, "|") : "png|jpe?g|gif";
       return this.optional(element) || value.match(new RegExp("\\.(" + param + ")$", "i"));
     }, $.validator.format("Please enter a value with a valid extension."));
-  
+
     /**
      * Dutch giro account numbers (not bank numbers) have max 7 digits
      */
     $.validator.addMethod("giroaccountNL", function (value, element) {
       return this.optional(element) || /^[0-9]{1,7}$/.test(value);
     }, "Please specify a valid giro account number");
-  
+
     $.validator.addMethod("greaterThan", function (value, element, param) {
       var target = $(param);
-  
+
       if (this.settings.onfocusout && target.not(".validate-greaterThan-blur").length) {
         target.addClass("validate-greaterThan-blur").on("blur.validate-greaterThan", function () {
           $(element).valid();
         });
       }
-  
+
       return value > target.val();
     }, "Please enter a greater value.");
-  
+
     $.validator.addMethod("greaterThanEqual", function (value, element, param) {
       var target = $(param);
-  
+
       if (this.settings.onfocusout && target.not(".validate-greaterThanEqual-blur").length) {
         target.addClass("validate-greaterThanEqual-blur").on("blur.validate-greaterThanEqual", function () {
           $(element).valid();
         });
       }
-  
+
       return value >= target.val();
     }, "Please enter a greater value.");
-  
+
     /**
      * IBAN is the international bank account number.
      * It has a country - specific format, that is checked here too
@@ -7625,12 +7625,12 @@ var Sentry = function (n) {
      * Validation is case-insensitive. Please make sure to normalize input yourself.
      */
     $.validator.addMethod("iban", function (value, element) {
-  
+
       // Some quick simple tests to prevent needless work
       if (this.optional(element)) {
         return true;
       }
-  
+
       // Remove spaces and to upper case
       var iban = value.replace(/ /g, "").toUpperCase(),
         ibancheckdigits = "",
@@ -7638,7 +7638,7 @@ var Sentry = function (n) {
         cRest = "",
         cOperator = "",
         countrycode, ibancheck, charAt, cChar, bbanpattern, bbancountrypatterns, ibanregexp, i, p;
-  
+
       // Check for IBAN code length.
       // It contains:
       // country code ISO 3166-1 - two letters,
@@ -7648,7 +7648,7 @@ var Sentry = function (n) {
       if (iban.length < minimalIBANlength) {
         return false;
       }
-  
+
       // Check the country code and find the country specific format
       countrycode = iban.substring(0, 2);
       bbancountrypatterns = {
@@ -7717,9 +7717,9 @@ var Sentry = function (n) {
         "GB": "[A-Z]{4}\\d{14}",
         "VG": "[\\dA-Z]{4}\\d{16}"
       };
-  
+
       bbanpattern = bbancountrypatterns[countrycode];
-  
+
       // As new countries will start using IBAN in the
       // future, we only check if the countrycode is known.
       // This prevents false negatives, while almost all
@@ -7733,7 +7733,7 @@ var Sentry = function (n) {
           return false; // Invalid country specific format
         }
       }
-  
+
       // Now check the checksum, first convert to digits
       ibancheck = iban.substring(4, iban.length) + iban.substring(0, 4);
       for (i = 0; i < ibancheck.length; i++) {
@@ -7745,7 +7745,7 @@ var Sentry = function (n) {
           ibancheckdigits += "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(charAt);
         }
       }
-  
+
       // Calculate the result of: ibancheckdigits % 97
       for (p = 0; p < ibancheckdigits.length; p++) {
         cChar = ibancheckdigits.charAt(p);
@@ -7754,72 +7754,72 @@ var Sentry = function (n) {
       }
       return cRest === 1;
     }, "Please specify a valid IBAN");
-  
+
     $.validator.addMethod("integer", function (value, element) {
       return this.optional(element) || /^-?\d+$/.test(value);
     }, "A positive or negative non-decimal number please");
-  
+
     $.validator.addMethod("ipv4", function (value, element) {
       return this.optional(element) || /^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$/i.test(value);
     }, "Please enter a valid IP v4 address.");
-  
+
     $.validator.addMethod("ipv6", function (value, element) {
       return this.optional(element) || /^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i.test(value);
     }, "Please enter a valid IP v6 address.");
-  
+
     $.validator.addMethod("lessThan", function (value, element, param) {
       var target = $(param);
-  
+
       if (this.settings.onfocusout && target.not(".validate-lessThan-blur").length) {
         target.addClass("validate-lessThan-blur").on("blur.validate-lessThan", function () {
           $(element).valid();
         });
       }
-  
+
       return value < target.val();
     }, "Please enter a lesser value.");
-  
+
     $.validator.addMethod("lessThanEqual", function (value, element, param) {
       var target = $(param);
-  
+
       if (this.settings.onfocusout && target.not(".validate-lessThanEqual-blur").length) {
         target.addClass("validate-lessThanEqual-blur").on("blur.validate-lessThanEqual", function () {
           $(element).valid();
         });
       }
-  
+
       return value <= target.val();
     }, "Please enter a lesser value.");
-  
+
     $.validator.addMethod("lettersonly", function (value, element) {
       return this.optional(element) || /^[a-z]+$/i.test(value);
     }, "Letters only please");
-  
+
     $.validator.addMethod("letterswithbasicpunc", function (value, element) {
       return this.optional(element) || /^[a-z\-.,()'"\s]+$/i.test(value);
     }, "Letters or punctuation only please");
-  
+
     // Limit the number of files in a FileList.
     $.validator.addMethod("maxfiles", function (value, element, param) {
       if (this.optional(element)) {
         return true;
       }
-  
+
       if ($(element).attr("type") === "file") {
         if (element.files && element.files.length > param) {
           return false;
         }
       }
-  
+
       return true;
     }, $.validator.format("Please select no more than {0} files."));
-  
+
     // Limit the size of each individual file in a FileList.
     $.validator.addMethod("maxsize", function (value, element, param) {
       if (this.optional(element)) {
         return true;
       }
-  
+
       if ($(element).attr("type") === "file") {
         if (element.files && element.files.length) {
           for (var i = 0; i < element.files.length; i++) {
@@ -7829,20 +7829,20 @@ var Sentry = function (n) {
           }
         }
       }
-  
+
       return true;
     }, $.validator.format("File size must not exceed {0} bytes each."));
-  
+
     // Limit the size of all files in a FileList.
     $.validator.addMethod("maxsizetotal", function (value, element, param) {
       if (this.optional(element)) {
         return true;
       }
-  
+
       if ($(element).attr("type") === "file") {
         if (element.files && element.files.length) {
           var totalSize = 0;
-  
+
           for (var i = 0; i < element.files.length; i++) {
             totalSize += element.files[i].size;
             if (totalSize > param) {
@@ -7851,20 +7851,20 @@ var Sentry = function (n) {
           }
         }
       }
-  
+
       return true;
     }, $.validator.format("Total size of all files must not exceed {0} bytes."));
-  
-  
+
+
     $.validator.addMethod("mobileNL", function (value, element) {
       return this.optional(element) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)6((\s|\s?\-\s?)?[0-9]){8}$/.test(value);
     }, "Please specify a valid mobile number");
-  
+
     $.validator.addMethod("mobileRU", function (phone_number, element) {
       var ruPhone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
       return this.optional(element) || ruPhone_number.length > 9 && /^((\+7|7|8)+([0-9]){10})$/.test(ruPhone_number);
     }, "Please specify a valid mobile number");
-  
+
     /* For UK phone functions, do the following server side processing:
      * Compare original input with this RegEx pattern:
      * ^\(?(?:(?:00\)?[\s\-]?\(?|\+)(44)\)?[\s\-]?\(?(?:0\)?[\s\-]?\(?)?|0)([1-9]\d{1,4}\)?[\s\d\-]+)$
@@ -7878,11 +7878,11 @@ var Sentry = function (n) {
       return this.optional(element) || phone_number.length > 9 &&
         phone_number.match(/^(?:(?:(?:00\s?|\+)44\s?|0)7(?:[1345789]\d{2}|624)\s?\d{3}\s?\d{3})$/);
     }, "Please specify a valid mobile number");
-  
+
     $.validator.addMethod("netmask", function (value, element) {
       return this.optional(element) || /^(254|252|248|240|224|192|128)\.0\.0\.0|255\.(254|252|248|240|224|192|128|0)\.0\.0|255\.255\.(254|252|248|240|224|192|128|0)\.0|255\.255\.255\.(254|252|248|240|224|192|128|0)/i.test(value);
     }, "Please enter a valid netmask.");
-  
+
     /*
      * The NIE (Número de Identificación de Extranjero) is a Spanish tax identification number assigned by the Spanish
      * authorities to any foreigner.
@@ -7893,79 +7893,79 @@ var Sentry = function (n) {
      */
     $.validator.addMethod("nieES", function (value, element) {
       "use strict";
-  
+
       if (this.optional(element)) {
         return true;
       }
-  
+
       var nieRegEx = new RegExp(/^[MXYZ]{1}[0-9]{7,8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/gi);
       var validChars = "TRWAGMYFPDXBNJZSQVHLCKET",
         letter = value.substr(value.length - 1).toUpperCase(),
         number;
-  
+
       value = value.toString().toUpperCase();
-  
+
       // Quick format test
       if (value.length > 10 || value.length < 9 || !nieRegEx.test(value)) {
         return false;
       }
-  
+
       // X means same number
       // Y means number + 10000000
       // Z means number + 20000000
       value = value.replace(/^[X]/, "0")
         .replace(/^[Y]/, "1")
         .replace(/^[Z]/, "2");
-  
+
       number = value.length === 9 ? value.substr(0, 8) : value.substr(0, 9);
-  
+
       return validChars.charAt(parseInt(number, 10) % 23) === letter;
-  
+
     }, "Please specify a valid NIE number.");
-  
+
     /*
      * The Número de Identificación Fiscal ( NIF ) is the way tax identification used in Spain for individuals
      */
     $.validator.addMethod("nifES", function (value, element) {
       "use strict";
-  
+
       if (this.optional(element)) {
         return true;
       }
-  
+
       value = value.toUpperCase();
-  
+
       // Basic format test
       if (!value.match("((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)")) {
         return false;
       }
-  
+
       // Test NIF
       if (/^[0-9]{8}[A-Z]{1}$/.test(value)) {
         return ("TRWAGMYFPDXBNJZSQVHLCKE".charAt(value.substring(8, 0) % 23) === value.charAt(8));
       }
-  
+
       // Test specials NIF (starts with K, L or M)
       if (/^[KLM]{1}/.test(value)) {
         return (value[8] === "TRWAGMYFPDXBNJZSQVHLCKE".charAt(value.substring(8, 1) % 23));
       }
-  
+
       return false;
-  
+
     }, "Please specify a valid NIF number.");
-  
+
     /*
      * Numer identyfikacji podatkowej ( NIP ) is the way tax identification used in Poland for companies
      */
     $.validator.addMethod("nipPL", function (value) {
       "use strict";
-  
+
       value = value.replace(/[^0-9]/g, "");
-  
+
       if (value.length !== 10) {
         return false;
       }
-  
+
       var arrSteps = [6, 5, 7, 2, 3, 4, 5, 6, 7];
       var intSum = 0;
       for (var i = 0; i < 9; i++) {
@@ -7973,10 +7973,10 @@ var Sentry = function (n) {
       }
       var int2 = intSum % 11;
       var intControlNr = (int2 === 10) ? 0 : int2;
-  
+
       return (intControlNr === parseInt(value[9], 10));
     }, "Please specify a valid NIP number.");
-  
+
     /**
      * Created for project jquery-validation.
      * @Description Brazillian PIS or NIS number (Número de Identificação Social Pis ou Pasep) is the equivalent of a
@@ -7994,21 +7994,21 @@ var Sentry = function (n) {
       var dv;
       var count;
       var multiplier;
-  
+
       // Removing special characters from value
       value = value.replace(/([~!@#$%^&*()_+=`{}\[\]\-|\\:;'<>,.\/? ])+/g, "");
-  
+
       // Checking value to have 11 digits only
       if (value.length !== 11) {
         return false;
       }
-  
+
       //Get check number of value
       cn = parseInt(value.substring(10, 11), 10);
-  
+
       //Get number with 10 digits of the value
       number = parseInt(value.substring(0, 10), 10);
-  
+
       for (count = 2; count < 12; count++) {
         multiplier = count;
         if (count === 10) {
@@ -8021,28 +8021,28 @@ var Sentry = function (n) {
         number = parseInt(number / 10, 10);
       }
       dv = (sum % 11);
-  
+
       if (dv > 1) {
         dv = (11 - dv);
       } else {
         dv = 0;
       }
-  
+
       if (cn === dv) {
         return true;
       } else {
         return false;
       }
     }, "Please specify a valid NIS/PIS number");
-  
+
     $.validator.addMethod("notEqualTo", function (value, element, param) {
       return this.optional(element) || !$.validator.methods.equalTo.call(this, value, element, param);
     }, "Please enter a different value, values must not be the same.");
-  
+
     $.validator.addMethod("nowhitespace", function (value, element) {
       return this.optional(element) || /^\S+$/i.test(value);
     }, "No white space please");
-  
+
     /**
      * Return true if the field value matches the given format RegExp
      *
@@ -8065,14 +8065,14 @@ var Sentry = function (n) {
       }
       return param.test(value);
     }, "Invalid format.");
-  
+
     /**
      * Dutch phone numbers have 10 digits (or 11 and start with +31).
      */
     $.validator.addMethod("phoneNL", function (value, element) {
       return this.optional(element) || /^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)[1-9]((\s|\s?\-\s?)?[0-9]){8}$/.test(value);
     }, "Please specify a valid phone number.");
-  
+
     /**
      * Polish telephone numbers have 9 digits.
      *
@@ -8096,7 +8096,7 @@ var Sentry = function (n) {
       var regexp = /^(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5[0-9]|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/;
       return this.optional(element) || regexp.test(phone_number);
     }, "Please specify a valid phone number");
-  
+
     /* For UK phone functions, do the following server side processing:
      * Compare original input with this RegEx pattern:
      * ^\(?(?:(?:00\)?[\s\-]?\(?|\+)(44)\)?[\s\-]?\(?(?:0\)?[\s\-]?\(?)?|0)([1-9]\d{1,4}\)?[\s\d\-]+)$
@@ -8105,14 +8105,14 @@ var Sentry = function (n) {
      * A number of very detailed GB telephone number RegEx patterns can also be found at:
      * http://www.aa-asterisk.org.uk/index.php/Regular_Expressions_for_Validating_and_Formatting_GB_Telephone_Numbers
      */
-  
+
     // Matches UK landline + mobile, accepting only 01-3 for landline or 07 for mobile to exclude many premium numbers
     $.validator.addMethod("phonesUK", function (phone_number, element) {
       phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
       return this.optional(element) || phone_number.length > 9 &&
         phone_number.match(/^(?:(?:(?:00\s?|\+)44\s?|0)(?:1\d{8,9}|[23]\d{9}|7(?:[1345789]\d{8}|624\d{6})))$/);
     }, "Please specify a valid uk phone number");
-  
+
     /* For UK phone functions, do the following server side processing:
      * Compare original input with this RegEx pattern:
      * ^\(?(?:(?:00\)?[\s\-]?\(?|\+)(44)\)?[\s\-]?\(?(?:0\)?[\s\-]?\(?)?|0)([1-9]\d{1,4}\)?[\s\d\-]+)$
@@ -8126,7 +8126,7 @@ var Sentry = function (n) {
       return this.optional(element) || phone_number.length > 9 &&
         phone_number.match(/^(?:(?:(?:00\s?|\+)44\s?)|(?:\(?0))(?:\d{2}\)?\s?\d{4}\s?\d{4}|\d{3}\)?\s?\d{3}\s?\d{3,4}|\d{4}\)?\s?(?:\d{5}|\d{3}\s?\d{3})|\d{5}\)?\s?\d{4,5})$/);
     }, "Please specify a valid phone number");
-  
+
     /**
      * Matches US phone number format
      *
@@ -8148,7 +8148,7 @@ var Sentry = function (n) {
       return this.optional(element) || phone_number.length > 9 &&
         phone_number.match(/^(\+?1-?)?(\([2-9]([02-9]\d|1[02-9])\)|[2-9]([02-9]\d|1[02-9]))-?[2-9]\d{2}-?\d{4}$/);
     }, "Please specify a valid phone number");
-  
+
     /*
      * Valida CEPs do brasileiros:
      *
@@ -8160,7 +8160,7 @@ var Sentry = function (n) {
     $.validator.addMethod("postalcodeBR", function (cep_value, element) {
       return this.optional(element) || /^\d{2}.\d{3}-\d{3}?$|^\d{5}-?\d{3}?$/.test(cep_value);
     }, "Informe um CEP válido.");
-  
+
     /**
      * Matches a valid Canadian Postal Code
      *
@@ -8177,21 +8177,21 @@ var Sentry = function (n) {
     $.validator.addMethod("postalCodeCA", function (value, element) {
       return this.optional(element) || /^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] *\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i.test(value);
     }, "Please specify a valid postal code");
-  
+
     /* Matches Italian postcode (CAP) */
     $.validator.addMethod("postalcodeIT", function (value, element) {
       return this.optional(element) || /^\d{5}$/.test(value);
     }, "Please specify a valid postal code");
-  
+
     $.validator.addMethod("postalcodeNL", function (value, element) {
       return this.optional(element) || /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/.test(value);
     }, "Please specify a valid postal code");
-  
+
     // Matches UK postcode. Does not match to UK Channel Islands that have their own postcodes (non standard UK)
     $.validator.addMethod("postcodeUK", function (value, element) {
       return this.optional(element) || /^((([A-PR-UWYZ][0-9])|([A-PR-UWYZ][0-9][0-9])|([A-PR-UWYZ][A-HK-Y][0-9])|([A-PR-UWYZ][A-HK-Y][0-9][0-9])|([A-PR-UWYZ][0-9][A-HJKSTUW])|([A-PR-UWYZ][A-HK-Y][0-9][ABEHMNPRVWXY]))\s?([0-9][ABD-HJLNP-UW-Z]{2})|(GIR)\s?(0AA))$/i.test(value);
     }, "Please specify a valid UK postcode");
-  
+
     /*
      * Lets you say "at least X inputs that match selector Y must be filled."
      *
@@ -8215,10 +8215,10 @@ var Sentry = function (n) {
         isValid = $fields.filter(function () {
           return validator.elementValue(this);
         }).length >= options[0];
-  
+
       // Store the cloned validator for future validation
       $fieldsFirst.data("valid_req_grp", validator);
-  
+
       // If element isn't being validated, run each require_from_group field's validation rules
       if (!$(element).data("being_validated")) {
         $fields.data("being_validated", true);
@@ -8229,7 +8229,7 @@ var Sentry = function (n) {
       }
       return isValid;
     }, $.validator.format("Please fill at least {0} of these fields."));
-  
+
     /*
      * Lets you say "either at least X inputs that match selector Y must be filled,
      * OR they must all be skipped (left blank)."
@@ -8259,10 +8259,10 @@ var Sentry = function (n) {
           return validator.elementValue(this);
         }).length,
         isValid = numberFilled === 0 || numberFilled >= options[0];
-  
+
       // Store the cloned validator for future validation
       $fieldsFirst.data("valid_skip", validator);
-  
+
       // If element isn't being validated, run each skip_or_fill_minimum field's validation rules
       if (!$(element).data("being_validated")) {
         $fields.data("being_validated", true);
@@ -8273,7 +8273,7 @@ var Sentry = function (n) {
       }
       return isValid;
     }, $.validator.format("Please either skip these fields or fill at least {0} of them."));
-  
+
     /* Validates US States and/or Territories by @jdforsythe
      * Can be case insensitive or require capitalization - default is case insensitive
      * Can include US Territories or not - default does not
@@ -8314,7 +8314,7 @@ var Sentry = function (n) {
         includeTerritories = (isDefault || typeof options.includeTerritories === "undefined") ? false : options.includeTerritories,
         includeMilitary = (isDefault || typeof options.includeMilitary === "undefined") ? false : options.includeMilitary,
         regex;
-  
+
       if (!includeTerritories && !includeMilitary) {
         regex = "^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$";
       } else if (includeTerritories && includeMilitary) {
@@ -8324,29 +8324,29 @@ var Sentry = function (n) {
       } else {
         regex = "^(A[AEKLPRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$";
       }
-  
+
       regex = caseSensitive ? new RegExp(regex) : new RegExp(regex, "i");
       return this.optional(element) || regex.test(value);
     }, "Please specify a valid state");
-  
+
     // TODO check if value starts with <, otherwise don't try stripping anything
     $.validator.addMethod("strippedminlength", function (value, element, param) {
       return $(value).text().length >= param;
     }, $.validator.format("Please enter at least {0} characters"));
-  
+
     $.validator.addMethod("time", function (value, element) {
       return this.optional(element) || /^([01]\d|2[0-3]|[0-9])(:[0-5]\d){1,2}$/.test(value);
     }, "Please enter a valid time, between 00:00 and 23:59");
-  
+
     $.validator.addMethod("time12h", function (value, element) {
       return this.optional(element) || /^((0?[1-9]|1[012])(:[0-5]\d){1,2}(\ ?[AP]M))$/i.test(value);
     }, "Please enter a valid time in 12-hour am/pm format");
-  
+
     // Same as url, but TLD is optional
     $.validator.addMethod("url2", function (value, element) {
       return this.optional(element) || /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)*(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
     }, $.validator.messages.url);
-  
+
     /**
      * Return true, if the value is a valid vehicle identification number (VIN).
      *
@@ -8363,13 +8363,13 @@ var Sentry = function (n) {
       if (v.length !== 17) {
         return false;
       }
-  
+
       var LL = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
         VL = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 7, 9, 2, 3, 4, 5, 6, 7, 8, 9],
         FL = [8, 7, 6, 5, 4, 3, 2, 10, 0, 9, 8, 7, 6, 5, 4, 3, 2],
         rs = 0,
         i, n, d, f, cd, cdv;
-  
+
       for (i = 0; i < 17; i++) {
         f = FL[i];
         d = v.slice(i, i + 1);
@@ -8401,18 +8401,18 @@ var Sentry = function (n) {
       }
       return false;
     }, "The specified vehicle identification number (VIN) is invalid.");
-  
+
     $.validator.addMethod("zipcodeUS", function (value, element) {
       return this.optional(element) || /^\d{5}(-\d{4})?$/.test(value);
     }, "The specified US ZIP Code is invalid");
-  
+
     $.validator.addMethod("ziprange", function (value, element) {
       return this.optional(element) || /^90[2-5]\d\{2\}-\d{4}$/.test(value);
     }, "Your ZIP-code must be in the range 902xx-xxxx to 905xx-xxxx");
     return $;
   }));
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/node_modules/js-cookie/src/js.cookie.js]*/
   /*!
    * JavaScript Cookie v2.2.1
@@ -8452,46 +8452,46 @@ var Sentry = function (n) {
       }
       return result;
     }
-  
+
     function decode(s) {
       return s.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent);
     }
-  
+
     function init(converter) {
       function api() {}
-  
+
       function set(key, value, attributes) {
         if (typeof document === 'undefined') {
           return;
         }
-  
+
         attributes = extend({
           path: '/'
         }, api.defaults, attributes);
-  
+
         if (typeof attributes.expires === 'number') {
           attributes.expires = new Date(new Date() * 1 + attributes.expires * 864e+5);
         }
-  
+
         // We're using "expires" because "max-age" is not supported by IE
         attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
-  
+
         try {
           var result = JSON.stringify(value);
           if (/^[\{\[]/.test(result)) {
             value = result;
           }
         } catch (e) {}
-  
+
         value = converter.write ?
           converter.write(value, key) :
           encodeURIComponent(String(value))
           .replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-  
+
         key = encodeURIComponent(String(key))
           .replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent)
           .replace(/[\(\)]/g, escape);
-  
+
         var stringifiedAttributes = '';
         for (var attributeName in attributes) {
           if (!attributes[attributeName]) {
@@ -8501,7 +8501,7 @@ var Sentry = function (n) {
           if (attributes[attributeName] === true) {
             continue;
           }
-  
+
           // Considers RFC 6265 section 5.2:
           // ...
           // 3.  If the remaining unparsed-attributes contains a %x3B (";")
@@ -8511,51 +8511,51 @@ var Sentry = function (n) {
           // ...
           stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
         }
-  
+
         return (document.cookie = key + '=' + value + stringifiedAttributes);
       }
-  
+
       function get(key, json) {
         if (typeof document === 'undefined') {
           return;
         }
-  
+
         var jar = {};
         // To prevent the for loop in the first place assign an empty array
         // in case there are no cookies at all.
         var cookies = document.cookie ? document.cookie.split('; ') : [];
         var i = 0;
-  
+
         for (; i < cookies.length; i++) {
           var parts = cookies[i].split('=');
           var cookie = parts.slice(1).join('=');
-  
+
           if (!json && cookie.charAt(0) === '"') {
             cookie = cookie.slice(1, -1);
           }
-  
+
           try {
             var name = decode(parts[0]);
             cookie = (converter.read || converter)(cookie, name) ||
               decode(cookie);
-  
+
             if (json) {
               try {
                 cookie = JSON.parse(cookie);
               } catch (e) {}
             }
-  
+
             jar[name] = cookie;
-  
+
             if (key === name) {
               break;
             }
           } catch (e) {}
         }
-  
+
         return key ? jar[key] : jar;
       }
-  
+
       api.set = set;
       api.get = function (key) {
         return get(key, false /* read as raw */ );
@@ -8568,18 +8568,18 @@ var Sentry = function (n) {
           expires: -1
         }));
       };
-  
+
       api.defaults = {};
-  
+
       api.withConverter = init;
-  
+
       return api;
     }
-  
+
     return init(function () {});
   }));
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/jquery.swiper.min.js]*/
   ! function (e, t) {
     "object" == typeof exports && "undefined" != typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define(t) : e.Swiper = t()
@@ -8603,7 +8603,7 @@ var Sentry = function (n) {
         for (var t = 0; t < e.length; t += 1) this[t] = e[t];
         return this.length = e.length, this
       };
-  
+
     function I(e, t) {
       var a = [],
         i = 0;
@@ -8621,7 +8621,7 @@ var Sentry = function (n) {
         for (i = 0; i < e.length; i += 1) a.push(e[i]);
       return new l(a)
     }
-  
+
     function r(e) {
       for (var t = [], a = 0; a < e.length; a += 1) - 1 === t.indexOf(e[a]) && t.push(e[a]);
       return t
@@ -8694,7 +8694,7 @@ var Sentry = function (n) {
           r = e[1],
           n = e[2],
           s = e[3];
-  
+
         function o(e) {
           var t = e.target;
           if (t) {
@@ -8704,7 +8704,7 @@ var Sentry = function (n) {
               for (var i = I(t).parents(), s = 0; s < i.length; s += 1) I(i[s]).is(r) && n.apply(i[s], a)
           }
         }
-  
+
         function l(e) {
           var t = e && e.target && e.target.dom7EventData || [];
           t.unshift(e), n.apply(this, t)
@@ -8768,7 +8768,7 @@ var Sentry = function (n) {
       transitionEnd: function (t) {
         var a, i = ["webkitTransitionEnd", "transitionend"],
           s = this;
-  
+
         function r(e) {
           if (e.target === this)
             for (t.call(this, e), a = 0; a < i.length; a += 1) s.off(i[a], r)
@@ -9933,7 +9933,7 @@ var Sentry = function (n) {
         images: {
           loadImage: function (e, t, a, i, s, r) {
             var n;
-  
+
             function o() {
               r && r()
             }
@@ -9941,7 +9941,7 @@ var Sentry = function (n) {
           },
           preloadImages: function () {
             var e = this;
-  
+
             function t() {
               null != e && e && !e.destroyed && (void 0 !== e.imagesLoaded && (e.imagesLoaded += 1), e.imagesLoaded === e.imagesToLoad.length && (e.params.updateOnImagesReady && e.update(), e.emit("imagesReady")))
             }
@@ -10081,7 +10081,7 @@ var Sentry = function (n) {
         }, h.prototype.update = function () {
           var e, t = this;
           t && !t.destroyed && (t.updateSize(), t.updateSlides(), t.updateProgress(), t.updateSlidesClasses(), t.params.freeMode ? (a(), t.params.autoHeight && t.updateAutoHeight()) : (("auto" === t.params.slidesPerView || 1 < t.params.slidesPerView) && t.isEnd && !t.params.centeredSlides ? t.slideTo(t.slides.length - 1, 0, !1, !0) : t.slideTo(t.activeIndex, 0, !1, !0)) || a(), t.emit("update"));
-  
+
           function a() {
             e = Math.min(Math.max(t.translate, t.maxTranslate()), t.minTranslate()), t.setTranslate(e), t.updateActiveIndex(), t.updateSlidesClasses()
           }
@@ -10240,7 +10240,7 @@ var Sentry = function (n) {
           var g = Math.max((m || 0) - v, 0),
             b = Math.min((m || 0) + f, d.length - 1),
             w = (t.slidesGrid[g] || 0) - (t.slidesGrid[0] || 0);
-  
+
           function y() {
             t.updateSlides(), t.updateProgress(), t.updateSlidesClasses(), t.lazy && t.params.lazy.enabled && t.lazy.load()
           }
@@ -11237,14 +11237,14 @@ var Sentry = function (n) {
             r = i.virtual && a.virtual.enabled,
             n = a.lazy,
             o = a.slidesPerView;
-  
+
           function l(e) {
             if (r) {
               if (t.children("." + a.slideClass + '[data-swiper-slide-index="' + e + '"]').length) return !0
             } else if (s[e]) return !0;
             return !1
           }
-  
+
           function d(e) {
             return r ? I(e).attr("data-swiper-slide-index") : I(e).index()
           }
@@ -11332,7 +11332,7 @@ var Sentry = function (n) {
         setTranslate: function (e, t) {
           var a, i, s = this,
             r = s.controller.control;
-  
+
           function n(e) {
             var t = e.rtl && "horizontal" === e.params.direction ? -s.translate : s.translate;
             "slide" === s.params.controller.by && (s.controller.getInterpolateFunction(e), i = -s.controller.spline.interpolate(-t)), i && "container" !== s.params.controller.by || (a = (e.maxTranslate() - e.minTranslate()) / (s.maxTranslate() - s.minTranslate()), i = (t - s.minTranslate()) * a + e.minTranslate()), s.params.controller.inverse && (i = e.maxTranslate() - i), e.updateProgress(i), e.setTranslate(i, s), e.updateActiveIndex(), e.updateSlidesClasses()
@@ -11344,7 +11344,7 @@ var Sentry = function (n) {
         setTransition: function (t, e) {
           var a, i = this,
             s = i.controller.control;
-  
+
           function r(e) {
             e.setTransition(t, i), 0 !== t && (e.transitionStart(), e.$wrapperEl.transitionEnd(function () {
               s && (e.params.loop && "slide" === i.params.controller.by && e.loopFix(), e.transitionEnd())
@@ -12012,38 +12012,38 @@ var Sentry = function (n) {
       };
     return T.components = [E, S, C, M, P, A, X, Y, B, R, F, q, U, Z, J, te, ie, re, oe, de, ce, he, ve], T
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/nouislider.min.js]*/
   /*! nouislider - 10.0.0 - 2017-05-28 14:52:49 */
-  
+
   ! function (a) {
     "function" == typeof define && define.amd ? define([], a) : "object" == typeof exports ? module.exports = a() : window.noUiSlider = a()
   }(function () {
     "use strict";
-  
+
     function a(a) {
       return "object" == typeof a && "function" == typeof a.to && "function" == typeof a.from
     }
-  
+
     function b(a) {
       a.parentElement.removeChild(a)
     }
-  
+
     function c(a) {
       a.preventDefault()
     }
-  
+
     function d(a) {
       return a.filter(function (a) {
         return this[a] ? !1 : this[a] = !0
       }, {})
     }
-  
+
     function e(a, b) {
       return Math.round(a / b) * b
     }
-  
+
     function f(a, b) {
       var c = a.getBoundingClientRect(),
         d = a.ownerDocument,
@@ -12051,43 +12051,43 @@ var Sentry = function (n) {
         f = o(d);
       return /webkit.*Chrome.*Mobile/i.test(navigator.userAgent) && (f.x = 0), b ? c.top + f.y - e.clientTop : c.left + f.x - e.clientLeft
     }
-  
+
     function g(a) {
       return "number" == typeof a && !isNaN(a) && isFinite(a)
     }
-  
+
     function h(a, b, c) {
       c > 0 && (l(a, b), setTimeout(function () {
         m(a, b)
       }, c))
     }
-  
+
     function i(a) {
       return Math.max(Math.min(a, 100), 0)
     }
-  
+
     function j(a) {
       return Array.isArray(a) ? a : [a]
     }
-  
+
     function k(a) {
       a = String(a);
       var b = a.split(".");
       return b.length > 1 ? b[1].length : 0
     }
-  
+
     function l(a, b) {
       a.classList ? a.classList.add(b) : a.className += " " + b
     }
-  
+
     function m(a, b) {
       a.classList ? a.classList.remove(b) : a.className = a.className.replace(new RegExp("(^|\\b)" + b.split(" ").join("|") + "(\\b|$)", "gi"), " ")
     }
-  
+
     function n(a, b) {
       return a.classList ? a.classList.contains(b) : new RegExp("\\b" + b + "\\b").test(a.className)
     }
-  
+
     function o(a) {
       var b = void 0 !== window.pageXOffset,
         c = "CSS1Compat" === (a.compatMode || ""),
@@ -12098,7 +12098,7 @@ var Sentry = function (n) {
         y: e
       }
     }
-  
+
     function p() {
       return window.navigator.pointerEnabled ? {
         start: "pointerdown",
@@ -12114,7 +12114,7 @@ var Sentry = function (n) {
         end: "mouseup touchend"
       }
     }
-  
+
     function q() {
       var a = !1;
       try {
@@ -12127,57 +12127,57 @@ var Sentry = function (n) {
       } catch (c) {}
       return a
     }
-  
+
     function r() {
       return window.CSS && CSS.supports && CSS.supports("touch-action", "none")
     }
-  
+
     function s(a, b) {
       return 100 / (b - a)
     }
-  
+
     function t(a, b) {
       return 100 * b / (a[1] - a[0])
     }
-  
+
     function u(a, b) {
       return t(a, a[0] < 0 ? b + Math.abs(a[0]) : b - a[0])
     }
-  
+
     function v(a, b) {
       return b * (a[1] - a[0]) / 100 + a[0]
     }
-  
+
     function w(a, b) {
       for (var c = 1; a >= b[c];) c += 1;
       return c
     }
-  
+
     function x(a, b, c) {
       if (c >= a.slice(-1)[0]) return 100;
       var d, e, f, g, h = w(c, a);
       return d = a[h - 1], e = a[h], f = b[h - 1], g = b[h], f + u([d, e], c) / s(f, g)
     }
-  
+
     function y(a, b, c) {
       if (c >= 100) return a.slice(-1)[0];
       var d, e, f, g, h = w(c, b);
       return d = a[h - 1], e = a[h], f = b[h - 1], g = b[h], v([d, e], (c - f) * s(f, g))
     }
-  
+
     function z(a, b, c, d) {
       if (100 === d) return d;
       var f, g, h = w(d, a);
       return c ? (f = a[h - 1], g = a[h], d - f > (g - f) / 2 ? g : f) : b[h - 1] ? a[h - 1] + e(d - a[h - 1], b[h - 1]) : d
     }
-  
+
     function A(a, b, c) {
       var d;
       if ("number" == typeof b && (b = [b]), "[object Array]" !== Object.prototype.toString.call(b)) throw new Error("noUiSlider (" + $ + "): 'range' contains invalid value.");
       if (d = "min" === a ? 0 : "max" === a ? 100 : parseFloat(a), !g(d) || !g(b[0])) throw new Error("noUiSlider (" + $ + "): 'range' value isn't numeric.");
       c.xPct.push(d), c.xVal.push(b[0]), d ? c.xSteps.push(isNaN(b[1]) ? !1 : b[1]) : isNaN(b[1]) || (c.xSteps[0] = b[1]), c.xHighestCompleteStep.push(0)
     }
-  
+
     function B(a, b, c) {
       if (!b) return !0;
       c.xSteps[a] = t([c.xVal[a], c.xVal[a + 1]], b) / s(c.xPct[a], c.xPct[a + 1]);
@@ -12186,7 +12186,7 @@ var Sentry = function (n) {
         f = c.xVal[a] + c.xNumSteps[a] * e;
       c.xHighestCompleteStep[a] = f
     }
-  
+
     function C(a, b, c) {
       this.xPct = [], this.xVal = [], this.xSteps = [c || !1], this.xNumSteps = [!1], this.xHighestCompleteStep = [], this.snap = b;
       var d, e = [];
@@ -12198,41 +12198,41 @@ var Sentry = function (n) {
         }), d = 0; d < e.length; d++) A(e[d][1], e[d][0], this);
       for (this.xNumSteps = this.xSteps.slice(0), d = 0; d < this.xNumSteps.length; d++) B(d, this.xNumSteps[d], this)
     }
-  
+
     function D(b) {
       if (a(b)) return !0;
       throw new Error("noUiSlider (" + $ + "): 'format' requires 'to' and 'from' methods.")
     }
-  
+
     function E(a, b) {
       if (!g(b)) throw new Error("noUiSlider (" + $ + "): 'step' is not numeric.");
       a.singleStep = b
     }
-  
+
     function F(a, b) {
       if ("object" != typeof b || Array.isArray(b)) throw new Error("noUiSlider (" + $ + "): 'range' is not an object.");
       if (void 0 === b.min || void 0 === b.max) throw new Error("noUiSlider (" + $ + "): Missing 'min' or 'max' in 'range'.");
       if (b.min === b.max) throw new Error("noUiSlider (" + $ + "): 'range' 'min' and 'max' cannot be equal.");
       a.spectrum = new C(b, a.snap, a.singleStep)
     }
-  
+
     function G(a, b) {
       if (b = j(b), !Array.isArray(b) || !b.length) throw new Error("noUiSlider (" + $ + "): 'start' option is incorrect.");
       a.handles = b.length, a.start = b
     }
-  
+
     function H(a, b) {
       if (a.snap = b, "boolean" != typeof b) throw new Error("noUiSlider (" + $ + "): 'snap' option must be a boolean.")
     }
-  
+
     function I(a, b) {
       if (a.animate = b, "boolean" != typeof b) throw new Error("noUiSlider (" + $ + "): 'animate' option must be a boolean.")
     }
-  
+
     function J(a, b) {
       if (a.animationDuration = b, "number" != typeof b) throw new Error("noUiSlider (" + $ + "): 'animationDuration' option must be a number.")
     }
-  
+
     function K(a, b) {
       var c, d = [!1];
       if ("lower" === b ? b = [!0, !1] : "upper" === b && (b = [!1, !0]), b === !0 || b === !1) {
@@ -12244,7 +12244,7 @@ var Sentry = function (n) {
       }
       a.connect = d
     }
-  
+
     function L(a, b) {
       switch (b) {
         case "horizontal":
@@ -12257,17 +12257,17 @@ var Sentry = function (n) {
           throw new Error("noUiSlider (" + $ + "): 'orientation' option is invalid.")
       }
     }
-  
+
     function M(a, b) {
       if (!g(b)) throw new Error("noUiSlider (" + $ + "): 'margin' option must be numeric.");
       if (0 !== b && (a.margin = a.spectrum.getMargin(b), !a.margin)) throw new Error("noUiSlider (" + $ + "): 'margin' option is only supported on linear sliders.")
     }
-  
+
     function N(a, b) {
       if (!g(b)) throw new Error("noUiSlider (" + $ + "): 'limit' option must be numeric.");
       if (a.limit = a.spectrum.getMargin(b), !a.limit || a.handles < 2) throw new Error("noUiSlider (" + $ + "): 'limit' option is only supported on linear sliders with 2 or more handles.")
     }
-  
+
     function O(a, b) {
       if (!g(b)) throw new Error("noUiSlider (" + $ + "): 'padding' option must be numeric.");
       if (0 !== b) {
@@ -12276,7 +12276,7 @@ var Sentry = function (n) {
         if (a.padding >= 50) throw new Error("noUiSlider (" + $ + "): 'padding' option must be less than half the range.")
       }
     }
-  
+
     function P(a, b) {
       switch (b) {
         case "ltr":
@@ -12289,7 +12289,7 @@ var Sentry = function (n) {
           throw new Error("noUiSlider (" + $ + "): 'direction' option was not recognized.")
       }
     }
-  
+
     function Q(a, b) {
       if ("string" != typeof b) throw new Error("noUiSlider (" + $ + "): 'behaviour' must be a string containing options.");
       var c = b.indexOf("tap") >= 0,
@@ -12309,7 +12309,7 @@ var Sentry = function (n) {
         hover: g
       }
     }
-  
+
     function R(a, b) {
       if (b !== !1)
         if (b === !0) {
@@ -12322,20 +12322,20 @@ var Sentry = function (n) {
           })
         }
     }
-  
+
     function S(a, b) {
       a.ariaFormat = b, D(b)
     }
-  
+
     function T(a, b) {
       a.format = b, D(b)
     }
-  
+
     function U(a, b) {
       if (void 0 !== b && "string" != typeof b && b !== !1) throw new Error("noUiSlider (" + $ + "): 'cssPrefix' must be a string or `false`.");
       a.cssPrefix = b
     }
-  
+
     function V(a, b) {
       if (void 0 !== b && "object" != typeof b) throw new Error("noUiSlider (" + $ + "): 'cssClasses' must be an object.");
       if ("string" == typeof a.cssPrefix) {
@@ -12343,12 +12343,12 @@ var Sentry = function (n) {
         for (var c in b) b.hasOwnProperty(c) && (a.cssClasses[c] = a.cssPrefix + b[c])
       } else a.cssClasses = b
     }
-  
+
     function W(a, b) {
       if (b !== !0 && b !== !1) throw new Error("noUiSlider (" + $ + "): 'useRequestAnimationFrame' option should be true (default) or false.");
       a.useRequestAnimationFrame = b
     }
-  
+
     function X(a) {
       var b = {
           margin: 0,
@@ -12492,36 +12492,36 @@ var Sentry = function (n) {
       ];
       return b.style = e[b.dir][b.ort], b.styleOposite = e[b.dir ? 0 : 1][b.ort], b
     }
-  
+
     function Y(a, e, g) {
       function k(a, b) {
         var c = xa.createElement("div");
         return b && l(c, b), a.appendChild(c), c
       }
-  
+
       function s(a, b) {
         var c = k(a, e.cssClasses.origin),
           d = k(c, e.cssClasses.handle);
         return d.setAttribute("data-handle", b), d.setAttribute("tabindex", "0"), d.setAttribute("role", "slider"), d.setAttribute("aria-orientation", e.ort ? "vertical" : "horizontal"), 0 === b ? l(d, e.cssClasses.handleLower) : b === e.handles - 1 && l(d, e.cssClasses.handleUpper), c
       }
-  
+
       function t(a, b) {
         return b ? k(a, e.cssClasses.connect) : !1
       }
-  
+
       function u(a, b) {
         ia = [], ja = [], ja.push(t(b, a[0]));
         for (var c = 0; c < e.handles; c++) ia.push(s(b, c)), ra[c] = c, ja.push(t(b, a[c + 1]))
       }
-  
+
       function v(a) {
         l(a, e.cssClasses.target), 0 === e.dir ? l(a, e.cssClasses.ltr) : l(a, e.cssClasses.rtl), 0 === e.ort ? l(a, e.cssClasses.horizontal) : l(a, e.cssClasses.vertical), ha = k(a, e.cssClasses.base)
       }
-  
+
       function w(a, b) {
         return e.tooltips[b] ? k(a.firstChild, e.cssClasses.tooltip) : !1
       }
-  
+
       function x() {
         var a = ia.map(w);
         ea("update", function (b, c, d) {
@@ -12531,7 +12531,7 @@ var Sentry = function (n) {
           }
         })
       }
-  
+
       function y() {
         ea("update", function (a, b, c, d, f) {
           ra.forEach(function (a) {
@@ -12544,7 +12544,7 @@ var Sentry = function (n) {
           })
         })
       }
-  
+
       function z(a, b, c) {
         if ("range" === a || "steps" === a) return ta.xVal;
         if ("count" === a) {
@@ -12561,7 +12561,7 @@ var Sentry = function (n) {
           return ta.fromStepping(ta.getStep(ta.toStepping(a)))
         }) : b : void 0
       }
-  
+
       function A(a, b, c) {
         function e(a, b) {
           return (a + b).toFixed(7) / 1
@@ -12584,7 +12584,7 @@ var Sentry = function (n) {
             }
         }), f
       }
-  
+
       function B(a, b, c) {
         function d(a, b) {
           var c = b === e.cssClasses.value,
@@ -12592,7 +12592,7 @@ var Sentry = function (n) {
             f = c ? h : i;
           return b + " " + d[e.ort] + " " + f[a]
         }
-  
+
         function f(a, f) {
           f[1] = f[1] && b ? b(f[0], f[1]) : f[1];
           var h = k(g, !1);
@@ -12607,11 +12607,11 @@ var Sentry = function (n) {
           f(b, a[b])
         }), g
       }
-  
+
       function C() {
         la && (b(la), la = null)
       }
-  
+
       function D(a) {
         C();
         var b = a.mode,
@@ -12626,13 +12626,13 @@ var Sentry = function (n) {
           };
         return la = pa.appendChild(B(h, d, i))
       }
-  
+
       function E() {
         var a = ha.getBoundingClientRect(),
           b = "offset" + ["Width", "Height"][e.ort];
         return 0 === e.ort ? a.width || ha[b] : a.height || ha[b]
       }
-  
+
       function F(a, b, c, d) {
         var f = function (b) {
             return pa.hasAttribute("disabled") ? !1 : n(pa, e.cssClasses.tap) ? !1 : (b = G(b, d.pageOffset)) ? a === ma.start && void 0 !== b.buttons && b.buttons > 1 ? !1 : d.hover && b.buttons ? !1 : (oa || b.preventDefault(), b.calcPoint = b.points[e.ort], void c(b, d)) : !1
@@ -12644,7 +12644,7 @@ var Sentry = function (n) {
           } : !1), g.push([a, f])
         }), g
       }
-  
+
       function G(a, b) {
         var c, d, e = 0 === a.type.indexOf("touch"),
           f = 0 === a.type.indexOf("mouse"),
@@ -12655,13 +12655,13 @@ var Sentry = function (n) {
         }
         return b = b || o(xa), (f || g) && (c = a.clientX + b.x, d = a.clientY + b.y), a.pageOffset = b, a.points = [c, d], a.cursor = f || g, a
       }
-  
+
       function H(a) {
         var b = a - f(ha, e.ort),
           c = 100 * b / E();
         return e.dir ? 100 - c : c
       }
-  
+
       function I(a) {
         var b = 100,
           c = !1;
@@ -12672,7 +12672,7 @@ var Sentry = function (n) {
           }
         }), c
       }
-  
+
       function J(a, b, c, d) {
         var e = c.slice(),
           f = [!a, a],
@@ -12688,7 +12688,7 @@ var Sentry = function (n) {
           K("update", a), K("slide", a)
         })
       }
-  
+
       function K(a, b, c) {
         Object.keys(va).forEach(function (d) {
           var f = d.split(".")[0];
@@ -12697,18 +12697,18 @@ var Sentry = function (n) {
           })
         })
       }
-  
+
       function L(a, b) {
         "mouseout" === a.type && "HTML" === a.target.nodeName && null === a.relatedTarget && N(a, b)
       }
-  
+
       function M(a, b) {
         if (-1 === navigator.appVersion.indexOf("MSIE 9") && 0 === a.buttons && 0 !== b.buttonsProperty) return N(a, b);
         var c = (e.dir ? -1 : 1) * (a.calcPoint - b.startCalcPoint),
           d = 100 * c / b.baseSize;
         J(c > 0, d, b.locations, b.handleNumbers)
       }
-  
+
       function N(a, b) {
         sa && (m(sa, e.cssClasses.active), sa = !1), a.cursor && (za.style.cursor = "", za.removeEventListener("selectstart", c)), wa.forEach(function (a) {
           ya.removeEventListener(a[0], a[1])
@@ -12716,7 +12716,7 @@ var Sentry = function (n) {
           K("change", a), K("set", a), K("end", a)
         })
       }
-  
+
       function O(a, b) {
         if (1 === b.handleNumbers.length) {
           var d = ia[b.handleNumbers[0]];
@@ -12742,7 +12742,7 @@ var Sentry = function (n) {
           K("start", a)
         })
       }
-  
+
       function P(a) {
         a.stopPropagation();
         var b = H(a.calcPoint),
@@ -12751,7 +12751,7 @@ var Sentry = function (n) {
           handleNumbers: [c]
         })))
       }
-  
+
       function Q(a) {
         var b = H(a.calcPoint),
           c = ta.getStep(b),
@@ -12762,7 +12762,7 @@ var Sentry = function (n) {
           })
         })
       }
-  
+
       function R(a) {
         a.fixed || ia.forEach(function (a, b) {
           F(ma.start, a.children[0], O, {
@@ -12784,15 +12784,15 @@ var Sentry = function (n) {
           }
         })
       }
-  
+
       function S(a, b, c, d, f, g) {
         return ia.length > 1 && (d && b > 0 && (c = Math.max(c, a[b - 1] + e.margin)), f && b < ia.length - 1 && (c = Math.min(c, a[b + 1] - e.margin))), ia.length > 1 && e.limit && (d && b > 0 && (c = Math.min(c, a[b - 1] + e.limit)), f && b < ia.length - 1 && (c = Math.max(c, a[b + 1] - e.limit))), e.padding && (0 === b && (c = Math.max(c, e.padding)), b === ia.length - 1 && (c = Math.min(c, 100 - e.padding))), c = ta.getStep(c), c = i(c), c !== a[b] || g ? c : !1
       }
-  
+
       function T(a) {
         return a + "%"
       }
-  
+
       function U(a, b) {
         qa[a] = b, ua[a] = ta.fromStepping(b);
         var c = function () {
@@ -12800,7 +12800,7 @@ var Sentry = function (n) {
         };
         window.requestAnimationFrame && e.useRequestAnimationFrame ? window.requestAnimationFrame(c) : c()
       }
-  
+
       function V() {
         ra.forEach(function (a) {
           var b = qa[a] > 50 ? -1 : 1,
@@ -12808,11 +12808,11 @@ var Sentry = function (n) {
           ia[a].childNodes[0].style.zIndex = c
         })
       }
-  
+
       function W(a, b, c, d) {
         return b = S(qa, a, b, c, d, !1), b === !1 ? !1 : (U(a, b), !0)
       }
-  
+
       function Y(a) {
         if (ja[a]) {
           var b = 0,
@@ -12820,11 +12820,11 @@ var Sentry = function (n) {
           0 !== a && (b = qa[a - 1]), a !== ja.length - 1 && (c = qa[a]), ja[a].style[e.style] = T(b), ja[a].style[e.styleOposite] = T(100 - c)
         }
       }
-  
+
       function Z(a, b) {
         null !== a && a !== !1 && ("number" == typeof a && (a = String(a)), a = e.format.from(a), a === !1 || isNaN(a) || W(b, ta.toStepping(a), !1, !1))
       }
-  
+
       function _(a, b) {
         var c = j(a),
           d = void 0 === qa[0];
@@ -12834,22 +12834,22 @@ var Sentry = function (n) {
           K("update", a), null !== c[a] && b && K("set", a)
         })
       }
-  
+
       function aa(a) {
         _(e.start, a)
       }
-  
+
       function ba() {
         var a = ua.map(e.format.to);
         return 1 === a.length ? a[0] : a
       }
-  
+
       function ca() {
         for (var a in e.cssClasses) e.cssClasses.hasOwnProperty(a) && m(pa, e.cssClasses[a]);
         for (; pa.firstChild;) pa.removeChild(pa.firstChild);
         delete pa.noUiSlider
       }
-  
+
       function da() {
         return qa.map(function (a, b) {
           var c = ta.getNearbySteps(a),
@@ -12861,13 +12861,13 @@ var Sentry = function (n) {
           return null !== e && e !== !1 && (e = Number(e.toFixed(g))), null !== f && f !== !1 && (f = Number(f.toFixed(g))), [f, e]
         })
       }
-  
+
       function ea(a, b) {
         va[a] = va[a] || [], va[a].push(b), "update" === a.split(".")[0] && ia.forEach(function (a, b) {
           K("update", b)
         })
       }
-  
+
       function fa(a) {
         var b = a && a.split(".")[0],
           c = b && a.substring(b.length);
@@ -12877,7 +12877,7 @@ var Sentry = function (n) {
           b && b !== d || c && c !== e || delete va[a]
         })
       }
-  
+
       function ga(a, b) {
         var c = ba(),
           d = ["margin", "limit", "padding", "range", "animate", "snap", "step", "format"];
@@ -12922,7 +12922,7 @@ var Sentry = function (n) {
         pips: D
       }, R(e.events), _(e.start), e.pips && D(e.pips), e.tooltips && x(), y(), ka
     }
-  
+
     function Z(a, b) {
       if (!a || !a.nodeName) throw new Error("noUiSlider (" + $ + "): create requires a single element, got: " + a);
       var c = X(b, a),
@@ -12976,43 +12976,43 @@ var Sentry = function (n) {
       create: Z
     }
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/wNumb.min.js]*/
   ! function (e) {
     "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? module.exports = e() : window.wNumb = e()
   }(function () {
     "use strict";
     var o = ["decimals", "thousand", "mark", "prefix", "suffix", "encoder", "decoder", "negativeBefore", "negative", "edit", "undo"];
-  
+
     function y(e) {
       return e.split("").reverse().join("")
     }
-  
+
     function g(e, t) {
       return e.substring(0, t.length) === t
     }
-  
+
     function f(e, t, n) {
       if ((e[t] || e[n]) && e[t] === e[n]) throw new Error(t)
     }
-  
+
     function b(e) {
       return "number" == typeof e && isFinite(e)
     }
-  
+
     function n(e, t, n, r, i, o, f, u, s, a, c, p) {
       var d, l, h, g, v, m = p,
         w = "",
         x = "";
       return o && (p = o(p)), !!b(p) && (!1 !== e && 0 === parseFloat(p.toFixed(e)) && (p = 0), p < 0 && (d = !0, p = Math.abs(p)), !1 !== e && (v = e, g = (g = p).toString().split("e"), p = (+((g = (g = Math.round(+(g[0] + "e" + (g[1] ? +g[1] + v : v)))).toString().split("e"))[0] + "e" + (g[1] ? +g[1] - v : -v))).toFixed(v)), -1 !== (p = p.toString()).indexOf(".") ? (h = (l = p.split("."))[0], n && (w = n + l[1])) : h = p, t && (h = y((h = y(h).match(/.{1,3}/g)).join(y(t)))), d && u && (x += u), r && (x += r), d && s && (x += s), x += h, x += w, i && (x += i), a && (x = a(x, m)), x)
     }
-  
+
     function r(e, t, n, r, i, o, f, u, s, a, c, p) {
       var d, l, h = "";
       return c && (p = c(p)), !(!p || "string" != typeof p) && (u && g(p, u) && (p = p.replace(u, ""), d = !0), r && g(p, r) && (p = p.replace(r, "")), s && g(p, s) && (p = p.replace(s, ""), d = !0), i && (l = i, p.slice(-1 * l.length) === l) && (p = p.slice(0, -1 * i.length)), t && (p = p.split(t).join("")), n && (p = p.replace(n, ".")), d && (h += "-"), "" !== (h = (h += p).replace(/[^0-9\.\-.]/g, "")) && (h = Number(h), f && (h = f(h)), !!b(h) && h))
     }
-  
+
     function i(e, t, n) {
       var r, i = [];
       for (r = 0; r < o.length; r += 1) i.push(e[o[r]]);
@@ -13042,8 +13042,8 @@ var Sentry = function (n) {
       })
     }
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/jquery.countdown.min.js]*/
   ! function (l) {
     l.fn.countdown = function (e) {
@@ -13247,8 +13247,8 @@ var Sentry = function (n) {
     secText: "ثانیه",
     isRTL: !0
   }, $.extend($.fn.countdown.defaults, $.fn.countdown.locale.ar);
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/jquery.animate.min.js]*/
   $.fn.extend({
     animateCss: function (n, i) {
@@ -13257,8 +13257,8 @@ var Sentry = function (n) {
       }), this
     }
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/jquery.selectric.js]*/
   (function (factory) {
     /* global define */
@@ -13284,14 +13284,14 @@ var Sentry = function (n) {
     }
   }(function ($) {
     'use strict';
-  
+
     var $doc = $(document);
     var $win = $(window);
-  
+
     var pluginName = 'selectric';
     var classList = 'Input Items Open Disabled TempShow HideSelect Wrapper Focus Hover Responsive Above Below Scroll Group GroupLabel';
     var eventNamespaceSuffix = '.sl';
-  
+
     var chars = ['a', 'e', 'i', 'o', 'u', 'n', 'c', 'y'];
     var diacritics = [
       /[\xE0-\xE5]/g, // a
@@ -13303,7 +13303,7 @@ var Sentry = function (n) {
       /[\xE7]/g, // c
       /[\xFD-\xFF]/g // y
     ];
-  
+
     /**
      * Create an instance of Selectric
      *
@@ -13313,10 +13313,10 @@ var Sentry = function (n) {
      */
     var Selectric = function (element, opts) {
       var _this = this;
-  
+
       _this.element = element;
       _this.$element = $(element);
-  
+
       _this.state = {
         multiple: !!_this.$element.attr('multiple'),
         enabled: false,
@@ -13325,7 +13325,7 @@ var Sentry = function (n) {
         selectedIdx: -1,
         highlightedIdx: -1
       };
-  
+
       _this.eventTriggers = {
         open: _this.open,
         close: _this.close,
@@ -13333,10 +13333,10 @@ var Sentry = function (n) {
         refresh: _this.refresh,
         init: _this.init
       };
-  
+
       _this.init(opts);
     };
-  
+
     Selectric.prototype = {
       utils: {
         /**
@@ -13347,7 +13347,7 @@ var Sentry = function (n) {
         isMobile: function () {
           return /android|ip(hone|od|ad)/i.test(navigator.userAgent);
         },
-  
+
         /**
          * Escape especial characters in string (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
          *
@@ -13357,7 +13357,7 @@ var Sentry = function (n) {
         escapeRegExp: function (str) {
           return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
         },
-  
+
         /**
          * Replace diacritics
          *
@@ -13366,14 +13366,14 @@ var Sentry = function (n) {
          */
         replaceDiacritics: function (str) {
           var k = diacritics.length;
-  
+
           while (k--) {
             str = str.toLowerCase().replace(diacritics[k], chars[k]);
           }
-  
+
           return str;
         },
-  
+
         /**
          * Format string
          * https://gist.github.com/atesgoral/984375
@@ -13398,7 +13398,7 @@ var Sentry = function (n) {
                   a[i]; // assume argument index and return i-th argument
               });
         },
-  
+
         /**
          * Get the next enabled item in the options list.
          *
@@ -13412,7 +13412,7 @@ var Sentry = function (n) {
           }
           return selected;
         },
-  
+
         /**
          * Get the previous enabled item in the options list.
          *
@@ -13426,7 +13426,7 @@ var Sentry = function (n) {
           }
           return selected;
         },
-  
+
         /**
          * Transform camelCase string to dash-case.
          *
@@ -13436,7 +13436,7 @@ var Sentry = function (n) {
         toDash: function (str) {
           return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
         },
-  
+
         /**
          * Calls the events registered with function name.
          *
@@ -13447,14 +13447,14 @@ var Sentry = function (n) {
           var elm = scope.element;
           var func = scope.options['on' + fn];
           var args = [elm].concat([].slice.call(arguments).slice(1));
-  
+
           if ($.isFunction(func)) {
             func.apply(elm, args);
           }
-  
+
           $(elm).trigger(pluginName + '-' + this.toDash(fn), args);
         },
-  
+
         /**
          * Transform array list to concatenated string and remove empty values
          * @param  {array} arr - Class list
@@ -13464,32 +13464,32 @@ var Sentry = function (n) {
           var newArr = $.grep(arr, function (item) {
             return !!item;
           });
-  
+
           return $.trim(newArr.join(' '));
         }
       },
-  
+
       /** Initializes */
       init: function (opts) {
         var _this = this;
-  
+
         // Set options
         _this.options = $.extend(true, {}, $.fn[pluginName].defaults, _this.options, opts);
-  
+
         _this.utils.triggerCallback('BeforeInit', _this);
-  
+
         // Preserve data
         _this.destroy(true);
-  
+
         // Disable on mobile browsers
         if (_this.options.disableOnMobile && _this.utils.isMobile()) {
           _this.disableOnMobile = true;
           return;
         }
-  
+
         // Get classes
         _this.classes = _this.getClassNames();
-  
+
         // Create elements
         var input = $('<input/>', {
           'class': _this.options.hasSearch ? 'dk-selectric-input' : 'u-hidden',
@@ -13513,7 +13513,7 @@ var Sentry = function (n) {
         var hideSelectWrapper = $('<div/>', {
           'class': _this.classes.hideselect
         });
-  
+
         _this.elements = {
           input: input,
           items: items,
@@ -13522,39 +13522,39 @@ var Sentry = function (n) {
           label: label,
           outerWrapper: outerWrapper
         };
-  
+
         if (_this.options.nativeOnMobile && _this.utils.isMobile()) {
           _this.elements.input = undefined;
           hideSelectWrapper.addClass(_this.classes.prefix + '-is-native');
-  
+
           _this.$element.on('change', function () {
             _this.refresh();
           });
         }
-  
+
         _this.$element
           .on(_this.eventTriggers)
           .wrap(hideSelectWrapper);
-  
+
         _this.originalTabindex = _this.$element.prop('tabindex');
         _this.$element.prop('tabindex', -1);
-  
+
         _this.populate();
         _this.activate();
-  
+
         _this.utils.triggerCallback('Init', _this);
       },
-  
+
       /** Activates the plugin */
       activate: function () {
         var _this = this;
         var hiddenChildren = _this.elements.items.closest(':visible').children(':hidden').addClass(_this.classes.tempshow);
         var originalWidth = _this.$element.width();
-  
+
         hiddenChildren.removeClass(_this.classes.tempshow);
-  
+
         _this.utils.triggerCallback('BeforeActivate', _this);
-  
+
         _this.elements.outerWrapper.prop('class',
           _this.utils.arrayToClassname([
             _this.classes.wrapper,
@@ -13562,35 +13562,35 @@ var Sentry = function (n) {
             _this.options.responsive ? _this.classes.responsive : ''
           ])
         );
-  
+
         if (_this.options.inheritOriginalWidth && originalWidth > 0) {
           _this.elements.outerWrapper.width(originalWidth);
         }
-  
+
         _this.unbindEvents();
-  
+
         if (!_this.$element.prop('disabled')) {
           _this.state.enabled = true;
-  
+
           // Not disabled, so... Removing disabled class
           _this.elements.outerWrapper.removeClass(_this.classes.disabled);
-  
+
           // Remove styles from items box
           // Fix incorrect height when refreshed is triggered with fewer options
           _this.$li = _this.elements.items.removeAttr('style').find('li');
-  
+
           _this.bindEvents();
         } else {
           _this.elements.outerWrapper.addClass(_this.classes.disabled);
-  
+
           if (_this.elements.input) {
             _this.elements.input.prop('disabled', true);
           }
         }
-  
+
         _this.utils.triggerCallback('Activate', _this);
       },
-  
+
       /**
        * Generate classNames for elements
        *
@@ -13600,35 +13600,35 @@ var Sentry = function (n) {
         var _this = this;
         var customClass = _this.options.customClass;
         var classesObj = {};
-  
+
         $.each(classList.split(' '), function (i, currClass) {
           var c = customClass.prefix + currClass;
           classesObj[currClass.toLowerCase()] = customClass.camelCase ? c : _this.utils.toDash(c);
         });
-  
+
         classesObj.prefix = customClass.prefix;
-  
+
         return classesObj;
       },
-  
+
       /** Set the label text */
       setLabel: function () {
         var _this = this;
         var labelBuilder = _this.options.labelBuilder;
-  
+
         if (_this.state.multiple) {
           // Make sure currentValues is an array
           var currentValues = $.isArray(_this.state.currValue) ? _this.state.currValue : [_this.state.currValue];
           // I'm not happy with this, but currentValues can be an empty
           // array and we need to fallback to the default option.
           currentValues = currentValues.length === 0 ? [0] : currentValues;
-  
+
           var labelMarkup = $.map(currentValues, function (value) {
             return $.grep(_this.lookupItems, function (item) {
               return item.index === value;
             })[0]; // we don't want nested arrays here
           });
-  
+
           labelMarkup = $.grep(labelMarkup, function (item) {
             // Hide default (please choose) if more then one element were selected.
             // If no option value were given value is set to option text by default
@@ -13637,13 +13637,13 @@ var Sentry = function (n) {
             }
             return item;
           });
-  
+
           labelMarkup = $.map(labelMarkup, function (item) {
             return $.isFunction(labelBuilder) ?
               labelBuilder(item) :
               _this.utils.format(labelBuilder, item);
           });
-  
+
           // Limit the amount of selected values shown in label
           if (_this.options.multiple.maxLabelEntries) {
             if (labelMarkup.length >= _this.options.multiple.maxLabelEntries + 1) {
@@ -13661,10 +13661,10 @@ var Sentry = function (n) {
             }
           }
           _this.elements.label.html(labelMarkup.join(_this.options.multiple.separator));
-  
+
         } else {
           var currItem = _this.lookupItems[_this.state.currValue];
-  
+
           if (currItem.element.hasClass('placeholder')) {
             _this.elements.label.addClass('placeholder')
           } else {
@@ -13677,7 +13677,7 @@ var Sentry = function (n) {
           );
         }
       },
-  
+
       /** Get and save the available options */
       populate: function () {
         var _this = this;
@@ -13687,64 +13687,64 @@ var Sentry = function (n) {
         var selectedIndex = $justOptions.index($selected);
         var currIndex = 0;
         var emptyValue = (_this.state.multiple ? [] : 0);
-  
+
         if ($selected.length > 1 && _this.state.multiple) {
           selectedIndex = [];
           $selected.each(function () {
             selectedIndex.push($(this).index());
           });
         }
-  
+
         _this.state.currValue = (~selectedIndex ? selectedIndex : emptyValue);
         _this.state.selectedIdx = _this.state.currValue;
         _this.state.highlightedIdx = _this.state.currValue;
         _this.items = [];
         _this.lookupItems = [];
-  
+
         if ($options.length) {
           // Build options markup
           $options.each(function (i) {
             var $elm = $(this);
-  
+
             if ($elm.is('optgroup')) {
-  
+
               var optionsGroup = {
                 element: $elm,
                 label: $elm.prop('label'),
                 groupDisabled: $elm.prop('disabled'),
                 items: []
               };
-  
+
               $elm.children().each(function (i) {
                 var $elm = $(this);
-  
+
                 optionsGroup.items[i] = _this.getItemData(currIndex, $elm, optionsGroup.groupDisabled || $elm.prop('disabled'));
-  
+
                 _this.lookupItems[currIndex] = optionsGroup.items[i];
-  
+
                 currIndex++;
               });
-  
+
               _this.items[i] = optionsGroup;
-  
+
             } else {
-  
+
               _this.items[i] = _this.getItemData(currIndex, $elm, $elm.prop('disabled'));
-  
+
               _this.lookupItems[currIndex] = _this.items[i];
-  
+
               currIndex++;
-  
+
             }
           });
-  
+
           _this.setLabel();
           if (_this.options.hasSearch)
             _this.elements.items.append(_this.elements.input).addClass('selectric-has-search');
           _this.elements.items.append(_this.elements.itemsScroll.html(_this.getItemsMarkup(_this.items)));
         }
       },
-  
+
       /**
        * Generate items object data
        * @param  {integer} index      - Current item index
@@ -13754,7 +13754,7 @@ var Sentry = function (n) {
        */
       getItemData: function (index, $elm, isDisabled) {
         var _this = this;
-  
+
         return {
           index: index,
           element: $elm,
@@ -13767,7 +13767,7 @@ var Sentry = function (n) {
           disabled: isDisabled
         };
       },
-  
+
       /**
        * Generate options markup
        *
@@ -13777,11 +13777,11 @@ var Sentry = function (n) {
       getItemsMarkup: function (items) {
         var _this = this;
         var markup = '<ul>';
-  
+
         if ($.isFunction(_this.options.listBuilder) && _this.options.listBuilder) {
           items = _this.options.listBuilder(items);
         }
-  
+
         $.each(items, function (i, elm) {
           if (elm.label !== undefined) {
             markup += _this.utils.format('<ul class="{1}"><li class="{2}">{3}</li>',
@@ -13793,23 +13793,23 @@ var Sentry = function (n) {
               _this.classes.grouplabel,
               elm.element.prop('label')
             );
-  
+
             $.each(elm.items, function (i, elm) {
               markup += _this.getItemMarkup(elm.index, elm);
             });
-  
+
             markup += '</ul>';
-  
+
           } else {
-  
+
             markup += _this.getItemMarkup(elm.index, elm);
-  
+
           }
         });
-  
+
         return markup + '</ul>';
       },
-  
+
       /**
        * Generate every option markup
        *
@@ -13828,7 +13828,7 @@ var Sentry = function (n) {
           slug: itemData.slug,
           index: itemData.index
         };
-  
+
         return _this.utils.format('<li data-index="{1}" class="{2}">{3}</li>',
           index,
           _this.utils.arrayToClassname([
@@ -13842,30 +13842,30 @@ var Sentry = function (n) {
           _this.utils.format(itemBuilder, filteredItemData)
         );
       },
-  
+
       /** Remove events on the elements */
       unbindEvents: function () {
         var _this = this;
         if (!!_this.elements.input)
           _this.elements.input.off();
-  
+
         _this.elements.wrapper
           .add(_this.$element)
           .add(_this.elements.outerWrapper)
           .off(eventNamespaceSuffix);
       },
-  
+
       /** Bind events on the elements */
       bindEvents: function () {
         var _this = this;
-  
+
         _this.elements.outerWrapper.on('mouseenter' + eventNamespaceSuffix + ' mouseleave' + eventNamespaceSuffix, function (e) {
           $(this).toggleClass(_this.classes.hover, e.type === 'mouseenter');
-  
+
           // Delay close effect when openOnHover is true
           if (_this.options.openOnHover) {
             clearTimeout(_this.closeTimer);
-  
+
             if (e.type === 'mouseleave') {
               _this.closeTimer = setTimeout($.proxy(_this.close, _this), _this.options.hoverIntentTimeout);
             } else {
@@ -13873,12 +13873,12 @@ var Sentry = function (n) {
             }
           }
         });
-  
+
         // Toggle open/close
         _this.elements.wrapper.on('click' + eventNamespaceSuffix, function (e) {
           _this.state.opened ? _this.close() : _this.open(e);
         });
-  
+
         // Translate original element focus event to dummy input.
         // Disabled on mobile devices because the default option list isn't
         // shown due the fact that hidden input gets focused
@@ -13886,7 +13886,7 @@ var Sentry = function (n) {
           _this.$element.on('focus' + eventNamespaceSuffix, function () {
             _this.elements.input.focus();
           });
-  
+
           _this.elements.input
             .prop({
               tabindex: _this.originalTabindex,
@@ -13898,12 +13898,12 @@ var Sentry = function (n) {
             .on('keydown' + eventNamespaceSuffix, $.proxy(_this.handleKeys, _this))
             .on('focusin' + eventNamespaceSuffix, function (e) {
               _this.elements.outerWrapper.addClass(_this.classes.focus);
-  
+
               // Prevent the flicker when focusing out and back again in the browser window
               _this.elements.input.one('blur', function () {
                 _this.elements.input.blur();
               });
-  
+
               if (_this.options.openOnFocus && !_this.state.opened) {
                 _this.open(e);
               }
@@ -13934,7 +13934,7 @@ var Sentry = function (n) {
               }
             });
         }
-  
+
         _this.$li.on({
           // Prevent <input> blur on Chrome
           mousedown: function (e) {
@@ -13943,14 +13943,14 @@ var Sentry = function (n) {
           },
           click: function () {
             _this.select($(this).data('index'));
-  
+
             // Chrome doesn't close options box if select is wrapped with a label
             // We need to 'return false' to avoid that
             return false;
           }
         });
       },
-  
+
       /**
        * Behavior when keyboard keys is pressed
        *
@@ -13960,7 +13960,7 @@ var Sentry = function (n) {
         var _this = this;
         var key = e.which;
         var keys = _this.options.keys;
-  
+
         var isPrevKey = $.inArray(key, keys.previous) > -1;
         var isNextKey = $.inArray(key, keys.next) > -1;
         var isSelectKey = $.inArray(key, keys.select) > -1;
@@ -13968,75 +13968,75 @@ var Sentry = function (n) {
         var idx = _this.state.highlightedIdx;
         var isFirstOrLastItem = (isPrevKey && idx === 0) || (isNextKey && (idx + 1) === _this.items.length);
         var goToItem = 0;
-  
+
         // Enter / Space
         if (key === 13) {
           e.preventDefault();
         }
-  
+
         // If it's a directional key
         if (isPrevKey || isNextKey) {
           if (!_this.options.allowWrap && isFirstOrLastItem) {
             return;
           }
-  
+
           if (isPrevKey) {
             goToItem = _this.utils.previousEnabledItem(_this.lookupItems, idx);
             e.preventDefault();
           }
-  
+
           if (isNextKey) {
             goToItem = _this.utils.nextEnabledItem(_this.lookupItems, idx);
             e.preventDefault();
           }
-  
+
           _this.highlight(goToItem);
         }
-  
+
         // Tab / Enter / ESC
         if (isSelectKey && _this.state.opened) {
           _this.select(idx);
-  
+
           if (!_this.state.multiple || !_this.options.multiple.keepMenuOpen) {
             _this.close();
           }
-  
+
           return;
         }
-  
+
         // Space / Enter / Left / Up / Right / Down
         if (isOpenKey && !_this.state.opened) {
           _this.open();
         }
       },
-  
+
       /** Update the items object */
       refresh: function () {
         var _this = this;
-  
+
         _this.populate();
         _this.activate();
         _this.utils.triggerCallback('Refresh', _this);
       },
-  
+
       /** Set options box width/height */
       setOptionsDimensions: function () {
         var _this = this;
-  
+
         // Calculate options box height
         // Set a temporary class on the hidden parent of the element
         var hiddenChildren = _this.elements.items.closest(':visible').children(':hidden').addClass(_this.classes.tempshow);
         var maxHeight = _this.options.maxHeight;
         var itemsWidth = _this.elements.items.outerWidth();
         var wrapperWidth = _this.elements.wrapper.outerWidth() - (itemsWidth - _this.elements.items.width());
-  
+
         // Set the dimensions, minimum is wrapper width, expand for long items if option is true
         if (!_this.options.expandToItemText || wrapperWidth > itemsWidth) {
           _this.finalWidth = wrapperWidth;
         } else {
           // Make sure the scrollbar width is included
           _this.elements.items.css('overflow', 'scroll');
-  
+
           // Set a really long width for _this.elements.outerWrapper
           _this.elements.outerWrapper.width(9e4);
           _this.finalWidth = _this.elements.items.width();
@@ -14044,17 +14044,17 @@ var Sentry = function (n) {
           _this.elements.items.css('overflow', '');
           _this.elements.outerWrapper.width('');
         }
-  
+
         _this.elements.items.width(_this.finalWidth).height() > maxHeight && _this.elements.items.height(maxHeight);
-  
+
         // Remove the temporary class
         hiddenChildren.removeClass(_this.classes.tempshow);
       },
-  
+
       /** Detect if the options box is inside the window */
       isInViewport: function () {
         var _this = this;
-  
+
         if (_this.options.forceRenderAbove === true) {
           _this.elements.outerWrapper.addClass(_this.classes.above);
         } else if (_this.options.forceRenderBelow === true) {
@@ -14064,22 +14064,22 @@ var Sentry = function (n) {
           var winHeight = $win.height();
           var uiPosX = _this.elements.outerWrapper.offset().top;
           var uiHeight = _this.elements.outerWrapper.outerHeight();
-  
+
           var fitsDown = (uiPosX + uiHeight + _this.itemsHeight) <= (scrollTop + winHeight);
           var fitsAbove = (uiPosX - _this.itemsHeight) > scrollTop;
-  
+
           // If it does not fit below, only render it
           // above it fit's there.
           // It's acceptable that the user needs to
           // scroll the viewport to see the cut off UI
           var renderAbove = !fitsDown && fitsAbove;
           var renderBelow = !renderAbove;
-  
+
           _this.elements.outerWrapper.toggleClass(_this.classes.above, renderAbove);
           _this.elements.outerWrapper.toggleClass(_this.classes.below, renderBelow);
         }
       },
-  
+
       /**
        * Detect if currently selected option is visible and scroll the options box to show it
        *
@@ -14088,7 +14088,7 @@ var Sentry = function (n) {
       detectItemVisibility: function (index) {
         var _this = this;
         var $filteredLi = _this.$li.filter('[data-index]');
-  
+
         if (_this.state.multiple) {
           // If index is an array, we can assume a multiple select and we
           // want to scroll to the uppermost selected item!
@@ -14096,19 +14096,19 @@ var Sentry = function (n) {
           index = ($.isArray(index) && index.length === 0) ? 0 : index;
           index = $.isArray(index) ? Math.min.apply(Math, index) : index;
         }
-  
+
         var liHeight = $filteredLi.eq(index).outerHeight();
         var liTop = $filteredLi[index].offsetTop;
         var itemsScrollTop = _this.elements.itemsScroll.scrollTop();
         var scrollT = liTop + liHeight * 2;
-  
+
         _this.elements.itemsScroll.scrollTop(
           scrollT > itemsScrollTop + _this.itemsHeight ? scrollT - _this.itemsHeight :
           liTop - liHeight < itemsScrollTop ? liTop - liHeight :
           itemsScrollTop
         );
       },
-  
+
       /**
        * Open the select options box
        *
@@ -14116,39 +14116,39 @@ var Sentry = function (n) {
        */
       open: function (e) {
         var _this = this;
-  
+
         if (_this.options.nativeOnMobile && _this.utils.isMobile()) {
           return false;
         }
-  
+
         _this.utils.triggerCallback('BeforeOpen', _this);
-  
+
         if (e) {
           e.preventDefault();
           if (_this.options.stopPropagation) {
             e.stopPropagation();
           }
         }
-  
+
         if (_this.state.enabled) {
           _this.setOptionsDimensions();
-  
+
           // Find any other opened instances of select and close it
           $('.' + _this.classes.hideselect, '.' + _this.classes.open).children()[pluginName]('close');
-  
+
           _this.state.opened = true;
           _this.itemsHeight = _this.elements.items.outerHeight();
           _this.itemsInnerHeight = _this.elements.items.height();
-  
+
           // Toggle options box visibility
           _this.elements.outerWrapper.addClass(_this.classes.open);
-  
+
           // Give dummy input focus
           _this.elements.input.val('');
           if (e && e.type !== 'focusin') {
             _this.elements.input.focus();
           }
-  
+
           // Delayed binds events on Document to make label clicks work
           setTimeout(function () {
             if (_this.options.scrollMove)
@@ -14156,10 +14156,10 @@ var Sentry = function (n) {
             else
               $doc.on('click' + eventNamespaceSuffix, $.proxy(_this.close, _this));
           }, 1);
-  
+
           if (_this.options.scrollMove)
             _this.isInViewport();
-  
+
           // Prevent window scroll when using mouse wheel inside items box
           if (_this.options.preventWindowScroll) {
             /* istanbul ignore next */
@@ -14167,7 +14167,7 @@ var Sentry = function (n) {
               var orgEvent = e.originalEvent;
               var scrollTop = $(this).scrollTop();
               var deltaY = 0;
-  
+
               if ('detail' in orgEvent) {
                 deltaY = orgEvent.detail * -1;
               }
@@ -14180,75 +14180,75 @@ var Sentry = function (n) {
               if ('deltaY' in orgEvent) {
                 deltaY = orgEvent.deltaY * -1;
               }
-  
+
               if (scrollTop === (this.scrollHeight - _this.itemsInnerHeight) && deltaY < 0 || scrollTop === 0 && deltaY > 0) {
                 e.preventDefault();
               }
             });
           }
-  
+
           _this.detectItemVisibility(_this.state.selectedIdx);
-  
+
           _this.highlight(_this.state.multiple ? -1 : _this.state.selectedIdx);
-  
+
           _this.utils.triggerCallback('Open', _this);
         }
       },
-  
+
       /** Close the select options box */
       close: function () {
         var _this = this;
-  
+
         _this.utils.triggerCallback('BeforeClose', _this);
-  
+
         // Remove custom events on document
         $doc.off(eventNamespaceSuffix);
-  
+
         // Remove visible class to hide options box
         _this.elements.outerWrapper.removeClass(_this.classes.open);
-  
+
         _this.state.opened = false;
-  
+
         _this.utils.triggerCallback('Close', _this);
       },
-  
+
       /** Select current option and change the label */
       change: function () {
         var _this = this;
-  
+
         _this.utils.triggerCallback('BeforeChange', _this);
-  
+
         if (_this.state.multiple) {
           // Reset old selected
           $.each(_this.lookupItems, function (idx) {
             _this.lookupItems[idx].selected = false;
             _this.$element.find('option').prop('selected', false);
           });
-  
+
           // Set new selected
           $.each(_this.state.selectedIdx, function (idx, value) {
             _this.lookupItems[value].selected = true;
             _this.$element.find('option').eq(value).prop('selected', true);
           });
-  
+
           _this.state.currValue = _this.state.selectedIdx;
-  
+
           _this.setLabel();
-  
+
           _this.utils.triggerCallback('Change', _this);
         } else if (_this.state.currValue !== _this.state.selectedIdx) {
           // Apply changed value to original select
           _this.$element
             .prop('selectedIndex', _this.state.currValue = _this.state.selectedIdx)
             .data('value', _this.lookupItems[_this.state.selectedIdx].text);
-  
+
           // Change label text
           _this.setLabel();
-  
+
           _this.utils.triggerCallback('Change', _this);
         }
       },
-  
+
       /**
        * Highlight option
        * @param {number} index - Index of the options that will be highlighted
@@ -14256,23 +14256,23 @@ var Sentry = function (n) {
       highlight: function (index) {
         var _this = this;
         var $filteredLi = _this.$li.filter('[data-index]').removeClass('highlighted');
-  
+
         _this.utils.triggerCallback('BeforeHighlight', _this);
-  
+
         // Parameter index is required and should not be a disabled item
         if (index === undefined || index === -1 || _this.lookupItems[index].disabled) {
           return;
         }
-  
+
         $filteredLi
           .eq(_this.state.highlightedIdx = index)
           .addClass('highlighted');
-  
+
         _this.detectItemVisibility(index);
-  
+
         _this.utils.triggerCallback('Highlight', _this);
       },
-  
+
       /**
        * Select option
        *
@@ -14281,25 +14281,25 @@ var Sentry = function (n) {
       select: function (index) {
         var _this = this;
         var $filteredLi = _this.$li.filter('[data-index]');
-  
+
         _this.utils.triggerCallback('BeforeSelect', _this, index);
-  
+
         // Parameter index is required and should not be a disabled item
         if (index === undefined || index === -1 || _this.lookupItems[index].disabled) {
           return;
         }
-  
+
         if (_this.state.multiple) {
           // Make sure selectedIdx is an array
           _this.state.selectedIdx = $.isArray(_this.state.selectedIdx) ? _this.state.selectedIdx : [_this.state.selectedIdx];
-  
+
           var hasSelectedIndex = $.inArray(index, _this.state.selectedIdx);
           if (hasSelectedIndex !== -1) {
             _this.state.selectedIdx.splice(hasSelectedIndex, 1);
           } else {
             _this.state.selectedIdx.push(index);
           }
-  
+
           $filteredLi
             .removeClass('selected')
             .filter(function (index) {
@@ -14312,17 +14312,17 @@ var Sentry = function (n) {
             .eq(_this.state.selectedIdx = index)
             .addClass('selected');
         }
-  
+
         if (!_this.state.multiple || !_this.options.multiple.keepMenuOpen) {
           _this.close();
         }
-  
+
         _this.change();
-  
+
         _this.close();
         _this.utils.triggerCallback('Select', _this, index);
       },
-  
+
       /**
        * Unbind and remove
        *
@@ -14330,27 +14330,27 @@ var Sentry = function (n) {
        */
       destroy: function (preserveData) {
         var _this = this;
-  
+
         if (_this.state && _this.state.enabled) {
           _this.elements.items.add(_this.elements.wrapper).add(_this.elements.input).remove();
-  
+
           if (!preserveData) {
             _this.$element.removeData(pluginName).removeData('value');
           }
-  
+
           _this.$element.prop('tabindex', _this.originalTabindex).off(eventNamespaceSuffix).off(_this.eventTriggers).unwrap().unwrap();
-  
+
           _this.state.enabled = false;
         }
       }
     };
-  
+
     // A really lightweight plugin wrapper around the constructor,
     // preventing against multiple instantiations
     $.fn[pluginName] = function (args) {
       return this.each(function () {
         var data = $.data(this, pluginName);
-  
+
         if (data && !data.disableOnMobile) {
           (typeof args === 'string' && data[args]) ? data[args](): data.init(args);
         } else {
@@ -14358,7 +14358,7 @@ var Sentry = function (n) {
         }
       });
     };
-  
+
     /**
      * Default plugin options
      *
@@ -14407,8 +14407,8 @@ var Sentry = function (n) {
       }
     };
   }));
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/jquery.remodal.min.js]*/
   ! function (n, e) {
     "function" == typeof define && define.amd ? define(["jquery"], function (t) {
@@ -14443,7 +14443,7 @@ var Sentry = function (n) {
       m = "cancellation",
       u = void 0 !== (n = document.createElement("div").style).animationName || void 0 !== n.WebkitAnimationName || void 0 !== n.MozAnimationName || void 0 !== n.msAnimationName || void 0 !== n.OAnimationName,
       f = /iPad|iPhone|iPod/.test(navigator.platform);
-  
+
     function g(t) {
       if (u && "none" === t.css("animation-name") && "none" === t.css("-webkit-animation-name") && "none" === t.css("-moz-animation-name") && "none" === t.css("-o-animation-name") && "none" === t.css("-ms-animation-name")) return 0;
       var n, e, a, i, o = t.css("animation-duration") || t.css("-webkit-animation-duration") || t.css("-moz-animation-duration") || t.css("-o-animation-duration") || t.css("-ms-animation-duration") || "0s",
@@ -14452,14 +14452,14 @@ var Sentry = function (n) {
       for (o = o.split(", "), s = s.split(", "), r = r.split(", "), i = 0, e = o.length, n = Number.NEGATIVE_INFINITY; i < e; i++) n < (a = parseFloat(o[i]) * parseInt(r[i], 10) + parseFloat(s[i])) && (n = a);
       return n
     }
-  
+
     function h() {
       if (s(document).height() <= s(window).height()) return 0;
       var t, n, e = document.createElement("div"),
         a = document.createElement("div");
       return e.style.visibility = "hidden", e.style.width = "100px", document.body.appendChild(e), t = e.offsetWidth, e.style.overflow = "scroll", a.style.width = "100%", e.appendChild(a), n = a.offsetWidth, e.parentNode.removeChild(e), t - n
     }
-  
+
     function v() {
       if (!f) {
         var t, n, e = s("html"),
@@ -14467,7 +14467,7 @@ var Sentry = function (n) {
         e.hasClass(a) && (n = s(document.body), t = parseInt(n.css("padding-right"), 10) - h(), n.css("padding-right", t + "px"), e.removeClass(a))
       }
     }
-  
+
     function $(t, n, e, a) {
       var i = O("is", n),
         o = [O("is", l.CLOSING), O("is", l.OPENING), O("is", l.CLOSED), O("is", l.OPENED)].join(" ");
@@ -14478,7 +14478,7 @@ var Sentry = function (n) {
         reason: a
       }])
     }
-  
+
     function C(t, n, e) {
       var a = 0,
         i = function (t) {
@@ -14495,18 +14495,18 @@ var Sentry = function (n) {
         e[n].off(r + " " + d)
       }), n())
     }
-  
+
     function y(e) {
       e.state !== l.CLOSED && (s.each(["$bg", "$overlay", "$wrapper", "$modal"], function (t, n) {
         e[n].off(r + " " + d)
       }), e.$bg.removeClass(e.settings.modifier), e.$overlay.removeClass(e.settings.modifier).hide(), e.$wrapper.hide(), v(), $(e, l.CLOSED, !0))
     }
-  
+
     function O() {
       for (var t = i, n = 0; n < arguments.length; ++n) t += "-" + arguments[n];
       return t
     }
-  
+
     function E() {
       var t, n, e = location.hash.replace("#", "");
       if (e) {
@@ -14516,7 +14516,7 @@ var Sentry = function (n) {
         n && n.length && (t = s[o].lookup[n.data(o)]) && t.settings.hashTracking && t.open()
       } else a && a.state === l.OPENED && a.settings.hashTracking && a.close()
     }
-  
+
     function w(t, n) {
       var e = s(document.body),
         a = this;
@@ -14583,8 +14583,8 @@ var Sentry = function (n) {
       }), s(window).on("hashchange." + i, E)
     })
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/jquery.menu-aim.min.js]*/
   ! function (b, t, i, s) {
     var n = "menuAim",
@@ -14605,7 +14605,7 @@ var Sentry = function (n) {
         exitCallback: b.noop,
         exitMenuCallback: b.noop
       };
-  
+
     function a(t, i) {
       this.el = t, this.options = b.extend({}, o, i), this._defaults = o, this._name = n, this.init()
     }
@@ -14686,7 +14686,7 @@ var Sentry = function (n) {
         if (!n) return 0;
         if (a || (a = n), a.x < t.left || a.x > s.x || a.y < t.top || a.y > s.y) return 0;
         if (this.lastDelayLoc && n.x == this.lastDelayLoc.x && n.y == this.lastDelayLoc.y) return 0;
-  
+
         function c(t, i) {
           return (i.y - t.y) / (i.x - t.x)
         }
@@ -14747,14 +14747,14 @@ var Sentry = function (n) {
       }), o !== s ? o : this) : void 0
     }
   }(jQuery, window, document);
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/enquire.min.js]*/
   /*!
    * enquire.js v2.1.6 - Awesome Media Queries in JavaScript
    * Copyright (c) 2017 Nick Williams - http://wicky.nillia.ms/enquire.js
    * License: MIT */
-  
+
   ! function (a) {
     if ("object" == typeof exports && "undefined" != typeof module) module.exports = a();
     else if ("function" == typeof define && define.amd) define([], a);
@@ -14888,11 +14888,11 @@ var Sentry = function (n) {
             d = a.length;
           for (c; c < d && b(a[c], c) !== !1; c++);
         }
-  
+
         function e(a) {
           return "[object Array]" === Object.prototype.toString.apply(a)
         }
-  
+
         function f(a) {
           return "function" == typeof a
         }
@@ -14910,57 +14910,64 @@ var Sentry = function (n) {
       }]
     }, {}, [5])(5)
   });
-  
-  
+
+
   /*[PATH @digikala/supernova/assets/local/package/framework.js]*/
   function __(variable) {
     return variable;
   }
-  
+
   function __digits(variable) {
     return variable;
   }
-  
+
   var Framework = {
     xhrPool: [],
     xhrPoolSame: [],
     localStorageBinds: [],
     isInitialized: false,
-  
+
     ajaxGETRequestHTML: function (url, params, callbackStatusTrue, loggedOnly, showLoader, duplicateMode, duplicateUrl, async) {
       return this.ajaxRequest('GET', url, params, callbackStatusTrue, null, loggedOnly, showLoader, duplicateMode, duplicateUrl, 'HTML', async, false);
     },
-  
+
     ajaxPOSTRequestHTML: function (url, params, callbackStatusTrue, loggedOnly, showLoader, duplicateMode, duplicateUrl, async) {
       return this.ajaxRequest('POST', url, params, callbackStatusTrue, null, loggedOnly, showLoader, duplicateMode, duplicateUrl, 'HTML', async, false);
     },
-  
+
     ajaxGETRequestJSON: function (url, params, callbackStatusTrue, callbackStatusFalse, loggedOnly, showLoader, duplicateMode, duplicateUrl, async) {
       return this.ajaxRequest('GET', url, params, callbackStatusTrue, callbackStatusFalse, loggedOnly, showLoader, duplicateMode, duplicateUrl, 'JSON', async, false);
     },
-  
+
     ajaxPOSTRequestJSON: function (url, params, callbackStatusTrue, callbackStatusFalse, loggedOnly, showLoader, duplicateMode, duplicateUrl, async) {
       return this.ajaxRequest('POST', url, params, callbackStatusTrue, callbackStatusFalse, loggedOnly, showLoader, duplicateMode, duplicateUrl, 'JSON', async, false);
     },
-  
+
     ajaxUploadJSON: function (url, params, callbackStatusTrue, callbackStatusFalse, loggedOnly, showLoader, duplicateMode, duplicateUrl, async) {
       return this.ajaxRequest('POST', url, params, callbackStatusTrue, callbackStatusFalse, loggedOnly, showLoader, duplicateMode, duplicateUrl, 'JSON', async, true);
     },
-  
+
     ajaxRequest: function (method, url, params, callbackStatusTrue, callbackStatusFalse, loggedOnly, showLoader, duplicateMode, duplicateUrl, responseType, async, isFileUpload) {
       var thiz = this;
       if (method === 'undefined' || (method !== 'POST' && method !== 'GET') || url === 'undefined') {
         return;
       }
-  
+
       if (loggedOnly !== 'undefined' && loggedOnly === true && !thiz.checkUserLogged()) {
         return;
       }
-  
+
       //none, stop, execute
       duplicateMode = duplicateMode || 'none';
       duplicateUrl = duplicateUrl || url;
       async = typeof async !== 'undefined' ? async : true;
+
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
       return $.ajax({
         duplicateMode: duplicateMode,
         duplicateUrl: duplicateUrl,
@@ -14981,17 +14988,17 @@ var Sentry = function (n) {
           if (showLoader) {
             thiz.hideLoader();
           }
-  
+
           if (responseType === 'HTML') {
             if (response.length === 0) {
               console.log(response, 'Please use AjaxHTMLResponse response!');
               return;
             }
-  
+
             callbackStatusTrue(response);
             return;
           }
-  
+
           if (response.status === 'undefined' && response.data === 'undefined') {
             console.log(response, 'Please use AjaxJsonResponse response!');
             return;
@@ -15011,14 +15018,14 @@ var Sentry = function (n) {
           } else {
             console.log('Please use AjaxJsonResponse response!');
           }
-  
-  
+
+
         },
         error: function (jqXHR) {
           if (showLoader) {
             thiz.hideLoader();
           }
-  
+
           switch (jqXHR.status) {
             case 0:
               break;
@@ -15041,7 +15048,7 @@ var Sentry = function (n) {
               thiz.ajaxErrorDefaultResponse(jqXHR);
               break;
           }
-  
+
         },
         complete: function () {
           if (showLoader) {
@@ -15068,7 +15075,7 @@ var Sentry = function (n) {
       alert('Error!');
     },
     ajaxBeforeSendCallback: function (jqXHR, settings) {
-  
+
     },
     ajaxBeforeSendCallbackFramework: function (jqXHR, settings) {
       var thiz = this;
@@ -15096,7 +15103,7 @@ var Sentry = function (n) {
       }
     },
     ajaxCallbackStatusFalse: function (data) {
-  
+
     },
     showLoader: function () {
       if ($('[data-remodal-id="loader"]').length) {
@@ -15113,16 +15120,16 @@ var Sentry = function (n) {
     initLazyLocalStorage: function () {
       var thiz = this;
       var $divs = $('div.sn-local-storage');
-  
+
       function clearCached(md5, code) {
         localStorage.removeItem(code + '_' + md5);
         localStorage.removeItem(code + '_' + md5 + '_expire');
       }
-  
+
       function saveCache(md5, data, code) {
         localStorage.setItem(code + '_' + md5, data);
       }
-  
+
       function clearTrashCaches(code, currentMd5) {
         var keys = Object.keys(localStorage);
         for (var i = 0; i < keys.length; ++i) {
@@ -15132,7 +15139,7 @@ var Sentry = function (n) {
             localStorage.removeItem(item);
         }
       }
-  
+
       $divs.each(function () {
         var $this = $(this);
         var md5 = $this.data('md5');
@@ -15166,26 +15173,26 @@ var Sentry = function (n) {
     registerLazyLocalStorageBinder: function (code, func) {
       this.localStorageBinds[code] = func;
     },
-  
+
     getUrlSearchParams: function () {
       return new URLSearchParams(window.location.search);
     },
-  
+
     replaceUrlParam: function (url, paramName, paramValue) {
       if (paramValue == null) {
         paramValue = '';
       }
-  
+
       var pattern = new RegExp('\\b(' + paramName + '=).*?(&|#|$)');
-  
+
       if (url.search(pattern) >= 0) {
         return url.replace(pattern, '$1' + paramValue + '$2');
       }
-  
+
       url = url.replace(/[?#]$/, '');
       return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
     },
-  
+
     isModuleActive: function (moduleName) {
       return !!window['module_' + moduleName];
     },
@@ -15199,7 +15206,7 @@ var Sentry = function (n) {
       if (Framework.isInitialized) {
         return;
       }
-  
+
       $('.js-ajax-anchor').click(function (e) {
         let thiz = $(this)
         let url = thiz.data('ajax-url');
@@ -15208,7 +15215,7 @@ var Sentry = function (n) {
         if (!thiz.hasClass('disable-auto-hide')) {
           thiz.fadeOut();
         }
-  
+
         if (url) {
           Framework.ajaxGETRequestJSON(
             url, {},
@@ -15225,7 +15232,7 @@ var Sentry = function (n) {
                   timeout: 3000
                 });
               }
-  
+
               thiz.fadeIn();
             },
             function (e) {
@@ -15240,7 +15247,7 @@ var Sentry = function (n) {
                   timeout: 3000
                 });
               }
-  
+
               thiz.fadeIn();
             }
           )
@@ -15268,7 +15275,7 @@ var Sentry = function (n) {
           data: data,
           success: function () {},
           error: function () {
-  
+
           }
         });
       }
@@ -15276,11 +15283,11 @@ var Sentry = function (n) {
     logToConsole: function (data) {
       console.log(data);
     },
-  
+
     initLocalStorageService: function () {
       window.localStorageService = {
         inMemoryStorage: {},
-  
+
         isSupported: function () {
           try {
             const testKey = "__test-string-key-for-digikala-local-storage-service__";
@@ -15291,15 +15298,15 @@ var Sentry = function (n) {
             return false;
           }
         },
-  
+
         clear: function () {
           try {
             window.localStorage.clear();
           } catch (e) {}
-  
+
           this.inMemoryStorage = {};
         },
-  
+
         getItem: function (name) {
           if (this.isSupported()) {
             return window.localStorage.getItem(name);
@@ -15309,7 +15316,7 @@ var Sentry = function (n) {
           }
           return null;
         },
-  
+
         key: function (index) {
           if (this.isSupported()) {
             return window.localStorage.key(index);
@@ -15317,7 +15324,7 @@ var Sentry = function (n) {
             return Object.keys(this.inMemoryStorage)[index] || null;
           }
         },
-  
+
         removeItem: function (name) {
           if (this.isSupported()) {
             window.localStorage.removeItem(name);
@@ -15325,7 +15332,7 @@ var Sentry = function (n) {
             delete this.inMemoryStorage[name];
           }
         },
-  
+
         setItem: function (name, value) {
           if (this.isSupported()) {
             window.localStorage.setItem(name, value);
@@ -15336,8 +15343,8 @@ var Sentry = function (n) {
       };
     }
   };
-  
-  
+
+
   $(function () {
     Framework.initLocalStorageService();
     Framework.initLazyLocalStorage();
@@ -15345,8 +15352,8 @@ var Sentry = function (n) {
     Framework.initAjaxAnchor();
     Framework.isInitialized = true;
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/platform.js]*/
   /*!
    * Platform.js
@@ -15357,55 +15364,55 @@ var Sentry = function (n) {
   ;
   (function () {
     'use strict';
-  
+
     /** Used to determine if values are of the language type `Object`. */
     var objectTypes = {
       'function': true,
       'object': true
     };
-  
+
     /** Used as a reference to the global object. */
     var root = (objectTypes[typeof window] && window) || this;
-  
+
     /** Backup possible global object. */
     var oldRoot = root;
-  
+
     /** Detect free variable `exports`. */
     var freeExports = objectTypes[typeof exports] && exports;
-  
+
     /** Detect free variable `module`. */
     var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
-  
+
     /** Detect free variable `global` from Node.js or Browserified code and use it as `root`. */
     var freeGlobal = freeExports && freeModule && typeof global == 'object' && global;
     if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal || freeGlobal.self === freeGlobal)) {
       root = freeGlobal;
     }
-  
+
     /**
      * Used as the maximum length of an array-like object.
      * See the [ES6 spec](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-tolength)
      * for more details.
      */
     var maxSafeInteger = Math.pow(2, 53) - 1;
-  
+
     /** Regular expression to detect Opera. */
     var reOpera = /\bOpera/;
-  
+
     /** Possible global object. */
     var thisBinding = this;
-  
+
     /** Used for native method references. */
     var objectProto = Object.prototype;
-  
+
     /** Used to check for own properties of an object. */
     var hasOwnProperty = objectProto.hasOwnProperty;
-  
+
     /** Used to resolve the internal `[[Class]]` of values. */
     var toString = objectProto.toString;
-  
+
     /*--------------------------------------------------------------------------*/
-  
+
     /**
      * Capitalizes a string value.
      *
@@ -15417,7 +15424,7 @@ var Sentry = function (n) {
       string = String(string);
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
-  
+
     /**
      * A utility function to clean up the OS name.
      *
@@ -15451,11 +15458,11 @@ var Sentry = function (n) {
       }
       // Correct character case and cleanup string.
       os = String(os);
-  
+
       if (pattern && label) {
         os = os.replace(RegExp(pattern, 'i'), label);
       }
-  
+
       os = format(
         os.replace(/ ce$/i, ' CE')
         .replace(/\bhpw/i, 'web')
@@ -15471,10 +15478,10 @@ var Sentry = function (n) {
         .replace(/\b(Chrome OS \w+) [\d.]+\b/, '$1')
         .split(' on ')[0]
       );
-  
+
       return os;
     }
-  
+
     /**
      * An iteration utility for arrays and objects.
      *
@@ -15485,7 +15492,7 @@ var Sentry = function (n) {
     function each(object, callback) {
       var index = -1,
         length = object ? object.length : 0;
-  
+
       if (typeof length == 'number' && length > -1 && length <= maxSafeInteger) {
         while (++index < length) {
           callback(object[index], index, object);
@@ -15494,7 +15501,7 @@ var Sentry = function (n) {
         forOwn(object, callback);
       }
     }
-  
+
     /**
      * Trim and conditionally capitalize string values.
      *
@@ -15508,7 +15515,7 @@ var Sentry = function (n) {
         string :
         capitalize(string);
     }
-  
+
     /**
      * Iterates over an object's own properties, executing the `callback` for each.
      *
@@ -15523,7 +15530,7 @@ var Sentry = function (n) {
         }
       }
     }
-  
+
     /**
      * Gets the internal `[[Class]]` of a value.
      *
@@ -15536,7 +15543,7 @@ var Sentry = function (n) {
         capitalize(value) :
         toString.call(value).slice(8, -1);
     }
-  
+
     /**
      * Host objects can return type values that are different from their actual
      * data type. The objects we are concerned with usually return non-primitive
@@ -15552,7 +15559,7 @@ var Sentry = function (n) {
       return !/^(?:boolean|number|string|undefined)$/.test(type) &&
         (type == 'object' ? !!object[property] : true);
     }
-  
+
     /**
      * Prepares a string for use in a `RegExp` by making hyphens and spaces optional.
      *
@@ -15563,7 +15570,7 @@ var Sentry = function (n) {
     function qualify(string) {
       return String(string).replace(/([ -])(?!$)/g, '$1?');
     }
-  
+
     /**
      * A bare-bones `Array#reduce` like utility function.
      *
@@ -15579,7 +15586,7 @@ var Sentry = function (n) {
       });
       return accumulator;
     }
-  
+
     /**
      * Removes leading and trailing whitespace from a string.
      *
@@ -15590,9 +15597,9 @@ var Sentry = function (n) {
     function trim(string) {
       return String(string).replace(/^ +| +$/g, '');
     }
-  
+
     /*--------------------------------------------------------------------------*/
-  
+
     /**
      * Creates a new platform object.
      *
@@ -15602,92 +15609,92 @@ var Sentry = function (n) {
      * @returns {Object} A platform object.
      */
     function parse(ua) {
-  
+
       /** The environment context object. */
       var context = root;
-  
+
       /** Used to flag when a custom context is provided. */
       var isCustomContext = ua && typeof ua == 'object' && getClassOf(ua) != 'String';
-  
+
       // Juggle arguments.
       if (isCustomContext) {
         context = ua;
         ua = null;
       }
-  
+
       /** Browser navigator object. */
       var nav = context.navigator || {};
-  
+
       /** Browser user agent string. */
       var userAgent = nav.userAgent || '';
-  
+
       ua || (ua = userAgent);
-  
+
       /** Used to flag when `thisBinding` is the [ModuleScope]. */
       var isModuleScope = isCustomContext || thisBinding == oldRoot;
-  
+
       /** Used to detect if browser is like Chrome. */
       var likeChrome = isCustomContext ?
         !!nav.likeChrome :
         /\bChrome\b/.test(ua) && !/internal|\n/i.test(toString.toString());
-  
+
       /** Internal `[[Class]]` value shortcuts. */
       var objectClass = 'Object',
         airRuntimeClass = isCustomContext ? objectClass : 'ScriptBridgingProxyObject',
         enviroClass = isCustomContext ? objectClass : 'Environment',
         javaClass = (isCustomContext && context.java) ? 'JavaPackage' : getClassOf(context.java),
         phantomClass = isCustomContext ? objectClass : 'RuntimeObject';
-  
+
       /** Detect Java environments. */
       var java = /\bJava/.test(javaClass) && context.java;
-  
+
       /** Detect Rhino. */
       var rhino = java && getClassOf(context.environment) == enviroClass;
-  
+
       /** A character to represent alpha. */
       var alpha = java ? 'a' : '\u03b1';
-  
+
       /** A character to represent beta. */
       var beta = java ? 'b' : '\u03b2';
-  
+
       /** Browser document object. */
       var doc = context.document || {};
-  
+
       /**
        * Detect Opera browser (Presto-based).
        * http://www.howtocreate.co.uk/operaStuff/operaObject.html
        * http://dev.opera.com/articles/view/opera-mini-web-content-authoring-guidelines/#operamini
        */
       var opera = context.operamini || context.opera;
-  
+
       /** Opera `[[Class]]`. */
       var operaClass = reOpera.test(operaClass = (isCustomContext && opera) ? opera['[[Class]]'] : getClassOf(opera)) ?
         operaClass :
         (opera = null);
-  
+
       /*------------------------------------------------------------------------*/
-  
+
       /** Temporary variable used over the script's lifetime. */
       var data;
-  
+
       /** The CPU architecture. */
       var arch = ua;
-  
+
       /** Platform description array. */
       var description = [];
-  
+
       /** Platform alpha/beta indicator. */
       var prerelease = null;
-  
+
       /** A flag to indicate that environment features should be used to resolve the platform. */
       var useFeatures = ua == userAgent;
-  
+
       /** The browser/environment version. */
       var version = useFeatures && opera && typeof opera.version == 'function' && opera.version();
-  
+
       /** A flag to indicate if the OS ends with "/ Version" */
       var isSpecialCasedOS;
-  
+
       /* Detectable layout engines (order is important). */
       var layout = getLayout([{
           'label': 'EdgeHTML',
@@ -15705,7 +15712,7 @@ var Sentry = function (n) {
         'KHTML',
         'Gecko'
       ]);
-  
+
       /* Detectable browser names (order is important). */
       var name = getName([
         'Adobe AIR',
@@ -15788,7 +15795,7 @@ var Sentry = function (n) {
         },
         'Safari'
       ]);
-  
+
       /* Detectable products (order is important). */
       var product = getProduct([{
           'label': 'BlackBerry',
@@ -15860,7 +15867,7 @@ var Sentry = function (n) {
         },
         'Xoom'
       ]);
-  
+
       /* Detectable manufacturers. */
       var manufacturer = getManufacturer({
         'Apple': {
@@ -15916,7 +15923,7 @@ var Sentry = function (n) {
           'PlayStation Vita': 1
         }
       });
-  
+
       /* Detectable operating systems (order is important). */
       var os = getOS([
         'Windows Phone',
@@ -15952,9 +15959,9 @@ var Sentry = function (n) {
         'Windows 98;',
         'Windows '
       ]);
-  
+
       /*------------------------------------------------------------------------*/
-  
+
       /**
        * Picks the layout engine from an array of guesses.
        *
@@ -15969,7 +15976,7 @@ var Sentry = function (n) {
           ) + '\\b', 'i').exec(ua) && (guess.label || guess);
         });
       }
-  
+
       /**
        * Picks the manufacturer from an array of guesses.
        *
@@ -15987,7 +15994,7 @@ var Sentry = function (n) {
           ) && key;
         });
       }
-  
+
       /**
        * Picks the browser name from an array of guesses.
        *
@@ -16002,7 +16009,7 @@ var Sentry = function (n) {
           ) + '\\b', 'i').exec(ua) && (guess.label || guess);
         });
       }
-  
+
       /**
        * Picks the OS name from an array of guesses.
        *
@@ -16021,7 +16028,7 @@ var Sentry = function (n) {
           return result;
         });
       }
-  
+
       /**
        * Picks the product name from an array of guesses.
        *
@@ -16051,7 +16058,7 @@ var Sentry = function (n) {
           return result;
         });
       }
-  
+
       /**
        * Resolves the version using an array of UA patterns.
        *
@@ -16065,7 +16072,7 @@ var Sentry = function (n) {
             '(?:-[\\d.]+/|(?: for [\\w-]+)?[ /-])([\\d.]+[^ ();/_-]*)', 'i').exec(ua) || 0)[1] || null;
         });
       }
-  
+
       /**
        * Returns `platform.description` when the platform object is coerced to a string.
        *
@@ -16076,12 +16083,12 @@ var Sentry = function (n) {
       function toStringPlatform() {
         return this.description || '';
       }
-  
+
       /*------------------------------------------------------------------------*/
-  
+
       // Convert layout to an array so we can add extra details.
       layout && (layout = [layout]);
-  
+
       // Detect product names that contain their manufacturer's name.
       if (manufacturer && !product) {
         product = getProduct([manufacturer]);
@@ -16422,7 +16429,7 @@ var Sentry = function (n) {
         description.unshift('desktop mode');
         name = 'Chrome Mobile';
         version = null;
-  
+
         if (/\bOS X\b/.test(os)) {
           manufacturer = 'Apple';
           os = 'iOS 4.3+';
@@ -16489,11 +16496,11 @@ var Sentry = function (n) {
       ) {
         os.architecture = 64;
       }
-  
+
       ua || (ua = null);
-  
+
       /*------------------------------------------------------------------------*/
-  
+
       /**
        * The platform object.
        *
@@ -16501,7 +16508,7 @@ var Sentry = function (n) {
        * @type Object
        */
       var platform = {};
-  
+
       /**
        * The platform description.
        *
@@ -16509,7 +16516,7 @@ var Sentry = function (n) {
        * @type string|null
        */
       platform.description = ua;
-  
+
       /**
        * The name of the browser's layout engine.
        *
@@ -16520,7 +16527,7 @@ var Sentry = function (n) {
        * @type string|null
        */
       platform.layout = layout && layout[0];
-  
+
       /**
        * The name of the product's manufacturer.
        *
@@ -16533,7 +16540,7 @@ var Sentry = function (n) {
        * @type string|null
        */
       platform.manufacturer = manufacturer;
-  
+
       /**
        * The name of the browser/environment.
        *
@@ -16549,7 +16556,7 @@ var Sentry = function (n) {
        * @type string|null
        */
       platform.name = name;
-  
+
       /**
        * The alpha/beta release indicator.
        *
@@ -16557,7 +16564,7 @@ var Sentry = function (n) {
        * @type string|null
        */
       platform.prerelease = prerelease;
-  
+
       /**
        * The name of the product hosting the browser.
        *
@@ -16570,7 +16577,7 @@ var Sentry = function (n) {
        * @type string|null
        */
       platform.product = product;
-  
+
       /**
        * The browser's user agent string.
        *
@@ -16578,7 +16585,7 @@ var Sentry = function (n) {
        * @type string|null
        */
       platform.ua = ua;
-  
+
       /**
        * The browser/environment version.
        *
@@ -16586,7 +16593,7 @@ var Sentry = function (n) {
        * @type string|null
        */
       platform.version = name && version;
-  
+
       /**
        * The name of the operating system.
        *
@@ -16594,7 +16601,7 @@ var Sentry = function (n) {
        * @type Object
        */
       platform.os = os || {
-  
+
         /**
          * The CPU architecture the OS is built for.
          *
@@ -16602,7 +16609,7 @@ var Sentry = function (n) {
          * @type number|null
          */
         'architecture': null,
-  
+
         /**
          * The family of the OS.
          *
@@ -16615,7 +16622,7 @@ var Sentry = function (n) {
          * @type string|null
          */
         'family': null,
-  
+
         /**
          * The version of the OS.
          *
@@ -16623,7 +16630,7 @@ var Sentry = function (n) {
          * @type string|null
          */
         'version': null,
-  
+
         /**
          * Returns the OS string.
          *
@@ -16634,10 +16641,10 @@ var Sentry = function (n) {
           return 'null';
         }
       };
-  
+
       platform.parse = parse;
       platform.toString = toStringPlatform;
-  
+
       if (platform.version) {
         description.unshift(version);
       }
@@ -16652,19 +16659,19 @@ var Sentry = function (n) {
       }
       return platform;
     }
-  
+
     /*--------------------------------------------------------------------------*/
-  
+
     // Export platform.
     var platform = parse();
-  
+
     // Some AMD build optimizers, like r.js, check for condition patterns like the following:
     if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
       // Expose platform on the global object to prevent errors when platform is
       // loaded by a script tag in the presence of an AMD loader.
       // See http://requirejs.org/docs/errors.html#mismatch for more details.
       root.platform = platform;
-  
+
       // Define as an anonymous module so platform can be aliased through path mapping.
       define(function () {
         return platform;
@@ -16681,8 +16688,8 @@ var Sentry = function (n) {
       root.platform = platform;
     }
   }.call(this));
-  
-  
+
+
   /*[PATH @digikala/supernova/assets/local/package/sntracker.js]*/
   var SnTracker = {
     sendCount: 5,
@@ -16738,7 +16745,7 @@ var Sentry = function (n) {
         var storage = SnTracker.storage;
         storage.data[name] = value;
         storage.save();
-  
+
         return storage;
       },
       add: function (list, object) {
@@ -16748,7 +16755,7 @@ var Sentry = function (n) {
         }
         storage.data[list].push(object);
         storage.save();
-  
+
         return storage;
       },
       get: function (name) {
@@ -16759,7 +16766,7 @@ var Sentry = function (n) {
         return storage.data[name];
       }
     },
-  
+
     utils: {
       getCookieById: function (cookieKey, type) {
         var cookies = (document.cookie || '').split(';'),
@@ -16779,7 +16786,7 @@ var Sentry = function (n) {
           }
         }
       },
-  
+
       Cookie: {
         // Create cookie
         set: function (name, value, seconds) {
@@ -16793,7 +16800,7 @@ var Sentry = function (n) {
           }
           document.cookie = name + "=" + value + expires + ";domain=.digikala.com;path=/";
         },
-  
+
         // Read cookie
         get: function (name) {
           var nameEQ = name + "=";
@@ -16809,13 +16816,13 @@ var Sentry = function (n) {
           }
           return null;
         },
-  
+
         // Erase cookie
         remove: function (name) {
           SnTracker.utils.Cookie.set(name, "", -1);
         }
       },
-  
+
       setCookieById: function (cookieKey, cookieValue, type) {
         switch (type) {
           case 'string':
@@ -16828,7 +16835,7 @@ var Sentry = function (n) {
             return;
         }
       },
-  
+
       getUrlQuerylVars: function (urlAddress) {
         var queryString = {};
         try {
@@ -16844,7 +16851,7 @@ var Sentry = function (n) {
           return [];
         }
       },
-  
+
       getUrlPathParts: function (urlAddress) {
         if (urlAddress) {
           var parts = urlAddress.split('://')[1].split('/');
@@ -16857,7 +16864,7 @@ var Sentry = function (n) {
           return [];
         }
       },
-  
+
       getProductViewChannel: function (type) {
         var pageSource = {};
         var pageAddress = '';
@@ -16885,7 +16892,7 @@ var Sentry = function (n) {
               return pageSource;
             }
         }
-  
+
         var pagePath = this.getUrlPathParts(pageAddress);
         var pageQueryString = this.getUrlQuerylVars(pageAddress);
         if (!pageAddress) {
@@ -16982,7 +16989,7 @@ var Sentry = function (n) {
             }
         }
       },
-  
+
       UTMParser: function () {
         var pageAddress = decodeURIComponent(document.URL.toLowerCase());
         var referrerAddress = decodeURIComponent(document.referrer.toLowerCase());
@@ -17024,9 +17031,9 @@ var Sentry = function (n) {
           return utm;
         }
       }
-  
+
     },
-  
+
     trackers: {
       UTMTracking: function () {
         var referrerAddress = decodeURIComponent(document.referrer.toLowerCase());
@@ -17041,7 +17048,7 @@ var Sentry = function (n) {
         SnTracker.utils.setCookieById("sn_tracker_campaign", utms, 'json');
         snt('dkUTMTracking', utms, true);
       },
-  
+
       PageViewTracking: function () {
         if (!window.sntrackerActivation) {
           return;
@@ -17062,7 +17069,7 @@ var Sentry = function (n) {
         }
         snt('dkPageView', pageViewParams, true);
       },
-  
+
       GoogleClientTracking: function () {
         try {
           if (typeof (ga.getAll()[0].get('clientId')) !== "undefined") {
@@ -17076,9 +17083,9 @@ var Sentry = function (n) {
         } catch (e) {
           return this;
         }
-  
+
       },
-  
+
       ClientSideErrorTracking: function () {
         window.onerror = function (errorMsg, url, lineNumber) {
           var errorparams = {
@@ -17090,7 +17097,7 @@ var Sentry = function (n) {
           snt('dkErrorLogClient', errorparams, true);
         }
       },
-  
+
       CarouselItemClickEvent: function () {
         $(document).on('click', ".js-sntracker-carousel-item", function () {
           var item = $(this);
@@ -17108,7 +17115,7 @@ var Sentry = function (n) {
               break;
             }
           }
-  
+
           var position = item.data('position');
           if (!tempCarouselData) return;
           var trackerData = {
@@ -17120,7 +17127,7 @@ var Sentry = function (n) {
         });
       }
     },
-  
+
     eventsTackingSwitch: {
       dkAddToCart: true,
       dkCloseCart: true,
@@ -17155,7 +17162,7 @@ var Sentry = function (n) {
       dkCarouselItemClick: true,
       dkCarouselImpression: true,
     },
-  
+
     init: function () {
       var fns = [
           this.initStorage,
@@ -17183,7 +17190,7 @@ var Sentry = function (n) {
         var snevents = localStorage && localStorage.getItem('snevents') || null;
         if (!snevents) return;
         var events = snevents.events || [];
-  
+
         SnTracker.sendEvents(events, true);
       }
     },
@@ -17203,7 +17210,7 @@ var Sentry = function (n) {
     globalDefine: function () {
       window.tracker = window.tracker || this;
       window.snt = window.snt || this.sendEvent.bind(this);
-  
+
     },
     createEventObject: function (eventName, eventParams) {
       var globalParams = !!window.snTrackerGlobals ? window.snTrackerGlobals || {} : {};
@@ -17218,11 +17225,11 @@ var Sentry = function (n) {
       if (!eventName) {
         return;
       }
-  
+
       if (this.eventsTackingSwitch[eventName]) {
         var event = this.createEventObject(eventName, eventParams);
         return this.sendEvents([event]);
-  
+
         //  Disabled
         if (this.isLocalStorageAvailable())
           this.storage.add('events', event);
@@ -17277,9 +17284,9 @@ var Sentry = function (n) {
       } catch (e) {
         window.Sentry && window.Sentry.captureException(e);
       }
-  
+
     },
-  
+
     initTimer: function () {
       var self = this;
       setInterval(function () {
@@ -17317,12 +17324,12 @@ var Sentry = function (n) {
       // }).scroll();
     }
   };
-  
+
   $(function () {
     SnTracker.init();
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/DKCookie.js]*/
   window.DKCookie = {
     // Create cookie
@@ -17337,7 +17344,7 @@ var Sentry = function (n) {
       }
       document.cookie = name + "=" + value + expires + ";path=/";
     },
-  
+
     // Read cookie
     get: function (name) {
       var nameEQ = name + "=";
@@ -17353,100 +17360,100 @@ var Sentry = function (n) {
       }
       return null;
     },
-  
+
     // Erase cookie
     remove: function (name) {
       window.DKCookie.set(name, "", -1);
     }
   };
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/user.js]*/
   window.UserClass = function () {
     var $addressFormInited = false;
     this.loggedUserMetaData = null;
-  
+
     this.getLoggedUserMetaData = function () {
       if (this.loggedUserMetaData !== null) {
         return this.loggedUserMetaData;
       }
       var $metaData = $("#ESILogged");
-  
+
       if (!$metaData.length) {
         return null;
       }
-  
+
       this.loggedUserMetaData = $metaData;
-  
+
       return this.loggedUserMetaData;
     };
-  
+
     this.checkLogged = function () {
       var $loggedUserMetaData = this.getLoggedUserMetaData();
-  
+
       if ($loggedUserMetaData === null) {
         return false;
       }
-  
+
       return $loggedUserMetaData.data("logged") === 1;
     };
-  
+
     this.getEmail = function () {
       var $loggedUserMetaData = this.getLoggedUserMetaData();
-  
+
       if ($loggedUserMetaData === null) {
         return false;
       }
-  
+
       return $loggedUserMetaData.data("email");
     };
-  
+
     this.getMobilePhone = function () {
       var $loggedUserMetaData = this.getLoggedUserMetaData();
-  
+
       if ($loggedUserMetaData === null) {
         return "";
       }
-  
+
       return $loggedUserMetaData.data("mobile_phone");
     };
-  
+
     this.getLoginPhone = function () {
       var $loggedUserMetaData = this.getLoggedUserMetaData();
-  
+
       if ($loggedUserMetaData === null) {
         return "";
       }
-  
+
       return $loggedUserMetaData.data("login_phone");
     };
-  
+
     this.getDefaultPhone = function () {
       var $loggedUserMetaData = this.getLoggedUserMetaData();
-  
+
       if ($loggedUserMetaData === null) {
         return "";
       }
-  
+
       return $loggedUserMetaData.data("default_phone");
     };
-  
+
     this.displayLoginForm = function (msg) {
-  
+
       if (isModuleActive('new_login')) {
         window.location.href = window.location.origin + window.loginRegisterUrlWithBack;
         return
       }
-  
+
       $("#login-form-msg").hide();
-  
+
       var modal = $("[data-remodal-id=login]").remodal();
       $("#loginFormModal")
         .validate()
         .resetForm();
       $("#loginFormError").hide();
       modal.open();
-  
+
       $(document).on("opened", "[data-remodal-id=login]", function () {
         if (msg !== undefined && msg.length > 0) {
           var loginFormMsg = $("#login-form-msg");
@@ -17454,12 +17461,12 @@ var Sentry = function (n) {
           loginFormMsg.show();
         }
       });
-  
+
       $(document).on("closed", "[data-remodal-id=login]", function () {
         $("#login-form-msg").hide();
       });
     };
-  
+
     this.ObservedForm = {
       display: function () {
         var modal = $("[data-remodal-id=observed]").remodal();
@@ -17480,7 +17487,7 @@ var Sentry = function (n) {
         return this;
       }
     };
-  
+
     this.IncredibleObservedForm = {
       display: function () {
         var modal = $("[data-remodal-id=incredible-observed]").remodal();
@@ -17501,29 +17508,29 @@ var Sentry = function (n) {
         return this;
       }
     };
-  
+
     this.displayAddressForm = function ($addressId) {
       if (!this.isLogged()) {
         return;
       }
-  
+
       if (!$addressFormInited) {
         var $form = $("#addressForm");
-  
+
         if (!$form.length) {
           return;
         }
-  
+
         //TODO move to user class or make it smarter
         $("#manage-address").on("beforeshow", function () {
           $form.validate().resetForm();
         });
-  
+
         $("#lbSave").click(function () {
           if (!$form.valid()) {
             return false;
           }
-  
+
           $.ajax({
             type: "POST",
             url: "/profile/address/save",
@@ -17537,12 +17544,12 @@ var Sentry = function (n) {
             data: $form.serialize()
           });
         });
-  
+
         $form
           .find("input")
           .first()
           .focus();
-  
+
         $form.validate({
           rules: {
             "address[full_name]": {
@@ -17611,10 +17618,10 @@ var Sentry = function (n) {
             }
           }
         });
-  
+
         $addressFormInited = true;
       }
-  
+
       if ($addressId) {
         $.ajax({
           type: "POST",
@@ -17627,15 +17634,15 @@ var Sentry = function (n) {
           }
         });
       }
-  
+
       var $modal = $("#manage-address");
-  
+
       if ($modal.length) {
         UIkit.modal($modal).show();
       }
     };
   };
-  
+
   window.UserClass.prototype.isLogged = function () {
     return this.checkLogged();
   };
@@ -17663,25 +17670,25 @@ var Sentry = function (n) {
   window.UserClass.prototype.showAddressForm = function () {
     return this.displayAddressForm();
   };
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/services.js]*/
   var Services = $.extend(Framework, {
     ajaxError401Response: function () {
       this.user = new UserClass();
       this.getUser().showLoginForm();
     },
-  
+
     checkUserLogged: function () {
       var $userClass = new UserClass();
       if (!$userClass.isLogged()) {
         $userClass.showLoginForm();
         return false;
       }
-  
+
       return true;
     },
-  
+
     /**
      * convert En number to Fa number
      *
@@ -17697,7 +17704,7 @@ var Sentry = function (n) {
       }
       return b;
     },
-  
+
     /**
      * Seprate numbers
      *
@@ -17745,7 +17752,7 @@ var Sentry = function (n) {
       }
       return d
     },
-  
+
     /**
      * Format Currency
      *
@@ -17762,7 +17769,7 @@ var Sentry = function (n) {
         num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
       return (((sign) ? "" : "-") + num + " " + symbol);
     },
-  
+
     /**
      * Convert Persion Number to English Number
      *
@@ -17791,16 +17798,16 @@ var Sentry = function (n) {
         .replace(/٧/g, '7')
         .replace(/٨/g, '8')
         .replace(/٩/g, '9');
-  
+
     },
-  
+
     setCookie: function (cookieName, cookieValue, expireDays) {
       var d = new Date();
       d.setTime(d.getTime() + (expireDays * 24 * 60 * 60 * 1000));
       var expires = "expires=" + d.toUTCString();
       document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
     },
-  
+
     getCookie: function getCookie(cookieName) {
       var name = cookieName + "=";
       var ca = document.cookie.split(';');
@@ -17815,7 +17822,7 @@ var Sentry = function (n) {
       }
       return "";
     },
-  
+
     checkCookie: function (cookieName) {
       var name = this.getCookie(cookieName);
       if (name !== "") {
@@ -17824,7 +17831,7 @@ var Sentry = function (n) {
         return false;
       }
     },
-  
+
     nl2br: function (str) {
       if (typeof str === 'undefined' || str === null) {
         return '';
@@ -17832,7 +17839,7 @@ var Sentry = function (n) {
       var breakTag = '<br>';
       return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
     },
-  
+
     callListInTryCatch: function (methodArray, obj) {
       methodArray.forEach(function (method) {
         try {
@@ -17844,27 +17851,27 @@ var Sentry = function (n) {
         }
       })
     },
-  
+
     arrayToObjectKey: function (array) {
       var output = {};
-  
+
       array.reduce(function (object, value) {
         return Object.assign(object, {
           [value]: 1
         })
       }, output);
-  
+
       return output;
     },
-  
+
     getQueryString: function (url) {
       if (typeof url !== 'string' || url.indexOf('?') < 0) return '';
       return url.substring(url.indexOf('?'));
     },
-  
+
     parseQueryString: function (query) {
       if (!query || typeof query !== 'string') return {};
-  
+
       query = query.substring(1);
       var queryString = {};
       var vars = query.split("&");
@@ -17891,12 +17898,12 @@ var Sentry = function (n) {
       }
       return queryString;
     },
-  
+
     retrieveProductFromDataLayer: function (paramsObject) {
       var productId = paramsObject.productId,
         eventName = paramsObject.eventName,
         pathArray = paramsObject.pathArray;
-  
+
       return window.dataLayer
         .filter(function (eventItem) {
           return eventItem.event === eventName
@@ -17913,7 +17920,7 @@ var Sentry = function (n) {
         .reduce(function (firstProduct) {
           return firstProduct;
         })
-  
+
       function getToList(object, pathArray) {
         if (pathArray.length === 1) {
           return object[pathArray[0]];
@@ -17925,7 +17932,7 @@ var Sentry = function (n) {
         }
       }
     },
-  
+
     debounce: function (func, wait) {
       var timeout;
       return function () {
@@ -17938,7 +17945,7 @@ var Sentry = function (n) {
         timeout = setTimeout(later, wait);
       };
     },
-  
+
     throttle: function (callback, limit) {
       var waiting = false;
       return function () {
@@ -17951,38 +17958,38 @@ var Sentry = function (n) {
         }
       }
     },
-  
+
     isScrolledIntoView: function (elem) {
       var docViewTop = $(window).scrollTop();
       var docViewBottom = docViewTop + $(window).height();
-  
+
       var elemTop = $(elem).offset().top;
       var elemBottom = elemTop + $(elem).height();
-  
+
       return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     },
-  
+
     isFunction: function (variable) {
       return variable && Object.prototype.toString.call(variable) === '[object Function]';
     },
-  
+
     isObject: function (variable) {
       return variable && Object.prototype.toString.call(variable) === '[object Object]';
     },
-  
+
     isArray: function (variable) {
       return Object.prototype.toString.call(variable) === '[object Array]';
     },
-  
+
     mutateProperty: function (data, property, value) {
       if (!data ||
         !property ||
         typeof property !== 'string' ||
         !value) return false;
-  
+
       var i, currentNode, keys, key, item;
       var stack = [data];
-  
+
       while (stack.length) {
         currentNode = stack.pop();
         if (Services.isObject(currentNode)) {
@@ -17990,22 +17997,22 @@ var Sentry = function (n) {
           for (i = 0; i < keys.length; i++) {
             key = keys[i];
             item = currentNode[key];
-  
+
             if (Services.isArray(item) || Services.isObject(item)) stack.push(item);
             else if (key === property) currentNode[key] = value;
           }
         } else if (Services.isArray(currentNode)) {
           for (i = 0; i < currentNode.length; i++) {
             item = currentNode[i];
-  
+
             if (Services.isArray(item) || Services.isObject(item)) stack.push(item);
           }
         }
       }
     },
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/lottie.js]*/
   var a, b;
   "undefined" != typeof navigator && (a = window || {}, b = function (window) {
@@ -18025,7 +18032,7 @@ var Sentry = function (n) {
       bm_min = Math.min,
       blitter = 10,
       BMMath = {};
-  
+
     function ProjectInterface() {
       return {}
     }! function () {
@@ -18044,45 +18051,45 @@ var Sentry = function (n) {
     var defaultCurveSegments = 150,
       degToRads = Math.PI / 180,
       roundCorner = .5519;
-  
+
     function roundValues(t) {
       bm_rnd = t ? Math.round : function (t) {
         return t
       }
     }
-  
+
     function styleDiv(t) {
       t.style.position = "absolute", t.style.top = 0, t.style.left = 0, t.style.display = "block", t.style.transformOrigin = t.style.webkitTransformOrigin = "0 0", t.style.backfaceVisibility = t.style.webkitBackfaceVisibility = "visible", t.style.transformStyle = t.style.webkitTransformStyle = t.style.mozTransformStyle = "preserve-3d"
     }
-  
+
     function BMEnterFrameEvent(t, e, r, i) {
       this.type = t, this.currentTime = e, this.totalTime = r, this.direction = i < 0 ? -1 : 1
     }
-  
+
     function BMCompleteEvent(t, e) {
       this.type = t, this.direction = e < 0 ? -1 : 1
     }
-  
+
     function BMCompleteLoopEvent(t, e, r, i) {
       this.type = t, this.currentLoop = r, this.totalLoops = e, this.direction = i < 0 ? -1 : 1
     }
-  
+
     function BMSegmentStartEvent(t, e, r) {
       this.type = t, this.firstFrame = e, this.totalFrames = r
     }
-  
+
     function BMDestroyEvent(t, e) {
       this.type = t, this.target = e
     }
-  
+
     function BMRenderFrameErrorEvent(t, e) {
       this.type = "renderFrameError", this.nativeError = t, this.currentTime = e
     }
-  
+
     function BMConfigErrorEvent(t) {
       this.type = "configError", this.nativeError = t
     }
-  
+
     function BMAnimationConfigErrorEvent(t, e) {
       this.type = t, this.nativeError = e, this.currentTime = currentTime
     }
@@ -18091,7 +18098,7 @@ var Sentry = function (n) {
         return "__lottie_element_" + ++I
       }),
       I;
-  
+
     function HSVtoRGB(t, e, r) {
       var i, s, a, n, o, h, l, p;
       switch (h = r * (1 - e), l = r * (1 - (o = 6 * t - (n = Math.floor(6 * t))) * e), p = r * (1 - (1 - o) * e), n % 6) {
@@ -18115,7 +18122,7 @@ var Sentry = function (n) {
       }
       return [i, s, a]
     }
-  
+
     function RGBtoHSV(t, e, r) {
       var i, s = Math.max(t, e, r),
         a = Math.min(t, e, r),
@@ -18137,17 +18144,17 @@ var Sentry = function (n) {
       }
       return [i, o, h]
     }
-  
+
     function addSaturationToRGB(t, e) {
       var r = RGBtoHSV(255 * t[0], 255 * t[1], 255 * t[2]);
       return r[1] += e, 1 < r[1] ? r[1] = 1 : r[1] <= 0 && (r[1] = 0), HSVtoRGB(r[0], r[1], r[2])
     }
-  
+
     function addBrightnessToRGB(t, e) {
       var r = RGBtoHSV(255 * t[0], 255 * t[1], 255 * t[2]);
       return r[2] += e, 1 < r[2] ? r[2] = 1 : r[2] < 0 && (r[2] = 0), HSVtoRGB(r[0], r[1], r[2])
     }
-  
+
     function addHueToRGB(t, e) {
       var r = RGBtoHSV(255 * t[0], 255 * t[1], 255 * t[2]);
       return r[0] += e / 360, 1 < r[0] ? r[0] -= 1 : r[0] < 0 && (r[0] += 1), HSVtoRGB(r[0], r[1], r[2])
@@ -18159,7 +18166,7 @@ var Sentry = function (n) {
         return t < 0 && (t = 0), e < 0 && (e = 0), r < 0 && (r = 0), "#" + i[t] + i[e] + i[r]
       }
     }();
-  
+
     function BaseEvent() {}
     BaseEvent.prototype = {
       triggerEvent: function (t, e) {
@@ -18197,21 +18204,21 @@ var Sentry = function (n) {
       for (i = 0; i < e; i += 1) s.push(r);
       return s
     };
-  
+
     function createSizedArray(t) {
       return Array.apply(null, {
         length: t
       })
     }
-  
+
     function createNS(t) {
       return document.createElementNS(svgNS, t)
     }
-  
+
     function createTag(t) {
       return document.createElement(t)
     }
-  
+
     function DynamicPropertyContainer() {}
     DynamicPropertyContainer.prototype = {
       addDynamicProperty: function (t) {
@@ -18251,65 +18258,65 @@ var Sentry = function (n) {
           a = Math.sin,
           n = Math.tan,
           i = Math.round;
-  
+
         function t() {
           return this.props[0] = 1, this.props[1] = 0, this.props[2] = 0, this.props[3] = 0, this.props[4] = 0, this.props[5] = 1, this.props[6] = 0, this.props[7] = 0, this.props[8] = 0, this.props[9] = 0, this.props[10] = 1, this.props[11] = 0, this.props[12] = 0, this.props[13] = 0, this.props[14] = 0, this.props[15] = 1, this
         }
-  
+
         function e(t) {
           if (0 === t) return this;
           var e = s(t),
             r = a(t);
           return this._t(e, -r, 0, 0, r, e, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
         }
-  
+
         function r(t) {
           if (0 === t) return this;
           var e = s(t),
             r = a(t);
           return this._t(1, 0, 0, 0, 0, e, -r, 0, 0, r, e, 0, 0, 0, 0, 1)
         }
-  
+
         function o(t) {
           if (0 === t) return this;
           var e = s(t),
             r = a(t);
           return this._t(e, 0, r, 0, 0, 1, 0, 0, -r, 0, e, 0, 0, 0, 0, 1)
         }
-  
+
         function h(t) {
           if (0 === t) return this;
           var e = s(t),
             r = a(t);
           return this._t(e, -r, 0, 0, r, e, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
         }
-  
+
         function l(t, e) {
           return this._t(1, e, t, 1, 0, 0)
         }
-  
+
         function p(t, e) {
           return this.shear(n(t), n(e))
         }
-  
+
         function m(t, e) {
           var r = s(e),
             i = a(e);
           return this._t(r, i, 0, 0, -i, r, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)._t(1, 0, 0, 0, n(t), 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)._t(r, -i, 0, 0, i, r, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
         }
-  
+
         function f(t, e, r) {
           return r || 0 === r || (r = 1), 1 === t && 1 === e && 1 === r ? this : this._t(t, 0, 0, 0, 0, e, 0, 0, 0, 0, r, 0, 0, 0, 0, 1)
         }
-  
+
         function c(t, e, r, i, s, a, n, o, h, l, p, m, f, c, d, u) {
           return this.props[0] = t, this.props[1] = e, this.props[2] = r, this.props[3] = i, this.props[4] = s, this.props[5] = a, this.props[6] = n, this.props[7] = o, this.props[8] = h, this.props[9] = l, this.props[10] = p, this.props[11] = m, this.props[12] = f, this.props[13] = c, this.props[14] = d, this.props[15] = u, this
         }
-  
+
         function d(t, e, r) {
           return r = r || 0, 0 !== t || 0 !== e || 0 !== r ? this._t(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, t, e, r, 1) : this
         }
-  
+
         function u(t, e, r, i, s, a, n, o, h, l, p, m, f, c, d, u) {
           var y = this.props;
           if (1 === t && 0 === e && 0 === r && 0 === i && 0 === s && 1 === a && 0 === n && 0 === o && 0 === h && 0 === l && 1 === p && 0 === m) return y[12] = y[12] * t + y[15] * f, y[13] = y[13] * a + y[15] * c, y[14] = y[14] * p + y[15] * d, y[15] = y[15] * u, this._identityCalculated = !1, this;
@@ -18331,11 +18338,11 @@ var Sentry = function (n) {
             F = y[15];
           return y[0] = g * t + v * s + b * h + E * f, y[1] = g * e + v * a + b * l + E * c, y[2] = g * r + v * n + b * p + E * d, y[3] = g * i + v * o + b * m + E * u, y[4] = x * t + P * s + S * h + _ * f, y[5] = x * e + P * a + S * l + _ * c, y[6] = x * r + P * n + S * p + _ * d, y[7] = x * i + P * o + S * m + _ * u, y[8] = A * t + C * s + T * h + k * f, y[9] = A * e + C * a + T * l + k * c, y[10] = A * r + C * n + T * p + k * d, y[11] = A * i + C * o + T * m + k * u, y[12] = M * t + D * s + w * h + F * f, y[13] = M * e + D * a + w * l + F * c, y[14] = M * r + D * n + w * p + F * d, y[15] = M * i + D * o + w * m + F * u, this._identityCalculated = !1, this
         }
-  
+
         function y() {
           return this._identityCalculated || (this._identity = !(1 !== this.props[0] || 0 !== this.props[1] || 0 !== this.props[2] || 0 !== this.props[3] || 0 !== this.props[4] || 1 !== this.props[5] || 0 !== this.props[6] || 0 !== this.props[7] || 0 !== this.props[8] || 0 !== this.props[9] || 1 !== this.props[10] || 0 !== this.props[11] || 0 !== this.props[12] || 0 !== this.props[13] || 0 !== this.props[14] || 1 !== this.props[15]), this._identityCalculated = !0), this._identity
         }
-  
+
         function g(t) {
           for (var e = 0; e < 16;) {
             if (t.props[e] !== this.props[e]) return !1;
@@ -18343,17 +18350,17 @@ var Sentry = function (n) {
           }
           return !0
         }
-  
+
         function v(t) {
           var e;
           for (e = 0; e < 16; e += 1) t.props[e] = this.props[e]
         }
-  
+
         function b(t) {
           var e;
           for (e = 0; e < 16; e += 1) this.props[e] = t[e]
         }
-  
+
         function E(t, e, r) {
           return {
             x: t * this.props[0] + e * this.props[4] + r * this.props[8] + this.props[12],
@@ -18361,19 +18368,19 @@ var Sentry = function (n) {
             z: t * this.props[2] + e * this.props[6] + r * this.props[10] + this.props[14]
           }
         }
-  
+
         function x(t, e, r) {
           return t * this.props[0] + e * this.props[4] + r * this.props[8] + this.props[12]
         }
-  
+
         function P(t, e, r) {
           return t * this.props[1] + e * this.props[5] + r * this.props[9] + this.props[13]
         }
-  
+
         function S(t, e, r) {
           return t * this.props[2] + e * this.props[6] + r * this.props[10] + this.props[14]
         }
-  
+
         function _(t) {
           var e = this.props[0] * this.props[5] - this.props[1] * this.props[4],
             r = this.props[5] / e,
@@ -18384,14 +18391,14 @@ var Sentry = function (n) {
             o = -(this.props[0] * this.props[13] - this.props[1] * this.props[12]) / e;
           return [t[0] * r + t[1] * s + n, t[0] * i + t[1] * a + o, 0]
         }
-  
+
         function A(t) {
           var e, r = t.length,
             i = [];
           for (e = 0; e < r; e += 1) i[e] = _(t[e]);
           return i
         }
-  
+
         function C(t, e, r) {
           var i = createTypedArray("float32", 6);
           if (this.isIdentity()) i[0] = t[0], i[1] = t[1], i[2] = e[0], i[3] = e[1], i[4] = r[0], i[5] = r[1];
@@ -18406,26 +18413,26 @@ var Sentry = function (n) {
           }
           return i
         }
-  
+
         function T(t, e, r) {
           return this.isIdentity() ? [t, e, r] : [t * this.props[0] + e * this.props[4] + r * this.props[8] + this.props[12], t * this.props[1] + e * this.props[5] + r * this.props[9] + this.props[13], t * this.props[2] + e * this.props[6] + r * this.props[10] + this.props[14]]
         }
-  
+
         function k(t, e) {
           if (this.isIdentity()) return t + "," + e;
           var r = this.props;
           return Math.round(100 * (t * r[0] + e * r[4] + r[12])) / 100 + "," + Math.round(100 * (t * r[1] + e * r[5] + r[13])) / 100
         }
-  
+
         function M() {
           for (var t = 0, e = this.props, r = "matrix3d("; t < 16;) r += i(1e4 * e[t]) / 1e4, r += 15 === t ? ")" : ",", t += 1;
           return r
         }
-  
+
         function D(t) {
           return t < 1e-6 && 0 < t || -1e-6 < t && t < 0 ? i(1e4 * t) / 1e4 : t
         }
-  
+
         function w() {
           var t = this.props;
           return "matrix(" + D(t[0]) + "," + D(t[1]) + "," + D(t[4]) + "," + D(t[5]) + "," + D(t[12]) + "," + D(t[13]) + ")"
@@ -18443,7 +18450,7 @@ var Sentry = function (n) {
         u = h.pow(2, 52),
         y = 2 * u,
         g = m - 1;
-  
+
       function v(t) {
         var e, r = t.length,
           n = this,
@@ -18457,16 +18464,16 @@ var Sentry = function (n) {
           return n.i = i, n.j = s, r
         }
       }
-  
+
       function b(t, e) {
         return e.i = t.i, e.j = t.j, e.S = t.S.slice(), e
       }
-  
+
       function E(t, e) {
         for (var r, i = t + "", s = 0; s < i.length;) e[g & s] = g & (r ^= 19 * e[g & s]) + i.charCodeAt(s++);
         return x(e)
       }
-  
+
       function x(t) {
         return String.fromCharCode.apply(0, t)
       }
@@ -18523,27 +18530,27 @@ var Sentry = function (n) {
       var l = 11,
         p = 1 / (l - 1),
         e = "function" == typeof Float32Array;
-  
+
       function i(t, e) {
         return 1 - 3 * e + 3 * t
       }
-  
+
       function s(t, e) {
         return 3 * e - 6 * t
       }
-  
+
       function a(t) {
         return 3 * t
       }
-  
+
       function m(t, e, r) {
         return ((i(e, r) * t + s(e, r)) * t + a(e)) * t
       }
-  
+
       function f(t, e, r) {
         return 3 * i(e, r) * t * t + 2 * s(e, r) * t + a(e)
       }
-  
+
       function h(t) {
         this._p = t, this._mSampleValues = e ? new Float32Array(l) : new Array(l), this._precomputed = !1, this.get = this.get.bind(this)
       }
@@ -18583,25 +18590,25 @@ var Sentry = function (n) {
         }
       }, t
     }();
-  
+
     function extendPrototype(t, e) {
       var r, i, s = t.length;
       for (r = 0; r < s; r += 1)
         for (var a in i = t[r].prototype) i.hasOwnProperty(a) && (e.prototype[a] = i[a])
     }
-  
+
     function getDescriptor(t, e) {
       return Object.getOwnPropertyDescriptor(t, e)
     }
-  
+
     function createProxyFunction(t) {
       function e() {}
       return e.prototype = t, e
     }
-  
+
     function bezFunction() {
       Math;
-  
+
       function y(t, e, r, i, s, a) {
         var n = t * i + e * s + r * a - s * i - a * t - r * e;
         return -.001 < n && n < .001
@@ -18618,11 +18625,11 @@ var Sentry = function (n) {
         }
         return d.addedLength = m, d
       };
-  
+
       function g(t) {
         this.segmentLength = 0, this.points = new Array(t)
       }
-  
+
       function v(t, e) {
         this.partialLength = t, this.point = e
       }
@@ -18642,7 +18649,7 @@ var Sentry = function (n) {
         }
         return b[s]
       });
-  
+
       function M(t, e) {
         var r = e.percents,
           i = e.lengths,
@@ -18726,7 +18733,7 @@ var Sentry = function (n) {
       })
     }();
     var bez = bezFunction();
-  
+
     function dataFunctionManager() {
       function c(t, e) {
         for (var r = 0, i = e.length; r < i;) {
@@ -18734,7 +18741,7 @@ var Sentry = function (n) {
           r += 1
         }
       }
-  
+
       function d(t) {
         var e, r, i;
         for (e = t.length - 1; 0 <= e; e -= 1)
@@ -18745,19 +18752,19 @@ var Sentry = function (n) {
             !0
           } else "gr" == t[e].ty && d(t[e].it)
       }
-  
+
       function u(t) {
         var e, r = t.i.length;
         for (e = 0; e < r; e += 1) t.i[e][0] += t.v[e][0], t.i[e][1] += t.v[e][1], t.o[e][0] += t.v[e][0], t.o[e][1] += t.v[e][1]
       }
-  
+
       function o(t, e) {
         var r = e ? e.split(".") : [100, 100, 100];
         return t[0] > r[0] || !(r[0] > t[0]) && (t[1] > r[1] || !(r[1] > t[1]) && (t[2] > r[2] || !(r[2] > t[2]) && void 0))
       }
       var h, r = function () {
           var i = [4, 4, 14];
-  
+
           function s(t) {
             var e, r, i, s = t.length;
             for (e = 0; e < s; e += 1) 5 === t[e].ty && (r = t[e], void 0, i = r.t.d, r.t.d = {
@@ -18784,7 +18791,7 @@ var Sentry = function (n) {
         }),
         s = function () {
           var i = [4, 1, 9];
-  
+
           function a(t) {
             var e, r, i, s = t.length;
             for (e = 0; e < s; e += 1)
@@ -18794,7 +18801,7 @@ var Sentry = function (n) {
                 for (i = t[e].c.k.length, r = 0; r < i; r += 1) t[e].c.k[r].s && (t[e].c.k[r].s[0] /= 255, t[e].c.k[r].s[1] /= 255, t[e].c.k[r].s[2] /= 255, t[e].c.k[r].s[3] /= 255), t[e].c.k[r].e && (t[e].c.k[r].e[0] /= 255, t[e].c.k[r].e[1] /= 255, t[e].c.k[r].e[2] /= 255, t[e].c.k[r].e[3] /= 255);
               else t[e].c.k[0] /= 255, t[e].c.k[1] /= 255, t[e].c.k[2] /= 255, t[e].c.k[3] /= 255
           }
-  
+
           function s(t) {
             var e, r = t.length;
             for (e = 0; e < r; e += 1) 4 === t[e].ty && a(t[e].shapes)
@@ -18808,7 +18815,7 @@ var Sentry = function (n) {
         }(),
         a = function () {
           var i = [4, 4, 18];
-  
+
           function l(t) {
             var e, r, i;
             for (e = t.length - 1; 0 <= e; e -= 1)
@@ -18819,7 +18826,7 @@ var Sentry = function (n) {
                 !0
               } else "gr" == t[e].ty && l(t[e].it)
           }
-  
+
           function s(t) {
             var e, r, i, s, a, n, o = t.length;
             for (r = 0; r < o; r += 1) {
@@ -18866,7 +18873,7 @@ var Sentry = function (n) {
             shapes: []
           },
           t = [];
-  
+
         function u(t, e) {
           var r = createTag("span");
           r.style.fontFamily = e;
@@ -18967,7 +18974,7 @@ var Sentry = function (n) {
       PropertyFactory = function () {
         var m = initialDefaultFrame,
           s = Math.abs;
-  
+
         function f(t, e) {
           var r, i = this.offsetTime;
           "multidimensional" === this.propType && (r = createTypedArray("float32", this.pv.length));
@@ -19034,7 +19041,7 @@ var Sentry = function (n) {
           }
           return e.lastIndex = f, r
         }
-  
+
         function N(t) {
           var e = t[0] * degToRads,
             r = t[1] * degToRads,
@@ -19047,7 +19054,7 @@ var Sentry = function (n) {
             l = Math.sin(i / 2);
           return [o * h * n + s * a * l, o * a * n + s * h * l, s * h * n - o * a * l, s * a * n - o * h * l]
         }
-  
+
         function c() {
           var t = this.comp.renderedFrame - this.offsetTime,
             e = this.keyframes[0].t - this.offsetTime,
@@ -19059,14 +19066,14 @@ var Sentry = function (n) {
           }
           return this._caching.lastFrame = t, this.pv
         }
-  
+
         function d(t) {
           var e;
           if ("unidimensional" === this.propType) e = t * this.mult, 1e-5 < s(this.v - e) && (this.v = e, this._mdf = !0);
           else
             for (var r = 0, i = this.v.length; r < i;) e = t[r] * this.mult, 1e-5 < s(this.v[r] - e) && (this.v[r] = e, this._mdf = !0), r += 1
         }
-  
+
         function u() {
           if (this.elem.globalData.frameId !== this.frameId && this.effectsSequence.length)
             if (this.lock) this.setVValue(this.pv);
@@ -19078,15 +19085,15 @@ var Sentry = function (n) {
               this.setVValue(r), this._isFirstFrame = !1, this.lock = !1, this.frameId = this.elem.globalData.frameId
             }
         }
-  
+
         function y(t) {
           this.effectsSequence.push(t), this.container.addDynamicProperty(this)
         }
-  
+
         function n(t, e, r, i) {
           this.propType = "unidimensional", this.mult = r || 1, this.data = e, this.v = r ? e.k * r : e.k, this.pv = e.k, this._mdf = !1, this.elem = t, this.container = i, this.comp = t.comp, this.k = !1, this.kf = !1, this.vel = 0, this.effectsSequence = [], this._isFirstFrame = !0, this.getValue = u, this.setVValue = d, this.addEffect = y
         }
-  
+
         function o(t, e, r, i) {
           this.propType = "multidimensional", this.mult = r || 1, this.data = e, this._mdf = !1, this.elem = t, this.container = i, this.comp = t.comp, this.k = !1, this.kf = !1, this.frameId = -1;
           var s, a = e.k.length;
@@ -19095,7 +19102,7 @@ var Sentry = function (n) {
           for (this.vel = createTypedArray("float32", a), s = 0; s < a; s += 1) this.v[s] = e.k[s] * this.mult, this.pv[s] = e.k[s];
           this._isFirstFrame = !0, this.effectsSequence = [], this.getValue = u, this.setVValue = d, this.addEffect = y
         }
-  
+
         function h(t, e, r, i) {
           this.propType = "unidimensional", this.keyframes = e.k, this.offsetTime = t.data.st, this.frameId = -1, this._caching = {
             lastFrame: m,
@@ -19104,7 +19111,7 @@ var Sentry = function (n) {
             _lastKeyframeIndex: -1
           }, this.k = !0, this.kf = !0, this.data = e, this.mult = r || 1, this.elem = t, this.container = i, this.comp = t.comp, this.v = m, this.pv = m, this._isFirstFrame = !0, this.getValue = u, this.setVValue = d, this.interpolateValue = f, this.effectsSequence = [c.bind(this)], this.addEffect = y
         }
-  
+
         function l(t, e, r, i) {
           this.propType = "multidimensional";
           var s, a, n, o, h, l = e.k.length;
@@ -19201,7 +19208,7 @@ var Sentry = function (n) {
           }
         }
       }();
-  
+
     function ShapePath() {
       this.c = !1, this._length = 0, this._maxLength = 8, this.v = createSizedArray(this._maxLength), this.o = createSizedArray(this._maxLength), this.i = createSizedArray(this._maxLength)
     }
@@ -19242,7 +19249,7 @@ var Sentry = function (n) {
     };
     var ShapePropertyFactory = function () {
         var s = -999999;
-  
+
         function t(t, e, r) {
           var i, s, a, n, o, h, l, p, m, f = r.lastIndex,
             c = this.keyframes;
@@ -19264,11 +19271,11 @@ var Sentry = function (n) {
           for (h = e._length, l = i.i[0].length, r.lastIndex = f, n = 0; n < h; n += 1)
             for (o = 0; o < l; o += 1) m = a ? i.i[n][o] : i.i[n][o] + (s.i[n][o] - i.i[n][o]) * p, e.i[n][o] = m, m = a ? i.o[n][o] : i.o[n][o] + (s.o[n][o] - i.o[n][o]) * p, e.o[n][o] = m, m = a ? i.v[n][o] : i.v[n][o] + (s.v[n][o] - i.v[n][o]) * p, e.v[n][o] = m
         }
-  
+
         function a() {
           this.paths = this.localShapeCollection
         }
-  
+
         function e(t) {
           (function (t, e) {
             if (t._length !== e._length || t.c !== e.c) return !1;
@@ -19278,7 +19285,7 @@ var Sentry = function (n) {
             return !0
           })(this.v, t) || (this.v = shape_pool.clone(t), this.localShapeCollection.releaseShapes(), this.localShapeCollection.addShape(this.v), this._mdf = !0, this.paths = this.localShapeCollection)
         }
-  
+
         function r() {
           if (this.elem.globalData.frameId !== this.frameId)
             if (this.effectsSequence.length)
@@ -19292,17 +19299,17 @@ var Sentry = function (n) {
               }
           else this._mdf = !1
         }
-  
+
         function n(t, e, r) {
           this.propType = "shape", this.comp = t.comp, this.container = t, this.elem = t, this.data = e, this.k = !1, this.kf = !1, this._mdf = !1;
           var i = 3 === r ? e.pt.k : e.ks.k;
           this.v = shape_pool.clone(i), this.pv = shape_pool.clone(this.v), this.localShapeCollection = shapeCollection_pool.newShapeCollection(), this.paths = this.localShapeCollection, this.paths.addShape(this.v), this.reset = a, this.effectsSequence = []
         }
-  
+
         function i(t) {
           this.effectsSequence.push(t), this.container.addDynamicProperty(this)
         }
-  
+
         function o(t, e, r) {
           this.propType = "shape", this.comp = t.comp, this.elem = t, this.container = t, this.offsetTime = t.data.st, this.keyframes = 3 === r ? e.pt.k : e.ks.k, this.k = !0, this.kf = !0;
           var i = this.keyframes[0].s[0].i.length;
@@ -19321,7 +19328,7 @@ var Sentry = function (n) {
         n.prototype.interpolateShape = t, n.prototype.getValue = r, n.prototype.setVValue = e, n.prototype.addEffect = i, o.prototype.getValue = r, o.prototype.interpolateShape = t, o.prototype.setVValue = e, o.prototype.addEffect = i;
         var h = function () {
             var n = roundCorner;
-  
+
             function t(t, e) {
               this.v = shape_pool.newElement(), this.v.setPathData(!0, 4), this.localShapeCollection = shapeCollection_pool.newShapeCollection(), this.paths = this.localShapeCollection, this.localShapeCollection.addShape(this.v), this.d = e.d, this.elem = t, this.comp = t.comp, this.frameId = -1, this.initDynamicPropertyContainer(t), this.p = PropertyFactory.getProp(t, e.p, 1, 0, this), this.s = PropertyFactory.getProp(t, e.s, 1, 0, this), this.dynamicProperties.length ? this.k = !0 : (this.k = !1, this.convertEllToPath())
             }
@@ -19431,19 +19438,19 @@ var Sentry = function (n) {
         return new Zr[t](e, r)
       }, Yr),
       Yr, Zr;
-  
+
     function ShapeModifier() {}
-  
+
     function TrimModifier() {}
-  
+
     function RoundCornersModifier() {}
-  
+
     function RepeaterModifier() {}
-  
+
     function ShapeCollection() {
       this._length = 0, this._maxLength = 4, this.shapes = createSizedArray(this._maxLength)
     }
-  
+
     function DashProperty(t, e, r, i) {
       this.elem = t, this.frameId = -1, this.dataProps = createSizedArray(e.length), this.renderer = r, this.k = !1, this.dashStr = "", this.dashArray = createTypedArray("float32", e.length ? e.length - 1 : 0), this.dashoffset = createTypedArray("float32", 1), this.initDynamicPropertyContainer(i);
       var s, a, n = e.length || 0;
@@ -19453,7 +19460,7 @@ var Sentry = function (n) {
       };
       this.k || this.getValue(!0), this._isAnimated = this.k
     }
-  
+
     function GradientProperty(t, e, r) {
       this.data = e, this.c = createTypedArray("uint8c", 4 * e.p);
       var i = e.k.k[0].s ? e.k.k[0].s.length - 4 * e.p : e.k.k.length - 4 * e.p;
@@ -19779,11 +19786,11 @@ var Sentry = function (n) {
           var e = t.getContext("2d");
           return e.fillStyle = "rgba(0,0,0,0)", e.fillRect(0, 0, 1, 1), t
         }();
-  
+
         function t() {
           this.loadedAssets += 1, this.loadedAssets === this.totalImages && this.imagesLoadedCb && this.imagesLoadedCb(null)
         }
-  
+
         function e(t) {
           var e = function (t, e, r) {
               var i = "";
@@ -19803,32 +19810,32 @@ var Sentry = function (n) {
           };
           return i
         }
-  
+
         function r(t, e) {
           this.imagesLoadedCb = e;
           var r, i = t.length;
           for (r = 0; r < i; r += 1) t[r].layers || (this.totalImages += 1, this.images.push(this._createImageData(t[r])))
         }
-  
+
         function i(t) {
           this.path = t || ""
         }
-  
+
         function a(t) {
           this.assetsPath = t || ""
         }
-  
+
         function n(t) {
           for (var e = 0, r = this.images.length; e < r;) {
             if (this.images[e].assetData === t) return this.images[e].img;
             e += 1
           }
         }
-  
+
         function o() {
           this.imagesLoadedCb = null, this.images.length = 0
         }
-  
+
         function h() {
           return this.totalImages === this.loadedAssets
         }
@@ -19869,13 +19876,13 @@ var Sentry = function (n) {
           }
         }
       }();
-  
+
     function TextAnimatorProperty(t, e, r) {
       this._isFirstFrame = !0, this._hasMaskedPath = !1, this._frameId = -1, this._textData = t, this._renderType = e, this._elem = r, this._animatorsData = createSizedArray(this._textData.a.length), this._pathData = {}, this._moreOptions = {
         alignment: {}
       }, this.renderedLetters = [], this.lettersChangedFlag = !1, this.initDynamicPropertyContainer(r)
     }
-  
+
     function TextAnimatorDataProperty(t, e, r) {
       var i = {
           propType: !1
@@ -19901,7 +19908,7 @@ var Sentry = function (n) {
         t: a.t ? s(t, a.t, 0, 0, r) : i
       }, this.s = TextSelectorProp.getTextSelectorProp(t, e.s, r), this.s.t = e.s.t
     }
-  
+
     function LetterProps(t, e, r, i, s, a) {
       this.o = t, this.sw = e, this.sc = r, this.fc = i, this.m = s, this.p = a, this._mdf = {
         o: !0,
@@ -19912,7 +19919,7 @@ var Sentry = function (n) {
         p: !0
       }
     }
-  
+
     function TextProperty(t, e) {
       this._frameId = initialDefaultFrame, this.pv = "", this.v = "", this.kf = !1, this._isFirstFrame = !0, this._mdf = !1, this.data = e, this.elem = t, this.comp = this.elem.comp, this.keysIndex = 0, this.canResize = !1, this.minimumFontSize = 1, this.effectsSequence = [], this.currentData = {
         ascent: 0,
@@ -20207,7 +20214,7 @@ var Sentry = function (n) {
         var l = Math.max,
           p = Math.min,
           m = Math.floor;
-  
+
         function i(t, e) {
           this._currentTextLength = -1, this.k = !1, this.data = e, this.elem = t, this.comp = t.comp, this.finalS = 0, this.finalE = 0, this.initDynamicPropertyContainer(t), this.s = PropertyFactory.getProp(t, e.s || {
             k: 0
@@ -20266,7 +20273,7 @@ var Sentry = function (n) {
         var s = 0,
           a = t,
           n = createSizedArray(a);
-  
+
         function o() {
           return s ? n[s -= 1] : e()
         }
@@ -20327,9 +20334,9 @@ var Sentry = function (n) {
           lengths: createTypedArray("float32", defaultCurveSegments)
         }
       });
-  
+
     function BaseRenderer() {}
-  
+
     function SVGRenderer(t, e) {
       this.animationItem = t, this.layers = null, this.renderedFrame = -1, this.svgElement = createNS("svg");
       var r = "";
@@ -20363,7 +20370,7 @@ var Sentry = function (n) {
         renderConfig: this.renderConfig
       }, this.elements = [], this.pendingElements = [], this.destroyed = !1, this.rendererType = "svg"
     }
-  
+
     function CanvasRenderer(t, e) {
       this.animationItem = t, this.renderConfig = {
         clearCanvas: !e || void 0 === e.clearCanvas || e.clearCanvas,
@@ -20379,7 +20386,7 @@ var Sentry = function (n) {
         currentGlobalAlpha: -1
       }, this.contextData = new CVContextData, this.elements = [], this.pendingElements = [], this.transformMat = new Matrix, this.completeLayers = !1, this.rendererType = "canvas"
     }
-  
+
     function HybridRenderer(t, e) {
       this.animationItem = t, this.layers = null, this.renderedFrame = -1, this.renderConfig = {
         className: e && e.className || "",
@@ -20391,7 +20398,7 @@ var Sentry = function (n) {
         renderConfig: this.renderConfig
       }, this.pendingElements = [], this.elements = [], this.threeDElements = [], this.destroyed = !1, this.camera = null, this.supports3d = !0, this.rendererType = "html"
     }
-  
+
     function MaskElement(t, e, r) {
       this.data = t, this.element = e, this.globalData = r, this.storedData = [], this.masksProperties = this.data.masksProperties || [], this.maskElement = null;
       var i, s = this.globalData.defs,
@@ -20437,25 +20444,25 @@ var Sentry = function (n) {
       for (this.maskElement = createNS(g), a = u.length, i = 0; i < a; i += 1) this.maskElement.appendChild(u[i]);
       0 < d && (this.maskElement.setAttribute("id", y), this.element.maskedElement.setAttribute(v, "url(" + locationHref + "#" + y + ")"), s.appendChild(this.maskElement)), this.viewData.length && this.element.addRenderableComponent(this)
     }
-  
+
     function HierarchyElement() {}
-  
+
     function FrameElement() {}
-  
+
     function TransformElement() {}
-  
+
     function RenderableElement() {}
-  
+
     function RenderableDOMElement() {}
-  
+
     function ProcessedElement(t, e) {
       this.elem = t, this.pos = e
     }
-  
+
     function SVGStyleData(t, e) {
       this.data = t, this.type = t.ty, this.d = "", this.lvl = e, this._mdf = !1, this.closed = !0 === t.hd, this.pElem = createNS("path"), this.msElem = null
     }
-  
+
     function SVGShapeData(t, e, r) {
       this.caches = [], this.styles = [], this.transformers = t, this.lStr = "", this.sh = r, this.lvl = e, this._isAnimated = !!r.k;
       for (var i = 0, s = t.length; i < s;) {
@@ -20466,7 +20473,7 @@ var Sentry = function (n) {
         i += 1
       }
     }
-  
+
     function SVGTransformData(t, e, r) {
       this.transform = {
         mProps: t,
@@ -20474,23 +20481,23 @@ var Sentry = function (n) {
         container: r
       }, this.elements = [], this._isAnimated = this.transform.mProps.dynamicProperties.length || this.transform.op.effectsSequence.length
     }
-  
+
     function SVGStrokeStyleData(t, e, r) {
       this.initDynamicPropertyContainer(t), this.getValue = this.iterateDynamicProperties, this.o = PropertyFactory.getProp(t, e.o, 0, .01, this), this.w = PropertyFactory.getProp(t, e.w, 0, null, this), this.d = new DashProperty(t, e.d || {}, "svg", this), this.c = PropertyFactory.getProp(t, e.c, 1, 255, this), this.style = r, this._isAnimated = !!this._isAnimated
     }
-  
+
     function SVGFillStyleData(t, e, r) {
       this.initDynamicPropertyContainer(t), this.getValue = this.iterateDynamicProperties, this.o = PropertyFactory.getProp(t, e.o, 0, .01, this), this.c = PropertyFactory.getProp(t, e.c, 1, 255, this), this.style = r
     }
-  
+
     function SVGGradientFillStyleData(t, e, r) {
       this.initDynamicPropertyContainer(t), this.getValue = this.iterateDynamicProperties, this.initGradientData(t, e, r)
     }
-  
+
     function SVGGradientStrokeStyleData(t, e, r) {
       this.initDynamicPropertyContainer(t), this.getValue = this.iterateDynamicProperties, this.w = PropertyFactory.getProp(t, e.w, 0, null, this), this.d = new DashProperty(t, e.d || {}, "svg", this), this.initGradientData(t, e, r), this._isAnimated = !!this._isAnimated
     }
-  
+
     function ShapeGroupData() {
       this.it = [], this.prevViewData = [], this.gr = createNS("g")
     }
@@ -20982,11 +20989,11 @@ var Sentry = function (n) {
     var SVGElementsRenderer = function () {
       var y = new Matrix,
         g = new Matrix;
-  
+
       function e(t, e, r) {
         (r || e.transform.op._mdf) && e.transform.container.setAttribute("opacity", e.transform.op.v), (r || e.transform.mProps._mdf) && e.transform.container.setAttribute("transform", e.transform.mProps.v.to2dCSS())
       }
-  
+
       function r(t, e, r) {
         var i, s, a, n, o, h, l, p, m, f, c, d = e.styles.length,
           u = e.lvl;
@@ -21003,16 +21010,16 @@ var Sentry = function (n) {
           e.styles[h].d += !0 === t.hd ? "" : a, e.styles[h]._mdf = n || e.styles[h]._mdf
         }
       }
-  
+
       function i(t, e, r) {
         var i = e.style;
         (e.c._mdf || r) && i.pElem.setAttribute("fill", "rgb(" + bm_floor(e.c.v[0]) + "," + bm_floor(e.c.v[1]) + "," + bm_floor(e.c.v[2]) + ")"), (e.o._mdf || r) && i.pElem.setAttribute("fill-opacity", e.o.v)
       }
-  
+
       function s(t, e, r) {
         a(t, e, r), n(t, e, r)
       }
-  
+
       function a(t, e, r) {
         var i, s, a, n, o, h = e.gf,
           l = e.g._hasOpacity,
@@ -21046,7 +21053,7 @@ var Sentry = function (n) {
           h.setAttribute("fx", b), h.setAttribute("fy", E), l && !e.g._collapsable && (e.of.setAttribute("fx", b), e.of.setAttribute("fy", E))
         }
       }
-  
+
       function n(t, e, r) {
         var i = e.style,
           s = e.d;
@@ -21075,11 +21082,11 @@ var Sentry = function (n) {
         }
       }
     }();
-  
+
     function ShapeTransformManager() {
       this.sequences = {}, this.sequenceList = [], this.transform_key_count = 0
     }
-  
+
     function CVShapeData(t, e, r, i) {
       this.styledShapes = [], this.tr = [0, 0, 0, 0, 0, 0];
       var s = 4;
@@ -21090,21 +21097,21 @@ var Sentry = function (n) {
         trNodes: []
       }, this.styledShapes.push(n), r[a].elements.push(n))
     }
-  
+
     function BaseElement() {}
-  
+
     function NullElement(t, e, r) {
       this.initFrame(), this.initBaseData(t, e, r), this.initFrame(), this.initTransform(t, e, r), this.initHierarchy()
     }
-  
+
     function SVGBaseElement() {}
-  
+
     function IShapeElement() {}
-  
+
     function ITextElement() {}
-  
+
     function ICompElement() {}
-  
+
     function IImageElement(t, e, r) {
       this.assetData = e.getAssetData(t.refId), this.initElement(t, e, r), this.sourceRect = {
         top: 0,
@@ -21113,25 +21120,25 @@ var Sentry = function (n) {
         height: this.assetData.h
       }
     }
-  
+
     function ISolidElement(t, e, r) {
       this.initElement(t, e, r)
     }
-  
+
     function SVGCompElement(t, e, r) {
       this.layers = t.layers, this.supports3d = !0, this.completeLayers = !1, this.pendingElements = [], this.elements = this.layers ? createSizedArray(this.layers.length) : [], this.initElement(t, e, r), this.tm = t.tm ? PropertyFactory.getProp(this, t.tm, 0, e.frameRate, this) : {
         _placeholder: !0
       }
     }
-  
+
     function SVGTextElement(t, e, r) {
       this.textSpans = [], this.renderType = "svg", this.initElement(t, e, r)
     }
-  
+
     function SVGShapeElement(t, e, r) {
       this.shapes = [], this.shapesData = t.shapes, this.stylesList = [], this.shapeModifiers = [], this.itemsData = [], this.processedElements = [], this.animatedContents = [], this.initElement(t, e, r), this.prevViewData = []
     }
-  
+
     function SVGTintFilter(t, e) {
       this.filterManager = e;
       var r = createNS("feColorMatrix");
@@ -21140,23 +21147,23 @@ var Sentry = function (n) {
         t.appendChild(s), (i = createNS("feMergeNode")).setAttribute("in", "SourceGraphic"), s.appendChild(i), (i = createNS("feMergeNode")).setAttribute("in", "f2"), s.appendChild(i)
       }
     }
-  
+
     function SVGFillFilter(t, e) {
       this.filterManager = e;
       var r = createNS("feColorMatrix");
       r.setAttribute("type", "matrix"), r.setAttribute("color-interpolation-filters", "sRGB"), r.setAttribute("values", "1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"), t.appendChild(r), this.matrixFilter = r
     }
-  
+
     function SVGGaussianBlurEffect(t, e) {
       t.setAttribute("x", "-100%"), t.setAttribute("y", "-100%"), t.setAttribute("width", "300%"), t.setAttribute("height", "300%"), this.filterManager = e;
       var r = createNS("feGaussianBlur");
       t.appendChild(r), this.feGaussianBlur = r
     }
-  
+
     function SVGStrokeEffect(t, e) {
       this.initialized = !1, this.filterManager = e, this.elem = t, this.paths = []
     }
-  
+
     function SVGTritoneFilter(t, e) {
       this.filterManager = e;
       var r = createNS("feColorMatrix");
@@ -21170,14 +21177,14 @@ var Sentry = function (n) {
       var n = createNS("feFuncB");
       n.setAttribute("type", "table"), i.appendChild(n), this.feFuncB = n
     }
-  
+
     function SVGProLevelsFilter(t, e) {
       this.filterManager = e;
       var r = this.filterManager.effectElements,
         i = createNS("feComponentTransfer");
       (r[10].p.k || 0 !== r[10].p.v || r[11].p.k || 1 !== r[11].p.v || r[12].p.k || 1 !== r[12].p.v || r[13].p.k || 0 !== r[13].p.v || r[14].p.k || 1 !== r[14].p.v) && (this.feFuncR = this.createFeFunc("feFuncR", i)), (r[17].p.k || 0 !== r[17].p.v || r[18].p.k || 1 !== r[18].p.v || r[19].p.k || 1 !== r[19].p.v || r[20].p.k || 0 !== r[20].p.v || r[21].p.k || 1 !== r[21].p.v) && (this.feFuncG = this.createFeFunc("feFuncG", i)), (r[24].p.k || 0 !== r[24].p.v || r[25].p.k || 1 !== r[25].p.v || r[26].p.k || 1 !== r[26].p.v || r[27].p.k || 0 !== r[27].p.v || r[28].p.k || 1 !== r[28].p.v) && (this.feFuncB = this.createFeFunc("feFuncB", i)), (r[31].p.k || 0 !== r[31].p.v || r[32].p.k || 1 !== r[32].p.v || r[33].p.k || 1 !== r[33].p.v || r[34].p.k || 0 !== r[34].p.v || r[35].p.k || 1 !== r[35].p.v) && (this.feFuncA = this.createFeFunc("feFuncA", i)), (this.feFuncR || this.feFuncG || this.feFuncB || this.feFuncA) && (i.setAttribute("color-interpolation-filters", "sRGB"), t.appendChild(i), i = createNS("feComponentTransfer")), (r[3].p.k || 0 !== r[3].p.v || r[4].p.k || 1 !== r[4].p.v || r[5].p.k || 1 !== r[5].p.v || r[6].p.k || 0 !== r[6].p.v || r[7].p.k || 1 !== r[7].p.v) && (i.setAttribute("color-interpolation-filters", "sRGB"), t.appendChild(i), this.feFuncRComposed = this.createFeFunc("feFuncR", i), this.feFuncGComposed = this.createFeFunc("feFuncG", i), this.feFuncBComposed = this.createFeFunc("feFuncB", i))
     }
-  
+
     function SVGDropShadowEffect(t, e) {
       t.setAttribute("x", "-100%"), t.setAttribute("y", "-100%"), t.setAttribute("width", "400%"), t.setAttribute("height", "400%"), this.filterManager = e;
       var r = createNS("feGaussianBlur");
@@ -21656,11 +21663,11 @@ var Sentry = function (n) {
       }
     };
     var _svgMatteSymbols = [];
-  
+
     function SVGMatte3Effect(t, e, r) {
       this.initialized = !1, this.filterManager = e, this.filterElem = t, (this.elem = r).matteElement = createNS("g"), r.matteElement.appendChild(r.layerElement), r.matteElement.appendChild(r.transformedElement), r.baseElement = r.matteElement
     }
-  
+
     function SVGEffects(t) {
       var e, r, i = t.data.ef ? t.data.ef.length : 0,
         s = createElementID(),
@@ -21669,26 +21676,26 @@ var Sentry = function (n) {
       for (this.filters = [], e = 0; e < i; e += 1) r = null, 20 === t.data.ef[e].ty ? (n += 1, r = new SVGTintFilter(a, t.effectsManager.effectElements[e])) : 21 === t.data.ef[e].ty ? (n += 1, r = new SVGFillFilter(a, t.effectsManager.effectElements[e])) : 22 === t.data.ef[e].ty ? r = new SVGStrokeEffect(t, t.effectsManager.effectElements[e]) : 23 === t.data.ef[e].ty ? (n += 1, r = new SVGTritoneFilter(a, t.effectsManager.effectElements[e])) : 24 === t.data.ef[e].ty ? (n += 1, r = new SVGProLevelsFilter(a, t.effectsManager.effectElements[e])) : 25 === t.data.ef[e].ty ? (n += 1, r = new SVGDropShadowEffect(a, t.effectsManager.effectElements[e])) : 28 === t.data.ef[e].ty ? r = new SVGMatte3Effect(a, t.effectsManager.effectElements[e], t) : 29 === t.data.ef[e].ty && (n += 1, r = new SVGGaussianBlurEffect(a, t.effectsManager.effectElements[e])), r && this.filters.push(r);
       n && (t.globalData.defs.appendChild(a), t.layerElement.setAttribute("filter", "url(" + locationHref + "#" + s + ")")), this.filters.length && t.addRenderableComponent(this)
     }
-  
+
     function CVContextData() {
       this.saved = [], this.cArrPos = 0, this.cTr = new Matrix, this.cO = 1;
       var t;
       for (this.savedOp = createTypedArray("float32", 15), t = 0; t < 15; t += 1) this.saved[t] = createTypedArray("float32", 16);
       this._length = 15
     }
-  
+
     function CVBaseElement() {}
-  
+
     function CVImageElement(t, e, r) {
       this.assetData = e.getAssetData(t.refId), this.img = e.imageLoader.getImage(this.assetData), this.initElement(t, e, r)
     }
-  
+
     function CVCompElement(t, e, r) {
       this.completeLayers = !1, this.layers = t.layers, this.pendingElements = [], this.elements = createSizedArray(this.layers.length), this.initElement(t, e, r), this.tm = t.tm ? PropertyFactory.getProp(this, t.tm, 0, e.frameRate, this) : {
         _placeholder: !0
       }
     }
-  
+
     function CVMaskElement(t, e) {
       this.data = t, this.element = e, this.masksProperties = this.data.masksProperties || [], this.viewData = createSizedArray(this.masksProperties.length);
       var r, i = this.masksProperties.length,
@@ -21696,15 +21703,15 @@ var Sentry = function (n) {
       for (r = 0; r < i; r++) "n" !== this.masksProperties[r].mode && (s = !0), this.viewData[r] = ShapePropertyFactory.getShapeProp(this.element, this.masksProperties[r], 3);
       (this.hasMasks = s) && this.element.addRenderableComponent(this)
     }
-  
+
     function CVShapeElement(t, e, r) {
       this.shapes = [], this.shapesData = t.shapes, this.stylesList = [], this.itemsData = [], this.prevViewData = [], this.shapeModifiers = [], this.processedElements = [], this.transformsManager = new ShapeTransformManager, this.initElement(t, e, r)
     }
-  
+
     function CVSolidElement(t, e, r) {
       this.initElement(t, e, r)
     }
-  
+
     function CVTextElement(t, e, r) {
       this.textSpans = [], this.yOffset = 0, this.fillColorAnim = !1, this.strokeColorAnim = !1, this.strokeWidthAnim = !1, this.stroke = !1, this.fill = !1, this.justifyOffset = 0, this.currentRender = null, this.renderType = "canvas", this.values = {
         fill: "rgba(0,0,0,0)",
@@ -21713,21 +21720,21 @@ var Sentry = function (n) {
         fValue: ""
       }, this.initElement(t, e, r)
     }
-  
+
     function CVEffects() {}
-  
+
     function HBaseElement(t, e, r) {}
-  
+
     function HSolidElement(t, e, r) {
       this.initElement(t, e, r)
     }
-  
+
     function HCompElement(t, e, r) {
       this.layers = t.layers, this.supports3d = !t.hasMask, this.completeLayers = !1, this.pendingElements = [], this.elements = this.layers ? createSizedArray(this.layers.length) : [], this.initElement(t, e, r), this.tm = t.tm ? PropertyFactory.getProp(this, t.tm, 0, e.frameRate, this) : {
         _placeholder: !0
       }
     }
-  
+
     function HShapeElement(t, e, r) {
       this.shapes = [], this.shapesData = t.shapes, this.stylesList = [], this.shapeModifiers = [], this.itemsData = [], this.processedElements = [], this.animatedContents = [], this.shapesContainer = createNS("g"), this.initElement(t, e, r), this.prevViewData = [], this.currentBBox = {
         x: 999999,
@@ -21736,7 +21743,7 @@ var Sentry = function (n) {
         w: 0
       }
     }
-  
+
     function HTextElement(t, e, r) {
       this.textSpans = [], this.textPaths = [], this.currentBBox = {
         x: 999999,
@@ -21745,11 +21752,11 @@ var Sentry = function (n) {
         w: 0
       }, this.renderType = "svg", this.isMasked = !1, this.initElement(t, e, r)
     }
-  
+
     function HImageElement(t, e, r) {
       this.assetData = e.getAssetData(t.refId), this.initElement(t, e, r)
     }
-  
+
     function HCameraElement(t, e, r) {
       this.initFrame(), this.initBaseData(t, e, r), this.initHierarchy();
       var i = PropertyFactory.getProp;
@@ -21761,7 +21768,7 @@ var Sentry = function (n) {
         mProp: this
       }
     }
-  
+
     function HEffects() {}
     SVGMatte3Effect.prototype.findSymbol = function (t) {
       for (var e = 0, r = _svgMatteSymbols.length; e < r;) {
@@ -22293,11 +22300,11 @@ var Sentry = function (n) {
           n = 0,
           o = !0,
           h = !1;
-  
+
         function r(t) {
           for (var e = 0, r = t.target; e < a;) s[e].animation === r && (s.splice(e, 1), e -= 1, a -= 1, r.isPaused || m()), e += 1
         }
-  
+
         function l(t, e) {
           if (!t) return null;
           for (var r = 0; r < a;) {
@@ -22307,32 +22314,32 @@ var Sentry = function (n) {
           var i = new AnimationItem;
           return f(i, t), i.setData(t, e), i
         }
-  
+
         function p() {
           n += 1, d()
         }
-  
+
         function m() {
           n -= 1
         }
-  
+
         function f(t, e) {
           t.addEventListener("destroy", r), t.addEventListener("_active", p), t.addEventListener("_idle", m), s.push({
             elem: e,
             animation: t
           }), a += 1
         }
-  
+
         function c(t) {
           var e, r = t - i;
           for (e = 0; e < a; e += 1) s[e].animation.advanceTime(r);
           i = t, n && !h ? window.requestAnimationFrame(c) : o = !0
         }
-  
+
         function e(t) {
           i = t, window.requestAnimationFrame(c)
         }
-  
+
         function d() {
           !h && n && o && (window.requestAnimationFrame(e), o = !1)
         }
@@ -22568,7 +22575,7 @@ var Sentry = function (n) {
     var Expressions = (BW = {}, BW.initExpressions = function (t) {
         var e = 0,
           r = [];
-  
+
         function i() {
           var t, e = r.length;
           for (t = 0; t < e; t += 1) r[t].release();
@@ -22589,15 +22596,15 @@ var Sentry = function (n) {
           Math = BMMath,
           window = null,
           document = null;
-  
+
         function $bm_isInstanceOfArray(t) {
           return t.constructor === Array || t.constructor === Float32Array
         }
-  
+
         function isNumerable(t, e) {
           return "number" === t || "boolean" === t || "string" === t || e instanceof Number
         }
-  
+
         function $bm_neg(t) {
           var e = typeof t;
           if ("number" === e || "boolean" === e || t instanceof Number) return -t;
@@ -22612,7 +22619,7 @@ var Sentry = function (n) {
         var easeInBez = BezierFactory.getBezierEasing(.333, 0, .833, .833, "easeIn").get,
           easeOutBez = BezierFactory.getBezierEasing(.167, .167, .667, 1, "easeOut").get,
           easeInOutBez = BezierFactory.getBezierEasing(.33, 0, .667, 1, "easeInOut").get;
-  
+
         function sum(t, e) {
           var r = typeof t,
             i = typeof e;
@@ -22627,7 +22634,7 @@ var Sentry = function (n) {
           return 0
         }
         var add = sum;
-  
+
         function sub(t, e) {
           var r = typeof t,
             i = typeof e;
@@ -22640,7 +22647,7 @@ var Sentry = function (n) {
           }
           return 0
         }
-  
+
         function mul(t, e) {
           var r, i, s, a = typeof t,
             n = typeof e;
@@ -22655,7 +22662,7 @@ var Sentry = function (n) {
           }
           return 0
         }
-  
+
         function div(t, e) {
           var r, i, s, a = typeof t,
             n = typeof e;
@@ -22670,7 +22677,7 @@ var Sentry = function (n) {
           }
           return 0
         }
-  
+
         function mod(t, e) {
           return "string" == typeof t && (t = parseInt(t)), "string" == typeof e && (e = parseInt(e)), t % e
         }
@@ -22679,7 +22686,7 @@ var Sentry = function (n) {
           $bm_mul = mul,
           $bm_div = div,
           $bm_mod = mod;
-  
+
         function clamp(t, e, r) {
           if (r < e) {
             var i = r;
@@ -22687,18 +22694,18 @@ var Sentry = function (n) {
           }
           return Math.min(Math.max(t, e), r)
         }
-  
+
         function radiansToDegrees(t) {
           return t / degToRads
         }
         var radians_to_degrees = radiansToDegrees;
-  
+
         function degreesToRadians(t) {
           return t * degToRads
         }
         var degrees_to_radians = radiansToDegrees,
           helperLengthArray = [0, 0, 0, 0, 0, 0];
-  
+
         function length(t, e) {
           if ("number" == typeof t || t instanceof Number) return e = e || 0, Math.abs(t - e);
           e || (e = helperLengthArray);
@@ -22707,11 +22714,11 @@ var Sentry = function (n) {
           for (r = 0; r < i; r += 1) s += Math.pow(e[r] - t[r], 2);
           return Math.sqrt(s)
         }
-  
+
         function normalize(t) {
           return div(t, length(t))
         }
-  
+
         function rgbToHsl(t) {
           var e, r, i = t[0],
             s = t[1],
@@ -22736,11 +22743,11 @@ var Sentry = function (n) {
           }
           return [e, r, h, t[3]]
         }
-  
+
         function hue2rgb(t, e, r) {
           return r < 0 && (r += 1), 1 < r && (r -= 1), r < 1 / 6 ? t + 6 * (e - t) * r : r < .5 ? e : r < 2 / 3 ? t + (e - t) * (2 / 3 - r) * 6 : t
         }
-  
+
         function hslToRgb(t) {
           var e, r, i, s = t[0],
             a = t[1],
@@ -22753,7 +22760,7 @@ var Sentry = function (n) {
           }
           return [e, r, i, t[3]]
         }
-  
+
         function linear(t, e, r, i, s) {
           if (void 0 !== i && void 0 !== s || (i = e, s = r, e = 0, r = 1), r < e) {
             var a = r;
@@ -22768,7 +22775,7 @@ var Sentry = function (n) {
           for (o = 0; o < h; o += 1) l[o] = i[o] + (s[o] - i[o]) * n;
           return l
         }
-  
+
         function random(t, e) {
           if (void 0 === e && (void 0 === t ? (t = 0, e = 1) : (e = t, t = void 0)), e.length) {
             var r, i = e.length;
@@ -22780,7 +22787,7 @@ var Sentry = function (n) {
           }
           return void 0 === t && (t = 0), t + BMMath.random() * (e - t)
         }
-  
+
         function createPath(t, e, r, i) {
           var s, a = t.length,
             n = shape_pool.newElement();
@@ -22789,7 +22796,7 @@ var Sentry = function (n) {
           for (s = 0; s < a; s += 1) o = e && e[s] ? e[s] : l, h = r && r[s] ? r[s] : l, n.setTripleAt(t[s][0], t[s][1], h[0] + t[s][0], h[1] + t[s][1], o[0] + t[s][0], o[1] + t[s][1], s, !0);
           return n
         }
-  
+
         function initiateExpression(elem, data, property) {
           var val = data.x,
             needsVelocity = /velocity(?![\w\d])/.test(val),
@@ -22832,36 +22839,36 @@ var Sentry = function (n) {
               }
               return this.pv + a[0] + (-e + 2 * e * BMMath.random()) * h
             }.bind(this);
-  
+
           function loopInDuration(t, e) {
             return loopIn(t, e, !0)
           }
-  
+
           function loopOutDuration(t, e) {
             return loopOut(t, e, !0)
           }
           thisProperty.loopIn && (loopIn = thisProperty.loopIn.bind(thisProperty), loop_in = loopIn), thisProperty.loopOut && (loopOut = thisProperty.loopOut.bind(thisProperty), loop_out = loopOut), thisProperty.smooth && (smooth = thisProperty.smooth.bind(thisProperty)), this.getValueAtTime && (valueAtTime = this.getValueAtTime.bind(this)), this.getVelocityAtTime && (velocityAtTime = this.getVelocityAtTime.bind(this));
           var comp = elem.comp.globalData.projectInterface.bind(elem.comp.globalData.projectInterface),
             time, velocity, value, text, textIndex, textTotal, selectorValue;
-  
+
           function lookAt(t, e) {
             var r = [e[0] - t[0], e[1] - t[1], e[2] - t[2]],
               i = Math.atan2(r[0], Math.sqrt(r[1] * r[1] + r[2] * r[2])) / degToRads;
             return [-Math.atan2(r[1], r[2]) / degToRads, i, 0]
           }
-  
+
           function easeOut(t, e, r, i, s) {
             return applyEase(easeOutBez, t, e, r, i, s)
           }
-  
+
           function easeIn(t, e, r, i, s) {
             return applyEase(easeInBez, t, e, r, i, s)
           }
-  
+
           function ease(t, e, r, i, s) {
             return applyEase(easeInOutBez, t, e, r, i, s)
           }
-  
+
           function applyEase(t, e, r, i, s, a) {
             void 0 === s ? (s = r, a = i) : e = (e - r) / (i - r);
             var n = t(e = 1 < e ? 1 : e < 0 ? 0 : e);
@@ -22873,7 +22880,7 @@ var Sentry = function (n) {
             }
             return (a - s) * n + s
           }
-  
+
           function nearestKey(t) {
             var e, r, i, s = data.k.length;
             if (data.k.length && "number" != typeof data.k[0])
@@ -22894,7 +22901,7 @@ var Sentry = function (n) {
             var a = {};
             return a.index = r, a.time = i / elem.comp.globalData.frameRate, a
           }
-  
+
           function key(t) {
             var e, r, i;
             if (!data.k.length || "number" == typeof data.k[0]) throw new Error("The property has no keyframe at index " + t);
@@ -22906,27 +22913,27 @@ var Sentry = function (n) {
             for (i = s.length, r = 0; r < i; r += 1) e[r] = s[r], e.value[r] = s[r];
             return e
           }
-  
+
           function framesToTime(t, e) {
             return e || (e = elem.comp.globalData.frameRate), t / e
           }
-  
+
           function timeToFrames(t, e) {
             return t || 0 === t || (t = time), e || (e = elem.comp.globalData.frameRate), t * e
           }
-  
+
           function seedRandom(t) {
             BMMath.seedrandom(randSeed + t)
           }
-  
+
           function sourceRectAtTime() {
             return elem.sourceRectAtTime()
           }
-  
+
           function substring(t, e) {
             return "string" == typeof value ? void 0 === e ? value.substring(t) : value.substring(t, e) : ""
           }
-  
+
           function substr(t, e) {
             return "string" == typeof value ? void 0 === e ? value.substr(t) : value.substr(t, e) : ""
           }
@@ -22934,7 +22941,7 @@ var Sentry = function (n) {
             hasParent = !(!elem.hierarchy || !elem.hierarchy.length),
             parent, randSeed = Math.floor(1e6 * Math.random()),
             globalData = elem.globalData;
-  
+
           function executeExpression(t) {
             return value = t, _needsRandom && seedRandom(randSeed), this.frameExpressionId === elem.globalData.frameId && "textSelector" !== this.propType ? value : ("textSelector" === this.propType && (textIndex = this.textIndex, textTotal = this.textTotal, selectorValue = this.selectorValue), thisLayer || (text = elem.layerInterface.text, thisLayer = elem.layerInterface, thisComp = elem.comp.compInterface, toWorld = thisLayer.toWorld.bind(thisLayer), fromWorld = thisLayer.fromWorld.bind(thisLayer), fromComp = thisLayer.fromComp.bind(thisLayer), toComp = thisLayer.toComp.bind(thisLayer), mask = thisLayer.mask ? thisLayer.mask.bind(thisLayer) : null, fromCompToSurface = fromComp), transform || (transform = elem.layerInterface("ADBE Transform Group"), ($bm_transform = transform) && (anchorPoint = transform.anchorPoint)), 4 !== elemType || content || (content = thisLayer("ADBE Root Vectors Group")), effect || (effect = thisLayer(4)), (hasParent = !(!elem.hierarchy || !elem.hierarchy.length)) && !parent && (parent = elem.hierarchy[0].layerInterface), time = this.comp.renderedFrame / this.comp.globalData.frameRate, needsVelocity && (velocity = velocityAtTime(time)), expression_function(), this.frameExpressionId = elem.globalData.frameId, "shape" === scoped_bm_rt.propType && (scoped_bm_rt = scoped_bm_rt.v), scoped_bm_rt)
           }
@@ -23010,7 +23017,7 @@ var Sentry = function (n) {
         }
         return this.getValueAtTime(((h - s) % i + s) / this.comp.globalData.frameRate, 0)
       }
-  
+
       function h(t, e, r) {
         if (!this.k) return this.pv;
         t = t ? t.toLowerCase() : "";
@@ -23044,7 +23051,7 @@ var Sentry = function (n) {
         }
         return this.getValueAtTime((i - (p - h) % i + p) / this.comp.globalData.frameRate, 0)
       }
-  
+
       function l(t, e) {
         if (!this.k) return this.pv;
         if (t = .5 * (t || .4), (e = Math.floor(e || 5)) <= 1) return this.pv;
@@ -23084,7 +23091,7 @@ var Sentry = function (n) {
       };
       var t = ShapePropertyFactory.getConstructorFunction(),
         e = ShapePropertyFactory.getKeyframedConstructorFunction();
-  
+
       function r() {}
       r.prototype = {
         vertices: function (t, e) {
@@ -23173,7 +23180,7 @@ var Sentry = function (n) {
           for (i = 0; i < a; i += 1) "gr" == t[i].ty ? s.push(n(t[i], e[i], r)) : "fl" == t[i].ty ? s.push(o(t[i], e[i], r)) : "st" == t[i].ty ? s.push(h(t[i], e[i], r)) : "tm" == t[i].ty ? s.push(l(t[i], e[i], r)) : "tr" == t[i].ty || ("el" == t[i].ty ? s.push(p(t[i], e[i], r)) : "sr" == t[i].ty ? s.push(f(t[i], e[i], r)) : "sh" == t[i].ty ? s.push(y(t[i], e[i], r)) : "rc" == t[i].ty ? s.push(c(t[i], e[i], r)) : "rd" == t[i].ty ? s.push(d(t[i], e[i], r)) : "rp" == t[i].ty && s.push(u(t[i], e[i], r)));
           return s
         }
-  
+
         function n(t, e, r) {
           var i = function (t) {
             switch (t) {
@@ -23202,7 +23209,7 @@ var Sentry = function (n) {
                 return 1 == t ? s : r(--t)
               }
               t.transform.mProps.o.setGroupProperty(i), t.transform.mProps.p.setGroupProperty(i), t.transform.mProps.a.setGroupProperty(i), t.transform.mProps.s.setGroupProperty(i), t.transform.mProps.r.setGroupProperty(i), t.transform.mProps.sk && (t.transform.mProps.sk.setGroupProperty(i), t.transform.mProps.sa.setGroupProperty(i));
-  
+
               function s(t) {
                 return e.a.ix === t || "Anchor Point" === t ? s.anchorPoint : e.o.ix === t || "Opacity" === t ? s.opacity : e.p.ix === t || "Position" === t ? s.position : e.r.ix === t || "Rotation" === t || "ADBE Vector Rotation" === t ? s.rotation : e.s.ix === t || "Scale" === t ? s.scale : e.sk && e.sk.ix === t || "Skew" === t ? s.skew : e.sa && e.sa.ix === t || "Skew Axis" === t ? s.skewAxis : void 0
               }
@@ -23239,7 +23246,7 @@ var Sentry = function (n) {
             }
           }), i.numProperties = t.np, i.propertyIndex = t.ix, i.nm = t.nm, i.mn = t.mn, i
         }
-  
+
         function o(t, e, r) {
           function i(t) {
             return "Color" === t || "color" === t ? i.color : "Opacity" === t || "opacity" === t ? i.opacity : void 0
@@ -23259,12 +23266,12 @@ var Sentry = function (n) {
             }
           }), e.c.setGroupProperty(r), e.o.setGroupProperty(r), i
         }
-  
+
         function h(t, e, r) {
           function i(t) {
             return 1 === t ? ob : r(t - 1)
           }
-  
+
           function s(t) {
             return 1 === t ? h : i(t - 1)
           }
@@ -23273,7 +23280,7 @@ var Sentry = function (n) {
           for (a = 0; a < o; a += 1) n = a, Object.defineProperty(h, t.d[n].nm, {
             get: ExpressionPropertyInterface(e.d.dataProps[n].p)
           }), e.d.dataProps[a].p.setGroupProperty(s);
-  
+
           function l(t) {
             return "Color" === t || "color" === t ? l.color : "Opacity" === t || "opacity" === t ? l.opacity : "Stroke Width" === t || "stroke width" === t ? l.strokeWidth : void 0
           }
@@ -23300,12 +23307,12 @@ var Sentry = function (n) {
             }
           }), e.c.setGroupProperty(i), e.o.setGroupProperty(i), e.w.setGroupProperty(i), l
         }
-  
+
         function l(e, t, r) {
           function i(t) {
             return 1 == t ? s : r(--t)
           }
-  
+
           function s(t) {
             return t === e.e.ix || "End" === t || "end" === t ? s.end : t === e.s.ix ? s.start : t === e.o.ix ? s.offset : void 0
           }
@@ -23324,14 +23331,14 @@ var Sentry = function (n) {
             }
           }), s.mn = e.mn, s
         }
-  
+
         function p(e, t, r) {
           function i(t) {
             return 1 == t ? a : r(--t)
           }
           a.propertyIndex = e.ix;
           var s = "tm" === t.sh.ty ? t.sh.prop : t.sh;
-  
+
           function a(t) {
             return e.p.ix === t ? a.position : e.s.ix === t ? a.size : void 0
           }
@@ -23347,13 +23354,13 @@ var Sentry = function (n) {
             }
           }), a.mn = e.mn, a
         }
-  
+
         function f(e, t, r) {
           function i(t) {
             return 1 == t ? a : r(--t)
           }
           var s = "tm" === t.sh.ty ? t.sh.prop : t.sh;
-  
+
           function a(t) {
             return e.p.ix === t ? a.position : e.r.ix === t ? a.rotation : e.pt.ix === t ? a.points : e.or.ix === t || "ADBE Vector Star Outer Radius" === t ? a.outerRadius : e.os.ix === t ? a.outerRoundness : !e.ir || e.ir.ix !== t && "ADBE Vector Star Inner Radius" !== t ? e.is && e.is.ix === t ? a.innerRoundness : void 0 : a.innerRadius
           }
@@ -23384,13 +23391,13 @@ var Sentry = function (n) {
             }
           }), a.mn = e.mn, a
         }
-  
+
         function c(e, t, r) {
           function i(t) {
             return 1 == t ? a : r(--t)
           }
           var s = "tm" === t.sh.ty ? t.sh.prop : t.sh;
-  
+
           function a(t) {
             return e.p.ix === t ? a.position : e.r.ix === t ? a.roundness : e.s.ix === t || "Size" === t || "ADBE Vector Rect Size" === t ? a.size : void 0
           }
@@ -23409,10 +23416,10 @@ var Sentry = function (n) {
             }
           }), a.mn = e.mn, a
         }
-  
+
         function d(e, t, r) {
           var i = t;
-  
+
           function s(t) {
             if (e.r.ix === t || "Round Corners 1" === t) return s.radius
           }
@@ -23427,13 +23434,13 @@ var Sentry = function (n) {
             }
           }), s.mn = e.mn, s
         }
-  
+
         function u(e, t, r) {
           function i(t) {
             return 1 == t ? a : r(--t)
           }
           var s = t;
-  
+
           function a(t) {
             return e.c.ix === t || "Copies" === t ? a.copies : e.o.ix === t || "Offset" === t ? a.offset : void 0
           }
@@ -23449,10 +23456,10 @@ var Sentry = function (n) {
             }
           }), a.mn = e.mn, a
         }
-  
+
         function y(t, e, r) {
           var i = e.sh;
-  
+
           function s(t) {
             if ("Shape" === t || "shape" === t || "Path" === t || "path" === t || "ADBE Vector Shape" === t || 2 === t) return s.path
           }
@@ -23485,7 +23492,7 @@ var Sentry = function (n) {
         }
         return function (t, e, r) {
           var i;
-  
+
           function s(t) {
             if ("number" == typeof t) return i[t - 1];
             for (var e = 0, r = i.length; e < r;) {
@@ -23498,7 +23505,7 @@ var Sentry = function (n) {
       }(),
       TextExpressionInterface = function (e) {
         var r;
-  
+
         function t() {}
         return Object.defineProperty(t, "sourceText", {
           get: function () {
@@ -23518,7 +23525,7 @@ var Sentry = function (n) {
           }
           return r.applyToPointArray(t[0], t[1], t[2] || 0)
         }
-  
+
         function a(t, e) {
           var r = new Matrix;
           if (r.reset(), this._elem.finalTransform.mProp.applyToMatrix(r), this._elem.hierarchy && this._elem.hierarchy.length) {
@@ -23528,7 +23535,7 @@ var Sentry = function (n) {
           }
           return r.inversePoint(t)
         }
-  
+
         function n(t) {
           var e = new Matrix;
           if (e.reset(), this._elem.finalTransform.mProp.applyToMatrix(e), this._elem.hierarchy && this._elem.hierarchy.length) {
@@ -23538,13 +23545,13 @@ var Sentry = function (n) {
           }
           return e.inversePoint(t)
         }
-  
+
         function o() {
           return [1, 1, 1, 1]
         }
         return function (e) {
           var r;
-  
+
           function i(t) {
             switch (t) {
               case "ADBE Root Vectors Group":
@@ -23705,7 +23712,7 @@ var Sentry = function (n) {
           var i, a = [],
             n = s.ef.length;
           for (i = 0; i < n; i += 1) 5 === s.ef[i].ty ? a.push(l(s.ef[i], t.effectElements[i], t.effectElements[i].propertyGroup, r)) : a.push(p(t.effectElements[i], s.ef[i].ty, r, o));
-  
+
           function o(t) {
             return 1 === t ? h : e(t - 1)
           }
@@ -23726,7 +23733,7 @@ var Sentry = function (n) {
             }
           }), h.active = h.enabled = 0 !== s.en, h
         }
-  
+
         function p(t, e, r, i) {
           var s = ExpressionPropertyInterface(t.p);
           return t.p.setGroupProperty && t.p.setGroupProperty(i),
@@ -23787,7 +23794,7 @@ var Sentry = function (n) {
             v: [0, 0, 0],
             mult: 1
           };
-  
+
         function o(i, s, a) {
           Object.defineProperty(i, "velocity", {
             get: function () {
@@ -23803,7 +23810,7 @@ var Sentry = function (n) {
             return 0
           }, i.valueAtTime = s.getValueAtTime, i.speedAtTime = s.getSpeedAtTime, i.velocityAtTime = s.getVelocityAtTime, i.propertyGroup = s.propertyGroup
         }
-  
+
         function e() {
           return s
         }
@@ -23833,48 +23840,48 @@ var Sentry = function (n) {
         }
       }(),
       j5, k5;
-  
+
     function SliderEffect(t, e, r) {
       this.p = PropertyFactory.getProp(e, t.v, 0, 0, r)
     }
-  
+
     function AngleEffect(t, e, r) {
       this.p = PropertyFactory.getProp(e, t.v, 0, 0, r)
     }
-  
+
     function ColorEffect(t, e, r) {
       this.p = PropertyFactory.getProp(e, t.v, 1, 0, r)
     }
-  
+
     function PointEffect(t, e, r) {
       this.p = PropertyFactory.getProp(e, t.v, 1, 0, r)
     }
-  
+
     function LayerIndexEffect(t, e, r) {
       this.p = PropertyFactory.getProp(e, t.v, 0, 0, r)
     }
-  
+
     function MaskIndexEffect(t, e, r) {
       this.p = PropertyFactory.getProp(e, t.v, 0, 0, r)
     }
-  
+
     function CheckboxEffect(t, e, r) {
       this.p = PropertyFactory.getProp(e, t.v, 0, 0, r)
     }
-  
+
     function NoValueEffect() {
       this.p = {}
     }
-  
+
     function EffectsManager() {}
-  
+
     function EffectsManager(t, e) {
       var r = t.ef || [];
       this.effectElements = [];
       var i, s, a = r.length;
       for (i = 0; i < a; i++) s = new GroupEffect(r[i], e), this.effectElements.push(s)
     }
-  
+
     function GroupEffect(t, e) {
       this.init(t, e)
     }
@@ -23926,23 +23933,23 @@ var Sentry = function (n) {
     };
     var lottiejs = {},
       _isFrozen = !1;
-  
+
     function setLocationHref(t) {
       locationHref = t
     }
-  
+
     function searchAnimations() {
       !0 === standalone ? animationManager.searchAnimations(animationData, standalone, renderer) : animationManager.searchAnimations()
     }
-  
+
     function setSubframeRendering(t) {
       subframeEnabled = t
     }
-  
+
     function loadAnimation(t) {
       return !0 === standalone && (t.animationData = JSON.parse(animationData)), animationManager.loadAnimation(t)
     }
-  
+
     function setQuality(t) {
       if ("string" == typeof t) switch (t) {
         case "high":
@@ -23956,15 +23963,15 @@ var Sentry = function (n) {
       } else !isNaN(t) && 1 < t && (defaultCurveSegments = t);
       roundValues(!(50 <= defaultCurveSegments))
     }
-  
+
     function inBrowser() {
       return "undefined" != typeof navigator
     }
-  
+
     function installPlugin(t, e) {
       "expressions" === t && (expressionsPlugin = e)
     }
-  
+
     function getFactory(t) {
       switch (t) {
         case "propertyFactory":
@@ -23975,11 +23982,11 @@ var Sentry = function (n) {
           return Matrix
       }
     }
-  
+
     function checkReady() {
       "complete" === document.readyState && (clearInterval(readyStateCheckInterval), searchAnimations())
     }
-  
+
     function getQueryVariable(t) {
       for (var e = queryString.split("&"), r = 0; r < e.length; r++) {
         var i = e[r].split("=");
@@ -24004,8 +24011,8 @@ var Sentry = function (n) {
   }, "function" == typeof define && define.amd ? define(function () {
     return b(a)
   }) : "object" == typeof module && module.exports ? module.exports = b(a) : (a.lottie = b(a), a.bodymovin = a.lottie));
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/lottiePlusBadgeMotion.js]*/
   var plusBadgeMotion = {
     "v": "5.5.9",
@@ -27502,11 +27509,11 @@ var Sentry = function (n) {
     }],
     "markers": []
   }
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/main.js]*/
   /* global __ */
-  
+
   // init sentry
   if (typeof module_js_crashlytics != "undefined" && !!module_js_crashlytics) {
     try {
@@ -27517,7 +27524,7 @@ var Sentry = function (n) {
       console.log('failed to load sentry', e);
     }
   }
-  
+
   var Main = {
     trends: [],
     gaListName: null,
@@ -27565,15 +27572,15 @@ var Sentry = function (n) {
         this.initPlusBadgeMotion,
         this.initUniversalMiniCart,
       ];
-  
+
       if (isModuleActive('console_greeting')) {
         functions.push(this.initConsoleGreeting);
       }
-  
+
       if (isModuleActive('chatbox_all_pages')) {
         functions.push(this.initFaqShortAnswer);
       }
-  
+
       if (isModuleActive('new_desktop_header')) {
         functions = functions.concat([
           this.initStickyHeader,
@@ -27581,41 +27588,41 @@ var Sentry = function (n) {
           this.initMiniCart
         ]);
       }
-  
+
       if (isModuleActive('general_location')) {
         functions.push(this.initGeneralLocation);
       }
-  
+
       if (isModuleActive('data_layer')) {
         setTimeout(this.getGaListName.bind(this, null, true), 0);
-  
+
         functions.push(this.initGAPromotionsImpressions);
         functions.push(this.fixListNameInGaImpressions);
         functions.push(this.setPromoViewBannerDataLayer);
       }
-  
+
       if (isModuleActive('carousel_impression_tracker')) {
         functions.push(this.initCarouselImpressionTracker);
       }
-  
+
       if (isModuleActive('dk_pdp_redesign')) {
         functions.push(this.initProductCount);
       }
-  
+
       try {
         this.user = new window.UserClass();
       } catch (e) {
         this.user = {};
       }
-  
+
       this.fastShoppingConfirmCookieName = "fast-shopping-confirm";
       functions.push(this.initQuickView);
       // functions.push(this.intiShowFMCGModal);
       functions.push(this.initFastShoppingConfirmModal);
       functions.push(this.initAddToCart);
-  
+
       var self = this;
-  
+
       $(functions).map(function (index, item) {
         item = item.bind(self);
         try {
@@ -27627,7 +27634,7 @@ var Sentry = function (n) {
         }
       });
     },
-  
+
     initConsoleGreeting: function () {
       console.log("%c                        *((((((((((((((((((((((((((((((((((((((((((((((((((((((((((####(#####(/*,.                                                  \n" +
         "                        ,(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((##(############(*.                                            \n" +
@@ -27673,33 +27680,33 @@ var Sentry = function (n) {
         "color:#ef394e;font-size:9px;font-weight:bold",
         "\nWe're Hiring => https://careers.digikala.com/");
     },
-  
+
     openUniversalMiniCart: function () {
       $('.js-minicart-modal').removeClass('u-hidden').remodal().open();
     },
-  
+
     initUniversalMiniCart: function () {
       $(document).on('click', '.js-minicart-add', function () {
         var data = getQuantityData($(this));
         data.count += 1;
         changeItemQuantity(data);
       });
-  
+
       $(document).on('click', '.js-minicart-remove', function () {
         var data = getQuantityData($(this));
         data.count -= 1;
         changeItemQuantity(data);
       });
-  
+
       function getQuantityData(thiz) {
         var $countDiv = thiz.closest('.c-quantity-selector').find('.js-minicart-count');
-  
+
         return {
           variantId: $countDiv.data('id'),
           count: Number(Services.convertToEnDigit($countDiv.text())),
         };
       };
-  
+
       function changeItemQuantity(itemData) {
         var self = this;
         Services.ajaxGETRequestJSON(
@@ -27717,7 +27724,7 @@ var Sentry = function (n) {
         );
       };
     },
-  
+
     initCustomRequest: function () {
       var _ajax = $.ajax;
       if (_ajax) {
@@ -27729,26 +27736,26 @@ var Sentry = function (n) {
         };
       }
     },
-  
+
     initCarouselImpressionTracker: function () {
       var sntCarousel = {};
-  
+
       $('.js-sntracker-carousel').map(function (index, element) {
         var $element = $(element),
           id = $element.attr('id');
-  
+
         if (id) {
           sntCarousel[id] = $element;
         }
       });
-  
+
       $(document).on('scroll', Services.throttle(function () {
         $.each(sntCarousel, function (id) {
           var $element = $('#' + id),
             title = $element.find('.o-headline span').text();
-  
+
           if (Services.isScrolledIntoView($element)) {
-  
+
             snt("dkCarouselImpression", {
               carousel_id: id,
               carousel_title: title,
@@ -27758,7 +27765,7 @@ var Sentry = function (n) {
         });
       }, 500));
     },
-  
+
     initLightBox: function () {
       $('.js-light-box-close').on('click', function (e) {
         e.preventDefault();
@@ -27767,19 +27774,19 @@ var Sentry = function (n) {
         $(this).closest('.js-light-box').fadeOut();
       });
     },
-  
+
     initShowToastDom: function () {
       $(document).on('click', '.js-show-toast', function () {
         window.DKToast($(this).data('toast'));
       })
     },
-  
+
     initGeneralToast: function () {
       var toast;
       var template = $('.js-toast')
       var container = $('.js-toast-container');
       var self = this;
-  
+
       window.DKToast = function (message, button) {
         clearTimeout(self.timer);
         self.timer = null;
@@ -27788,20 +27795,20 @@ var Sentry = function (n) {
           toast.fadeOut(300);
         newToast.appendTo(container);
         toast = newToast;
-  
+
         message = message || 'مشکلی پیش آمده است!';
-  
+
         var textContainer = toast.find('.js-toast-text');
         textContainer.text(message);
-  
+
         toast.show();
-  
+
         self.timer = setTimeout(function () {
           toast.fadeOut(300, function () {
             toast.remove();
           });
         }, 5000);
-  
+
         var closeBtn = toast.find('.js-toast-btn');
         if (button && button.type) {
           switch (button.type) {
@@ -27824,7 +27831,7 @@ var Sentry = function (n) {
         }
       };
     },
-  
+
     initGeneralLocation: function () {
       var addressModal = $('.js-general-location-addresses');
       var generalModal = $('.js-general-location');
@@ -27838,7 +27845,7 @@ var Sentry = function (n) {
       var states;
       var addresses;
       citiesContainer.hide();
-  
+
       locationBar.on('click', function () {
         if (!(states || addresses)) {
           Services.showLoader();
@@ -27872,7 +27879,7 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       function updateStates() {
         $.each(states, function (index, state) {
           statesContainer.append('<div class="c-general-location__row c-general-location__row--arrow js-general-location-state" data-state-id="' + state.id + '">\n' +
@@ -27880,8 +27887,8 @@ var Sentry = function (n) {
             '            </div>');
         });
       }
-  
-  
+
+
       function updateAddresses() {
         addresses = addresses.reverse();
         $.each(addresses, function (index, address) {
@@ -27893,39 +27900,39 @@ var Sentry = function (n) {
           }
           addressesContainer.prepend(sampleAddress);
         });
-  
+
         $('.js-general-location-add-address').attr('href', '/addresses/add/?generalLocationBackUrl=' + document.location.href);
       }
-  
+
       $(document).on('click', '.js-general-location-state', function () {
         ModalTitle.text('انتخاب شهر');
         var selectedCities;
         var selectedState = $(this).data('state-id');
-  
+
         $.each(states, function (index, state) {
           if (state.id === selectedState) {
             selectedCities = state.cities;
           }
         });
-  
+
         $.each(selectedCities, function (index, city) {
           citiesContainer.append('<div class="c-general-location__row js-general-location-city" data-city-id="' + city.id + '">' + city.title + '</div>')
         });
-  
+
         statesContainer.hide();
         citiesContainer.show();
         generalModal.remodal().open();
       });
-  
+
       backButton.on('click', function () {
         citiesContainer.hide();
         statesContainer.show();
         $(this).siblings('.js-general-location-city').remove();
       });
-  
+
       $(document).on('click', '.js-general-location-city', function () {
         var cityId = $(this).data('city-id');
-  
+
         Services.showLoader();
         Services.ajaxPOSTRequestJSON(
           '/ajax/general-location/save/', {
@@ -27941,10 +27948,10 @@ var Sentry = function (n) {
             console.log(data.errors);
           }
         );
-  
+
         $('.js-close-modal').click();
       });
-  
+
       $('.js-your-location').on('click', function () {
         navigator.geolocation.getCurrentPosition(
           function (pos) {
@@ -27966,10 +27973,10 @@ var Sentry = function (n) {
             );
           },
           function () {
-  
+
           })
       });
-  
+
       $(document).on('click', '.js-general-location-address', function (e) {
         e.stopPropagation();
         e.preventDefault();
@@ -27993,12 +28000,12 @@ var Sentry = function (n) {
           }
         );
       });
-  
+
       $('.js-close-modal').on('click', function () {
         $(this).closest('.remodal').remodal().close();
       })
     },
-  
+
     initMiniCart: function () {
       if (window.checkoutStep !== 1) {
         var $miniCart = $('#mini-cart');
@@ -28006,17 +28013,17 @@ var Sentry = function (n) {
           $('.js-mini-cart-container').addClass('open');
           $('.js-mini-cart-dropdown').show();
         });
-  
+
         $miniCart.on('mouseleave', '.js-mini-cart-container', function () {
           $('.js-mini-cart-container').removeClass('open');
           $('.js-mini-cart-dropdown').hide();
         });
       }
     },
-  
+
     initStickyHeader: function () {
       var headerNavigation = $('.js-navi');
-  
+
       var $w = $(window);
       var lastY = $w.scrollTop();
       var naviHideThreshold = 100;
@@ -28024,19 +28031,19 @@ var Sentry = function (n) {
       var $body = $('body');
       var header = $('.js-header:not(.t-header-light .js-header)'); //$('.js-header');
       var hasTopBanner = $body.hasClass('has-top-banner') && header.children('.c-adplacement').length;
-  
-  
+
+
       $w.scroll(function () {
         var currentPosition = $w.scrollTop();
-  
+
         if ($('.js-mega-menu-categories-options').is(':visible')) {
           return;
         }
-  
+
         if (currentPosition < lastY) {
           headerNavigation.removeClass('not-shown');
           $body.addClass('navi-is-visible');
-  
+
           if (isModuleActive('top_banner_make_unsticky') && hasTopBanner) {
             if (currentPosition < topBannerHeight) {
               header.css('transform', 'translate(0,' + (((-1) * currentPosition) + 'px)'));
@@ -28044,12 +28051,12 @@ var Sentry = function (n) {
               header.css('transform', 'translate(0,-60px)');
             }
           }
-  
+
           if (currentPosition <= naviHideThreshold - 5) {
             $body.removeClass('navi-is-visible');
           }
         } else {
-  
+
           if (isModuleActive('top_banner_make_unsticky') && hasTopBanner) {
             if (currentPosition < topBannerHeight) {
               header.css('transform', 'translate(0,' + (((-1) * currentPosition) + 'px)'));
@@ -28057,45 +28064,45 @@ var Sentry = function (n) {
               header.css('transform', 'translate(0,-60px)');
             }
           }
-  
+
           if (currentPosition < naviHideThreshold) {
             lastY = currentPosition;
             return;
           }
-  
+
           headerNavigation.addClass('not-shown');
           $body.removeClass('navi-is-visible');
         }
-  
+
         lastY = currentPosition;
       });
-  
+
       if (isModuleActive('top_banner_make_unsticky') && hasTopBanner) {
         $w.trigger('scroll');
       }
     },
-  
+
     initFloatingButton: function () {
       $('.js-floating-close').on('click', function () {
         window.DKCookie && window.DKCookie.set('digikala_fresh_gift', "1", 7 * 24 * 3600);
         $(this).closest('.js-floating-box').fadeOut();
       });
     },
-  
+
     initYaldaFloatingButton: function () {
       $('.js-floating-close').on('click', function () {
         window.DKCookie && window.DKCookie.set('digikala_fresh_gift', "1", 7 * 24 * 3600);
         $(this).closest('.js-floating-box').fadeOut();
       });
     },
-  
+
     initFloatingBox: function () {
       if (window.DKCookie.get('digikala_fresh_gift') == 1) {
         $('.js-fmcg-voucher-box').remove();
       } else {
         $('.js-fmcg-voucher-box').removeClass('u-hidden');
       }
-  
+
       var yaldaVoucherDay = $('.js-yalda-voucher-box').data('day');
       if (window.DKCookie.get('digikala_yalda_gift_' + yaldaVoucherDay) == 1) {
         $('.js-yalda-voucher-box[data-day="' + yaldaVoucherDay + '"]').remove();
@@ -28103,23 +28110,23 @@ var Sentry = function (n) {
         $('.js-yalda-voucher-box[data-day="' + yaldaVoucherDay + '"]').removeClass('u-hidden');
       }
     },
-  
+
     initFMCGVoucherBox: function () {
-  
+
       var fmcgVoucherBox = $(".js-fmcg-voucher-box");
-  
+
       if (fmcgVoucherBox[0]) {
         try {
           ga('send', 'event', 'Growth', 'Viewed', document.location.href);
         } catch (e) {}
       }
-  
+
       fmcgVoucherBox.on('click', function () {
         try {
           ga('send', 'event', 'Growth', 'Click', document.location.href);
         } catch (e) {}
       });
-  
+
       $(document).on('click', '.js-fmcg-voucher-box-close', function (e) {
         // e.preventDefault();
         // e.stopPropagation();
@@ -28129,7 +28136,7 @@ var Sentry = function (n) {
           ga('send', 'event', 'Growth', 'Close Click', document.location.href);
         } catch (e) {}
       });
-  
+
       $(document).on('click', '.js-yalda-voucher-box-close', function (e) {
         // e.preventDefault();
         // e.stopPropagation();
@@ -28141,7 +28148,7 @@ var Sentry = function (n) {
           ga('send', 'event', 'Growth', 'Close Click', document.location.href);
         } catch (e) {}
       });
-  
+
       $('.js-fmcg-voucher-box-copy').on('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -28155,7 +28162,7 @@ var Sentry = function (n) {
         document.body.removeChild(aux);
       })
     },
-  
+
     initUserWallet: function () {
       if (!isModuleActive('dk_wallet') ||
         !this.user.isLogged() ||
@@ -28170,12 +28177,12 @@ var Sentry = function (n) {
         $walletUrl = $('.js-wallet-activation-url'),
         isAjaxInProgress = false,
         isDataSet = false;
-  
+
       $miniProfileToggleBtn.on('click', function () {
         if (isAjaxInProgress || isDataSet) return false;
-  
+
         isAjaxInProgress = true;
-  
+
         Services.ajaxGETRequestJSON(
           '/ajax/profile/wallet/', {},
           function (res) {
@@ -28184,7 +28191,7 @@ var Sentry = function (n) {
               $walletAmount.parent().text('فعلا از دسترس خارج');
               $walletDropdownAmount.removeClass('u-hidden');
             } else if (response.notVerified) {
-  
+
             } else if (response.amount != null) {
               $walletAmount.text(Services.convertToFaDigit(Services.formatCurrency(response.amount, true, '')));
               $walletDropdownAmount.removeClass('u-hidden');
@@ -28192,14 +28199,14 @@ var Sentry = function (n) {
               $walletUrl.attr('href', response.activationUrl);
               $walletDropdownUrl.removeClass('u-hidden');
             }
-  
+
             isAjaxInProgress = false;
             isDataSet = true;
           },
           function () {
             $walletAmount.parent().text('فعلا از دسترس خارج');
             $walletDropdownAmount.removeClass('u-hidden');
-  
+
             isAjaxInProgress = false;
           },
           false,
@@ -28207,20 +28214,20 @@ var Sentry = function (n) {
         );
       })
     },
-  
+
     initUserHistoryActions: function () {
       var sameProductModal = $("[data-remodal-id=sameProduct]").remodal();
-  
+
       $(".js-history-same-product-modal").click(function () {
         var productId = $(this).data('product-id');
-  
+
         Services.ajaxGETRequestHTML(
           '/ajax/browsing-history/product/show-similar/' + productId + '/', {},
           function (res) {
-  
+
             $('.js-related-product-container').html(res);
             sameProductModal.open();
-  
+
             new window.Swiper(
               ".js-swiper-same-products", {
                 slidesPerView: 4,
@@ -28244,10 +28251,10 @@ var Sentry = function (n) {
           true
         );
       });
-  
+
       $(document).on('click', '.js-remove-item-user-history', function () {
         var productId = $(this).data('product-id');
-  
+
         DKConfirm(
           'آیا مطمئنید که این محصول از لیست بازدیدهای اخیر شما حذف شود؟',
           function () {
@@ -28268,10 +28275,10 @@ var Sentry = function (n) {
         );
       });
     },
-  
+
     intiShowFMCGModal: function () {
       var modal = $('[data-remodal-id="fmcg-modal"]');
-  
+
       modal.find(".js-fmcg-modal-reject").on("click", function () {
         modal.remodal().close();
       });
@@ -28283,18 +28290,18 @@ var Sentry = function (n) {
         modal.remodal().open();
       };
     },
-  
+
     initSNTracker: function () {
       // SnTracker.trackers.PageViewTracking(); page view is tracking in from sntracker.js
       window.SnTracker.trackers.UTMTracking();
-  
+
       window.snt = window.snt || function () {};
       var $w = $(window);
       var height = $w.height();
       var banners = $(
         ".c-adplacement__item:not(.js-no-track), .js-snt-banner-brand"
       );
-  
+
       var bannerClickHandler = function () {
         snt(
           "dkBannerClicked", {
@@ -28308,25 +28315,25 @@ var Sentry = function (n) {
           .attr("target") === "_blank"
         );
       };
-  
+
       banners.on("click", bannerClickHandler);
       $(".js-main-page-slider-image").on("click", bannerClickHandler);
-  
+
       $w.scroll(function () {
         (function (w) {
           var inview = banners.filter(function () {
             var $e = $(this);
-  
+
             if ($e.is(":hidden")) return;
-  
+
             var wt = w.scrollTop(),
               wb = wt + w.height(),
               et = $e.offset().top,
               eb = et + $e.height();
-  
+
             return eb >= wt - 5 && et <= wb + 5;
           });
-  
+
           inview.each(function () {
             if ($(this).data("id")) {
               snt("dkBannerViewed", {
@@ -28336,7 +28343,7 @@ var Sentry = function (n) {
             }
           });
           banners = banners.not(inview);
-  
+
           if (w.scrollTop() >= height) {
             window.runExperiment = 1;
             window._conv_q = window._conv_q || [];
@@ -28346,25 +28353,25 @@ var Sentry = function (n) {
         }.bind(this, $w)());
       }).scroll();
     },
-  
+
     initBrowserBackHandler: function () {
       window.addEventListener("pageshow", function () {
         var historyTraversal =
           typeof window.performance !== typeof undefined &&
           window.performance.navigation.type ===
           window.performance.navigation.TYPE_BACK_FORWARD;
-  
+
         if (historyTraversal) {
           $(".js-product-compare-btn :checkbox").prop("checked", false);
         }
       });
     },
-  
+
     overrideServerErrors: function () {
       // eslint-disable-next-line no-console
       window.alert = console.log.bind(console);
     },
-  
+
     initSelects: function () {
       $(".js-ui-select").selectric();
       $(".js-ui-select-above").selectric({
@@ -28375,26 +28382,26 @@ var Sentry = function (n) {
         hasSearch: true
       });
     },
-  
+
     initNativeLazyLoading: function () {
       setInterval(function addLazyLoadingAttr() {
         var images = $("img[data-src]:not(img[src])");
-  
+
         if (images.length > 0) {
           images.map(function (_idx, img) {
             var $img = $(img);
-  
+
             $img.attr("src", $img.attr("data-src"));
             $img.attr("loading", "lazy");
           });
         }
       }, 2000);
     },
-  
+
     initPlusBadgeMotion: function () {
       var $self = this;
       var lottieContainer = document.querySelector('.js-plus-badge-motion');
-  
+
       if (lottieContainer) {
         var params = {
           container: lottieContainer,
@@ -28403,7 +28410,7 @@ var Sentry = function (n) {
           autoplay: true,
           animationData: plusBadgeMotion
         };
-  
+
         setTimeout(function () {
           var anim = lottie.loadAnimation(params);
           if (sessionStorage.getItem("plusAnimationPlayed") == 1) {
@@ -28413,36 +28420,36 @@ var Sentry = function (n) {
         }, 100);
       }
     },
-  
+
     initLazyLoading: function () {
       // eslint-disable-next-line no-global-assign
       MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
       var observer = new MutationObserver(function () {
         var images = $("img:not(img[src])");
-  
+
         try {
           images.lazy($(window).height());
         } catch (e) {}
       });
-  
+
       observer.observe(document, {
         childList: true,
         subtree: true
       });
-  
+
       setTimeout(function () {
         var timingLazyLoad = setInterval(function () {
           var images = $("img[data-src]:not(img[src])");
-  
+
           if (!images || images.length === 0) clearInterval(timingLazyLoad);
-  
+
           images.splice(0, 10).map(function (item) {
             $(item).attr("src", $(item).attr("data-src"));
           });
         }, 1000);
       }, 3000);
     },
-  
+
     initGoogleAnalyticsEvents: function () {
       this.settingUserIdGoogleAnalytics();
       $("[data-event]").on("click", function () {
@@ -28450,7 +28457,7 @@ var Sentry = function (n) {
         var eventCategory = $(this).data("event-category");
         var eventLabel = $(this).data("event-label");
         var eventValue = $(this).data("event-value");
-  
+
         Main.sendGoogleAnalyticEvent(
           event,
           eventCategory,
@@ -28459,11 +28466,11 @@ var Sentry = function (n) {
         );
       });
     },
-  
+
     settingUserIdGoogleAnalytics: function () {
       window.userId = $("#ESILogged").data("user_id") || null;
     },
-  
+
     sendGoogleAnalyticEvent: function (
       event,
       eventCategory,
@@ -28471,27 +28478,27 @@ var Sentry = function (n) {
       eventValue
     ) {
       var data = {};
-  
+
       if (eventCategory) {
         data["event_category"] = eventCategory;
       }
-  
+
       if (eventLabel) {
         data["event_label"] = eventLabel;
       }
-  
+
       if (eventValue) {
         data["value"] = eventValue;
       }
-  
+
       gtag("event", event, data);
     },
-  
+
     getGaListName: function (url, shouldUpdateMain) {
       var listname = '';
       var host = window.location.host;
       var href, pathName, trend, q;
-  
+
       if (url && typeof url === 'string' && url.indexOf(host) !== -1) {
         href = url;
         pathName = url.slice(url.indexOf(host) + host.length);
@@ -28499,7 +28506,7 @@ var Sentry = function (n) {
         href = window.location.href;
         pathName = window.location.pathname;
       }
-  
+
       function getUrlVars() {
         var vars = [],
           hash;
@@ -28511,7 +28518,7 @@ var Sentry = function (n) {
         }
         return vars;
       }
-  
+
       if (pathName == '/') {
         listname = 'home-page';
       } else if (pathName.indexOf('cart/') >= 1) {
@@ -28587,19 +28594,19 @@ var Sentry = function (n) {
       } else if (pathName.indexOf('product/dkp') >= 1) {
         listname = 'pdp';
       }
-  
+
       if (shouldUpdateMain) Main.gaListName = listname;
       return listname;
     },
-  
+
     fixListNameInGaImpressions: function () {
       function chore() {
         var prevPageListName = Main.getGaListName(document.referrer);
-  
+
         var eecImpressionObjList = window.dataLayer.filter(function (item) {
           return item.event && item.event.indexOf('eec.') !== -1;
         })
-  
+
         eecImpressionObjList.forEach(function (eventObj) {
           if (eventObj.event === 'eec.productDetail') {
             Services.mutateProperty(eventObj, 'list', prevPageListName);
@@ -28608,25 +28615,25 @@ var Sentry = function (n) {
           }
         });
       }
-  
+
       setTimeout(chore, 0);
     },
-  
+
     initGAPromotionsImpressions: function () {
-  
+
       setTimeout(setImpressions, 0);
-  
+
       function setImpressions() {
         var $promotions = $('body:not(.t-header-light) [href*="promo_name"]'),
           promotionList = [];
-  
+
         if (!$promotions || $promotions.length === 0) return false;
-  
+
         if ($promotions.length > 1) {
           $promotions.each(function () {
             var queryParams = Services.getQueryString($(this).attr('href')),
               queryObject = Services.parseQueryString(queryParams);
-  
+
             promotionList.push(createImpressionObj(queryObject));
           });
         } else {
@@ -28638,7 +28645,7 @@ var Sentry = function (n) {
             )
           );
         }
-  
+
         window.dataLayer.push({
           'event': 'eec.promoView',
           'ecommerce': {
@@ -28648,14 +28655,14 @@ var Sentry = function (n) {
           }
         });
       }
-  
+
       $(document).on('click', '[href*="promo_name"]', function () {
         var queryParams = Services.getQueryString($(this).attr('href')),
           queryObject = Services.parseQueryString(queryParams);
-  
+
         pushClickImpressionToDataLayer(queryObject);
       });
-  
+
       function createImpressionObj(queryObject) {
         return {
           "id": queryObject.promo_creative || "not specified",
@@ -28664,7 +28671,7 @@ var Sentry = function (n) {
           "position": queryObject.promo_position || "not specified"
         }
       }
-  
+
       function pushClickImpressionToDataLayer(queryObject) {
         var promotionClickObject = {
           'event': 'eec.promoClick',
@@ -28674,18 +28681,18 @@ var Sentry = function (n) {
             }
           }
         };
-  
+
         window.dataLayer.push(promotionClickObject);
       }
     },
-  
+
     replaceGaImpressionList: function (dataLayerString) {
       return dataLayerString.replace(
         /"list":"[^"]*"/g,
         '"list":"' + Main.gaListName + '"'
       )
     },
-  
+
     setImpressionEventOnAjax: function (dataLayerData, notReplaceList) {
       try {
         if (notReplaceList) {
@@ -28693,7 +28700,7 @@ var Sentry = function (n) {
         } else {
           dataLayerData = JSON.parse(Main.replaceGaImpressionList(dataLayerData));
         }
-  
+
         if (Services.isObject(dataLayerData)) {
           window.dataLayer.push(dataLayerData);
         } else {
@@ -28707,7 +28714,7 @@ var Sentry = function (n) {
         console.warn(e);
       }
     },
-  
+
     initCategoryBar: function () {
       var $overlay = $(".js-menu-overlay"),
         $naviOverlay = $(".js-navi-overlay"),
@@ -28718,13 +28725,13 @@ var Sentry = function (n) {
         $megaMenuCategory = $('.js-mega-menu-category'),
         $searchBar = $('.js-search'),
         $searchResults = $('.js-search-results');
-  
+
       var moveHover = function (self) {
         var parent = self
           .parent()
           .parent()
           .parent();
-  
+
         $hoverEffect
           .css("width", self.width())
           .css(
@@ -28735,22 +28742,22 @@ var Sentry = function (n) {
           );
         $hoverEffect.css("transform", "scaleX(1)");
       };
-  
+
       var removeHover = function () {
         $hoverEffect.css("transform", "scaleX(0)");
       };
-  
+
       $headerLinks.hover(function () {
           moveHover.call(this, $(this));
         },
         function () {
           removeHover.call(this, $(this));
         });
-  
+
       $megaMenuMain.on('click', function (e) {
         e.stopPropagation();
       });
-  
+
       var hoverAction;
       $megaMenuMain.hover(
         function () {
@@ -28767,29 +28774,29 @@ var Sentry = function (n) {
           $naviOverlay.removeClass("is-active");
           $megaMenuOptionsContainer.hide()
         });
-  
+
       $megaMenuCategory.hover(
         function () {
-  
+
           if (isModuleActive('sponsored_mega_menu')) {
             $megaMenuOptionsContainer.find('.js-categories-ad').removeClass('ad-is-active');
             $megaMenuOptionsContainer.find('#categories-ad-' + $(this).data('index')).addClass('ad-is-active');
           }
-  
+
           $megaMenuOptionsContainer.find('.js-mega-menu-category-options').removeClass('is-active');
           $megaMenuCategory.removeClass('c-navi-new-list__inner-category--hovered');
           $(this).addClass('c-navi-new-list__inner-category--hovered');
           $megaMenuOptionsContainer.find('#categories-' + $(this).data('index')).addClass('is-active');
         },
-  
+
         function () {}
       );
-  
+
       $overlay.hover(function () {
         if (!$(this).is(".is-active")) return true;
       });
     },
-  
+
     initStatic: function () {
       var $overlay = $(".js-menu-overlay"),
         $naviOverlay = $(".js-navi-overlay"),
@@ -28798,10 +28805,10 @@ var Sentry = function (n) {
         $hoverEffect = $(".js-navi-new-list-category-hover"),
         allCategoriesButton = $(".js-navi-new-list__all-links"),
         sentBanners = [];
-  
+
       this.openCategories = false;
       var mainJs = this;
-  
+
       $(".js-navi").hover(function () {
         $(this)
           .find("img[data-src]")
@@ -28811,13 +28818,13 @@ var Sentry = function (n) {
               .removeAttr("data-src");
           });
       });
-  
+
       var moveHover = function (self) {
         var parent = self
           .parent()
           .parent()
           .parent();
-  
+
         $hoverEffect
           .css("width", self.width())
           .css(
@@ -28833,15 +28840,15 @@ var Sentry = function (n) {
         }
         $hoverEffect.css("transform", "scaleX(1)");
       };
-  
+
       var removeHover = function () {
         $hoverEffect.css("transform", "scaleX(0)");
       };
-  
+
       var handlerHover = function () {
         clearTimeout(this.closeTimer);
         var self = $(this);
-  
+
         this.timer = setTimeout(function () {
           $("body").click();
           $naviOverlay.addClass("is-active");
@@ -28850,7 +28857,7 @@ var Sentry = function (n) {
           self.find(".js-navi-new-list-category").addClass("can-show-menu");
           mainJs.openCategories = true;
           var id = self.find(".c-adplacement__item").data("id");
-  
+
           if (id && sentBanners.indexOf(id) < 0) {
             snt("dkBannerViewed", {
               bannerId: id,
@@ -28867,7 +28874,7 @@ var Sentry = function (n) {
       var handlerOut = function () {
         clearTimeout(this.timer);
         var self = this;
-  
+
         this.closeTimer = setTimeout(function () {
           if ($(".js-search-results").hasClass("is-active")) return;
           $(self).hasClass("js-navi-new-list-categories") ?
@@ -28883,29 +28890,29 @@ var Sentry = function (n) {
         }, 200);
         removeHover();
       };
-  
+
       // $('.js-navi-list-promotion-item').hover(function () {
       //     moveHover.call(this, $(this));
       // }, removeHover);
-  
+
       var $w = $(window),
         lastY = $w.scrollTop();
-  
+
       $(window).scroll(function () {
         var currentPosition = $w.scrollTop();
-  
+
         if (!mainJs.openCategories) {
           return (lastY = currentPosition);
         }
         if (currentPosition - lastY < -5) {
           var e = jQuery.Event("mouseout");
-  
+
           $newCategories.trigger(e);
           $newCategoryItem.trigger(e);
         }
         lastY = currentPosition;
       });
-  
+
       $newCategories.hover(handlerHover, handlerOut);
       $newCategoryItem.hover(handlerHover, handlerOut);
       allCategoriesButton.hover(function (e) {
@@ -28916,48 +28923,48 @@ var Sentry = function (n) {
       $overlay.hover(function () {
         if (!$(this).is(".is-active")) return true;
       });
-  
+
       $(".js-expert-article-button").on("click", function (e) {
         var $this = $(this),
           $article = $this.closest(".js-expert-article");
-  
+
         if ($article.hasClass("is-active")) {
           $article.removeClass("is-active");
         } else {
           $article.addClass("is-active");
         }
-  
+
         e.preventDefault();
-  
+
         window.dispatchEvent(new Event("scroll"));
       });
-  
+
       var $deliveryLabels = $(".js-delivery-label");
-  
+
       $deliveryLabels.click(function () {
         var $this = $(this);
-  
+
         if ($this.hasClass("is-read-only")) {
           return;
         }
-  
+
         $deliveryLabels.removeClass("is-selected");
         $this.addClass("is-selected");
       });
-  
+
       $deliveryLabels.each(function () {
         var $this = $(this);
         var $radio = $this.find('input[type="radio"]');
-  
+
         if ($radio.is(":checked")) {
           $this.addClass("is-selected");
         }
       });
     },
-  
+
     initNewsletter: function () {
       var $subscriptionForm = $("#SubscribeNewsletter");
-  
+
       $subscriptionForm.validate({
         rules: {
           "subscribe[email]": {
@@ -28974,16 +28981,16 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       $subscriptionForm.on("submit", function (e) {
         e.preventDefault();
-  
+
         if (!$subscriptionForm.valid()) {
           DKAlert('ایمیل نامعتبر است');
-  
+
           return;
         }
-  
+
         $.ajax({
           type: "POST",
           url: "/newsletter/",
@@ -28999,7 +29006,7 @@ var Sentry = function (n) {
         });
       });
     },
-  
+
     initAdroRetargeting: function () {
       // var adroRetargetingData = null;
       //
@@ -29034,7 +29041,7 @@ var Sentry = function (n) {
       //     }, 500);
       // }
     },
-  
+
     extendValidator: function () {
       $.validator.setDefaults({
         errorPlacement: function (error, element) {
@@ -29089,159 +29096,159 @@ var Sentry = function (n) {
         // ignoreTitle : true,
         ignore: ":hidden:not(.force-validation)"
       });
-  
+
       $.extend($.validator.prototype, {
         showBackendErrors: function () {
           if (typeof jsFormErrors === "undefined") {
             return;
           }
-  
+
           var $form = $(this.currentForm);
-  
+
           var $formErrorsIndex = $form.data("name");
-  
+
           if (typeof window.jsFormErrors[$formErrorsIndex] === "undefined") {
             return;
           }
-  
+
           this.showErrors(window.jsFormErrors[$formErrorsIndex]);
         }
       });
-  
+
       $.validator.addMethod("persian_english_letters_only", function (value) {
         if ($.trim(value).length === 0) {
           return true;
         }
-  
+
         return /[abcdefghijklmnopqrstuvwxyzابپتثجچحخدذرزژسشصضطظعغفقکكگلمنوهیئي]$/i.test(
           value
         );
       });
-  
+
       $.validator.addMethod(
         "national_identity_number",
         function (value) {
           value = Services.convertToEnDigit(value);
           var regex = new RegExp(/^(?!(\d)\1{9})\d{10}$/);
-  
+
           if (!regex.test(value)) {
             return false;
           }
-  
+
           var s = 0;
           var c = parseInt(value.substr(9, 1), 10);
-  
+
           for (var i = 0; i < 9; i++) {
             s += parseInt(value.substr(i, 1), 10) * (10 - i);
           }
-  
+
           s = s % 11;
-  
+
           return (s < 2 && c == s) || (s >= 2 && c == 11 - s);
         },
         'کد ملی نامعتبر است'
       );
-  
+
       $.validator.addMethod(
         "mobile_phone",
         function (value) {
           var phone = Services.convertToEnDigit(value);
-  
+
           var pattern = new RegExp(
             "^(?:(?:(?:\\+?|00)(98))|(0))?((?:90|91|92|93|99)[0-9]{8})$",
             "i"
           );
-  
+
           return pattern.test(phone);
         },
         'شماره موبایل نامعتبر است'
       );
-  
+
       $.validator.addMethod(
         "landline_phone",
         function (value) {
           var phone = Services.convertToEnDigit(value);
-  
+
           var pattern = new RegExp(
             "^(?:(?:(?:\\+?|00)(98))|(0))?([0-9]{12})$",
             "i"
           );
-  
+
           return pattern.test(phone);
         },
         'شماره تلفن ثابت نامعتبر است'
       );
-  
+
       $.validator.addMethod(
         "bank_card_number",
         function (value) {
           var number = Services.convertToEnDigit(value);
-  
+
           if (number.length === 0) {
             return true;
           }
-  
+
           return /^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}(-[0-9]{3})?$/i.test(
             number
           );
         },
         'شماره کارت بانکی نامعتبر است'
       );
-  
+
       $.validator.addMethod("digits", function (value) {
         if (!!value && value.length > 0 && value.trim().length > 0)
           return /^[\u06F0-\u06F9\u0660-\u06690-9]+$/i.test(value);
-  
+
         return true;
       });
-  
+
       $.validator.addMethod(
         "company_economic_number",
         function (value) {
           value = Services.convertToEnDigit(value);
           var regex = new RegExp(/^(?!(\d)\1{9})\d{12}$/);
-  
+
           if (!regex.test(value)) {
             return false;
           }
-  
+
           return value.substring(0, 3) == "411";
         },
         'کد اقتصادی نادرست است.'
       );
-  
+
       $.validator.addMethod(
         "company_national_identity_number",
         function (value) {
           value = Services.convertToEnDigit(value);
           var regex = new RegExp(/^(?!(\d)\1{10})\d{11}$/);
-  
+
           if (!regex.test(value)) {
             return false;
           }
-  
+
           if (parseInt(value.substr(3, 6), 10) != 0) {
             var c = parseInt(value.substr(10, 1), 10);
             var d = parseInt(value.substr(9, 1), 10) + 2;
             var z = [29, 27, 23, 19, 17];
             var s = 0;
-  
+
             for (var i = 0; i < 10; i++) {
               s += (d + parseInt(value.substr(i, 1), 10)) * z[i % 5];
             }
-  
+
             s = s % 11;
-  
+
             if (s == 10) s = 0;
-  
+
             return c == s;
           }
-  
+
           return false;
         },
         'کد ملی نامعتبر است'
       );
-  
+
       // $.validator.addMethod('mobile_phone', function(value, element) {
       //     if ($.trim(value).length == 0) {
       //         return true;
@@ -29255,29 +29262,29 @@ var Sentry = function (n) {
       //
       //     return pattern.test(value);
       // }, 'Invalid phone format SMS');
-  
+
       $.validator.addMethod("email", function (value) {
         if ($.trim(value).length === 0) {
           return true;
         }
-  
+
         // eslint-disable-next-line no-useless-escape
         return /^(([^<>()\[\]\\\.,;:\s@"]+(\.[^<>()\[\]\\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(
           value
         );
       });
-  
+
       $.validator.addMethod(
         "email_phone",
         function (value, element) {
           if ($.trim(value).length === 0) {
             return true;
           }
-  
+
           if ($.validator.methods.mobile_phone.call(this, value, element)) {
             return true;
           }
-  
+
           return $.validator.methods.email.call(this, value, element);
         },
         'ایمیل یا شماره موبایل نامعتبر است'
@@ -29286,23 +29293,23 @@ var Sentry = function (n) {
         "selectric",
         function (value, element) {
           if ($.trim(value).length === 0) return false;
-  
+
           return $(element).val() !== "";
         },
         "سلام بر همه دوستان عزیز"
       );
-  
+
       // trim white spaces before validation
       $.each($.validator.methods, function (key, value) {
         $.validator.methods[key] = function () {
           if (arguments.length > 0) {
             arguments[0] = $.trim(arguments[0]);
           }
-  
+
           return value.apply(this, arguments);
         };
       });
-  
+
       $.validator.addMethod(
         "notOnlyNumber",
         function (value, element) {
@@ -29313,7 +29320,7 @@ var Sentry = function (n) {
         },
         "Not Only Number"
       );
-  
+
       $.validator.addMethod(
         "notEmailAddress",
         function (value, element) {
@@ -29327,7 +29334,7 @@ var Sentry = function (n) {
         },
         "Not Email Address"
       );
-  
+
       $.validator.addMethod(
         "price",
         function (value, element) {
@@ -29338,7 +29345,7 @@ var Sentry = function (n) {
         },
         'قیمت نامعتبر است'
       );
-  
+
       $.validator.addMethod(
         "url",
         function (value) {
@@ -29348,7 +29355,7 @@ var Sentry = function (n) {
         },
         'آدرس صفحه مورد نظر نامعتبر است'
       );
-  
+
       $.validator.addMethod(
         "dK_product",
         function (value) {
@@ -29358,7 +29365,7 @@ var Sentry = function (n) {
         },
         'لطفا آدرس یا کد محصول دیجی‌کالا را وارد نمایید'
       );
-  
+
       $.validator.addMethod(
         "shortComment",
         function (value) {
@@ -29367,7 +29374,7 @@ var Sentry = function (n) {
         },
         'لطفا نظرتان را کامل شرح دهید'
       );
-  
+
       $.validator.addMethod(
         "NotCompetitorWebsite",
         function (value) {
@@ -29382,7 +29389,7 @@ var Sentry = function (n) {
         },
         'متاسفانه از این وبسایت نمی‌توانید قیمتی ثبت کنید'
       );
-  
+
       $.validator.addMethod(
         "competitorProductURL",
         function (value) {
@@ -29391,7 +29398,7 @@ var Sentry = function (n) {
         },
         'لطفا آدرس دقیق صفحه محصول را وارد کنید'
       );
-  
+
       $.validator.addMethod(
         "competitorURL",
         function (value) {
@@ -29401,22 +29408,22 @@ var Sentry = function (n) {
         'آدرس صفحه مورد نظر نامعتبر است'
       );
     },
-  
+
     initCounter: function () {
       var $counter = $(".js-counter");
       var $counterCarts = $(".js-counter-carts"),
         $topBannerCounter = $(".js-counter-top-banner"),
         $plusEarlyCounter = $(".js-counter-plus-early");
-  
+
       if ($topBannerCounter.length > 0) {
         $topBannerCounter.each(function () {
           var $this = $(this),
             seconds = $(this).data("countdownseconds"),
             now;
-  
+
           now = new Date();
           now.setSeconds(now.getSeconds() + seconds);
-  
+
           $this.countdown({
             date: now,
             hoursOnly: false,
@@ -29428,21 +29435,21 @@ var Sentry = function (n) {
           });
         });
       }
-  
+
       $counter.each(function () {
         var $this = $(this),
           seconds = $(this).data("countdownseconds"),
           now;
-  
+
         if (!!$this.attr("data-countdownseconds") && !!seconds) {
           now = new Date();
           now.setSeconds(now.getSeconds() + seconds);
         } else {
           now = ("" + $(this).data("countdown")).replace(/-/g, "/");
         }
-  
+
         if (!now) return;
-  
+
         $this.countdown({
           date: now,
           hoursOnly: true,
@@ -29451,21 +29458,21 @@ var Sentry = function (n) {
           leadingZero: true
         });
       });
-  
+
       $counterCarts.each(function () {
         var $this = $(this),
           seconds = $(this).data("countdownseconds"),
           now;
-  
+
         if (!!$this.attr("data-countdownseconds") && !!seconds) {
           now = new Date();
           now.setSeconds(now.getSeconds() + seconds);
         } else {
           now = ("" + $(this).data("countdown")).replace(/-/g, "/");
         }
-  
+
         if (!now) return;
-  
+
         $this.countdown({
           date: now,
           hoursOnly: true,
@@ -29473,21 +29480,21 @@ var Sentry = function (n) {
           template: "<span>%h</span> : <span>%i</span> : <span>%s</span>"
         });
       });
-  
+
       $plusEarlyCounter.each(function () {
         var $this = $(this),
           seconds = $(this).data("countdownseconds"),
           now;
-  
+
         if (!!$this.attr("data-countdownseconds") && !!seconds) {
           now = new Date();
           now.setSeconds(now.getSeconds() + seconds);
         } else {
           now = ("" + $(this).data("countdown")).replace(/-/g, "/");
         }
-  
+
         if (!now) return;
-  
+
         $this.countdown({
           date: now,
           hoursOnly: true,
@@ -29496,12 +29503,12 @@ var Sentry = function (n) {
         });
       });
     },
-  
+
     initBox: function () {
       $(document).on("click", ".js-box-toggle", function (e) {
         var $this = $(this);
         var $content = $(".js-box-content");
-  
+
         if ($this.hasClass("is-hidden")) {
           $this.removeClass("is-hidden");
           $this.next($content).slideDown();
@@ -29509,9 +29516,9 @@ var Sentry = function (n) {
           $this.addClass("is-hidden");
           $this.next($content).slideUp();
         }
-  
+
         var SearchAction = window.SearchAction || null;
-  
+
         setTimeout(function () {
           if (SearchAction && SearchAction.stickySideBar) {
             SearchAction.stickySideBar.trigger("sticky_kit:recalc");
@@ -29519,14 +29526,14 @@ var Sentry = function (n) {
             SearchAction.stickySidebar.updateSticky();
           }
         }, 200);
-  
+
         e.preventDefault();
       });
     },
-  
+
     initHomeTopBox: function () {
       var swiperPromoBoxPager = $("<div />");
-  
+
       $(".js-promo-box .swiper-slide").each(function () {
         swiperPromoBoxPager.append(
           '<div class="swiper-pagination__item">' +
@@ -29534,7 +29541,7 @@ var Sentry = function (n) {
           "</div>"
         );
       });
-  
+
       var swiperPromoBox = new window.Swiper(".js-promo-box", {
         slidesPerView: 1,
         paginationClickable: true,
@@ -29549,12 +29556,12 @@ var Sentry = function (n) {
             swiperPromoBoxPager
               .find("div:eq(" + (current - 1) + ")")
               .addClass("is-active");
-  
+
             return swiperPromoBoxPager.html();
           }
         }
       });
-  
+
       new window.Swiper(".js-promo-single-features", {
         slidesPerView: 1,
         autoplay: {
@@ -29567,7 +29574,7 @@ var Sentry = function (n) {
           el: ".js-promo-single-features-pagination"
         }
       });
-  
+
       $(".swiper-pagination").on("click", ".swiper-pagination__item", function (
         e
       ) {
@@ -29575,7 +29582,7 @@ var Sentry = function (n) {
         e.preventDefault();
       });
     },
-  
+
     initBrandsSwiper: function () {
       new window.Swiper(".js-swiper-brands", {
         slidesPerView: 6,
@@ -29592,7 +29599,7 @@ var Sentry = function (n) {
         }
       });
     },
-  
+
     initSwiper: function () {
       new window.Swiper(".js-swiper-products", {
         slidesPerView: 6,
@@ -29622,14 +29629,14 @@ var Sentry = function (n) {
             var carouselType = activeInstance.$el
               .closest(".swiper-products-container")
               .attr("data-type");
-  
+
             if (typeof carouselType == "undefined") {
               return;
             }
             var pageNo = "pageNo" in activeInstance ? activeInstance.pageNo : 2;
-  
+
             activeInstance.pageNo = pageNo + 1;
-  
+
             // Services.ajaxGETRequestJSON(
             //     '/ajax/carousel/' + carouselType,
             //     {
@@ -29647,7 +29654,7 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       new window.Swiper(".js-swiper-user-history-products", {
         slidesPerView: 6,
         slidesPerGroup: 5,
@@ -29675,7 +29682,7 @@ var Sentry = function (n) {
           },
         },
       });
-  
+
       new window.Swiper(".js-swiper-products-promotion", {
         slidesPerView: 4,
         slidesPerGroup: 3,
@@ -29697,14 +29704,14 @@ var Sentry = function (n) {
             var carouselType = activeInstance.$el
               .closest(".swiper-products-container")
               .attr("data-type");
-  
+
             if (typeof carouselType == "undefined") {
               return;
             }
             var pageNo = "pageNo" in activeInstance ? activeInstance.pageNo : 2;
-  
+
             activeInstance.pageNo = pageNo + 1;
-  
+
             // Services.ajaxGETRequestJSON(
             //     '/ajax/carousel/' + carouselType,
             //     {
@@ -29722,7 +29729,7 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       new window.Swiper(".js-swiper-present", {
         slidesPerView: 3,
         slidesPerGroup: 2,
@@ -29755,14 +29762,14 @@ var Sentry = function (n) {
             var carouselType = activeInstance.$el
               .closest(".swiper-products-container")
               .attr("data-type");
-  
+
             if (typeof carouselType == "undefined") {
               return;
             }
             var pageNo = "pageNo" in activeInstance ? activeInstance.pageNo : 2;
-  
+
             activeInstance.pageNo = pageNo + 1;
-  
+
             // Services.ajaxGETRequestJSON(
             //     '/ajax/carousel/' + carouselType,
             //     {
@@ -29780,7 +29787,7 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       new window.Swiper(".js-swiper-related", {
         slidesPerView: 6,
         slidesPerGroup: 5,
@@ -29801,8 +29808,8 @@ var Sentry = function (n) {
           }
         }
       });
-  
-  
+
+
       new window.Swiper(".js-swiper-specials", {
         slidesPerView: 4,
         slidesPerGroup: 3,
@@ -29825,7 +29832,7 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       new window.Swiper(".js-swiper-specials--plus-early", {
         slidesPerView: 3,
         slidesPerGroup: 2,
@@ -29848,17 +29855,17 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       // this.initBrandsSwiper();
     },
-  
+
     appendNewItemsToSliderInstance: function ($swiper, items) {
       $swiper.appendSlide(items);
     },
-  
+
     createSliderItemTemplate: function (data) {
       var items = [];
-  
+
       $.each(data, function (k, v) {
         var tmpl =
           '<div class="swiper-slide">' +
@@ -29883,7 +29890,7 @@ var Sentry = function (n) {
           v.defaultListPrice ?
           v.defaultListPrice :
           "" + "</del>" + "</div> ";
-  
+
         if (v.discount && v.discount.length) {
           tmpl += '<div class="c-price__discount">';
           if (v.discount.type == "percent") {
@@ -29894,13 +29901,13 @@ var Sentry = function (n) {
           tmpl += "</div>";
         }
         tmpl += "</div></div>";
-  
+
         items.push(tmpl);
       });
-  
+
       return items;
     },
-  
+
     initMainSearchBar: function () {
       var overlay = $(".js-navi-overlay"),
         searchInput = $(".js-search-input"),
@@ -29910,34 +29917,34 @@ var Sentry = function (n) {
         lastSearchesElement = $('.js-last-searches'),
         lastSearches = window.Cookies.getJSON('user_search_keywords'),
         searchReset = $(".js-search-reset");
-  
+
       var search = function (val) {
         if (!!val && val.length > 0) {
           window.location = (window.page_search_url || "/search/") + "?q=" + encodeURIComponent(val);
         }
       };
-  
+
       var ServicesAutoSuggest = $.extend(false, Services, {
         ajaxBeforeSendCallback: function (jqXHR, settings) {
           settings.duplicateUrl = "/ajax/autosuggest/";
         }
       });
-  
+
       var self = this;
-  
+
       self.lastSearch = "";
       self.lastSearchResponse = null;
       self.lastFocusedItem = -1;
-  
+
       if (lastSearches) {
         setSearchHistory();
       }
-  
+
       function setSearchHistory() {
         $.map(lastSearches.reverse(), function (searchItem) {
           var queryParam = '?q=' + encodeURIComponent(searchItem),
             searchUrl = [location.origin, 'search', queryParam].join("/");
-  
+
           lastSearchesElement.append(
             '<li><a href="' +
             searchUrl +
@@ -29947,21 +29954,21 @@ var Sentry = function (n) {
           )
         });
       }
-  
+
       searchInput.off();
-  
+
       searchInput.on("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
       });
-  
+
       searchResults.on("click", function (e) {
         e.stopPropagation();
       });
-  
+
       searchInput.on("focus click", function () {
         var trendsList = $(".js-trends-results");
-  
+
         if (
           $(this)
           .val()
@@ -29970,13 +29977,13 @@ var Sentry = function (n) {
           suggestionList.hide().empty();
           resultList.hide().empty();
         }
-  
+
         if (!!$(this).val() && $(this).val().length) {
           searchInput.trigger(jQuery.Event("keyup"));
-  
+
           return;
         }
-  
+
         function showTrends(trends_result) {
           trendsList.empty();
           if (window.trends_images) {
@@ -29996,7 +30003,7 @@ var Sentry = function (n) {
               );
             });
           }
-  
+
           searchResults
             .addClass("is-active")
             .parent(".js-search")
@@ -30018,13 +30025,13 @@ var Sentry = function (n) {
             .parent()
             .show();
         }
-  
+
         if (!!self.trends && self.trends.length > 0) {
           showTrends(self.trends);
-  
+
           return;
         }
-  
+
         ServicesAutoSuggest.ajaxGETRequestJSON(
           "/ajax/autosuggest/", {
             q: ""
@@ -30048,18 +30055,18 @@ var Sentry = function (n) {
           "execute"
         );
       });
-  
+
       $(".js-header-search-button, .js-search-keyword-link").on(
         "click",
         function () {
           var e = jQuery.Event("keyup");
-  
+
           e.which = 13;
           e.keyCode = 13;
           searchInput.trigger(e);
         }
       );
-  
+
       $(document).click(function () {
         searchResults
           .removeClass("is-active")
@@ -30067,7 +30074,7 @@ var Sentry = function (n) {
           .removeClass("is-active");
         overlay.removeClass("is-active");
       });
-  
+
       var resultList = $(".js-autosuggest-results-list"),
         suggestionList = $(".js-results-list"),
         trendsList = $(".js-trends-results"),
@@ -30076,9 +30083,9 @@ var Sentry = function (n) {
         down = 40,
         esc = 27,
         ent = 13;
-  
+
       UpdateInputReset();
-  
+
       function UpdateInputReset() {
         if (searchInput.val()) {
           searchReset.removeClass("u-hidden");
@@ -30086,18 +30093,18 @@ var Sentry = function (n) {
           searchReset.addClass("u-hidden");
         }
       }
-  
+
       searchReset.on("click", function () {
         searchInput.val("");
         UpdateInputReset();
       });
-  
+
       searchInput.on("keyup focus", function () {
         UpdateInputReset();
       });
-  
+
       var timeout = null;
-  
+
       searchInput.on("keyup", function (e) {
         var processResponse = function (data) {
           self.lastSearch = data.query;
@@ -30109,7 +30116,7 @@ var Sentry = function (n) {
             .hide();
           lastSearchesElement
             .hide();
-  
+
           if (
             "auto_complete" in data &&
             "search_result" in data &&
@@ -30127,7 +30134,7 @@ var Sentry = function (n) {
               if (data.auto_complete.length > 0) suggestionList.empty().show();
               if (data.search_result.length > 0 || data.advance_links.length > 0)
                 resultList.empty().show();
-  
+
               emptyList.hide();
               if (window.isModuleActive("search_new_style")) {
                 $.map(data.advance_links, function (element) {
@@ -30154,7 +30161,7 @@ var Sentry = function (n) {
                     "</span></a></li>"
                   );
                 });
-  
+
                 $.map(data.search_result, function (element) {
                   resultList.append(
                     '<li><a href="' +
@@ -30166,7 +30173,7 @@ var Sentry = function (n) {
                     "</span></a></li>"
                   );
                 });
-  
+
                 $.map(data.auto_complete, function (element) {
                   suggestionList.append(
                     '<li><a href="' +
@@ -30188,7 +30195,7 @@ var Sentry = function (n) {
                     "</span></a></li>"
                   );
                 });
-  
+
                 $.map(data.advance_links, function (element) {
                   resultList.append(
                     '<li><a href="' +
@@ -30200,7 +30207,7 @@ var Sentry = function (n) {
                     "</span></a></li>"
                   );
                 });
-  
+
                 $.map(data.auto_complete, function (element) {
                   suggestionList.append(
                     '<li><a href="' +
@@ -30216,16 +30223,16 @@ var Sentry = function (n) {
             suggestionList.hide().empty();
             resultList.hide().empty();
           }
-  
+
           if ("trends_result" in data && data.trends_result.length > 0) {
             self.trends = data.trends_result;
           }
         };
-  
+
         var key = e.which;
-  
+
         if (key === up || key === down || key === esc) return;
-  
+
         if (key === ent) {
           var val;
           if ((val = $(this).val())) {
@@ -30234,7 +30241,7 @@ var Sentry = function (n) {
         } else {
           var searchInputValue = $(this).val();
           var searchInputValueL = searchInputValue.length;
-  
+
           searchKeyword.text(searchInputValue);
           searchKeywordLink.attr("href", "/search/?q=" + searchInputValue);
           if (searchInputValueL > 1) {
@@ -30247,9 +30254,9 @@ var Sentry = function (n) {
             }
             if (self.lastSearch === searchInputValue && !!self.lastSearchResponse)
               return processResponse(self.lastSearchResponse);
-  
+
             if (timeout) clearTimeout(timeout);
-  
+
             timeout = setTimeout(function () {
               ServicesAutoSuggest.ajaxGETRequestJSON(
                 "/ajax/autosuggest/", {
@@ -30274,20 +30281,20 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       searchInput.on("keydown", function (e) {
         var key = e.which;
-  
+
         if ([up, down, ent].indexOf(key) === -1) return;
-  
+
         e.preventDefault();
         e.stopPropagation();
-  
+
         var lists = resultList.find("li").add(suggestionList.find("li"));
-  
+
         if (key === ent && lists.filter(".is-hover").length > 0) {
           searchInput.off("keyup");
-  
+
           return (window.location.href = lists
             .filter(".is-hover")
             .find("a")
@@ -30295,22 +30302,22 @@ var Sentry = function (n) {
         } else if (key === ent) {
           return;
         }
-  
+
         if (key === up || key === down) lists.removeClass("is-hover");
-  
+
         var shouldGoTo = self.lastFocusedItem;
-  
+
         if (key === up) {
           shouldGoTo = shouldGoTo - 1;
           if (shouldGoTo < 0) shouldGoTo = lists.length - 1;
         } else if (key === down) {
           shouldGoTo = (shouldGoTo + 1) % lists.length;
         }
-  
+
         self.lastFocusedItem = shouldGoTo;
-  
+
         var focusedItem = lists.eq(shouldGoTo);
-  
+
         focusedItem.addClass("is-hover");
         searchInput.val(
           focusedItem.parent().is(suggestionList) ?
@@ -30319,42 +30326,42 @@ var Sentry = function (n) {
         );
       });
     },
-  
+
     initLoginFormModal: function () {
       var $form = $("#loginFormModal");
-  
+
       if (!$form.length) {
         return false;
       }
-  
+
       $(".login-button-js").click(function () {
         if (!$form.valid()) {
           return false;
         }
-  
+
         $.ajax({
           type: "POST",
           url: "/users/login/?json=1",
           success: function (response) {
             if (response.status == "error") {
               $("#loginFormError").show();
-  
+
               return false;
             }
-  
+
             location.reload();
           },
           data: $form.serialize()
         });
-  
+
         return false;
       });
-  
+
       $form
         .find("input")
         .first()
         .focus();
-  
+
       $form.validate({
         rules: {
           "login[email_phone]": {
@@ -30382,52 +30389,52 @@ var Sentry = function (n) {
         }
       });
     },
-  
+
     ajaxError401Response: function () {
       this.getUser().showLoginForm();
     },
-  
+
     initCart: function () {
       var userCart = [];
-  
+
       if (this.user.isLogged()) {
         var $metaData = $("#topBarMeta");
-  
+
         if (!$metaData.length) {
           return;
         }
         userCart = $metaData.data("cart_items");
       } else {
         var cartItemsCookie = window.Cookies.get("cart_items");
-  
+
         if (cartItemsCookie) {
           userCart = $.parseJSON(cartItemsCookie);
         }
       }
-  
+
       if (!!userCart && userCart.length > 0) {
         for (var i = 0; i < userCart.length; ++i) {
           userCart[i].item = "" + userCart[i].item;
         }
       }
     },
-  
+
     initRemoveFromCart: function () {
       var thiz = this,
         cartButton = $(".c-header__btn-adding.js-dropdown-toggle");
-  
+
       $(document).on("click", "#mini-cart", function (e) {
         e.stopPropagation();
       });
-  
+
       $(document).on("click", ".js-mini-cart-remove-item", function (e) {
         e.preventDefault();
-  
+
         var id = $(this).data("id");
         var productId = $(this).data("product");
         var variantId = $(this).data('variant');
         var variantData = $(this).data("enhanced-ecommerce");
-  
+
         DKConfirm(
           'آیا مایل به حذف این کالا هستید؟',
           function () {
@@ -30455,19 +30462,19 @@ var Sentry = function (n) {
                 }
                 $("#mini-cart").html(response.data);
                 thiz.initDropdownMenus();
-  
+
                 window.cart = response.cartData;
-  
+
                 if (isModuleActive('dk_pdp_redesign')) {
                   Main.initProductCount();
                 }
-  
+
                 var $productItem = $(
                   '.js-product-box[data-id="' +
                   productId +
                   '"], .js-product-attributes'
                 );
-  
+
                 if ($productItem.length > 0) {
                   $productItem
                     .find(".js-add-to-cart-container")
@@ -30475,7 +30482,7 @@ var Sentry = function (n) {
                   $productItem.find(".js-fast-shopping").removeClass("u-hidden");
                   $productItem.find(".js-add-to-cart").show();
                   $productItem.find(".js-select-quantity").hide();
-  
+
                   // TODO fix PDP variants button
                   /*if (!!variants) {
                                                                   for (var key in variants) {
@@ -30492,7 +30499,7 @@ var Sentry = function (n) {
               false,
               true
             );
-  
+
             try {
               // Google Analytics
               ga("ec:addProduct", variantData);
@@ -30519,7 +30526,7 @@ var Sentry = function (n) {
         );
       });
     },
-  
+
     initProductCount: function () {
       if (!window.cart || !window.productId) return;
       var productCount = $('.js-product-quantity');
@@ -30542,7 +30549,7 @@ var Sentry = function (n) {
       }
       productCount.text(Services.convertToFaDigit(count));
     },
-  
+
     initFooter: function () {
       $("#enamad").on("click", function (e) {
         e.preventDefault();
@@ -30552,7 +30559,7 @@ var Sentry = function (n) {
           "toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30"
         );
       });
-  
+
       $("#resaneh").on("click", function (e) {
         e.preventDefault();
         window.open(
@@ -30561,11 +30568,11 @@ var Sentry = function (n) {
           "toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30"
         );
       });
-  
+
       $("#js-footer-readmore").on("click", function (e) {
         e.preventDefault();
         var readMoreContentElem = $("#js-footer-readmore-content");
-  
+
         if (readMoreContentElem.is(":visible")) {
           readMoreContentElem.hide();
           $(this).text("مشاهده بیشتر");
@@ -30574,18 +30581,18 @@ var Sentry = function (n) {
           $(this).text("بستن");
         }
       });
-  
+
       $("#js-jump-to-top").on("click", function (e) {
         e.preventDefault();
         // $("html,body").animate({scrollTop: 0}, 500);
         $("html,body").scrollTop(0);
       });
     },
-  
+
     initDropdownMenus: function () {
       var dropDowns = $(".js-dropdown-toggle");
       var notifAnimation = $(".js-notif-animation");
-  
+
       dropDowns.off("click");
       dropDowns.on("click", function (e) {
         e.preventDefault();
@@ -30593,7 +30600,7 @@ var Sentry = function (n) {
         if (isModuleActive('new_desktop_header')) {
           $('.js-dropdown-toggle.open, .js-dropdown-container.open').removeClass('open');
         }
-  
+
         $(".js-dropdown-menu")
           .not($(this).next(".js-dropdown-menu"))
           .hide();
@@ -30623,22 +30630,22 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       $(document).click(function () {
         jQuery(".js-dropdown-menu").hide();
         $(".js-notif-animation").removeClass(
           "c-header__btn-user--has-notif-no-animation"
         );
-  
+
         if (isModuleActive('new_desktop_header')) {
           $('.js-dropdown-toggle.open, .js-dropdown-container.open').removeClass('open');
         }
         /*/!* Close variants dropdown on document click *!/
                           if (window.isModuleActive('product_redesign')) {
                               e.stopPropagation();
-  
+
                               var $moreVariants = $('.js-more-variants-button');
-  
+
                               if ($moreVariants.has(e.target).length === 0
                                   && !$moreVariants.is($(e.target))) {
                                   $('.js-product-variants').hide();
@@ -30646,7 +30653,7 @@ var Sentry = function (n) {
                           }*/
       });
     },
-  
+
     initResetModalForm: function () {
       $(document).on("opening", "[data-remodal-id]", function () {
         if ($(this).find("form").length) {
@@ -30657,20 +30664,20 @@ var Sentry = function (n) {
         }
       });
     },
-  
+
     renderMaskText: function () {
       var $maskWrapper = $(".js-mask");
-  
+
       $maskWrapper.each(function () {
         var $this = $(this),
           $text = $this.find(".js-mask__text"),
           $handler = $this.find(".js-mask_handler"),
           $open = $this.find(".js-mask_open");
-  
+
         if ($this.is(".is-masked")) return;
-  
+
         var maxHeight = 0;
-  
+
         try {
           maxHeight = parseInt($text.css("max-height").replace("px", ""));
         } catch (e) {
@@ -30679,14 +30686,14 @@ var Sentry = function (n) {
         $text.css("max-height", "unset");
         $text.css("height", "unset");
         var height = $text.outerHeight();
-  
+
         if (height <= maxHeight) return;
         $text.css("max-height", maxHeight);
         $this.addClass("is-masked");
         $handler.show();
         $handler.on("click", function (e) {
           var _this = $(this);
-  
+
           e.preventDefault();
           $text.toggleClass("is-active");
           _this.toggleClass("is-active");
@@ -30700,7 +30707,7 @@ var Sentry = function (n) {
         });
         $open.on('click', function (e) {
           var _this = $(this);
-  
+
           e.preventDefault();
           $text.addClass("is-active");
           _this.addClass("is-active");
@@ -30708,37 +30715,37 @@ var Sentry = function (n) {
         })
       });
     },
-  
+
     convertToFaDigit: function (a) {
       var b = a;
-  
+
       for (var c = 48; c <= 57; c++) {
         var d = String.fromCharCode(c);
         var e = String.fromCharCode(c + 1728);
-  
+
         b = b.replace(new RegExp(d.toString(), "g"), e.toString());
       }
-  
+
       return b;
     },
-  
+
     initGeneralInformationModal: function () {
       var generalInformationModal = $("[data-remodal-id=information]").remodal();
       var generalInformationModalDom = $("[data-remodal-id=information]");
-  
+
       window.DKAlert = function (message, buttonText, extraClass, buttonCallback) {
         message = message || "";
         buttonText = buttonText || "باشه";
         extraClass = extraClass || "";
-  
+
         generalInformationModalDom.addClass(extraClass);
-  
+
         var modalText = $(".js-remodal-general-information__text"),
           modalApprove = $(".js-remodal-general-information__button--approve");
-  
+
         modalText.html(Services.nl2br(message));
         modalApprove.text(buttonText);
-  
+
         modalApprove.on("click", function () {
           generalInformationModal.close();
           if (buttonCallback)
@@ -30747,10 +30754,10 @@ var Sentry = function (n) {
         generalInformationModal.open();
       };
     },
-  
+
     initGeneralAlertModal: function () {
       var generalAlertModal = $("[data-remodal-id=alert]").remodal();
-  
+
       window.DKConfirm = function (
         message,
         approveCallback,
@@ -30764,26 +30771,26 @@ var Sentry = function (n) {
         rejectCallback = rejectCallback || function () {};
         approveText = approveText || "بله";
         rejectText = rejectText || "خیر";
-  
+
         var modalText = $(".js-remodal-general-alert__text"),
           modalCancel = $(".js-remodal-general-alert__button--cancel"),
           modalApprove = $(".js-remodal-general-alert__button--approve"),
           modalDescription = $(".js-remodal-general-alert__description");
-  
+
         if (description) {
           modalDescription.text(description);
           modalDescription.show();
         } else {
           modalDescription.hide();
         }
-  
+
         modalText.text(message);
         modalCancel.text(rejectText);
         modalApprove.text(approveText);
-  
+
         modalCancel.off("click");
         modalApprove.off("click");
-  
+
         modalCancel.on("click", function () {
           generalAlertModal.close();
           rejectCallback();
@@ -30795,30 +30802,30 @@ var Sentry = function (n) {
         generalAlertModal.open();
       };
     },
-  
+
     initErrorMessages: function () {
       var errorButton = $(".js-message-error-button");
-  
+
       errorButton.on("click", function () {
         $(this)
           .closest(".js-message-error")
           .hide();
       });
-  
+
       $(".js-notice-button").on("click", function () {
         $(this)
           .closest(".js-notice")
           .hide();
         if (this.timer) clearTimeout(this.timer);
       });
-  
+
       $(".js-notice").each(function (index, item) {
         this.timer = setTimeout(function () {
           $(item).fadeOut(300);
         }, 4000);
       });
     },
-  
+
     initBackButtons: function () {
       var documentReferrer = document.referrer;
       var referrerHost = !!documentReferrer ?
@@ -30834,7 +30841,7 @@ var Sentry = function (n) {
       var backButtonIsActive =
         location.hostname + location.port === referrerHost + referrerPort;
       var $backButton = $(".js-back-history-button");
-  
+
       if (!backButtonIsActive) {
         $backButton.addClass("disabled");
       }
@@ -30844,12 +30851,12 @@ var Sentry = function (n) {
         }
       });
     },
-  
+
     initFastShoppingConfirmModal: function () {
       var fastShoppingConfirmModal = $(
         '[data-remodal-id="fmcg-modal"]'
       ).remodal();
-  
+
       window.fastShoppingConfirm = function (
         approveCallback,
         rejectCallback,
@@ -30860,16 +30867,16 @@ var Sentry = function (n) {
         rejectCallback = rejectCallback || function () {};
         approveText = approveText || "بله";
         rejectText = rejectText || "خیر";
-  
+
         var modalCancel = $(".js-fmcg-modal-reject"),
           modalApprove = $(".js-fmcg-modal-approve");
-  
+
         modalCancel.text(rejectText);
         modalApprove.text(approveText);
-  
+
         modalCancel.off("click");
         modalApprove.off("click");
-  
+
         modalCancel.on("click", function () {
           fastShoppingConfirmModal.close();
           rejectCallback();
@@ -30881,15 +30888,15 @@ var Sentry = function (n) {
         fastShoppingConfirmModal.open();
       };
     },
-  
+
     initQuickView: function () {
       var thiz = this;
-  
+
       $(document).on("click", ".js-quick-view-more-variants-button", function () {
         var variants = $(this)
           .closest(".js-product-variants")
           .find(".js-c-ui-variant--extra");
-  
+
         variants.toggleClass("c-ui-variant--hide");
         if (variants.hasClass("c-ui-variant--hide")) {
           $(this).text(
@@ -30899,16 +30906,16 @@ var Sentry = function (n) {
           $(this).text("نمایش کمتر");
         }
       });
-  
+
       thiz.quickViewCacheEnabled = false;
       thiz.quickViewCache = {};
-  
+
       if (thiz.quickViewCacheEnabled) {
         $(document).on("closed", "[data-remodal-id=quick-view]", function () {
           var $this = $(this),
             s = $this.find("select"),
             sv = s.val();
-  
+
           $this.find("option").attr("selected", false);
           $this.find('option[value="' + sv + '"]').attr("selected", true);
           $this.find(".js-ui-select").selectric("destroy");
@@ -30917,14 +30924,14 @@ var Sentry = function (n) {
             .html();
         });
       }
-  
+
       $(document).on("click", ".js-fast-shopping.has-more .js-add-to-cart-container", function (e) {
         var $this = $(this),
           $productBox = $this.closest('.js-fast-shopping.has-more');
-  
+
         e.stopPropagation();
         e.preventDefault();
-  
+
         if (
           $productBox.hasClass("js-fast-shopping-confirm") &&
           $productBox.find(".is-added").length === 0 &&
@@ -30942,35 +30949,35 @@ var Sentry = function (n) {
         }
       });
     },
-  
+
     handleQuickView: function (productElement) {
       var thiz = this;
-  
+
       thiz.targetElement = productElement;
       thiz.targetProductId = productElement.data("id");
-  
+
       var productId = productElement.data("id");
-  
+
       if (thiz.quickViewCacheEnabled && !!thiz.quickViewCache[productId]) {
         var $quickViewSection = $(".js-quick-view-section");
-  
+
         $quickViewSection.html(thiz.quickViewCache[productId]);
         var a = $quickViewSection.empty().append(thiz.quickViewCache[productId]);
-  
+
         a.find("select").val(a.find("option[selected]").attr("value"));
         $quickViewSection.find("select").selectric("init");
         $("[data-remodal-id=quick-view]")
           .remodal()
           .open();
-  
+
         return;
       }
-  
+
       Services.ajaxGETRequestJSON(
         "/ajax/product/quick-view/" + productId + "/", {},
         function (response) {
           var _quickViewSection = $(".js-quick-view-section");
-  
+
           _quickViewSection.html(response.html);
           if (thiz.quickViewCacheEnabled) {
             thiz.quickViewCache[productId] = response.html;
@@ -30988,7 +30995,7 @@ var Sentry = function (n) {
               .text('ناموجود')
               .css("color", "#ABABAB");
           }
-  
+
           if (thiz.targetElement.find(".js-fresh-badge").length > 0) {
             thiz.targetElement.find(".js-fresh-badge").remove();
           }
@@ -30997,10 +31004,10 @@ var Sentry = function (n) {
         true
       );
     },
-  
+
     initAddToCart: function () {
       var thiz = this;
-  
+
       $(document).on("click", ".js-product-add-to-card", function (e) {
         e.preventDefault();
         var $this = $(this);
@@ -31019,13 +31026,13 @@ var Sentry = function (n) {
         } else {
           thiz.handleListPageAddToCart($this);
         }
-  
+
         try {
           var $productLink, $productImage, $itemEnhancedEcommerce, $productBox;
-  
+
           if ($(this).data("enhanced-ecommerce")) {
             $productBox = $(this).closest(".c-quick-view__content");
-  
+
             $productLink = $productBox
               .find(".c-quick-view__details")
               .find(".c-quick-view__show-full-container")
@@ -31038,10 +31045,10 @@ var Sentry = function (n) {
             $itemEnhancedEcommerce = $(this).data("enhanced-ecommerce");
           } else {
             $productBox = $(this).closest(".js-product-box");
-  
+
             $itemEnhancedEcommerce = $productBox.data("enhanced-ecommerce");
             var $aTagProductBox = $productBox.find(".js-product-item");
-  
+
             $productLink = $aTagProductBox.attr("href");
             $productImage = $aTagProductBox.find("img").attr("src");
           }
@@ -31050,16 +31057,16 @@ var Sentry = function (n) {
           adro("tag", "cart.item.code", $itemEnhancedEcommerce.name);
           adro("tag", "cart.item.link", $productLink);
           adro("tag", "cart.item.image", $productImage);
-  
+
         } catch (error) {
           //ignore adro tag
         }
       });
-  
+
       $(document).on("click", ".js-product-page-add-to-card", function (e) {
         e.preventDefault();
         var $this = $(this);
-  
+
         if (
           $this
           .parent(".js-add-to-cart-container")
@@ -31077,7 +31084,7 @@ var Sentry = function (n) {
         } else {
           thiz.handleProductPageAddToCart($this);
         }
-  
+
         if (window.ecpd2 && window.adro) {
           adro("event", "cart.item_added");
           adro("tag", "cart.item.name", window.ecpd2.title);
@@ -31086,43 +31093,43 @@ var Sentry = function (n) {
           adro("tag", "cart.item.image", window.ecpd2.image_url);
         }
       });
-  
+
       $(document).on("click", ".js-cart-page-add-to-cart", function (e) {
         e.preventDefault();
         var $this = $(this);
-  
+
         if (isModuleActive('data_layer') && window.IndexAction) {
           var productId = $this.data('product-id');
-  
+
           window.IndexAction.setGAAddToCartImpressionEvent(productId);
         }
-  
+
         if (isModuleActive('lazy_actions')) {
           $this.css('pointer-events', 'none');
           setTimeout(function () {
             $this.css('pointer-events', 'auto');
           }, 5000);
         }
-  
+
         $(location).attr("href", $(this).attr("href"));
       });
-  
+
       $(document).on("click", ".js-product-quick-filter", function (e) {
         var $this = $(this);
-  
+
         e.stopPropagation();
         e.preventDefault();
-  
+
         var productId = $this.data("product");
         var variantId = $this.data("variant");
         var dropUpContainer = $this.closest(".is-detailed");
-  
+
         dropUpContainer.fadeTo(250, 0.3);
         Services.ajaxGETRequestHTML(
           "/ajax/product/quick-view/" + productId + "/?variant_id=" + variantId, {},
           function (html) {
             var section = $(".js-quick-view-section");
-  
+
             section.html(html.data.html);
             section.find("select").selectric("init");
           },
@@ -31130,7 +31137,7 @@ var Sentry = function (n) {
           false
         );
       });
-  
+
       $(document).on("change", ".js-quick-add-to-cart, .js-quick-carousel-add-to-cart", function () {
         var $this = $(this);
         thiz.targetElement = $this;
@@ -31138,7 +31145,7 @@ var Sentry = function (n) {
           $this.val() || $this.find("option:selected").attr("value")
         );
         var variantId = $this.data("variant");
-  
+
         if (quantity === 0) {
           DKConfirm(
             'آیا مایل به حذف این کالا هستید؟',
@@ -31149,28 +31156,28 @@ var Sentry = function (n) {
                   if (isModuleActive('data_layer')) {
                     Main.setImpressionEventOnAjax(response.data_layer);
                   }
-  
+
                   $this.data("mode", "add");
                   // $(':selected', $this).addClass('u-hidden');
-  
+
                   window.cart = response.cartData;
-  
+
                   if (isModuleActive('dk_pdp_redesign')) {
                     Main.initProductCount();
                     $('.js-product-quantity-holder').addClass('u-hidden');
                     $('.js-product-atc-holder').removeClass('u-hidden');
                   }
-  
+
                   /*if (!!window.cart.itemCount) {
                                                                   $('.js-cart-count').attr('data-counter', Services.convertToFaDigit(window.cart.itemCount));
                                                               } else {
                                                                   $('.js-cart-count').attr('data-counter', Services.convertToFaDigit(0));
                                                               }*/
-  
+
                   var $parent = $this.closest(
                     ".js-fast-shopping, .js-add-to-cart-container"
                   );
-  
+
                   $parent.removeClass("is-added");
                   $parent.find(".js-select-quantity, .js-quick-carousel-add-to-cart").hide();
                   $parent.find(".js-select-quantity select, .js-quick-carousel-add-to-cart select").selectric("init");
@@ -31179,13 +31186,13 @@ var Sentry = function (n) {
                     .show()
                     .css("display", "inline-flex");
                   $(".js-product-page-add-to-card").show();
-  
+
                   $(".js-added-notice").addClass("u-hidden");
                   $(".js-existing-notice").addClass("u-hidden");
-  
+
                   thiz.updateQuickViewProduct(response);
                   thiz.updateMiniCart(response);
-  
+
                   /*if (!!window.cart.variants[variantId] && !!thiz.quickViewCache[window.cart[variantId].productId]) {
                                                                   delete thiz.quickViewCache[window.cart[variantId].productId];
                                                               }*/
@@ -31194,9 +31201,9 @@ var Sentry = function (n) {
                     $this.hasClass("is-quick-view")
                   ) {
                     var enhancedEcommerce = $this.data("enhanced-ecommerce") || {};
-  
+
                     enhancedEcommerce.quantity = 0;
-  
+
                     try {
                       ga("ec:addProduct", enhancedEcommerce);
                       ga("ec:setAction", "remove");
@@ -31232,15 +31239,15 @@ var Sentry = function (n) {
                 .selectric("init");
             }
           );
-  
+
           return;
         }
-  
+
         var url =
           $this.data("mode") === "add" ?
           "/cart/add/" + variantId + "/" + quantity + "/?is_quick_view=true" :
           "/cart/change/" + variantId + "/" + quantity + "/?is_quick_view=true";
-  
+
         Services.ajaxGETRequestJSON(
           url, {},
           function (response) {
@@ -31251,23 +31258,23 @@ var Sentry = function (n) {
             $this.data("mode", "change");
             $this.data("cart-item", response.cartItemId);
             window.cart = response.cartData;
-  
+
             if (isModuleActive('dk_pdp_redesign')) {
               Main.initProductCount();
             }
-  
+
             $(".js-added-notice").removeClass("u-hidden");
             $(".js-existing-notice").addClass("u-hidden");
-  
+
             /*if (!!response.cartData.itemCount) {
                                               $('.js-cart-count').attr('data-counter', Services.convertToFaDigit(window.cart.itemCount));
                                           } else {
                                               $('.js-cart-count').attr('data-counter', Services.convertToFaDigit(0));
                                           }*/
-  
+
             thiz.updateQuickViewProduct(response);
             thiz.updateMiniCart(response);
-  
+
             if (isModuleActive('also_bought_modal') && $('.js-also-bought-modal').length > 0) {
               $('.js-also-bought-modal').remodal().open();
               Main.initSwiper();
@@ -31284,7 +31291,7 @@ var Sentry = function (n) {
         );
         if ($(this).hasClass("is-plp") || $(this).hasClass("is-quick-view")) {
           var enhancedEcommerce = $this.data("enhanced-ecommerce") || {};
-  
+
           var gaDimensionData = {
             "page-path": window.decodeURI(document.URL),
             "referrer-path": window.decodeURI(document.referrer),
@@ -31292,7 +31299,7 @@ var Sentry = function (n) {
             "variant-id": variantId,
             "cart-id": typeof window.cart == "undefined" ? "" : window.cart.cartId
           };
-  
+
           if (enhancedEcommerce.quantity === 0 && quantity === 1) {
             enhancedEcommerce.quantity = quantity;
             try {
@@ -31343,7 +31350,7 @@ var Sentry = function (n) {
           }
         }
       });
-  
+
       $(document).on("click", ".js-mini-buy-box-product-counter", function () {
         var $this = $(this);
         thiz.targetElement = $('.js-product-summary');
@@ -31353,7 +31360,7 @@ var Sentry = function (n) {
         var cartItem = $this.data("id");
         $('.js-current-quantity').data('status', 'general');
         if (!cartItem || !variantId) return;
-  
+
         if (quantity === 0) {
           DKConfirm(
             'آیا مایل به حذف این کالا هستید؟',
@@ -31364,9 +31371,9 @@ var Sentry = function (n) {
                   if (isModuleActive('data_layer')) {
                     Main.setImpressionEventOnAjax(response.data_layer);
                   }
-  
+
                   window.cart = response.cartData;
-  
+
                   if (isModuleActive('dk_pdp_redesign')) {
                     Main.initProductCount();
                     $('.js-current-quantity').data('status', 'removed');
@@ -31374,7 +31381,7 @@ var Sentry = function (n) {
                     $('.js-product-quantity-holder').addClass('u-hidden');
                     $('.js-product-atc-holder').removeClass('u-hidden');
                   }
-  
+
                   var $parent = $('.js-product-summary').find(
                     ".js-fast-shopping, .js-add-to-cart-container"
                   );
@@ -31386,13 +31393,13 @@ var Sentry = function (n) {
                     .show()
                     .css("display", "inline-flex");
                   $(".js-product-page-add-to-card").show();
-  
+
                   $(".js-added-notice").addClass("u-hidden");
                   $(".js-existing-notice").addClass("u-hidden");
-  
+
                   thiz.updateQuickViewProduct(response);
                   thiz.updateMiniCart(response);
-  
+
                 },
                 function (response) {
                   if (response.errors !== undefined) {
@@ -31411,20 +31418,20 @@ var Sentry = function (n) {
           );
           return;
         }
-  
+
         var currentQuantity = $('.js-current-quantity').text();
         var newQuantity = parseInt(Services.convertToEnDigit(currentQuantity));
-  
+
         if (mode === "add") {
           $('.js-product-counter-minus').removeClass('u-hidden');
           $('.js-product-counter-trash').addClass('u-hidden');
         }
-  
+
         var url = mode === "add" ?
           "/cart/add/" + variantId + "/" + 1 + "/?is_quick_view=true" :
           mode === "minus" ?
           "/cart/change/" + variantId + "/" + (newQuantity - 1) + "/?is_quick_view=true" : "";
-  
+
         Services.ajaxGETRequestJSON(
           url, {},
           function (response) {
@@ -31433,17 +31440,17 @@ var Sentry = function (n) {
             }
             $this.data("cart-item", response.cartItemId);
             window.cart = response.cartData;
-  
+
             if (isModuleActive('dk_pdp_redesign')) {
               Main.initProductCount();
             }
-  
+
             $(".js-added-notice").removeClass("u-hidden");
             $(".js-existing-notice").addClass("u-hidden");
-  
+
             thiz.updateQuickViewProduct(response);
             thiz.updateMiniCart(response);
-  
+
             if (isModuleActive('also_bought_modal') && $('.js-also-bought-modal').length > 0) {
               $('.js-also-bought-modal').remodal().open();
               Main.initSwiper();
@@ -31460,7 +31467,7 @@ var Sentry = function (n) {
         );
       });
     },
-  
+
     handleListPageAddToCart: function (buttonElement) {
       // buttonElement.closest('.js-add-to-cart-container').addClass('is-added');
       var select = buttonElement.parent().find(".js-select-quantity select, .js-quick-carousel-add-to-cart select");
@@ -31479,7 +31486,7 @@ var Sentry = function (n) {
       select.change();
       select.selectric("init");
     },
-  
+
     handleProductPageAddToCart: function (buttonElement) {
       buttonElement
         .parent()
@@ -31487,7 +31494,7 @@ var Sentry = function (n) {
         .show()
         .css("display", "flex");
       var select = buttonElement.parent().find(".js-select-quantity select, .js-quick-carousel-add-to-cart select");
-  
+
       buttonElement.hide();
       select.val(
         select
@@ -31501,10 +31508,10 @@ var Sentry = function (n) {
       select.change();
       select.selectric("init");
     },
-  
+
     updateQuickViewProduct: function (data) {
       var thiz = this;
-  
+
       if (!!thiz.targetElement &&
         thiz.targetElement.find(".js-product-show-more").length > 0
       ) {
@@ -31514,7 +31521,7 @@ var Sentry = function (n) {
           var select = thiz.targetElement
             .find(".js-product-show-more-select")
             .find("select");
-  
+
           select
             .find("option")
             .first()
@@ -31546,7 +31553,7 @@ var Sentry = function (n) {
         }
       }
     },
-  
+
     updateQuickViewProductError: function () {
       this.targetElement
         .closest(".js-add-to-cart-container")
@@ -31566,12 +31573,12 @@ var Sentry = function (n) {
         .closest(".js-product-show-more-button")
         .removeClass("u-hidden");
     },
-  
+
     updateMiniCart: function (response) {
       $("#mini-cart").html(response.miniCartData);
       this.initDropdownMenus();
     },
-  
+
     initLuckyDrawCounter: function () {
       var $counter = $(".js-dc-counter"),
         $days = $counter.find(".js-dc-counter-days"),
@@ -31581,27 +31588,27 @@ var Sentry = function (n) {
         endTime = Date.parse(window.digiclubLuckyDrawEndTime) / 1000,
         now = Date.now() / 1000,
         timeLeft = endTime - now;
-  
+
       var luckyDrawTimerInterval = setInterval(makeTimer, 1000);
       makeTimer();
-  
+
       if (endTime) $counter.removeClass("u-hidden");
-  
+
       function makeTimer() {
         endTime = (Date.parse(window.digiclubLuckyDrawEndTime) / 1000);
         now = Date.now() / 1000;
         timeLeft = endTime - now;
-  
+
         var days = Math.floor(timeLeft / 86400),
           hours = Math.floor((timeLeft - (days * 86400)) / 3600),
           minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600)) / 60),
           seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
-  
+
         if (days < "10") days = "0" + days;
         if (hours < "10") hours = "0" + hours;
         if (minutes < "10") minutes = "0" + minutes;
         if (seconds < "10") seconds = "0" + seconds;
-  
+
         if (timeLeft > 0) {
           $days.text(Services.convertToFaDigit(days));
           $hours.text(Services.convertToFaDigit(hours));
@@ -31616,14 +31623,14 @@ var Sentry = function (n) {
         }
       }
     },
-  
+
     initCartBrowserBackForwardHandler: function () {
       window.addEventListener("pageshow", function () {
         var historyTraversal =
           typeof window.performance !== typeof undefined &&
           window.performance.navigation.type ===
           window.performance.navigation.TYPE_BACK_FORWARD;
-  
+
         if (historyTraversal && window.location.pathname === "/cart/") {
           window.location.reload();
         }
@@ -31634,19 +31641,19 @@ var Sentry = function (n) {
         $(".js-tooltip-show-onload").removeClass("show-onload");
       }, 5000);
     },
-  
+
     initFaqShortAnswer: function () {
       var $chatBoxContainer = $('.js-chat-box');
-  
+
       if ($chatBoxContainer.length === 0) return false;
-  
+
       var $switchBtn = $chatBoxContainer.find('.js-chat-box-container-btn'),
         $containerMain = $chatBoxContainer.find('.js-chat-box-container'),
         $loader = $chatBoxContainer.find('.js-chat-box-loader'),
         pageTitle = window.faqPageTitle || 'plp_section',
         isAjaxInProgress = false,
         questionsLoaded = false;
-  
+
       if (window.isPDP) {
         $(window).on('scroll', Services.debounce(switchChatBoxVisibilityBySroll, 100));
       } else if (window.isHomePage) {
@@ -31654,11 +31661,11 @@ var Sentry = function (n) {
       } else {
         $chatBoxContainer.removeClass('u-hidden')
       }
-  
+
       $switchBtn.on('click', function () {
         if (!questionsLoaded && !isAjaxInProgress) {
           isAjaxInProgress = true
-  
+
           Services.ajaxGETRequestJSON(
             '/ajax/chat-box/', {
               page_title: pageTitle
@@ -31678,26 +31685,26 @@ var Sentry = function (n) {
             false
           );
         }
-  
+
         $switchBtn.toggleClass('is-active');
         $containerMain.toggleClass('u-hidden');
       });
-  
+
       function setUpFaqAndChat($containerMain, faqAndChatInHtml) {
         var $questionsContainer = $containerMain.find('.js-chat-box-questions');
-  
+
         $questionsContainer.html(faqAndChatInHtml);
-  
+
         var $questionAll = $containerMain.find('.js-chat-box-question'),
           $answerAll = $containerMain.find('.js-chat-box-answer'),
           $welcomingText = $containerMain.find('.js-chat-box-welcoming'),
           $chatBtn = $containerMain.find('.js-chat-btn');
-  
+
         $questionAll.on('click', function () {
           var $question = $(this),
             $answer = $question.siblings('.js-chat-box-answer'),
             $QAItem = $question.closest('.js-chat-box-question-container');
-  
+
           if ($question.hasClass('is-open')) {
             $questionAll.removeClass('is-open');
             $answerAll.addClass('u-hidden');
@@ -31707,7 +31714,7 @@ var Sentry = function (n) {
             $question.addClass('is-open');
             $answer.removeClass('u-hidden');
           }
-  
+
           var QAItemHeight = $QAItem.height(),
             QAItemPageOffset = $QAItem.offset(),
             containerHeight = 383,
@@ -31716,22 +31723,22 @@ var Sentry = function (n) {
             questionHeight = $question.height(),
             questionBottomInnerOffset = QAItemInnerOffsetTop + questionHeight,
             floorHeight = Math.floor(Math.abs(containerHeight - questionBottomInnerOffset));
-  
+
           if (QAItemHeight > floorHeight) {
             $questionsContainer.get(0).scrollTo(0, QAItemHeight);
           }
         });
-  
+
         $questionsContainer.on('scroll', function () {
           var scroll = $questionsContainer.scrollTop();
-  
+
           if (scroll > 26) {
             $welcomingText.fadeOut();
           } else {
             $welcomingText.fadeIn();
           }
         });
-  
+
         if (isModuleActive('new_chat_client_ajax')) {
           Services.ajaxGETRequestJSON(
             '/chat-scheduler/status/', {},
@@ -31751,7 +31758,7 @@ var Sentry = function (n) {
             false
           );
         }
-  
+
         $chatBtn.on('click', function () {
           if (isModuleActive('new_chat_client')) {
             if (isModuleActive('new_chat_client_ajax')) {
@@ -31778,7 +31785,7 @@ var Sentry = function (n) {
           }
         });
       }
-  
+
       function switchChatBoxVisibilityBySroll() {
         if ($(window).scrollTop() > 1000) {
           $chatBoxContainer.fadeIn(300).removeClass('u-hidden');
@@ -31787,7 +31794,7 @@ var Sentry = function (n) {
         }
       }
     },
-  
+
     initChatCenter: function () {
       var user = new UserClass();
       if (isModuleActive('new_chat_client')) {
@@ -31803,10 +31810,10 @@ var Sentry = function (n) {
         }
       }
     },
-  
+
     copyToClipboard: function (text, appendHook) {
       if (!appendHook) appendHook = document.body;
-  
+
       var aux = $(document.createElement("textarea"));
       aux.addClass("u-hidden-visually");
       aux.text(text);
@@ -31818,7 +31825,7 @@ var Sentry = function (n) {
       document.execCommand("copy");
       aux.remove();
     },
-  
+
     toggleIconFont: function ($icon, nextState) {
       if (nextState === 'active') {
         $icon.attr('data-icon', $icon.data('icon-active'));
@@ -31826,14 +31833,14 @@ var Sentry = function (n) {
         $icon.attr('data-icon', $icon.data('icon-deactive'));
       }
     },
-  
+
     setPromoViewBannerDataLayer: function () {
       $('.js-menu-top-banner').on('click', function () {
         var bannerId = $(this).data('id');
         Main.setPromoViewClickImpressionEvent(bannerId);
       })
     },
-  
+
     setPromoViewClickImpressionEvent: function (bannerId) {
       try {
         var bannerObject = Services.retrieveProductFromDataLayer({
@@ -31841,23 +31848,23 @@ var Sentry = function (n) {
           eventName: "eec.promoView",
           pathArray: ['ecommerce', 'promoView', 'promotions']
         });
-  
+
         var bannerData = removeListNameFromProductObject(bannerObject);
         var impressionObject = createImpressionObj(bannerData, Main.gaListName);
-  
+
         window.dataLayer.push(impressionObject);
       } catch (e) {
         window.Sentry && window.Sentry.captureException(e);
         // eslint-disable-next-line no-console
         console.warn(e);
       }
-  
+
       function removeListNameFromProductObject(bannerObject) {
         var bannerObjectCopy = Object.assign({}, bannerObject);
         delete bannerObjectCopy.list;
         return bannerObjectCopy;
       }
-  
+
       function createImpressionObj(bannerData) {
         return {
           'event': 'eec.promoClick',
@@ -31869,14 +31876,14 @@ var Sentry = function (n) {
         }
       }
     },
-  
+
   };
-  
+
   $(function () {
     Main.init();
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/uiComponents.js]*/
   var UIComponents = {
     trends: [],
@@ -31892,10 +31899,10 @@ var Sentry = function (n) {
         this.initPasswordField,
         this.initRoundProgress
       ];
-  
+
       window.Services.callListInTryCatch(functions, this);
     },
-  
+
     initRoundProgress: function () {
       $.each($('.js-round-progress'), function (i, val) {
         if (!$(this).data('value'))
@@ -31905,14 +31912,14 @@ var Sentry = function (n) {
         var level2 = parseFloat($(this).data('level-2'));
         var $right = $(this).find('.js-round-progress-right');
         var $left = $(this).find('.js-round-progress-left');
-  
+
         if (percent > 50.0) {
           $right.css('transform', 'rotate(' + (100 - percent) * 3.6 + 'deg)');
         } else {
           $right.addClass('less-fifty');
           $left.css('transform', 'rotate(' + (50 - percent) * 3.6 + 'deg)');
         }
-  
+
         $(this).removeClass('red');
         $(this).removeClass('green');
         $(this).removeClass('yellow');
@@ -31925,10 +31932,10 @@ var Sentry = function (n) {
             $(this).addClass('red');
           }
         }
-  
+
       })
     },
-  
+
     initFileUploader: function (fileInput, uploadURL, keyName, usedIn, fileAddedCallback, fileRemovedCallback) {
       var thumbnailContainer = fileInput.closest('.js-thumbnails');
       var ajaxes = [];
@@ -31941,17 +31948,17 @@ var Sentry = function (n) {
       var acceptanceVideos = 'video/mp4, .mov, video/x-msvideo, video/mpeg, video/x-ms-wmv, .m4v, .avi, .wmv, .3gp,';
       var imageRegEx = new RegExp('image\/(jpeg|png)');
       var videoRegEx = new RegExp('video\/(mp4|quicktime|x-msvideo|x-ms-wmv|mpeg|avi|3gpp)');
-  
+
       if (thumbnailContainer.children('.is-video').length > 0)
         hasVideo = true;
-  
+
       if (usedIn === 'comment') {
         videoMaxSize = 104857600; //100MB
       }
-  
+
       changeAddFileStatus();
-  
-  
+
+
       fileInput.on('change', function () {
         var file = this.files[0];
         $(this).val('');
@@ -31990,47 +31997,47 @@ var Sentry = function (n) {
         } else {
           showFileError(file, 'فرمت فایل معتبر نمی‌باشد');
         }
-  
+
         function showFileError(file, error) {
           container.parent().addClass('has-error');
           container.parent().append('<span class="error c-ui-feedback-hint">' + error + '</span>');
         }
-  
+
         function removeFileError() {
           container.parent().removeClass('has-error');
           container.parent().children('.error').remove();
         }
       });
-  
+
       function showImage(file, thumb) {
         var reader = new FileReader();
-  
+
         reader.onload = function (e) {
           thumb.find('img').attr('src', e.target.result);
           thumb.find('img').show();
         };
-  
+
         reader.readAsDataURL(file);
       }
-  
+
       function sendFile(file, label) {
         var formData = new FormData();
         var thumbnail;
-  
+
         function progress(e, dom) {
           if (e.lengthComputable) {
             var max = e.total;
             var current = e.loaded;
-  
+
             var Percentage = (current * 100) / max;
             dom.children('.js-upload-progress').html(Services.convertToFaDigit(Math.round(Percentage)) + '٪');
-  
+
             if (Percentage >= 98) {
               dom.children('.js-upload-progress').html(Services.convertToFaDigit(98) + '٪');
             }
           }
         }
-  
+
         function deleteByNetwork() {
           if (thumbnail.hasClass('is-video')) {
             hasVideo = false;
@@ -32042,7 +32049,7 @@ var Sentry = function (n) {
           var index = thumbnailContainer.children('.js-thumbnail:not(.is-uploaded)').index(thumbnail);
           ajaxes.splice(index, 1);
         }
-  
+
         formData.append('file', file);
         var xhr = $.ajax({
           type: 'POST',
@@ -32060,7 +32067,7 @@ var Sentry = function (n) {
           cache: false,
           contentType: false,
           processData: false,
-  
+
           beforeSend: function () {
             thumbnailContainer.append('<div class="c-ui-uploader__thumbnail js-thumbnail in-progress ' + (label === 'file' ? 'is-video' : '') + '">\n' +
               (label === 'file' ? '' : '<img src=""/>\n') +
@@ -32072,7 +32079,7 @@ var Sentry = function (n) {
             if (label !== 'file')
               showImage(file, thumbnail);
           },
-  
+
           success: function (response) {
             if (response.status) {
               thumbnail.append('<input type="hidden" name="' + (keyName ? keyName : 'comment[files]') + '[' + (thumbnail.prevAll('.js-thumbnail').length + ']" ') + 'value =' + response.data.id + '>');
@@ -32087,14 +32094,14 @@ var Sentry = function (n) {
               deleteByNetwork();
             }
           },
-  
+
           error: function (response) {
             deleteByNetwork();
           }
         });
         ajaxes.push(xhr);
       }
-  
+
       $(document).on('click', '.js-upload-cancel', function () {
         var container = $(this).closest('.js-thumbnail');
         var index = thumbnailContainer.children('.js-thumbnail:not(.is-uploaded)').index(container);
@@ -32108,7 +32115,7 @@ var Sentry = function (n) {
         changeAddFileStatus();
         container.remove();
       });
-  
+
       $(document).on('click', '.js-upload-remove', function () {
         var container = $(this).closest('.js-thumbnail');
         if (container.hasClass('is-video')) {
@@ -32121,7 +32128,7 @@ var Sentry = function (n) {
         if (fileRemovedCallback)
           fileRemovedCallback();
       });
-  
+
       function changeAddFileStatus() {
         if (hasVideo) {
           if (imageComplete) {
@@ -32144,14 +32151,14 @@ var Sentry = function (n) {
         }
       }
     },
-  
+
     initButtonUploader: function () {
-  
+
       function progress(e, container) {
         if (e.lengthComputable) {
           var max = e.total;
           var current = e.loaded;
-  
+
           var Percentage = (current * 100) / max;
           container.find('.js-ui-uploader-progress-bar').css('width', (Percentage + '%'));
         }
@@ -32163,14 +32170,14 @@ var Sentry = function (n) {
         container.find('.js-ui-uploader-cancel').off().removeClass('js-ui-uploader-cancel');
         container.find('.js-ui-uploader-title').html(file.name);
       });
-  
+
       $('.js-ui-uploader').on('change', function () {
         var container = $(this).closest('.js-uploader-container');
         container.removeClass('finished');
         var formData = new FormData();
         var file = this.files[0];
         formData.append('file', file);
-  
+
         var xhr = $.ajax({
           type: 'POST',
           url: $(this).data('url'),
@@ -32187,64 +32194,64 @@ var Sentry = function (n) {
           cache: false,
           contentType: false,
           processData: false,
-  
+
           beforeSend: function () {
-  
+
           },
-  
+
           success: function (response) {
             container.addClass('finished');
             container.find('.js-ui-uploader-cancel').off().removeClass('js-ui-uploader-cancel');
             container.find('.js-ui-uploader-title').html(file.name);
           },
-  
+
           error: function (response) {
-  
+
           }
         });
       });
     },
-  
+
     initSeeMore: function () {
       $(document).on('click', '.js-ui-see-more', function (e) {
         e.stopPropagation();
         $('.js-ui-more-options').hide();
         $(this).siblings('.js-ui-more-options').toggle();
       });
-  
+
       $('body').on('click', function () {
         $('.js-ui-more-options').hide();
       });
     },
-  
+
     initMoreContent: function () {
       $('.js-more-content-trigger').on('click', function () {
         var moreContentTrigger = $(this),
           moreContentContainer = moreContentTrigger.closest('.js-more-content-container'),
           moreContentShort = moreContentContainer.find('.js-more-content-short'),
           moreContentFull = moreContentContainer.find('.js-more-content-full');
-  
+
         moreContentTrigger.addClass('u-hidden');
         moreContentShort.addClass('u-hidden');
         moreContentFull.removeClass('u-hidden');
       });
     },
-  
+
     initTab: function () {
       $(document).on('click', '.js-ui-tab-pill', function () {
         var $this = $(this),
           tabContainer = $this.closest('.js-ui-tab'),
           tabPillId = $this.data('tab-pill-id');
-  
+
         $('.js-ui-tab-content').addClass('u-hidden');
         $('.js-ui-tab-pill').removeClass('is-active');
         tabContainer.trigger('tab-switch');
-  
+
         $('[data-tab-content-id="' + tabPillId + '"]').removeClass('u-hidden');
         $this.addClass('is-active').trigger('tab-switch');
       });
     },
-  
+
     initInputs: function () {
       var inputs = $('.js-input-field');
       inputs.focus(
@@ -32252,45 +32259,45 @@ var Sentry = function (n) {
           $(this).parent().addClass('focus');
         }
       );
-  
+
       inputs.blur(
         function () {
           $(this).parent().removeClass('focus');
         }
       );
-  
+
       inputs.keyup(function (e) {
         var $this = $(this),
           $clearButton = $this.next('.js-ui-field-cleaner');
-  
+
         if (e.target.value && $clearButton) {
           $clearButton.removeClass('u-hidden')
         } else {
           $clearButton.addClass('u-hidden')
         }
       })
-  
+
       $('.js-ui-field-cleaner').click(function (e) {
         e.preventDefault();
         var $this = $(this),
           $inputField = $this.prev('.js-input-field');
-  
+
         $this.addClass('u-hidden');
         $inputField.val('');
       });
     },
-  
+
     initSelects: function () {
       var dropdowns = $('.js-dropdown-universal');
       dropdowns.on('selectric-open', function () {
         $(this).closest('.o-form__field-container').addClass('focus');
       });
-  
+
       dropdowns.on('selectric-close', function () {
         $(this).closest('.o-form__field-container').removeClass('focus');
       })
     },
-  
+
     initErrors: function () {
       $.extend($.prototype, {
         showError: function (err) {
@@ -32311,14 +32318,14 @@ var Sentry = function (n) {
         }
       })
     },
-  
+
     initPasswordField: function () {
       $('.js-ui-toggle-password').click(function (e) {
         e.preventDefault();
         var $this = $(this),
           $inputField = $this.prev('.js-input-field'),
           isPassword = $inputField.attr('type') === 'password';
-  
+
         if (isPassword) {
           $inputField.attr('type', 'text');
           $this.addClass('o-form__password-field-button--show-password');
@@ -32329,12 +32336,12 @@ var Sentry = function (n) {
       });
     }
   };
-  
+
   $(function () {
     UIComponents.init();
   });
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/lazyLoad.min.js]*/
   ! function (u) {
     u.fn.lazy = function (t, i) {
@@ -32342,7 +32349,7 @@ var Sentry = function (n) {
         s = t || 200,
         r = 1 < window.devicePixelRatio ? "data-src-retina" : "data-src",
         o = this;
-  
+
       function a() {
         var t = o.filter(function () {
           var t = u(this);
@@ -32369,8 +32376,8 @@ var Sentry = function (n) {
       }), n.off("scroll.lazy lookup.lazy resize.lazy"), n.on("scroll.lazy resize.lazy lookup.lazy", a), a(), this
     }
   }(window.jQuery);
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/log.js]*/
   var logActions = {
     sendException: function (text) {
@@ -32380,12 +32387,12 @@ var Sentry = function (n) {
       Sentry.captureMessage(text)
     }
   };
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/chatClient.js]*/
   (function ($) {
     $.fn.Chatcenter = function (options, touchPoint) {
-  
+
       if (isModuleActive('new_chat_client')) {
         var IFRAME_URL = "";
         var settings = $.extend({
@@ -32393,21 +32400,21 @@ var Sentry = function (n) {
           UserName: null,
           UserEmail: null,
           UserPhone: null
-  
+
         }, options);
-  
+
         return this.each(function () {
           if (settings.FormChatFile)
             IFRAME_URL += settings.FormChatFile
           if (settings.UserName)
             IFRAME_URL += '&' + 'UN=' + settings.UserName
-  
+
           if (settings.UserEmail)
             IFRAME_URL += '&' + 'UE=' + settings.UserEmail
-  
+
           if (settings.UserPhone)
             IFRAME_URL += '&' + 'UP=' + settings.UserPhone
-  
+
           if (touchPoint) {
             var body = '<div id="s___xc8712" class="title chat-top" id="chatPopupExecute" onclick="PopUpValidClick(' + "'" + IFRAME_URL + "'" + ')"><div class="chatlive-errobox">شما هم اکنون درحال گفتگو می باشید</div><span>پشتیبان آنلاین</span>';
             $(this).append('<div class="chat-mainbox" id="chatbox" name="jclsw">')
@@ -32544,11 +32551,11 @@ var Sentry = function (n) {
         // });
       }
     }
-  
+
     var winPopup = null;
-  
+
   }(jQuery));
-  
+
   function PopUpValidClick(url) {
     if (isModuleActive('new_chat_client')) {
       winPopup = window.open(url, '_blank', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=460, height=490');
@@ -32560,32 +32567,32 @@ var Sentry = function (n) {
       //     $('.chatlive-errobox').fadeIn('fast').delay(1000).fadeOut('fast');
     }
   }
-  
+
   $(document).ready(function () {
     var popupClicked = localStorage.getItem("popupClicked");
     if (!!popupClicked && (popupClicked === "true" || popupClicked === true))
       $("#chatPopupExecute").addClass("chating-live");
   });
-  
-  
+
+
   function embdedWindowTitle() {
     if (localStorage.getItem("chatbox") !== "expand")
       if ($("#embedded-window-titled").hasClass("cl-box") && getCookie("chatbox") !== "expand")
         openChat(400);
-  
+
       else {
         var iframe = $(".chatbox").attr("src");
         openPopup(iframe);
       }
   }
-  
+
   function openPopup(url) {
     winPopup = window.open(url, '_blank', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=460, height=520, popup=yes, dependent=yes');
     winPopup.onbeforeunload = function () {
       localStorage.setItem('chatbox', 'closed');
     };
   }
-  
+
   $(window).bind('storage', function (e) {
     var popupClicked = localStorage.getItem("popupClicked");
     if (!!popupClicked && (popupClicked === "true" || popupClicked === true))
@@ -32593,7 +32600,7 @@ var Sentry = function (n) {
     else
       $("#chatPopupExecute").removeClass("chating-live");
   });
-  
+
   function closeChat(ease) {
     $(".chat-mainbox").animate({
       "height": "32px"
@@ -32605,8 +32612,8 @@ var Sentry = function (n) {
       $windowTitle.addClass("cl-box");
     });
   }
-  
-  
+
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/adro.js]*/
   /**
    * @classdesc Represents an API call.

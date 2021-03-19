@@ -167,6 +167,7 @@ return [
          * Modules Service Providers...
          */
         Modules\Customers\Auth\Providers\CustomerAuthServiceProvider::class,
+        Modules\Customers\Panel\Providers\CustomerPanelServiceProvider::class,
 
         Modules\Sellers\Auth\Providers\SellerAuthServiceProvider::class,
 
@@ -191,9 +192,9 @@ return [
         /*
          * Packages Service Providers...
          */
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-
+//        Barryvdh\Debugbar\ServiceProvider::class,
+//        Maatwebsite\Excel\ExcelServiceProvider::class,
+        GhaniniaIR\Shipping\ShippingServiceProvider::class,
 
 
         /*
@@ -260,6 +261,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Shipping' =>GhaniniaIR\Shipping\Shipping::class,
     ],
 
 ];

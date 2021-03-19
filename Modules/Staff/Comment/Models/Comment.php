@@ -41,7 +41,7 @@ class Comment extends Model
 
     public function ratings()
     {
-        return $this->hasMany(CommentHasRating::class, 'rating_id');
+        return $this->hasMany(CommentHasRating::class, 'comment_id');
     }
 
 }

@@ -39,7 +39,7 @@
     <execution />
   </component>
   <component name="EditorConfigPreviewManager">
-    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/Modules/Staff/Product/Resources/views/index.blade.php" />
+    <editorConfig file="$PROJECT_DIR$/.editorconfig" previewFile="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views/profile/personalInfo.blade.php" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -255,10 +255,8 @@
       <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
       <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/vendor/ghaninia/shipping" />
     </include_path>
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1mAInWy8idjFWKkFmFdsj1hCKCt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -275,27 +273,28 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Voucher/Resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor.code.editing" />
+    <property name="settings.editor.splitter.proportion" value="0.24630113" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Voucher/Resources" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/Resources/views" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/Models" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/Resources" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Comment/temp" />
+      <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views" />
+      <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views/profile" />
+      <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Database/migrations" />
+      <recent name="$PROJECT_DIR$/Modules/Customers/Panel/temp" />
+      <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Customers/Auth/Database/migrations" />
+      <recent name="$PROJECT_DIR$/resources/views/layouts/customer" />
+      <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views/layouts" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Comment/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Comment/Resources/views" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Promotion/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Landing/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Staff">
@@ -572,7 +571,16 @@
       <workItem from="1615779790702" duration="23514000" />
       <workItem from="1615873816069" duration="18342000" />
       <workItem from="1615893323648" duration="13300000" />
-      <workItem from="1615912562137" duration="17952000" />
+      <workItem from="1615912562137" duration="18892000" />
+      <workItem from="1615962919065" duration="13151000" />
+      <workItem from="1616002427306" duration="9768000" />
+      <workItem from="1616040944970" duration="6613000" />
+      <workItem from="1616051620368" duration="9979000" />
+      <workItem from="1616068554834" duration="18803000" />
+      <workItem from="1616090071002" duration="10148000" />
+      <workItem from="1616125256551" duration="9307000" />
+      <workItem from="1616142326870" duration="17385000" />
+      <workItem from="1616169563971" duration="16727000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />

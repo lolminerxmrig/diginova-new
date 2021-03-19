@@ -198,8 +198,7 @@
                                                                                         {{ persianNum($comment->feedbacks()->where('status', 'deslike')->count()) }}
                                                                                     </div>
                                                                                 </td>
-
-                                                                                @if(!is_null($comment->recommend_status))
+                                                                                @if((!is_null($comment->recommend_status)) || ($comment->recommend_status !== " "))
                                                                                     <td class="uk-flex uk-flex-middle" style="width: 20%;float: right;">
                                                                                         @if($comment->recommend_status == 'recommended')
                                                                                             <div class="c-profile-rating__vote c-profile-rating__vote--thumbs-up c-profile-rating__vote--small uk-text-nowrap" style="margin-top: 0px;">
@@ -325,6 +324,7 @@
                                                                     <td class="c-ui-table__cell-gap"></td>
                                                                 </tr>
                                                             @endforeach
+
 
 
 

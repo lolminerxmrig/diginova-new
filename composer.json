@@ -13,6 +13,7 @@
         "ckfinder/ckfinder-laravel-package": "v3.5.1.6",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "ghaninia/shipping": "^0.1.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/jetstream": "^1.6",
@@ -49,7 +50,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/app.php"
+            "app/Helpers/app.php",
+            "app/Helpers/DateTime.php"
         ]
     },
     "autoload-dev": {

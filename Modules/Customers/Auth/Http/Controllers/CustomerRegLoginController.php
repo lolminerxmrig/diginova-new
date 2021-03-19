@@ -157,7 +157,7 @@ class CustomerRegLoginController extends Controller
         if (($customerVerify !== null) && ($customerVerify->token ==  $request->code)){
             Customer::updateOrCreate(['mobile' => $customer_mobile]);
             $customer = Customer::where('mobile', $customer_mobile)->select('id')->first();
-            Auth::guard('customer')->loginUsingId($customer->id);
+            Auth::guard('customer')->loginUsingId($customer->id, true);
             if (session('newUser')){
                 return redirect()->route('customer.welcomme');
             }
