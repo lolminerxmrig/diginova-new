@@ -168,6 +168,7 @@ return [
          */
         Modules\Customers\Auth\Providers\CustomerAuthServiceProvider::class,
         Modules\Customers\Panel\Providers\CustomerPanelServiceProvider::class,
+        Modules\Customers\Front\Providers\FrontServiceProvider::class,
 
         Modules\Sellers\Auth\Providers\SellerAuthServiceProvider::class,
 

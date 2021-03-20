@@ -273,7 +273,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/layouts/front" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -283,11 +283,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/layouts/front" />
       <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views" />
       <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views/profile" />
       <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Database/migrations" />
       <recent name="$PROJECT_DIR$/Modules/Customers/Panel/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Modules/Customers/Auth/Database/migrations" />
@@ -581,6 +581,8 @@
       <workItem from="1616125256551" duration="9307000" />
       <workItem from="1616142326870" duration="17385000" />
       <workItem from="1616169563971" duration="16727000" />
+      <workItem from="1616217014809" duration="5083000" />
+      <workItem from="1616235180325" duration="3575000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -620,6 +622,11 @@
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Modules/Staff/Comment/Models/CommentFeedback.php</url>
           <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/layouts/front/master.blade.php</url>
+          <line>34</line>
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/seller/js/tags5.js</url>
