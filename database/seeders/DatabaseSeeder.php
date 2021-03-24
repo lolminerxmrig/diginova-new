@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call('Modules\Staff\Warranty\Database\seeders\WarrantySeeder');
         $this->call('Modules\Staff\Product\Database\seeders\ProductSeeder');
         $this->call('Modules\Staff\Promotion\Database\seeders\PromotionSeeder');
+        $this->call('Modules\Staff\Slider\Database\seeders\SliderSeeder');
 
         $this->call(SettingsSeeder::class);
         $this->call(MediaSeeder::class);

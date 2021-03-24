@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
             view()->share('site_url', $settings->where('name', 'site_url')->first()->value);
             view()->share('product_code_prefix', $settings->where('name', 'product_code_prefix')->first()->value);
             view()->share('site_title', $settings->where('name', 'site_title')->first()->value);
-            view()->share('description', $settings->where('name', 'site_title')->first()->value);
-            view()->share('keywords', $settings->where('name', 'site_title')->first()->value);
+            view()->share('description', $settings->where('name', 'description')->first()->value);
+            view()->share('keywords', $settings->where('name', 'keywords')->first()->value);
         }
     }
 }

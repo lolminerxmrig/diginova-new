@@ -128,7 +128,13 @@
                       <a href="{{ route('staff.comments.index') }}">دیدگاه ها</a>
                   </li>
 
+                  <li>
+                    <a href="{{ route('staff.sliders.index') }}">اسلایدر و بنر ها</a>
+                  </li>
 
+                  <li>
+                    <a href="{{ route('staff.navs.index') }}">فهرست ها</a>
+                  </li>
 
                   </ul>
                 </div>

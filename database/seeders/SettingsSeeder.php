@@ -39,5 +39,20 @@ class SettingsSeeder extends Seeder
             'value' => 'مشخصات، قیمت و خرید',
         ]);
 
+        Setting::create([
+          'name' => 'site_title',
+          'value' => 'فروشگاه اینترنتی دیجی‌نوا',
+        ]);
+
+        Setting::create([
+          'name' => 'description',
+          'value' => 'متن آزمایشی',
+        ]);
+
+        Setting::create([
+          'name' => 'keywords',
+          'value' => 'تست, تست دو',
+        ]);
+
     }
 }

@@ -555,7 +555,7 @@ $(document).on("change", "#uploadImage", function () {
             $("#imagesSection").replaceWith(data);
             $(".c-content-upload__title").find('.error-text').remove();
         },
-        error: function (data) {
+        error: function (data) {5
             $(".li-error").addClass('has-error');
             $(".error-image").html('تصویری که انتخاب کرید شرایط لازم را ندارد');
         }
@@ -568,7 +568,7 @@ $(document).on("click", ".js-remove-upload", function () {
     $("#imagesSection").hide();
 });
 
-// ایجکس دسته ها
+// ای8جکس دسته ها
 $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();

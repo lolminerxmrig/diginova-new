@@ -187,6 +187,8 @@ return [
         Modules\Staff\Page\Providers\StaffPageServiceProvider::class,
         Modules\Staff\Voucher\Providers\StaffVoucherServiceProvider::class,
         Modules\Staff\Rating\Providers\StaffRatingServiceProvider::class,
+        Modules\Staff\Slider\Providers\StaffSliderServiceProvider::class,
+        Modules\Staff\Nav\Providers\StaffNavServiceProvider::class,
 
 
 

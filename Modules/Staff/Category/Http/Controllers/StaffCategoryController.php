@@ -169,15 +169,16 @@ class StaffCategoryController extends Controller
         }
 
         $imageSize = $request->file('image')->getSize();
+        $imageExtension = $request->file('image')->extension();
 
-        $input['image'] = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('media/images'), $input['image']);
+        $input['image'] = time() . '.' . $imageExtension;
+        $request->file('image')->move(public_path('media/images'), $input['image']);
 
         $media = Media::create([
             'name' => $input['image'],
             'path' => 'media/images',
             'person_id' => auth()->guard('staff')->user()->id,
-            'person_role' => 'staff',
+            'person_role' => 'staff' ,
         ]);
 
         return View::make("staffcategory::layouts.ajax.image-box.upload-image",

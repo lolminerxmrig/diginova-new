@@ -65,15 +65,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
 <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal" style="display: none;">
     <div class="uk-modal-dialog uk-modal-dialog--flex">
         <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>

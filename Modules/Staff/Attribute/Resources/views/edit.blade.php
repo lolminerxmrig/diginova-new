@@ -111,7 +111,8 @@ margin-bottom: 8px;
                     <div class="c-grid__col">
                         <div class="c-card">
                             <div class="c-card__wrapper">
-                                <div class="c-card__header c-card__header--table"><a target="_blank">
+                                <div class="c-card__header c-card__header--table">
+                                  <a target="_blank">
                                         <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد ویژگی
                                             جدید
                                         </div>

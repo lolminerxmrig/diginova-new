@@ -206,8 +206,6 @@ class StaffAttributeController extends Controller
                         'is_favorite' => $request->attr_favorites[$i],
                         'group_id' => $request->category_id,
                     ]);
-                    Log::info($request->attr_values);
-
                     if (($request->attr_types[$i] == 1) || ($request->attr_types[$i] == 2)) {
                         $i++;
                         continue;
