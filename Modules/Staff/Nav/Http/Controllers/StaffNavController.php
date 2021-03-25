@@ -2,11 +2,17 @@
 
 namespace Modules\Staff\Nav\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+use Illuminate\Support\Facades\Validator;
+use Modules\Staff\Attribute\Models\AttributeGroup;
+use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Nav\Models\Nav;
 use Modules\Staff\Nav\Models\NavLocation;
+use App\Models\Media;
+use Illuminate\Support\Facades\View;
 
 class StaffNavController extends Controller
 {
@@ -25,145 +31,113 @@ class StaffNavController extends Controller
       return view('staffnav::navs', compact('navs', 'nav_location'));
     }
 
-//    public function customUploadImage(Request $request)
-//    {
-//        if ($request->old_img) {
-//          $request->id = $request->old_img;
-//          Nav::find($request->nav_id)->media()->detach(3);
-//          $this->deleteImage($request);
-//        }
-//
-//        $imageExtension = $request->file('image')->extension();
-//
-//        $input['image'] = time() . '.' . $imageExtension;
-//        $request->file('image')->move(public_path('media/images'), $input['image']);
-//
-//        $media = Media::create([
-//          'name' => $input['image'],
-//          'path' => 'media/images',
-//          'person_id' => auth()->guard('staff')->user()->id,
-//          'person_role' => 'staff' ,
-//        ]);
-//
-////        $nav = Nav::find($request->nav_id);
-////        $nav->media()->attach($media);1
-//        NavImage::updateOrCreate(['nav_id' => $request->nav_id], [
-//          'nav_id' => $request->nav_id,
-//        ]);
-//
-//        $image = NavImage::where('nav_id', $request->nav_id)->first();
-//        $image->media()->attach($media);
-//
-//        return $media->id;
-//    }
-//
-//    public function UploadImage(Request $request)
-//    {
-//      if ($request->old_img) {
-//        $request->id = $request->old_img;
-//        NavImage::find($request->row_id)->media()->detach();
-//
-//        $this->deleteImage($request);
-//      }
-//
-//      $imageExtension = $request->file('image')->extension();
-//
-//      $input['image'] = time() . '.' . $imageExtension;
-//      $request->file('image')->move(public_path('media/images'), $input['image']);
-//
-//      $media = Media::create([
-//        'name' => $input['image'],
-//        'path' => 'media/images',
-//        'person_id' => auth()->guard('staff')->user()->id,
-//        'person_role' => 'staff' ,
-//      ]);
-//
-//  //        $nav = Nav::find($request->nav_id);
-//  //        $nav->media()->attach($media);1
-//
-//
-//      if (!is_null($request->row_id))
-//      {
-//        $image = NavImage::find($request->row_id);
-//        $image->media()->attach($media);
-//      } else {
-//        return $media->id;
-//      }
-//
-//    }
-//
-//    public function deleteImage(Request $request)
-//        {
-//        $media = Media::find($request->id);
-//        $user_id = auth()->guard('staff')->user()->id;
-//
-//        if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
-//          unlink(public_path("$media->path/") . $media->name);
-//          $media->delete();
-//        }
-//      }
-//
-//    public function navImages($id)
-//    {
-//        $nav_images = Nav::find($id)->images()->paginate();
-//        $nav = Nav::find($id);
-//        return view('staffnav::navImages', compact('nav_images', 'nav'));
-//    }
-//
-//    public function updateNav(Request $request)
-//    {
-//        // output: array clean position
-//        $positions = str_replace('item[]=', '', $request->positions);
-//        $positions = str_replace('&', ',', $positions);
-//        $positions = explode(',', $positions);
-//        $positions = array_map(function ($value) {
-//          return intval($value);
-//        }, $positions);
-//
-//        foreach($positions as $key => $position) {
-//            Log::info($position);
-//            Nav::find($position)->update([
-//              'status' => $request->status[$key],
-//            ]);
-//
-//            NavImage::updateOrCreate(['nav_id' => $position], [
-//              'alt' => $request->images_alt[$key],
-//              'link' => $request->nav_links[$key],
-//              'nav_id' => $position,
-//            ]);
-//        }
-//
-//    }
-//
-//    public function updateNavImagesRow(Request $request)
-//    {
-//        // delete rows
-//        if (isset($request->deleted_rows) && (!is_null($request->deleted_rows))) {
-//          foreach ($request->deleted_rows as $deleted_row) {
-//            NavImage::find($deleted_row)->media()->detach();
-//            NavImage::find($deleted_row)->delete();
-//          }
-//        }
-//
-//        // output: array clean position
-//        $positions = str_replace('item[]=', '', $request->positions);
-//        $positions = str_replace('&', ',', $positions);
-//        $positions = explode(',', $positions);
-//        $positions = array_map(function ($value) {
-//          return intval($value);
-//        }, $positions);
-//
-//        foreach($positions as $i => $id)
-//        {
-//            NavImage::updateOrCreate(['id' => $id], [
-//                'alt' => $request->images_alt[$i],
-//                'link' => $request->nav_links[$i],
-//                'position' => $i,
-//                'status' => $request->status[$i],
-//                'nav_id' => $request->nav_id,
-//            ]);
-//        }
-//
-//    }
+    public function UploadImage(Request $request)
+    {
+        $imageExtension = $request->image->extension();
+
+        $input['image'] = time() . '.' . $imageExtension;
+        $request->image->move(public_path('media/images'), $input['image']);
+
+        $media = Media::create([
+          'name' => $input['image'],
+          'path' => 'media/images',
+          'person_id' => auth()->guard('staff')->user()->id,
+          'person_role' => 'staff' ,
+        ]);
+
+        $settings = Setting::select('name', 'value')->get();
+        $site_url = $settings->where('name', 'site_url')->first()->value;
+
+        return response()->json([
+            'status' => true,
+            'data' => [
+              'id' => "$media->id",
+              'url' => "$site_url/$media->path/$media->name",
+              'tempFile' => true,
+              'slot' => null,
+            ]
+          ]);
+    }
+
+    public function storeNav(Request $request)
+    {
+
+        $messages = [
+          'unique' => 'نام فهرست تکراری است',
+        ];
+
+        $validator = Validator::make($request->all(), [
+          'nav_name' => 'required',
+          'nav_link' => 'nullable|string',
+          'nav_type' => 'required',
+          'uploaded_icon_id' => 'nullable',
+        ], $messages);
+
+        if ($validator->fails()) {
+          $errors = $validator->errors();
+          return response()->json([
+            'status' => false,
+            'data' => [
+              'errors' => $errors,
+            ]
+          ], 400);
+        }
+
+        if ((Nav::max('position')) || (Nav::max('position') == 0)) {
+          $position = Nav::max('position') + 1;
+        } else {
+          $position = 0;
+        }
+
+        $created_nav = Nav::create([
+          'name' => $request->nav_name,
+          'link' => $request->nav_link,
+          'type' => $request->nav_type,
+          'position' => $position,
+          'location_id' => $request->location_id,
+        ]);
+
+        if (!is_null($request->uploaded_icon_id))
+        {
+            $media = Media::find($request->uploaded_icon_id);
+            $created_nav->media()->attach($media);
+        }
+
+        return response()->json([
+          'status' => true,
+          'data' => true,
+        ]);
+
+    }
+
+    public function statusNav(Request $request)
+    {
+        Nav::where('id',$request->nav_id)->update([
+          'status' => $request->status,
+        ]);
+    }
+
+    public function navChangePosition(Request $request)
+    {
+      foreach ($request->item as $postion => $id) {
+        Nav::where('id', $id)->update([
+          'position' => $postion,
+        ]);
+      }
+    }
+
+    public function reloadNavsTable(Request $request)
+    {
+      $navs = Nav::where('location_id', $request->location_id)->paginate(10000);
+      return View::make('staffnav::ajax.reload-nav-table', compact('navs'));
+    }
+
+    public function deleteNav(Request $request)
+    {
+        Nav::find($request->id)->delete();
+
+        $navs = Nav::where('location_id', $request->nav_location)->paginate(10000);
+        return View::make('staffnav::ajax.reload-nav-table', compact('navs'));
+    }
 
 }

@@ -1,9 +1,12 @@
 <div id="newAttributeRequestModal" class="marketplace-redesign uk-modal c-variant" uk-modal="" style="display: none;">
   <div class="uk-modal-dialog uk-modal-dialog--confirm uk-modal-body c-content-modal" id="newBrandRequestModalContent">
-    <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-    <form id="newBrandRequestForm" novalidate="novalidate">
-      <input type="hidden" name="brand[product_id]" value="">
-      <input type="hidden" name="brand[category_id]" id="newBrandRequestCategoryIdContainer">
+    <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button" uk-close="">
+    </button>
+{{--    <form id="newBrandRequestForm" novalidate="novalidate">--}}
+    <form id="newNanRequestForm" novalidate="novalidate">
+      <input type="hidden" name="location_id" value="{{ $nav_location->id }}">
+{{--      <input type="hidden" name="product_id" value="">--}}
+{{--      <input type="hidden" name="category_id" id="newBrandRequestCategoryIdContainer">--}}
       <div class="c-content-modal__header c-content-modal__header--overflow">
         <h3 class="c-content-modal__title">ایجاد فهرست جدید</h3>
       </div>
@@ -20,15 +23,13 @@
           </div>
           <div class="c-variant-error hidden c-variant-error__box c-variant-error__box--modal mt-20 mb-20" id="ajaxBrandErrorsList"></div>
 
-
-
           <div class="c-grid__row c-grid__row--gap-lg mt-30">
             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6">
               <label for="" class="uk-form-label">نام فهرست:<span class="uk-form-label__required"></span>
               </label>
               <div class="field-wrapper c-autosuggest">
                 <div class="search-form__autocomplete js-autosuggest-box">
-                  <input class="uk-input js-prevent-submit" type="text" name="nav[name]" placeholder="نام فهرست را وارد کنید ...">
+                  <input class="uk-input js-prevent-submit" type="text" name="nav_name" placeholder="نام فهرست را وارد کنید ...">
                   <ul class="c-autosuggest__list-container" style="display: none;"></ul>
                 </div>
               </div>
@@ -37,7 +38,7 @@
               <label for="" class="uk-form-label">لینک:</label>
               <div class="field-wrapper c-autosuggest">
                 <div class="search-form__autocomplete js-autosuggest-box">
-                  <input name="nav[link]" type="text" class="uk-input uk-input--ltr" placeholder="http://" id="registrationUrlValue">
+                  <input name="nav_link" type="text" class="uk-input uk-input--ltr" placeholder="http://" id="registrationUrlValue">
                   <ul class="c-autosuggest__list-container" style="display: none;"></ul>
                 </div>
               </div>
@@ -50,12 +51,12 @@
               </label>
               <div id="brandOrigin" class="field-wrapper">
                 <label class="c-ui-radio c-ui-radio--content c-ui-checkbox--auto">
-                  <input type="radio" class="c-ui-radio__origin js-brand-origin" name="nav[type]" value="common" checked="">
+                  <input type="radio" class="c-ui-radio__origin js-brand-origin" name="nav_type" value="common" checked="">
                   <span class="c-ui-radio__check c-ui-radio__check--content"></span>
                   <span class="c-ui-radio__label c-ui-radio__label--content">معمولی</span>
                 </label>
                 <label class="c-ui-radio c-ui-radio--content c-ui-checkbox--auto">
-                  <input type="radio" class="c-ui-radio__origin js-brand-origin" name="nav[type]" value="megamenu">
+                  <input type="radio" class="c-ui-radio__origin js-brand-origin" name="nav_type" value="megamenu">
                   <span class="c-ui-radio__check c-ui-radio__check--content"></span>
                   <span class="c-ui-radio__label c-ui-radio__label--content">مگا‌منو</span>
                 </label>
@@ -63,36 +64,37 @@
             </div>
           </div>
 
-          <div class="c-grid__row c-grid__row--gap-lg">
-            <div id="iranianBrandContainer1" class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--row-attr">
-              <label class="uk-form-label">آیکن فهرست: (اختیاری)</label>
-              <div class="field-wrapper">
-                <div id="iconUpload" for="brandRegistrationSheet" class="c-content-modal__uploads-label empty">
-                  <span uk-form-custom="" class="uk-form-custom">
-                      <input id="brandRegistrationSheet" type="file" class="hidden">
+
+
+          <div id="iranianBrandLogo" class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--row-attr">
+            <label class="uk-form-label">
+              آیکن فهرست: (اختیاری)
+            </label>
+            <div class="field-wrapper">
+              <div id="iconUpload" class="c-content-modal__uploads-label empty">
+                <span uk-form-custom="" class="uk-form-custom">
+                    <input id="brandLogoFile" type="file" class="hidden">
+                </span>
+                <label for="brandLogoFile" class="c-content-modal__uploads-preview">
+                  <img src="" id="iconUploadPreview" class="c-content-modal__uploads-img" alt="">
+                  <span class="c-content-upload__img-loader js-img-loader">
+                      <span class="progress__wrapper">
+                          <span class="progress"></span>
+                      </span>
                   </span>
-                  <label for="brandRegistrationSheet" class="c-content-modal__uploads-preview">
-                    <img src="" id="iconUploadPreview" class="c-content-modal__uploads-img" alt="">
-                    <span class="c-content-upload__img-loader js-img-loader">
-                        <span class="progress__wrapper">
-                            <span class="progress"></span>
-                        </span>
-                    </span>
-                  </label>
-                  <span class="c-content-modal__list c-content-modal__uploads-tooltips">
-                      <span class="c-content-modal__uploads-text">آیکن فهرست را در نسبت ۱ در ۱ و با فرمت PNG یا JPG بارگذاری کنید.</span>
-                  </span>
-                </div>
-                <input type="hidden" name="nav[image_id]" class="force-validation" id="iconTempId" value="">
-                <div class="c-content-modal__errors-full" id="iconUploadErrors"></div>
+                </label>
+                <span class="c-content-modal__list c-content-modal__uploads-tooltips">
+                    <span class="c-content-modal__uploads-text">آیکن فهرست را در نسبت ۱ در ۱ و با فرمت PNG یا JPG بارگذاری کنید.</span>
+                </span>
               </div>
+              <input type="hidden" name="logo_id" class="force-validation" id="iconImageTempId" value="">
+              <div class="c-content-modal__errors-full" id="iconUploadErrors"></div>
             </div>
-
-
           </div>
+
+
         </div>
       </div>
-
 
       <div class="c-content-modal__footer c-content-modal__footer--overflow">
         <button class="modal-footer__btn modal-footer__btn--confirm modal-footer__btn--wide js-modal-uploads-confirm js-accept save-btn" type="button" id="saveBrandRequestButton">
@@ -101,31 +103,14 @@
 
         <button class="modal-footer__btn modal-footer__btn--wide uk-close uk-modal-close js-decline" type="button" id="cancelBrandRequestButton">انصراف</button>
       </div>
+
     </form>
+
     <div class="c-content-loader">
       <div class="c-content-loader__logo"></div>
       <div class="c-content-loader__spinner"></div>
     </div>
+
   </div>
 </div>
 
-<div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal" style="display: none;">
-  <div class="uk-modal-dialog uk-modal-dialog--flex">
-    <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
-
-    <div class="uk-modal-body" data-gtm-vis-recent-on-screen-9662696_13="79003" data-gtm-vis-first-on-screen-9662696_13="79004"
-         data-gtm-vis-total-visible-time-9662696_13="100" data-gtm-vis-has-fired-9662696_13="1">
-      <div class="c-modal-notification">
-        <div class="c-modal-notification__content c-modal-notification__content--limited">
-          <h2 class="c-modal-notification__header">هشدار</h2>
-
-          <p class="c-modal-notification__text">با حذف این گروه، تمامی گزینه ها و اطلاعات موجود در آن که در محصولات دسته مرتبط درج شده اند به صورت کامل حذف خواهند شد. آیا از حذف کامل آن اطمینان دارید؟</p>
-          <div class="c-modal-notification__actions">
-            <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
-            <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

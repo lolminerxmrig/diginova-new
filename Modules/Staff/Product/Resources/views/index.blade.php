@@ -501,237 +501,235 @@
 
 @endsection
 @section('script')
-    <script>
+<script>
 
-        // تبدیل اعداد انگلیسی به فارسی
-        function ConvertNumberToPersion() {
-            persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+// تبدیل اعداد انگلیسی به فارسی
+function ConvertNumberToPersion() {
+    persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
 
-            function traverse(el) {
-                if (el.nodeType == 3) {
-                    var list = el.data.match(/[0-9]/g);
-                    if (list != null && list.length != 0) {
-                        for (var i = 0; i < list.length; i++)
-                            el.data = el.data.replace(list[i], persian[list[i]]);
-                    }
-                }
-                for (var i = 0; i < el.childNodes.length; i++) {
-                    traverse(el.childNodes[i]);
-                }
+    function traverse(el) {
+        if (el.nodeType == 3) {
+            var list = el.data.match(/[0-9]/g);
+            if (list != null && list.length != 0) {
+                for (var i = 0; i < list.length; i++)
+                    el.data = el.data.replace(list[i], persian[list[i]]);
             }
-
-            traverse(document.body);
         }
+        for (var i = 0; i < el.childNodes.length; i++) {
+            traverse(el.childNodes[i]);
+        }
+    }
 
-        // توکن csrf
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    traverse(document.body);
+}
+
+// توکن csrf
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+// پجینیشن
+$(document).on('click', '.c-ui-paginator__control a', function (e) {
+    e.preventDefault();
+
+    var page = $(this).attr('href').split('page=')[1];
+
+    var pageType = $("input[name='page_type']").val();
+
+    if (pageType == 'index') {
+        var url = "{{route('staff.products.ajaxPagination')}}?page=" + page;
+    } else if (pageType == 'only_special') {
+        var url = "{{route('staff.products.filterByType')}}?page=" + page;
+    } else if (pageType == 'productsearch') {
+        var url = "{{route('staff.products.productSearch')}}?page=" + page;
+    } else if (pageType == 'productCatSearch') {
+        var url = "{{route('staff.products.productCatSearch')}}?page=" + page;
+    }
+
+    if (pageType == 'productCatSearch' || pageType == 'productsearch') {
+        var searchValue = $("#searchKeyword").val();
+        var data = {
+            page: page,
+            search_keyword: searchValue,
+        }
+    } else {
+        var data = {
+            page: page,
+        }
+    }
+
+    $.ajax({
+        method: 'post',
+        url: url,
+        data: data,
+        success: function (result) {
+            $(".js-table-container").html(result);
+            window.pagination_type = 'withoutFilter';
+        }
+    });
+});
+
+// نمایش محصول: ویژه و همه
+$(".search_type").on('change', function () {
+
+    var searchType = $("input:checked[name='search_type']").val();
+
+    $.ajax({
+        type: 'post',
+        url: '{{route('staff.products.filterByType')}}',
+        data: {
+            search_type: searchType,
+        },
+        success: function (result) {
+            $(".js-table-container").replaceWith(result);
+        }
+    });
+});
+
+$(document).on('click', '.delete-btn', function () {
+    $(this).closest('.c-ui-table__cell').find('.uk-modal-container').addClass('uk-open');
+    $(this).closest('.c-ui-table__cell').find('.uk-modal-container').css('display', 'block');
+    $('.c-header__nav').hide();
+
+    $(document).on('click', '.yes', function () {
+
+        $('.c-header__nav').show();
+
+
+        var product_id = $(this).closest('.c-ui-table__cell').find('.delete-btn').val();
+
+        $.ajax({
+            method: 'post',
+            url: "{{route('staff.products.moveToTrash')}}",
+            data: {
+                'id': product_id,
+            },
+            success: function (result) {
+                $('.js-table-container').replaceWith(result);
+            },
+        });
+
+    });
+
+    $(document).on('click', '.uk-modal-close-default', function () {
+        $('.c-header__nav').show();
+    });
+
+    $(document).on('click', '.no', function () {
+        $('.c-header__nav').show();
+    });
+
+
+});
+
+//دکمه سرچ
+$("#search-btn").on('click', function () {
+
+    var searchValue = $("#searchKeyword").val();
+    var searchGroup = $("#searchGroup").val();
+
+    if (searchGroup == 'product_name') {
+        var url = "{{route('staff.products.productSearch')}}";
+    } else if (searchGroup == 'product_category') {
+        var url = "{{route('staff.products.productCatSearch')}}";
+    }
+
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: {
+            'search_keyword': searchValue,
+            'searchGroup': searchGroup,
+        },
+        success: function (result) {
+            $(".js-table-container").replaceWith(result);
+            if ($(".search_type:checked").val()) {
+                $(this).removeAttr('checked');
             }
-        });
+        }
+    });
+});
 
-        // پجینیشن
-        $(document).on('click', '.c-ui-paginator__control a', function (e) {
-            e.preventDefault();
+// دکمه حذف سرچ
+$("#searchClear").on('click', function () {
+    $.ajax({
+        method: 'post',
+        url: "{{route('staff.products.ajaxPagination')}}",
+        success: function (result) {
+            $(".js-table-container").html(result);
+        }
+    });
+});
 
-            var page = $(this).attr('href').split('page=')[1];
+// ایجکس سرچ
+$('#searchKeyword').on('keyup', function () {
 
-            var pageType = $("input[name='page_type']").val();
+    var searchValue = $(this).val();
 
-            if (pageType == 'index') {
-                var url = "{{route('staff.products.ajaxPagination')}}?page=" + page;
-            } else if (pageType == 'only_special') {
-                var url = "{{route('staff.products.filterByType')}}?page=" + page;
-            } else if (pageType == 'productsearch') {
-                var url = "{{route('staff.products.productSearch')}}?page=" + page;
-            } else if (pageType == 'productCatSearch') {
-                var url = "{{route('staff.products.productCatSearch')}}?page=" + page;
-            }
+    if (searchValue.length > 0) {
+        $("#search-btn").removeAttr('disabled');
+        $("#searchClear").removeAttr('disabled');
 
-            if (pageType == 'productCatSearch' || pageType == 'productsearch') {
-                var searchValue = $("#searchKeyword").val();
-                var data = {
-                    page: page,
-                    search_keyword: searchValue,
-                }
-            } else {
-                var data = {
-                    page: page,
-                }
-            }
-
-            $.ajax({
-                method: 'post',
-                url: url,
-                data: data,
-                success: function (result) {
-                    $(".js-table-container").html(result);
-                    window.pagination_type = 'withoutFilter';
-                }
-            });
-        });
-
-        // نمایش محصول: ویژه و همه
-        $(".search_type").on('change', function () {
-
-            var searchType = $("input:checked[name='search_type']").val();
-
-            $.ajax({
-                type: 'post',
-                url: '{{route('staff.products.filterByType')}}',
-                data: {
-                    search_type: searchType,
-                },
-                success: function (result) {
-                    $(".js-table-container").replaceWith(result);
-                }
-            });
-        });
-
-        $(document).on('click', '.delete-btn', function () {
-            $(this).closest('.c-ui-table__cell').find('.uk-modal-container').addClass('uk-open');
-            $(this).closest('.c-ui-table__cell').find('.uk-modal-container').css('display', 'block');
-            $('.c-header__nav').hide();
-
-            $(document).on('click', '.yes', function () {
-
-                $('.c-header__nav').show();
-
-
-                var product_id = $(this).closest('.c-ui-table__cell').find('.delete-btn').val();
-
-                $.ajax({
-                    method: 'post',
-                    url: "{{route('staff.products.moveToTrash')}}",
-                    data: {
-                        'id': product_id,
-                    },
-                    success: function (result) {
-                        $('.js-table-container').replaceWith(result);
-                    },
-                });
-
-            });
-
-            $(document).on('click', '.uk-modal-close-default', function () {
-                $('.c-header__nav').show();
-            });
-
-            $(document).on('click', '.no', function () {
-                $('.c-header__nav').show();
-            });
-
-
-        });
-
-        //دکمه سرچ
-        $("#search-btn").on('click', function () {
-
-            var searchValue = $("#searchKeyword").val();
-            var searchGroup = $("#searchGroup").val();
-
-            if (searchGroup == 'product_name') {
-                var url = "{{route('staff.products.productSearch')}}";
-            } else if (searchGroup == 'product_category') {
-                var url = "{{route('staff.products.productCatSearch')}}";
-            }
-
-            $.ajax({
-                type: 'post',
-                url: url,
-                data: {
-                    'search_keyword': searchValue,
-                    'searchGroup': searchGroup,
-                },
-                success: function (result) {
-                    $(".js-table-container").replaceWith(result);
-                    if ($(".search_type:checked").val()) {
-                        $(this).removeAttr('checked');
-                    }
-                }
-            });
-        });
-
-        // دکمه حذف سرچ
         $("#searchClear").on('click', function () {
-            $.ajax({
-                method: 'post',
-                url: "{{route('staff.products.ajaxPagination')}}",
-                success: function (result) {
-                    $(".js-table-container").html(result);
-                }
-            });
+            $("#searchKeyword").val('');
+            $("#search-btn").attr('disabled', true);
+            $("#searchClear").attr('disabled', true);
         });
 
-        // ایجکس سرچ
-        $('#searchKeyword').on('keyup', function () {
+    }
 
-            var searchValue = $(this).val();
+    if (searchValue.length == 0) {
+        $("#search-btn").attr('disabled', true);
+        $("#searchClear").attr('disabled', true);
 
-            if (searchValue.length > 0) {
-                $("#search-btn").removeAttr('disabled');
-                $("#searchClear").removeAttr('disabled');
-
-                $("#searchClear").on('click', function () {
-                    $("#searchKeyword").val('');
-                    $("#search-btn").attr('disabled', true);
-                    $("#searchClear").attr('disabled', true);
-                });
-
+        $.ajax({
+            type: 'post',
+            url: '{{route('staff.products.ajaxPagination')}}',
+            success: function (result) {
+                $(".js-table-container").replaceWith(result);
             }
-
-            if (searchValue.length == 0) {
-                $("#search-btn").attr('disabled', true);
-                $("#searchClear").attr('disabled', true);
-
-                $.ajax({
-                    type: 'post',
-                    url: '{{route('staff.products.ajaxPagination')}}',
-                    success: function (result) {
-                        $(".js-table-container").replaceWith(result);
-                    }
-                });
-            }
-
         });
+    }
 
-        // انتخاب تعداد نمایش: غیرفعال
-        $("select[name='paginator-select-pages']").on('change', function () {
-            //selectbox paginator val
-            var selectedPaginator = $(this).val();
+});
 
-            $.ajax({
-                type: 'post',
-                url: "{{route('staff.products.ajaxPagination')}}",
-                data: {
-                    paginatorNum: selectedPaginator,
-                },
-                success: function (result) {
-                    $("js-table-container").replaceWith(result);
-                }
-            });
-        });
+// انتخاب تعداد نمایش: غیرفعال
+$("select[name='paginator-select-pages']").on('change', function () {
+    //selectbox paginator val
+    var selectedPaginator = $(this).val();
 
+    $.ajax({
+        type: 'post',
+        url: "{{route('staff.products.ajaxPagination')}}",
+        data: {
+            paginatorNum: selectedPaginator,
+        },
+        success: function (result) {
+            $("js-table-container").replaceWith(result);
+        }
+    });
+});
 
-        $(document).on('change', 'input[name="status"]', function () {
-            if ($(this).is(':checked')) {
-                var status = 1;
-            } else {
-                var status = 0;
-            }
-            var data_product_id = $(this).attr('data-product-id');
+$(document).on('change', 'input[name="status"]', function () {
+    if ($(this).is(':checked')) {
+        var status = 1;
+    } else {
+        var status = 0;
+    }
+    var data_product_id = $(this).attr('data-product-id');
 
-            $.ajax({
-                method: 'post',
-                url: "{{ route('staff.products.statusProduct') }}",
-                data: {
-                    'status': status,
-                    'product_id': data_product_id,
-                },
-            });
+    $.ajax({
+        method: 'post',
+        url: "{{ route('staff.products.statusProduct') }}",
+        data: {
+            'status': status,
+            'product_id': data_product_id,
+        },
+    });
 
-        });
+});
 
-
-    </script>
+</script>
 @endsection

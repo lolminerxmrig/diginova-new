@@ -1,16 +1,7 @@
 @extends('layouts.staff.master')
 @section('head')
-  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+  <script src="{{ asset('seller/js/tableView.js') }}"></script>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
-  <script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
-  <script src="{{ asset('seller/js/tagify.min.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('staff/css/venobox.min.css') }}">
-  <script src="{{ asset('staff/js/venobox.min.js') }}"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
-  <script src="https://unpkg.com/@yaireo/dragsort"></script>
-
   <style>
     /*.select2-search {*/
     /*    display: none;*/
@@ -63,14 +54,15 @@
 
         <div class="js-table-container">
 
-          <div class="c-grid__row" style="margin-top:30px">
+          <div class="content-section">
+            <div class="c-grid__row" style="margin-top:30px">
             <div class="c-grid__col">
               <div class="c-card">
                 <div class="c-card__wrapper">
                   <div class="c-card__header c-card__header--table">
 {{--                    @if(($nav->type == "nav") || ($nav->type == "nav-r"))--}}
                       <a target="_blank">
-                        <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد ردیف
+                        <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد فهرست
                           جدید
                         </div>
                       </a>
@@ -87,22 +79,16 @@
                       <thead>
                       <tr class="c-ui-table__row">
                         <th class="c-ui-table__header">
-                          <span class="table-header-searchable uk-text-nowrap ">ردیف</span>
+                          <span class="table-header-searchable uk-text-nowrap "></span>
                         </th>
                         <th class="c-ui-table__header">
-                          <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">راهنما</span>
+                          <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان فهرست</span>
                         </th>
                         <th class="c-ui-table__header">
-                          <span class="table-header-searchable uk-text-nowrap ">عنوان</span>
+                          <span class="table-header-searchable uk-text-nowrap ">لینک به آدرس</span>
                         </th>
                         <th class="c-ui-table__header"><span
-                            class="table-header-searchable uk-text-nowrap ">اندازه استاندارد</span>
-                        </th>
-                        <th class="c-ui-table__header"><span
-                            class="table-header-searchable uk-text-nowrap ">لینک به آدرس</span>
-                        </th>
-                        <th class="c-ui-table__header"><span
-                            class="table-header-searchable uk-text-nowrap ">تگ جایگزین (Alt)</span>
+                            class="table-header-searchable uk-text-nowrap ">نوع فهرست</span>
                         </th>
                         <th class="c-ui-table__header"><span
                             class="table-header-searchable uk-text-nowrap ">وضعیت</span>
@@ -115,9 +101,9 @@
                       @php
                         $i = 1;
                       @endphp
-                      @foreach($navs->sortBy('position') as $key => $item)
-
-                        <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
+                      @if(count($navs))
+                        @foreach($navs->sortBy('position') as $key => $nav)
+                            <tr name="row db-row" id="item-{{ $nav->id }}" data-id="{{ $nav->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
 
                           <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
                             <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
@@ -128,9 +114,6 @@
 {{--                            <span class="c-wallet__body-card-row-item"> {{ persianNum($navs->firstItem() + $key) }} </span>--}}
                           </td>
 
-                          <td class="c-ui-table__cell" style="min-width: 90px">
-                            <img src="{{ asset("staff/icon/" . substr($nav->name, 0, strrpos($nav->name, '(')-1) . ".png") }}" width="85%" height="85%">
-                          </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
                               <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
@@ -138,59 +121,76 @@
                               </span>
                           </td>
 
-                          <td class="c-ui-table__cell c-ui-table__cell--small-text">
+                          <td class="c-ui-table__cell c-ui-table__cell--text-blue">
+                            @if(!is_null($nav->link))
+                              <a class="c-join__promotion-link" href="" target="_blank" style="font-weight: bold">{{ $nav->link }}</a>
+                              <a class="c-join__promotion-copy-btn js-copy-btn" href="#" data-link="{{ $nav->link }}">کپی لینک</a>
+                            @endif
+                          </td>
+
+
+                          <td class="c-ui-table__cell c-ui-table__cell-desc" style="text-align: center;">
                               <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                  {{ $nav->size . ' px' }}
+                                  {{ ($nav->type == 'common')? 'معمولی' : 'دارای مگا‌منو' }}
                               </span>
-                          </td>
-
-                          <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;">
-                            <input type="text" name="link" value="{{ $item->link }}" class="c-content-input__origin js-attribute-old-value link {{ (($item->type == 'required_multiple')|| ($item->type == 'multiple'))? 'c-ui-input--disabled' : '' }}" {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'disabled' : '' }}>
-                          </td>
-
-                          <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                            <input type="text" name="img_alt" value="{{ $item->alt }}" class="c-content-input__origin js-attribute-old-value img_alt {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'c-ui-input--disabled' : '' }}" {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'disabled' : '' }}>
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text">
                             <div class="c-ui-tooltip__anchor">
                               <div class="c-ui-toggle__group">
                                 <label class="c-ui-toggle">
-                                  <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" name="status" {{ ($item->status == 'active')? 'checked' : '' }} {{ (($item->type == 'required_single') || ($item->type == 'required_multiple'))? 'disabled' : '' }}>
+                                  <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" name="status" {{ ($nav->status == 'active')? 'checked' : '' }} data-nav-id="{{$nav->id}}">
                                   <span class="c-ui-toggle__check"></span>
                                 </label>
                               </div>
+
+                              <input type="hidden" value="0" class="js-active-input">
                             </div>
                           </td>
+
 
                           <td class="c-ui-table__cell">
-                            <div class="c-promo__actions" style="width: auto; min-width: 15%; margin: auto;">
+                            <div class="c-promo__actions">
+                              <a class="c-join__btn c-join__btn--secondary-greenish" href="{{ route('staff.navs.editNav', $nav->id) }}">ویرایش فهرست</a>
 
-                              <label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">
-                                <input name="navImage" data-id="{{ $item->id }}" type="file" class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg">
-                                <input name="navImageId" type="hidden" value="{{ ($item->media()->exists())? $item->media->first()->id : '' }}">
-                              </label>
-
-{{--{{ dd($item->media()->exists()) }}--}}
-                              <a href="{{ ($item->media()->exists())? $site_url . '/' . $item->media->first()->path . '/'. $item->media->first()->name : '' }}"
-                                 class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;">
-                                <span data-tooltip-body="" style="min-height:20px; width: auto;">شاهده تصویر</span>
-                              </a>
-
-                              @if($i == 1)
-                                <button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn" style="float: right;margin-top: 5px !important;margin-right: 5px;opacity: 43%;" disabled=""></button>
-                              @else
-                                <button class="c-content-upload__btn c-content-upload__btn--remove remove-btn" style="float: right;margin-top: 5px !important;margin-right: 5px;"></button>
-                              @endif
+                              <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn" value="{{ $nav->id }}">حذف</button>
                             </div>
-                          </td>
-                        </tr>
 
+                            <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification" style="display: none;">
+                              <div class="uk-modal-dialog uk-modal-dialog--flex">
+                                <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
+
+                                <div class="uk-modal-body">
+                                  <div class="c-modal-notification">
+                                    <div class="c-modal-notification__content c-modal-notification__content--limited">
+                                      <h2 class="c-modal-notification__header">
+                                        هشدار</h2>
+
+                                      <p class="c-modal-notification__text">
+                                        با حذف این فهرست، تمامی منو های آن حذف خواهد شد. آیا از حذف آن اطمینان دارید؟
+                                      </p>
+                                      <div class="c-modal-notification__actions">
+                                        <button class="c-modal-notification__btn no uk-modal-close">
+                                          خیر
+                                        </button>
+                                        <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">
+                                          بله
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </td>
+
+                        </tr>
                         @php
                           $i++;
                         @endphp
                       @endforeach
-
+                      @endif
                       </tbody>
                     </table>
                   </div>
@@ -199,7 +199,7 @@
 
 {{--                    @if(($nav->type == "nav") || ($nav->type == "nav-r"))--}}
                       <a target="_blank">
-                        <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد ردیف
+                        <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد فهرست
                           جدید
                         </div>
                       </a>
@@ -217,27 +217,29 @@
               </div>
             </div>
           </div>
+          </div>
+
         </div>
-      </div>
 
-      @include('staffnav::layouts.modal')
-
-
-      <div class="c-grid__row">
-        <div class="c-grid__col">
-          <div class="c-card">
-            <div class="edit-form-section c-card__footer c-card__footer--products">
-              <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap"
-                   style="width: 40%; float: left; display: contents;">
-                <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-left: 68px;max-width: 100px;" id="submit-form">ذخیره
-                </a>
+        <div class="c-grid__row" style="max-width: 1320px;margin-top: 30px;">
+          <div class="c-grid__col">
+            <div class="c-card">
+              <div class="edit-form-section c-card__footer c-card__footer--products">
+                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap"
+                     style="width: 40%; float: left; display: contents;">
+                  <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-left: 68px;max-width: 100px;" id="submit-form">ذخیره
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-
       </div>
+
+      @include('staffnav::layouts.modal')
+
+
       <div id="pageLoader" class="c-content-loader c-content-loader--fixed">
         <div class="c-content-loader__logo"></div>
         <div class="c-content-loader__spinner"></div>
@@ -291,17 +293,73 @@ $.ajaxSetup({
   }
 });
 
+$(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
+  $("#newAttributeRequestModal").addClass('uk-open');
+  $("#newAttributeRequestModal").css('display', 'block');
+  $('.c-header__nav').hide();
+});
 
-// ایجکس آپلود عکس
-$(document).on("change", "input[name='navImage']", function () {
+$(document).on('click', '.delete-btn', function () {
+  $(this).closest('.c-ui-table__cell').find('.uk-modal-container').addClass('uk-open');
+  $(this).closest('.c-ui-table__cell').find('.uk-modal-container').css('display', 'block');
+  $('.c-header__nav').hide();
+
+  $(document).on('click', '.yes', function () {
+
+    $('.c-header__nav').show();
+
+
+    var nav_id = $(this).closest('.c-ui-table__cell').find('.delete-btn').val();
+    var nav_location = {{ $nav_location->id }};
+
+    $.ajax({
+      method: 'post',
+      url: "{{route('staff.navs.deleteNav')}}",
+      data: {
+        'id': nav_id,
+        'nav_location': nav_location,
+      },
+      success: function (result) {
+        $(".content-section").replaceWith(result);
+        $(window).scrollTop(0);
+        UIkit.notification({
+          message: 'فهرست حذف شد',
+          status: 'success',
+          pos: 'top-left',
+          timeout: 3000
+        });
+      },
+    });
+
+  });
+
+  $(document).on('click', '.uk-modal-close-default', function () {
+    $('.c-header__nav').show();
+  });
+
+  $(document).on('click', '.no', function () {
+    $('.c-header__nav').show();
+  });
+
+
+});
+
+function initIconUpload() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
   let $iconUpload = $('#iconUpload');
   let $previewImg = $('#iconUploadPreview');
   let $errorsSection = $('#iconUploadErrors');
   window.UIkit.upload($iconUpload, {
-    url: 'nav-locations/upload-image',
+    url: '../../nav-locations/upload-image',
     beforeSend: function () {
       $errorsSection.html('');
     },
+    beforeSend: e => e.headers = { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') },
     beforeAll: function () {
       $iconUpload.addClass('loading');
       $errorsSection.html('');
@@ -341,9 +399,10 @@ $(document).on("change", "input[name='navImage']", function () {
         $iconUpload.removeClass('loading');
         return;
       }
+
       $iconUpload.removeClass('empty loading');
       $previewImg.attr('src', result.data.url);
-      $('#iconTempId').val(result.data.id);
+      $('#iconImageTempId').val(result.data.id);
     },
     loadStart: function () {
     },
@@ -355,178 +414,106 @@ $(document).on("change", "input[name='navImage']", function () {
     }
   });
 
+}
 
+initIconUpload();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{--  var form_data = new FormData();--}}
-{{--  var input_image = $(this).prop("files")[0];--}}
-
-{{--  form_data.append("image", input_image);--}}
-{{--    --}}{{--<input name="navImage" data-id="{{ $item->id }}" type="file" class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg">--}}
-
-{{--  var row_id = $(this).data('id');--}}
-{{--  form_data.append("row_id", row_id);--}}
-
-{{--  var old_img = $(this).closest('tr').find("input[name='navImageId']").val();--}}
-{{--  if (old_img) {--}}
-{{--    form_data.append("old_img", old_img);--}}
-{{--  }--}}
-
-
-{{--  $(this).addClass('.active_element');--}}
-
-{{--  $.ajax({--}}
-{{--    --}}{{--url: '{{route('staff.navs.UploadImage')}}',--}}
-{{--    cache: false,--}}
-{{--    contentType: false,--}}
-{{--    processData: false,--}}
-{{--    data: form_data,--}}
-{{--    type: 'post',--}}
-{{--    success: function (response) {--}}
-
-{{--      if (response !== null) {--}}
-{{--        var media_id = response;--}}
-{{--        console.log('media id: ' + media_id);--}}
-
-{{--        var media_ids = '<input name="media_id" value="' + media_id + '" hidden>';--}}
-{{--        $('.active_element').first().append(media_ids);--}}
-{{--        // $('.active_element').removeClass('.active_element');--}}
-{{--      }--}}
-
-
-{{--      // $(this).closest('tr').addClass('.active_tr');--}}
-
-{{--      // $(this).attr('data-media-id', media_id);--}}
-{{--      // $('.active_element').data('media-id', media_id);--}}
-{{--      // $('.active_element').removeClass('.active_tr');--}}
-
-
-{{--      $(window).scrollTop(0);--}}
-
-{{--      UIkit.notification({--}}
-{{--        message: 'تصویر ذخیره شد',--}}
-{{--        status: 'success',--}}
-{{--        pos: 'top-left',--}}
-{{--        timeout: 3000--}}
-{{--      });--}}
-
-{{--      window.location.href = "{{ route('staff.navs.navImages', ['id' => $nav->id] ) }}";--}}
-{{--    },--}}
-{{--  });--}}
-
-{{--  console.log($(this).data('media_id'));--}}
-
+$(document).on('click', '.uk-close', function () {
+  $('.c-header__nav').show();
 });
 
+$(document).on('click', '.no', function (){
+  $('.c-header__nav').show();
+});
 
-$(document).ready(function(){
-  $('.venobox').venobox();
-})
-
-
-// ایجکس فرم اصلی
-$('#submit-form').on('click', function (e) {
+// ایجکس فرم پاپ آپ
+$('.save-btn').on('click', function (e) {
   // e.preventDefault();
 
-  var nav_links = $("input[name='link']").map(function(){return $(this).val();}).get();
+  var nav_type = $("input[name='nav_type']:checked").val();
+  var location_id = $("input[name='location_id']").val();
+  var nav_name = $("input[name='nav_name']").val();
+  var nav_link = $("input[name='nav_link']").val();
+  var uploaded_icon_id = $("#iconImageTempId").val();
 
-  var images_alt = $("input[name ='img_alt']").map(function(){return $(this).val();}).get();
-
-  var status = $("input[name='status']").map(function(){
-    if($(this).is(':checked')){return 'active';}else{return 'inactive';}
-  }).get();
-
-  var deleted_rows = $("input[name='deleted_row']").map(function(){return $(this).val();}).get();
-
-  var position = $("tbody").sortable('serialize');
-
-  {{--var nav_id = {{ $nav->id }};--}}
-
-  var media_ids = $("input[name='media_id']").map(function(){return $(this).val();}).get();
-    // <input name="navImage" data-media-id="" data-id="" type="file" class="js-profile-business-info-logo navImage"
-
-
-    $.ajax({
+  $.ajax({
     method: "post",
-{{--    url: '{{route('staff.navs.updateNavImagesRow')}}',--}}
+    url: '{{route('staff.navs.storeNav')}}',
     data: {
-      positions:position,
-      deleted_rows:deleted_rows,
-      // group_id: group_id,
-      nav_links: nav_links,
-      images_alt: images_alt,
-      status: status,
-      nav_id: nav_id,
-      media_ids: media_ids,
+      nav_type: nav_type,
+      location_id: location_id,
+      nav_name: nav_name,
+      nav_link: nav_link,
+      uploaded_icon_id: uploaded_icon_id,
     },
-
     success: function () {
-        $(window).scrollTop(0);
+      $("#newAttributeRequestModal").hide();
+      $('#newNanRequestForm').trigger("reset");
+      $('.uk-input').val('');
+      $('#iconUploadPreview').attr('src', '');
+      $('#iconImageTempId').val('');
+      $('#iconUpload').addClass('empty');
+      $('.c-header__nav').show();
 
-        UIkit.notification({
-          message: 'اطلاعات با موفقیت ذخیره شد',
-          status: 'success',
-          pos: 'top-left',
-          timeout: 3000
-        });
+      $.ajax({
+        method: "post",
+        url: '{{route('staff.navs.reloadNavsTable')}}',
+        data: {
+          location_id: location_id,
+        },
+        success: function (result) {
+            $(".content-section").replaceWith(result);
+            $(window).scrollTop(0);
+            UIkit.notification({
+              message: 'فهرست ایجاد شد',
+              status: 'success',
+              pos: 'top-left',
+              timeout: 3000
+            });
+        },
+      });
 
-        {{--window.location.href = "{{ route('staff.navs.navImages', ['id' => $nav->id] ) }}";--}}
     },
+
+    error: function (errors) {
+      Promotion.displayError(errors.responseJSON.data.errors);
+    }
   });
 
 });
 
+$(document).on('change', 'input[name="status"]', function () {
+  if($(this).is(':checked'))
+  {
+    var status = 'active';
+  }
+  else{
+    var status = 'inactive';
+  }
+  var nav_id = $(this).attr('data-nav-id');
+
+  $.ajax({
+    method: 'post',
+    url: "{{ route('staff.navs.statusNav') }}",
+    data: {
+      'status': status,
+      'nav_id' : nav_id,
+    },
+  });
+});
 
 $('tbody').sortable({
   handle: '.c-content-upload__drag-handler',
+  axis: 'y',
+  update: function (event, ui) {
+    var data = $("tbody").sortable('serialize');
+    $.ajax({
+      data: data,
+      type: 'post',
+      url: '{{route('staff.navs.navChangePosition')}}',
+    })
+  }
 });
-
-
-$(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
-  $("#newAttributeRequestModal").addClass('uk-open');
-  $("#newAttributeRequestModal").css('display', 'block');
-  $('.c-header__nav').hide();
-});
-
-
-$(document).on('click', '.remove-btn', function () {
-  $(this).closest("tr").addClass('hide-tr');
-
-    if ($(document).find('.hide-tr').hasClass('db-row'))
-    {
-      var deleted_id = $(".hide-tr").attr('data-id');
-      var deleted_row = '<input name="deleted_row" value="' + deleted_id + '" hidden>';
-      $('.c-main').append(deleted_row);
-      $(".hide-tr").hide();
-      $(".hide-tr").removeClass('hide-tr');
-    }
-    else {
-      $(".hide-tr").remove();
-    }
-});
-
-
-
-
-
-
-
 
 </script>
 @endsection

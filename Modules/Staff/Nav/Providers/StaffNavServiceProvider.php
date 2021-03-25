@@ -22,8 +22,7 @@ class StaffNavServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffnav');
 
         Relation::morphMap([
-//            'Nav' => 'Modules\Staff\Nav\Models\Nav',
-//            'NavImage' => 'Modules\Staff\Nav\Models\NavImage',
+            'Nav' => 'Modules\Staff\Nav\Models\Nav',
         ]);
     }
 

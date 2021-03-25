@@ -12,17 +12,25 @@ class Nav extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name', 'link', 'alt', 'status', 'group_id'];
+    protected $fillable = ['name', 'link', 'style', 'position', 'type', 'has_ads', 'location_id'];
+
+
+    public function media()
+    {
+      return $this->morphToMany(Media::class, 'mediable');
+    }
+
+
+
+
+
 
     public function group()
     {
        return $this->belongsTo(NavGroup::class, 'group_id');
     }
 
-    public function media()
-    {
-      return $this->morphToMany(Media::class, 'mediable');
-    }
+
 
     public function images()
     {

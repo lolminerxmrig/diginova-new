@@ -362,7 +362,6 @@ $('#voucher_form').on('submit', function (e) {
             }, 2000);
         },
         error: function (errors) {
-            console.log(errors.responseJSON.data.errors);
             Promotion.displayError(errors.responseJSON.data.errors);
         }
     });
