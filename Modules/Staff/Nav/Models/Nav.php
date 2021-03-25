@@ -12,7 +12,7 @@ class Nav extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name', 'link', 'style', 'position', 'type', 'has_ads', 'location_id'];
+    protected $fillable = ['name', 'link', 'style', 'position', 'type', 'has_ads', 'location_id', 'parent_id'];
 
 
     public function media()

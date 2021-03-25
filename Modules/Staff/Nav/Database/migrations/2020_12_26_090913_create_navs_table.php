@@ -22,7 +22,8 @@ class CreateNavsTable extends Migration
             $table->string('type')->nullable();
             $table->string('status')->default('active');
             $table->boolean('has_ads')->default(0);
-            $table->foreignId('location_id');
+            $table->integer('parent_id')->nullable();
+            $table->foreignId('location_id')->nullable();
             $table->timestamps();
 
             $table->foreign('location_id')->references('id')->on('nav_locations');

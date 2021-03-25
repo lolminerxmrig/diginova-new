@@ -14,18 +14,17 @@ use Modules\Staff\Nav\Http\Controllers\StaffNavController;
 |
 */
 
-Route::domain('staff.diginova.test')->prefix('nav-locations')->name('staff.navs.')
-    ->middleware('web', 'staff')->group(function () {
+Route::domain('staff.diginova.test')->name('staff.navs.')
+  ->middleware('web', 'staff')->group(function () {
 
-    Route::get('/', [StaffNavController::class, 'index'])
-        ->name('index');
+    Route::get('nav-locations', [StaffNavController::class, 'index'])
+      ->name('index');
 
-    Route::get('{id}/navs', [StaffNavController::class, 'navs'])
+    Route::get('nav-location/{id}/navs', [StaffNavController::class, 'navs'])
       ->name('navs');
 
-    Route::get('nav/{id}/edit', [StaffNavController::class, 'editNav'])
-      ->name('editNav');
-
+    Route::get('nav/{id}/items', [StaffNavController::class, 'navItems'])
+      ->name('navItems');
 
     Route::post('upload-image', [StaffNavController::class, 'UploadImage'])
       ->name('UploadImage');
@@ -46,22 +45,36 @@ Route::domain('staff.diginova.test')->prefix('nav-locations')->name('staff.navs.
       ->name('deleteNav');
 
 
-//
-//    Route::get('nav/{id}', [StaffNavController::class, 'nav'])
-//      ->name('nav');
-//
-//    Route::get('nav/{id}/images', [StaffNavController::class, 'navImages'])
-//      ->name('navImages');
-//
-//    Route::post('custom-ajax-upload', [StaffNavController::class, 'customUploadImage'])
-//      ->name('customUploadImage');
-//
 
-//
-//    Route::post('updateNav', [StaffNavController::class, 'updateNav'])
-//      ->name('updateNav');
-//
-//    Route::post('updateNavImagesRow', [StaffNavController::class, 'updateNavImagesRow'])
-//      ->name('updateNavImagesRow');
 
-});
+
+
+
+
+
+    Route::post('updateNav', [StaffNavController::class, 'updateNav'])
+      ->name('updateNav');
+
+
+    Route::post('storeItem', [StaffNavController::class, 'storeItem'])
+      ->name('storeItem');
+
+    Route::post('reloadMegamenuTable', [StaffNavController::class, 'reloadMegamenuTable'])
+      ->name('reloadMegamenuTable');
+
+    Route::post('storeMegaMenu', [StaffNavController::class, 'storeMegaMenu'])
+      ->name('storeMegaMenu');
+
+    Route::post('itemChangePosition', [StaffNavController::class, 'itemChangePosition'])
+      ->name('itemChangePosition');
+
+    Route::post('deleteItem', [StaffNavController::class, 'deleteItem'])
+      ->name('deleteItem');
+
+    Route::get('item/{id}/menus', [StaffNavController::class, 'ItemMenus'])
+      ->name('ItemMenus');
+
+    Route::post('megamenu/{id}/items', [StaffNavController::class, 'megamenuItems'])
+      ->name('megamenuItems');
+
+  });
