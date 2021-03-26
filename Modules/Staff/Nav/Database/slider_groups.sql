@@ -1,3 +1,8 @@
-INSERT INTO diginova.nav_groups (id, name, category_id, created_at, updated_at) VALUES (1, 'قسمت بالای صفحه اصلی', null, null, null);
-INSERT INTO diginova.nav_groups (id, name, category_id, created_at, updated_at) VALUES (2, 'قسمت پایین صفحه اصلی', null, null, null);
-INSERT INTO diginova.nav_groups (id, name, category_id, created_at, updated_at) VALUES (3, 'بنر و اسلایدر صفحه دسته بندی', 1, null, null);
+--
+-- Dumping data for table `slider_groups`
+--
+
+INSERT INTO `slider_groups` (`id`, `name`, `category_id`, `created_at`, `updated_at`) VALUES
+(1, 'قسمت بالای صفحه اصلی', NULL, NULL, NULL),
+(2, 'قسمت پایین صفحه اصلی', NULL, NULL, NULL),
+(3, 'بنر و اسلایدر صفحه دسته بندی', 1, NULL, NULL);

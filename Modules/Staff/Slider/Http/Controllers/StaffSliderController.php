@@ -85,10 +85,6 @@ class StaffSliderController extends Controller
         'person_role' => 'staff' ,
       ]);
 
-  //        $slider = Slider::find($request->slider_id);
-  //        $slider->media()->attach($media);1
-
-
       if (!is_null($request->row_id))
       {
         $image = SliderImage::find($request->row_id);
@@ -128,7 +124,6 @@ class StaffSliderController extends Controller
         }, $positions);
 
         foreach($positions as $key => $position) {
-            Log::info($position);
             Slider::find($position)->update([
               'status' => $request->status[$key],
             ]);
@@ -145,10 +140,13 @@ class StaffSliderController extends Controller
     public function updateSliderImagesRow(Request $request)
     {
         // delete rows
-        if (isset($request->deleted_rows) && (!is_null($request->deleted_rows))) {
+        if (isset($request->deleted_rows) && count($request->deleted_rows)) {
           foreach ($request->deleted_rows as $deleted_row) {
-            SliderImage::find($deleted_row)->media()->detach();
-            SliderImage::find($deleted_row)->delete();
+            $sliderImage = SliderImage::find($deleted_row);
+            Log::info($sliderImage);
+
+//            $sliderImage->media()->detach();
+            $sliderImage->forceDelete();
           }
         }
 
@@ -160,15 +158,43 @@ class StaffSliderController extends Controller
           return intval($value);
         }, $positions);
 
-        foreach($positions as $i => $id)
-        {
-            SliderImage::updateOrCreate(['id' => $id], [
-                'alt' => $request->images_alt[$i],
-                'link' => $request->slider_links[$i],
-                'position' => $i,
-                'status' => $request->status[$i],
-                'slider_id' => $request->slider_id,
-            ]);
+
+        if (count($positions)) {
+            $i = 0;
+            foreach ($positions as $id) {
+
+              if ($id == 0 && is_null($request->media_ids[$i])) {
+                  continue;
+                  $i++;
+              }
+
+              if (SliderImage::find($id)) {
+                  SliderImage::where('id', $id)->update([
+                    'alt' => $request->images_alt[$i],
+                    'link' => $request->slider_links[$i],
+                    'position' => $i,
+                    'status' => $request->status[$i],
+                    'slider_id' => $request->slider_id,
+                  ]);
+              }
+              else {
+                  $createdSliderImage = SliderImage::create([
+                    'alt' => $request->images_alt[$i],
+                    'link' => $request->slider_links[$i],
+                    'position' => $i,
+                    'status' => $request->status[$i],
+                    'slider_id' => $request->slider_id,
+                  ]);
+
+                $media = Media::find($request->media_ids[$i]);
+                $createdSliderImage->media()->attach($media);
+              }
+
+              $i++;
+
+
+            }
+
         }
 
     }

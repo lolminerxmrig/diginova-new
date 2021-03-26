@@ -119,13 +119,14 @@
 
                         <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
 
+                          <input name="media_id" hidden>
+
                           <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
                             <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
                               <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
                               <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
                               <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
                             </div>
-{{--                            <span class="c-wallet__body-card-row-item"> {{ persianNum($slider_images->firstItem() + $key) }} </span>--}}
                           </td>
 
                           <td class="c-ui-table__cell" style="min-width: 90px">
@@ -171,7 +172,6 @@
                                 <input name="sliderImageId" type="hidden" value="{{ ($item->media()->exists())? $item->media->first()->id : '' }}">
                               </label>
 
-{{--{{ dd($item->media()->exists()) }}--}}
                               <a href="{{ ($item->media()->exists())? $site_url . '/' . $item->media->first()->path . '/'. $item->media->first()->name : '' }}"
                                  class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;">
                                 <span data-tooltip-body="" style="min-height:20px; width: auto;">شاهده تصویر</span>
@@ -280,205 +280,183 @@
   </div>
 @endsection
 @section('script')
-<script>
+  <script>
 
-// اضافه کردن توکن به درخواست های ایجکس
-$.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  }
-});
+    // اضافه کردن توکن به درخواست های ایجکس
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
 
+    // ایجکس آپلود عکس
+    $(document).on("change", "input[name='sliderImage']", function () {
+      var form_data = new FormData();
+      var input_image = $(this).prop("files")[0];
 
-// ایجکس آپلود عکس
-$(document).on("change", "input[name='sliderImage']", function () {
-  var form_data = new FormData();
-  var input_image = $(this).prop("files")[0];
+      form_data.append("image", input_image);
 
-  form_data.append("image", input_image);
-    {{--<input name="sliderImage" data-id="{{ $item->id }}" type="file" class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg">--}}
+      var row_id = $(this).data('id');
+      form_data.append("row_id", row_id);
 
-  var row_id = $(this).data('id');
-  form_data.append("row_id", row_id);
-
-  var old_img = $(this).closest('tr').find("input[name='sliderImageId']").val();
-  if (old_img) {
-    form_data.append("old_img", old_img);
-  }
-
-
-  $(this).addClass('.active_element');
-
-  $.ajax({
-    url: '{{route('staff.sliders.UploadImage')}}',
-    cache: false,
-    contentType: false,
-    processData: false,
-    data: form_data,
-    type: 'post',
-    success: function (response) {
-
-      if (response !== null) {
-        var media_id = response;
-        console.log('media id: ' + media_id);
-
-        var media_ids = '<input name="media_id" value="' + media_id + '" hidden>';
-        $('.active_element').first().append(media_ids);
-        // $('.active_element').removeClass('.active_element');
+      var old_img = $(this).closest('tr').find("input[name='sliderImageId']").val();
+      if (old_img) {
+        form_data.append("old_img", old_img);
       }
 
+      $(this).closest('tr').addClass('active_row');
 
-      // $(this).closest('tr').addClass('.active_tr');
+      $.ajax({
+        url: '{{route('staff.sliders.UploadImage')}}',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function (response) {
 
-      // $(this).attr('data-media-id', media_id);
-      // $('.active_element').data('media-id', media_id);
-      // $('.active_element').removeClass('.active_tr');
+          if (response !== null) {
+            var media_id = response;
+            $('.active_row').find("input[name='media_id']").val(media_id);
+          }
 
+          $(window).scrollTop(0);
 
-      $(window).scrollTop(0);
+          UIkit.notification({
+            message: 'تصویر ذخیره شد',
+            status: 'success',
+            pos: 'top-left',
+            timeout: 3000
+          });
 
-      UIkit.notification({
-        message: 'تصویر ذخیره شد',
-        status: 'success',
-        pos: 'top-left',
-        timeout: 3000
+          {{--      window.location.href = "{{ route('staff.sliders.sliderImages', ['id' => $slider->id] ) }}";--}}
+        },
       });
 
-{{--      window.location.href = "{{ route('staff.sliders.sliderImages', ['id' => $slider->id] ) }}";--}}
-    },
-  });
+    });
 
-  console.log($(this).data('media_id'));
+    $(document).ready(function(){
+      $('.venobox').venobox();
+    });
 
-});
+    // ایجکس فرم اصلی
+    $('#submit-form').on('click', function (e) {
+      // e.preventDefault();
 
+      var slider_links = $("input[name='link']").map(function(){return $(this).val();}).get();
 
-$(document).ready(function(){
-  $('.venobox').venobox();
-})
+      var images_alt = $("input[name ='img_alt']").map(function(){return $(this).val();}).get();
 
+      var status = $("input[name='status']").map(function(){
+        if($(this).is(':checked')){return 'active';}else{return 'inactive';}
+      }).get();
 
-// ایجکس فرم اصلی
-$('#submit-form').on('click', function (e) {
-  // e.preventDefault();
+      var deleted_rows = $("input[name='deleted_row']").map(function(){return $(this).val();}).get();
 
-  var slider_links = $("input[name='link']").map(function(){return $(this).val();}).get();
+      var position = $("tbody").sortable('serialize');
 
-  var images_alt = $("input[name ='img_alt']").map(function(){return $(this).val();}).get();
+      var slider_id = {{ $slider->id }};
 
-  var status = $("input[name='status']").map(function(){
-    if($(this).is(':checked')){return 'active';}else{return 'inactive';}
-  }).get();
+      var media_ids = $("input[name='media_id']").map(function(){return $(this).val();}).get();
 
-  var deleted_rows = $("input[name='deleted_row']").map(function(){return $(this).val();}).get();
+      $.ajax({
+        method: "post",
+        url: '{{route('staff.sliders.updateSliderImagesRow')}}',
+        data: {
+          positions:position,
+          deleted_rows:deleted_rows,
+          slider_links: slider_links,
+          images_alt: images_alt,
+          status: status,
+          slider_id: slider_id,
+          media_ids: media_ids,
+        },
 
-  var position = $("tbody").sortable('serialize');
+        success: function () {
+          $(window).scrollTop(0);
 
-  var slider_id = {{ $slider->id }};
+          UIkit.notification({
+            message: 'اطلاعات با موفقیت ذخیره شد',
+            status: 'success',
+            pos: 'top-left',
+            timeout: 3000
+          });
 
-  var media_ids = $("input[name='media_id']").map(function(){return $(this).val();}).get();
-    // <input name="sliderImage" data-media-id="" data-id="" type="file" class="js-profile-business-info-logo sliderImage"
+          window.location.href = "{{ route('staff.sliders.sliderImages', ['id' => $slider->id] ) }}";
+        },
 
+      });
 
-    $.ajax({
-    method: "post",
-    url: '{{route('staff.sliders.updateSliderImagesRow')}}',
-    data: {
-      positions:position,
-      deleted_rows:deleted_rows,
-      // group_id: group_id,
-      slider_links: slider_links,
-      images_alt: images_alt,
-      status: status,
-      slider_id: slider_id,
-      media_ids: media_ids,
-    },
-
-    success: function () {
-        $(window).scrollTop(0);
-
-        UIkit.notification({
-          message: 'اطلاعات با موفقیت ذخیره شد',
-          status: 'success',
-          pos: 'top-left',
-          timeout: 3000
-        });
-
-        {{--window.location.href = "{{ route('staff.sliders.sliderImages', ['id' => $slider->id] ) }}";--}}
-    },
-  });
-
-});
+    });
 
 
-$('tbody').sortable({
-  handle: '.c-content-upload__drag-handler',
-});
+    $('tbody').sortable({
+      handle: '.c-content-upload__drag-handler',
+    });
 
-$(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
-  var slider_name = "{{ $slider->name }}";
-  var slider_size = "{{ $slider->size . ' px' }}";
-  var slider_image = "{{ asset("staff/icon/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}";
+    $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
+      var slider_name = "{{ $slider->name }}";
+      var slider_size = "{{ $slider->size . ' px' }}";
+      var slider_image = "{{ asset("staff/icon/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}";
 
-  var tr = '<tr name="row" id="item-new" data-id="" class="c-ui-table__row c-ui-table__row--body c-join__table-row row">' +
-    '<td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">' +
-    '<div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">' +
-    ' <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up">' +
-    '</span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>' +
-    ' <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>' +
-    '</div></td><td class="c-ui-table__cell" style="min-width: 90px"> <img src="' + slider_image + '" width="85%" height="85%">' +
-    '</td>' +
-    '<td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;"> ' +
-    '<span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">' + slider_name + '</span>' +
-    '</td>' +
-    '<td class="c-ui-table__cell c-ui-table__cell--small-text"> ' +
-    '<span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">' + slider_size + '</span>' +
-    '</td>' +
-    '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;"> ' +
-    '<input type="text" name="link" value="" class="c-content-input__origin js-attribute-old-value link">' +
-    '</td>' +
-    '<td class="c-ui-table__cell c-ui-table__cell--small-text"> ' +
-    '<input type="text" name="img_alt" value="" class="c-content-input__origin js-attribute-old-value img_alt">' +
-    '</td>' +
-    '<td class="c-ui-table__cell c-ui-table__cell--small-text">' +
-    '<div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"> ' +
-    '<label class="c-ui-toggle"> <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" name="status" checked> ' +
-    '<span class="c-ui-toggle__check"></span> </label>' +
-    '</div></div>' +
-    '</td>' +
-    '<td class="c-ui-table__cell"><div class="c-promo__actions" style="width: auto; min-width: 15%; margin: auto;">' +
-    '<label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">' +
-    ' <input name="sliderImage" data-media-id="" data-id="" type="file" class="js-profile-business-info-logo sliderImage" accept="image/jpg,image/png,image/jpeg">' +
-    ' <input name="sliderImageId" type="hidden" value=""> </label>' +
-    '<a href="" class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;"> ' +
-    '<span data-tooltip-body="" style="min-height:20px; width: auto;">شاهده تصویر</span> </a>' +
-    '<button class="c-content-upload__btn c-content-upload__btn--remove remove-btn" style="float: right;margin-top: 5px !important;margin-right: 5px;"></button>' +
-    '</div>' +
-    '</td>' +
-    '</tr>';
+      var tr = '<tr name="row" id="item-new" data-id="" class="c-ui-table__row c-ui-table__row--body c-join__table-row row">' +
+        '<td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;"><input name="media_id" hidden>' +
+        '<div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">' +
+        ' <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up">' +
+        '</span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>' +
+        ' <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>' +
+        '</div></td><td class="c-ui-table__cell" style="min-width: 90px"> <img src="' + slider_image + '" width="85%" height="85%">' +
+        '</td>' +
+        '<td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;"> ' +
+        '<span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">' + slider_name + '</span>' +
+        '</td>' +
+        '<td class="c-ui-table__cell c-ui-table__cell--small-text"> ' +
+        '<span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">' + slider_size + '</span>' +
+        '</td>' +
+        '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;"> ' +
+        '<input type="text" name="link" value="" class="c-content-input__origin js-attribute-old-value link">' +
+        '</td>' +
+        '<td class="c-ui-table__cell c-ui-table__cell--small-text"> ' +
+        '<input type="text" name="img_alt" value="" class="c-content-input__origin js-attribute-old-value img_alt">' +
+        '</td>' +
+        '<td class="c-ui-table__cell c-ui-table__cell--small-text">' +
+        '<div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"> ' +
+        '<label class="c-ui-toggle"> <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" name="status" checked> ' +
+        '<span class="c-ui-toggle__check"></span> </label>' +
+        '</div></div>' +
+        '</td>' +
+        '<td class="c-ui-table__cell"><div class="c-promo__actions" style="width: auto; min-width: 15%; margin: auto;">' +
+        '<label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">' +
+        ' <input name="sliderImage" data-media-id="" data-id="" type="file" class="js-profile-business-info-logo sliderImage" accept="image/jpg,image/png,image/jpeg">' +
+        ' <input name="sliderImageId" type="hidden" value=""> </label>' +
+        '<a href="" class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;"> ' +
+        '<span data-tooltip-body="" style="min-height:20px; width: auto;">شاهده تصویر</span> </a>' +
+        '<button class="c-content-upload__btn c-content-upload__btn--remove remove-btn" style="float: right;margin-top: 5px !important;margin-right: 5px;"></button>' +
+        '</div>' +
+        '</td>' +
+        '</tr>';
 
-  $("#tbody").append(tr);
+      $("#tbody").append(tr);
 
-  $('.venobox').venobox();
+      $('.venobox').venobox();
 
 
-});
+    });
 
-$(document).on('click', '.remove-btn', function () {
-  $(this).closest("tr").addClass('hide-tr');
+    $(document).on('click', '.remove-btn', function () {
+      $(this).closest("tr").addClass('hide-tr');
 
-    if ($(document).find('.hide-tr').hasClass('db-row'))
-    {
-      var deleted_id = $(".hide-tr").attr('data-id');
-      var deleted_row = '<input name="deleted_row" value="' + deleted_id + '" hidden>';
-      $('.c-main').append(deleted_row);
-      $(".hide-tr").hide();
-      $(".hide-tr").removeClass('hide-tr');
-    }
-    else {
-      $(".hide-tr").remove();
-    }
-});
+      if ($(document).find('.hide-tr').hasClass('db-row'))
+      {
+        var deleted_id = $(".hide-tr").attr('data-id');
+        var deleted_row = '<input name="deleted_row" value="' + deleted_id + '" hidden>';
+        $('.c-main').append(deleted_row);
+        $(".hide-tr").remove();
+      }
+      else {
+        $(".hide-tr").remove();
+      }
+    });
 
-</script>
+  </script>
 @endsection
