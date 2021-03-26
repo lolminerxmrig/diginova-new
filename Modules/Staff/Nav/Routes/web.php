@@ -65,16 +65,23 @@ Route::domain('staff.diginova.test')->name('staff.navs.')
     Route::post('storeMegaMenu', [StaffNavController::class, 'storeMegaMenu'])
       ->name('storeMegaMenu');
 
+    Route::post('storeMenus', [StaffNavController::class, 'storeMenus'])
+      ->name('storeMenus');
+
     Route::post('itemChangePosition', [StaffNavController::class, 'itemChangePosition'])
       ->name('itemChangePosition');
 
     Route::post('deleteItem', [StaffNavController::class, 'deleteItem'])
       ->name('deleteItem');
 
+    Route::post('deleteIcon', [StaffNavController::class, 'deleteIcon'])
+      ->name('deleteIcon');
+
     Route::get('item/{id}/menus', [StaffNavController::class, 'ItemMenus'])
       ->name('ItemMenus');
 
-    Route::post('megamenu/{id}/items', [StaffNavController::class, 'megamenuItems'])
-      ->name('megamenuItems');
 
+
+    Route::get('megamenu/{id}/items', [StaffNavController::class, 'megamenuItems'])
+      ->name('megamenuItems');
   });

@@ -1,23 +1,25 @@
+<div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25">
+  لازم به ذکر است به ازای هر ۱۳ منو یک ستون اضافه خواهد شد، بدین صورت منوهای ایجاد شده پشت سرهم قرار می گیرند. حداکثر منوی قابل ایجاد ۵۲ عدد است.
+</div>
+
 <div class="c-grid__row" style="margin-top:30px">
-  <div class="c-grid__col">
+    <div class="c-grid__col">
     <div class="c-card">
       <div class="c-card__wrapper">
         <div class="c-card__header c-card__header--table">
           <a target="_blank">
-            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-              @if($nav->type == 'common')
+            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove add-menu">
                 ایجاد منو جدید
-              @else
-                ایجاد مگامنو جدید
-              @endif
             </div>
           </a>
           <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
-          <div class="c-ui-paginator js-paginator">
-            <div class="c-ui-paginator__total" data-rows="۶">
-              تعداد نتایج: <span name="total" data-id="5">{{ persianNum($items->total()) }} مورد</span>
-            </div>
-          </div>
+
+{{--          <div class="c-ui-paginator js-paginator">--}}
+{{--            <div class="c-ui-paginator__total" data-rows="۶">--}}
+{{--              تعداد نتایج: <span name="total" data-id="5">{{ persianNum($items->total()) }} مورد</span>--}}
+{{--            </div>--}}
+{{--          </div>--}}
+
         </div>
         <div class="c-card__body c-ui-table__wrapper">
           <table class="c-ui-table  js-search-table js-table-fixed-header c-join__table">
@@ -36,9 +38,9 @@
               {{--                            class="table-header-searchable uk-text-nowrap ">تبلیغات</span>--}}
               {{--                        </th>--}}
               <th class="c-ui-table__header"><span
-                  class="table-header-searchable uk-text-nowrap ">وضعیت</span>
+                  class="table-header-searchable uk-text-nowrap ">هایلایت (پررنگ)</span>
               </th>
-              <th class="c-ui-table__header" style="max-width: 20% !important; width: 20% !important;">
+              <th class="c-ui-table__header" style="max-width: 10% !important; width: 10% !important;">
                 <span class="table-header-searchable uk-text-nowrap ">عملیات</span>
               </th>
             </tr>
@@ -61,64 +63,31 @@
 
                   <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
                       <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                          {{ $item->name }}
+                        <input type="text" class="c-content-input__origin c-content-input__origin menu_name" name="menu_name" value="{{ $item->name }}" dir="rtl" style="text-align: right;">
                       </span>
                   </td>
 
-                  <td class="c-ui-table__cell c-ui-table__cell--text-blue">
-                    @if(!is_null($item->link))
-                      <a class="c-join__promotion-link" href="" target="_blank" style="font-weight: bold">{{ $item->link }}</a>
-                      <a class="c-join__promotion-copy-btn js-copy-btn" href="#" data-link="{{ $item->link }}">کپی لینک</a>
-                    @endif
+                  <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
+                      <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                        <input type="text" class="c-content-input__origin c-content-input__origin menu_link" name="menu_link" value="{{ $item->link }}" dir="rtl" style="text-align: right;">
+                      </span>
                   </td>
 
                   <td class="c-ui-table__cell c-ui-table__cell--small-text">
                     <div class="c-ui-tooltip__anchor">
                       <div class="c-ui-toggle__group">
                         <label class="c-ui-toggle">
-                          <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" name="status" {{ ($item->status == 'active')? 'checked' : '' }} data-item-id="{{$item->id}}">
+                          <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" name="menu_style" {{ ($item->style == 'bold')? 'checked' : '' }} data-item-id="{{$item->id}}">
                           <span class="c-ui-toggle__check"></span>
                         </label>
                       </div>
-
-                      <input type="hidden" value="0" class="js-active-input">
                     </div>
                   </td>
 
-
                   <td class="c-ui-table__cell">
                     <div class="c-promo__actions">
-                      <a class="c-join__btn c-join__btn--secondary-greenish" href="{{ route('staff.navs.megamenuItems', $item->id) }}">ویرایش منو</a>
                       <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn" value="{{ $item->id }}">حذف</button>
                     </div>
-
-                    <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification" style="display: none;">
-                      <div class="uk-modal-dialog uk-modal-dialog--flex">
-                        <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
-
-                        <div class="uk-modal-body">
-                          <div class="c-modal-notification">
-                            <div class="c-modal-notification__content c-modal-notification__content--limited">
-                              <h2 class="c-modal-notification__header">
-                                هشدار</h2>
-
-                              <p class="c-modal-notification__text">
-                                با حذف این مگامنو، تمامی منو های آن حذف خواهد شد. آیا از حذف آن اطمینان دارید؟
-                              </p>
-                              <div class="c-modal-notification__actions">
-                                <button class="c-modal-notification__btn no uk-modal-close">
-                                  خیر
-                                </button>
-                                <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">
-                                  بله
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
                   </td>
 
                 </tr>
@@ -135,25 +104,35 @@
         <div class="c-card__footer" style="width: auto;">
 
           <a target="_blank">
-            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-              @if($nav->type == 'common')
+            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove add-menu">
                 ایجاد منو جدید
-              @else
-                ایجاد مگامنو جدید
-              @endif
             </div>
           </a>
 
           <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
 
-          <div class="c-ui-paginator js-paginator" data-select2-id="25">
-            <div class="c-ui-paginator__total" data-rows="۶">
-              تعداد نتایج: <span name="total" data-id="2">{{ persianNum($items->total()) }} مورد</span>
-            </div>
-          </div>
+{{--          <div class="c-ui-paginator js-paginator" data-select2-id="25">--}}
+{{--            <div class="c-ui-paginator__total" data-rows="۶">--}}
+{{--              تعداد نتایج: <span name="total" data-id="2">{{ persianNum($items->total()) }} مورد</span>--}}
+{{--            </div>--}}
+{{--          </div>--}}
 
         </div>
       </div>
+
     </div>
   </div>
+
+  <div class="c-grid__col" style="padding-left: 0px; padding-right: 0px; margin-top: 25px !important;">
+    <div class="c-grid__col">
+      <div class="c-card">
+        <div class="edit-form-section c-card__footer c-card__footer--products">
+          <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap" style="width: 40%; float: left; display: contents;">
+            <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-left: 68px;max-width: 100px;" id="save-menus">ذخیره</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
 </div>

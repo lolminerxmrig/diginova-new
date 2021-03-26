@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Modules\Staff\Attribute\Models\AttributeGroup;
+use Modules\Staff\Nav\Models\NavGroup;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Nav\Models\Nav;
 use Modules\Staff\Nav\Models\NavLocation;
@@ -141,9 +141,6 @@ class StaffNavController extends Controller
         return View::make('staffnav::ajax.reload-nav-table', compact('navs'));
     }
 
-
-
-
     public function navItems($id)
     {
       $nav = Nav::find($id);
@@ -262,6 +259,81 @@ class StaffNavController extends Controller
 
       return View::make('staffnav::ajax.reload-megamenu-table', compact('items', 'nav'));
     }
+
+    public function storeMenus(Request $request)
+    {
+
+        // delete nav
+        if (isset($request->deleted_rows) && (!is_null($request->deleted_rows))) {
+          foreach ($request->deleted_rows as $deleted_row) {
+            Nav::find($deleted_row)->delete();
+          }
+        }
+
+        // output: array clean position
+        $positions = str_replace('item[]=', '', $request->positions);
+        $positions = str_replace('&', ',', $positions);
+        $positions = explode(',', $positions);
+        $positions = array_map(function ($value) {
+          return intval($value);
+        }, $positions);
+
+        if (count($request->menu_names)) {
+
+          $i = 0;
+          foreach ($request->menu_names as $menu_name) {
+
+            if ($menu_name == null) {
+              $i++;
+              continue;
+            }
+
+            Nav::updateOrCreate(['id' => $positions[$i]], [
+              'name' => $request->menu_names[$i],
+              'link' => $request->menu_links[$i],
+              'style' => isset($request->menu_styles) ? $request->menu_styles[$i] : null,
+              'position' => $i,
+              'type' => 'menu',
+              'parent_id' => $request->parent_id,
+            ]);
+
+            $i++;
+          }
+
+        }
+
+        return response()->json([
+          'status' => true,
+          'data' => true,
+        ]);
+
+    }
+
+    public function deleteIcon(Request $request)
+    {
+        $nav = Nav::find($request->nav_id);
+        $media_id = $nav->media()->first()->id;
+        $nav->media()->detach();
+        Media::find($media_id)->delete();
+
+        return response()->json([
+          'status' => true,
+          'data' => true,
+        ]);
+    }
+
+
+
+    public function megamenuItems($id)
+    {
+      $nav = Nav::find($id);
+      $items = Nav::where('parent_id', $id)->paginate(100000);
+      return view('staffnav::megamenuItems', compact('items', 'nav'));
+    }
+
+
+
+
 
 
 }

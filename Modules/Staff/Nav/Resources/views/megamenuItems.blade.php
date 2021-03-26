@@ -43,7 +43,7 @@
               <h1 class="c-card__title c-card__title--dark c-card__title--desc">
                 مدیریت منو‌‌‌‌‌ها
                 <span>
-                  از این صفحه می توانید منو ها یا مگامنو ها را مدیریت کنید.
+                  از این صفحه می توانید منو های مگامنو {{ $nav->name }} را مدیریت کنید.
               </span>
               </h1>
             </div>
@@ -59,7 +59,7 @@
                           margin-top: 28px;
                           margin-bottom: -30px;
                           ">
-                <div style="color: #606265;">اطلاعات فهرست</div>
+                <div style="color: #606265;">اطلاعات مگا‌منو</div>
               </h2>
               <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;display: none;"></div>
               <div class="c-card__header"></div>
@@ -74,7 +74,7 @@
                       <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">
 
                         <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px;">
-                          نام فهرست:
+                          نام مگا‌منو:
                           <span class="uk-form-label__required"></span>
                         </label>
 
@@ -97,15 +97,11 @@
                             <input type="text" class="c-content-input__origin c-content-input__origin" name="nav_link" value="{{ $nav->link }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
-                      </div><div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-2 c-grid__col--xs-gap" data-select2-id="5">
+                      </div>
 
-                        <div class="field-wrapper" data-select2-id="4">
-                          <label class="c-ui-form__label" for="product_page_title">وضعیت:</label>
-                          <select id="product-status" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible c-ui-input--disabled" name="nav_status" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;" disabled>
-                            <option class="option-control" value="1" {{ ($nav->type == 'common')? 'selected' : '' }}>معمولی</option>
-                            <option class="option-control" value="0" {{ ($nav->type == 'megamenu')? 'selected' : '' }}>دارای مگا‌منو</option>
-                          </select>
-                        </div>
+                      <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-2 c-grid__col--xs-gap">
+
+
                       </div>
 
                     </div>
@@ -115,7 +111,7 @@
                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--row-attr">
 
                       <label class="c-ui-form__label" for="product_page_title">
-                        آیکون فهرست: (اختیاری)
+                        آیکون مگا‌منو: (اختیاری)
                         <a class="c-ui-btn c-ui-btn--next mr-a delete-icon-nav"  style="margin-left: 21px;width: 59px !important;height: 20px !important;min-width: 45px !important;border-radius: 5px;font-size: 10px;box-shadow: unset;font-weight: bold;" id="submit-form">حذف آیکون</a>
                       </label>
 
@@ -158,11 +154,7 @@
 
         <div class="js-table-container">
           <div class="content-section">
-            @if($nav->type == 'megamenu')
-              @include('staffnav::layouts.megamenu-body')
-            @else
               @include('staffnav::layouts.menu-body')
-            @endif
           </div>
         </div>
 
@@ -449,7 +441,7 @@ $('.save-nav').on('click', function (e) {
       $('#iconImageTempId').val('');
 
       UIkit.notification({
-        message: 'فهرست ذخیره شد',
+        message: 'مگا‌منو ذخیره شد',
         status: 'success',
         pos: 'top-left',
         timeout: 3000
@@ -527,7 +519,7 @@ $('#save-menus').on('click', function (e) {
 
     success: function () {
       UIkit.notification({
-        message: 'فهرست ذخیره شد',
+        message: 'مگا‌منو ذخیره شد',
         status: 'success',
         pos: 'top-left',
         timeout: 9000
@@ -535,7 +527,7 @@ $('#save-menus').on('click', function (e) {
 
       $(window).scrollTop(0);
 
-      window.location.href = "{{ route('staff.navs.navItems', ['id' => $nav->id] ) }}";
+      window.location.href = "{{ route('staff.navs.megamenuItems', ['id' => $nav->id] ) }}";
     },
   });
 
@@ -548,6 +540,7 @@ $(document).on('click', '.delete-btn', function (){
   $('.c-main').append(deleted_row);
   $(this).closest('tr').remove();
 })
+
 
 
 $('.delete-icon-nav').on('click', function (e) {
@@ -572,7 +565,7 @@ $('.delete-icon-nav').on('click', function (e) {
         timeout: 3000
       });
 
-      window.location.href = "{{ route('staff.navs.navItems', ['id' => $nav->id] ) }}";
+      window.location.href = "{{ route('staff.navs.megamenuItems', ['id' => $nav->id] ) }}";
 
     },
 
@@ -582,6 +575,7 @@ $('.delete-icon-nav').on('click', function (e) {
   });
 
 });
+
 
 
 </script>

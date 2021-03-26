@@ -4,12 +4,8 @@
         <div class="c-card__wrapper">
           <div class="c-card__header c-card__header--table">
             <a target="_blank">
-              <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                @if($nav->type == 'common')
-                  ایجاد منو جدید
-                @else
+              <div class="c-mega-campaigns__btns-green-plus uk-margin-remove add-megamenu">
                   ایجاد مگامنو جدید
-                @endif
               </div>
             </a>
             <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
@@ -135,12 +131,8 @@
           <div class="c-card__footer" style="width: auto;">
 
             <a target="_blank">
-              <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                @if($nav->type == 'common')
-                  ایجاد منو جدید
-                @else
+              <div class="c-mega-campaigns__btns-green-plus uk-margin-remove add-megamenu">
                   ایجاد مگامنو جدید
-                @endif
               </div>
             </a>
 
