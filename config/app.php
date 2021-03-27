@@ -189,6 +189,7 @@ return [
         Modules\Staff\Rating\Providers\StaffRatingServiceProvider::class,
         Modules\Staff\Slider\Providers\StaffSliderServiceProvider::class,
         Modules\Staff\Nav\Providers\StaffNavServiceProvider::class,
+        Modules\Staff\Shiping\Providers\StaffShipingServiceProvider::class,
 
 
 

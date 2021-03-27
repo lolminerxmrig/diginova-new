@@ -888,16 +888,13 @@
                                                             {{--                                                            </div>--}}
                                                         </div>
                                                         <div class="c-grid__row c-grid__row--gap-lg">
-                                                            <div
-                                                                class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 ">
-                                                                <label for=""
-                                                                       class="uk-form-label uk-flex uk-flex-between">
+                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 ">
+                                                                <label for="" class="uk-form-label uk-flex uk-flex-between">
                                                                     نوع کالا:
                                                                     <span class="uk-form-label__required"></span>
                                                                 </label>
 
-                                                                <div
-                                                                    class="field-wrapper ui-select ui-select__container ui-select__container--product">
+                                                                <div class="field-wrapper ui-select ui-select__container ui-select__container--product">
                                                                     <select name="product[types][]"
                                                                             id="categoryProductTypesSelect"
                                                                             class="uk-input uk-input--select js-select-origin js-in-product"
