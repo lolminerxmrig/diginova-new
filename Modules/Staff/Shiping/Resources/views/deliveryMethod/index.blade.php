@@ -16,23 +16,19 @@
 <main class="c-main">
     <div class="uk-container uk-container-large">
         <div class="c-grid " data-select2-id="13">
-            <div class="c-grid__row">
-                <div class="c-grid__col">
-                    <input type="hidden" value="" name="has-warehouses">
-                    <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">روش ارسال
-                          <span>از این بخش می توانید روش های ارسال مرسوله را مدیریت و ویرایش کنید.</span>
-                        </h1>
+                <div class="c-grid__row">
+                    <div class="c-grid__col">
+                        <input type="hidden" value="" name="has-warehouses">
+                        <div class="c-card c-card--transparent">
+                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">روش ارسال
+                              <span>از این بخش می توانید روش های ارسال مرسوله را مدیریت و ویرایش کنید.</span>
+                            </h1>
+                        </div>
                     </div>
                 </div>
-            </div>
-
                 <div class="js-table-container" data-select2-id="17">
                     <input name="page_type" value="index" hidden>
                     <div style="margin-top: 20px; margin-bottom: 30px;"></div>
-{{--                    <div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25" style="margin-bottom: 30px !important;">--}}
-{{--                       برای هر دسته بندی اصلی به صورت خودکار یک لیست ایجاد می شود که در آن می توانید بنر ها و اسلایدر های مربوط به آن دسته را مدیریت کنید.--}}
-{{--                    </div>--}}
                     <div class="c-grid__row">
                         <div class="c-grid__col">
                             <div class="c-card">
@@ -106,7 +102,7 @@
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                                {{ $delivery_method->name }}
+                                                                  {{ $delivery_method->name }}
                                                                 </span>
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                             </a>
@@ -114,20 +110,20 @@
                                                     </td>
 
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">
-
+                                                        @foreach($delivery_method->weights as $weight)
+                                                        <span style="background-color: #f5f7fa;padding: 6px 10px 6px 10px;border-radius: 5px;margin-right: 5px;font-size: 13px !important;">{{ $weight->name }}</span>
+                                                        @endforeach
                                                     </td>
 
-
-
-
                                                     <td class="c-ui-table__cell c-ui-table__cell--small-text">
+                                                      {{ $delivery_method->deliveryCostDetType->name }}
                                                     </td>
 
                                                     <td class="c-ui-table__cell c-ui-table__cell--small-text">
                                                       <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                           <label class="c-ui-toggle">
-                                                            <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" name="status" {{ ($delivery_method->status == 'active')? 'checked' : '' }} disabled>
+                                                            <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" data-delivery-id="{{ $delivery_method->id }}" name="status" {{ ($delivery_method->status == 'active')? 'checked' : '' }}>
                                                             <span class="c-ui-toggle__check"></span>
                                                           </label>
                                                         </div>
@@ -163,4 +159,33 @@
         </div>
     </div>
 </main>
+@endsection
+
+@section('script')
+<script>
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+$(document).on('change', 'input[name="status"]', function () {
+  if ($(this).is(':checked')) {
+    var status = 'active';
+  } else {
+    var status = 'inactive';
+  }
+  var delivery_id = $(this).data('delivery-id');
+
+  $.ajax({
+    method: 'post',
+    url: "{{ route('staff.delivery.status') }}",
+    data: {
+      'status': status,
+      'delivery_id': delivery_id,
+    },
+  });
+
+});
+</script>
 @endsection

@@ -255,7 +255,6 @@
       <path value="$PROJECT_DIR$/vendor/maennchen/zipstream-php" />
       <path value="$PROJECT_DIR$/vendor/myclabs/php-enum" />
       <path value="$PROJECT_DIR$/vendor/maatwebsite/excel" />
-      <path value="$PROJECT_DIR$/vendor/ghaninia/shipping" />
     </include_path>
   </component>
   <component name="ProjectId" id="1mAInWy8idjFWKkFmFdsj1hCKCt" />
@@ -275,7 +274,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Product/Models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/migrations" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -285,18 +284,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Models" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Resources/views/deliveryMethod" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Routes" />
       <recent name="$PROJECT_DIR$/database/migrations" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/DeliveryMethod/Database/migrations" />
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Resources/views/layouts/deliveryMethod/edit" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Resources/views/layouts/ajax/edit" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Resources/views/deliveryMethod" />
       <recent name="$PROJECT_DIR$/Modules/Customers/Auth/Database/migrations" />
       <recent name="$PROJECT_DIR$/resources/views/layouts/customer" />
-      <recent name="$PROJECT_DIR$/Modules/Customers/Panel/Resources/views/layouts" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Staff">
@@ -596,7 +595,13 @@
       <workItem from="1616673202402" duration="28398000" />
       <workItem from="1616736432526" duration="36100000" />
       <workItem from="1616821961548" duration="10071000" />
-      <workItem from="1616834325309" duration="2998000" />
+      <workItem from="1616834325309" duration="4698000" />
+      <workItem from="1616851849659" duration="16237000" />
+      <workItem from="1616907978303" duration="11153000" />
+      <workItem from="1616936118897" duration="24000" />
+      <workItem from="1616941270447" duration="15476000" />
+      <workItem from="1616989427981" duration="30377000" />
+      <workItem from="1617033304286" duration="8961000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -646,11 +651,6 @@
           <url>file://$PROJECT_DIR$/Modules/Staff/Category/Resources/views/create.blade.php</url>
           <line>545</line>
           <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/Modules/Staff/Shiping/Resources/views/deliveryMethod/edit.blade.php</url>
-          <line>5</line>
-          <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/seller/js/tags5.js</url>

@@ -25,6 +25,7 @@ class StaffShipingServiceProvider extends ServiceProvider
         Relation::morphMap([
             'DeliveryMethod' => 'Modules\Staff\Shiping\Models\DeliveryMethod',
         ]);
+
     }
 
 }

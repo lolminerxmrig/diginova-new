@@ -370,32 +370,32 @@ $('#voucher_form').on('submit', function (e) {
 
 
 $(document).on('change', "input[name='has_limit_time']", function (){
-            if ($(this).is(":checked")) {
-                $(".time-input").removeAttr('disabled');
-                $(".time-input").removeClass('disabled');
-                $(".time-input").removeClass('c-ui-input--disabled');
-            } else {
-                $(".time-input").attr('disabled', true);
-                $(".time-input").addClass('disabled');
-                $(".time-input").addClass('c-ui-input--disabled');
-                $(".time-input").val('');
-                $(".start_at_hidden").val('');
-                $(".end_at_hidden").val('');
-            }
-        });
+    if ($(this).is(":checked")) {
+        $(".time-input").removeAttr('disabled');
+        $(".time-input").removeClass('disabled');
+        $(".time-input").removeClass('c-ui-input--disabled');
+    } else {
+        $(".time-input").attr('disabled', true);
+        $(".time-input").addClass('disabled');
+        $(".time-input").addClass('c-ui-input--disabled');
+        $(".time-input").val('');
+        $(".start_at_hidden").val('');
+        $(".end_at_hidden").val('');
+    }
+});
 
 $(document).on('change', "input[name='has_max_usable']", function (){
-            if ($(this).is(":checked")) {
-                $(".maximum_usable").removeAttr('disabled');
-                $(".maximum_usable").removeClass('disabled');
-                $(".maximum_usable").removeClass('c-ui-input--disabled');
-            } else {
-                $(".maximum_usable").attr('disabled', true);
-                $(".maximum_usable").addClass('disabled');
-                $(".maximum_usable").addClass('c-ui-input--disabled');
-                $(".maximum_usable").val('');
-            }
-        });
+    if ($(this).is(":checked")) {
+        $(".maximum_usable").removeAttr('disabled');
+        $(".maximum_usable").removeClass('disabled');
+        $(".maximum_usable").removeClass('c-ui-input--disabled');
+    } else {
+        $(".maximum_usable").attr('disabled', true);
+        $(".maximum_usable").addClass('disabled');
+        $(".maximum_usable").addClass('c-ui-input--disabled');
+        $(".maximum_usable").val('');
+    }
+});
 
 $(document).on('change', "input[name='has_category_limit']", function (){
     if ($(this).is(":checked")) {

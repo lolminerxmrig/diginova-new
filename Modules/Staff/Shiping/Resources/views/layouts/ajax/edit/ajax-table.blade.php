@@ -29,19 +29,16 @@
                 <span class="table-header-searchable uk-text-nowrap "></span>
               </th>
               <th class="c-ui-table__header">
-                <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان منو</span>
+                <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان</span>
               </th>
               <th class="c-ui-table__header">
-                <span class="table-header-searchable uk-text-nowrap ">لینک به آدرس</span>
+                <span class="table-header-searchable uk-text-nowrap ">درون استانی</span>
               </th>
-              {{--                        <th class="c-ui-table__header"><span--}}
-              {{--                            class="table-header-searchable uk-text-nowrap ">تبلیغات</span>--}}
-              {{--                        </th>--}}
-              <th class="c-ui-table__header"><span
-                  class="table-header-searchable uk-text-nowrap ">هایلایت (پررنگ)</span>
+              <th class="c-ui-table__header">
+                <span class="table-header-searchable uk-text-nowrap ">استان همجوار</span>
               </th>
-              <th class="c-ui-table__header" style="max-width: 10% !important; width: 10% !important;">
-                <span class="table-header-searchable uk-text-nowrap ">عملیات</span>
+              <th class="c-ui-table__header">
+                <span class="table-header-searchable uk-text-nowrap ">برون استانی</span>
               </th>
             </tr>
             </thead>
@@ -53,13 +50,19 @@
               @foreach($items->sortBy('position') as $key => $item)
                 <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
 
-                  <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
-                    <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
-                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
-                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
-                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
-                    </div>
+{{--                  <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">--}}
+{{--                    <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">--}}
+{{--                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>--}}
+{{--                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>--}}
+{{--                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>--}}
+{{--                    </div>--}}
+{{--                  </td>--}}
+
+
+                  <td class="c-ui-table__cell c-ui-table__cell--small-text">
+                      1
                   </td>
+
 
                   <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
                       <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">

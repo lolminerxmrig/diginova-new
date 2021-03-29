@@ -101,7 +101,7 @@ class StaffNavController extends Controller
     if (!is_null($request->uploaded_icon_id))
     {
       $media = Media::find($request->uploaded_icon_id);
-      $created_nav->media()->attach($media);
+      $created_nav->media()->sync($media);
     }
 
     return response()->json([

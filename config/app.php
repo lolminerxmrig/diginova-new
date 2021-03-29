@@ -198,7 +198,7 @@ return [
          */
 //        Barryvdh\Debugbar\ServiceProvider::class,
 //        Maatwebsite\Excel\ExcelServiceProvider::class,
-        GhaniniaIR\Shipping\ShippingServiceProvider::class,
+//        GhaniniaIR\Shipping\ShippingServiceProvider::class,
 
 
         /*
@@ -265,7 +265,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Shipping' =>GhaniniaIR\Shipping\Shipping::class,
+//        'Shipping' =>GhaniniaIR\Shipping\Shipping::class,
     ],
 
 ];

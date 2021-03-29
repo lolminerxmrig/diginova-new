@@ -136,6 +136,11 @@
                     <a href="{{ route('staff.navs.index') }}">فهرست ها</a>
                   </li>
 
+                  <li>
+                    <a href="{{ route('staff.delivery.index') }}">روش های ارسال</a>
+                  </li>
+
+
                   </ul>
                 </div>
               </li>
@@ -521,7 +526,7 @@
     </div>
 @yield('content')
 <footer class="c-footer">
-    <div class="c-footer__top">
+    <div class="c-fozoter__top">
       <div class="uk-container uk-container-large">
         <div class="uk-flex uk-flex-between uk-flex-middle">
           <ul class="uk-subnav uk-subnav-divider">

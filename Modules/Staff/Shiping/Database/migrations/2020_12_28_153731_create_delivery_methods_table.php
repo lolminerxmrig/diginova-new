@@ -18,6 +18,7 @@ class CreateDeliveryMethodsTable extends Migration
             $table->string('name');
             $table->string('status')->default('active');
             $table->bigInteger('free_shipping_min_cost')->nullable();
+            $table->bigInteger('delivery_cost')->nullable();
             $table->foreignId('cost_det_type_id')->comment('cost determination type');
             $table->timestamps();
 

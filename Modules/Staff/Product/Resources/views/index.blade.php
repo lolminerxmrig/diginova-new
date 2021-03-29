@@ -620,8 +620,6 @@ $(document).on('click', '.delete-btn', function () {
     $(document).on('click', '.no', function () {
         $('.c-header__nav').show();
     });
-
-
 });
 
 //دکمه سرچ
