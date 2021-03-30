@@ -190,6 +190,7 @@ return [
         Modules\Staff\Slider\Providers\StaffSliderServiceProvider::class,
         Modules\Staff\Nav\Providers\StaffNavServiceProvider::class,
         Modules\Staff\Shiping\Providers\StaffShipingServiceProvider::class,
+        Modules\Staff\Setting\Providers\StaffSettingServiceProvider::class,
 
 
 
@@ -199,11 +200,13 @@ return [
 //        Barryvdh\Debugbar\ServiceProvider::class,
 //        Maatwebsite\Excel\ExcelServiceProvider::class,
 //        GhaniniaIR\Shipping\ShippingServiceProvider::class,
+        Shetabit\Payment\Provider\PaymentServiceProvider::class,
 
 
-        /*
-         * Application Service Providers...
-         */
+
+      /*
+       * Application Service Providers...
+       */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -265,7 +268,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-//        'Shipping' =>GhaniniaIR\Shipping\Shipping::class,
+        'Payment' => Shetabit\Payment\Facade\Payment::class,
     ],
 
 ];

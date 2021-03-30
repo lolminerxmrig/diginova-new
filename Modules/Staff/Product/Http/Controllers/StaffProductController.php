@@ -4,7 +4,7 @@ namespace Modules\Staff\Product\Http\Controllers;
 
 use App\Models\Mediable;
 use App\Models\SeoContent;
-use App\Models\Setting;
+use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;

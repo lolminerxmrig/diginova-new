@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Setting;
+use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Support\ServiceProvider;
 use Modules\Staff\Shiping\Models\DeliveryMethodValue;
 

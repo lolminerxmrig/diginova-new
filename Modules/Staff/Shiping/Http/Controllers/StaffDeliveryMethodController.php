@@ -2,7 +2,7 @@
 
 namespace Modules\Staff\Shiping\Http\Controllers;
 
-use App\Models\Setting;
+use Modules\Staff\Setting\Models\Setting;
 use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
