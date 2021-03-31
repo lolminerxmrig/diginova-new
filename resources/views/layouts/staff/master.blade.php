@@ -1,7 +1,7 @@
 <!Doctype html>
 <html  dir="rtl">
 <head>
-    <title>{{ $site_name }}</title>
+    <title>{{ $fa_store_name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('seller/icon/caf67ad9.ico') }}" type="image/icon">
@@ -547,7 +547,7 @@
               </span>
               ۰۲۱ - ۹۱۰۲۰۰۲۰
             </li>
-            <li>ارتباط با مرکز فروشندگان {{ $site_name }}</li>
+            <li>ارتباط با مرکز فروشندگان {{ $fa_store_name }}</li>
           </ul>
           <div>
             <a href="http://selleracademy.digikala.com/">
@@ -564,7 +564,7 @@
           <div>
             کليه حقوق اين
             <span style="color: rgba(243, 187, 97, 1)">
-            سايت به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $site_name }})
+            سايت به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $fa_store_name }})
             </span>
             تعلق دارد.
           </div>

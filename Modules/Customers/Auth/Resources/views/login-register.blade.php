@@ -1,6 +1,6 @@
 @extends('customerauth::layouts.auth')
 
-@section('title') ورود/ثبت‌نام | فروشگاه اینترنتی {{ $site_name }} @endsection
+@section('title') ورود/ثبت‌نام | فروشگاه اینترنتی {{ $fa_store_name }} @endsection
 
 @section('head')
 <script src="{{ asset('assets/js/loginAction.js') }} "></script>
@@ -34,15 +34,15 @@
     </div>
 
     <button type="submit" class="o-btn o-btn--contained-red-lg c-login__form-action">
-        ورود به {{ $site_name }}
+        ورود به {{ $fa_store_name }}
     </button>
 
     <p class="c-login__footer">
-        با ورود و یا ثبت نام در {{ $site_name }} شما
+        با ورود و یا ثبت نام در {{ $fa_store_name }} شما
         <a href="#" target="_blank">
             شرایط و قوانین
         </a>
-        استفاده از سرویس های سایت {{ $site_name }} و
+        استفاده از سرویس های سایت {{ $fa_store_name }} و
         <a href="#" target="_blank">
             قوانین حریم خصوصی
         </a>

@@ -1,6 +1,6 @@
 @extends('customerauth::layouts.auth')
 
-@section('title') ورود/ثبت‌نام | فروشگاه اینترنتی {{ $site_name }} @endsection
+@section('title') ورود/ثبت‌نام | فروشگاه اینترنتی {{ $fa_store_name }} @endsection
 
 @section('head')
 <script src="{{ asset('assets/js/rememberPasswordAction.js') }} "></script>

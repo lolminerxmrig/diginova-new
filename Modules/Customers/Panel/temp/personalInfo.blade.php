@@ -445,10 +445,10 @@
       </div>
       <div class="c-modal__content js-destination-state"><p class="c-profile-iban__dsc">
           لطفا روش بازگرداندن وجوه خود را انتخاب نمایید.
-          {{--        همچنین برای کسب اطلاعات بیشتر لطفا ملاحظات بازگشت وجه در {{ $site_name }} را مطالعه نمایید.--}}
+          {{--        همچنین برای کسب اطلاعات بیشتر لطفا ملاحظات بازگشت وجه در {{ $fa_store_name }} را مطالعه نمایید.--}}
           {{--        <a class="o-btn o-btn--left-icon o-btn--link-blue-sm" target="_blank" href="/faq/question/720/"--}}
           {{--           data-after-icon="Icon-Navigation-Chevron-Left">--}}
-          {{--          ملاحظات بازگشت وجه توسط {{ $site_name }}--}}
+          {{--          ملاحظات بازگشت وجه توسط {{ $fa_store_name }}--}}
           {{--        </a>--}}
         </p>
         <div>
@@ -460,7 +460,7 @@
                 class="c-outline-radio__check"></span></label><label class="c-profile-iban__credit-card-title"
                                                                      for="wallet-destination"><span
                 class="c-profile-iban__dest-title">
-                            واریز به کیف پول {{ $site_name }}
+                            واریز به کیف پول {{ $fa_store_name }}
                         </span>
               <span class="c-profile-iban__dest-dsc u-hidden js-refund-wallet-disable">
                             شما می‌توانید با انتخاب کیف پول به عنوان روش بازگشت وجه،
@@ -506,7 +506,7 @@
                 ویرایش شماره شبا
               </button>
               <span class="c-profile-iban__dest-dsc js-iban-dest-row-dsc ">
-                            در این روش، {{ $site_name }} به شماره شبا حساب بانکی شما
+                            در این روش، {{ $fa_store_name }} به شماره شبا حساب بانکی شما
                             نیاز دارد.
 {{--              در صورتی که شماره شبا خود را نمیدانید شما می‌توانید در مرحله بعد--}}
                 {{--                            با شماره حساب و یا شماره کارت بانکی خود نسبت به محاسبه شبا اقدام نمایید.--}}
