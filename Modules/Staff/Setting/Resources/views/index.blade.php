@@ -600,6 +600,43 @@
   var newSeller = 1;
   var is_yalda = 0;
 </script>
+<script src="{{ asset('seller/js/inputmask.js') }}"></script>
+
+<link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
+<script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
+<script src="{{ asset('seller/js/tagify.min.js') }}"></script>
+<style>
+  tags {
+    background: white;
+    border-color: #e6e9ed!important;
+  }
+  .tagify .tagify__tag {
+    background-color: #ebedf3;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 .5rem !!important;
+    border-radius: .42rem !important;
+  }
+
+  .tagify__input {
+    color: #606265;
+  }
+
+  .c-ui-input__RD-field {
+    font-size: 0.97rem !important;
+  }
+
+
+  .c-ui-input__field--textarea {
+    font-size: 0.97rem !important;
+    font-weight: unset !important;
+  }
+
+</style>
 @endsection
 @section('content')
 <main class="c-main">
@@ -616,28 +653,32 @@
                       <nav class="uk-navbar-container uk-navbar-transparent c-RD-profile--h-70 c-profile-responsive-navbar uk-navbar" uk-navbar="" style="border-bottom: 1px solid #e6e9ed;margin-bottom: 15px; height: 57px">
                         <div class="uk-navbar-left">
                           <ul class="uk-navbar-nav">
-                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="businessInfo" style="padding-top: 5px; padding-bottom: 5px; pointer-events: none;">
-                              <a class="c-RD-profile__menu-text" href="#businessInfo" style="color: rgb(98, 102, 109) !important;">اطلاعات فروشنده</a>
+                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="general" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
+                              <a class="c-RD-profile__menu-text" href="#general" style="color: rgb(98, 102, 109) !important;">عمومی</a>
                               <div class="c-RD-profile__selected-nav" style="display: block;">&nbsp;</div>
                             </li>
-                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="bankInfo" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
-                              <a class="c-RD-profile__menu-text" href="#bankInfo" style="color: rgb(161, 163, 168) !important;">اطلاعات حساب بانکی</a>
+                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="store" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
+                              <a class="c-RD-profile__menu-text" href="#store" style=" color: rgb(161, 163, 168) !important;">فروشگاه</a>
                               <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                             </li>
-                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="contactInfo" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
-                              <a class="c-RD-profile__menu-text" href="#contactInfo" style="color: rgb(161, 163, 168) !important;">اطلاعات تماس و آدرس</a>
+                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="footer" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
+                              <a class="c-RD-profile__menu-text" href="#footer" style="color: rgb(161, 163, 168) !important;">پابرگ</a>
                               <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                             </li>
-                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="contractInfo" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
-                              <a class="c-RD-profile__menu-text" href="#contractInfo" style="color: rgb(161, 163, 168) !important;">اطلاعات قرارداد</a>
+                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="advanced" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
+                              <a class="c-RD-profile__menu-text" href="#advanced" style="color: rgb(161, 163, 168) !important;">پیشرفته</a>
                               <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                             </li>
-                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="docUpload" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
-                              <a class="c-RD-profile__menu-text" href="#docUpload" style="color: rgb(161, 163, 168) !important;">بارگذاری مدارک</a>
+                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="sms" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
+                              <a class="c-RD-profile__menu-text" href="#sms" style="color: rgb(161, 163, 168) !important;">سامانه پیامکی</a>
                               <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                             </li>
-                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="workCalendar" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
-                              <a class="c-RD-profile__menu-text" href="#workCalendar" style="color: rgb(161, 163, 168) !important;">تقویم کاری</a>
+                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="email" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
+                              <a class="c-RD-profile__menu-text" href="#email" style="color: rgb(161, 163, 168) !important;">ایمیل</a>
+                              <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
+                            </li>
+                            <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="license" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
+                              <a class="c-RD-profile__menu-text" href="#license" style="color: rgb(161, 163, 168) !important;">لایسنس</a>
                               <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                             </li>
                           </ul>
@@ -649,2151 +690,1185 @@
               </div>
             </div>
             <div class="c-RD-profile--w-100p js-profile-content">
-              <div class="c-RD-profile__dis-none " data-name="businessInfo" style="display: block;">
 
-
-                <div class="c-grid__row c-RD-profile__mt-0" id="businessInfo">
+              <div class="c-RD-profile__dis-none " data-name="general" style="display: block;">
+                <div class="c-grid__row c-RD-profile__mt-0" id="general">
                   <div class="c-grid__col">
-                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" id="profile-step-1" style="box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.05);">
-                      <div class="c-card__header c-card__header--with-controls business_info  uk-hidden">
-
-                      </div>
+                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.05);">
+                      <div class="c-card__header c-card__header--with-controls  uk-hidden"></div>
                       <div class="c-card__body c-card__body--form">
-                        <div class="c-grid__row js-profile-business-info-form-section">
+                        <div class="c-grid__row">
+
                           <div class="c-grid__row">
                             <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
-                              <span class="c-RD-profile__title">اطلاعات فروشنده</span>
-                            </div>
-                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2">
-                              <button class="c-RD-profile__action-btn c-RD-profile__action-btn--edit js-profile-edit-form">ویرایش</button>
-                            </div>
-                            <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
-
-                          </div>
-
-                          <div class="c-grid__row c-RD-profile__aife">
-                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-                              <div class="c-form">
-                                <label class="c-RD-profile__input-name" for="training_status">وضعیت آموزش</label>
-                                <div class="c-RD-profile__contract-status c-RD-profile__contract-status--confirmed js-passed-traning" data-show="{trainingStatus : finished}">
-                                  آموزش را گذرانده‌اید
-                                </div>
-
-                                <div class="c-RD-profile__contract-status c-RD-profile__contract-status--pending js-passed-traning" data-show="{trainingStatus : subscribed}" style="display: none;">
-                                  شرکت نکرده اید
-                                </div>
-                                <div class="c-RD-profile__contract-status c-RD-profile__contract-status--rejected js-rejected-traning" data-show="{trainingStatus : new}" style="display: none;">
-                                    <span class="uk-text-nowrap">
-                                        ثبت‌نام نکرده‌اید
-                                    </span>
-                                  <div class="uk-width-1-1 uk-text-left">
-                                    <span class="c-RD-profile__contract-tool-tip js-dropdown-desc"></span>
-                                    <div class="c-rating-chart__description-tooltip uk-dropdown" uk-dropdown="boundary: .js-dropdown-desc; pos: bottom-center">
-                                      در صورت عدم گذراندن دوره آموزشی، برخی از امکانات پنل برای شما غیرفعال خواهد بود.
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-6">
-                              <div class="c-RD-profile__action-btn c-RD-profile__action-btn--outline c-RD-profile__asfe js-enroll-training " data-show="{trainingStatus : new}" style="display: none;">ثبت نام دوره آموزشی</div>
+                              <span class="c-RD-profile__title">اطلاعات سایت</span>
                             </div>
                           </div>
+
+
                           <div class="c-grid__row">
                             <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                               <div class="c-form">
-                                <label class="c-RD-profile__input-name" for="seller-code">کد فروشنده</label>
-
+                                <label class="c-RD-profile__input-name" for="fa_store_name">نام فارسی فروشگاه:</label>
                                 <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                  <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" id="seller-code" value="۱۰۱۴۹۷" readonly="" tabindex="-1">
-
-
-
-                                </div>
-
-                              </div>
-                            </div>
-                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-                              <div class="c-form">
-                                <label class="c-RD-profile__input-name" for="seller-type">نوع فروشنده</label>
-
-                                <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                  <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" id="seller-type" value="حقیقی" readonly="" tabindex="-1">
-
-
-
-                                </div>
-
-                              </div>
-                            </div>
-
-                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-                              <div class="c-form">
-                                <div data-show="{sellerType:business}" style="display: none;">
-                                  <label class="c-RD-profile__input-name" for="seller-last-name">نوع شرکت</label>
-
-                                  <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-business-company-type-select select2-hidden-accessible" name="businessInfo[companyType]" id="businessInfo[companyType]" disabled="" data-no-access="{registerStatus : approved}" placeholder="انتخاب" data-select2-id="businessInfo[companyType]" tabindex="-1" aria-hidden="true">
-
-                                  </select><span class="select2 select2-container select2-container--default select2-container--disabled" dir="rtl" data-select2-id="7" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-labelledby="select2-businessInfocompanyType-container"><span class="select2-selection__rendered" id="select2-businessInfocompanyType-container" role="textbox" aria-readonly="true"></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                </div>
-                                <div data-show="{sellerType:private}">
-                                  <label class="c-RD-profile__input-name" for="seller-business-name">نام تجاری</label>
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[businessName]" class="c-ui-input__field c-ui-input__RD-field" id="seller-business-name" value="کالا ضمانت" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
+                                  <input type="text" name="fa_store_name" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
                                 </div>
                               </div>
                             </div>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                           </div>
 
                           <div class="c-grid__row">
-
-
-
                             <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                               <div class="c-form">
-                                <div data-show="{sellerType:private}">
-                                  <label class="c-RD-profile__input-name" for="seller-first-name">نام</label>
-
+                                  <label class="c-RD-profile__input-name" for="en_store_name">نام انگلیسی فروشگاه:</label>
                                   <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[firstName]" class="c-ui-input__field c-ui-input__RD-field" id="seller-first-name" value="مهدي" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
+                                    <input type="text" name="en_store_name" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
                                   </div>
-
-                                </div>
-                                <div data-show="{sellerType:business}" style="display: none;">
-                                  <label class="c-RD-profile__input-name" for="seller-business-name">نام تجاری</label>
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[businessName]" class="c-ui-input__field c-ui-input__RD-field" id="seller-business-name" value="کالا ضمانت" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
-                                </div>
                               </div>
                             </div>
-                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-                              <div class="c-form">
-                                <div data-show="{sellerType:private}">
-                                  <label class="c-RD-profile__input-name" for="seller-last-name">نام خانوادگی</label>
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[lastName]" class="c-ui-input__field c-ui-input__RD-field" id="seller-last-name" value="جلالي" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
-                                </div>
-                                <div data-show="{sellerType:business}" style="display: none;">
-                                  <label class="c-RD-profile__input-name" for="seller-company-name">نام شرکت</label>
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[companyName]" class="c-ui-input__field c-ui-input__RD-field" id="seller-company-name" value="" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
-                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-                              <div class="c-form">
-                                <div data-show="{sellerType:business}" style="display: none;">
-                                  <label class="c-RD-profile__input-name" for="seller-company-representative">صاحبان حق
-                                    امضا</label>
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[companyAuthorizedRepresentative]" class="c-ui-input__field c-ui-input__RD-field" id="seller-company-representative" value="" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
-                                </div>
-                                <div data-show="{sellerType:private}">
-                                  <label class="c-RD-profile__input-name" for="seller-last-name">جنسیت</label>
-
-                                  <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-business-info-gender-select select2-hidden-accessible" name="businessInfo[gender]" id="businessInfo[gender]" disabled="" data-no-access="{registerStatus : approved}" placeholder="انتخاب" data-select2-id="businessInfo[gender]" tabindex="-1" aria-hidden="true">
-                                    <option value="male" data-select2-id="4">مرد</option><option value="female" data-select2-id="5">زن</option></select><span class="select2 select2-container select2-container--default select2-container--disabled" dir="rtl" data-select2-id="6" style="width: 280.672px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-labelledby="select2-businessInfogender-container"><span class="select2-selection__rendered" id="select2-businessInfogender-container" role="textbox" aria-readonly="true" title="مرد">مرد</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                </div>
-                              </div>
-                            </div>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                           </div>
 
                           <div class="c-grid__row">
-                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4" data-show="{sellerType:private}">
-                              <div class="c-form">
-                                <label class="c-RD-profile__input-name">تاریخ تولد:</label>
-
-                                <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                  <input type="text" name="businessInfo[birthDate]" class="c-ui-input__field c-ui-input__RD-field js-profile-business-info-birth-date pwt-datepicker-input-element" value="۱۳۷۵/۰۱/۰۶" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                </div>
-
-                              </div>
-                            </div>
                             <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                               <div class="c-form">
-                                <div data-show="{sellerType:private}">
-                                  <label class="c-RD-profile__input-name" for="national-id-number">کد ملی</label>
-
+                                  <label class="c-RD-profile__input-name" for="site_url">آدرس سایت:</label>
                                   <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[nationalIdentityNumber]" class="c-ui-input__field c-ui-input__RD-field" id="national-id-number" value="۴۹۰۰۵۰۸۳۴۹" minlength="10" maxlength="10" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
+                                    <input type="text" name="site_url" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
                                   </div>
-
-                                </div>
-                                <div data-show="{sellerType:business}" style="display: none;">
-                                  <label class="c-RD-profile__input-name" for="company-national-id-number">شناسه ملی</label>
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[companyNationalIdentityNumber]" class="c-ui-input__field c-ui-input__RD-field" id="company-national-id-number" value="undefined" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
-                                </div>
                               </div>
                             </div>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                          </div>
+
+                          <div class="c-grid__row">
                             <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                               <div class="c-form">
-                                <div data-show="{sellerType:private}">
-                                  <label class="c-RD-profile__input-name" for="identity-card-number">شماره شناسنامه</label>
-
+                                  <label class="c-RD-profile__input-name" for="admin_email">ایمیل مدیریت:</label>
                                   <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[identityCardNumber]" class="c-ui-input__field c-ui-input__RD-field" id="identity-card-number" value="۴۹۰۰۵۰۸۳۴۹" minlength="1" maxlength="10" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
+                                    <input type="text" name="admin_email" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
                                   </div>
-
-                                </div>
-                                <div data-show="{sellerType:business}" style="display: none;">
-                                  <label class="c-RD-profile__input-name" for="company-registration-number">شماره ثبت</label>
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[companyRegistrationNumber]" class="c-ui-input__field c-ui-input__RD-field" id="company-registration-number" value="undefined" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
-                                </div>
                               </div>
+                              <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                             </div>
 
-                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-                              <div class="c-form">
-                                <div data-show="{sellerType:business}" style="display: none;">
-                                  <label class="c-RD-profile__input-name" for="seller-economic-number">کد اقتصادی</label>
 
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="businessInfo[companyEconomicNumber]" class="c-ui-input__field c-ui-input__RD-field" id="seller-economic-number" value="undefined" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
 
                             <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-                              <div class="c-form">
 
-                              </div>
                             </div>
                           </div>
 
                           <div class="c-grid__row">
                             <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                               <div class="c-form">
-                                <label class="c-RD-profile__input-name" for="vat-register">مشمولیت مالیات بر ارزش افزوده</label>
-                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-business-info-vat-select select2-hidden-accessible" name="businessInfo[isSubjectedToVat]" id="vat-register" data-active="false" data-no-access="{registerStatus : approved}" placeholder="انتخاب" data-select2-id="vat-register" tabindex="-1" aria-hidden="true" disabled="disabled">
-                                  <option value="1" data-select2-id="1">بله</option><option value="2" data-select2-id="2">خیر</option></select><span class="select2 select2-container select2-container--default select2-container--disabled" dir="rtl" data-select2-id="3" style="width: 280.672px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-labelledby="select2-vat-register-container"><span class="select2-selection__rendered" id="select2-vat-register-container" role="textbox" aria-readonly="true" title="خیر">خیر</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                  <label class="c-RD-profile__input-name" for="admin_subdomain">زیر دامنه مدیریت:</label>
+                                  <div class="c-ui-input ">
+                                    <input type="text" name="admin_subdomain" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                                  </div>
                               </div>
                             </div>
-                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4 " data-hide="{isSubjectedToVat : false} {sellerType : business}">
-                              <div class="c-form" data-hide="{isSubjectedToVat : false} {sellerType : private}" style="display: none;">
-                                <label class="c-RD-profile__input-name" for="seller-code">تاریخ انقضای گواهی مالیات بر ارزش افزوده</label>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                          </div>
 
-                                <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                  <input type="text" name="businessInfo[subjectedToVatDocument.expireDate]" class="c-ui-input__field c-ui-input__RD-field js-profile-business-info-vat-date pwt-datepicker-input-element" id="businessInfo[subjectedToVatDocument.expireDate]" value="" data-no-access="{registerStatus : approved} {subjectedToVatDocument.isExpireAtUnlimited : true}" readonly="" tabindex="-1">
-
-
-
-                                </div>
-
-                                <label class="c-ui-checkbox uk-margin-small-top">
-                                  <input name="businessInfo[unlimited]" type="checkbox" data-no-access="{registerStatus : approved}" class="c-ui-checkbox__origin all-checkbox js-unlimited-expiration-date" readonly="true" disabled="true">
-                                  <span class="c-ui-checkbox__check c-cpo__cp 0-checkbox-small"></span><span class="uk-margin-small-right">نامحدود</span>
-                                </label>
-                              </div>
-                            </div>
+                          <div class="c-grid__row">
                             <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-                              <div class="c-form" data-hide="{isSubjectedToVat : false} {sellerType : private}" style="display: none;">
-                                <span class="c-RD-profile__input-name uk-margin-small-right">تصویر آخرین تغییرات گواهینامه ارزش افزوده</span>
-                                <div class="c-grid__row c-RD-profile__logo--placeholder uk-margin-remove-top uk-margin-small-right" id="vat-upload-input">
-                                  <img src="" class="js-profile-business-info-vat-logo-preview c-RD-profile__add-doc-img uk-height-1-1 uk-width-1-1 uk-hidden">
-                                  <label class="c-RD-profile__add-doc-upload">
-                                    <input name="businessInfo[vatDocInput]" class="js-profile-business-info-vat-logo" type="file" accept="image/jpg,image/png,image/jpeg" data-no-access="{registerStatus : approved}" disabled="">
-                                    <input name="businessInfo[document_image_id]" type="hidden">
+                              <div class="c-form">
+                                <label class="c-RD-profile__input-name" for="site_index_status">نمایش سایت در موتورهای جستجو:</label>
+                                <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
+                                  <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
+                                    <input type="checkbox" class="c-ui-checkbox__origin" name="site_index_status" value="1" checked="">
+                                    <span class="c-ui-checkbox__check"></span>
+                                    <span class="c-ui-checkbox__label">از موتوهای جستجو درخواست کن تا محتوای سایت را بررسی نکنند</span>
                                   </label>
                                 </div>
                               </div>
                             </div>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                           </div>
 
-                          <div class="c-RD-profile__profile-modal-warninig uk-flex uk-width-1-1 uk-hidden">
-                            <span class="c-RD-profile__alert-icon"></span>
-                            <p>
-                              فروشنده گرامی، لطفاً در بخش بارگذاری مدارک، گواهی مالیات بر ارزش افزوده خود را بارگذاری کنید.
-                            </p>
+                          <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                              <div class="c-form">
+                                  <label class="c-RD-profile__input-name" for="site_title">عنوان سایت:</label>
+                                  <div class="c-ui-input ">
+                                    <input type="text" name="site_title" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                           </div>
-                          <div class="c-grid__row uk-margin-medium-top">
-                            <div class="o-spacing-m-r-3">
 
-                              <label class="c-RD-profile__input-name" for="company-economic-number">لوگوی فروشنده</label>
+                          <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                              <div class="c-form">
+                                  <label class="c-RD-profile__input-name" for="site_meta_description">متاتگ توضیحات: (meta description)</label>
+                                  <div class="c-ui-input">
+                                    <textarea name="site_meta_description" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" maxlength="1500" rows="3" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                          </div>
 
-                              <div class="c-grid__row c-RD-profile__logo--placeholder uk-margin-remove js-upload-seller-logo" id="logo-upload-input">
-                                <img src="" class="js-profile-business-info-logo-preview c-RD-profile__add-doc-img uk-height-1-1 uk-width-1-1 uk-hidden">
+                          <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                              <div class="c-form">
+                                  <label class="c-RD-profile__input-name" for="identity-card-number">کلمات کلیدی: (meta keywords)</label>
+                                  <div class="c-ui-input">
+                                    <input id="meta_keywords" class="form-control tagify" name="site_meta_keywords" value="" autofocus="" style="background: white !important; border-color:#e6e9ed!important; width: 100% !important;">
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                          </div>
+
+                          <div class="c-grid__row uk-margin-medium-top" style="background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                            <div class="o-spacing-m-r-3" style="padding-right: 10px;">
+                              <div class="c-grid__row c-RD-profile__logo--placeholder uk-margin-remove js-upload-seller-logo" id="logo-upload-input" style="background-color: white;">
+                                <img src="" class="header-logo-preview c-RD-profile__add-doc-img uk-height-1-1 uk-width-1-1 uk-hidden">
                                 <label class="c-RD-profile__upload-btn">
-                                  <input name="businessInfo[logoInput]" type="file" class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg" disabled="">
-                                  <input name="businessInfo[logoImageId]" type="hidden">
+                                  <input name="header_logo_input" type="file" class="header-logo-input" accept="image/jpg,image/png,image/jpeg">
+                                  <input name="headerLogoImageId" type="hidden">
                                 </label>
                               </div>
-                              <div>
-                                <div class="c-RD-profile__checking c-RD-profile__checking--verified" data-show="{sellerPageLogoStatus:approved}" style="display: none;">تایید شده</div>
-                                <div class="c-RD-profile__checking c-RD-profile__checking--waiting " data-show="{sellerPageLogoStatus:waiting}" style="display: none;">در انتظار تایید</div>
-                                <div class="c-RD-profile__checking c-RD-profile__checking--conflict " data-show="{sellerPageLogoStatus:rejected}" style="display: none;">تایید نشده</div>
+                            </div>
+
+                            <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
+                              <span style="display: block;">لوگو هدر سایت</span>
+                              <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 110x30px</span>
+                              <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">اندازه استاندارد: png, svg</span>
+                            </div>
+
+                            <div class="c-grid__row c-grid__col--sm-7" style="height: 20px;direction: ltr;width: 62% !important;">
+                              <div class="c-RD-profile__approve-btn" style="margin-top: 20px;">آپلود تصویر</div>
+                            </div>
+                          </div>
+
+                          <div class="c-grid__row uk-margin-medium-top" style="background-color: #f5f7fa;padding: 20px;border-radius: 8px;margin-top: 20px !important;">
+                            <div class="o-spacing-m-r-3" style="padding-right: 10px;">
+                              <div class="c-grid__row c-RD-profile__logo--placeholder uk-margin-remove js-upload-seller-logo" id="favicon-upload-input" style="background-color: white;">
+                                <img src="" class="favicon-preview c-RD-profile__add-doc-img uk-height-1-1 uk-width-1-1 uk-hidden">
+                                <label class="c-RD-profile__upload-btn">
+                                  <input name="favicon_input" type="file" class="favicon-input" accept="image/jpg,image/png,image/jpeg">
+                                  <input name="faviconImageId" type="hidden">
+                                </label>
                               </div>
                             </div>
-                            <div class="c-profile-seller-description-container">
-                              <div class="c-ui-form__col--12">
-                                <div class="uk-flex">
-                                  <label class="c-RD-profile__input-name" for="company-economic-number">درباره فروشنده</label>
-                                  <button class="c-profile-info-seller-description uk-hidden" id="aboutSellerSampleButton"> نمونه متن درباره فروشنده</button>
-                                </div>
 
-                                <div class="c-ui-input">
+                            <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
+                              <span style="display: block;">فاوآیکون</span>
+                              <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 96x96px</span>
+                              <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">اندازه استاندارد: png, svg</span>
+                            </div>
 
+                            <div class="c-grid__row c-grid__col--sm-7" style="height: 20px;direction: ltr;width: 62% !important;">
+                              <div class="c-RD-profile__approve-btn" style="margin-top: 20px;">آپلود تصویر</div>
+                            </div>
+                          </div>
 
-
-
-
-
-
-                                  <textarea name="businessInfo[sellerPageDescription]" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" maxlength="1500" rows="3" disabled="" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
-                                </div>
-
-                                <div class="uk-margin-auto-right uk-text-left o-spacing-m-t-1 uk-hidden" style="font-size: 12px; color: #c0c2c5">
-                                        <span>
-                                            ۱۵۰
-                                        </span>
-                                  <span>
-                                            /
-                                        </span>
-                                  <span class="js-letter-count">
-                                           ۰
-                                        </span>
-                                </div>
-                                <div>
-                                  <div class="c-RD-profile__checking c-RD-profile__checking--verified" data-show="{sellerPageDescriptionStatus: approved}" style="display: none;">
-                                    تایید شده
-                                  </div>
-                                  <div class="c-RD-profile__checking c-RD-profile__checking--waiting " data-show="{sellerPageDescriptionStatus:waiting}" style="display: none;">
-                                    در انتظار تایید
-                                  </div>
-                                  <div class="c-RD-profile__checking c-RD-profile__checking--conflict " data-show="{sellerPageDescriptionStatus:rejected}" style="display: none;">
-                                    تایید نشده
-                                  </div>
-                                </div>
+                          <div class="c-grid__row uk-margin-medium-top" style="background-color: #f5f7fa;padding: 20px;border-radius: 8px;margin-top: 20px !important;">
+                            <div class="o-spacing-m-r-3" style="padding-right: 10px;">
+                              <div class="c-grid__row c-RD-profile__logo--placeholder uk-margin-remove js-upload-seller-logo" id="symbol-upload-input" style="background-color: white;">
+                                <img src="" class="symbol-preview c-RD-profile__add-doc-img uk-height-1-1 uk-width-1-1 uk-hidden">
+                                <label class="c-RD-profile__upload-btn">
+                                  <input name="symbol_input" type="file" class="symbol-input" accept="image/jpg,image/png,image/jpeg">
+                                  <input name="symbolImageId" type="hidden">
+                                </label>
                               </div>
                             </div>
+
+
+
+
+                            <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
+
+
+
+                              <span style="display: block;">نماد فروشگاه در صفحه محصول</span>
+
+                              <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 24x24px</span><span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">اندازه استاندارد: png, svg</span>
+
+
+                            </div>
+
+
+                            <div class="c-grid__row c-grid__col--sm-7" style="height: 20px;direction: ltr;width: 62% !important;">
+                              <div class="c-RD-profile__approve-btn" style="margin-top: 20px;">آپلود تصویر</div>
+                            </div>
+
                           </div>
 
                           <div class="uk-flex uk-flex-column uk-width-1-1">
-                            <div class="c-profile-business-info-logo-error o-spacing-m-t-6 o-spacing-m-b-2  uk-margin-remove-right" data-show="{sellerPageLogoStatus:rejected}" style="display: none;">
-
-                            </div>
-                            <div class="c-profile-business-info-logo-error  uk-margin-remove-right o-spacing-m-b-2" data-show="{sellerPageDescriptionStatus:rejected}" style="display: none;">
-
-                            </div>
-                          </div>
-                          <div class="c-grid__row uk-margin-medium-top uk-hidden" id="logoCriteria">
-                            <div class="c-profile-business-info-logo-hint">
-                              شرایط لوگو:    ۱- پس‌زمینه ترجیحا سفید باشد     ۲- قالب مربع     ۲- حداقل ۶۰۰ در ۶۰۰ پیکسل     ۴- فرمت PNG یا JPG
-                            </div>
-                            <div class="c-profile-business-info-logo-hint">
-                              متن پیشنهادی را با توجه به نکات زیر ارسال کنید:
-                              <br>
-                              • شرح حال کسب‌ و کارتان را در خصوص تاریخچه، تنوع و محصولاتتان بین 100 تا 150 کلمه یادداشت کنید.
-                              <br>
-                              • حتما به سال شروع فعالیتتان در متن ارسالی اشاره کنید.
-                              <br>
-                              • متن ارسالی باید فاقد آدرس سایت و صفحات مجازی هرگونه شماره تماس باشد
-                            </div>
+                            <div class="c-profile-business-info-logo-error o-spacing-m-t-6 o-spacing-m-b-2 uk-margin-remove-right" style="display: none;"></div>
+                            <div class="c-profile-business-info-logo-error  uk-margin-remove-right o-spacing-m-b-2" style="display: none;"></div>
                           </div>
 
-
-                          <div class="c-grid__row uk-margin-medium-top">
-                            <div class="c-grid__col c-grid__col--sm-12 c-dgrid__col--lg-12 c-RD-profile--document-border" style="margin-left: 12.5px; margin-right:12.5px">
-                              <label class="c-RD-profile__input-name c-RD-profile--document-label" for="company-economic-number">مدارک فروشنده</label>
-                              <div class="c-grid__row">
-                                <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4 c-RD-profile--mb-34 c-RD-profile--mt-34 js-profile-business-info-docs-section">
-                                  <div class="c-grid__row" style="margin-top:0;width: 221px;" data-index="0">
-                                    <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-6">
-                                      <div class="c-RD-profile__logo--placeholder c-RD-profile--ai-i">
-                                        <img class="c-RD-profile__obf-c js-profile-info-docs-images-0" src="https://dkstatics-private.digikala.com/digikala-marketplace-sellers-documents/134256.jpg?OSSAccessKeyId=LTAIPClJziKGRUZJ&amp;Expires=1873094111&amp;Signature=2guG7Iqe6ihl%2FQZhQjO2PyS7u5s%3D">
-                                      </div>
-                                    </div>
-                                    <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-6">
-                                      <div class="c-grid__row">
-                                        <label class="c-RD-profile__input-name" for="company-economic-number"></label>
-                                      </div>
-                                      <div class="c-grid__row c-RD-profile__mt-0">
-                                        <div class="c-RD-profile__checking c-RD-profile__checking--verified" data-show="{status : approved}" style="display: none;">تایید شده</div>
-                                        <div class="c-RD-profile__checking c-RD-profile__checking--waiting " data-show="{status : waiting}" style="display: none;">در انتظار تایید</div>
-                                        <div class="c-RD-profile__checking c-RD-profile__checking--waiting " data-show="{status : new}" style="display: none;">تایید نشده</div>
-                                        <div class="c-RD-profile__checking c-RD-profile__checking--conflict " data-show="{status : rejected}" style="display: none;">رد شده</div>
-
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="c-ui-form__row c-RD-profile__form-action js-profile-form-action uk-hidden" style="margin-right: auto">
+                          <div class="c-ui-form__row c-RD-profile__form-action js-profile-form-action" style="margin-right: auto">
                             <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
-                            <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ثبت تغییرات</div>
+                            <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right">ذخیره تغییرات</div>
                           </div>
 
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div id="training-enrollment" uk-modal="esc-close:false;bg-close:false;" class="c-RD-profile__profile-modal uk-modal">
-                  <div class="uk-modal-dialog uk-modal-dialog--form">
-                    <button class="uk-modal-close-default c-RD-profile__profile-modal-close uk-close uk-icon" type="button" uk-close="ratio: 1.5"><svg width="21" height="21" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                    <div class="c-RD-profile__profile-modal-alignment">
-                      <form method="post" id="training-form">
-                        <div class="c-reg-form__row c-reg-form__row--align-center">
-                          <div class="c-reg-form__col c-reg-form__col--12">
-                            <h2 class="c-reg-form__header c-reg-form__header--bold">ثبت‌نام در دوره آموزشی مرکز فروشندگان</h2>
-                          </div>
-                        </div>
-
-                        <div class="c-reg-form__row c-reg-form__row--gap-20">
-                          <div class="c-reg-form__col c-reg-form__col--12">
-                            <p class="c-reg-form__text">
-                              برای فروش در دیجی‌کالا، باید یک دوره دو ساعته آموزش نحوه فروش در دیجی‌کالا را سپری نمایید. شرکت در این دوره کاملاً رایگان و به دو صورت حضوری‌ (سمینار) و غیرحضوری (وبینار) می باشد.
-                            </p>
-                          </div>
-                        </div>
-
-                        <div class="c-reg-form__row c-reg-form__row--gap-20">
-                          <div class="c-reg-form__col c-reg-form__col--12">
-                            <label class="c-reg-form__text">روز و ساعت برگزاری دوره آموزشی را انتخاب نمایید:</label>
-                          </div>
-                          <div class="c-reg-form__col c-reg-form__col--6">
-                            <div class="c-ui-radio__group">
-
-
-
-                              <label class="c-ui-radio">
-                                <input class="c-ui-radio__origin " type="radio" name="businessInfo[training_type]" value="seminar" disabled="">
-                                <span class="c-ui-radio__check"></span>
-                                <span class="c-ui-radio__label">دوره حضوری‌ (سمینار)<p>این دوره در ساختمان دیجی‌کالا به آدرس تهران، خیابان گاندی جنوبی، نبش خیابان بیست و یکم ، پلاک 28  برگزار میگردد</p></span>
-                              </label>
-                            </div>
-
-                          </div>
-                          <div class="c-reg-form__col c-reg-form__col--6">
-                            <div class="c-ui-radio__group">
-
-
-
-                              <label class="c-ui-radio">
-                                <input class="c-ui-radio__origin " type="radio" name="businessInfo[training_type]" value="webinar" checked="">
-                                <span class="c-ui-radio__check"></span>
-                                <span class="c-ui-radio__label">دوره غیرحضوری (وبینار)<p>این دوره به صورت اینترنتی و به حالت ویدیو کنفرانس برگزار می گردد.</p></span>
-                              </label>
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <div class="c-reg-form__row c-reg-form__row--limited c-reg-form__row--gap-20">
-                          <div class="c-reg-form__col c-reg-form__col--12">
-                            <label class="c-reg-form__text">آیا تا کنون تجربه فروش آنلاین داشته اید؟</label>
-                          </div>
-                          <div class="c-reg-form__col c-reg-form__col--no-gap">
-                            <div class="c-ui-radio__group">
-
-
-
-                              <label class="c-ui-radio">
-                                <input class="c-ui-radio__origin " type="radio" name="businessInfo[online_exp]" value="true" checked="">
-                                <span class="c-ui-radio__check"></span>
-                                <span class="c-ui-radio__label">بلی</span>
-                              </label>
-
-
-
-                              <label class="c-ui-radio">
-                                <input class="c-ui-radio__origin " type="radio" name="businessInfo[online_exp]" value="false">
-                                <span class="c-ui-radio__check"></span>
-                                <span class="c-ui-radio__label">خیر</span>
-                              </label>
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <div class="c-reg-form__row c-reg-form__row--limited c-reg-form__row--gap-20">
-                          <div class="c-reg-form__col c-reg-form__col--12">
-                            <p class="c-reg-form__text">
-                              روز و ساعت برگزاری دوره آموزشی را انتخاب نمایید:
-                            </p>
-                          </div>
-                          <div class="c-reg-form__col c-reg-form__col--6 c-reg-form__col--no-gap">
-                            <select class="c-ui-select c-ui-select--common c-ui-select--small js-profile-business-training-day" name="businessInfo[training_day]" id="training-day" placeholder="انتخاب">
-                              <option></option>
-                            </select>
-                          </div>
-                          <div class="c-reg-form__col c-reg-form__col--6">
-                            <select class="c-ui-select c-ui-select--common c-ui-select--small js-profile-business-training-hour" name="businessInfo[training_hour]" id="training-hour" placeholder="انتخاب">
-                              <option></option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="c-reg-form__row c-reg-form__row--gap-20">
-                          <div class="c-reg-form__col">
-                            <div class="c-ui-checkbox__group">
-
-
-
-                              <label class="c-ui-checkbox">
-                                <input class="c-ui-checkbox__origin " type="checkbox" name="businessInfo[extra_person]" value="true">
-                                <span class="c-ui-checkbox__check"></span>
-                                <span class="c-ui-checkbox__label">یک نفر همراه نیز دارم.</span>
-                              </label>
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <div class="c-ui-checkbox c-RD-profile__profile-modal-action uk-width-1-1 uk-flex uk-flex-center">
-                          <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-width-1-2 js-final-training-enrollment">ثبت‌نام</div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="c-profile-business-info-about-seller-sample-modal uk-modal" uk-modal="" id="aboutSellerSampleModal">
-                  <div>
-                    <div class="c-profile-business-info-about-seller-sample-modal__main-container">
-                      <div class="c-profile-business-info-about-seller-sample-modal__close js-sample-modal-close">
-                      </div>
-                      <div class="c-profile-business-info-about-seller-sample-modal__title">
-                        نمونه متن درباره فروشنده
-                      </div>
-                      <div class="c-profile-business-info-about-seller-sample-modal__description">
-                        فروشگاه اینترنتی دیجی‌کالا، فعالیتش را از سال 1385 آغاز نموده است. این فروشگاه در ابتدای کارش مانند همه‌ی فروشگاه‌های اینترنتی بسیار ساده و با محصولات کمی شروع کرد و اکنون یکی از بزرگترین بازارهای آنلاین در خاورمیانه محسوب می شود. امروز به غیر از فروشگاه آنلاین دیجی‌کالا شرکت‌های دیگری از قبیل دیجی‌استایل، فیدیبو، دیجی‌پی، دیجی‌کالا نکست و دیجی‌کلاب از زیرمجموعه‌های این فروشگاه هستند.
-                      </div>
-                      <button class="c-profile-business-info-about-seller-sample-modal__return-button js-sample-modal-close">
-                        بازگشت
-                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="c-RD-profile__dis-none" data-name="bankInfo" style="display: none;">
 
-                <div class="c-grid__row c-RD-profile__mt-0" id="bankInfo">
-                  <div class="c-grid__col js-profile-bank-info-form">
-                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);">
-                      <div class="c-card__header c-card__header--with-controls uk-hidden">
-
-                      </div>
+              <div class="c-RD-profile__dis-none " data-name="store" style="display: none;">
+                <div class="c-grid__row c-RD-profile__mt-0" id="store">
+                  <div class="c-grid__col">
+                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.05);">
+                      <div class="c-card__header c-card__header--with-controls business_info  uk-hidden"></div>
                       <div class="c-card__body c-card__body--form">
+
                         <div class="c-grid__row">
-                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
-                            <span class="c-RD-profile__title">اطلاعات حساب بانکی</span>
-                          </div>
-                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2">
-                            <div class="c-RD-profile__action-btn c-RD-profile__action-btn--edit js-profile-edit-form">ویرایش</div>
-                          </div>
-                          <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
-                        </div>
-                        <div class="c-ui-form__row js-bank-info">
-                          <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                            <label class="c-RD-profile__input-name" for="bankInfo[shabaNumber]">شماره شبا</label>
-
-                            <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                              <input type="text" name="bankInfo[shabaNumber]" class="c-ui-input__field c-ui-input__RD-field c-ui-input__field c-ui-input__RD-field--ltr accept-only-digits" id="bankInfo[shabaNumber]" value="{shabaNumber}" placeholder="IR ________________________" maxlength="26" required="" readonly="" tabindex="-1" data-exceptions="73, 82">
-
-
-
-                            </div>
-
-                            <div class="c-RD-profile__checking">
-                              <div class="c-RD-profile__checking--waiting js-new-sheba-num uk-hidden">در انتظار تایید</div>
-                              <div class="c-RD-profile__checking--verified js-vrified-sheba-num uk-hidden">تایید شده</div>
-                              <div class="c-RD-profile__checking--conflict js-conflict-sheba-num uk-hidden">رد شده</div>
-                              <div class="c-RD-profile__checking--conflict js-invalid-sheba-num uk-hidden">شماره شبا نامعتبر است</div>
-                            </div>
-                          </div>
-                          <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                            <div class="c-form">
-                              <label class="c-RD-profile__input-name" for="bank-account-owner">صاحب / صاحبان حساب</label>
-
-                              <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field js-read-only-bank-item" id="bank-account-owner" value="{accountOwner}" readonly="" tabindex="-1" disabled="">
-
-
-
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                        <div class="c-ui-form__row c-RD-profile__form-action js-profile-form-action uk-hidden">
-                          <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
-                          <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ثبت تغییرات</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="approve-bank-info" uk-modal="esc-close:false;bg-close:false;" class="c-RD-profile__profile-modal uk-modal">
-                    <div class="uk-modal-dialog c-RD-profile__profile-modal--bank">
-                      <button class="uk-modal-close-default c-RD-profile__profile-modal-close uk-close uk-icon" type="button" uk-close="ratio: 1.5"><svg width="21" height="21" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                      <div class="c-RD-profile__profile-modal-alignment">
-                <span class="uk-flex uk-flex-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="128" height="56" viewBox="0 0 128 56">
-                        <g fill="none" fill-rule="evenodd">
-                            <path fill="#57CFB1" d="M12.42 0h110.16c2.994 0 5.42 2.354 5.42 5.258v39.484c0 2.904-2.426 5.258-5.42 5.258H12.42C9.426 50 7 47.646 7 44.742V5.258C7 2.354 9.426 0 12.42 0z"></path>
-                            <path fill="#62666D" fill-rule="nonzero" d="M116.696 4C119.626 4 122 6.425 122 9.417v41.166c0 2.992-2.375 5.417-5.304 5.417H5.304C2.374 56 0 53.575 0 50.583V9.417C0 6.425 2.375 4 5.304 4h111.392zm0 2H5.304C3.49 6 2 7.52 2 9.417v41.166C2 52.48 3.489 54 5.304 54h111.392c1.815 0 3.304-1.52 3.304-3.417V9.417C120 7.52 118.511 6 116.696 6z"></path>
-                            <path fill="#FFF" fill-rule="nonzero" d="M74.887 38.913h36.082c.57 0 1.031.467 1.031 1.044 0 .548-.419.998-.95 1.04l-.08.003H74.886c-.57 0-1.031-.467-1.031-1.043 0-.55.418-1 .95-1.04l.08-.004h36.083-36.082zm-10.31-10.435h46.392c.57 0 1.031.467 1.031 1.044 0 .549-.419.998-.95 1.04l-.08.003H64.576c-.569 0-1.03-.467-1.03-1.043 0-.55.418-.999.95-1.04l.08-.004h46.392-46.392zM90.351 17h20.618c.57 0 1.031.467 1.031 1.043 0 .55-.419 1-.95 1.04l-.08.004H90.35c-.569 0-1.03-.467-1.03-1.044 0-.548.418-.998.95-1.04l.08-.003h20.62-20.62zm-25.774 0h20.619c.57 0 1.03.467 1.03 1.043 0 .55-.418 1-.95 1.04l-.08.004H64.577c-.569 0-1.03-.467-1.03-1.044 0-.548.418-.998.95-1.04l.08-.003h20.619-20.619zm-25.773 0h20.619c.569 0 1.03.467 1.03 1.043 0 .55-.418 1-.95 1.04l-.08.004H38.804c-.57 0-1.03-.467-1.03-1.044 0-.548.418-.998.95-1.04l.08-.003h20.619-20.619zm-25.773 0h20.618c.57 0 1.031.467 1.031 1.043 0 .55-.418 1-.95 1.04l-.08.004H13.03c-.568 0-1.03-.467-1.03-1.044 0-.548.419-.998.95-1.04l.08-.003h20.62-20.62z"></path>
-                        </g>
-                    </svg>
-                </span>
-                        <p class="c-RD-profile__profile-modal-sheba-title">
-                          تایید اطلاعات حساب
-                        </p>
-                        <div class="c-RD-profile__profile-modal-sheba-info uk-flex">
-                          <div class="uk-flex-column">
-                            <p class="c-RD-profile__profile-modal-sheba-item">شماره شبای شما:</p>
-                            <p class="c-RD-profile__profile-modal-sheba-item uk-text-nowrap">نام صاحب حساب:</p>
-                            <p class="c-RD-profile__profile-modal-sheba-item">بانک عامل:</p>
-                          </div>
-                          <div class="uk-flex-column uk-margin-small-right js-profile-bank-info-iban">
-                            <p class="c-RD-profile__profile-modal-sheba-item uk-text-nowrap">&nbsp;{shabaNumber}</p>
-                            <p class="c-RD-profile__profile-modal-sheba-item uk-text-nowrap">&nbsp;{accountOwner}</p>
-                            <p class="c-RD-profile__profile-modal-sheba-item uk-text-nowrap">&nbsp;{accountBank}</p>
-                          </div>
-                        </div>
-
-                      </div>
-                      <div class="c-RD-profile__profile-modal-action c-RD-profile__profile-modal-action--bank uk-flex uk-flex-between uk-flex-middle uk-margin-remove-top">
-                        <p style="font-size: 13px;">
-                          آیا صحت اطلاعات فوق را تأیید می کنید؟
-                        </p>
-                        <div class="uk-flex">
-                          <div class="c-RD-profile__approve-btn c-RD-profile__approve-btn--modal uk-flex uk-flex-center uk-flex-middle js-profile-bank-info-iban-verify">بله، تأیید می‌کنم</div>
-                          <div class="c-RD-profile__cancel-btn c-RD-profile__cancel-btn--modal uk-flex uk-flex-center uk-flex-middle uk-margin-small-right uk-modal-close" uk-modal-close="">خیر، اصلاح می‌کنم</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <div id="js-profile-bank-info-save-iban" uk-modal="esc-close:false;bg-close:false;" class="c-ui-modal-new uk-modal">
-                  <div class="uk-modal-dialog">
-                    <button class="uk-modal-close-default c-RD-profile__profile-modal-close uk-close uk-icon" type="button" uk-close="ratio: 1.5"><svg width="21" height="21" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                    <div class="c-modal-notification">
-                      <div class="c-modal-notification__content c-modal-notification__content--limited">
-                        <div class="c-modal-notification__bg-img c-modal-notification__bg-img--success"></div>
-                        <h2 class="c-modal-notification__header">کد شبای شما با موفقیت ثبت گردید</h2>
-                        <p class="c-modal-notification__text">
-                          توجه داشته باشید که صورتحساب‌ فعلی شما که در دست اقدام می‌باشد با کد شبای قبلی تسویه خواهد شد و تسویه صورتحساب‌های آتی شما با کد شبای جدید صورت خواهد پذیرفت.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="c-RD-profile__dis-none" data-name="contactInfo" style="display: none;">
-
-
-                <div id="contactInfo">
-                  <div class="c-grid__row c-RD-profile__mt-0">
-                    <div class="c-grid__col js-profile-contact-form js-profile-content-spinner">
-                      <div class="c-card c-RD-profile__bdrs-top-0 " id="profile-step-3" style="box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);">
-                        <div class="c-card__body c-card__body--form js-location-container">
                           <div class="c-grid__row">
                             <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
-                              <span class="c-RD-profile__title">اطلاعات تماس و آدرس</span>
-                            </div>
-                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2">
-                              <button class="c-RD-profile__action-btn c-RD-profile__action-btn--edit js-profile-edit-form">ویرایش</button>
+                              <span class="c-RD-profile__title">اطلاعات فروشگاه</span>
                             </div>
                             <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
-
-                          </div>
-                          <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                            <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                              <label class="c-RD-profile__input-name">ایمیل</label>
-
-                              <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" value="{email}" data-no-access="{disable : true}" readonly="" tabindex="-1" disabled="">
-
-
-
-                              </div>
-
-                            </div>
-                            <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                              <label class="c-RD-profile__input-name">تلفن همراه</label>
-
-                              <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" value="{mobile|convertToFaDigit}" data-no-access="{disable : true}" readonly="" tabindex="-1" disabled="">
-
-
-
-                              </div>
-
-                            </div>
-                            <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                              <label class="c-RD-profile__input-name" for="profile[website]">وب سایت</label>
-
-                              <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                <input type="text" name="contactInfo[website]" class="c-ui-input__field c-ui-input__RD-field" id="contactInfo[website]" value="{website}" readonly="" tabindex="-1">
-
-
-
-                              </div>
-
-                            </div>
-                          </div>
-                          <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                            <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                              <label class="c-RD-profile__input-name">استان</label>
-                              <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-contact-state-select" name="contactInfo[state_id]" id="select-state" data-id="{address.state.id}" data-index="{index}" data-no-access="{registerStatus : approved}" disabled="true">
-                                <option value="{id}">    </option><option value=""></option>
-                                <option value="2" data-code="041">آذربایجان شرقی</option>
-                                <option value="3" data-code="044">آذربایجان غربی</option>
-                                <option value="4" data-code="045">اردبیل</option>
-                                <option value="5" data-code="031">اصفهان</option>
-                                <option value="6" data-code="026">البرز</option>
-                                <option value="7" data-code="084">ایلام</option>
-                                <option value="8" data-code="077">بوشهر</option>
-                                <option value="9" data-code="021">تهران</option>
-                                <option value="10" data-code="038">چهار محال و بختیاری</option>
-                                <option value="11" data-code="056">خراسان جنوبی</option>
-                                <option value="12" data-code="051">خراسان رضوی</option>
-                                <option value="13" data-code="058">خراسان شمالی</option>
-                                <option value="14" data-code="061">خوزستان</option>
-                                <option value="15" data-code="024">زنجان</option>
-                                <option value="16" data-code="023">سمنان</option>
-                                <option value="17" data-code="054">سیستان و بلوچستان</option>
-                                <option value="18" data-code="071">فارس</option>
-                                <option value="19" data-code="028">قزوین</option>
-                                <option value="20" data-code="025">قم</option>
-                                <option value="21" data-code="087">کردستان</option>
-                                <option value="22" data-code="034">کرمان</option>
-                                <option value="23" data-code="083">کرمانشاه</option>
-                                <option value="24" data-code="074">کهگیلویه و بویراحمد</option>
-                                <option value="25" data-code="017">گلستان</option>
-                                <option value="26" data-code="013">گیلان</option>
-                                <option value="27" data-code="066">لرستان</option>
-                                <option value="28" data-code="011">مازندران</option>
-                                <option value="29" data-code="086">مرکزی</option>
-                                <option value="30" data-code="076">هرمزگان</option>
-                                <option value="31" data-code="081">همدان</option>
-                                <option value="32" data-code="035">یزد</option>
-
-                              </select>
-                            </div>
-                            <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                              <label class="c-RD-profile__input-name">شهر</label>
-                              <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-contact-city-select" name="contactInfo[city_id]" id="select-city" data-id="{address.city.id}" data-no-access="{registerStatus : approved}" disabled="true">
-                                <option value="{id}"></option>
-                              </select>
-
-                            </div>
-                          </div>
-
-                          <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                            <div class="c-ui-form__col c-ui-form__col--12">
-                              <label class="c-RD-profile__input-name" for="profile[address_address]">آدرس</label>
-                              <div class="c-ui-form__row c-ui-form__row--group c-ui-form__row--nowrap c-ui-form__row--wrap-xs">
-                                <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item  c-ui-form__col--shrink">
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="contactInfo[address]" class="c-ui-input__field c-ui-input__RD-field" id="contactInfo[address]" value="{address.address|convertToFaDigit}" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1" disabled="">
-
-
-
-                                  </div>
-
-                                  <div class="c-RD-profile__tool-tip-container js-profile-contact-address-tootip uk-hidden">
-                                    <span class="c-RD-profile__contract-tool-tip js-dropdown-desc"></span>
-                                    <div class="c-rating-chart__description-tooltip c-rating-chart__description-tooltip--right uk-dropdown" uk-dropdown="boundary: .js-dropdown-desc; pos: bottom-left" style="width: 260px !important;">
-                                      <p style="    font-size: 12px;padding-bottom: 6px;">
-                                        برای تغییر آدرس می‌بایست روزنامه رسمی خود را به روز‌رسانی کنید
-                                      </p>
-                                      <a href="#docUpload" class="c-RD-profile__action-btn c-RD-profile__action-btn--outline uk-text-nowrap js-profile-contact-address-change" style="margin: auto;font-size:12px">
-                                        به روزرسانی روزنامه رسمی
-                                      </a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                            <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                              <label class="c-RD-profile__input-name" for="profile[post_code]">کد پستی</label>
-
-                              <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                <input type="text" name="contactInfo[postal_code]" class="c-ui-input__field c-ui-input__RD-field accept-only-digits js-editable-field" id="contactInfo[postal_code]" value="{address.postalCode|convertToFaDigit}" minlength="10" maxlength="10" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1" disabled="" data-exceptions="9">
-
-
-
-                              </div>
-
-                            </div>
-                            <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                              <label class="c-RD-profile__input-name" for="profile[phone]">تلفن ثابت</label>
-                              <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item c-ui-form__col--shrink">
-
-                                <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                  <input type="text" name="contactInfo[phone]" class="c-ui-input__field c-ui-input__RD-field" id="contactInfo[phone]" value="{phone|convertToFaDigit}" minlength="12" maxlength="12" data-no-access="{registerStatus : approved}" readonly="" tabindex="-1">
-
-
-
-                                </div>
-
-                              </div>
-                            </div>
-                            <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                              <label class="c-RD-profile__input-name" for="profile[phone]">موقعیت مکانی</label>
-                              <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item c-ui-form__col--shrink">
-                                <div class="c-ui-input ">
-                                  <input type="text" name="contactInfo[legal_coordinates]" class="c-ui-input__RD-field accept-only-digits js-coordinates-input" id="contactInfo[legal_coordinates]" value="{address.latitude};{address.longitude}" tabindex="-1" data-exceptions="9" style="padding-left: 44px;" readonly="" data-no-access="{registerStatus : approved}">
-                                  <div class="c-ui-input__RD-icon c-ui-input__RD-icon--hh c-RD-profile--latandlong js-coordinates-btn"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="c-ui-form__row c-RD-profile__form-action js-profile-form-action uk-hidden">
-                            <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
-                            <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ثبت تغییرات</div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="c-grid__row c-RD-profile__mt-0" style="padding-top: 25px">
-                    <div class="c-grid__col">
-                      <div class="c-card" id="profile-step-3">
-                        <div class="c-card__body c-card__body--form js-warehouse-form" style="padding-top: 32px;">
-                          <div class="c-grid__row">
-                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-8 c-RD-profile__section-title">
-                              <span class="c-RD-profile__title">اطلاعات انبارها</span>
-                            </div>
-                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2" style="display : none">
-                              <button class="c-RD-profile__action-btn c-RD-profile__action-btn--outline c-RD-profile__action-btn--add c-RD-profile__asfe js-profile-contact-warehouse-add">انبار جدید</button>
-                            </div>
-                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2">
-                              <button class="c-RD-profile__action-btn c-RD-profile__action-btn--edit js-profile-edit-form">ویرایش</button>
-                            </div>
-                            <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
-
-                          </div>
 
 
-                          <div class="c-profile__warehouse js-location-container  js-profile-warehouse-form">
-                            <div data-warehouse-id="{index}" data-contacts-validation="">
-                              <div class="c-ui-form__row c-ui-form__row--extra-gap c-RD-profile--mt-20">
-                                <div class="uk-flex uk-flex-left c-ui-form__col c-ui-form__col--6 c-ui-form__col--xs-12">
-                                  <div class="c-RD-profile__gray-title">
-                                    <span class="c-RD-profile__title c-RD-profile--w-fc js-profile-contact-warehouse-title-{index}">انبار شماره {row | convertToFaDigit}</span>
-                                  </div>
-                                  <div class="c-ui-form__col c-ui-form__col--wrap-xs c-ui-form__col--pull-left uk-margin-remove-right uk-hidden">
-                                    <div class="c-RD-profile__delete-warehouse c-RD-profile__delete-warehouse--danger
-                        js-profile-delete-warehouse" data-id="{index}" data-name="{title}" data-row="{row}"></div>
-                                  </div>
-                                </div>
-                                <div class="c-ui-form__col c-ui-form__col--6 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-RD-profile__center-end">
-                                  <label class="c-ui-form__label c-RD-profile--ml-12 c-RD-profile--mb-0">انبار مرجوعی</label>
-
-                                  <div class="c-ui-toggle__group">
-
-
-
-                                    <label class="c-ui-toggle">
-                                      <input class="c-ui-toggle__origin js-profile-warehouse-retrun-button-{index}" type="checkbox" name="contactInfo[warehouses.return_address#{index}]" value="1" id="contactInfo[warehouses.return_address#{index}]" readonly="" tabindex="-1" disabled="">
-                                      <span class="c-ui-toggle__check"></span>
-                                    </label>
-                                  </div>
-
-                                </div>
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="is_development_mode">حالت توسعه:</label>
+                              <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
+                                <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
+                                  <input type="checkbox" class="c-ui-checkbox__origin" name="is_development_mode" value="1" >
+                                  <span class="c-ui-checkbox__check"></span>
+                                  <span class="c-ui-checkbox__label">
+                                    در صورت انتخاب امکان فروش در سایت غیرفعال خواهد شد و تنها امکان بازدید وجود خواهد داشت
+                                  </span>
+                                </label>
                               </div>
-                              <div class="uk-flex-bottom c-ui-form__row c-profile__warehouse-actions js-warehouse-action">
-                                <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                                  <label class="c-RD-profile__input-name">نام انبار</label>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
 
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="contactInfo[warehouses.title#{index}]" class="c-ui-input__field c-ui-input__RD-field js-editable-field js-warehouse-name" id="contactInfo[warehouses.title#{index}]" value="{title}" maxlength="20" readonly="" tabindex="-1">
-
-
-
-                                  </div>
-
-                                </div>
-                                <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                                  <label class="c-RD-profile__input-name">استان</label>
-                                  <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-warehouse-state-select-{index}" name="contactInfo[warehouses.state_id#{index}]" id="select-state-{index}" data-id="{state.id}" data-index="{index}" disabled="">
-                                    <option value="{id}">    </option><option value=""></option>
-                                    <option value="2" data-code="041">آذربایجان شرقی</option>
-                                    <option value="3" data-code="044">آذربایجان غربی</option>
-                                    <option value="4" data-code="045">اردبیل</option>
-                                    <option value="5" data-code="031">اصفهان</option>
-                                    <option value="6" data-code="026">البرز</option>
-                                    <option value="7" data-code="084">ایلام</option>
-                                    <option value="8" data-code="077">بوشهر</option>
-                                    <option value="9" data-code="021">تهران</option>
-                                    <option value="10" data-code="038">چهار محال و بختیاری</option>
-                                    <option value="11" data-code="056">خراسان جنوبی</option>
-                                    <option value="12" data-code="051">خراسان رضوی</option>
-                                    <option value="13" data-code="058">خراسان شمالی</option>
-                                    <option value="14" data-code="061">خوزستان</option>
-                                    <option value="15" data-code="024">زنجان</option>
-                                    <option value="16" data-code="023">سمنان</option>
-                                    <option value="17" data-code="054">سیستان و بلوچستان</option>
-                                    <option value="18" data-code="071">فارس</option>
-                                    <option value="19" data-code="028">قزوین</option>
-                                    <option value="20" data-code="025">قم</option>
-                                    <option value="21" data-code="087">کردستان</option>
-                                    <option value="22" data-code="034">کرمان</option>
-                                    <option value="23" data-code="083">کرمانشاه</option>
-                                    <option value="24" data-code="074">کهگیلویه و بویراحمد</option>
-                                    <option value="25" data-code="017">گلستان</option>
-                                    <option value="26" data-code="013">گیلان</option>
-                                    <option value="27" data-code="066">لرستان</option>
-                                    <option value="28" data-code="011">مازندران</option>
-                                    <option value="29" data-code="086">مرکزی</option>
-                                    <option value="30" data-code="076">هرمزگان</option>
-                                    <option value="31" data-code="081">همدان</option>
-                                    <option value="32" data-code="035">یزد</option>
-
+                        <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                              <div class="c-form">
+                                <label class="c-RD-profile__input-name" for="auto_navigateـtoـcart">هدایت به سبد خرید بعد از افزودن کالا:</label>
+                                <div class="c-ui-input ">
+                                  <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                          name="auto_navigateـtoـcart" data-active="false" tabindex="-1" aria-hidden="true">
+                                    <option value="1">فعال</option>
+                                    <option value="0" selected>غیرفعال</option>
                                   </select>
                                 </div>
-                                <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                                  <label class="c-RD-profile__input-name">شهر</label>
-                                  <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-warehouse-city-select-{index}" name="contactInfo[warehouses.city_id#{index}]" id="select-city-{index}" data-id="{city.id}" disabled="">
-                                    <option value="{id}"></option>
+                              </div>
+                            </div>
+                            <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                          </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="max_add_to_cart">
+                                حداکثر تعداد قابل افزودن به سبد خرید: (برای نامحدود شدن فیلد را خالی رها کنید)
+                              </label>
+                              <div class="c-ui-input ">
+                                <input type="number" name="max_add_to_cart" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="max_shipping_time">حداکثر زمان ارسال کالا:</label>
+                              <div class="c-ui-input ">
+                                <label class="c-content-input">
+                                  <input type="number" name="max_shipping_time" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                                  <span class="c-content-input__text c-content-input__text--overlay" style="left: 0 !important;right: unset !important;">روز</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="num_of_products_per_page">تعداد محصولات در هر صفحه:</label>
+                              <div class="c-ui-input ">
+                                <input type="number" name="num_of_products_per_page" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                                <label class="c-RD-profile__input-name" for="store_city">
+                                  محل فروشگاه: (برای محاسبه هزینه ارسال کالا)
+                                </label>
+                                <div class="c-ui-input ">
+                                  <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                      name="store_city" data-active="false" tabindex="-1" aria-hidden="true">
+                                    <option value="1">فعال</option>
+                                    <option value="0">غیرفعال</option>
                                   </select>
-
                                 </div>
-                              </div>
-                              <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                                <div class="c-ui-form__col c-ui-form__col--12">
-                                  <label class="c-RD-profile__input-name" for="contactInfo[warehouses.address#{index}]">آدرس</label>
-                                  <div class="c-ui-form__row c-ui-form__row--group c-ui-form__row--nowrap c-ui-form__row--wrap-xs">
-                                    <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item  c-ui-form__col--shrink">
-
-                                      <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                        <input type="text" name="contactInfo[warehouses.address#{index}]" class="c-ui-input__field c-ui-input__RD-field" id="contactInfo[warehouses.address#{index}]" value="{address|convertToFaDigit}" readonly="" tabindex="-1">
-
-
-
-                                      </div>
-
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                                <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                                  <label class="c-RD-profile__input-name" for="contactInfo[warehouses.postal_code#{index}]">کد پستی</label>
-
-                                  <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                    <input type="text" name="contactInfo[warehouses.postal_code#{index}]" class="c-ui-input__field c-ui-input__RD-field accept-only-digits js-input-with-fa-number" id="contactInfo[warehouses.postal_code#{index}]" value="{postal_code|convertToFaDigit}" minlength="10" maxlength="10" readonly="" tabindex="-1" data-exceptions="9">
-
-
-
-                                  </div>
-
-                                </div>
-                                <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                                  <label class="c-RD-profile__input-name" for="contactInfo[warehouses.phone#{index}]">تلفن ثابت</label>
-                                  <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item c-ui-form__col--shrink">
-
-                                    <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                      <input type="text" name="contactInfo[warehouses.phone#{index}]" class="c-ui-input__field c-ui-input__RD-field" id="contactInfo[warehouses.phone#{index}]" value="{phone|convertToFaDigit}" minlength="12" maxlength="12" readonly="" tabindex="-1">
-
-
-
-                                    </div>
-
-                                  </div>
-                                </div>
-                                <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                                  <label class="c-RD-profile__input-name" for="profile[phone]">موقعیت مکانی</label>
-                                  <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item c-ui-form__col--shrink">
-                                    <div class="c-ui-input ">
-                                      <input type="text" name="contactInfo[warehouses.legal_coordinates#{index}]" class="c-ui-input__RD-field accept-only-digits js-coordinates-input" id="contactInfo[warehouses.legal_coordinates#{index}]" value="{latitude};{longitude}" tabindex="-1" data-exceptions="9" style="padding-left: 44px;" readonly="">
-                                      <div class="c-ui-input__RD-icon c-ui-input__RD-icon--hh c-RD-profile--latandlong js-coordinates-btn"></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
                             </div>
                           </div>
-
-                          <div id="profile-warehouse-delete" uk-modal="esc-close:false;bg-close:false;" class="c-RD-profile__profile-modal uk-modal">
-                            <div class="uk-modal-dialog">
-                              <button class="uk-modal-close-default c-RD-profile__profile-modal-close uk-close uk-icon" type="button" uk-close="ratio: 1.5"><svg width="21" height="21" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                              <div class="c-RD-profile__profile-modal-alignment">
-                                <p class="c-RD-profile__profile-modal-title uk-text-center">آیا از حذف “{title}” اطمینان دارید؟</p>
-                              </div>
-                              <div class="c-ui-checkbox c-RD-profile__profile-modal-action uk-flex uk-flex-center uk-margin-remove-top">
-                                <div class="c-ui-btn c-ui-btn--danger uk-flex uk-flex-center uk-flex-middle uk-width-1-5 js-profile-delete-warehouse-btn">حذف انبار</div>
-                                <div class="c-ui-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right uk-width-1-5 uk-modal-close">بازگشت</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="c-ui-form__row c-RD-profile__form-action js-profile-form-action uk-hidden">
-                            <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
-                            <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ثبت تغییرات</div>
-                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                         </div>
+
+
+                        <div class="c-grid__row" style="margin-top: 75px !important;">
+                        <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                          <span class="c-RD-profile__title">تحویل حضوری فروشگاه</span>
+                        </div>
+                        <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel uk-hidden"></div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-RD-profile__dis-none" data-name="contractInfo" style="display: none;">
-
-
-                <div class="c-grid__row c-RD-profile__mt-0" id="contractInfo">
-                  <div class="c-grid__col">
-                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" id="profile-step-4" style="box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);">
-                      <div class="c-card__header c-card__header--with-controls uk-hidden">
-
-                      </div>
-                      <div class="c-card__body c-card__body--form">
-                        <div class="c-grid__row">
-                          <div class="uk-width-1-1 c-grid__col c-RD-profile__section-title">
-                            <span class="c-RD-profile__title">اطلاعات قرارداد</span>
-                          </div>
-                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2">
-
-                          </div>
-                        </div>
-                        <div class="c-ui-form__row">
-                          <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                            <label class="c-RD-profile__input-name" for="training_status">وضعیت قرارداد</label>
-                            <div class="c-RD-profile__contract-status c-RD-profile__contract-status--confirmed js-confirmed-contract uk-hidden">
-                              پذیرفته شده
-                            </div>
-                            <div class="c-RD-profile__contract-status c-RD-profile__contract-status--rejected js-rejected-contract uk-hidden">
-                              پذیرفته نشده
-                            </div>
-
-                          </div>
-                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-6 c-RD-profile__ai-fe js-profile-contract-again-review">
-                            <a id="review-contract-btn" class="c-reg-form__submit-btn c-reg-form__submit-btn--secondary c-reg-form__submit-btn--inline  c-RD-profile__action-button-size" target="_blank" data-ui-tooltip="در صورت تمایل میتوانید قرارداد خود را مجددا بررسی کنید.">
-                              نمایش قرارداد
-                            </a>
-                          </div>
-                        </div>
-                        <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                          <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                            <label class="c-RD-profile__input-name" for="seller-contract-number">شماره قرارداد</label>
-
-                            <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                              <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" id="seller-contract-number" value="{number}" readonly="" tabindex="-1" disabled="">
-
-
-
-                            </div>
-
-                          </div>
-                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-6 c-RD-profile__ai-fe">
-                            <a id="download-contract-btn" class="c-reg-form__submit-btn c-reg-form__submit-btn--secondary c-reg-form__submit-btn--inline c-RD-profile__action-button-size js-profile-contract-download" target="_blank" data-ui-tooltip="قرارداد آنلاین (شرایط همکاری) جهت مشاهده شما است و نیازی به چاپ و ارسال نسخه آنلاین نیست.">دانلود قرارداد</a>
-                          </div>
-                        </div>
-
-                        <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                          <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                            <label class="c-RD-profile__input-name" for="contract-start-date">تاریخ شروع قرارداد</label>
-
-                            <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                              <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" id="contract-start-date" value="{startDate}" readonly="" tabindex="-1" disabled="">
-
-
-
-                            </div>
-
-                          </div>
-                          <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                            <label class="c-RD-profile__input-name" for="contract-end-date">تاریخ پایان قرارداد</label>
-
-                            <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                              <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" id="contract-end-date" value="{endDate}" readonly="" tabindex="-1" disabled="">
-
-
-
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                          <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                            <label class="c-RD-profile__input-name" for="contract-calculation-info">بازه محاسبه صورت حساب</label>
-
-                            <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                              <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" id="contract-calculation-info" value="{invoiceCalculationPeriod | convertToFaDigit}" readonly="" tabindex="-1" disabled="">
-
-
-
-                            </div>
-
-                          </div>
-                          <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                            <label class="c-RD-profile__input-name" for="contract-payment-info">بازه پرداخت</label>
-
-                            <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                              <input type="text" name="" class="c-ui-input__field c-ui-input__RD-field" id="contract-payment-info" value="{paymentPeriod | convertToFaDigit}" readonly="" tabindex="-1" disabled="">
-
-
-
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="c-RD-profile__dis-none" data-name="docUpload" style="display: none;">
-
-
-
-                <div class="c-grid__row c-RD-profile__mt-0 c-profile-doc-upload-container" id="docUpload">
-                  <div class="c-grid__col">
-                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);">
-                      <div class="c-card__header c-card__header--with-controls business_info  uk-hidden  ">
-
-                      </div>
-                      <div class="c-card__body c-card__body--form">
-                        <div class="c-grid__row">
-                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
-                            <span class="c-RD-profile__title">بارگذاری مدارک</span>
-                          </div>
-                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2" style="padding-left: 0;width: 103px;">
-                            <button class="c-RD-profile__action-btn c-RD-profile__action-btn--upload js-profile-edit-form">بارگذاری</button>
-                          </div>
-                        </div>
-                        <div class="c-grid__row js-upload-space uk-hidden">
-                          <div id="document-upload-form" class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 uk-padding-remove-left uk-padding-remove-right">
-                            <div class="c-RD-profile__add-doc uk-width-1-1">
-                              <span class="uk-width-1-1 uk-text-right c-RD-profile__add-doc-title">بارگذاری مدارک جدید</span>
-                              <div class="c-ui-form__row uk-flex">
-                                <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-6" style="padding: 0;
-                                        box-sizing: border-box;
-                                        margin-right: 20px;
-                                        margin-left: 20px;
-                                        width: 556px;
-                                        ">
-                                  <div class="c-form">
-                                    <label class="c-RD-profile__input-name" for="doc-type">نوع مدرک:</label>
-                                    <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-docUpload-select-type" name="docUpload[document_id]" id="doc-type" placeholder="انتخاب">
-                                      <option></option>
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4 js-expire-date-wrapper" style="padding-left: 20px;">
-                                  <div class="c-form">
-                                    <label class="c-RD-profile__input-name" for="docUpload[document_expires_at]">
-                                      تاریخ انقضای مدرک:
-                                    </label>
-                                    <div class="c-profile-docs-upload-expire-date js-expire-input-container">
-                                      <input class="js-upload-date " value="" name="docUpload[document_expires_at]" id="docUpload[document_expires_at]" placeholder="انتخاب تاریخ" readonly="">
-                                      <div></div>
-                                    </div>
-                                    <div>
-                                      <div class="c-RD-profile__checking c-RD-profile__checking--alert uk-hidden" style="margin-top: 4px;" id="expireTextError">
-                                        گواهی شما می‌بایست بیش از ۱ ماه اعتبار داشته باشد
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <label class="c-ui-checkbox uk-margin-small-top" style="display: none">
-                                    <input name="docUpload[unlimited]" type="checkbox" class="c-ui-checkbox__origin all-checkbox js-unlimited-expiration-date" data-expiration="">
-                                    <span class="c-ui-checkbox__check c-cpo__cp 0-checkbox-small"></span><span class="uk-margin-small-right">نامحدود</span>
-                                  </label>
-                                </div>
-                              </div>
-                              <div class="js-profile-docUpload-newpaper-section" style="display: none">
-                                <div class="uk-flex-bottom c-ui-form__row c-profile__warehouse-actions js-warehouse-action">
-                                  <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                                    <label class="c-RD-profile__input-name">استان</label>
-                                    <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-doc-upload-state-select" name="docUpload[state_id]" id="select-state-{index}" data-id="{state.id}" data-index="{index}" disabled="true">
-                                      <option value="{id}">    </option><option value=""></option>
-                                      <option value="2" data-code="041">آذربایجان شرقی</option>
-                                      <option value="3" data-code="044">آذربایجان غربی</option>
-                                      <option value="4" data-code="045">اردبیل</option>
-                                      <option value="5" data-code="031">اصفهان</option>
-                                      <option value="6" data-code="026">البرز</option>
-                                      <option value="7" data-code="084">ایلام</option>
-                                      <option value="8" data-code="077">بوشهر</option>
-                                      <option value="9" data-code="021">تهران</option>
-                                      <option value="10" data-code="038">چهار محال و بختیاری</option>
-                                      <option value="11" data-code="056">خراسان جنوبی</option>
-                                      <option value="12" data-code="051">خراسان رضوی</option>
-                                      <option value="13" data-code="058">خراسان شمالی</option>
-                                      <option value="14" data-code="061">خوزستان</option>
-                                      <option value="15" data-code="024">زنجان</option>
-                                      <option value="16" data-code="023">سمنان</option>
-                                      <option value="17" data-code="054">سیستان و بلوچستان</option>
-                                      <option value="18" data-code="071">فارس</option>
-                                      <option value="19" data-code="028">قزوین</option>
-                                      <option value="20" data-code="025">قم</option>
-                                      <option value="21" data-code="087">کردستان</option>
-                                      <option value="22" data-code="034">کرمان</option>
-                                      <option value="23" data-code="083">کرمانشاه</option>
-                                      <option value="24" data-code="074">کهگیلویه و بویراحمد</option>
-                                      <option value="25" data-code="017">گلستان</option>
-                                      <option value="26" data-code="013">گیلان</option>
-                                      <option value="27" data-code="066">لرستان</option>
-                                      <option value="28" data-code="011">مازندران</option>
-                                      <option value="29" data-code="086">مرکزی</option>
-                                      <option value="30" data-code="076">هرمزگان</option>
-                                      <option value="31" data-code="081">همدان</option>
-                                      <option value="32" data-code="035">یزد</option>
-
-                                    </select>
-                                  </div>
-                                  <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                                    <label class="c-RD-profile__input-name">شهر</label>
-                                    <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-doc-upload-city-select" name="docUpload[city_id]" id="select-city-{index}" data-id="" disabled="true">
-                                      <option value="{id}"></option>
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                                  <div class="c-ui-form__col c-ui-form__col--12">
-                                    <label class="c-RD-profile__input-name" for="docUpload[address]">آدرس</label>
-                                    <div class="c-ui-form__row c-ui-form__row--group c-ui-form__row--nowrap c-ui-form__row--wrap-xs">
-                                      <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item  c-ui-form__col--shrink">
-
-                                        <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                          <input type="text" name="docUpload[address]" class="c-ui-input__field c-ui-input__RD-field" id="docUpload[address]" value="" readonly="" tabindex="-1">
-
-
-
-                                        </div>
-
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="c-ui-form__row c-ui-form__row--extra-gap">
-                                  <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12">
-                                    <label class="c-RD-profile__input-name" for="docUpload[postal_code]">کد پستی</label>
-
-                                    <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                      <input type="text" name="docUpload[postal_code]" class="c-ui-input__field c-ui-input__RD-field accept-only-digits" id="docUpload[postal_code]" value="" minlength="10" maxlength="10" readonly="" tabindex="-1">
-
-
-
-                                    </div>
-
-                                  </div>
-                                  <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                                    <label class="c-RD-profile__input-name" for="docUpload[phone]">تلفن ثابت</label>
-                                    <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item c-ui-form__col--shrink">
-
-                                      <div class="c-ui-input ">
-
-
-
-
-
-
-
-
-                                        <input type="text" name="docUpload[phone]" class="c-ui-input__field c-ui-input__RD-field accept-only-digits" id="docUpload[phone]" value="" readonly="" tabindex="-1" data-exceptions="9">
-
-
-
-                                      </div>
-
-                                    </div>
-                                  </div>
-                                  <div class="c-ui-form__col c-ui-form__col--4 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                                    <label class="c-RD-profile__input-name" for="profile[phone]">موقعیت مکانی</label>
-                                    <div class="c-ui-form__col c-ui-form__col--12 c-ui-form__col--group-item c-ui-form__col--shrink">
-                                      <div class="c-ui-input ">
-                                        <input type="text" name="docUpload[legal_coordinates]" class="c-ui-input__RD-field accept-only-digits js-editable-field" id="profile[phone]" value="" tabindex="-1" data-exceptions="9" style="padding-left: 44px;" readonly="true">
-                                        <div class="c-ui-input__RD-icon c-ui-input__RD-icon--hh c-RD-profile--latandlong js-coordinates-btn"></div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="uk-flex uk-flex-between c-RD-profile__add-doc--m-space">
-                                <div class="uk-flex uk-flex-bottom">
-                                  <div>
-                                    <span class="c-RD-profile__input-name " style="margin-right: 0!important;">فایل تصویر</span>
-                                    <div class="c-grid__row c-RD-profile__logo--placeholder uk-margin-remove-top " id="upload-input" style="margin-right: 0!important;position:relative">
-                                      <img src="" class="js-profile-docUpload-preview c-RD-profile__add-doc-img uk-height-1-1 uk-width-1-1 uk-hidden">
-                                      <label class="c-RD-profile__add-doc-upload">
-                                        <input class="js-profile-docUpload-upload" type="file" accept="image/jpg,image/png,image/jpeg">
-                                        <input name="docUpload[document_image_id]" type="hidden">
-                                      </label>
-                                      <div class="c-profile-doc-upload-logo-has-error uk-hidden" id="uploadLogoError">
-                                        <div></div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="c-RD-profile__add-doc-circumstances">
-                                    <span>شرایط فایل:</span>
-                                    <ul>
-                                      <li>۱-  صاف و به همراه نوشته‌های خوانا و واضح</li>
-                                      <li>۲- حجم زیر ۲ مگابایت</li>
-                                    </ul>
-                                  </div>
-                                  <div class="uk-flex uk-flex-column o-spacing-m-r-6 js-docs-download-link uk-hidden">
-                                    <div class="c-ui-form__label" style="font-size: 10px">
-                                      شما موظف به دانلود و امضای تعهدنامه هستید
-                                    </div>
-                                    <a class="o-btn o-btn--outlined-primary-lg-text-icon-right c-profile-docs-download-link o-spacing-p-l-3" data-icon="download" href="http://goo.gl/xikLNH" target="_blank" rel="noopener norefer">
-                                      دانلود فرم تعهدنامه
-                                    </a>
-                                  </div>
-                                  <div class="c-RD-profile__add-doc-error">
-                                    <div class="c-RD-profile__checking c-RD-profile__checking--alert uk-hidden" id="uploadLogoTextError">
-                                      سایز عکس بیش از ۲ مگابایت می‌باشد
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="uk-flex uk-flex-bottom js-profile-form-action">
-                                  <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2 uk-padding-remove-left">
-                                    <div class="c-RD-profile__approve-btn js-profile-submit-changes">ثبت و بارگذاری</div>
-                                  </div>
-                                  <div class="c-profile-docs-upload-cancel-button js-profile-cancel-edit-form"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
 
                         <div class="c-grid__row">
-                          <div class="c-ui-table__wrapper c-RD-profile--w-100p">
-                            <table class="c-ui-table js-table-fixed-header">
-                              <thead class="c-package-create__thead ">
-                              <tr class="c-ui-table__row c-ui-table__row--head">
-                                <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
-                                  <span>ردیف</span>
-                                </th>
-                                <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
-                                  <span>تصویر مدرک</span>
-                                </th>
-                                <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
-                                  <span>عنوان مدرک</span>
-                                </th>
-                                <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
-                                  <span>وضعیت</span>
-                                </th>
-                                <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
-                                  <span>تاریخ انقضا</span>
-                                </th>
-                                <th class="c-ui-table__header c-ui-table__header--smaller c-ui-table__header--nowrap ">
-                                  <span>عملیات</span>
-                                </th>
-                              </tr>
-                              </thead>
-                              <tbody class="js-doc-upload-body">
-                              <tr class="c-ui-table__row c-ui-table__row--body c-ui-table__row--with-hover c-ui-table__row--selected js-doc-upload-row" data-index="{index}" style="height: 102px;">
-                                <td class="c-ui-table__cell">{row | convertToFaDigit}</td>
-                                <td class="c-ui-table__cell c-ui-table__cell--img" style="padding-left: 72px">
-                                  <img class="c-ui-table__cell--img-rounded js-doc-upload-table-image-{index}" src="" style="width: 70px;height: 70px;">
-                                </td>
-                                <td class="c-ui-table__cell c-ui-table__cell--item-title" style="max-width: 342px;">{document_title}</td>
-                                <td class="c-ui-table__cell">
-                                  <div class="c-RD-profile__doc-upload-status c-RD-profile__doc-upload-status--approved js-approved-doc" data-show="{status_en : approved}">تایید شده</div>
-                                  <div class="c-RD-profile__doc-upload-status c-RD-profile__doc-upload-status--waiting js-waiting-doc" data-show="{status_en : new}">در انتظار تایید</div>
-                                  <div class="c-RD-profile__doc-upload-status c-RD-profile__doc-upload-status--rejected js-rejected-doc" data-show="{status_en : rejected}" style="padding: 5px 12px 5px 6px;">
-                                    رد شده
-                                    <span class="c-profile-docs-upload-reject-info-icon">
-                                                <span class="c-profile-docs-upload-reject-tooltip">
-                                                    {rejection_reason}
-                                                </span>
-                                            </span>
-                                  </div>
-                                </td>
-                                <td class="c-ui-table__cell">{expires_at_persian | convertToFaDigit}</td>
-                                <td class="c-ui-table__cell c-ui-table__cell--counter-control" style="padding-right: 0">
-                                  <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2" data-show="{status_en : rejected}" style="padding: 0">
-                                    <div id="{id}" class="c-RD-profile__action-btn c-RD-profile__action-btn--s-edit js-profile-docUpload-edit" data-index="{index}">ویرایش</div>
-                                  </div>
-                                  <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2" data-show="{status_en : new}" style="padding: 0">
-                                    <div id="{id}" class="c-RD-profile__action-btn c-RD-profile__action-btn--s-edit js-profile-docUpload-edit" data-index="{index}">ویرایش</div>
-                                  </div>
-                                </td>
-                              </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="c-RD-profile__dis-none" data-name="workCalendar" style="display: none;">
-
-                <div class="c-grid__row c-RD-profile__mt-0" id="workCalendar">
-                  <div class="c-grid__col">
-                    <div class="c-card c-RD-profile__bdrs-top-0 o-border-seller-error-1 js-profile-content-spinner" id="profile-step-1" style="box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.05);">
-                      <div class="c-card__header c-card__header--with-controls business_info uk-hidden"></div>
-                      <div class="c-card__body c-card__body--form">
-                        <div class="c-grid__row">
-                          <div class="c-grid__col uk-flex-row uk-flex-between@l c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
-                            <span class="c-RD-profile__title uk-flex-1">تقویم کاری</span>
-                            <span class="uk-flex-1 uk-text-left">
-                            <span class="c-calendar__remaining-holiday-title">
-                            مانده تعطیلات کل :‌
-                            </span>
-                            <span class="c-calendar__remaining-holiday-count js-used-holiday-count"></span>
-                            <span class="c-calendar__remaining-holiday-total">
-                                از
-                                <span class="js-total-holiday-count"></span>
-                            </span>
-                        </span>
-                          </div>
-                        </div>
-                        <div class="c-grid__row js-profile-workCalendar-calendar">
-                          <div class="col-12 col-xs-12 c-grid__col c-grid__col--calendar">
-                            <div class="c-calendar">
-                              <div class="c-calendar__top js-workCalendar-top-info">
-                <span class="c-calendar__highlight-box c-calendar__month-remaining-holiday js-month-remaining-holiday">
-                    <span class="c-calendar__remaining-time">
-                        <span class="c-calendar__remaining-holiday-title">
-                        مانده تعطیلات این ماه :‌
-                        </span>
-                        <span class="js-month-used-holiday-count c-calendar__remaining-holiday-count"></span>
-                        <span class="c-calendar__remaining-holiday-total">
-                            از
-                            <span class="js-month-total-holiday-count"></span>
-                        </span>
-                    </span>
-                </span>
-                                <div class="c-calendar__controls">
-                                  <a class="c-calendar__month c-calendar__month--previous js-calendar-prev" data-command="prev"></a>
-                                  <span class="c-calendar__month c-calendar__month--current js-calendar-month js-calendar-current" data-month-index="{persian.monthIndex}" data-year="{persian.year}">{persian.month} {persian.year| convertToFaDigit}</span>
-                                  <div id="dropdown-block" class="c-calendar__month-box uk-hidden">
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="1" data-year="{persian.year}">فروردین
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="2" data-year="{persian.year}">اردیبهشت
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="3" data-year="{persian.year}">خرداد
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="4" data-year="{persian.year}">تیر
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="5" data-year="{persian.year}">مرداد
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="6" data-year="{persian.year}">شهریور
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="7" data-year="{persian.year}">مهر
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="8" data-year="{persian.year}">آبان
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="9" data-year="{persian.year}">آذر
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="10" data-year="{persian.year}">دی
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="11" data-year="{persian.year}">بهمن
-                                    </div>
-                                    <div class="c-calendar__month-box--item js-calendar-select-month" data-month="12" data-year="{persian.year}">اسفند
-                                    </div>
-                                  </div>
-                                  <a class="c-calendar__month c-calendar__month--next  js-calendar-next" data-command="next"></a>
-                                </div>
-
-                                <span class="c-calendar__year js-calendar-year">{persian.currentDate | convertToFaDigit}</span>
-                              </div>
-                              <ul class="c-calendar__box js-calendar">
-                                <li class="c-calendar__week c-calendar__week--header">                     <div class="c-calendar__day c-calendar__day--header">شنبه</div>
-                                  <div class="c-calendar__day c-calendar__day--header">یکشنبه</div>
-                                  <div class="c-calendar__day c-calendar__day--header">دوشنبه</div>
-                                  <div class="c-calendar__day c-calendar__day--header">سه‌شنبه</div>
-                                  <div class="c-calendar__day c-calendar__day--header">چهارشنبه</div>
-                                  <div class="c-calendar__day c-calendar__day--header">پنجشنبه</div>
-                                  <div class="c-calendar__day c-calendar__day--header">جمعه</div>
-                                </li>
-                                <div class="js-calendar-days-row">
-                                  <li class="c-calendar__week js-calendar-days-tile-{index}" data-index="{index}">                                                                         <div class="c-calendar__day js-calendar-day-{iterator}" style="cursor: default">
-                                      <div class="c-calendar__day-wrapper c-calendar__day-wrapper--holiday c-RD-profile__holiday-text--gray-light uk-padding-remove">
-                                        <span class="c-calendar__add-holiday--active js-calendar-add-holiday" data-date="{date}" data-orders="{orderCommitmentDetail.totalCount}" data-ship-by-digikala="{orderCommitmentDetail.ShipByDigikalaCount}" data-ship-by-seller="{orderCommitmentDetail.shipBySellerCount}"></span>
-                                        <span class="c-calendar__add-holiday--deactive js-tooltip" data-tooltip="امکان اضافه کردن روز تعطیل از ۲ روز تا ۱۸۰ روز بعد امکان‌پذیر است."></span>
-                                        <span class="c-calendar__date">
-                                    {day}
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-12">
+                            <label class="c-RD-profile__input-name" for="is_inـpersonـdelivery" style="width: 100%">فعال/غیر فعال کردن تحویل حضوری کالا:</label>
+                            <div class="field-wrapper field-wrapper--justify field-wrapper--background"
+                                 style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;width: 46%;">
+                              <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
+                                <input type="checkbox" class="c-ui-checkbox__origin" name="is_inـpersonـdelivery" value="1">
+                                <span class="c-ui-checkbox__check"></span>
+                                <span class="c-ui-checkbox__label">
+                                  در صورت انتخاب امکان تحویل حضوری کالا در آدرس های تعیین شده  وجود خواهد داشت
                                 </span>
-                                        <div class="c-calendar__promo-cluster uk-flex uk-flex-column">
-                                          <div data-show="{sellerHoliday:true}" class="c-calendar__day-label">
-                                            تعطیل
-                                          </div>
-                                          <div data-show="{officialHoliday:true}" class="c-calendar__day-label js-official-holiday-text" style="width: 42px;">
-                                            تعطیل رسمی
-                                          </div>
-                                          <div class="uk-flex uk-flex-center">
-                                        <span class="c-calendar__counter c-ui-tooltip__trigger js-tooltip" data-show="{orderCommitmentDetail:true}" data-tooltip="<div style='padding: 10px;'>
-                                                    <p style='display: flex;
-                                                        justify-content: space-between;
-                                                        align-items: center;
-                                                        margin-bottom: 15px;'>
-                                                        <span style='color: #a1a3a8'>تعهد ارسال به دیجی‌کالا</span>
-                                                        <span style='font-size: 14px' class='em'>{orderCommitmentDetail.ShipByDigikalaCount}</span>
-                                                    </p>
-                                                    <p style='display: flex;
-                                                        justify-content: space-between;
-                                                        align-items: center;'>
-                                                        <span style='color: #a1a3a8'>تعهد ارسال به مشتری</span>
-                                                        <span style='font-size: 14px' class='em'>{orderCommitmentDetail.shipBySellerCount}</span>
-                                                    </p>
-                                                            </div>">
-                                                {orderCommitmentDetail.totalCount}
-                                        </span>
+                              </label>
+                            </div>
+                            <a class="c-RD-profile__action-btn c-RD-profile__action-btn--outline c-RD-profile__action-btn--add c-RD-profile__asfe new-address "
+                               style="margin-right: 28px;">آدرس جدید</a>
+                          </div>
+                        </div>
 
-                                            <span class="c-calendar__badge js-tooltip" data-show="{orderCommitmentDetail.shipBySellerCount: 1}" data-tooltip="به دلیل تایید سفارش مشتری پیش از اعلام تعطیلی توسط شما، موظف به رساندن محصول به دست مشتری هستید."></span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </li>
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-9">
+                            <div class="c-form address-section" >
+                              <label class="c-RD-profile__input-name" for="shop_address" style="display: block;margin-top: 30px !important; font-weight: bold; font-size: 13px !important; ">آدرس فروشگاه:</label>
+
+                              <div class="address-row" style="margin-top: 20px">
+                                <div style="float: right;width: 94.2%;">
+                                  <input type="text" name="shop_address" class="c-ui-input__field c-ui-input__RD-field" tabindex="-1">
                                 </div>
-                              </ul>
-                            </div>
-                          </div>
-
-
-                        </div>
-                        <div class="c-RD-profile__separator"></div>
-                        <div id="seller_holidays" class="js-calendar-table-tab-content c-grid__row c-RD-profile--mt-40 js-profile-workCalendar-table-section">
-                          <div class="col-12 col-xs-12 c-grid__col c-grid__col--calendar c-RD-profile--jc-sb">
-                            <div class="c-ui-form__row c-RD-profile--ai-c">
-                              <label class="c-ui-form__label c-RD-profile--mb-0 c-RD-profile--ml-20">وضعیت تعطیلات</label>
-                              <div class="c-ui-filters__sort-options c-ui-filters__filter-form c-ui-form__row c-ui-form__row--no-gap">
-                                <label class="c-ui-filters__radio-label c-ui-filters__radio-label--form c-profile__work-calendar-switch-button c-ui-form__col--4 js-profile-workCalendar-search-filter">
-                                  <input class="c-ui-filters__radio js-profile-workCalendar-search-button" type="radio" name="search[active]" value="ahead_holidays">
-                                  <span class="c-ui-filters__radio-option c-ui-filters__radio-option--form c-profile__work-calender-switch c-RD-profile--mw-100">پیش‌ رو</span>
-                                </label>
-                                <label class="c-ui-filters__radio-label c-ui-filters__radio-label--form c-profile__work-calendar-switch-button c-ui-form__col--4 js-profile-workCalendar-search-filter">
-                                  <input class="c-ui-filters__radio js-profile-workCalendar-search-button" type="radio" name="search[active]" value="past_holidays">
-                                  <span class="c-ui-filters__radio-option c-ui-filters__radio-option--form c-profile__work-calender-switch c-RD-profile--mw-100">گذشته</span>
-                                </label>
-                                <label class="c-ui-filters__radio-label c-ui-filters__radio-label--form c-profile__work-calendar-switch-button c-ui-form__col--4 js-profile-workCalendar-search-filter">
-                                  <input class="c-ui-filters__radio js-profile-workCalendar-search-button" type="radio" name="search[active]" value="removed_holidays">
-                                  <span class="c-ui-filters__radio-option c-ui-filters__radio-option--form c-profile__work-calender-switch c-RD-profile--mw-100">پاک شده</span>
-                                </label>
+                                <div class="c-ui-form__col c-ui-form__col--wrap-xs c-ui-form__col--pull-left uk-margin-remove-right" style="display: inline-block;margin-left: 0px !important;padding-left: 0px !important;">
+                                  <div class="c-RD-profile__delete-warehouse c-RD-profile__delete-warehouse--danger delete-addreess" style="padding: 9px;"></div>
+                                </div>
                               </div>
-                            </div>
-                            <div class="c-ui-form__row c-RD-profile--ai-c c-RD-profile--mt-0">
-                              <label class="c-calendar__remaining-holiday-title c-RD-profile--mb-0">
-                                <span class="js-calendar-table-count-label"></span>
-                                &nbsp;
-                                <span class="c-calendar__remaining-holiday-total js-profile-workCalendar-table-count"></span>
-                              </label>
 
                             </div>
                           </div>
-                          <div class="c-grid__row c-RD-profile--mt-34">
-                            <div class="c-ui-table__wrapper c-RD-profile--w-100p c-RD-profile__holiday-list-wrapper">
-                              <table class="c-ui-table js-table-fixed-header js-profile-workCalendar-table-view">
-                                <thead class="c-package-create__thead ">
-                                <tr class="c-ui-table__row c-ui-table__row--head">
-                                  <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                    <span>تاریخ تعطیلی کاری</span>
-                                  </th>
-                                  <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                    <span>وضعیت</span>
-                                  </th>
-                                  <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                    <span>تعهد ارسال</span>
-                                  </th>
-                                  <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                    <span>عملیات</span>
-                                  </th>
-                                </tr>
-                                </thead>
-                                <tbody class="js-profile-workCalendar-table">
-                                <tr class="c-ui-table__row c-ui-table__row--body c-ui-table__row--with-hover c-ui-table__row--selected">
-                                  <td class="c-ui-table__cell c-ui-table__cell--item-title">{date | persianDate}</td>
-                                  <td class="c-ui-table__cell">
-                                    <div class="c-RD-profile__work-calendar-status c-RD-profile__work-calendar-status--{status}">{status | holidayStatus}</div>
-                                  </td>
-                                  <td class="c-ui-table__cell">
-                                    <span class="c-RD-profile__holiday-responsibility">{commitmentCount | convertToFaDigit}</span>
-                                  </td>
-                                  <td class="c-ui-table__cell c-ui-table__cell--counter-control" data-show="{ type : ahead_holidays }">
-                                    <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2">
-                                      <div class="c-RD-profile__delete-warehouse c-RD-profile__delete-warehouse--gray js-profile-workCalendar-delete-holiday" data-id="{id}" data-date="{date}"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
-                              <table class="c-ui-table js-table-fixed-header js-profile-workCalendar-table-empty-view uk-hidden">
-                                <tbody><tr>
-                                  <td class="c-RD-profile__holiday-empty">
-                                    <div id="message-ahead" style="display: none">
-                                      <h5 class="uk-text-emphasis">شما تعطیلاتی پیش روی خود ندارید.</h5>
-                                      <p class="uk-text-muted">برای اضافه کردن تعطیلات کاری، روی روز مورد نظر خود در تقویم کلیک کنید</p>
-                                    </div>
-                                    <div id="message-past" style="display: none">
-                                      <h5 class="uk-text-emphasis">تعطیلات ثبت شده‌ای که روز آن‌ها گذشته است، در اینجا نمایش داده می‌شوند</h5>
-                                    </div>
-                                    <div id="message-deleted" style="display: none">
-                                      <h5 class="uk-text-emphasis">تعطیلاتی که پس از تایید پاک کرده اید، اینجا نمایش داده می‌شود.</h5>
-                                    </div>
-                                  </td>
-                                </tr>
-                                </tbody></table>
-                            </div>
+
+
+
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+
                           </div>
                         </div>
-                        <div id="seller_workdays" class="js-calendar-table-tab-content c-grid__row c-RD-profile--mt-40 js-profile-workdays-table-section uk-hidden">
-                          <div class="col-12 col-xs-12 c-grid__col c-grid__col--calendar c-RD-profile--jc-sb">
-                            <div class="c-ui-form__row c-RD-profile--ai-c">
-                              <label class="c-ui-form__label c-RD-profile--mb-0 c-RD-profile--ml-20">وضعیت روزهای کاری</label>
-                              <div class="c-ui-filters__sort-options c-ui-filters__filter-form c-ui-form__row c-ui-form__row--no-gap">
-                                <label class="c-ui-filters__radio-label c-ui-filters__radio-label--form c-profile__work-calendar-switch-button c-ui-form__col--4 js-profile-workdays-search-filter">
-                                  <input checked="" class="c-ui-filters__radio js-profile-workdays-search-button" type="radio" name="search[workdays]" value="ahead_workdays">
-                                  <span class="c-ui-filters__radio-option c-ui-filters__radio-option--form c-profile__work-calender-switch c-RD-profile--mw-100">پیش‌ رو</span>
-                                </label>
-                                <label class="c-ui-filters__radio-label c-ui-filters__radio-label--form c-profile__work-calendar-switch-button c-ui-form__col--4 js-profile-workdays-search-filter">
-                                  <input class="c-ui-filters__radio js-profile-workdays-search-button" type="radio" name="search[workdays]" value="past_workdays">
-                                  <span class="c-ui-filters__radio-option c-ui-filters__radio-option--form c-profile__work-calender-switch c-RD-profile--mw-100">گذشته</span>
-                                </label>
-                                <label class="c-ui-filters__radio-label c-ui-filters__radio-label--form c-profile__work-calendar-switch-button c-ui-form__col--4 js-profile-workdays-search-filter">
-                                  <input class="c-ui-filters__radio js-profile-workdays-search-button" type="radio" name="search[workdays]" value="removed_workdays">
-                                  <span class="c-ui-filters__radio-option c-ui-filters__radio-option--form c-profile__work-calender-switch c-RD-profile--mw-100">پاک شده</span>
-                                </label>
-                              </div>
-                            </div>
 
-                            <div class="c-ui-form__row c-RD-profile--ai-c c-RD-profile--mt-0">
-                              <label class="c-calendar__remaining-holiday-title c-RD-profile--mb-0">
-                                <span class="js-workdays-table-count-label"></span>
-                                &nbsp;
-                                <span class="c-calendar__remaining-holiday-total js-profile-workdays-table-count"></span>
-                              </label>
-
-                            </div>
-                          </div>
-                          <div class="c-grid__row c-RD-profile--mt-34">
-                            <div class="c-ui-table__wrapper c-RD-profile--w-100p c-RD-profile__holiday-list-wrapper">
-                              <table class="c-ui-table js-table-fixed-header js-profile-workdays-table-view">
-                                <thead class="c-package-create__thead ">
-                                <tr class="c-ui-table__row c-ui-table__row--head">
-                                  <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                    <span>تاریخ روز کاری</span>
-                                  </th>
-                                  <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                    <span>وضعیت</span>
-                                  </th>
-                                  <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                    <span>تعهد ارسال</span>
-                                  </th>
-                                  <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                                    <span>عملیات</span>
-                                  </th>
-                                </tr>
-                                </thead>
-                                <tbody class="js-profile-workdays-table">
-                                <tr class="c-ui-table__row c-ui-table__row--body c-ui-table__row--with-hover c-ui-table__row--selected">
-                                  <td class="c-ui-table__cell c-ui-table__cell--item-title">{date}</td>
-                                  <td class="c-ui-table__cell">
-                                    <div class="c-RD-profile__work-calendar-status c-RD-profile__work-calendar-status--{status}">{status | workDayStatus}</div>
-                                  </td>
-                                  <td class="c-ui-table__cell">
-                                    <span class="c-RD-profile__holiday-responsibility">{commitmentCount | convertToFaDigit}</span>
-                                  </td>
-                                  <td class="c-ui-table__cell c-ui-table__cell--counter-control">
-                                    <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-2">
-                                      <div class="c-RD-profile__delete-warehouse c-RD-profile__delete-warehouse--gray js-profile-workCalendar-delete-workday" data-shipment-type="{shipment_type}" data-id="{id}" data-date="{date}"></div>
-                                    </div>
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
-                              <table class="c-ui-table js-table-fixed-header js-profile-workdays-table-empty-view uk-hidden">
-                                <tbody><tr>
-                                  <td class="c-RD-profile__holiday-empty">
-                                    <div id="message-ahead" style="display: none">
-                                      <h5 class="uk-text-emphasis">شما هیچ روز کاری در پیش رو ندارید.</h5>
-                                      <p class="uk-text-muted">برای اضافه کردن روز کاری، روی تعطیلات رسمی مورد نظر خود در تقویم کلیک کنید</p>
-                                    </div>
-                                    <div id="message-past" style="display: none">
-                                      <h5 class="uk-text-emphasis">روزهای کاری ثبت شده‌ای که روز آن‌ها گذشته است، در اینجا نمایش داده می‌شوند</h5>
-                                    </div>
-                                    <div id="message-deleted" style="display: none">
-                                      <h5 class="uk-text-emphasis">روزهای کاری که پس از تایید پاک کرده اید، اینجا نمایش داده می‌شود.</h5>
-                                    </div>
-                                  </td>
-                                </tr>
-                                </tbody></table>
-                            </div>
-                          </div>
-                        </div>            </div>
-                    </div>
-                  </div>
-                  <div id="workCalendarDeleteHoliday" uk-modal="esc-close:false;bg-close:false;" class="c-RD-profile__profile-modal uk-modal">
-                    <div class="uk-modal-dialog">
-                      <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close="ratio: 1.5"><svg width="21" height="21" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                      <div class="c-RD-profile__profile-modal-alignment">
-                        <p class="c-RD-profile__profile-modal-title uk-text-center">آیا حذف شدن این تعطیلی را تایید می‌کنید؟</p>
-                      </div>
-                      <div class="c-RD-profile__profile-modal-warninig uk-margin-remove-top uk-flex uk-margin-medium-bottom js-profile-holiday-delete-notice">
-                        <span uk-icon="icon:warning; ratio:2.2;" class="uk-flex uk-flex-middle c-RD-profile__profile-modal-warninig--icon-color uk-icon"><svg width="44" height="44" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="2.2"> <circle cx="10" cy="14" r="1"></circle> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle> <path d="M10.97,7.72 C10.85,9.54 10.56,11.29 10.56,11.29 C10.51,11.87 10.27,12 9.99,12 C9.69,12 9.49,11.87 9.43,11.29 C9.43,11.29 9.16,9.54 9.03,7.72 C8.96,6.54 9.03,6 9.03,6 C9.03,5.45 9.46,5.02 9.99,5 C10.53,5.01 10.97,5.44 10.97,6 C10.97,6 11.04,6.54 10.97,7.72 L10.97,7.72 Z"></path></svg></span>
-                        <p>
-                          با توجه به این که روزهای تعطیل شما باید دو روز زودتر در سیستم ثبت شوند، اعلام روز جاری و فردا به عنوان روز تعطیل پس از حذف امکان پذیر نخواهد بود.
-                        </p>
-                      </div>
-                      <div class="c-ui-checkbox c-RD-profile__profile-modal-action uk-flex uk-flex-center uk-margin-remove-top">
-                        <div class="c-ui-btn c-ui-btn--danger uk-flex uk-flex-center uk-flex-middle uk-width-1-5 js-profile-workCalendar-delete-warehouse-btn" style="width : 128px">حذف روز تعطیل</div>
-                        <div class="c-ui-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right uk-width-1-5 uk-modal-close">بازگشت</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div id="workCalendarDeleteWorkdayModal" uk-modal="esc-close:false;bg-close:false;" class="c-RD-profile__profile-modal uk-modal">
-                    <div class="uk-modal-dialog">
-                      <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close="ratio: 1.5"><svg width="21" height="21" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                      <div class="c-RD-profile__profile-modal-alignment">
-                        <p class="c-RD-profile__profile-modal-title uk-text-center">آیا حذف شدن این روز کاری را تایید می‌کنید؟</p>
-                      </div>
-                      <div class="c-ui-checkbox c-RD-profile__profile-modal-action uk-flex uk-flex-center uk-margin-remove-top">
-                        <button class="o-btn o-btn--contained-error-lg-text uk-width-1-5 js-profile-submit-workday-deletion o-spacing-m-l-2">حذف روز کاری</button>
-                        <div class="o-btn o-btn--outlined-gray-lg-text o-color-seller-background-light uk-modal-close o-text-color-n-600">بازگشت</div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div id="workCalendarAddModal" uk-modal="esc-close:false;bg-close:false;" class="c-RD-profile__profile-modal uk-modal">
-                  <div class="uk-modal-dialog">
-                    <button class="uk-modal-close-default c-RD-profile__profile-modal-close uk-close uk-icon" type="button" uk-close="ratio: 1.5"><svg width="21" height="21" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                    <div class="c-RD-profile__profile-modal-alignment">
-                      <p class="c-RD-profile__profile-modal-title uk-text-center">آیا اضافه شدن {today} به عنوان روز تعطیل خود را تایید می‌کنید؟</p>
-                      <div class="c-RD-profile__profile-modal-detail">
-                        <div class="c-RD-profile__profile-modal-detail-items">
-                          <span class="c-RD-profile__profile-modal-detail--title-light">تعهد ارسال به دیجی‌کالا</span>
-                          <span class="c-RD-profile__profile-modal-detail--title-dark">{ShipByDigikalaCount | convertToFaDigit}</span>
-                        </div>
-                        <div class="c-RD-profile__profile-modal-detail-items">
-                          <span class="c-RD-profile__profile-modal-detail--title-light">تعهد ارسال به مشتری</span>
-                          <span class="c-RD-profile__profile-modal-detail--title-dark">{shipBySellerCount | convertToFaDigit}</span>
-                        </div>
-
-
-                        <div class="c-RD-profile__profile-modal-detail-description">
-                          لطفا توجه داشته باشید در صورت اضافه کردن این روز به عنوان تعطیلی، حتما باید تا قبل از فرارسیدن این روز، نسبت به ساخت محموله و ارسال کالاها به انبار اقدام فرمایید. در صورت لغو تعهد ارسال، مشمول جریمه خواهید شد.
-                        </div>
-                        <div class="c-RD-profile__profile-modal-warninig uk-flex" data-show="{shipBySellerCount : true}">
-                          <spa uk-icon="icon:warning; ratio:2.2;" class="uk-flex uk-flex-middle c-RD-profile__profile-modal-warninig--icon-color uk-icon"><svg width="44" height="44" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="2.2"> <circle cx="10" cy="14" r="1"></circle> <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle> <path d="M10.97,7.72 C10.85,9.54 10.56,11.29 10.56,11.29 C10.51,11.87 10.27,12 9.99,12 C9.69,12 9.49,11.87 9.43,11.29 C9.43,11.29 9.16,9.54 9.03,7.72 C8.96,6.54 9.03,6 9.03,6 C9.03,5.45 9.46,5.02 9.99,5 C10.53,5.01 10.97,5.44 10.97,6 C10.97,6 11.04,6.54 10.97,7.72 L10.97,7.72 Z"></path></svg></spa>
-                          <p>
-                            به دلیل تایید سفارش دارای ارسال توسط فروشنده، پیش از اعلام تعطیلی توسط شما، حتی پس از اعلام تعطیلات، در هر صورت موظف به رساندن محصول به دست مشتری هستید. در غیر این صورت مشمول جریمه خواهید شد.
-                          </p>
-                        </div>
-
-                        <div class="">
-                          <label class="c-ui-checkbox c-RD-profile__profile-modal-confirmation">
-                            <input name="unlimited-date" type="checkbox" class="c-ui-checkbox__origin all-checkbox js-profile-agree-checkbox">
-                            <span class="c-ui-checkbox__check c-cpo__cp 0-checkbox-small uk-margin-remove-right"></span><span class="">شرایط را خوانده‌ام و قبول دارم.</span>
-                          </label>
-                        </div>
-
-
-                        <div class="c-ui-checkbox c-RD-profile__profile-modal-action">
-                          <div class="c-RD-profile__approve-btn c-RD-profile__approve-btn--disable uk-flex uk-flex-center uk-flex-middle js-submit-modal">ثبت تعطیلات</div>
-                          <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right uk-modal-close">بازگشت</div>
+                        <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
+                          <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
+                          <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ذخیره تغییرات</div>
                         </div>
 
                       </div>
                     </div>
                   </div>
-
-
-
-                  <div id="workCalendarAddWorkDayModal" uk-modal="esc-close:false;bg-close:false;" class="c-RD-profile__profile-modal uk-modal">
-                    <div class="uk-modal-dialog">
-                      <button class="uk-modal-close-default c-RD-profile__profile-modal-close uk-close uk-icon" type="button" uk-close="ratio: 1.5"><svg width="21" height="21" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1.5"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
-                      <div class="c-RD-profile__profile-modal-alignment">
-                        <div class="o-font-size-16 o-text-color-n-600 uk-text-center">
-                          ثبت تعطیل رسمی به عنوان روز کاری
-                        </div>
-                        <div class="uk-border-rounded uk-flex o-border-seller-primary-2 uk-flex-middle o-spacing-m-t-6 o-color-seller-primary-1 o-spacing-m-r-10 o-spacing-m-l-10 o-spacing-p-t-2 o-spacing-p-b-2 uk-text-center">
-                          <div class="uk-flex-1 o-font-size-12 o-text-color-n-400">
-                            تعطیل رسمی انتخابی شما:
-                          </div>
-                          <div class="uk-flex-1 js-selected-workday uk-text-bold o-text-color-n-600">
-
-                          </div>
-                        </div>
-                        <div class="o-spacing-m-t-6 uk-text-center o-spacing-m-b-2">
-                          شیوه ارسال مد نظرتان را برای فعال سازی در این تاریخ انتخاب کنید:
-                        </div>
-                        <div class="uk-flex uk-flex-center">
-                          <div class="c-ui-checkbox__group">
-
-
-
-                            <label class="c-ui-checkbox">
-                              <input class="c-ui-checkbox__origin js-workday-type" type="checkbox" name="" value="ship_by_seller" id="work_day_type_1" checked="">
-                              <span class="c-ui-checkbox__check"></span>
-                              <span class="c-ui-checkbox__label">ارسال توسط فروشنده</span>
-                            </label>
-
-
-
-                            <label class="c-ui-checkbox">
-                              <input class="c-ui-checkbox__origin js-workday-type" type="checkbox" name="" value="ship_by_digikala" id="work_day_type_2" disabled="">
-                              <span class="c-ui-checkbox__check"></span>
-                              <span class="c-ui-checkbox__label">ارسال توسط دیجی‌کالا</span>
-                            </label>
-                          </div>
-
-                        </div>
-                        <div class="uk-text-center o-spacing-m-t-4">
-                          <button class="o-btn o-btn--contained-primary-lg-text o-spacing-m-l-2 js-submit-add-workday">
-                            ثبت تغییرات
-                          </button>
-                          <button class="o-btn o-btn--outlined-gray-lg-text o-color-seller-background-light uk-modal-close">
-                            بازگشت
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
               </div>
 
+              <div class="c-RD-profile__dis-none " data-name="email" style="display: none;">
+                <div class="c-grid__row c-RD-profile__mt-0" id="email">
+                  <div class="c-grid__col">
+                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.05);">
+                      <div class="c-card__header c-card__header--with-controls business_info  uk-hidden"></div>
+                      <div class="c-card__body c-card__body--form">
 
-            </div></form>
+                        <div class="c-grid__row">
+                          <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                              <span class="c-RD-profile__title">تنظیمات ایمیل</span>
+                            </div>
+                            <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
+                          </div>
+                        </div>
+
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="is_active_store_email">فعال/غیر فعال کردن ایمیل فروشگاه:</label>
+                              <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
+                                <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
+                                  <input type="checkbox" class="c-ui-checkbox__origin" name="is_active_store_email" value="1" >
+                                  <span class="c-ui-checkbox__check"></span>
+                                  <span class="c-ui-checkbox__label">
+                                    فعالسازی ایمیل فروشگاه
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="mail_server">
+                                سرویس دهنده ایمیل:
+                              </label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="mail_server" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="email_port">درگاه:</label>
+                              <div class="c-ui-input ">
+                                <label class="c-content-input">
+                                  <input type="number" name="email_port" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="email_username">نام کاربری:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="email_username" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                                <label class="c-RD-profile__input-name" for="email_password">
+                                  کلمه عبور:
+                                </label>
+                                <div class="c-ui-input ">
+                                  <input type="text" name="email_password" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                                </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="email_password">
+                                آدرس ایمیل:
+                              </label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="email_address" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="send_order_email">
+                                ارسال ایمیل ثبت موفق سفارش به مشتری:
+                              </label>
+                              <div class="c-ui-input ">
+                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                        name="send_order_email" data-active="false" tabindex="-1" aria-hidden="true">
+                                  <option value="1" selected>فعال</option>
+                                  <option value="0">غیرفعال</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="order_email_text">متن ایمیل ثبت موفق سفارش:</label>
+                              <div class="c-ui-input">
+                                <textarea name="copyright_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" maxlength="1500" rows="3" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="send_delivery_status_email">
+                                ارسال ایمیل وضعیت تحویل کالا به مشتری:
+                              </label>
+                              <div class="c-ui-input ">
+                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                        name="send_delivery_status_email" data-active="false" tabindex="-1" aria-hidden="true">
+                                  <option value="1" selected>فعال</option>
+                                  <option value="0">غیرفعال</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="send_forgot_code_to_email">
+                                بازیابی رمز عبور از طریق ایمیل:
+                              </label>
+                              <div class="c-ui-input ">
+                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                        name="send_forgot_code_to_email" data-active="false" tabindex="-1" aria-hidden="true">
+                                  <option value="1" selected>فعال</option>
+                                  <option value="0">غیرفعال</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="send_registration_code_to_email">
+                                الزامی بودن تایید ایمیل هنگام ثبت نام:
+                              </label>
+                              <div class="c-ui-input ">
+                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                        name="send_registration_code_to_email" data-active="false" tabindex="-1" aria-hidden="true">
+                                  <option value="1" selected>فعال</option>
+                                  <option value="0">غیرفعال</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+
+
+                        <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
+                          <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
+                          <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ذخیره تغییرات</div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c-RD-profile__dis-none " data-name="footer" style="display: none;">
+                <div class="c-grid__row c-RD-profile__mt-0" id="footer">
+                  <div class="c-grid__col">
+                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.05);">
+                      <div class="c-card__header c-card__header--with-controls business_info  uk-hidden"></div>
+                      <div class="c-card__body c-card__body--form">
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                              <span class="c-RD-profile__title">اطلاعات فوتر</span>
+                            </div>
+                            <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
+                          </div>
+                        </div>
+
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="footer_slogan">شعار تبلیغاتی یا آدرس:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="footer_slogan" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="copyright_text">متن کپی رایت:</label>
+                              <div class="c-ui-input">
+                                <textarea name="copyright_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" maxlength="1500" rows="3" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="store_phone">شماره تماس:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="store_phone" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="store_email">آدرس ایمیل:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="store_email" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="desc_section_title">
+                                عنوان بخش توضیحات فروشگاه: (H1)
+                              </label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="desc_section_title" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-12 c-grid__col--lg-12">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="footer_description">توضیحات فروشگاه:</label>
+                              <div class="c-ui-input">
+                                <textarea name="footer_description" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" rows="5" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+
+
+                        <div class="c-grid__row" style="margin-top: 75px !important;">
+                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                            <span class="c-RD-profile__title" style="width: auto;">نماد های الکترونیک &nbsp;</span>
+                            <span style="font-size: 11px;"> (در صورتی که قصد نمایش نماد را ندارید فیلد را خالی رها کنید)</span>
+                          </div>
+                          <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel uk-hidden"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="ecunion_link">لینک مجوز اتحادیه کسب و کارهای مجازی:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="ecunion_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="enamad_link">لینک نماد اعتماد الکترونیکی:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="enamad_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="samandehi_link">لینک نشان ملی ثبت ساماندهی:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="samandehi_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+
+
+                        <div class="c-grid__row" style="margin-top: 75px !important;">
+                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                            <span class="c-RD-profile__title" style="width: auto;">شبکه‌های اجتماعی &nbsp;</span>
+                            <span style="font-size: 11px;"> (در صورتی که قصد نمایش ندارید فیلد را خالی رها کنید)</span>
+                          </div>
+                          <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel uk-hidden"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="instagram_link">لینک اینستاگرام:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="instagram_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="twitter_link">لینک توییتر:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="twitter_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="aparat_link">لینک آپارات:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="aparat_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="linkedin_link">لینک لینکدین:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="linkedin_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="whatsapp_link">لینک واتساپ:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="whatsapp_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="telegram_link">لینک تلگرام:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="telegram_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+
+
+                        <div class="c-grid__row" style="margin-top: 75px !important;">
+                          <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                            <span class="c-RD-profile__title" style="width: auto;">معرفی اپلیکیشن &nbsp;</span>
+                            <span style="font-size: 11px;"> (در صورتی که قصد نمایش ندارید فیلد را خالی رها کنید)</span>
+                          </div>
+                          <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel uk-hidden"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="googleplay_link">لینک گوگل پلی:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="googleplay_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="cafebazaar_link">لینک کافه بازار:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="cafebazaar_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="myket_link">لینک مایکت:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="myket_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="sibapp_link">لینک سیب اپ:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="sibapp_link" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+
+
+
+
+
+                        <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
+                          <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
+                          <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ذخیره تغییرات</div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c-RD-profile__dis-none " data-name="advanced" style="display: none;">
+                <div class="c-grid__row c-RD-profile__mt-0" id="advanced">
+                  <div class="c-grid__col">
+                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.05);">
+                      <div class="c-card__header c-card__header--with-controls business_info  uk-hidden"></div>
+                      <div class="c-card__body c-card__body--form">
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                              <span class="c-RD-profile__title">تنظیمات پیشرفته</span>
+                            </div>
+                            <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
+                          </div>
+                        </div>
+
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-12 c-grid__col--lg-12">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="custom_header_code">اضافه کردن کد سفارشی در تگ HEAD:</label>
+                              <div class="c-ui-input">
+                                <textarea name="custom_header_code" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" rows="5" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-12 c-grid__col--lg-12">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="custom_footer_code">اضافه کردن کد سفارشی در Footer:</label>
+                              <div class="c-ui-input">
+                                <textarea name="custom_footer_code" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" rows="5" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-12 c-grid__col--lg-12">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="custom_css_code">کد CSS سفارشی:</label>
+                              <div class="c-ui-input">
+                                <textarea name="custom_css_code" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" rows="5" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+
+                        <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
+                          <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
+                          <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ذخیره تغییرات</div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c-RD-profile__dis-none " data-name="license" style="display: none;">
+                <div class="c-grid__row c-RD-profile__mt-0" id="license">
+                  <div class="c-grid__col">
+                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.05);">
+                      <div class="c-card__header c-card__header--with-controls business_info  uk-hidden"></div>
+                      <div class="c-card__body c-card__body--form">
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                              <span class="c-RD-profile__title">فعالسازی محصول</span>
+                            </div>
+                            <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
+                          </div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="license_username">نام کاربری:</label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="license_username" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="license_order_code">کد سفارش:</label>
+                              <div class="c-ui-input ">
+                                <input type="number" name="license_order_code" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                        <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
+                          <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
+                          <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ذخیره تغییرات</div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c-RD-profile__dis-none " data-name="sms" style="display: none;">
+                <div class="c-grid__row c-RD-profile__mt-0" id="sms">
+                  <div class="c-grid__col">
+                    <div class="c-card c-RD-profile__bdrs-top-0 js-profile-content-spinner" style="box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.05);">
+                      <div class="c-card__header c-card__header--with-controls business_info  uk-hidden"></div>
+                      <div class="c-card__body c-card__body--form">
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__row">
+                            <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
+                              <span class="c-RD-profile__title">تنظیمات سامانه پیامکی</span>
+                            </div>
+                            <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel js-profile-cancel-edit-form uk-hidden"></div>
+                          </div>
+                        </div>
+
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="is_avtive_sms">فعال/غیرفعالسازی:</label>
+                              <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
+                                <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
+                                  <input type="checkbox" class="c-ui-checkbox__origin" name="is_avtive_sms" value="1" >
+                                  <span class="c-ui-checkbox__check"></span>
+                                  <span class="c-ui-checkbox__label">
+                                    در صورت انتخاب سامانه پیامکی فعال می شود
+                                  </span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="sms_provider">سرویس دهنده پیامک:</label>
+                              <div class="c-ui-input ">
+                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                        name="sms_provider" data-active="false" tabindex="-1" aria-hidden="true">
+                                  <option value="kavenegar" selected>کاوه نگار</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="api_key">
+                                کلید ای پی آی (API Key):
+                              </label>
+                              <div class="c-ui-input ">
+                                <input type="text" name="api_key" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="sms_verifivation_code_text">متن پیام تایید شماره موبایل:</label>
+                              <div class="c-ui-input">
+                                <textarea name="sms_verifivation_code_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"  rows="3" style="height: 80px; border-color: #dddddd; font-weight: bold;"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="sms_sender_number">شماره خط ارسالی:</label>
+                              <div class="c-ui-input ">
+                                <input type="number" name="sms_sender_number" class="c-ui-input__field c-ui-input__RD-field" value="" tabindex="-1">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="send_delivery_status_sms">
+                                ارسال پیامک وضعیت تحویل کالا به مشتری:
+                              </label>
+                              <div class="c-ui-input ">
+                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                        name="send_delivery_status_sms" data-active="false" tabindex="-1" aria-hidden="true">
+                                  <option value="1" selected>فعال</option>
+                                  <option value="0">غیرفعال</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="send_forgot_code_to_sms">
+                                بازیابی رمز عبور از طریق پیامک:
+                              </label>
+                              <div class="c-ui-input ">
+                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                        name="send_forgot_code_to_sms" data-active="false" tabindex="-1" aria-hidden="true">
+                                  <option value="1" selected>فعال</option>
+                                  <option value="0">غیرفعال</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+                        <div class="c-grid__row">
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                            <div class="c-form">
+                              <label class="c-RD-profile__input-name" for="send_registration_code_to_sms">
+                                الزامی بودن تایید شماره موبایل هنگام ثبت نام:
+                              </label>
+                              <div class="c-ui-input ">
+                                <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                        name="send_registration_code_to_sms" data-active="false" tabindex="-1" aria-hidden="true">
+                                  <option value="1" selected>فعال</option>
+                                  <option value="0">غیرفعال</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                        </div>
+
+
+
+                        <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
+                          <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
+                          <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes">ذخیره تغییرات</div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
         </div>
       </div>
-    </div></main>
+      </form>
+        </div>
+      </div>
+    </div>
+  </main>
 @endsection
 @section('script')
 <script>
@@ -2802,6 +1877,45 @@ $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
+});
+
+$(document).on('click',".new-address", function (){
+  var address_row = '<div class="address-row" style="margin-top: 20px"><div style="float: right;width: 94.2%;"><input type="text" name="shop_address" class="c-ui-input__field c-ui-input__RD-field" tabindex="-1"></div><div class="c-ui-form__col c-ui-form__col--wrap-xs c-ui-form__col--pull-left uk-margin-remove-right" style="display: inline-block;margin-left: 0px !important;padding-left: 0px !important;"><div class="c-RD-profile__delete-warehouse c-RD-profile__delete-warehouse--danger delete-addreess" style="padding: 9px;"></div></div></div>';
+  $(".address-section").append(address_row);
+});
+
+$(document).on('click', '.delete-addreess', function (){
+  $(this).closest('.address-row').remove();
+});
+
+var input = document.querySelector('input[name=meta_keywords]');
+new Tagify(input);
+
+if ($(".new-address").is(':checked')){
+  $(".new-address")
+}
+
+$(document).on('click', '.c-profile-nav--menu-links', function (){
+    var selected_menu = $(this).data('content');
+
+    var active_tab = $(".c-RD-profile__selected-nav").closest('li').data('content');
+    $(".c-RD-profile__selected-nav").closest('li').find('.c-RD-profile__menu-text').first().attr('style', 'color: rgb(161, 163, 168) !important;');
+    $(".c-RD-profile__selected-nav").remove();
+
+    var change_nav_lable = '<div class="c-RD-profile__selected-nav" style="display: block;">&nbsp;</div>';
+    $(this).append(change_nav_lable);
+    $(this).find('.c-RD-profile__menu-text').attr('style', 'color: rgb(98, 102, 109) !important;');
+
+
+    $(".c-RD-profile__dis-none[data-name='" + selected_menu + "']").css('display', 'block');
+    $(".c-RD-profile__dis-none[data-name='" + active_tab + "']").css('display', 'none');
+
+    $("body").scrollTop(0);
+
+  initSelect();
+    // $(".c-main").offset().top
+
+
 });
 
 // function persianNum() {
@@ -2827,6 +1941,121 @@ $.ajaxSetup({
 //
 // persianNum();
 // convertDate();
+
+
+function initSelect() {
+  /** @var cities */
+  const citiesArray = window.cities;
+  const $inputs = $('.c-ui-select');
+
+  $inputs.each(function () {
+    const $input = $(this);
+    const inputPlaceholder = $input.attr('placeholder');
+    const hasSearch = $input.hasClass('c-ui-select--search');
+
+    $input
+      .select2({
+        placeholder: inputPlaceholder,
+        minimumResultsForSearch: hasSearch ? 0 : Infinity,
+        language: Services.selectSearchLanguage,
+      })
+      .data('select2')
+      .$dropdown.addClass('c-ui-select__dropdown');
+
+    $input.on('change', function () {
+      $(this).valid();
+    });
+  });
+
+  const $citySelect = $('#city-id');
+  const $stateSelect = $('#state-id');
+  const $cityCode = $('input[name="register[city_code]"]');
+
+  if (!isModuleActive('marketplace_seller_registration_address')) {
+    checkTehranForWarehouse($citySelect);
+
+    $citySelect.on('change', function () {
+      checkTehranForWarehouse($citySelect);
+    });
+  }
+
+  if ($stateSelect.val() !== '') {
+    const selectedValue = $stateSelect.val();
+    const citySelected = $citySelect.val();
+
+    if (citiesArray[selectedValue]) {
+      $citySelect
+        .html('')
+        .select2({
+          placeholder: $stateSelect.attr('placeholder'),
+        })
+        .data('select2')
+        .$dropdown.addClass('c-ui-select__dropdown');
+      $.each(citiesArray[selectedValue], function (index, city) {
+        if (parseInt(citySelected) === parseInt(city.id)) {
+          $citySelect.append('<option value="' + city.id + '" selected>' + city.label + '</option>');
+        } else {
+          $citySelect.append('<option value="' + city.id + '">' + city.label + '</option>');
+        }
+      });
+      $citySelect.trigger('change');
+      $cityCode.val(Services.convertToFaDigit($stateSelect.find(':selected').data('code')));
+    }
+  }
+
+  $stateSelect.on('change', function () {
+    const $select = $(this);
+    const $value = $select.val();
+    const placeholder = $stateSelect.attr('placeholder');
+
+    if ($value === '') {
+      $citySelect
+        .select2({
+          placeholder: placeholder,
+        })
+        .data('select2')
+        .$dropdown.addClass('c-ui-select__dropdown');
+      $citySelect.prop('disabled', true);
+    } else if (citiesArray[$value]) {
+      $citySelect
+        .html('')
+        .select2({
+          placeholder: placeholder,
+        })
+        .data('select2')
+        .$dropdown.addClass('c-ui-select__dropdown');
+
+      $citySelect.append('<option></option>');
+      $.each(citiesArray[$value], function fillOptions(index, city)
+      {
+        $citySelect.append('<option value="' + city.id + '">' + city.label + '</option>');
+      });
+      $cityCode.val(Services.convertToFaDigit($select.find(':selected').data('code')));
+    }
+
+    if (!isModuleActive('marketplace_seller_registration_address')) {
+      checkTehranForWarehouse($citySelect);
+    }
+  });
+
+  function checkTehranForWarehouse($select)
+  {
+    if ($select.val() !== '1698') {
+      makeWarehouseDetailsVisible();
+    }
+
+    function makeWarehouseDetailsVisible()
+    {
+      const $warehouseDetailsControl = $('[name="register[has_warehouse_address]"][value="1"]');
+
+      $warehouseDetailsControl.prop('checked', true);
+      $warehouseDetailsControl.trigger('change');
+    }
+  }
+}
+initSelect();
+
+
 
 </script>
 @endsection

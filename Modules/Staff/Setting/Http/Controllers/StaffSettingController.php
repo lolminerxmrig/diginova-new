@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class StaffSettingController extends Controller
 {
     public function index() {
-        $settings = Setting::orderBy('end_at')->paginate(1);
+        $settings = Setting::all();
         return view('staffsetting::index', compact('settings'));
     }
 
