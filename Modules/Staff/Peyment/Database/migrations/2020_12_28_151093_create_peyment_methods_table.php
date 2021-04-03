@@ -17,12 +17,16 @@ class CreatePeymentMethodsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('status')->default('active');
-            $table->bigInteger('free_shipping_min_cost')->nullable();
-            $table->bigInteger('peyment_cost')->nullable();
-            $table->foreignId('cost_det_type_id')->comment('cost determination type');
+            $table->string('description')->nullable();
+            $table->longText('iv')->nullable();
+            $table->longText('username')->nullable();
+            $table->longText('password')->nullable();
+            $table->longText('merchantId')->nullable();
+            $table->longText('terminalId')->nullable();
+            $table->longText('sha1Key')->nullable();
+            $table->longText('terminalCode')->nullable();
+            $table->longText('key')->nullable();
             $table->timestamps();
-
-            $table->foreign('cost_det_type_id')->references('id')->on('peyment_cost_det_types');
         });
     }
 
