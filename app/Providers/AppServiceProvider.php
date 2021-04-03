@@ -26,13 +26,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         if (\Schema::hasTable('settings') && count(Setting::all())) {
-            $settings = Setting::select('name', 'value')->get();
+            $settings = Setting::all();
+//            $settings = Setting::select('name', 'value')->get();
             view()->share('fa_store_name', $settings->where('name', 'fa_store_name')->first()->value);
             view()->share('site_url', $settings->where('name', 'site_url')->first()->value);
             view()->share('product_code_prefix', $settings->where('name', 'product_code_prefix')->first()->value);
             view()->share('site_title', $settings->where('name', 'site_title')->first()->value);
-            view()->share('description', $settings->where('name', 'description')->first()->value);
-            view()->share('keywords', $settings->where('name', 'keywords')->first()->value);
+            view()->share('description', $settings->where('name', 'index_meta_description')->first()->value);
+            view()->share('index_meta_keywords', $settings->where('name', 'index_meta_keywords')->first()->value);
+
+            view()->share('header_logo', count($settings->where('name', 'header_logo')->first()->media) ? $settings->where('name', 'header_logo')->first()->media()->first() : null);
+            view()->share('favicon_image', count($settings->where('name', 'favicon_image')->first()->media) ? $settings->where('name', 'favicon_image')->first()->media()->first() : null);
+            view()->share('symbol_image', count($settings->where('name', 'symbol_image')->first()->media) ? $settings->where('name', 'symbol_image')->first()->media()->first() : null);
         }
 
         config()->set([

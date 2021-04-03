@@ -3334,7 +3334,7 @@ const contactDetailsAction = {
             this.initPostNumber()
         }
 
-        this.initTimer();
+        // this.initTimer();
         this.initContactDetailsForm();
         this.initShabaMask();
         this.initTabs();
@@ -3361,16 +3361,35 @@ const contactDetailsAction = {
         seconds: 0,
     },
 
-    initTimer: function () {
-        const that = this;
-        const element = document.getElementById('seconds');
-        function incrementSeconds()
-        {
-            that.data.seconds += 1;
-            element.value = that.data.seconds;
+    displayError: function (errors) {
+      var message = '';
+      if (typeof errors === typeof  "") {
+        message = errors;
+      } else if (typeof errors === typeof {}) {
+        try {
+          message = Object.values(errors).join('<br/>');
+        } catch (e) {
+          message = errors;
         }
-        setInterval(incrementSeconds, 1000);
+      }
+      UIkit.notification({
+        message: message,
+        status: 'danger',
+        pos: 'bottom-right',
+        timeout: 8000
+      });
     },
+
+    initTimer: function () {
+          const that = this;
+          const element = document.getElementById('seconds');
+          function incrementSeconds()
+          {
+              that.data.seconds += 1;
+              element.value = that.data.seconds;
+          }
+          setInterval(incrementSeconds, 1000);
+      },
 
     initInputsWithFaDigits: function() {
         $(document).on('input', '.accept-only-digits.with-fa-digit', function () {
