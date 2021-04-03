@@ -39,7 +39,7 @@
 
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $delivery_methods->total() }}">{{ persianNum($delivery_methods->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $peyment_methods->total() }}">{{ persianNum($peyment_methods->total()) }} مورد</span>
                                             </div>
                                         </div>
                                     </div>
@@ -85,16 +85,16 @@
                                               </tr>
                                               </thead>
                                               <tbody id="tbody">
-                                              @if ($delivery_methods->count())
-                                                @foreach($delivery_methods as $key => $delivery_method)
-                                                  <tr name="row" id="{{ $delivery_method->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
+                                              @if ($peyment_methods->count())
+                                                @foreach($peyment_methods as $key => $peyment_method)
+                                                  <tr name="row" id="{{ $peyment_method->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                       <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                          <span class="c-wallet__body-card-row-item"> {{ persianNum($delivery_methods->firstItem() + $key) }} </span>
+                                                          <span class="c-wallet__body-card-row-item"> {{ persianNum($peyment_methods->firstItem() + $key) }} </span>
                                                       </td>
 
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                      @if(count($delivery_method->media))
-                                                        <img src="{{ $site_url . '/' . $delivery_method->media()->first()->path . '/'.$delivery_method->media()->first()->name }}" width="65" height="65">
+                                                      @if(count($peyment_method->media))
+                                                        <img src="{{ $site_url . '/' . $peyment_method->media()->first()->path . '/'.$peyment_method->media()->first()->name }}" width="65" height="65">
                                                       @endif
                                                     </td>
 
@@ -102,7 +102,7 @@
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                                  {{ $delivery_method->name }}
+                                                                  {{ $peyment_method->name }}
                                                                 </span>
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                             </a>
@@ -110,20 +110,20 @@
                                                     </td>
 
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">
-                                                        @foreach($delivery_method->weights as $weight)
+                                                        @foreach($peyment_method->weights as $weight)
                                                         <span style="background-color: #f5f7fa;padding: 6px 10px 6px 10px;border-radius: 5px;margin-right: 5px;font-size: 13px !important;">{{ $weight->name }}</span>
                                                         @endforeach
                                                     </td>
 
                                                     <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                                                      {{ $delivery_method->deliveryCostDetType->name }}
+                                                      {{ $peyment_method->peymentCostDetType->name }}
                                                     </td>
 
                                                     <td class="c-ui-table__cell c-ui-table__cell--small-text">
                                                       <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                           <label class="c-ui-toggle">
-                                                            <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" data-delivery-id="{{ $delivery_method->id }}" name="status" {{ ($delivery_method->status == 'active')? 'checked' : '' }}>
+                                                            <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" data-peyment-id="{{ $peyment_method->id }}" name="status" {{ ($peyment_method->status == 'active')? 'checked' : '' }}>
                                                             <span class="c-ui-toggle__check"></span>
                                                           </label>
                                                         </div>
@@ -131,7 +131,7 @@
                                                     </td>
 
                                                     <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.delivery.edit', $delivery_method->id) }}" style="width: 115px !important;">ویرایش</a>
+                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.peyment.edit', $peyment_method->id) }}" style="width: 115px !important;">ویرایش</a>
                                                     </td>
                                                   </tr>
                                               @endforeach
@@ -145,7 +145,7 @@
                                       <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
                                       <div class="c-ui-paginator js-paginator" data-select2-id="25">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $delivery_methods->total() }}">{{ persianNum($delivery_methods->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $peyment_methods->total() }}">{{ persianNum($peyment_methods->total()) }} مورد</span>
                                             </div>
                                         </div>
                                     </div>
@@ -175,14 +175,14 @@ $(document).on('change', 'input[name="status"]', function () {
   } else {
     var status = 'inactive';
   }
-  var delivery_id = $(this).data('delivery-id');
+  var peyment_id = $(this).data('peyment-id');
 
   $.ajax({
     method: 'post',
-    url: "{{ route('staff.delivery.status') }}",
+    url: "{{ route('staff.peyment.status') }}",
     data: {
       'status': status,
-      'delivery_id': delivery_id,
+      'peyment_id': peyment_id,
     },
   });
 

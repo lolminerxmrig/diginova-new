@@ -7,14 +7,14 @@ use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Staff\Product\Models\ProductWeight;
-use Modules\Staff\Shiping\Models\DeliveryMethodValue;
+use Modules\Staff\Shiping\Models\PeymentMethodValue;
 
-class DeliveryMethod extends Model
+class PeymentMethod extends Model
 {
 
     use HasFactory;
 
-    protected $fillable = ['name', 'status', 'free_shipping_min_cost', 'cost_det_type_id', 'delivery_cost'];
+    protected $fillable = ['name', 'status', 'free_shipping_min_cost', 'cost_det_type_id', 'peyment_cost'];
 
 
     public function media()
@@ -27,14 +27,14 @@ class DeliveryMethod extends Model
       return $this->morphToMany(ProductWeight::class, 'weightable', 'weightables', 'weightable_id', 'wheight_id');
     }
 
-    public function deliveryCostDetType()
+    public function peymentCostDetType()
     {
-      return $this->belongsTo(DeliveryCostDetType::class, 'cost_det_type_id');
+      return $this->belongsTo(PeymentCostDetType::class, 'cost_det_type_id');
     }
 
     public function values()
     {
-        return $this->hasMany(DeliveryMethodValue::class, 'delivery_method_id');
+        return $this->hasMany(PeymentMethodValue::class, 'peyment_method_id');
     }
 
     public function states()

@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use DB;
 
 
-class DeliveryMethodSeeder extends Seeder
+class PeymentMethodSeeder extends Seeder
 {
     /**
      * Run the database seeds.

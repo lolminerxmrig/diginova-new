@@ -81,7 +81,7 @@
 
                       <div class="field-wrapper">
                         <label class="c-content-input">
-                          <input type="text" class="c-content-input__origin c-content-input__origin" name="method_name" value="{{ $delivery_method->name }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                          <input type="text" class="c-content-input__origin c-content-input__origin" name="method_name" value="{{ $peyment_method->name }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
                         </label>
                       </div>
                     </div>
@@ -97,8 +97,8 @@
                         <select name="method_product_weight" id="method_product_weight" class="uk-input uk-input--select js-select-origin" multiple="multiple" style="text-align: right; border-color: #e6e9ed !important;">
 
                           @php
-                            if(isset($delivery_method->weights) && !is_null($delivery_method->weights)) {
-                              foreach ($delivery_method->weights as $weight)
+                            if(isset($peyment_method->weights) && !is_null($peyment_method->weights)) {
+                              foreach ($peyment_method->weights as $weight)
                                 {
                                   $this_product_weights[] = $weight->id;
                               }
@@ -127,20 +127,20 @@
 
                     <label class="c-ui-form__label" for="product_page_title">
                       آیکون:
-                      @if($delivery_method->media()->exists())
+                      @if($peyment_method->media()->exists())
                         <a class="c-ui-btn c-ui-btn--next mr-a delete-icon"  style="margin-left: 21px;width: 59px !important;height: 20px !important;min-width: 45px !important;border-radius: 5px;font-size: 10px;box-shadow: unset;font-weight: bold;" id="submit-form">حذف آیکون</a>
                       @endif
                     </label>
 
                     <div class="field-wrapper">
 
-                      <div id="iconUpload" class="c-content-modal__uploads-label {{ (!$delivery_method->media()->exists())? 'empty' : '' }}">
+                      <div id="iconUpload" class="c-content-modal__uploads-label {{ (!$peyment_method->media()->exists())? 'empty' : '' }}">
                             <span uk-form-custom="" class="uk-form-custom">
                                 <input id="brandLogoFile" type="file" class="hidden">
                             </span>
 
                         <label for="brandLogoFile" class="c-content-modal__uploads-preview">
-                          <img src="{{ ($delivery_method->media()->exists())? $site_url . '/' . $delivery_method->media()->first()->path . '/' . $delivery_method->media()->first()->name : '' }}" id="iconUploadPreview" class="c-content-modal__uploads-img" alt="">
+                          <img src="{{ ($peyment_method->media()->exists())? $site_url . '/' . $peyment_method->media()->first()->path . '/' . $peyment_method->media()->first()->name : '' }}" id="iconUploadPreview" class="c-content-modal__uploads-img" alt="">
                           <span class="c-content-upload__img-loader js-img-loader">
                                   <span class="progress__wrapper">
                                       <span class="progress"></span>
@@ -165,36 +165,36 @@
                       <div class="field-wrapper">
                         <label class="c-ui-form__label" for="product_page_title">نوع قیمت گذاری:</label>
                         <select id="method_cost_type" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible c-ui-input--disabled"
-                                name="method_cost_type" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;" {{ ($delivery_method->id == 1 || $delivery_method->id == 2) ? 'disabled' : '' }}>
-                          @if(count($deliveryCostDetTypes))
+                                name="method_cost_type" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;" {{ ($peyment_method->id == 1 || $peyment_method->id == 2) ? 'disabled' : '' }}>
+                          @if(count($peymentCostDetTypes))
                               <?php $i = 1 ?>
-                            @foreach($deliveryCostDetTypes as $deliveryCostDetType)
+                            @foreach($peymentCostDetTypes as $peymentCostDetType)
                                 <?php
-                                  if( ($delivery_method->id !== 1 && $delivery_method->id !== 2) && ($i == 1) ) {
+                                  if( ($peyment_method->id !== 1 && $peyment_method->id !== 2) && ($i == 1) ) {
                                     $i++;
                                     continue;
                                   }
                                 ?>
 
-                              <option class="option-control" value="{{ $deliveryCostDetType->id }}" {{ ($delivery_method->deliveryCostDetType->id == $deliveryCostDetType->id)? 'selected' : '' }}>{{ $deliveryCostDetType->name }}</option>
+                              <option class="option-control" value="{{ $peymentCostDetType->id }}" {{ ($peyment_method->peymentCostDetType->id == $peymentCostDetType->id)? 'selected' : '' }}>{{ $peymentCostDetType->name }}</option>
                               <?php $i++ ?>
                             @endforeach
                           @endif
                         </select>
                       </div>
                     </div>
-                    <div class="uk-flex uk-flex-column delivery_cost-div" style="{{ ($delivery_method->deliveryCostDetType->id == 1)? 'display: none' : '' }}">
+                    <div class="uk-flex uk-flex-column peyment_cost-div" style="{{ ($peyment_method->peymentCostDetType->id == 1)? 'display: none' : '' }}">
                       <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">
                         <div class="field-wrapper">
-                          <label class="c-ui-form__label delivery_cost-lable" for="product_page_title">
-                            @if($delivery_method->deliveryCostDetType->id == 2)
+                          <label class="c-ui-form__label peyment_cost-lable" for="product_page_title">
+                            @if($peyment_method->peymentCostDetType->id == 2)
                               هزینه ارسال:
                             @else
                               حداقل هزینه ارسال:
                             @endif
                           </label>
                           <label class="c-content-input">
-                            <input type="number" placeholder="" class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--xs js-number-input-wrapper delivery_cost" value="{{ $delivery_method->delivery_cost }}" name="delivery_cost" style="max-width: 124px !important;">
+                            <input type="number" placeholder="" class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--xs js-number-input-wrapper peyment_cost" value="{{ $peyment_method->peyment_cost }}" name="peyment_cost" style="max-width: 124px !important;">
                             <span class="c-content-input__text c-content-input__text--overlay" style="left: 0 !important;right: unset !important;">ریال</span>
                           </label>
                         </div>
@@ -224,7 +224,7 @@
                     <label class="c-ui-form__label" for="product_page_title">ارسال رایگان:</label>
                     <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                       <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" >
-                        <input type="checkbox" class="c-ui-checkbox__origin" name="has_free_delivery" value="1" {{ !is_null($delivery_method->free_shipping_min_cost)? 'checked' : '' }}>
+                        <input type="checkbox" class="c-ui-checkbox__origin" name="has_free_peyment" value="1" {{ !is_null($peyment_method->free_shipping_min_cost)? 'checked' : '' }}>
                         <span class="c-ui-checkbox__check"></span>
                         <span class="c-ui-checkbox__label">ارسال رایگان برای خرید های بالاتر از مبلغی مشخص فعال باشد.</span>
                       </label>
@@ -239,9 +239,9 @@
                         <label class="c-ui-form__label" for="product_page_title">حداقل ارزش سبد خرید:</label>
                         <label class="c-content-input">
                           <input type="number" placeholder="" class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--xs js-number-input-wrapper min_card_cost
-                           {{ is_null($delivery_method->free_shipping_min_cost)? 'c-ui-input--disabled' : '' }}"
-                                 value="{{ !is_null($delivery_method->free_shipping_min_cost)? $delivery_method->free_shipping_min_cost : '' }}"
-                                 name="min_card_cost" style="max-width: 124px !important;"  {{ is_null($delivery_method->free_shipping_min_cost)? 'disabled' : '' }}>
+                           {{ is_null($peyment_method->free_shipping_min_cost)? 'c-ui-input--disabled' : '' }}"
+                                 value="{{ !is_null($peyment_method->free_shipping_min_cost)? $peyment_method->free_shipping_min_cost : '' }}"
+                                 name="min_card_cost" style="max-width: 124px !important;"  {{ is_null($peyment_method->free_shipping_min_cost)? 'disabled' : '' }}>
                           <span class="c-content-input__text c-content-input__text--overlay" style="left: 0 !important;right: unset !important;">ریال</span>
                         </label>
                       </div>
@@ -256,7 +256,7 @@
                     <label class="c-ui-form__label" for="product_page_title">محدودیت:</label>
                     <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                       <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">
-                        <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1" {{ count($delivery_method->states)? 'checked' : '' }}>
+                        <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1" {{ count($peyment_method->states)? 'checked' : '' }}>
                         <span class="c-ui-checkbox__check"></span>
                         <span class="c-ui-checkbox__label">تعیین محدودیت برای استان و یا شهر</span>
                       </label>
@@ -264,7 +264,7 @@
                   </div>
                 </div>
 
-                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div" style=" {{ !count($delivery_method->states)? 'display: none' : '' }}">
+                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div" style=" {{ !count($peyment_method->states)? 'display: none' : '' }}">
 
                   <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px; margin-top: 20px;">
                     استان یا شهر:
@@ -277,8 +277,8 @@
 {{--                      {{ (count($product->category[0]->types) == 0)? 'disabled' : '' }}--}}
 
                       @php
-                        if(isset($delivery_method->states) && !is_null($delivery_method->states)) {
-                          foreach ($delivery_method->states as $state)
+                        if(isset($peyment_method->states) && !is_null($peyment_method->states)) {
+                          foreach ($peyment_method->states as $state)
                             {
                               $this_states[] = $state->id;
                           }
@@ -318,7 +318,7 @@
     @if(count($values))
     <div class="js-table-container">
       <div class="content-section">
-          @include('staffdelivery::layouts.deliveryMethod.edit.table')
+          @include('staffpeyment::layouts.peymentMethod.edit.table')
       </div>
     </div>
     @endif
@@ -352,8 +352,8 @@ $(".save-form").on('click', function (e) {
   var uploaded_icon_id = $("#iconImageTempId").val();
 
 
-  if ($("input[name='has_free_delivery']").is(':checked')){
-    var has_free_delivery = 1;
+  if ($("input[name='has_free_peyment']").is(':checked')){
+    var has_free_peyment = 1;
   }
 
   if ($("input[name='has_state_limit']").is(':checked')){
@@ -364,22 +364,22 @@ $(".save-form").on('click', function (e) {
   var method_product_weight = $("#method_product_weight").val();
   var iconImageTempId = $("input[name='iconImageTempId']").val();
   var method_cost_type = $("#method_cost_type").val();
-  var delivery_cost = $("input[name='delivery_cost']").val();
+  var peyment_cost = $("input[name='peyment_cost']").val();
   var min_card_cost = $("input[name='min_card_cost']").val();
   var method_states = $(".method_states").val();
   var save_type = $(".save-form").data('value');
 
   $.ajax({
     method: "post",
-    url: '{{route('staff.delivery.storeDeliveryMethod')}}',
+    url: '{{route('staff.peyment.storePeymentMethod')}}',
     data: {
-      method_id: {{ $delivery_method->id }},
+      method_id: {{ $peyment_method->id }},
       name: method_name,
       weights: method_product_weight,
       iconImageTempId: iconImageTempId,
       cost__det_type: method_cost_type,
-      delivery_cost: delivery_cost,
-      has_free_delivery: has_free_delivery,
+      peyment_cost: peyment_cost,
+      has_free_peyment: has_free_peyment,
       min_card_cost: min_card_cost,
       has_state_limit: has_state_limit,
       states: method_states,
@@ -401,7 +401,7 @@ $(".save-form").on('click', function (e) {
           timeout: 9000
         });
 
-        window.location.href = "{{ route('staff.delivery.index') }}";
+        window.location.href = "{{ route('staff.peyment.index') }}";
     },
 
     error: function (errors) {
@@ -423,7 +423,7 @@ function initIconUpload() {
   let $previewImg = $('#iconUploadPreview');
   let $errorsSection = $('#iconUploadErrors');
   window.UIkit.upload($iconUpload, {
-    url: "{{ route('staff.delivery.UploadImage') }}",
+    url: "{{ route('staff.peyment.UploadImage') }}",
     beforeSend: function () {
       $errorsSection.html('');
     },
@@ -494,9 +494,9 @@ $('.delete-icon').on('click', function (e) {
 
   $.ajax({
     method: "post",
-    url: '{{route('staff.delivery.deleteIcon')}}',
+    url: '{{route('staff.peyment.deleteIcon')}}',
     data: {
-      method_id: {{ $delivery_method->id }},
+      method_id: {{ $peyment_method->id }},
     },
     success: function () {
       $('#iconImageTempId').val('');
@@ -508,7 +508,7 @@ $('.delete-icon').on('click', function (e) {
         timeout: 3000
       });
 
-        window.location.href = "{{ route('staff.delivery.edit', ['id' => $delivery_method->id]) }}";
+        window.location.href = "{{ route('staff.peyment.edit', ['id' => $peyment_method->id]) }}";
 
     },
 
@@ -519,7 +519,7 @@ $('.delete-icon').on('click', function (e) {
 
 });
 
-$(document).on('change', "input[name='has_free_delivery']", function (){
+$(document).on('change', "input[name='has_free_peyment']", function (){
   if ($(this).is(":checked")) {
     $(".min_card_cost").removeAttr('disabled');
     $(".min_card_cost").removeClass('disabled');
@@ -543,21 +543,21 @@ $(document).on('change', "input[name='has_state_limit']", function (){
 
 $(document).on('change', "#method_cost_type", function (){
   if ($(this).val() == 3) {
-    $(".delivery_cost-div").show();
-    $(".delivery_cost-lable").text('هزینه ارسال:');
+    $(".peyment_cost-div").show();
+    $(".peyment_cost-lable").text('هزینه ارسال:');
   }
   else if($(this).val() == 2) {
-    $(".delivery_cost-div").show();
-    $(".delivery_cost-lable").text('حداقل هزینه ارسال:');
+    $(".peyment_cost-div").show();
+    $(".peyment_cost-lable").text('حداقل هزینه ارسال:');
   }
   else if($(this).val() == 1){
 
-    $(".delivery_cost-div").hide();
-    $(".delivery_cost").val('');1
+    $(".peyment_cost-div").hide();
+    $(".peyment_cost").val('');1
 
     $.ajax({
       method: 'post',
-      url: '{{ route('staff.delivery.contentLoader', ['id'=> $delivery_method->id]) }}',
+      url: '{{ route('staff.peyment.contentLoader', ['id'=> $peyment_method->id]) }}',
       data: {
 
       },

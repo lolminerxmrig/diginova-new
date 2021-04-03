@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Staff\Product\Models\ProductWeight;
 
-class DeliveryCostDetType extends Model
+class PeymentCostDetType extends Model
 {
 
     use HasFactory;
@@ -20,9 +20,9 @@ class DeliveryCostDetType extends Model
       return $this->morphToMany(ProductWeight::class, 'weightable', 'weightables', 'weightable_id', 'wheight_id');
     }
 
-    public function deliveryMethod()
+    public function peymentMethod()
     {
-      return $this->hasMany(DeliveryMethod::class);
+      return $this->hasMany(PeymentMethod::class);
     }
 
 }

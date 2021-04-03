@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeliveryCostDetTypesTable extends Migration
+class CreatePeymentCostDetTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDeliveryCostDetTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_cost_det_types', function (Blueprint $table) {
+        Schema::create('peyment_cost_det_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('status')->default('active');
@@ -29,6 +29,6 @@ class CreateDeliveryCostDetTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_cost_det_types');
+        Schema::dropIfExists('peyment_cost_det_types');
     }
 }

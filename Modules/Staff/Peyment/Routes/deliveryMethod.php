@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Staff\Shiping\Http\Controllers\StaffDeliveryMethodController;
+use Modules\Staff\Shiping\Http\Controllers\StaffPeymentMethodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,29 +14,29 @@ use Modules\Staff\Shiping\Http\Controllers\StaffDeliveryMethodController;
 |
 */
 
-Route::domain('staff.diginova.test')->name('staff.delivery.')->prefix('delivery-method')
+Route::domain('staff.diginova.test')->name('staff.peyment.')->prefix('peyment-method')
   ->middleware('web', 'staff')->group(function () {
 
 
-    Route::get('/', [StaffDeliveryMethodController::class, 'index'])
+    Route::get('/', [StaffPeymentMethodController::class, 'index'])
       ->name('index');
 
-    Route::get('edit/{id}', [StaffDeliveryMethodController::class, 'edit'])
+    Route::get('edit/{id}', [StaffPeymentMethodController::class, 'edit'])
       ->name('edit');
 
-    Route::post('edit/{id}/contentLoader', [StaffDeliveryMethodController::class, 'contentLoader'])
+    Route::post('edit/{id}/contentLoader', [StaffPeymentMethodController::class, 'contentLoader'])
       ->name('contentLoader');
 
-    Route::post('storeDeliveryMethod', [StaffDeliveryMethodController::class, 'storeDeliveryMethod'])
-      ->name('storeDeliveryMethod');
+    Route::post('storePeymentMethod', [StaffPeymentMethodController::class, 'storePeymentMethod'])
+      ->name('storePeymentMethod');
 
-    Route::post('deleteIcon', [StaffDeliveryMethodController::class, 'deleteIcon'])
+    Route::post('deleteIcon', [StaffPeymentMethodController::class, 'deleteIcon'])
       ->name('deleteIcon');
 
-    Route::post('upload-image', [StaffDeliveryMethodController::class, 'UploadImage'])
+    Route::post('upload-image', [StaffPeymentMethodController::class, 'UploadImage'])
       ->name('UploadImage');
 
-    Route::post('status', [StaffDeliveryMethodController::class, 'status'])
+    Route::post('status', [StaffPeymentMethodController::class, 'status'])
       ->name('status');
 
   });

@@ -10,39 +10,39 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Modules\Staff\Product\Models\ProductWeight;
-use Modules\Staff\Shiping\Models\DeliveryCostDetType;
-use Modules\Staff\Shiping\Models\DeliveryMethodGroup;
+use Modules\Staff\Shiping\Models\PeymentCostDetType;
+use Modules\Staff\Shiping\Models\PeymentMethodGroup;
 use Modules\Staff\Category\Models\Category;
-use Modules\Staff\Shiping\Models\DeliveryMethod;
-use Modules\Staff\Shiping\Models\DeliveryMethodLocation;
+use Modules\Staff\Shiping\Models\PeymentMethod;
+use Modules\Staff\Shiping\Models\PeymentMethodLocation;
 use App\Models\Media;
 use Illuminate\Support\Facades\View;
-use Modules\Staff\Shiping\Models\DeliveryMethodValue;
+use Modules\Staff\Shiping\Models\PeymentMethodValue;
 
-class StaffDeliveryMethodController extends Controller
+class StaffPeymentMethodController extends Controller
 {
 
     public function index()
     {
-      $delivery_methods = DeliveryMethod::paginate(100);
-      return view('staffdelivery::deliveryMethod.index', compact('delivery_methods'));
+      $peyment_methods = PeymentMethod::paginate(100);
+      return view('staffpeyment::peymentMethod.index', compact('peyment_methods'));
     }
 
     public function edit($id)
     {
-      $delivery_method = DeliveryMethod::find($id);
-      $deliveryCostDetTypes = DeliveryCostDetType::all();
+      $peyment_method = PeymentMethod::find($id);
+      $peymentCostDetTypes = PeymentCostDetType::all();
       $weights = ProductWeight::all();
       $states = State::all();
-      $values = $delivery_method->values()->orderBy('type', 'desc')->paginate();
-      return view('staffdelivery::deliveryMethod.edit', compact('delivery_method', 'deliveryCostDetTypes', 'states', 'values', 'weights'));
+      $values = $peyment_method->values()->orderBy('type', 'desc')->paginate();
+      return view('staffpeyment::peymentMethod.edit', compact('peyment_method', 'peymentCostDetTypes', 'states', 'values', 'weights'));
     }
 
-    public function storeDeliveryMethod(Request $request)
+    public function storePeymentMethod(Request $request)
     {
         $messages = [
           'weights.required' => 'فیلد نوع کالا اجباری است',
-          'delivery_cost.required_if' => 'در وضعیت انتخابی وارد کردن هزینه ارسال اجباری است',
+          'peyment_cost.required_if' => 'در وضعیت انتخابی وارد کردن هزینه ارسال اجباری است',
           'min_card_cost.required_if' => 'در وضعیت انتخابی وارد کردن حداقل ارزش سبد خرید اجباری است',
           'states.required_if' => 'در وضعیت انتخابی وارد کردن حداقل یک شهر اجباری است',
         ];
@@ -52,9 +52,9 @@ class StaffDeliveryMethodController extends Controller
           'weights' => 'required',
           'iconImageTempId' => 'nullable',
           'cost__det_type' => 'required',
-          'delivery_cost' => 'nullable|required_if:cost__det_type,2,3',
-          'has_free_delivery' => 'nullable',
-          'min_card_cost' => 'nullable|required_if:has_free_delivery, 1',
+          'peyment_cost' => 'nullable|required_if:cost__det_type,2,3',
+          'has_free_peyment' => 'nullable',
+          'min_card_cost' => 'nullable|required_if:has_free_peyment, 1',
           'has_state_limit' => 'nullable',
           'states' => 'nullable|required_if:has_state_limit, 1',
         ], $messages);
@@ -69,36 +69,36 @@ class StaffDeliveryMethodController extends Controller
           ], 400);
         }
 
-        $deliveryMethod = DeliveryMethod::find($request->method_id);
+        $peymentMethod = PeymentMethod::find($request->method_id);
 
-        $deliveryMethod->update([
+        $peymentMethod->update([
           'name' => $request->name,
           'cost_det_type_id' => $request->cost__det_type,
         ]);
 
         if ($request->cost__det_type == 2 || $request->cost__det_type == 3) {
           Log::info('dddvvv');
-          Log::info($request->delivery_cost);
+          Log::info($request->peyment_cost);
 
-          $deliveryMethod->update([
-            'delivery_cost' => $request->delivery_cost,
+          $peymentMethod->update([
+            'peyment_cost' => $request->peyment_cost,
           ]);
         }
 
-        if (isset($request->has_free_delivery) && ($request->has_free_delivery == 1) ) {
-          $deliveryMethod->update([
+        if (isset($request->has_free_peyment) && ($request->has_free_peyment == 1) ) {
+          $peymentMethod->update([
             'free_shipping_min_cost' => $request->min_card_cost,
           ]);
         } else {
-          $deliveryMethod->update([
+          $peymentMethod->update([
             'free_shipping_min_cost' => null,
           ]);
         }
 
         if (isset($request->intra_provinces) && count($request->intra_provinces)) {
-          $deliveryMethodValues = DeliveryMethodValue::where('delivery_method_id', $request->method_id)->orderBy('type', 'desc')->get();
-          foreach ($deliveryMethodValues as $key => $deliveryMethodValue) {
-            $deliveryMethodValue->update([
+          $peymentMethodValues = PeymentMethodValue::where('peyment_method_id', $request->method_id)->orderBy('type', 'desc')->get();
+          foreach ($peymentMethodValues as $key => $peymentMethodValue) {
+            $peymentMethodValue->update([
               'intra_province' => isset($request->intra_provinces[$key])? $request->intra_provinces[$key] : null,
               'extra_province' => isset($request->extra_provinces[$key])? $request->extra_provinces[$key] : null,
               'neighboring_provinces' => isset($request->neighboring_provinces[$key])? $request->neighboring_provinces[$key] : null,
@@ -106,34 +106,34 @@ class StaffDeliveryMethodController extends Controller
           }
         }
 
-        $deliveryMethod->weights()->detach();
+        $peymentMethod->weights()->detach();
         foreach ($request->weights as $weight) {
           $methodWeight = ProductWeight::find(intval($weight));
-          $deliveryMethod->weights()->attach($methodWeight);
+          $peymentMethod->weights()->attach($methodWeight);
         }
 
         if (isset($request->has_state_limit) && ($request->has_state_limit == 1) && isset($request->states)) {
-          $deliveryMethod->states()->detach();
+          $peymentMethod->states()->detach();
           foreach ($request->states as $state) {
             $methodState = ProductWeight::find($state);
-            $deliveryMethod->states()->attach($methodState);
+            $peymentMethod->states()->attach($methodState);
           }
         }
         else {
-          $deliveryMethod->states()->detach();
+          $peymentMethod->states()->detach();
         }
 
         if (!is_null($request->uploaded_icon_id))
         {
           $media = Media::find($request->uploaded_icon_id);
-          $deliveryMethod->media()->sync($media);
+          $peymentMethod->media()->sync($media);
         }
 
     }
 
     public function deleteIcon(Request $request)
     {
-      $method = DeliveryMethod::find($request->method_id);
+      $method = PeymentMethod::find($request->method_id);
       $media_id = $method->media()->first()->id;
       $method->media()->detach();
       Media::find($media_id)->delete();
@@ -174,7 +174,7 @@ class StaffDeliveryMethodController extends Controller
 
     public function status(Request $request)
     {
-      DeliveryMethod::where('id', $request->delivery_id)->update([
+      PeymentMethod::where('id', $request->peyment_id)->update([
         'status' => $request->status,
       ]);
     }

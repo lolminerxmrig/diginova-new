@@ -317,7 +317,7 @@
                                                                         aria-expanded="false"></div>
                                                                     <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack uk-animation-fade uk-animation-enter"
                                                                         uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;"
-                                                                        style="left: 152.844px; top: 74px; animation-duration: 200ms;" {{ ($product->category()->first()->variantGroup()->exists() && !count($product->category()->first()->variantGroup))? 'onclick="return false;"' : '' }}>
+                                                                        style="left: 152.844px; top: 74px; animation-duration: 200ms;" {{ (!count($product->category()->first()->variantGroup))? 'onclick="return false;"' : '' }}>
                                                                         افزودن تنوع
                                                                     </div>
                                                                 </a>

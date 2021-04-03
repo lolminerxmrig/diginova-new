@@ -18,12 +18,12 @@ class StaffShipingServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
 
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
-        $this->loadRoutesFrom(__DIR__ . '/../Routes/deliveryMethod.php');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/peymentMethod.php');
 
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffdelivery');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffpeyment');
 
         Relation::morphMap([
-            'DeliveryMethod' => 'Modules\Staff\Shiping\Models\DeliveryMethod',
+            'PeymentMethod' => 'Modules\Staff\Shiping\Models\PeymentMethod',
         ]);
 
     }

@@ -146,7 +146,7 @@
               </li>
 
 
-                <li class="first-level">
+              <li class="first-level">
                     <a href="#" class="" aria-expanded="false">بازاریابی
                         <span class="chevron-down"></span>
                     </a>
@@ -201,6 +201,12 @@
                         </ul>
                     </div>
                 </li>
+
+
+              <li class="first-level">
+                <a href="{{ route('staff.settings.index') }}" class="" aria-expanded="false">تنظیمات
+                </a>
+              </li>
 
 
             </ul>
