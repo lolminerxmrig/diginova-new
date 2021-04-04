@@ -47,6 +47,10 @@ class StaffSettingController extends Controller
         if ($request->active_tab == 'footer') {
           return $this->updateFooter($request);
         }
+
+        if ($request->active_tab == 'peyment') {
+          return $this->updatePeyment($request);
+        }
     }
 
     public function updateGeneral($request)
@@ -205,6 +209,39 @@ class StaffSettingController extends Controller
     public function updateAdvanced($request)
     {
         $fillable = ['custom_header_code', 'custom_footer_code', 'custom_css_code'];
+
+        foreach ($request->all() as $key => $item)
+        {
+          if (in_array($key, $fillable)) {
+            Setting::where('name', $key)->update([
+              "value" => $item,
+            ]);
+          }
+        }
+    }
+
+    public function updatePeyment($request)
+    {
+
+      $messages = [
+        'peyment_success_message.required' => 'وارد کردن متن پیام پرداخت موفق اجباری است',
+      ];
+
+      $validator = Validator::make($request->all(), [
+        'peyment_success_message' => 'required',
+      ], $messages);
+
+      if ($validator->fails()) {
+        $errors = $validator->errors();
+        return response()->json([
+          'status' => false,
+          'data' => [
+            'errors' => $errors,
+          ]
+        ], 400);
+      }
+
+        $fillable = ['peyment_success_message'];
 
         foreach ($request->all() as $key => $item)
         {

@@ -614,7 +614,8 @@
       <workItem from="1617354131796" duration="4844000" />
       <workItem from="1617368918028" duration="19125000" />
       <workItem from="1617428364322" duration="27688000" />
-      <workItem from="1617459484937" duration="8242000" />
+      <workItem from="1617459484937" duration="9366000" />
+      <workItem from="1617507819268" duration="4020000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -667,18 +668,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Modules/Staff/Setting/Http/Controllers/StaffSettingController.php</url>
-          <line>75</line>
+          <line>79</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Modules/Staff/Setting/Http/Controllers/StaffSettingController.php</url>
-          <line>74</line>
+          <line>78</line>
           <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/Modules/Staff/Setting/Resources/views/index.blade.php</url>
-          <line>870</line>
-          <option name="timeStamp" value="93" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/public/seller/js/tags5.js</url>

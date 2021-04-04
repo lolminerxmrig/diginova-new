@@ -191,6 +191,7 @@ return [
         Modules\Staff\Nav\Providers\StaffNavServiceProvider::class,
         Modules\Staff\Shiping\Providers\StaffShipingServiceProvider::class,
         Modules\Staff\Setting\Providers\StaffSettingServiceProvider::class,
+        Modules\Staff\Peyment\Providers\StaffPeymentServiceProvider::class,
 
 
 

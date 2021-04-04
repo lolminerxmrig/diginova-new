@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Staff\Shiping\Database\seeders;
+namespace Modules\Staff\Peyment\Database\seeders;
 
 use Illuminate\Database\Seeder;
 use DB;

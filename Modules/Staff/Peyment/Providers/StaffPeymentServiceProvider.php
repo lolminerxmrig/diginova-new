@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Staff\Shiping\Providers;
+namespace Modules\Staff\Peyment\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 
-class StaffShipingServiceProvider extends ServiceProvider
+class StaffPeymentServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -23,7 +23,7 @@ class StaffShipingServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffpeyment');
 
         Relation::morphMap([
-            'PeymentMethod' => 'Modules\Staff\Shiping\Models\PeymentMethod',
+            'PeymentMethod' => 'Modules\Staff\Peyment\Models\PeymentMethod',
         ]);
 
     }

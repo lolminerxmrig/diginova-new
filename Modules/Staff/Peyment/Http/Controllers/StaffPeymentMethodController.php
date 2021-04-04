@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Staff\Shiping\Http\Controllers;
+namespace Modules\Staff\Peyment\Http\Controllers;
 
 use Modules\Staff\Setting\Models\Setting;
 use App\Models\State;
@@ -10,14 +10,14 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Modules\Staff\Product\Models\ProductWeight;
-use Modules\Staff\Shiping\Models\PeymentCostDetType;
-use Modules\Staff\Shiping\Models\PeymentMethodGroup;
+use Modules\Staff\Peyment\Models\PeymentCostDetType;
+use Modules\Staff\Peyment\Models\PeymentMethodGroup;
 use Modules\Staff\Category\Models\Category;
-use Modules\Staff\Shiping\Models\PeymentMethod;
-use Modules\Staff\Shiping\Models\PeymentMethodLocation;
+use Modules\Staff\Peyment\Models\PeymentMethod;
+use Modules\Staff\Peyment\Models\PeymentMethodLocation;
 use App\Models\Media;
 use Illuminate\Support\Facades\View;
-use Modules\Staff\Shiping\Models\PeymentMethodValue;
+use Modules\Staff\Peyment\Models\PeymentMethodValue;
 
 class StaffPeymentMethodController extends Controller
 {

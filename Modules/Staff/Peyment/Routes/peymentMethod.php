@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Staff\Shiping\Http\Controllers\StaffPeymentMethodController;
+use Modules\Staff\Peyment\Http\Controllers\StaffPeymentMethodController;
 
 /*
 |--------------------------------------------------------------------------
