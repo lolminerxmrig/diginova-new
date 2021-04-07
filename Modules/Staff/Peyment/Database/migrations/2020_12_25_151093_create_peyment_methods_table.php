@@ -24,8 +24,8 @@ class CreatePeymentMethodsTable extends Migration
             $table->longText('merchantId')->nullable();
             $table->longText('terminalId')->nullable();
             $table->longText('key')->nullable();
-            $table->longText('sha1Key')->nullable();
             $table->longText('iv')->nullable();
+            $table->string('options')->nullable();
             $table->timestamps();
         });
     }

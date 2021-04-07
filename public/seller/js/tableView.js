@@ -1162,6 +1162,7 @@ var IndexAction = {
     init: function () {
         this.initCopyBtn();
         this.initRemoveActions();
+        this.initRemoveCustomer();
     },
 
     initCopyBtn: function () {
@@ -1209,7 +1210,38 @@ var IndexAction = {
                 )
             }
         });
-    }
+    },
+
+    initRemoveCustomer: function () {
+    $('.js-remove-customer').on('click', function (e) {
+      e.preventDefault();
+
+      var removeUrl = $(this).data('url');
+      if (!removeUrl || removeUrl.length === 0) return;
+      var $this = $(this);
+
+      var confirmRemove = confirm('آیا واقعا می‌خواهید کاربر را حذف کنید؟');
+      if (confirmRemove === true) {
+        Services.ajaxPOSTRequestJSON(
+          removeUrl,
+          {},
+          function () {
+            UIkit.notification({
+              message: 'کاربر حذف شد',
+              status: 'success',
+              pos: 'top-left',
+              timeout: 3000
+            });
+            $this.closest('tr').remove();
+          },
+          function (errors) {
+            Promotion.displayError(errors.errors);
+          }
+        )
+      }
+    });
+  }
+
 };
 
 $(function () {

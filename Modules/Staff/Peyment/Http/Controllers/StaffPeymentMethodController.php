@@ -24,39 +24,44 @@ class StaffPeymentMethodController extends Controller
 
     public function index()
     {
-      $peyment_methods = PeymentMethod::paginate(100);
+      $peyment_methods = PeymentMethod::orderBy('status')->paginate(100);
       return view('staffpeyment::peymentMethod.index', compact('peyment_methods'));
     }
 
-    public function edit($id)
+    public function edit($en_name)
     {
-      $peyment_method = PeymentMethod::find($id);
-      $peymentCostDetTypes = PeymentCostDetType::all();
-      $weights = ProductWeight::all();
-      $states = State::all();
-      $values = $peyment_method->values()->orderBy('type', 'desc')->paginate();
-      return view('staffpeyment::peymentMethod.edit', compact('peyment_method', 'peymentCostDetTypes', 'states', 'values', 'weights'));
+      $peyment_method = PeymentMethod::where('en_name', $en_name)->first();
+      return view('staffpeyment::peymentMethod.edit', compact('peyment_method'));
     }
 
     public function storePeymentMethod(Request $request)
     {
+
         $messages = [
-          'weights.required' => 'فیلد نوع کالا اجباری است',
-          'peyment_cost.required_if' => 'در وضعیت انتخابی وارد کردن هزینه ارسال اجباری است',
-          'min_card_cost.required_if' => 'در وضعیت انتخابی وارد کردن حداقل ارزش سبد خرید اجباری است',
-          'states.required_if' => 'در وضعیت انتخابی وارد کردن حداقل یک شهر اجباری است',
+          'name.required' => 'وارد کردن فیلد عنوان اجباری است',
+          'description.required' => 'وارد کردن فیلد توضیحات اجباری است',
+
+          'iv.required_if' => 'وارد کردن فیلد شناسه پیکربندی اجباری است',
+          'key.required_if' => 'وارد کردن فیلد کلید رمزنگاری اجباری است',
+          'username.required_if' => 'وارد کردن فیلد نام کاربری اجباری است',
+          'password.required_if' => 'وارد کردن فیلد کلمه عبور اجباری است',
+          'terminalId.required_if' => 'وارد کردن فیلد ترمینال آیدی اجباری است',
+          'merchantId.required_if' => 'وارد کردن فیلد مرچنت کد اجباری است',
         ];
 
         $validator = Validator::make($request->all(),[
+          'en_name' => 'required',
           'name' => 'required',
-          'weights' => 'required',
-          'iconImageTempId' => 'nullable',
-          'cost__det_type' => 'required',
-          'peyment_cost' => 'nullable|required_if:cost__det_type,2,3',
-          'has_free_peyment' => 'nullable',
-          'min_card_cost' => 'nullable|required_if:has_free_peyment, 1',
-          'has_state_limit' => 'nullable',
-          'states' => 'nullable|required_if:has_state_limit, 1',
+          'status' => 'required',
+          'description' => 'required',
+
+          'iv' => 'required_if:en_name,asanpardakht',
+          'key' => 'required_if:en_name,asanpardakht,irankish,sadad',
+          'username' => 'required_if:en_name,behpardakht,asanpardakht',
+          'password' => 'required_if:en_name,behpardakht,asanpardakht',
+          'terminalId' => 'required_if:en_name,behpardakht,sepehr',
+          'merchantId' => 'required_if:en_name,asanpardakht,idpay,irankish,nextpay,parsian,pasargad,payir,payping,paystar,poolam,sadad,saman,yekpay,zarinpal,zibal',
+          'zarin_gate_status' => 'required_if:en_name,zarinpal',
         ], $messages);
 
         if ($validator->fails()) {
@@ -69,114 +74,54 @@ class StaffPeymentMethodController extends Controller
           ], 400);
         }
 
-        $peymentMethod = PeymentMethod::find($request->method_id);
+      $peymentMethod = PeymentMethod::where('en_name', $request->en_name)->first();
+
+      if ($request->status == 'active' && count(PeymentMethod::where('status', 'active')->get()) >= 3 && $peymentMethod->status !== 'active') {
+          return response()->json([
+            'status' => false,
+            'data' => [
+              'errors' => [
+                'status' => 'امکان فعال کردن بیشتر از ۳ درگاه همزمان ممکن نیست. لطفا وضعیت را به غیرفعال تغییر دهید',
+              ],
+            ]
+          ], 400);
+        }
+
 
         $peymentMethod->update([
           'name' => $request->name,
-          'cost_det_type_id' => $request->cost__det_type,
+          'status' => $request->status,
+          'description' => $request->description,
+
+          'iv' => isset($request->iv)? $request->iv : null,
+          'key' => isset($request->key)? $request->key : null,
+          'username' => isset($request->username)? $request->username : null,
+          'password' => isset($request->password)? $request->password : null,
+          'terminalId' => isset($request->terminalId)? $request->terminalId : null,
+          'merchantId' => isset($request->merchantId)? $request->merchantId : null,
+          'options' => (isset($request->zarin_gate_status) && ($request->zarin_gate_status == 'active')) ? 'zarin_gate' : null,
         ]);
 
-        if ($request->cost__det_type == 2 || $request->cost__det_type == 3) {
-          Log::info('dddvvv');
-          Log::info($request->peyment_cost);
-
-          $peymentMethod->update([
-            'peyment_cost' => $request->peyment_cost,
-          ]);
-        }
-
-        if (isset($request->has_free_peyment) && ($request->has_free_peyment == 1) ) {
-          $peymentMethod->update([
-            'free_shipping_min_cost' => $request->min_card_cost,
-          ]);
-        } else {
-          $peymentMethod->update([
-            'free_shipping_min_cost' => null,
-          ]);
-        }
-
-        if (isset($request->intra_provinces) && count($request->intra_provinces)) {
-          $peymentMethodValues = PeymentMethodValue::where('peyment_method_id', $request->method_id)->orderBy('type', 'desc')->get();
-          foreach ($peymentMethodValues as $key => $peymentMethodValue) {
-            $peymentMethodValue->update([
-              'intra_province' => isset($request->intra_provinces[$key])? $request->intra_provinces[$key] : null,
-              'extra_province' => isset($request->extra_provinces[$key])? $request->extra_provinces[$key] : null,
-              'neighboring_provinces' => isset($request->neighboring_provinces[$key])? $request->neighboring_provinces[$key] : null,
-            ]);
-          }
-        }
-
-        $peymentMethod->weights()->detach();
-        foreach ($request->weights as $weight) {
-          $methodWeight = ProductWeight::find(intval($weight));
-          $peymentMethod->weights()->attach($methodWeight);
-        }
-
-        if (isset($request->has_state_limit) && ($request->has_state_limit == 1) && isset($request->states)) {
-          $peymentMethod->states()->detach();
-          foreach ($request->states as $state) {
-            $methodState = ProductWeight::find($state);
-            $peymentMethod->states()->attach($methodState);
-          }
-        }
-        else {
-          $peymentMethod->states()->detach();
-        }
-
-        if (!is_null($request->uploaded_icon_id))
-        {
-          $media = Media::find($request->uploaded_icon_id);
-          $peymentMethod->media()->sync($media);
-        }
-
     }
-
-    public function deleteIcon(Request $request)
-    {
-      $method = PeymentMethod::find($request->method_id);
-      $media_id = $method->media()->first()->id;
-      $method->media()->detach();
-      Media::find($media_id)->delete();
-
-      return response()->json([
-        'status' => true,
-        'data' => true,
-      ]);
-    }
-
-    public function UploadImage(Request $request)
-  {
-    $imageExtension = $request->image->extension();
-
-    $input['image'] = time() . '.' . $imageExtension;
-    $request->image->move(public_path('media/images'), $input['image']);
-
-    $media = Media::create([
-      'name' => $input['image'],
-      'path' => 'media/images',
-      'person_id' => auth()->guard('staff')->user()->id,
-      'person_role' => 'staff' ,
-    ]);
-
-    $settings = Setting::select('name', 'value')->get();
-    $site_url = $settings->where('name', 'site_url')->first()->value;
-
-    return response()->json([
-      'status' => true,
-      'data' => [
-        'id' => "$media->id",
-        'url' => "$site_url/$media->path/$media->name",
-        'tempFile' => true,
-        'slot' => null,
-      ]
-    ]);
-  }
 
     public function status(Request $request)
     {
+
+      if ($request->status == 'active' && count(PeymentMethod::where('status', 'active')->get()) >= 3) {
+        return response()->json([
+          'status' => false,
+          'data' => [
+            'errors' => [
+              'status' => 'امکان فعال کردن بیشتر از ۳ درگاه همزمان ممکن نیست.',
+            ],
+          ]
+        ], 400);
+      }
+
       PeymentMethod::where('id', $request->peyment_id)->update([
         'status' => $request->status,
       ]);
+
     }
 
 }

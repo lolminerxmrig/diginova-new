@@ -15,19 +15,20 @@ class CreateCustomerAddressesTable extends Migration
     {
         Schema::create('customer_addresses', function (Blueprint $table) {
             $table->id();
-            $table->text('lan');
-            $table->text('len');
-            $table->text('address');
-            $table->integer('plaque');
-            $table->integer('unit');
-            $table->integer('postal_code');
-            $table->string('recipient_firstname');
-            $table->string('recipient_lastname');
-            $table->integer('recipient_national_code');
-            $table->integer('recipient_mobile');
-            $table->boolean('is_main');
-            $table->foreignId('customer_id');
-            $table->foreignId('state_id');
+            $table->text('lan')->nullable();
+            $table->text('len')->nullable();
+            $table->text('address')->nullable();
+            $table->integer('plaque')->nullable();
+            $table->integer('unit')->nullable();
+            $table->integer('postal_code')->nullable();
+            $table->string('recipient_firstname')->nullable();
+            $table->string('recipient_lastname')->nullable();
+            $table->bigInteger('recipient_national_code')->nullable();
+            $table->integer('recipient_mobile')->nullable();
+            $table->boolean('is_main')->nullable();
+            $table->boolean('is_recipient_self')->nullable();
+            $table->foreignId('customer_id')->nullable();
+            $table->foreignId('state_id')->nullable();
             $table->timestamps();
 
             $table->foreign('state_id')->references('id')->on('states');

@@ -269,7 +269,6 @@ class StaffLandingController extends Controller
         return view('stafflanding::manageLanding');
     }
 
-
     public function removeVariant(Request $request,$id)
     {
         $variant_id = $request->promotionVariantId;

@@ -9,7 +9,10 @@
     <script id="jquery" src="{{ asset('seller/js/jquery.min.js') }}"></script>
     <script src="{{ asset('seller/js/jquery.toast.js') }}"></script>
     <link href="{{ asset('seller/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
-    @yield('head')
+
+    <script src="{{ asset('seller/js/inputmask.js') }}"></script>
+
+  @yield('head')
 </head>
   <body>
     <header class="c-header js-header">
@@ -136,11 +139,6 @@
                     <a href="{{ route('staff.navs.index') }}">فهرست ها</a>
                   </li>
 
-                  <li>
-                    <a href="{{ route('staff.delivery.index') }}">روش های ارسال</a>
-                  </li>
-
-
                   </ul>
                 </div>
               </li>
@@ -197,15 +195,25 @@
                                     </ul>
                                 </div>
                             </li>
-
                         </ul>
                     </div>
                 </li>
 
+              <li class="first-level">
+                <a href="{{ route('staff.delivery.index') }}" class="" aria-expanded="false">روش های ارسال</a>
+              </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.settings.index') }}" class="" aria-expanded="false">تنظیمات
-                </a>
+                <a href="{{ route('staff.peyment.index') }}" class="" aria-expanded="false">درگاه های پرداخت</a>
+              </li>
+
+
+              <li class="first-level">
+                <a href="{{ route('staff.customers.index') }}" class="" aria-expanded="false">مشتریان</a>
+              </li>
+
+              <li class="first-level">
+                <a href="{{ route('staff.settings.index') }}" class="" aria-expanded="false">تنظیمات</a>
               </li>
 
 

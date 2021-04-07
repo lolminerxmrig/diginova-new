@@ -55,7 +55,7 @@
 
   <!-- SEO -->
   <meta name="description" content="{{ $description }}"/>
-  <meta name="keywords" content="{{ $keywords }}"/>
+  <meta name="keywords" content="{{ $index_meta_keywords }}"/>
 
   <link rel="stylesheet" href="{{ asset('assets/css/customize.css') }} ">
   <link rel="stylesheet" href="{{ asset('assets/css/app.css') }} ">

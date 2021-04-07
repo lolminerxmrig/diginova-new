@@ -17,7 +17,7 @@ class CreateStatesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->integer('parent_id');
+//            $table->integer('parent_id');
             $table->integer('state_id');
             $table->timestamps();
         });

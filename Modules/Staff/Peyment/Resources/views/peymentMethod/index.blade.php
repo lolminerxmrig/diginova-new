@@ -20,8 +20,8 @@
                     <div class="c-grid__col">
                         <input type="hidden" value="" name="has-warehouses">
                         <div class="c-card c-card--transparent">
-                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">روش ارسال
-                              <span>از این بخش می توانید روش های ارسال مرسوله را مدیریت و ویرایش کنید.</span>
+                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">روش پرداخت
+                              <span>از این بخش می توانید روش های پرداخت را مدیریت و ویرایش کنید.</span>
                             </h1>
                         </div>
                     </div>
@@ -54,24 +54,20 @@
                                                   </th>
                                                   <th class="c-ui-table__header">
                                                       <span class="table-header-searchable uk-text-nowrap ">
-                                                          آیکن
+                                                          آیکون
                                                       </span>
                                                   </th>
                                                   <th class="c-ui-table__header">
                                                     <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">
-                                                      عنوان
+                                                      عنوان درگاه
                                                     </span>
                                                   </th>
                                                   <th class="c-ui-table__header">
                                                     <span class="table-header-searchable uk-text-nowrap ">
-                                                      نوع کالا
+                                                      توضیحات
                                                     </span>
                                                   </th>
-                                                  <th class="c-ui-table__header">
-                                                      <span class="table-header-searchable uk-text-nowrap ">
-                                                        نوع قیمت گذاری
-                                                      </span>
-                                                  </th>
+
                                                   <th class="c-ui-table__header">
                                                       <span class="table-header-searchable uk-text-nowrap ">
                                                         وضعیت
@@ -92,13 +88,16 @@
                                                           <span class="c-wallet__body-card-row-item"> {{ persianNum($peyment_methods->firstItem() + $key) }} </span>
                                                       </td>
 
+{{--                                                    <td class="c-ui-table__cell" style="min-width: 90px">--}}
+{{--                                                      @if(count($peyment_method->media))--}}
+{{--                                                        <img src="{{ $site_url . '/' . $peyment_method->media()->first()->path . '/'.$peyment_method->media()->first()->name }}" width="65" height="65">--}}
+{{--                                                      @endif--}}
+{{--                                                    </td>--}}
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                      @if(count($peyment_method->media))
-                                                        <img src="{{ $site_url . '/' . $peyment_method->media()->first()->path . '/'.$peyment_method->media()->first()->name }}" width="65" height="65">
-                                                      @endif
+                                                      <img src="{{ asset("staff/icon/bank/" . $peyment_method->en_name . ".png") }}" width="85%" height="85%">
                                                     </td>
 
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 15% !important; width: 15% !important;">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
@@ -110,13 +109,7 @@
                                                     </td>
 
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">
-                                                        @foreach($peyment_method->weights as $weight)
-                                                        <span style="background-color: #f5f7fa;padding: 6px 10px 6px 10px;border-radius: 5px;margin-right: 5px;font-size: 13px !important;">{{ $weight->name }}</span>
-                                                        @endforeach
-                                                    </td>
-
-                                                    <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                                                      {{ $peyment_method->peymentCostDetType->name }}
+                                                      {{ $peyment_method->description }}
                                                     </td>
 
                                                     <td class="c-ui-table__cell c-ui-table__cell--small-text">
@@ -131,7 +124,7 @@
                                                     </td>
 
                                                     <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.peyment.edit', $peyment_method->id) }}" style="width: 115px !important;">ویرایش</a>
+                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.peyment.edit', $peyment_method->en_name) }}" style="width: 115px !important;">ویرایش</a>
                                                     </td>
                                                   </tr>
                                               @endforeach
@@ -155,7 +148,6 @@
                         </div>
                     </div>
                 </div>
-
         </div>
     </div>
 </main>
@@ -163,6 +155,7 @@
 
 @section('script')
 <script>
+
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -184,8 +177,18 @@ $(document).on('change', 'input[name="status"]', function () {
       'status': status,
       'peyment_id': peyment_id,
     },
+    success: function () {
+      window.location.href = "{{ route('staff.peyment.index') }}";
+    },
+    error: function (errors) {
+      Promotion.displayError(errors.responseJSON.data.errors);
+      setTimeout(function(){
+        window.location.href = "{{ route('staff.peyment.index') }}";
+      }, 2000);
+    }
   });
 
 });
+
 </script>
 @endsection

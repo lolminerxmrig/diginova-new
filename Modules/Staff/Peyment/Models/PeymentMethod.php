@@ -14,7 +14,7 @@ class PeymentMethod extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name', 'en_name', 'status', 'description', 'username', 'password', 'merchantId', 'terminalId', 'key', 'sha1Key', 'iv'];
+    protected $fillable = ['name', 'en_name', 'status', 'description', 'username', 'password', 'merchantId', 'terminalId', 'key', 'sha1Key', 'iv', 'options'];
 
 
     public function media()
@@ -22,10 +22,14 @@ class PeymentMethod extends Model
       return $this->morphToMany(Media::class, 'mediable');
     }
 
-
     public function states()
     {
       return $this->morphToMany(State::class, 'zonable', 'zonables', 'zonable_id', 'zone_id');
+    }
+
+    public function getRouteKeyName()
+    {
+      return parent::getRouteKeyName('en_name');
     }
 
 }

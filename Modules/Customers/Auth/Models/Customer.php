@@ -2,11 +2,13 @@
 
 namespace Modules\Customers\Auth\Models;
 
+use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Comment\Models\Comment;
+use Modules\Staff\Customer\Models\CustomerAddresses;
 
 
 class Customer extends Authenticatable
@@ -27,6 +29,7 @@ class Customer extends Authenticatable
       'job_id',
       'newsletters',
       'return_money_method',
+      'status',
     ];
 
     public function comments()
@@ -37,6 +40,16 @@ class Customer extends Authenticatable
     public function legal()
     {
         return $this->hasOne(CustomerLegal::class);
+    }
+
+    public function addresses()
+    {
+      return $this->hasMany(CustomerAddresses::class);
+    }
+
+    public function state()
+    {
+      return $this->hasOne(State::class);
     }
 
 }

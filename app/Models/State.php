@@ -11,14 +11,14 @@ class State extends Model
 {
     use HasFactory;
 
-    public function city()
+    public function childs()
     {
-      return $this->hasMany(self::class, 'parent_id', 'id');
+      return $this->hasMany(self::class,'state_id', 'id');
     }
 
-    public function state()
+    public function parent()
     {
-      return $this->belongsTo(self::class, 'parent_id');
+      return $this->belongsTo(self::class, 'state_id');
     }
 
 }

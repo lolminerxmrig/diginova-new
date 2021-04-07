@@ -27,11 +27,9 @@ class CustomerLegal extends Model
         'customer_id',
     ];
 
-
-
     public function city()
     {
-        return $this->belongsTo(State::class, 'city_id');
+      return $this->belongsTo(State::class, 'city_id');
     }
 
 }

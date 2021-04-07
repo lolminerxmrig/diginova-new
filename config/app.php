@@ -192,6 +192,7 @@ return [
         Modules\Staff\Shiping\Providers\StaffShipingServiceProvider::class,
         Modules\Staff\Setting\Providers\StaffSettingServiceProvider::class,
         Modules\Staff\Peyment\Providers\StaffPeymentServiceProvider::class,
+        Modules\Staff\Customer\Providers\StaffCustomerServiceProvider::class,
 
 
 

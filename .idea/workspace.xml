@@ -278,28 +278,29 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Setting/Database" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.editor.code.editing" />
     <property name="settings.editor.splitter.proportion" value="0.24630113" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/Modules/Staff/Customer/Resources/views/layouts/ajax/citySelect.blade.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff" />
-      <recent name="$PROJECT_DIR$/app/Models" />
-      <recent name="$PROJECT_DIR$/database/migrations" />
-      <recent name="$PROJECT_DIR$/config" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Setting/Database" />
+      <recent name="$PROJECT_DIR$/Modules/Customers/Auth/Database" />
+      <recent name="$PROJECT_DIR$/database/seeders" />
+      <recent name="$PROJECT_DIR$/public/seller/js" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Customer/Resources/views/layouts/ajax" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Customer/Database" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Customer/Resources/views/layouts/ajax" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Setting/Models" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Setting/Database/migrations" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Resources/views/layouts/ajax/edit" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Database/migrations" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Resources/views/deliveryMethod" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Staff">
@@ -615,7 +616,12 @@
       <workItem from="1617368918028" duration="19125000" />
       <workItem from="1617428364322" duration="27688000" />
       <workItem from="1617459484937" duration="9366000" />
-      <workItem from="1617507819268" duration="4020000" />
+      <workItem from="1617507819268" duration="38785000" />
+      <workItem from="1617596284039" duration="33280000" />
+      <workItem from="1617646904403" duration="885000" />
+      <workItem from="1617686757009" duration="22244000" />
+      <workItem from="1617721377229" duration="8567000" />
+      <workItem from="1617767447917" duration="47583000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />

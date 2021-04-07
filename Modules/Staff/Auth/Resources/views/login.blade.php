@@ -1,6 +1,6 @@
 @extends('staffauth::layouts.auth')
 
-@section('title') {{ $site_name }} @endsection
+@section('title') {{ $site_title }} @endsection
 
 @section('head')
 <script src="{{ asset('seller/js/loginAction.js') }}"></script>
@@ -13,7 +13,7 @@
         <a href="#" class="c-new-login__logo">
         <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
         </a>
-        <h1 class="c-new-login__header">به پنل کارمندان {{ $site_name }} <br> خوش آمدید!</h1>
+        <h1 class="c-new-login__header">به پنل کارمندان {{ $site_title }} <br> خوش آمدید!</h1>
       </header>
       <div class="c-new-login__sidebar-center">
         <img src="{{ asset('seller/svg/ccb24d55.svg') }}" alt="" class="c-new-login__sidebar-img">
@@ -29,7 +29,7 @@
     <a href="#" class="c-new-login__logo">
     <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
     </a>
-    <h1 class="c-new-login__header">به پنل کارمندان {{ $site_name }} <br> خوش آمدید!</h1>
+    <h1 class="c-new-login__header">به پنل کارمندان {{ $site_title }} <br> خوش آمدید!</h1>
   </header>
 </div>
 </aside>

@@ -14,7 +14,7 @@ use Modules\Staff\Peyment\Http\Controllers\StaffPeymentMethodController;
 |
 */
 
-Route::domain('staff.diginova.test')->name('staff.peyment.')->prefix('peyment-method')
+Route::domain('staff.diginova.test')->name('staff.peyment.')->prefix('peyment-methods')
   ->middleware('web', 'staff')->group(function () {
 
 
@@ -24,17 +24,8 @@ Route::domain('staff.diginova.test')->name('staff.peyment.')->prefix('peyment-me
     Route::get('edit/{id}', [StaffPeymentMethodController::class, 'edit'])
       ->name('edit');
 
-    Route::post('edit/{id}/contentLoader', [StaffPeymentMethodController::class, 'contentLoader'])
-      ->name('contentLoader');
-
     Route::post('storePeymentMethod', [StaffPeymentMethodController::class, 'storePeymentMethod'])
       ->name('storePeymentMethod');
-
-    Route::post('deleteIcon', [StaffPeymentMethodController::class, 'deleteIcon'])
-      ->name('deleteIcon');
-
-    Route::post('upload-image', [StaffPeymentMethodController::class, 'UploadImage'])
-      ->name('UploadImage');
 
     Route::post('status', [StaffPeymentMethodController::class, 'status'])
       ->name('status');
