@@ -44,9 +44,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -259,6 +259,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/kavenegar/laravel" />
       <path value="$PROJECT_DIR$/vendor/kavenegar/php" />
+      <path value="$PROJECT_DIR$/vendor/ghaninia/shipping" />
     </include_path>
   </component>
   <component name="ProjectId" id="1mAInWy8idjFWKkFmFdsj1hCKCt" />
@@ -278,7 +279,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Setting/Database" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Order/Resources/views/temp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -289,18 +290,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Modules/Staff/Setting/Database" />
-      <recent name="$PROJECT_DIR$/Modules/Customers/Auth/Database" />
-      <recent name="$PROJECT_DIR$/database/seeders" />
-      <recent name="$PROJECT_DIR$/public/seller/js" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Customer/Resources/views/layouts/ajax" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Order/Resources/views/temp" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Http" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Peyment/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Order/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Order/Resources/views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Order/Resources/views" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Peyment/Database/migrations" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Customer/Database" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Customer/Resources/views/layouts/ajax" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Setting/Models" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Setting/Database/migrations" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Resources/views/layouts/ajax/edit" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.Staff">
@@ -621,7 +622,14 @@
       <workItem from="1617646904403" duration="885000" />
       <workItem from="1617686757009" duration="22244000" />
       <workItem from="1617721377229" duration="8567000" />
-      <workItem from="1617767447917" duration="47583000" />
+      <workItem from="1617767447917" duration="47721000" />
+      <workItem from="1617859202616" duration="36992000" />
+      <workItem from="1617903934378" duration="2537000" />
+      <workItem from="1617947112540" duration="20914000" />
+      <workItem from="1617979966500" duration="8343000" />
+      <workItem from="1618029754432" duration="24427000" />
+      <workItem from="1618115712312" duration="58211000" />
+      <workItem from="1618203302901" duration="3752000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />
@@ -674,12 +682,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Modules/Staff/Setting/Http/Controllers/StaffSettingController.php</url>
-          <line>79</line>
+          <line>92</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Modules/Staff/Setting/Http/Controllers/StaffSettingController.php</url>
-          <line>78</line>
+          <line>91</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

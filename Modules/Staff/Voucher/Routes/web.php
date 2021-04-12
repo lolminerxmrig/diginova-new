@@ -17,7 +17,6 @@ use Modules\Staff\Voucher\Http\Controllers\StaffVoucherController;
 Route::domain('staff.diginova.test')->prefix('vouchers')->name('staff.vouchers.')
     ->middleware('web', 'staff')->group(function () {
 
-
     Route::get('/', [StaffVoucherController::class, 'index'])
         ->name('index');
 

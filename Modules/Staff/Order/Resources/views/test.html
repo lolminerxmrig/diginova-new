@@ -1,0 +1,20 @@
+<div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-3">
+  <label class="c-ui-form__label" for="product_page_title">روش پرداخت:</label>
+  <div class="field-wrapper">
+    <input type="text" name="order_code" value="{{ count($order->peyment_records->where('status', 'success')->whereNotNull('tracking_code'))? $order->peyment_records->where('status', 'success')->whereNotNull('tracking_code')->first()->tracking_code : '' }}" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable" disabled>
+  </div>
+</div>
+
+<div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-3">
+  <label class="c-ui-form__label" for="product_page_title">کد پیگیری پرداخت:</label>
+  <div class="field-wrapper">
+    <input type="text" name="order_code" value="{{ count($order->peyment_records->where('status', 'success')->whereNotNull('tracking_code'))? $order->peyment_records->where('status', 'success')->whereNotNull('tracking_code')->first()->tracking_code : '' }}" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable" disabled>
+  </div>
+</div>
+
+<div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-3">
+  <label class="c-ui-form__label" for="product_page_title">تعداد کالا:</label>
+  <div class="field-wrapper">
+    <input type="text" name="variant_count" value="{{ count($order->consignment_variants) }}" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable" disabled>
+  </div>
+</div>

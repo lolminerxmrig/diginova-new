@@ -19,7 +19,15 @@ class StaffSettingController extends Controller
         $settings = Setting::all();
         $states = State::all();
         $store_addresses = StoreAddress::all();
-        return view('staffsetting::index', compact('settings', 'states', 'store_addresses'));
+
+        if(count($settings->where('name', 'invoice_stamp')->first()->media)){
+          $stamp_image = $settings->where('name', 'invoice_stamp')->first()->media()->first();
+        }
+        else {
+          $stamp_image = null;
+        }
+
+        return view('staffsetting::index', compact('settings', 'states', 'store_addresses', 'stamp_image'));
     }
 
     public function update(Request $request)
@@ -51,6 +59,11 @@ class StaffSettingController extends Controller
         if ($request->active_tab == 'peyment') {
           return $this->updatePeyment($request);
         }
+
+        if ($request->active_tab == 'invoice') {
+          return $this->updateInvoice($request);
+        }
+
     }
 
     public function updateGeneral($request)
@@ -351,6 +364,55 @@ class StaffSettingController extends Controller
         }
     }
 
+    public function updateInvoice($request)
+    {
+
+      $messages = [
+        'invoice_title.required' => 'وارد کردن عنوان فاکتور اجباری است.',
+      ];
+
+      $validator = Validator::make($request->all(), [
+        'invoice_title' => 'required',
+        'invoice_seller' => 'nullable',
+        'invoice_national_id' => 'nullable',
+        'invoice_reg_number' => 'nullable',
+        'invoice_economic_number' => 'nullable',
+        'invoice_company_address' => 'nullable',
+        'invoice_company_postal_code' => 'nullable',
+        'invoice_company_fax_phone' => 'nullable',
+        'invoice_description' => 'nullable',
+        'stampImageId' => 'nullable',
+      ], $messages);
+
+      if ($validator->fails()) {
+        $errors = $validator->errors();
+        return response()->json([
+          'status' => false,
+          'data' => [
+            'errors' => $errors,
+          ]
+        ], 400);
+      }
+
+      if (!is_null($request->stampImageId)) {
+        $media = Media::find($request->stampImageId);
+        $stamp = Setting::where('name', 'invoice_stamp')->first();
+        $stamp->media()->sync($media);
+      }
+
+      $fillable = ['invoice_title', 'invoice_seller', 'invoice_national_id', 'invoice_reg_number', 'invoice_economic_number', 'invoice_company_address', 'invoice_company_postal_code', 'invoice_company_fax_phone', 'invoice_description'];
+
+
+      foreach ($request->all() as $key => $item)
+      {
+        if (in_array($key, $fillable))
+          Setting::where('name', $key)->update([
+            "value" => $item,
+          ]);
+      }
+
+    }
+
     public function UploadImage(Request $request)
     {
       $imageExtension = $request->image->extension();
@@ -377,6 +439,12 @@ class StaffSettingController extends Controller
           'slot' => null,
         ]
       ]);
+    }
+
+    public function deleteStampImage()
+    {
+      $invoice_stamp = Setting::where('name', 'invoice_stamp')->first();
+      $invoice_stamp->media()->detach();
     }
 
 }

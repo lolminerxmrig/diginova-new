@@ -14,7 +14,6 @@ function EnNum($str){
   return $convertedStr;
 }
 
-
 function convertByte($bytes)
 {
     if ($bytes >= 1073741824)
@@ -43,4 +42,59 @@ function convertByte($bytes)
     }
 
     return $bytes;
+}
+
+function fullZone($id, $stateBeginWith = null, $cityBeginWith = ' - ', $districtBeginWith = ' - ')
+{
+    if (\App\Models\State::where('id', $id)->exists())
+    {
+      $zone = \App\Models\State::find($id);
+    }
+    else {
+      return null;
+    }
+
+    if ($zone->type == 'district') {
+      $district = $zone->name;
+      $city = $zone->parent->name;
+      $state = $zone->parent->parent->name;
+    }
+    elseif ($zone->type == 'city')
+    {
+      $city = $zone->name;
+      $state = $zone->parent->name;
+    }
+
+    $output = !is_null($stateBeginWith)? $stateBeginWith  : '';   // استان
+    $output .= $state; // نام استان
+    $output .= $cityBeginWith . $city; // پیشوند + نام شهر
+    $output .= (isset($district))? $districtBeginWith . $district : ''; // پیشوند +نام محله
+
+    return $output;
+}
+
+function getState($id)
+{
+  if (\App\Models\State::where('id', $id)->exists())
+  {
+    $zone = \App\Models\State::find($id);
+  }
+  else {
+    return null;
+  }
+
+  if ($zone->type == 'district')
+  {
+    $state = $zone->parent->parent;
+  }
+  elseif ($zone->type == 'city')
+  {
+    $state = $zone->parent;
+  }
+  else{
+    $state = $zone;
+  }
+
+  return $state;
+
 }

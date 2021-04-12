@@ -16,7 +16,7 @@ class CreateDeliveryMethodValuesTable extends Migration
         Schema::create('delivery_method_values', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('intra_province')->nullable();
+            $table->float('intra_province', 10, 2)->nullable();
             $table->bigInteger('extra_province')->nullable();
             $table->bigInteger('neighboring_provinces')->nullable();
             $table->string('type');

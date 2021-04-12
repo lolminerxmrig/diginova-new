@@ -193,6 +193,7 @@ return [
         Modules\Staff\Setting\Providers\StaffSettingServiceProvider::class,
         Modules\Staff\Peyment\Providers\StaffPeymentServiceProvider::class,
         Modules\Staff\Customer\Providers\StaffCustomerServiceProvider::class,
+        Modules\Staff\Order\Providers\StaffOrderServiceProvider::class,
 
 
 
@@ -201,7 +202,7 @@ return [
          */
 //        Barryvdh\Debugbar\ServiceProvider::class,
 //        Maatwebsite\Excel\ExcelServiceProvider::class,
-//        GhaniniaIR\Shipping\ShippingServiceProvider::class,
+        GhaniniaIR\Shipping\ShippingServiceProvider::class,
         Shetabit\Payment\Provider\PaymentServiceProvider::class,
 
 
@@ -271,6 +272,8 @@ return [
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Payment' => Shetabit\Payment\Facade\Payment::class,
+        'Shipping' =>GhaniniaIR\Shipping\Shipping::class,
+
     ],
 
 ];

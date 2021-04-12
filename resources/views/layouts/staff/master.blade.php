@@ -213,6 +213,10 @@
               </li>
 
               <li class="first-level">
+                <a href="{{ route('staff.orders.index') }}" class="" aria-expanded="false">مدیریت سفارشات</a>
+              </li>
+
+              <li class="first-level">
                 <a href="{{ route('staff.settings.index') }}" class="" aria-expanded="false">تنظیمات</a>
               </li>
 
