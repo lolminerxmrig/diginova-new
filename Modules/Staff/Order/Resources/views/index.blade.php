@@ -571,9 +571,12 @@
     var newSeller = 1;
     var is_yalda = 0;
   </script>
+{{--  <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>--}}
+
   <script src="{{ asset('seller/js/tableView.js') }}"></script>
   <script src="{{ asset('seller/js/intro.min.js') }}"></script>
-  <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
+  <script src="{{ asset('staff/js/jalali-moment.browser.js') }}"></script>
+
   <style>
     .c-ui-table__cell {
       text-align: right !important;
@@ -617,11 +620,11 @@
                         <label class="c-ui-switch " id="orders-step-1">
                           <input type="radio" class="c-ui-switch__origin" name="search[seller]" value="1" id="sendTodayOnly" checked="">
                           <span class="c-ui-switch__label"><span class="c-ui-switch__desc ">{{ $fa_store_name }}</span>
+                        </span>
+                          <span class="c-ui-switch__tooltip">
+                            <span class="c-ui-switch__tooltip-title">در حال حاضر کالاهای شما فقط از انبار {{ $fa_store_name }} برای مشتری ارسال می شود.</span>
+                            <span class="c-ui-switch__tooltip-text"></span>
                           </span>
-                            <span class="c-ui-switch__tooltip">
-                              <span class="c-ui-switch__tooltip-title">در حال حاضر کالاهای شما فقط از انبار {{ $fa_store_name }} برای مشتری ارسال می شود.</span>
-                              <span class="c-ui-switch__tooltip-text"></span>
-                            </span>
                         </label>
 
                       </div>
@@ -631,19 +634,23 @@
                       <label class="c-ui-form__label">تعهد ارسال:</label>
                       <div class="c-ui-form__controls">
                         <label class="c-ui-switch " id="orders-step-3">
-                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search[shipping_nature_small]" value="1">
+                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory searchـsend_date  js-search-item" name="searchـsend_today_only" value="1">
                           <span class="c-ui-switch__label">
-                            <span class="c-ui-switch__desc ">گذشته و امروز</span>
-                            <span class="c-ui-switch__value ">۰</span>
+                          <span class="c-ui-switch__desc ">گذشته و امروز</span>
+                          <span class="c-ui-switch__value ">
+                            {{ persianNum($send_today_only) }}
                           </span>
+                        </span>
                         </label>
 
                         <label class="c-ui-switch " id="orders-step-4">
-                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search[shipping_nature_large]" value="2">
+                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory searchـsend_date js-search-item" name="search_send_tomorrow_only" value="2">
                           <span class="c-ui-switch__label">
-                            <span class="c-ui-switch__desc ">فردا به بعد</span>
-                            <span class="c-ui-switch__value ">۰</span>
-                          </span><x></x>
+                          <span class="c-ui-switch__desc ">فردا به بعد</span>
+                          <span class="c-ui-switc h__value ">
+                            {{ persianNum($send_tomorrow_only) }}
+                          </span>
+                        </span>
                         </label>
                       </div>
                     </div>
@@ -651,124 +658,50 @@
                     <div class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
                       <label class="c-ui-form__label">وضعیت سفارش:</label>
                       <div class="c-ui-form__controls">
+
                         <label class="c-ui-switch " id="orders-step-3">
                           <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search_order_status" value="awaiting_peyment">
                           <span class="c-ui-switch__label">
-                            <span class="c-ui-switch__desc ">در انتظار پرداخت</span>
-                            <span class="c-ui-switch__value ">۰</span>
-                          </span>
+                          <span class="c-ui-switch__desc ">در انتظار پرداخت</span>
+                          <span class="c-ui-switch__value ">{{ persianNum(\Modules\Staff\Order\Models\Order::where('order_status_id', 1)->count()) }}</span>
+                        </span>
                         </label>
 
                         <label class="c-ui-switch " id="orders-step-4">
                           <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search_order_status" value="confirmed">
                           <span class="c-ui-switch__label">
-                            <span class="c-ui-switch__desc ">در انتظار پردازش</span>
-                            <span class="c-ui-switch__value ">۰</span>
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-
-                    <div class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                      <label class="c-ui-form__label">ماهیت کالا:</label>
-                      <div class="c-ui-form__controls">
-                        <label class="c-ui-switch " id="orders-step-3">
-                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search[shipping_nature_small]" value="1">
-                          <span class="c-ui-switch__label">
-                            <span class="c-ui-switch__desc ">سبک</span>
-                          </span>
+                          <span class="c-ui-switch__desc ">تایید شده</span>
+                          <span class="c-ui-switch__value ">{{ persianNum(\Modules\Staff\Order\Models\Order::where('order_status_id', 2)->count()) }}</span>
+                        </span>
                         </label>
 
                         <label class="c-ui-switch " id="orders-step-4">
-                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search[shipping_nature_medium]" value="3">
+                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item"
+                                 name="search_order_status" value="processing">
                           <span class="c-ui-switch__label">
-                            <span class="c-ui-switch__desc ">نیمه سنگین</span>
-                          </span>
+                          <span class="c-ui-switch__desc ">در حال پردازش</span>
+                          <span class="c-ui-switch__value ">{{ persianNum(\Modules\Staff\Order\Models\Order::where('order_status_id', 3)->count()) }}</span>
+                        </span>
                         </label>
 
                         <label class="c-ui-switch " id="orders-step-4">
-                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search[shipping_nature_large]" value="2">
+                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search_order_status" value="deliverd">
                           <span class="c-ui-switch__label">
-                            <span class="c-ui-switch__desc ">سنگین</span>
-                          </span>
+                          <span class="c-ui-switch__desc ">تحویل داده شده</span>
+                          <span class="c-ui-switch__value ">{{ persianNum(\Modules\Staff\Order\Models\Order::where('order_status_id', 4)->count()) }}</span>
+                        </span>
                         </label>
+
                       </div>
                     </div>
-
                   </div>
-
-                  <div class="c-ui-form__row">
-                    <div class="c-ui-form__col c-ui-form__col--9 c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                      <label class="c-ui-form__label">جستجو در:</label>
-                      <div class="c-ui-form__row c-ui-form__row--group c-ui-form__row--nowrap c-ui-form__row--wrap-xs">
-                        <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--xs-full" style="width: 230px;">
-                          <select id="category-selector-field" class="c-ui-select c-ui-select--common c-ui-select--medium c-ui-select--search js-form-clearable js-category-select select2-hidden-accessible" name="search[category_id]" placeholder="دسته بندی" tabindex="-1" aria-hidden="true">
-                            <option ></option>
-                            <option value="0" >همه موارد</option>
-                            <option value="9880" >کوسن کودک</option>
-                            <option value="9588" >جوراب نوزاد</option>
-                            <option value="211" >هدفون، هدست و هندزفری</option>
-                            <option value="8157" >خاک و کود</option>
-                            <option value="77" >کیف و کاور گوشی</option>
-                            <option value="80" >کابل و مبدل</option>
-
-                          </select>
-                        </div>
-                        <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full" style="width: 230px;">
-                          <select class="c-ui-select c-ui-select--common c-ui-select--small js-form-clearable select2-hidden-accessible" name="search[type]"  tabindex="-1" aria-hidden="true">
-                            <option value="all" >همه موارد</option>
-                            <option value="prod_code" >کد محصول</option>
-                            <option value="variant" >کد تنوع</option>
-                            <option value="seller_code" >کد فروشنده</option>
-                            <option value="title" >عنوان</option>
-                          </select>
-                        </div>
-                        <div class="c-ui-form__col c-ui-form__col--5 c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
-                          <label>
-
-                            <div class="c-ui-input">
-
-                              <input type="text" name="search[order-search-field]" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn c-ui-input__field--js-search-item js-form-clearable" id="order-search" value="" placeholder="عنوان را بنویسید ...">
-
-                              <div class="c-ui-input__btn c-ui-input__btn--clear uk-hidden"></div>
-
-                            </div>
-
-                          </label>
-                        </div>
-                        <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-8 c-ui-form__col--wrap-xs" id="orders-step-6">
-                          <button class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--search-form c-ui-btn--active" id="submitButton" disabled="">
-                            <span>جستجو</span>
-                          </button>
-                          <input type="hidden" name="selected-variants" value="">
-                        </div>
-                        <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-1 c-ui-form__col--wrap-xs">
-                          <button type="button" class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--clear-form c-ui-btn--active" id="clearForm" disabled=""></button>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full" style="width: 230px;">
-                      <label class="c-ui-form__label">وضعیت:</label>
-                      <select class="c-ui-select c-ui-select--common c-ui-select--small js-form-clearable select2-hidden-accessible" name="search[type]"  tabindex="-1" aria-hidden="true">
-                        <option value="all" >همه موارد</option>
-                        <option value="prod_code" >کد محصول</option>
-                        <option value="variant" >کد تنوع</option>
-                        <option value="seller_code" >کد فروشنده</option>
-                        <option value="title" >عنوان</option>
-                      </select>
-                    </div>
-                  </div>
-
-
-
                 </form>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="c-grid__row js-table-container">
+        <div class="c-grid__row js-table-container table_section">
           <div class="c-grid__col">
             <div class="c-card">
               <div class="c-card__wrapper">
@@ -804,15 +737,18 @@
                         <span class="js-search-table-column">تعداد مرسوله</span>
                       </th>
                       <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                        <span class="js-search-table-column">تعداد کالا</span>
+                        <span class="js-search-table-column">زمان ثبت سفارش</span>
                       </th>
                       <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                        <span class="js-search-table-column">زمان ثبت سفارش</span>
+                        <span class="js-search-table-column">مرسوله</span>
+                      </th>
+                      <th class="c-ui-table__header c-ui-table__header--nowrap ">
+                        <span class="js-search-table-column">تعداد کالا</span>
                       </th>
                       <th class="c-ui-table__header c-ui-table__header--nowrap ">
                         <span class="js-search-table-column">زمان ارسال</span>
                       </th>
-                      <th class="c-ui-table__header c-ui-table__header--nowrap ">
+                      <th class="c-ui-table__header c-ui-table__header--nowrap " style="width: 12% !important;" >
                         <span class="js-search-table-column">روش ارسال</span>
                       </th>
                       <th class="c-ui-table__header c-ui-table__header--nowrap ">
@@ -824,85 +760,83 @@
                     </tr>
                     </thead>
                     <tbody>
-                      @if(count($orders))
-                        @foreach($orders as $key => $order)
-                          <tr class="c-ui-table__row c-ui-table__row--body c-join__table-row">
-                            <td class="c-ui-table__cell" style="">
-                              <span class="c-wallet__body-card-row-item"> {{ persianNum($orders->firstItem() + $key) }} </span>
-                            </td>
+                    @if(count($orders))
+                      @foreach($orders as $key => $order)
+                        <tr class="c-ui-table__row c-ui-table__row--body c-join__table-row">
+                          <td class="c-ui-table__cell" style="">
+                            <span class="c-wallet__body-card-row-item"> {{ persianNum($orders->firstItem() + $key) }} </span>
+                          </td>
 
-                            <td class="c-ui-table__cell c-ui-table__cell--text-blue" style="">
-                              <a class="c-join__promotion-link" target="_blank" style="font-weight: bold"> {{ persianNum($order->order_code) }} </a>
-                            </td>
+                          <td class="c-ui-table__cell c-ui-table__cell--text-blue">
+                            <a class="c-join__promotion-link" target="_blank" style="font-weight: bold"> {{ persianNum($order->order_code) }} </a>
+                          </td>
 
-                            <td class="c-ui-table__cell">
-                              <span class="c-wallet__body-card-row-item"> {{ $order->customer->first_name . ' ' . $order->customer->last_name }} </span>
-                            </td>
+                          <td class="c-ui-table__cell">
+                            <span class="c-wallet__body-card-row-item"> {{ $order->customer->first_name . ' ' . $order->customer->last_name }} </span>
+                          </td>
 
-                            <td class="c-ui-table__cell">
-                              <span class="c-wallet__body-card-row-item"> {{ persianNum(count($order->consignments)) }} </span>
-                            </td>
+                          <td class="c-ui-table__cell">
+                            <span class="c-wallet__body-card-row-item"> {{ persianNum(count($order->consignments)) }} </span>
+                          </td>
 
-                            <td class="c-ui-table__cell">
-                              <span class="c-wallet__body-card-row-item"> {{ persianNum(count($order->consignment_variants)) }} </span>
-                            </td>
+                          <td class="c-ui-table__cell">
+                            <span class="c-wallet__body-card-row-item span-time" data-value="{{ $order->created_at }}"></span>
+                          </td>
 
-                            <td class="c-ui-table__cell">
-                              <span class="c-wallet__body-card-row-item span-time" data-value="{{ $order->created_at }}"></span>
-                            </td>
-
-                            <td class="c-ui-table__cell" colspan="2" style="padding-top: 10px; min_width: 100px !important; width: 100px !important;">
-                              @foreach($order->consignments as $consignment)
-                                <div class="uk-flex uk-grid-medium c-commission-table__row c-commission-table__row--dashed-border">
-                                  <span class="c-commission-table__col c-commission-table__col--60 green span-date" data-value="{{ $consignment->delivery_at }}"></span>
-                                  <span class="c-commission-table__col c-commission-table__col--40" style="padding-left: 0px !important; width: 140px !important;">{{ $consignment->delivery_method->name }}</span>
-                                </div>
-                              @endforeach
-                            </td>
-
-                            <td class="c-ui-table__cell c-ui-table__cell--small-text">
-
-                              <div class="c-wallet__body-card-status-no-circle uk-text-nowrap c-wallet__body-card-status-no-circle--active">
-{{--                                {{ $consignment->delivery_status->name }}--}}
+                          <td class="c-ui-table__cell" colspan="4" style="padding-top: 10px; min_width: 100px !important; width: 100px !important;">
+                            <?php $i = 1; ?>
+                            @foreach($order->consignments as $consignment)
+                              <div class="uk-flex uk-grid-medium c-commission-table__row c-commission-table__row--dashed-border">
+                                <span class="c-wallet__body-card-row-item" style="width: 10% !important;"> {{ persianNum($i) }} از {{ persianNum($order->consignments()->count()) }} </span>
+                                <span class="c-wallet__body-card-row-item" style="width: 15% !important;"> {{ persianNum(count($consignment->consignment_variants)) }} </span>
+                                <span class="c-commission-table__col c-commission-table__col--60 green span-date" data-value="{{ $consignment->delivery_at }}" style="width: 25% !important;"></span>
+                                <span class="c-commission-table__col c-commission-table__col--40" style="padding-left: 0px !important; width: auto !important;">{{ $consignment->delivery_method->name }}</span>
                               </div>
+                              <?php $i++; ?>
+                            @endforeach
+                          </td>
 
-                            </td>
+                          <td class="c-ui-table__cell c-ui-table__cell--small-text">
+                            <div class="c-wallet__body-card-status-no-circle uk-text-nowrap {{ ($order->status->en_name == 'deliverd')? 'c-wallet__body-card-status-no-circle--active' : 'c-wallet__body-card-status-no-circle--alert' }}">
+                              {{ $order->status->name }}
+                            </div>
+                          </td>
 
-                            <td class="c-ui-table__cell">
-                              <div class="c-promo__actions">
-                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--secondary-greenish" href="{{ route('staff.orders.details', ['id' => $order->id]) }}">مشاهده جزئیات</a>
-                                <a href="{{ route('staff.orders.invoice', ['id' => $order->id]) }}" target="_blank" class="c-join__btn c-join__btn--icon-left c-join__btn--primary c-wallet__body-card-btn--printer" uk-tooltip="مشاهده و چاپ فاکتور"  title="" aria-expanded="false" style="font-size: 20px !important;"></a>
-                              </div>
-                            </td>
-                          </tr>
-                        @endforeach
-                      @endif
+                          <td class="c-ui-table__cell">
+                            <div class="c-promo__actions">
+                              <a class="c-join__btn c-join__btn--icon-left c-join__btn--secondary-greenish" href="{{ route('staff.orders.details', ['id' => $order->id]) }}">مشاهده جزئیات</a>
+                              <a href="{{ route('staff.orders.invoice', ['id' => $order->id]) }}" target="_blank" class="c-join__btn c-join__btn--icon-left c-join__btn--primary c-wallet__body-card-btn--printer" uk-tooltip="مشاهده و چاپ فاکتور"  title="" aria-expanded="false" style="font-size: 20px !important;"></a>
+                            </div>
+                          </td>
+                        </tr>
+                      @endforeach
+                    @endif
                     </tbody>
                   </table>
                 </div>
 
-{{--                <div class="c-card__footer" style="width: unset !important;">--}}
-{{--                  <a href="#" style="visibility: hidden;">--}}
-{{--                    <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">--}}
-{{--                    </div>--}}
-{{--                  </a>--}}
-{{--                  --}}
-{{--                  {{ $orders->links('stafforder::layouts.pagination.custom-pagination') }}--}}
+                {{--                <div class="c-card__footer" style="width: unset !important;">--}}
+                {{--                  <a href="#" style="visibility: hidden;">--}}
+                {{--                    <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">--}}
+                {{--                    </div>--}}
+                {{--                  </a>--}}
+                {{--                  --}}
+                {{--                  {{ $orders->links('stafforder::layouts.pagination.custom-pagination') }}--}}
 
-{{--                  <div class="c-card__paginator">--}}
-{{--                    <div class="c-ui-paginator js-paginator">--}}
-{{--                      @if(count($orders))--}}
-{{--                        <div class="c-ui-paginator__total" data-rows="">--}}
-{{--                          تعداد نتایج: <span>{{ persianNum($orders->total()) }} مورد</span>--}}
-{{--                        </div>--}}
-{{--                      @else--}}
-{{--                        <div class="c-ui-paginator__total" data-rows="۰">--}}
-{{--                          جستجو نتیجه ای نداشت--}}
-{{--                        </div>--}}
-{{--                      @endif--}}
-{{--                    </div>--}}
-{{--                  </div>--}}
-{{--                </div>--}}
+                {{--                  <div class="c-card__paginator">--}}
+                {{--                    <div class="c-ui-paginator js-paginator">--}}
+                {{--                      @if(count($orders))--}}
+                {{--                        <div class="c-ui-paginator__total" data-rows="">--}}
+                {{--                          تعداد نتایج: <span>{{ persianNum($orders->total()) }} مورد</span>--}}
+                {{--                        </div>--}}
+                {{--                      @else--}}
+                {{--                        <div class="c-ui-paginator__total" data-rows="۰">--}}
+                {{--                          جستجو نتیجه ای نداشت--}}
+                {{--                        </div>--}}
+                {{--                      @endif--}}
+                {{--                    </div>--}}
+                {{--                  </div>--}}
+                {{--                </div>--}}
 
                 <div class="c-card__footer" style="width: auto;">
                   <a href="#" style="visibility: hidden;">
@@ -948,19 +882,58 @@
       }
     });
 
-    function persianNum() {
-      String.prototype.toPersianDigits= function(){
-        var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
-        return this.replace(/[0-9]/g, function(w){
-          return id[+w]
-        });
+    $(document).on('change', '.searchـsend_date', function (){
+
+      if ($('input[name=searchـsend_today_only]').is(':checked')) {
+        var searchـsend_today_only = 1;
       }
-    }
+
+      if ($('input[name=search_send_tomorrow_only]').is(':checked')) {
+        var search_send_tomorrow_only = 2;
+      }
+
+      $.ajax({
+        method: 'post',
+        url: '{{ route('staff.orders.search') }}',
+        data: {
+          searchـsend_today_only: searchـsend_today_only,
+          search_send_tomorrow_only: search_send_tomorrow_only,
+        },
+        success: function (response){
+          $('.table_section').replaceWith(response);
+        }
+      });
+    })
+
+    $(document).on('change', 'input[name=search_order_status]', function (){
+
+      if ($(this).is(':checked')) {
+        var search_order_status = $(this).val();
+      }
+
+      $.ajax({
+        method: 'post',
+        url: '{{ route('staff.orders.search') }}',
+        data: {
+          search_order_status: search_order_status,
+        },
+        success: function (response){
+          $('.table_section').replaceWith(response);
+        }
+      });
+    });
+
+    $(document).ready(function (){
+      persianNum();
+      convertDate();
+      convertTime();
+    });
+
 
     function convertTime() {
       $(".span-time").each(function (){
         var output="";
-        var input = $(this).attr('data-value');
+        var input = $(this).data('value');
         var m = moment(input);
         if(m.isValid()){
           m.locale('fa');
@@ -973,7 +946,7 @@
     function convertDate() {
       $(".span-date").each(function (){
         var output="";
-        var input = $(this).attr('data-value');
+        var input = $(this).data('value');
         var m = moment(input);
         if(m.isValid()){
           m.locale('fa');
@@ -983,9 +956,14 @@
       });
     }
 
-    persianNum();
-    convertTime();
-    convertDate();
+    function persianNum() {
+      String.prototype.toPersianDigits= function(){
+        var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+        return this.replace(/[0-9]/g, function(w){
+          return id[+w]
+        });
+      }
+    }
 
   </script>
 @endsection

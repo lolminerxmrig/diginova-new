@@ -23,6 +23,9 @@ Route::domain('staff.diginova.test')->prefix('orders')->name('staff.orders.')
     Route::get('{id}/details', [StaffOrderController::class, 'details'])
       ->name('details');
 
+    Route::post('updateDetail', [StaffOrderController::class, 'updateDetail'])
+      ->name('updateDetail');
+
     Route::get('{id}/invoice', [StaffOrderController::class, 'invoice'])
       ->name('invoice');
 

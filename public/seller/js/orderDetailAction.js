@@ -26,6 +26,26 @@ let OrderHistoryAction = {
         });
     },
 
+    displayError: function (errors) {
+      var message = '';
+      if (typeof errors === typeof  "") {
+        message = errors;
+      } else if (typeof errors === typeof {}) {
+        try {
+          message = Object.values(errors).join('<br/>');
+        } catch (e) {
+          message = errors;
+        }
+      }
+
+      UIkit.notification({
+        message: message,
+        status: 'danger',
+        pos: 'bottom-right',
+        timeout: 8000
+      });
+  },
+
     initSelect2Handler: function () {
         let selects = $('.js-order-report-select2');
         $.each(selects, (index, select) => {

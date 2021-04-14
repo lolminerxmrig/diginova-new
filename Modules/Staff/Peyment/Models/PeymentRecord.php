@@ -13,4 +13,9 @@ class PeymentRecord extends Model
 
     protected $fillable = ['tracking_code', 'status', 'price', 'order_id', 'method_type', 'method_id'];
 
+    public function peymentMethod()
+    {
+      return $this->morphTo('method');
+    }
+
 }

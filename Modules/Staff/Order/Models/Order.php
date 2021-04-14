@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Customers\Auth\Models\Customer;
 use Modules\Staff\Peyment\Models\PeymentRecord;
 use Modules\Staff\Shiping\Models\DeliveryStatus;
+use Modules\Staff\Shiping\Models\OrderStatus;
 
 
 class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['order_code', 'status_id', 'customer_id'];
+    protected $fillable = ['order_code', 'order_status_id', 'customer_id', 'description'];
 
     public function customer()
     {
@@ -33,7 +34,7 @@ class Order extends Model
 
     public function status()
     {
-      return $this->belongsTo(DeliveryStatus::class, 'status_id');
+      return $this->belongsTo(OrderStatus::class, 'order_status_id');
     }
 
     public function address()

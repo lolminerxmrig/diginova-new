@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Customers\Auth\Models\Customer;
 use Modules\Staff\Shiping\Models\DeliveryMethod;
 use Modules\Staff\Shiping\Models\DeliveryStatus;
+use Modules\Staff\Shiping\Models\OrderStatus;
 
 
 class OrderHasConsignment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['consignment_code', 'shiping_cost', 'delivery_code', 'tracking_postal_code', 'delivery_at', 'delivery_status_id', 'delivery_method_id', 'order_id'];
+    protected $fillable = ['consignment_code', 'shiping_cost', 'delivery_code', 'tracking_code', 'delivery_at', 'order_status_id', 'delivery_method_id', 'order_id'];
 
 
     public function customer()
@@ -31,9 +32,9 @@ class OrderHasConsignment extends Model
       return $this->belongsTo(DeliveryMethod::class, 'delivery_method_id');
     }
 
-    public function delivery_status()
+    public function order_status()
     {
-      return $this->belongsTo(DeliveryStatus::class, 'delivery_status_id');
+      return $this->belongsTo(OrderStatus::class, 'order_status_id');
     }
 
     public function order()

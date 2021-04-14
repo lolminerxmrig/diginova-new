@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Staff\Product\Models\ProductWeight;
 use Modules\Staff\Shiping\Models\DeliveryMethodValue;
 
-class DeliveryStatus extends Model
+class OrderStatus extends Model
 {
 
     use HasFactory;
 
     protected $fillable = ['name', 'en_name'];
 
-    protected $table = 'delivery_status';
+    protected $table = 'order_status';
 
 }

@@ -20,7 +20,7 @@ class StaffSettingController extends Controller
         $states = State::all();
         $store_addresses = StoreAddress::all();
 
-        if(count($settings->where('name', 'invoice_stamp')->first()->media)){
+        if(!is_null($settings->where('name', 'invoice_stamp')->first()->media) && count($settings->where('name', 'invoice_stamp')->first()->media)){
           $stamp_image = $settings->where('name', 'invoice_stamp')->first()->media()->first();
         }
         else {

@@ -2664,8 +2664,6 @@ $(document).on('click', '.save_tab_form', function (){
       invoice_company_postal_code : $('input[name=invoice_company_postal_code]').val(),
       invoice_company_fax_phone : $('input[name=invoice_company_fax_phone]').val(),
       stampImageId : $('input[name=stampImageTempId]').val(),
-
-
   }
 
   $.ajax({
@@ -2716,9 +2714,6 @@ $('.delete-stamp-image').on('click', function (e) {
   });
 
 });
-
-
-
 
 var input = document.querySelector('input[name=index_meta_keywords]');
 var tagify = new Tagify(input, {

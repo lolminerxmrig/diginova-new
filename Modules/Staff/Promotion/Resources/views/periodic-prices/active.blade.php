@@ -597,7 +597,7 @@
                     <div class="c-grid__col">
                         <div class="c-card c-card--transparent">
                             <h1 class="c-card__title c-card__title--dark c-card__title--desc">تخفیف‌های هوشمند
-                                <span class="c-card__title-sub c-card__title-sub--no-spacing">در این قسمت می‌توانید برای کالاهای خود تخفیف تعیین کنید. کالاها بر مبنای میزان تخفیف تعیین شده به پروموشن‌های مختلف {{ $site_name }} اضافه می‌شوند.</span>
+                                <span class="c-card__title-sub c-card__title-sub--no-spacing">در این قسمت می‌توانید برای کالاهای خود تخفیف تعیین کنید. کالاها بر مبنای میزان تخفیف تعیین شده به پروموشن‌های مختلف {{ $fa_store_name }} اضافه می‌شوند.</span>
                             </h1>
                         </div>
                     </div>
@@ -612,7 +612,7 @@
                                 </div>
 
                                 <div class="c-join-smart-emty__des-sub-title">با قرار دادن کالاهای خود در این لیست و اعمال تخفیف
-                                    بر روی آن‌ها بازدید و فروش کالاهای خود را در وب‌سایت {{ $site_name }} افزایش دهید.
+                                    بر روی آن‌ها بازدید و فروش کالاهای خود را در وب‌سایت {{ $fa_store_name }} افزایش دهید.
                                 </div>
                                 <div class="c-mega-campaigns__btns-green-plus js-empty-layout-add-btn">افزودن
                                     کالای جدید به لیست تخفیف‌ها
@@ -630,7 +630,7 @@
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
                         <h1 class="c-card__title c-card__title--dark c-card__title--desc">تخفیف‌های هوشمند
-                            <span class="c-card__title-sub c-card__title-sub--no-spacing">در این قسمت می‌توانید برای کالاهای خود تخفیف تعیین کنید. کالاها بر مبنای میزان تخفیف تعیین شده به پروموشن‌های مختلف {{ $site_name }} اضافه می‌شوند.</span>
+                            <span class="c-card__title-sub c-card__title-sub--no-spacing">در این قسمت می‌توانید برای کالاهای خود تخفیف تعیین کنید. کالاها بر مبنای میزان تخفیف تعیین شده به پروموشن‌های مختلف {{ $fa_store_name }} اضافه می‌شوند.</span>
                         </h1>
                     </div>
                 </div>
@@ -674,22 +674,22 @@
                                 </div>
 
                                 <div class="c-join-smart-emty__guide-type-off-des">
-                                    - امکان قرارگیری پشت بنرهای {{ $site_name }}
+                                    - امکان قرارگیری پشت بنرهای {{ $fa_store_name }}
                                 </div>
                             </div>
 
                             <div class="c-join-smart-emty__guide-type-campaign uk-width-1-3">
                                 <div class="c-join-smart-emty__guide-type-campaign-title">
-                                    کمپین‌های {{ $site_name }}
+                                    کمپین‌های {{ $fa_store_name }}
                                 </div>
                                 <div class="c-join-smart-emty__guide-type-off-des">
                                     - نمایش قیمت به صورت خط خورده با درصد تخفیف
                                 </div>
                                 <div class="c-join-smart-emty__guide-type-off-des">
-                                    - امکان قرارگیری پشت بنرهای {{ $site_name }} و در صفحات پروموشن
+                                    - امکان قرارگیری پشت بنرهای {{ $fa_store_name }} و در صفحات پروموشن
                                 </div>
                                 {{--                                    <div class="c-join-smart-emty__guide-type-off-des">--}}
-                                {{--                                        - احتمال قرارگیری کالا در شبکه‌های اجتماعی {{ $site_name }}--}}
+                                {{--                                        - احتمال قرارگیری کالا در شبکه‌های اجتماعی {{ $fa_store_name }}--}}
                                 {{--                                    </div>--}}
                                 {{--                                    <div class="c-join-smart-emty__guide-type-off-des">--}}
                                 {{--                                        - احتمال کاهش کمیسیون و هزینه پردازش و ارسال--}}
@@ -873,7 +873,7 @@
                                         تخفیف عالی
                                     </span>
                                                 <span class="c-join-smart-list__type-sub-title">
-                                        شانس شرکت در کمپین‌های {{ $site_name }}
+                                        شانس شرکت در کمپین‌های {{ $fa_store_name }}
                                     </span>
                                             </div>
                                         </div>

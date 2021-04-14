@@ -24,7 +24,7 @@ class CreateOrderAddressesTable extends Migration
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->bigInteger('national_code')->nullable();
-            $table->integer('mobile')->nullable();
+            $table->bigInteger('mobile')->nullable();
 //            $table->boolean('is_recipient_self')->nullable();
             $table->foreignId('customer_id')->nullable();
 

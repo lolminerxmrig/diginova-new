@@ -17,15 +17,19 @@ class CreateConsignmentHasProductVariantsTable extends Migration
             $table->id();
             $table->integer('count')->nullable();
             $table->bigInteger('variant_price')->nullable();
+            $table->string('promotion_type')->nullable();
             $table->bigInteger('promotion_price')->nullable();
             $table->integer('promotion_percent')->nullable();
             $table->foreignId('product_id')->nullable();
             $table->foreignId('order_id')->nullable();
             $table->foreignId('consignment_id')->nullable();
+            $table->foreignId('order_status_id')->nullable();
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('consignment_id')->references('id')->on('order_has_consignments');
+            $table->foreign('order_status_id')->references('id')->on('order_status');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

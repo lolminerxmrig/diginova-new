@@ -4642,7 +4642,7 @@ function initDatePicker() {
       }
     });
   });
-},
+}
 
 $('.js-promotion-date-picker').each(function () {
   $(this).attr('value', $(this).attr('value').replace(/-/ig, '/'));

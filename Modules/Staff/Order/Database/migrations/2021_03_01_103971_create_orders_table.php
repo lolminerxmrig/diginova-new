@@ -16,12 +16,13 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('order_code');
-            $table->foreignId('delivery_status_id');
+            $table->text('description')->nullable();
+            $table->foreignId('order_status_id');
             $table->foreignId('customer_id');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('delivery_status_id')->references('id')->on('delivery_status');
+            $table->foreign('order_status_id')->references('id')->on('order_status');
         });
     }
 

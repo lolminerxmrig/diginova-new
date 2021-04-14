@@ -10,7 +10,7 @@
     <script src="{{ asset('seller/js/jquery.toast.js') }}"></script>
     <link href="{{ asset('seller/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
 
-    <script src="{{ asset('seller/js/inputmask.js') }}"></script>
+{{--    <script src="{{ asset('seller/js/inputmask.js') }}"></script>--}}
 
   @yield('head')
 </head>

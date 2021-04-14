@@ -1,4 +1,4 @@
-<div class="c-grid__row js-table-container">
+<div class="c-grid__row js-table-container table_section">
   <div class="c-grid__col">
     <div class="c-card">
       <div class="c-card__wrapper">
@@ -34,15 +34,18 @@
                 <span class="js-search-table-column">تعداد مرسوله</span>
               </th>
               <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                <span class="js-search-table-column">تعداد کالا</span>
+                <span class="js-search-table-column">زمان ثبت سفارش</span>
               </th>
               <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                <span class="js-search-table-column">زمان ثبت سفارش</span>
+                <span class="js-search-table-column">مرسوله</span>
+              </th>
+              <th class="c-ui-table__header c-ui-table__header--nowrap ">
+                <span class="js-search-table-column">تعداد کالا</span>
               </th>
               <th class="c-ui-table__header c-ui-table__header--nowrap ">
                 <span class="js-search-table-column">زمان ارسال</span>
               </th>
-              <th class="c-ui-table__header c-ui-table__header--nowrap ">
+              <th class="c-ui-table__header c-ui-table__header--nowrap " style="width: 12% !important;" >
                 <span class="js-search-table-column">روش ارسال</span>
               </th>
               <th class="c-ui-table__header c-ui-table__header--nowrap ">
@@ -61,7 +64,7 @@
                     <span class="c-wallet__body-card-row-item"> {{ persianNum($orders->firstItem() + $key) }} </span>
                   </td>
 
-                  <td class="c-ui-table__cell c-ui-table__cell--text-blue" style="">
+                  <td class="c-ui-table__cell c-ui-table__cell--text-blue">
                     <a class="c-join__promotion-link" target="_blank" style="font-weight: bold"> {{ persianNum($order->order_code) }} </a>
                   </td>
 
@@ -74,42 +77,33 @@
                   </td>
 
                   <td class="c-ui-table__cell">
-                    <span class="c-wallet__body-card-row-item"> {{ persianNum(count($order->consignment_variants)) }} </span>
-                  </td>
-
-                  <td class="c-ui-table__cell">
                     <span class="c-wallet__body-card-row-item span-time" data-value="{{ $order->created_at }}"></span>
                   </td>
 
-                  <td class="c-ui-table__cell" colspan="2" style="padding-top: 10px; min_width: 100px !important; width: 100px !important;">
+                  <td class="c-ui-table__cell" colspan="4" style="padding-top: 10px; min_width: 100px !important; width: 100px !important;">
+                    <?php $i = 1; ?>
                     @foreach($order->consignments as $consignment)
                       <div class="uk-flex uk-grid-medium c-commission-table__row c-commission-table__row--dashed-border">
-                        <span class="c-commission-table__col c-commission-table__col--60 green span-date" data-value="{{ $consignment->delivery_at }}"></span>
-                        <span class="c-commission-table__col c-commission-table__col--40" style="padding-left: 0px !important; width: 140px !important;">{{ $consignment->delivery_method->name }}</span>
+                        <span class="c-wallet__body-card-row-item" style="width: 10% !important;"> {{ persianNum($i) }} از {{ persianNum($order->consignments()->count()) }} </span>
+                        <span class="c-wallet__body-card-row-item" style="width: 15% !important;"> {{ persianNum(count($consignment->consignment_variants)) }} </span>
+                        <span class="c-commission-table__col c-commission-table__col--60 green span-date" data-value="{{ $consignment->delivery_at }}" style="width: 25% !important;"></span>
+                        <span class="c-commission-table__col c-commission-table__col--40" style="padding-left: 0px !important; width: auto !important;">{{ $consignment->delivery_method->name }}</span>
                       </div>
+                      <?php $i++; ?>
                     @endforeach
                   </td>
 
                   <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                    <div class="c-wallet__body-card-status-no-circle uk-text-nowrap
-{{--                    @if($consignment->delivery_status->en_name == 'deliverd')--}}
-{{--                    {{ 'c-wallet__body-card-status-no-circle--active' }}--}}
-{{--                    @elseif($consignment->delivery_status->en_name == 'canceled')--}}
-{{--                    {{ 'c-wallet__body-card-status-no-circle--danger' }}--}}
-{{--                    @else--}}
-{{--                    {{ 'c-wallet__body-card-status-no-circle--alert' }}--}}
-{{--                    @endif--}}
-                      ">
-{{--                      {{ $consignment->delivery_status->name }}--}}
+                    <div class="c-wallet__body-card-status-no-circle uk-text-nowrap {{ ($order->status->en_name == 'deliverd')? 'c-wallet__body-card-status-no-circle--active' : 'c-wallet__body-card-status-no-circle--alert' }}">
+                      {{ $order->status->name }}
                     </div>
                   </td>
 
                   <td class="c-ui-table__cell">
                     <div class="c-promo__actions">
                       <a class="c-join__btn c-join__btn--icon-left c-join__btn--secondary-greenish" href="{{ route('staff.orders.details', ['id' => $order->id]) }}">مشاهده جزئیات</a>
-                      <a href="" class="c-join__btn c-join__btn--icon-left c-join__btn--primary c-wallet__body-card-btn--printer" uk-tooltip="مشاهده و چاپ فاکتور"  title="" aria-expanded="false" style="font-size: 20px !important;"></a>
+                      <a href="{{ route('staff.orders.invoice', ['id' => $order->id]) }}" target="_blank" class="c-join__btn c-join__btn--icon-left c-join__btn--primary c-wallet__body-card-btn--printer" uk-tooltip="مشاهده و چاپ فاکتور"  title="" aria-expanded="false" style="font-size: 20px !important;"></a>
                     </div>
-                    {{--                              uk-button--print-icon print-invoice--}}
                   </td>
                 </tr>
               @endforeach
