@@ -17,7 +17,7 @@ class StaffOrderController extends Controller
 
   public function index()
   {
-    $orders = Order::paginate(1);
+    $orders = Order::paginate(10);
 
     $send_today_only = Order::whereHas('consignments', function (Builder $query){
       $query->where('delivery_at','<=' , Carbon::today());
@@ -67,42 +67,33 @@ class StaffOrderController extends Controller
 
 //    if (!is_null($request->search_order_status)) {
       if ($request->search_order_status == 'awaiting_peyment') {
-        Log::info('x1');
         $orders->where('order_status_id', 1);
       }
 
       if ($request->search_order_status == 'confirmed') {
-        Log::info('x2');
         $orders->where('order_status_id', 2);
       }
 
       if ($request->search_order_status == 'processing') {
-        Log::info('x3');
         $orders->where('order_status_id', 3);
       }
 
       if ($request->search_order_status == 'deliverd') {
-        Log::info('x4');
         $orders->where('order_status_id', 4);
       }
 //    }
 
     if (isset($request->searchـsend_today_only) && $request->searchـsend_today_only == 1) {
-      Log::info('x5');
       $orders->whereHas('consignments', function (Builder $query){
-        Log::info('x6');
         $query->where('delivery_at','<=' , Carbon::today());
       });
     }
 
     if (isset($request->search_send_tomorrow_only) && $request->search_send_tomorrow_only == 2) {
-      Log::info('x7');
       $orders->whereHas('consignments', function (Builder $query){
-        Log::info('x8');
         $query->where('delivery_at','>' , Carbon::today());
       });
     }
-    Log::info('x9');
     return $orders->paginate($request->paginatorNum);
 
   }
