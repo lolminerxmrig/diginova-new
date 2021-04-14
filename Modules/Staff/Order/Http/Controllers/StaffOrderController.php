@@ -17,7 +17,7 @@ class StaffOrderController extends Controller
 
   public function index()
   {
-    $orders = Order::paginate(10);
+    $orders = Order::where('order_status_id', '!=', 1)->where('order_status_id', '!=', 7)->paginate(10);
 
     $send_today_only = Order::whereHas('consignments', function (Builder $query){
       $query->where('delivery_at','<=' , Carbon::today());

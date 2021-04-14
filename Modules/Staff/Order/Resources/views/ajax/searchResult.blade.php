@@ -101,8 +101,8 @@
 
                   <td class="c-ui-table__cell">
                     <div class="c-promo__actions">
-                      <a class="c-join__btn c-join__btn--icon-left c-join__btn--secondary-greenish" href="{{ route('staff.orders.details', ['id' => $order->id]) }}">مشاهده جزئیات</a>
-                      <a href="{{ route('staff.orders.invoice', ['id' => $order->id]) }}" target="_blank" class="c-join__btn c-join__btn--icon-left c-join__btn--primary c-wallet__body-card-btn--printer" uk-tooltip="مشاهده و چاپ فاکتور"  title="" aria-expanded="false" style="font-size: 20px !important;"></a>
+                      <a class="c-join__btn c-join__btn--icon-left {{ ($order->status->en_name == 'awaiting_peyment' || $order->status->en_name == 'canceled')? 'c-join__btn--deactive' : 'c-join__btn--secondary-greenish' }}" href="{{ route('staff.orders.details', ['id' => $order->id]) }}">مشاهده جزئیات</a>
+                      <a href="{{ ($order->status->en_name == 'awaiting_peyment' || $order->status->en_name == 'canceled')? '' : route('staff.orders.invoice', ['id' => $order->id]) }}" target="_blank" class="c-join__btn c-join__btn--icon-left c-join__btn--primary c-wallet__body-card-btn--printer" uk-tooltip="مشاهده و چاپ فاکتور"  title="" aria-expanded="false" style="font-size: 20px !important;"></a>
                     </div>
                   </td>
                 </tr>
