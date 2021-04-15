@@ -34,6 +34,11 @@
         <nav class="uk-navbar-container uk-navbar-transparent uk-navbar--responsive uk-navbar" uk-navbar="">
           <div class="uk-navbar-right" id="dashboard-step-1">
             <ul class="uk-navbar-nav uk-navbar-nav--responsive">
+
+              <li class="first-level">
+                <a href="{{ route('staff.dashboardPage') }}" class="" aria-expanded="false">داشبورد</a>
+              </li>
+
               <li class="first-level">
                 <a href="#" class="" aria-expanded="false">تولید محتوا
                 <span class="chevron-down"></span>
@@ -142,7 +147,6 @@
                   </ul>
                 </div>
               </li>
-
 
               <li class="first-level">
                     <a href="#" class="" aria-expanded="false">بازاریابی

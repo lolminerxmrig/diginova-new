@@ -17,8 +17,8 @@ use Modules\Customers\Front\Http\Controllers\FrontController;
 
 Route::middleware('web')->name('front.')->group(function(){
 
-    Route::get('/', [FrontController::class, 'index'])
-        ->name('indexPage');
+//    Route::get('/', [FrontController::class, 'index'])
+//        ->name('indexPage');
 
 });
 

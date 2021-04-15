@@ -262,6 +262,9 @@
       <path value="$PROJECT_DIR$/vendor/ghaninia/shipping" />
     </include_path>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="1mAInWy8idjFWKkFmFdsj1hCKCt" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -279,7 +282,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Order/Resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Modules/Staff/Product/Models" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -290,11 +293,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Modules/Staff/Product/Models" />
+      <recent name="$PROJECT_DIR$/Modules/Staff/Auth/temp" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Order/Resources/views" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Order/Http/Controllers" />
       <recent name="$PROJECT_DIR$/Modules/Staff/Order/Resources/views/temp" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Shiping/Http" />
-      <recent name="$PROJECT_DIR$/Modules/Staff/Peyment/Models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Modules/Staff/Order/Resources/views/temp" />
@@ -632,7 +635,10 @@
       <workItem from="1618203302901" duration="32682000" />
       <workItem from="1618290237091" duration="46068000" />
       <workItem from="1618379193761" duration="10141000" />
-      <workItem from="1618392280888" duration="7116000" />
+      <workItem from="1618392280888" duration="27554000" />
+      <workItem from="1618424827041" duration="222000" />
+      <workItem from="1618427920024" duration="551000" />
+      <workItem from="1618462946826" duration="22612000" />
     </task>
     <option name="localTasksCounter" value="3" />
     <option name="createBranch" value="false" />

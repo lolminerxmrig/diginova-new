@@ -541,7 +541,7 @@
 @section('content')
 
 @php
-    $site_name = $settings->where('name', 'site_url')->first()->value;
+    $fa_store_name = $settings->where('name', 'site_url')->first()->value;
     $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
     $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
 @endphp
@@ -1841,7 +1841,7 @@
                                                             <label class="uk-form-label uk-flex uk-flex-between">نامک پیشنهادی:</label>
                                                             <div class="field-wrapper" style="margin-bottom: 15px;">
                                                                 <input type="text" name="suggest_slug" class="c-content-input__origin c-ui-input--deactive url-inputs suggest_slug" dir="ltr" disabled>
-                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_name }}/product/{{ $product_code_prefix }}-code">
+                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
                                                             </div>
                                                         </div>
 
@@ -1849,7 +1849,7 @@
                                                             <label class="uk-form-label uk-flex uk-flex-between">نامک:</label>
                                                             <div class="field-wrapper" style="margin-bottom: 15px;">
                                                                 <input type="text" name="slug" class="c-content-input__origin url-inputs" dir="ltr" value="{{ $product->slug }}">
-                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_name }}/product/{{ $product_code_prefix }}-code">
+                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
                                                             </div>
                                                         </div>
 

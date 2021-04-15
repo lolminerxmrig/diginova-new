@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->bigInteger('order_code');
             $table->text('description')->nullable();
+            $table->bigInteger('cost')->nullable();
+            $table->bigInteger('discount')->nullable();
             $table->foreignId('order_status_id');
             $table->foreignId('customer_id');
             $table->timestamps();

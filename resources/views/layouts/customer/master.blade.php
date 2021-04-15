@@ -1,6 +1,6 @@
 <html class="" style="" dir="rtl">
 <head>
-  <title>پروفایل {{ !is_null($customer->first_name)? ' - ' . $customer->first_name . ' ' . $customer->last_name : '' }} | فروشگاه اینترنتی {{ $site_name }}</title>
+  <title>پروفایل {{ !is_null($customer->first_name)? ' - ' . $customer->first_name . ' ' . $customer->last_name : '' }} | فروشگاه اینترنتی {{ $fa_store_name }}</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script>
     var module_hash_id_storage = 1;
@@ -758,7 +758,7 @@
           <div class="c-search js-search" data-event="using_search_box" data-event-category="header_section">
             <span class="c-search__reset u-hidden js-search-reset"></span>
             <input type="text" name="q"
-                   placeholder="جستجو در {{ $site_name }} …"
+                   placeholder="جستجو در {{ $fa_store_name }} …"
                    class="js-search-input"
                    autocomplete="off"
                    value="">
@@ -1629,15 +1629,15 @@
                         </li>
                         <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
                             data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: کارت هدیه خرید از {{ $site_name }} - level: 2">
+                            data-event-label="category_en:  - category_fa: کارت هدیه خرید از {{ $fa_store_name }} - level: 2">
                           <a data-snt-event="dkMegaMenuClick"
-                             data-snt-params="{&quot;type&quot;:&quot;option-title&quot;,&quot;category_title&quot;:&quot;کارت هدیه خرید از {{ $site_name }}&quot;}"
+                             data-snt-params="{&quot;type&quot;:&quot;option-title&quot;,&quot;category_title&quot;:&quot;کارت هدیه خرید از {{ $fa_store_name }}&quot;}"
                              href="/main/dk-ds-gift-card/"
-                             class=" c-navi-new__big-display-title"><span>کارت هدیه خرید از {{ $site_name }}</span></a><a
+                             class=" c-navi-new__big-display-title"><span>کارت هدیه خرید از {{ $fa_store_name }}</span></a><a
                             data-snt-event="dkMegaMenuClick"
-                            data-snt-params="{&quot;type&quot;:&quot;option-title&quot;,&quot;category_title&quot;:&quot;کارت هدیه خرید از {{ $site_name }}&quot;}"
+                            data-snt-params="{&quot;type&quot;:&quot;option-title&quot;,&quot;category_title&quot;:&quot;کارت هدیه خرید از {{ $fa_store_name }}&quot;}"
                             href="/main/dk-ds-gift-card/"
-                            class=" c-navi-new__medium-display-title"><span>کارت هدیه خرید از {{ $site_name }}</span></a>
+                            class=" c-navi-new__medium-display-title"><span>کارت هدیه خرید از {{ $fa_store_name }}</span></a>
                         </li>
                       </ul>
                     </div>
@@ -7595,10 +7595,10 @@
                           class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--has-icon c-navi-new-list__sublist-option--gift-card">
                           <a href="/search/category-dk-ds-gift-card/"
                              class=" c-navi-new__big-display-title">
-                            کارت هدیه خرید از {{ $site_name }}
+                            کارت هدیه خرید از {{ $fa_store_name }}
                           </a><a href="/search/category-dk-ds-gift-card/"
                                  class=" c-navi-new__medium-display-title">
-                            کارت هدیه خرید از {{ $site_name }}
+                            کارت هدیه خرید از {{ $fa_store_name }}
                           </a></li>
                         <li
                           class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--has-icon c-navi-new-list__sublist-option--new-seller-product">
@@ -7621,7 +7621,7 @@
               <li class="js-categories-bar-item"><a
                   class="c-navi-new-list__category-link c-navi-new-list__category-link--my-digikala c-navi-new-list__category-link--bold"
                   href="/my-digikala/">
-                  {{ $site_name }}ی من
+                  {{ $fa_store_name }}ی من
                 </a></li>
               <li class="js-categories-bar-item js-mega-menu-main-item">
                 <a
@@ -7970,8 +7970,8 @@
         <nav class="c-footer__links--col">
           <div class="o-headline-links">
             <div><a data-snt-event="dkFooterClick"
-                    data-snt-params="{&quot;item&quot;:&quot;index-title&quot;,&quot;item_option&quot;:&quot;راهنمای خرید از {{ $site_name }}&quot;}"
-                    href="/faq/question/6/">راهنمای خرید از {{ $site_name }}</a></div>
+                    data-snt-params="{&quot;item&quot;:&quot;index-title&quot;,&quot;item_option&quot;:&quot;راهنمای خرید از {{ $fa_store_name }}&quot;}"
+                    href="/faq/question/6/">راهنمای خرید از {{ $fa_store_name }}</a></div>
           </div>
           <ul class="c-footer__links-ul">
             <li><a data-snt-event="dkFooterClick"
@@ -8012,26 +8012,26 @@
         <nav class="c-footer__links--col">
           <div class="o-headline-links">
             <div><a data-snt-event="dkFooterClick"
-                    data-snt-params="{&quot;item&quot;:&quot;index-title&quot;,&quot;item_option&quot;:&quot;با {{ $site_name }}&quot;}"
-                    href="/page/about/">با {{ $site_name }}</a></div>
+                    data-snt-params="{&quot;item&quot;:&quot;index-title&quot;,&quot;item_option&quot;:&quot;با {{ $fa_store_name }}&quot;}"
+                    href="/page/about/">با {{ $fa_store_name }}</a></div>
           </div>
           <ul class="c-footer__links-ul">
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;اتاق خبر&quot;}"
-                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر {{ $site_name }}</a></li>
+                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;فروش در {{ $site_name }}&quot;}"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;فروش در {{ $fa_store_name }}&quot;}"
                    href="https://www.digikala.com/landings/seller-introduction/" target="_blank">فروش در
-                {{ $site_name }}</a></li>
+                {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;فرصت‌های شغلی&quot;}"
                    href="http://careers.digikala.com/" target="_blank">فرصت‌های شغلی</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;تماس با {{ $site_name }}&quot;}"
-                   href="/page/contact-us/">تماس با {{ $site_name }}</a></li>
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;تماس با {{ $fa_store_name }}&quot;}"
+                   href="/page/contact-us/">تماس با {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;درباره {{ $site_name }}&quot;}"
-                   href="/page/about/">درباره {{ $site_name }}</a></li>
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;درباره {{ $fa_store_name }}&quot;}"
+                   href="/page/about/">درباره {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;راهنمای هویت بصری&quot;}"
                    href="/branding/">راهنمای هویت بصری</a></li>
@@ -8042,7 +8042,7 @@
         <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/" method="post"
               novalidate="novalidate">
           <fieldset>
-            <legend class="c-form-newsletter__title">از تخفیف‌ها و جدیدترین‌های {{ $site_name }} باخبر
+            <legend class="c-form-newsletter__title">از تخفیف‌ها و جدیدترین‌های {{ $fa_store_name }} باخبر
               شوید:
             </legend>
             <div class="c-form-newsletter__row"><input
@@ -8059,7 +8059,7 @@
           </fieldset>
         </form>
         <div class="c-footer__community">
-          <div class="c-footer__social"><span>{{ $site_name }} را در شبکه‌های اجتماعی دنبال کنید:</span>
+          <div class="c-footer__social"><span>{{ $fa_store_name }} را در شبکه‌های اجتماعی دنبال کنید:</span>
             <div class="c-footer__social-images">
               <div class="c-footer__social-links"><a href="https://www.linkedin.com/company/digikala/"
                                                      class="c-footer__social-link c-footer__social-link--linkedin"
@@ -8152,13 +8152,13 @@
       </div>
       <nav class="c-footer__partners-container">
         <ul class="c-footer__partners">
-          <li><a href="https://www.digikala.com/mag/" target="_blank" title="مجله اینترنتی {{ $site_name }} مگ"
+          <li><a href="https://www.digikala.com/mag/" target="_blank" title="مجله اینترنتی {{ $fa_store_name }} مگ"
                  data-snt-event="dkFooterClick"
                  data-snt-params="{&quot;item&quot;:&quot;partners&quot;,&quot;item_option&quot;:&quot;digikalamag&quot;}"
                  data-event="footer_links" data-event-category="footer_section"
                  data-event-label="link: https://www.digikala.com/mag/ - current_page: /profile/personal-info/"><img
                 data-src="https://www.digikala.com/static/files/0ef4e56b.svg" loading="lazy"
-                alt="مجله اینترنتی {{ $site_name }} مگ"
+                alt="مجله اینترنتی {{ $fa_store_name }} مگ"
                 src="https://www.digikala.com/static/files/0ef4e56b.svg"></a></li>
           <li><a href="https://www.mydigipay.com/" target="_blank" title="بهترین راهکارهای پرداخت آنلاین"
                  data-snt-event="dkFooterClick"
@@ -8170,14 +8170,14 @@
                 alt="بهترین راهکارهای پرداخت آنلاین"
                 src="https://www.digikala.com/static/files/a2f19563.svg"></a></li>
           <li><a href="https://www.digistyle.com/" target="_blank"
-                 title="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $site_name }}"
+                 title="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $fa_store_name }}"
                  data-snt-event="dkFooterClick"
                  data-snt-params="{&quot;item&quot;:&quot;partners&quot;,&quot;item_option&quot;:&quot;digistyle&quot;}"
                  data-event="footer_links" data-event-category="footer_section"
                  data-event-label="link: https://www.digistyle.com/ - current_page: /profile/personal-info/"><img
                 width="131px" height="21px" loading="lazy"
                 data-src="https://www.digikala.com/static/files/6b24b899.svg"
-                alt="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $site_name }}"
+                alt="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $fa_store_name }}"
                 src="https://www.digikala.com/static/files/6b24b899.svg"></a></li>
           <li><a href="https://www.digikala.com/digiclub/" target="_blank"
                  title="دیجی کلاب باشگاه مشتریان دیجیکالا" data-snt-event="dkFooterClick"
@@ -8209,8 +8209,8 @@
       </nav>
       <div class="c-footer__copyright">
         <div class="c-footer__copyright--text">
-          استفاده از مطالب فروشگاه اینترنتی {{ $site_name }} فقط برای مقاصد غیرتجاری و با ذکر منبع
-          بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $site_name }}) می‌باشد.
+          استفاده از مطالب فروشگاه اینترنتی {{ $fa_store_name }} فقط برای مقاصد غیرتجاری و با ذکر منبع
+          بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $fa_store_name }}) می‌باشد.
         </div>
       </div>
     </div>
@@ -8261,19 +8261,19 @@
           پشتیبانی آنلاین
         </div>
         <div class="c-cro__support-status-bar"><p>
-            پیشتیبان هوش مصنوعی {{ $site_name }}
+            پیشتیبان هوش مصنوعی {{ $fa_store_name }}
           </p><a class="c-wiki__trigger c-wiki c-wiki__holder js-dk-wiki-trigger">
             <div class="c-wiki__container js-dk-wiki is-right">
               <div class="c-wiki__arrow"></div>
               <p class="c-wiki__text">
-                من ربات هوشمند گفت و گوی آنلاین {{ $site_name }} هستم و در حال حاضر در حال آموزش دیدن برای پاسخگویی
+                من ربات هوشمند گفت و گوی آنلاین {{ $fa_store_name }} هستم و در حال حاضر در حال آموزش دیدن برای پاسخگویی
                 بهتر و انتقال پیام شما به پاسخگوی مرتبط با مشکلتان هستم.
               </p></div>
           </a></div>
         <div class="c-cro__chat-body">
           <div class="js-chatbot-body">
             <div class="c-cro__chat-message c-cro__chat-message--dk"><p>
-                به پشتیبانی هوشمند {{ $site_name }} خوش آمدید. لطفا سوال خود را بپرسید.
+                به پشتیبانی هوشمند {{ $fa_store_name }} خوش آمدید. لطفا سوال خود را بپرسید.
               </p><span>
                                     پشتیبان هوش مصنوعی
                                 </span></div>
@@ -8391,7 +8391,7 @@
 <div class="remodal c-remodal-account" data-remodal-id="login" role="dialog" aria-labelledby="modal1Title"
      aria-describedby="modal1Desc">
   <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-  <div class="c-remodal-account__headline">ورود به {{ $site_name }}</div>
+  <div class="c-remodal-account__headline">ورود به {{ $fa_store_name }}</div>
   <div class="c-remodal-account__content">
     <form class="c-form-account" id="loginFormModal">
       <div class="c-message-light c-message-light--info" id="login-form-msg"></div>
@@ -8415,7 +8415,7 @@
       </div>
       <div class="c-form-account__row c-form-account__row--submit">
         <div class="c-form-account__col">
-          <button class="btn-login login-button-js">ورود به {{ $site_name }}</button>
+          <button class="btn-login login-button-js">ورود به {{ $fa_store_name }}</button>
         </div>
       </div>
       <div class="c-form-account__link"><a data-snt-event="dkLoginClick"
@@ -8431,7 +8431,7 @@
                                                                                          data-snt-params='{"type":"signup","site":"login-modal"}'
                                                                                          href="/users/login-register/?_back=https://www.digikala.com/profile/personal-info/"
                                                                                          class="btn-link-spoiler">ثبت‌نام
-      در {{ $site_name }}</a></div>
+      در {{ $fa_store_name }}</a></div>
 </div>
 <div class="remodal c-remodal-loader" data-remodal-id="loader"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog" aria-labelledby="modal1Title"
@@ -8575,8 +8575,8 @@
         <nav class="c-footer__links--col">
           <div class="o-headline-links">
             <div><a data-snt-event="dkFooterClick"
-                    data-snt-params='{"item":"index-title","item_option":"راهنمای خرید از {{ $site_name }}"}'
-                    href="/faq/question/6/">راهنمای خرید از {{ $site_name }}</a></div>
+                    data-snt-params='{"item":"index-title","item_option":"راهنمای خرید از {{ $fa_store_name }}"}'
+                    href="/faq/question/6/">راهنمای خرید از {{ $fa_store_name }}</a></div>
           </div>
           <ul class="c-footer__links-ul">
             <li><a data-snt-event="dkFooterClick"
@@ -8617,27 +8617,27 @@
         <nav class="c-footer__links--col">
           <div class="o-headline-links">
             <div><a data-snt-event="dkFooterClick"
-                    data-snt-params='{"item":"index-title","item_option":"با {{ $site_name }}"}'
-                    href="/page/about/">با {{ $site_name }}</a></div>
+                    data-snt-params='{"item":"index-title","item_option":"با {{ $fa_store_name }}"}'
+                    href="/page/about/">با {{ $fa_store_name }}</a></div>
           </div>
           <ul class="c-footer__links-ul">
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params='{"item":"index-item","item_option":"اتاق خبر"}'
-                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر {{ $site_name }}</a></li>
+                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"فروش در {{ $site_name }}"}'
+                   data-snt-params='{"item":"index-item","item_option":"فروش در {{ $fa_store_name }}"}'
                    href="https://www.digikala.com/landings/seller-introduction/" target="_blank">فروش
-                در {{ $site_name }}</a>
+                در {{ $fa_store_name }}</a>
             </li>
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params='{"item":"index-item","item_option":"فرصت‌های شغلی"}'
                    href="http://careers.digikala.com/" target="_blank">فرصت‌های شغلی</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"تماس با {{ $site_name }}"}'
-                   href="/page/contact-us/">تماس با {{ $site_name }}</a></li>
+                   data-snt-params='{"item":"index-item","item_option":"تماس با {{ $fa_store_name }}"}'
+                   href="/page/contact-us/">تماس با {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"درباره {{ $site_name }}"}'
-                   href="/page/about/">درباره {{ $site_name }}</a></li>
+                   data-snt-params='{"item":"index-item","item_option":"درباره {{ $fa_store_name }}"}'
+                   href="/page/about/">درباره {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params='{"item":"index-item","item_option":"راهنمای هویت بصری"}'
                    href="/branding/">راهنمای هویت بصری</a></li>
@@ -8648,7 +8648,7 @@
         <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/"
               method="post">
           <fieldset>
-            <legend class="c-form-newsletter__title">از تخفیف‌ها و جدیدترین‌های {{ $site_name }} باخبر
+            <legend class="c-form-newsletter__title">از تخفیف‌ها و جدیدترین‌های {{ $fa_store_name }} باخبر
               شوید:
             </legend>
             <div class="c-form-newsletter__row"><input class="c-ui-input__field c-ui-input__field--right-placeholder"
@@ -8668,7 +8668,7 @@
           </fieldset>
         </form>
         <div class="c-footer__community">
-          <div class="c-footer__social"><span>{{ $site_name }} را در شبکه‌های اجتماعی دنبال کنید:</span>
+          <div class="c-footer__social"><span>{{ $fa_store_name }} را در شبکه‌های اجتماعی دنبال کنید:</span>
             <div class="c-footer__social-images">
               <div class="c-footer__social-links"><a href="https://www.linkedin.com/company/digikala/"
                                                      class="c-footer__social-link c-footer__social-link--linkedin"
@@ -8768,13 +8768,13 @@
       </div>
       <nav class="c-footer__partners-container">
         <ul class="c-footer__partners">
-          <li><a href="https://www.digikala.com/mag/" target="_blank" title="مجله اینترنتی {{ $site_name }} مگ"
+          <li><a href="https://www.digikala.com/mag/" target="_blank" title="مجله اینترنتی {{ $fa_store_name }} مگ"
                  data-snt-event="dkFooterClick"
                  data-snt-params='{"item":"partners","item_option":"digikalamag"}'
                  data-event="footer_links" data-event-category="footer_section"
                  data-event-label="link: https://www.digikala.com/mag/ - current_page: /profile/personal-info/"><img
                 data-src="https://www.digikala.com/static/files/0ef4e56b.svg"
-                loading="lazy" alt="مجله اینترنتی {{ $site_name }} مگ"></a></li>
+                loading="lazy" alt="مجله اینترنتی {{ $fa_store_name }} مگ"></a></li>
           <li><a href="https://www.mydigipay.com/" target="_blank"
                  title="بهترین راهکارهای پرداخت آنلاین"
                  data-snt-event="dkFooterClick"
@@ -8785,14 +8785,14 @@
                 data-src="https://www.digikala.com/static/files/a2f19563.svg"
                 alt="بهترین راهکارهای پرداخت آنلاین"></a></li>
           <li><a href="https://www.digistyle.com/" target="_blank"
-                 title="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $site_name }}"
+                 title="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $fa_store_name }}"
                  data-snt-event="dkFooterClick"
                  data-snt-params='{"item":"partners","item_option":"digistyle"}'
                  data-event="footer_links" data-event-category="footer_section"
                  data-event-label="link: https://www.digistyle.com/ - current_page: /profile/personal-info/"><img
                 width="131px" height="21px" loading="lazy"
                 data-src="https://www.digikala.com/static/files/6b24b899.svg"
-                alt="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $site_name }}"></a></li>
+                alt="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $fa_store_name }}"></a></li>
           <li><a href="https://www.digikala.com/digiclub/" target="_blank"
                  title="دیجی کلاب باشگاه مشتریان دیجیکالا"
                  data-snt-event="dkFooterClick"
@@ -8822,8 +8822,8 @@
       </nav>
       <div class="c-footer__copyright">
         <div class="c-footer__copyright--text">
-          استفاده از مطالب فروشگاه اینترنتی {{ $site_name }} فقط برای مقاصد غیرتجاری و با ذکر منبع
-          بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $site_name }}) می‌باشد.
+          استفاده از مطالب فروشگاه اینترنتی {{ $fa_store_name }} فقط برای مقاصد غیرتجاری و با ذکر منبع
+          بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $fa_store_name }}) می‌باشد.
         </div>
       </div>
     </div>
@@ -8873,12 +8873,12 @@
           پشتیبانی آنلاین
         </div>
         <div class="c-cro__support-status-bar"><p>
-            پیشتیبان هوش مصنوعی {{ $site_name }}
+            پیشتیبان هوش مصنوعی {{ $fa_store_name }}
           </p><a class="c-wiki__trigger c-wiki c-wiki__holder js-dk-wiki-trigger">
             <div class="c-wiki__container js-dk-wiki is-right">
               <div class="c-wiki__arrow"></div>
               <p class="c-wiki__text">
-                من ربات هوشمند گفت و گوی آنلاین {{ $site_name }} هستم و در حال حاضر در حال آموزش دیدن برای پاسخگویی بهتر
+                من ربات هوشمند گفت و گوی آنلاین {{ $fa_store_name }} هستم و در حال حاضر در حال آموزش دیدن برای پاسخگویی بهتر
                 و
                 انتقال پیام شما به پاسخگوی مرتبط با مشکلتان هستم.
               </p></div>
@@ -8886,7 +8886,7 @@
         <div class="c-cro__chat-body">
           <div class="js-chatbot-body">
             <div class="c-cro__chat-message c-cro__chat-message--dk"><p>
-                به پشتیبانی هوشمند {{ $site_name }} خوش آمدید. لطفا سوال خود را بپرسید.
+                به پشتیبانی هوشمند {{ $fa_store_name }} خوش آمدید. لطفا سوال خود را بپرسید.
               </p><span>
                                     پشتیبان هوش مصنوعی
                                 </span></div>

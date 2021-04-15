@@ -589,7 +589,7 @@ var noColorNoSizeMode = true;
 
 @php
     $site_url = $settings->where('name', 'site_url')->first()->value;
-    $site_name = $settings->where('name', 'site_name')->first()->value;
+    $fa_store_name = $settings->where('name', 'site_name')->first()->value;
     $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
     $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
 @endphp
@@ -805,7 +805,7 @@ var noColorNoSizeMode = true;
                                                                     @endif
                                                                     <td class="c-variation-diversity__code">{{ $product_variant->variant_code }}</td>
                                                                     <td>
-                                                                        <span>{{ ($product_variant->shipping_type == 'site')? $site_name : 'فروشنده'  }}</span>
+                                                                        <span>{{ ($product_variant->shipping_type == 'site')? $fa_store_name : 'فروشنده'  }}</span>
                                                                     </td>
                                                                     <td class="status_lable">
                                                                         <center>
@@ -874,7 +874,7 @@ var noColorNoSizeMode = true;
                                                                                                 <label class="c-ui-checkbox c-ui-checkbox--gap-sm disabled">
                                                                                                     <input type="checkbox" class="c-ui-checkbox__origin js-checkbox-group js-shipping-type-digikala" name="product_variant[shipping_type_digikala]" data-default-value="1" value="1" {{ ($product_variant->shipping_type == 'site')? 'checked' : '' }}>
                                                                                                     <span class="c-ui-checkbox__check c-ui-checkbox__check--small"></span>
-                                                                                                    <span class="c-ui-checkbox__label">{{ $site_name }}</span>
+                                                                                                    <span class="c-ui-checkbox__label">{{ $fa_store_name }}</span>
                                                                                                 </label>
                                                                                                 <label class="c-ui-checkbox c-ui-checkbox--gap-sm disabled">
                                                                                                     <input type="checkbox" class="c-ui-checkbox__origin js-checkbox-group js-shipping-type-seller" name="product_variant[shipping_type_seller]" data-default-value="0" value="1" disabled>
@@ -1062,7 +1062,7 @@ var noColorNoSizeMode = true;
                                            class="c-ui-checkbox__origin js-variant-shipping-type-digikala js-checkbox-group"
                                            name="" value="1" checked="">
                                     <span class="c-ui-checkbox__check c-ui-checkbox__check--small"></span>
-                                    <span class="c-ui-checkbox__label">{{ $site_name }}</span>
+                                    <span class="c-ui-checkbox__label">{{ $fa_store_name }}</span>
                                 </label>
                                 <label class="c-ui-checkbox c-ui-checkbox--gap-sm disabled">
                                     <input type="checkbox"
@@ -1190,7 +1190,7 @@ var noColorNoSizeMode = true;
                                     <li>عنوان گارانتی، مدت زمان، شماره تماس، آدرس مرکز خدمات پس از فروش و شرایط
                                         گارانتی کالا بایستی روی تصویر کارت گارانتی بارگذاری شده، وجود داشته باشد.
                                     </li>
-                                    <li>گارانتی‌هایی با مدت زمان کمتر از شش ماه مورد تایید {{ $site_name }} نیستند.</li>
+                                    <li>گارانتی‌هایی با مدت زمان کمتر از شش ماه مورد تایید {{ $fa_store_name }} نیستند.</li>
                                     <li>
                                         برای کالاهایی که گارانتی مورد تایید اتحادیه دارند، استفاده از گارانتی‌های
                                         متفرقه امکان‌پذیر نیست.

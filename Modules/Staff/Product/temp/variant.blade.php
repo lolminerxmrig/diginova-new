@@ -582,7 +582,7 @@
 
     @php
         $site_url = $settings->where('name', 'site_url')->first()->value;
-        $site_name = $settings->where('name', 'site_name')->first()->value;
+        $fa_store_name = $settings->where('name', 'site_name')->first()->value;
         $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
         $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
     @endphp
@@ -969,7 +969,7 @@
                                                                                                         value="1"
                                                                                                         checked="">
                                                                                                     <span class="c-ui-checkbox__check c-ui-checkbox__check--small"></span>
-                                                                                                    <span class="c-ui-checkbox__label">{{ $site_name }}</span>
+                                                                                                    <span class="c-ui-checkbox__label">{{ $fa_store_name }}</span>
                                                                                                 </label>
                                                                                                 <label
                                                                                                     class="c-ui-checkbox c-ui-checkbox--gap-sm disabled">
@@ -1249,7 +1249,7 @@
                                                class="c-ui-checkbox__origin js-variant-shipping-type-digikala js-checkbox-group"
                                                name="" value="1" checked="">
                                         <span class="c-ui-checkbox__check c-ui-checkbox__check--small"></span>
-                                        <span class="c-ui-checkbox__label">{{ $site_name }}</span>
+                                        <span class="c-ui-checkbox__label">{{ $fa_store_name }}</span>
                                     </label>
                                     <label class="c-ui-checkbox c-ui-checkbox--gap-sm disabled">
                                         <input type="checkbox"
@@ -1397,7 +1397,7 @@
                                         <li>عنوان گارانتی، مدت زمان، شماره تماس، آدرس مرکز خدمات پس از فروش و شرایط
                                             گارانتی کالا بایستی روی تصویر کارت گارانتی بارگذاری شده، وجود داشته باشد.
                                         </li>
-                                        <li>گارانتی‌هایی با مدت زمان کمتر از شش ماه مورد تایید {{ $site_name }} نیستند.</li>
+                                        <li>گارانتی‌هایی با مدت زمان کمتر از شش ماه مورد تایید {{ $fa_store_name }} نیستند.</li>
                                         <li>
                                             برای کالاهایی که گارانتی مورد تایید اتحادیه دارند، استفاده از گارانتی‌های
                                             متفرقه امکان‌پذیر نیست.

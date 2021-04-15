@@ -18,7 +18,7 @@ Route::domain('staff.diginova.test')->middleware('web')->group(function () {
     Route::get('/', [StaffRegLoginController::class, 'indexPage'])
         ->name('staff.indexPage');
 
-    Route::get('account/dashboard', [StaffRegLoginController::class, 'dashboardPage'])
+    Route::get('dashboard', [StaffRegLoginController::class, 'dashboardPage'])
         ->middleware('staff')->name('staff.dashboardPage');
 
     Route::get('account/login', [StaffRegLoginController::class, 'loginPage'])

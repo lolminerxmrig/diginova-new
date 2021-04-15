@@ -27,7 +27,8 @@ class StaffOrderController extends Controller
       $query->where('delivery_at','>' , Carbon::today());
     })->count();
 
-    return view('stafforder::index', compact('orders', 'send_today_only', 'send_tomorrow_only'));
+    $consignments = OrderHasConsignment::all();
+    return view('stafforder::index', compact('orders', 'send_today_only', 'send_tomorrow_only', 'consignments'));
   }
 
   public function details($id)

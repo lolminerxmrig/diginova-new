@@ -17,6 +17,7 @@ use Modules\Sellers\Auth\Http\Controllers\SellerRegisterController;
 
 
 Route::domain('seller.diginova.test')->middleware('web')->group(function () {
+
     Route::get('account/dashboard', [SellerController::class, 'dashboardPage'])
         ->middleware('seller')->name('seller.dashboardPage');
 

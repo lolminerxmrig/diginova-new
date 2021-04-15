@@ -17,7 +17,7 @@
       </div>
       <div class="c-content-modal__body c-content-modal__body--overflow">
         <div class="c-content-modal__body-container">
-          <div class="c-content-modal__intro">فروشگاه اینترنتی {{ $site_name }} این امکان را برای
+          <div class="c-content-modal__intro">فروشگاه اینترنتی {{ $fa_store_name }} این امکان را برای
             فروشنده فراهم
             کرده
             تا کالایش را با برند (نام

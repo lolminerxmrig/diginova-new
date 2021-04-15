@@ -752,11 +752,11 @@
                                     <div class="c-wallet-modal__light-text c-wallet-modal__light-text--bold c-wallet--mb-25">
                                         انتقال موجودی و ورود به پنل
                                     </div>
-                                    <label class="c-wallet-modal__input-label" for="wallet-deposit-value">موجودی کیف پول شما در پنل {{ $site_name }} (ریال)</label>
+                                    <label class="c-wallet-modal__input-label" for="wallet-deposit-value">موجودی کیف پول شما در پنل {{ $fa_store_name }} (ریال)</label>
                                     <input id="wallet-deposit-value" class="c-wallet-modal__input-field js-wallet-credit" disabled="" type="text" name="wallet-deposit-value" value="">
 
                                     <div class="c-wallet-modal__dark-text c-ui--mt-10 js-empty-wallet-credit uk-hidden">
-                                        با توجه به اینکه کیف پول شما در پنل {{ $site_name }} فاقد موجودی است امکان انتقال موجودی به پنل بازاریابی کلیکی برای شما امکان پذیر نیست
+                                        با توجه به اینکه کیف پول شما در پنل {{ $fa_store_name }} فاقد موجودی است امکان انتقال موجودی به پنل بازاریابی کلیکی برای شما امکان پذیر نیست
                                     </div>
 
                                     <div class="js-wallet-has-credit uk-hidden">
@@ -824,7 +824,7 @@
                             </div>
                             <div class="c-wallet--mt-35 uk-flex uk-flex-center uk-margin-remove-bottom">
                                 <div class="c-wallet--small-item">
-                                    <label class="c-wallet-modal__input-label" for="wallet-advertising-deposit-value">انتقال یافته از کیف پول {{ $site_name }} (ریال)</label>
+                                    <label class="c-wallet-modal__input-label" for="wallet-advertising-deposit-value">انتقال یافته از کیف پول {{ $fa_store_name }} (ریال)</label>
                                     <input class="c-wallet-modal__input-field c-wallet-modal__input-field--small js-cpc-charged" name="wallet-advertising-deposit-value" type="text" value="" disabled="">
                                 </div>
                                 <div class="c-wallet--small-item c-ui--mr-10">
@@ -903,9 +903,9 @@
 
                         <h2 class="c-modal-notification__header">توجه!</h2>
                         <p class="c-modal-notification__text c-modal-notification__text--center">
-                            همانطور که مطلع هستید <em>فروش کالای غیر اصل به اسم کالای اصل در {{ $site_name }} اکیدا ممنوع است</em>. از شما تقاضا داریم نهایت دقت را در رعایت این قانون مبذول فرمایید.<br>
-                            در صورت فروش کالای غیر اصل، فروشنده موظف به <em>پرداخت جریمه‌ای معادل با 10 برابر کل درآمد حاصل از فروش کالای غیر اصل خواهد بود</em> و {{ $site_name }} مجاز به فسخ بلافاصله قرارداد همکاری با فروشنده می‌باشد.<br>
-                            امکان فروش کالای غیراصل فقط با شرط استفاده از <em>"نشان کالای غیراصل"</em> هنگام درج کالا وجود دارد. برای اطلاعات بیشتر مقاله <a target="_blank" href="https://selleracademy.digikala.com/%D9%81%D8%B1%D9%88%D8%B4-%DA%A9%D8%A7%D9%84%D8%A7%DB%8C-%D8%BA%DB%8C%D8%B1%D8%A7%D8%B5%D9%84-%D8%AF%D8%B1-%D8%AF%DB%8C%D8%AC%DB%8C%E2%80%8C%DA%A9%D8%A7%D9%84%D8%A7/">"شرایط فروش کالاهای های غیراصل در {{ $site_name }}"</a> را مطالعه کنید.
+                            همانطور که مطلع هستید <em>فروش کالای غیر اصل به اسم کالای اصل در {{ $fa_store_name }} اکیدا ممنوع است</em>. از شما تقاضا داریم نهایت دقت را در رعایت این قانون مبذول فرمایید.<br>
+                            در صورت فروش کالای غیر اصل، فروشنده موظف به <em>پرداخت جریمه‌ای معادل با 10 برابر کل درآمد حاصل از فروش کالای غیر اصل خواهد بود</em> و {{ $fa_store_name }} مجاز به فسخ بلافاصله قرارداد همکاری با فروشنده می‌باشد.<br>
+                            امکان فروش کالای غیراصل فقط با شرط استفاده از <em>"نشان کالای غیراصل"</em> هنگام درج کالا وجود دارد. برای اطلاعات بیشتر مقاله <a target="_blank" href="https://selleracademy.digikala.com/%D9%81%D8%B1%D9%88%D8%B4-%DA%A9%D8%A7%D9%84%D8%A7%DB%8C-%D8%BA%DB%8C%D8%B1%D8%A7%D8%B5%D9%84-%D8%AF%D8%B1-%D8%AF%DB%8C%D8%AC%DB%8C%E2%80%8C%DA%A9%D8%A7%D9%84%D8%A7/">"شرایط فروش کالاهای های غیراصل در {{ $fa_store_name }}"</a> را مطالعه کنید.
                         </p>
                     </div>
                 </div>

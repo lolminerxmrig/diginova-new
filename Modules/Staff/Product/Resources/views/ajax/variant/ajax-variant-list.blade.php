@@ -1,6 +1,6 @@
 @php
     $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
-    $site_name = $settings->where('name', 'site_name')->first()->value;
+    $fa_store_name = $settings->where('name', 'site_name')->first()->value;
 @endphp
 <div class="c-grid__row js-table-container">
     <div class="c-grid__col">
@@ -68,7 +68,7 @@
                             @endif
                             <td class="c-variation-diversity__code">{{ $product_variant->variant_code }}</td>
                             <td>
-                                <span>{{ ($product_variant->shipping_type == 'site')? $site_name : 'فروشنده'  }}</span>
+                                <span>{{ ($product_variant->shipping_type == 'site')? $fa_store_name : 'فروشنده'  }}</span>
                             </td>
                             <td class="status_lable">
                                 <center>
@@ -136,7 +136,7 @@
                                                         <label class="c-ui-checkbox c-ui-checkbox--gap-sm disabled">
                                                             <input type="checkbox" class="c-ui-checkbox__origin js-checkbox-group js-shipping-type-digikala" name="product_variant[shipping_type_digikala]" data-default-value="1" value="1" {{ ($product_variant->shipping_type == 'site')? 'checked' : '' }}>
                                                             <span class="c-ui-checkbox__check c-ui-checkbox__check--small"></span>
-                                                            <span class="c-ui-checkbox__label">{{ $site_name }}</span>
+                                                            <span class="c-ui-checkbox__label">{{ $fa_store_name }}</span>
                                                         </label>
                                                         <label class="c-ui-checkbox c-ui-checkbox--gap-sm disabled">
                                                             <input type="checkbox" class="c-ui-checkbox__origin js-checkbox-group js-shipping-type-seller" name="product_variant[shipping_type_seller]" data-default-value="0" value="1" disabled>

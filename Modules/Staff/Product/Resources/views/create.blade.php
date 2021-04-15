@@ -542,7 +542,7 @@
 @section('content')
 
 @php
-    $site_name = $settings->where('name', 'site_url')->first()->value;
+    $fa_store_name = $settings->where('name', 'site_url')->first()->value;
     $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
     $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
 @endphp
@@ -1198,7 +1198,7 @@
                                 <label class="uk-form-label uk-flex uk-flex-between">نامک پیشنهادی:</label>
                                 <div class="field-wrapper" style="margin-bottom: 15px;">
                                     <input type="text" class="c-content-input__origin c-ui-input--deactive url-inputs suggest_slug" name="suggest_slug" dir="ltr" disabled>
-                                    <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_name }}/product/{{ $product_code_prefix }}-code">
+                                    <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
                                 </div>
                             </div>
 
@@ -1206,7 +1206,7 @@
                                 <label class="uk-form-label uk-flex uk-flex-between">نامک:</label>
                                 <div class="field-wrapper" style="margin-bottom: 15px;">
                                     <input type="text" class="c-content-input__origin url-inputs" name="slug" dir="ltr">
-                                    <input type="button" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_name }}/product/{{ $product_code_prefix }}-code">
+                                    <input type="button" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
                                 </div>
                             </div>
 
@@ -1328,15 +1328,15 @@
                               {{--                                    <input type="radio" class="c-ui-radio__origin js-images-owner"--}}
                               {{--                                           name="images[who_will_upload]" value="0">--}}
                               {{--                                    <span class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
-                              {{--                                    <span class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط {{ $site_name }}</span>--}}
+                              {{--                                    <span class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط {{ $fa_store_name }}</span>--}}
                               {{--                                  </label>--}}
                               {{--                                </div>--}}
                               {{--                              </div>--}}
                               {{--                              <div class="hidden" id="imagesDKServiceContainer">--}}
                               {{--                                <div class="c-content-upload__digikala">--}}
-                              {{--                                  در صورتی که تمایل دارید عکاسی از محصول شما توسط {{ $site_name }} انجام شود، با کلیک بر روی--}}
+                              {{--                                  در صورتی که تمایل دارید عکاسی از محصول شما توسط {{ $fa_store_name }} انجام شود، با کلیک بر روی--}}
                               {{--                                  دکمه--}}
-                              {{--                                  به صفحه ارسال <span class="em">«درخواست عکاسی توسط {{ $site_name }}»</span>درخواست هدایت--}}
+                              {{--                                  به صفحه ارسال <span class="em">«درخواست عکاسی توسط {{ $fa_store_name }}»</span>درخواست هدایت--}}
                               {{--                                  می‌شوید. پس--}}
                               {{--                                  از تکمیل و ارسال فرم درخواست کارشناسان مربوطه در اسرع وقت با شما تماس خواهند گرفت.--}}
                               {{--                                  توجه--}}
@@ -1344,7 +1344,7 @@
                               {{--                                  نخواهد شد.--}}
                               {{--                                </div>--}}
                               {{--                                <a href="https://selleracademy.digikala.com/درخواست-عکاسی-از-کال/" target="_blank"--}}
-                              {{--                                   class="c-ui-btn c-ui-btn--success mb-30">درخواست عکاسی توسط {{ $site_name }}</a>--}}
+                              {{--                                   class="c-ui-btn c-ui-btn--success mb-30">درخواست عکاسی توسط {{ $fa_store_name }}</a>--}}
                               {{--                              </div>--}}
                               <div id="imagesSelfServiceContainer" class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col">

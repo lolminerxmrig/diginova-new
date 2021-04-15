@@ -1229,15 +1229,15 @@
                               {{--                                    <input type="radio" class="c-ui-radio__origin js-images-owner"--}}
                               {{--                                           name="images[who_will_upload]" value="0">--}}
                               {{--                                    <span class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
-                              {{--                                    <span class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط {{ $site_name }}</span>--}}
+                              {{--                                    <span class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط {{ $fa_store_name }}</span>--}}
                               {{--                                  </label>--}}
                               {{--                                </div>--}}
                               {{--                              </div>--}}
                               {{--                              <div class="hidden" id="imagesDKServiceContainer">--}}
                               {{--                                <div class="c-content-upload__digikala">--}}
-                              {{--                                  در صورتی که تمایل دارید عکاسی از محصول شما توسط {{ $site_name }} انجام شود، با کلیک بر روی--}}
+                              {{--                                  در صورتی که تمایل دارید عکاسی از محصول شما توسط {{ $fa_store_name }} انجام شود، با کلیک بر روی--}}
                               {{--                                  دکمه--}}
-                              {{--                                  به صفحه ارسال <span class="em">«درخواست عکاسی توسط {{ $site_name }}»</span>درخواست هدایت--}}
+                              {{--                                  به صفحه ارسال <span class="em">«درخواست عکاسی توسط {{ $fa_store_name }}»</span>درخواست هدایت--}}
                               {{--                                  می‌شوید. پس--}}
                               {{--                                  از تکمیل و ارسال فرم درخواست کارشناسان مربوطه در اسرع وقت با شما تماس خواهند گرفت.--}}
                               {{--                                  توجه--}}
@@ -1245,7 +1245,7 @@
                               {{--                                  نخواهد شد.--}}
                               {{--                                </div>--}}
                               {{--                                <a href="https://selleracademy.digikala.com/درخواست-عکاسی-از-کال/" target="_blank"--}}
-                              {{--                                   class="c-ui-btn c-ui-btn--success mb-30">درخواست عکاسی توسط {{ $site_name }}</a>--}}
+                              {{--                                   class="c-ui-btn c-ui-btn--success mb-30">درخواست عکاسی توسط {{ $fa_store_name }}</a>--}}
                               {{--                              </div>--}}
                               <div id="imagesSelfServiceContainer" class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col">
