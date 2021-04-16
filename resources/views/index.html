@@ -1,0 +1,17 @@
+$banner1 = \Modules\Staff\Slider\Models\Slider::find(2);
+$banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
+$banner3 = \Modules\Staff\Slider\Models\Slider::find(3);
+$banner4 = \Modules\Staff\Slider\Models\Slider::find(4);
+$slider1 = \Modules\Staff\Slider\Models\Slider::find(5);
+
+
+
+@if($banner2->images()->exists())
+<aside class="c-adplacement c-adplacement__margin-bottom">
+  <a href="" class="c-adplacement__item" target="_blank" title="سین مثل سوپرمارکت">
+    <img src="{{ ($banner2->images()->first()->media()->exists())?  $site_url . '/' . $banner2->images()->first()->media->first()->path . '/'. $banner2->images()->first()->media->first()->name : '' }}" alt="سین مثل سوپرمارکت" loading="lazy"/></a>
+</aside>
+@endif
+
+{{ ($banner2->images()->first()->media()->exists())?  $banner2->images()->first()->alt : '' }}
+

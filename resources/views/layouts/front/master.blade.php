@@ -1,3 +1,11 @@
+<?php
+  $banner1 = \Modules\Staff\Slider\Models\Slider::find(2);
+  $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
+  $banner3 = \Modules\Staff\Slider\Models\Slider::find(3);
+  $banner4 = \Modules\Staff\Slider\Models\Slider::find(4);
+  $slider1 = \Modules\Staff\Slider\Models\Slider::find(5);
+?>
+
 <!DOCTYPE html>
 <html class="" style="" dir="rtl">
 <head>
@@ -109,9 +117,13 @@
 </style>
 
 <header class="c-header js-header">
+
+  @if(\Modules\Staff\Slider\Models\Slider::find(1)->images()->exists())
   <aside class="c-adplacement c-adplacement__placeholder c-adplacement__container-row c-adplacement__container-row--top">
-    <a href="#" class="c-adplacement__item" target="_blank" style="background-image: url()" data-id="65530" title="انبارتکانی"></a>
+    <a href="#" class="c-adplacement__item" target="_blank" style="background-image: url({{ ($banner1->images()->first()->media()->exists())?  $site_url . '/' . $banner1->images()->first()->media->first()->path . '/'. $banner1->images()->first()->media->first()->name : '' }})" title="{{ ($banner2->images()->first()->media()->exists())?  $banner2->images()->first()->alt : '' }}"></a>
   </aside>
+  @endif
+
   <div class="container">
     <div class="c-header__row js-header-sticky">
       <div class="c-header__right-side">
@@ -6263,14 +6275,14 @@
                 </a></li>
             </ul>
           </li>
-          <li class="c-navi-new-list__categories">
-            <ul class="c-navi-new-list__category-item">
-              <li class="c-navi-new-list__category c-navi-new-list__category--location  js-general-location-bar">
-                <span class="c-navi-new-list__category-send-to">ارسال به </span>
-                <span class="c-navi-new-list__category-location">تهران، صفادشت</span>
-              </li>
-            </ul>
-          </li>
+{{--          <li class="c-navi-new-list__categories">--}}
+{{--            <ul class="c-navi-new-list__category-item">--}}
+{{--              <li class="c-navi-new-list__category c-navi-new-list__category--location  js-general-location-bar">--}}
+{{--                <span class="c-navi-new-list__category-send-to">ارسال به </span>--}}
+{{--                <span class="c-navi-new-list__category-location">تهران، صفادشت</span>--}}
+{{--              </li>--}}
+{{--            </ul>--}}
+{{--          </li>--}}
           <script>
             var insider_object = {
               "user": {
@@ -6285,8 +6297,7 @@
             };
           </script>
 
-          <input type="hidden"
-                 id="ESILogged" data-logged=0/>
+          <input type="hidden"  id="ESILogged" data-logged=0/>
 
         </ul>
       </div>
@@ -6352,14 +6363,15 @@
     <article class="container container--home">
       <div class="o-page">
         <div class="o-page__row o-page__row--main-top">
-          <aside class="c-adplacement c-adplacement__margin-bottom"><a
-              href="https://www.digikala.com/main/food-beverage/?&promo_name=%D8%B3%DB%8C%D9%86+%D9%85%D8%AB%D9%84+%D8%B3%D9%88%D9%BE%D8%B1%D9%85%D8%A7%D8%B1%DA%A9%D8%AA&promo_position=home_top_slider&promo_creative=65895&bCode=65895"
-              class="c-adplacement__item"
-              data-id="65895"
-              target="_blank"
-              title="سین مثل سوپرمارکت"><img
-                src="https://dkstatics-public.digikala.com/digikala-adservice-banners/f0945e8dce44e8e5ccc03e76f9a8c9335ba594f9_1615705561.jpg?x-oss-process=image/quality,q_80"
-                alt="سین مثل سوپرمارکت" loading="lazy"/></a></aside>
+
+          @if($banner2->images()->exists())
+            <aside class="c-adplacement c-adplacement__margin-bottom">
+              <a href="" class="c-adplacement__item" target="_blank" title="سین مثل سوپرمارکت">
+                <img src="{{ ($banner2->images()->first()->media()->exists())?  $site_url . '/' . $banner2->images()->first()->media->first()->path . '/'. $banner2->images()->first()->media->first()->name : '' }}" alt="{{ ($banner2->images()->first()->media()->exists())?  $banner2->images()->first()->alt : '' }}" loading="lazy"/></a>
+            </aside>
+          @endif
+
+
           <div class="o-page__two-thirds o-page__two-thirds--right">
             <section class="c-adplacement-head-slider c-adplacement-head-slider--home">
               <div class="c-swiper c-swiper--promo-box c-main-slider-container ">
@@ -6430,29 +6442,23 @@
             </section>
           </div>
           <div class="o-page__one-thirds o-page__one-thirds--left">
-            <aside class="c-adplacement c-adplacement__container-column"><a
-                href="https://www.digikala.com/product-list/plp_4108772/?&promo_name=%D8%A8%D9%87+%D8%B5%D8%B1%D9%81%D9%87+%D8%AA%D8%B1%DB%8C%D9%86+%D8%B3%D9%88%D9%BE%D8%B1%D9%85%D8%A7%D8%B1%DA%A9%D8%AA+%D8%B4%D9%87%D8%B1&promo_position=home_left_banner_top&promo_creative=66415&bCode=66415"
-                class="c-adplacement__item c-adplacement__item--column js-banner-impression-adro"
-                data-id="66415"
-                data-observed="0"
-                target="_blank"
-                data-is-trackable=""
-                title="به صرفه ترین سوپرمارکت شهر">
-                <div class="c-adplacement__sponsored_box"><img
-                    src="https://dkstatics-public.digikala.com/digikala-adservice-banners/d5abf2b03dd36e8bf2084365e64d2d2820865028_1616019548.jpg?x-oss-process=image/quality,q_80"
-                    alt="به صرفه ترین سوپرمارکت شهر" loading="lazy"/></div>
-              </a><a
-                href="https://www.digistyle.com/landings/nowruz/?utm_source=DIGIKALA&utm_medium=LftBnr&utm_campaign=Sale%20no%20%2C%20Style%20no&utm_content=Weekly%2023Esfand&promo_name=%D8%B3%D8%A7%D9%84+%D9%86%D9%88%D8%8C%D8%A7%D8%B3%D8%AA%D8%A7%DB%8C%D9%84+%D9%86%D9%88&promo_position=home_left_banner_bottom&promo_creative=65630&bCode=65630"
-                class="c-adplacement__item c-adplacement__item--column js-banner-impression-adro"
-                data-id="65630"
-                data-observed="0"
-                target="_blank"
-                data-is-trackable=""
-                title="سال نو،استایل نو">
-                <div class="c-adplacement__sponsored_box"><img
-                    src="https://dkstatics-public.digikala.com/digikala-adservice-banners/c88809ee50a6939350959308b882efeaa7e5d463_1615493439.jpg?x-oss-process=image/quality,q_80"
-                    alt="سال نو،استایل نو" loading="lazy"/></div>
-              </a></aside>
+            {{ dd($banner3->images()->first()) }}
+            <aside class="c-adplacement c-adplacement__container-column">
+              <a href="" class="c-adplacement__item c-adplacement__item--column js-banner-impression-adro"
+                data-id="66415" data-observed="0" target="_blank" data-is-trackable="" title="{{ ($banner3->images()->first()->media()->exists())?  $banner3->images()->first()->alt : '' }}">
+                <div class="c-adplacement__sponsored_box">
+                  <img src="{{ ($banner3->images()->first()->media()->exists())?  $site_url . '/' . $banner3->images()->first()->media->first()->path . '/'. $banner3->images()->first()->media->first()->name : '' }}" alt="{{ ($banner3->images()->first()->media()->exists())?  $banner3->images()->first()->alt : '' }}" loading="lazy"/></div>
+              </a>
+            </aside>
+
+            <aside class="c-adplacement c-adplacement__container-column">
+              <a href="" class="c-adplacement__item c-adplacement__item--column js-banner-impression-adro"
+                data-id="66415" data-observed="0" target="_blank" data-is-trackable="" title="{{ ($banner4->images()->first()->media()->exists())?  $banner4->images()->first()->alt : '' }}">
+                <div class="c-adplacement__sponsored_box">
+                  <img src="{{ ($banner4->images()->first()->media()->exists())?  $site_url . '/' . $banner4->images()->first()->media->first()->path . '/'. $banner4->images()->first()->media->first()->name : '' }}" alt="{{ ($banner4->images()->first()->media()->exists())?  $banner4->images()->first()->alt : '' }}" loading="lazy"/></div>
+              </a>
+            </aside>
+
           </div>
         </div>
       </div>

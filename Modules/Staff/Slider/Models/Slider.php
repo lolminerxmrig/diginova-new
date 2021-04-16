@@ -12,7 +12,7 @@ class Slider extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name', 'link', 'alt', 'status', 'group_id'];
+    protected $fillable = ['name', 'link', 'alt', 'status', 'group_id', 'en_name'];
 
     public function group()
     {

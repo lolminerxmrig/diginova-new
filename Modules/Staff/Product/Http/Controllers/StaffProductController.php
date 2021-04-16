@@ -229,7 +229,7 @@ class StaffProductController extends Controller
 
             $image = $request->file('files');
             foreach ($image as $files) {
-                $destinationPath = public_path('media/images/');
+                $destinationPath = public_path('media/products/images/');
                 $file_name = time() . rand(10000, 100000) . "." . $files->getClientOriginalExtension();
                 $files->move($destinationPath, $file_name);
                 $data[] = $file_name;
@@ -237,14 +237,14 @@ class StaffProductController extends Controller
 
                 $media = Media::create([
                     'name' => $file_name,
-                    'path' => 'media/images',
+                    'path' => 'media/products/images',
                     'person_id' => auth()->guard('staff')->user()->id,
                     'person_role' => 'staff',
                     'status' => 0,
                 ]);
             }
 
-            $path = env('APP_URL') . '/media/images/' . $file_name;
+            $path = env('APP_URL') . '/media/products/images/' . $file_name;
 
 
             $data = [

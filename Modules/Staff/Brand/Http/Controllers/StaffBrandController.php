@@ -171,11 +171,11 @@ class StaffBrandController extends Controller
         $imageSize = $request->file('image')->getSize();
 
         $input['image'] = time().'.'.$request->image->extension();
-        $request->image->move(public_path('media/images'), $input['image']);
+        $request->image->move(public_path('media/brands/images'), $input['image']);
 
         $media = Media::create([
             'name' => $input['image'],
-            'path' => 'media/images',
+            'path' => 'media/brands/images',
             'person_id' => auth()->guard('staff')->user()->id,
             'person_role' => 'staff',
         ]);
@@ -198,11 +198,11 @@ class StaffBrandController extends Controller
         $imageSize = $request->file('image')->getSize();
 
         $input['image'] = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('media/images'), $input['image']);
+        $request->image->move(public_path('media/brands/images'), $input['image']);
 
         $media = Media::create([
             'name' => $input['image'],
-            'path' => 'media/images',
+            'path' => 'media/brands/images',
             'person_id' => auth()->guard('staff')->user()->id,
             'person_role' => 'staff',
         ]);

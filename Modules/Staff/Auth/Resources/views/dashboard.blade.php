@@ -658,7 +658,7 @@
                           <img src="{{ asset('staff/icon/dashboard/setting.svg') }}">
                           تنظیمات
                         </a>
-                        <a href="{{ $site_url }}" class="c-profile-nav__menu-item">
+                        <a href="{{ $site_url }}" target="_blank" class="c-profile-nav__menu-item">
                           <img src="{{ asset('staff/icon/dashboard/store.svg') }}">
                           فروشگاه
                         </a>

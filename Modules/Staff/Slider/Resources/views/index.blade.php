@@ -72,11 +72,11 @@
                                                     </td>
                                                     <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
                                                         @if($slider_group->id == 1)
-                                                          <img src="{{ asset('staff/icon/HH.png') }}" width="85%" height="85%">
+                                                          <img src="{{ asset('staff/icon/Home1.png') }}" width="85%" height="85%">
                                                         @elseif(!is_null($slider_group->category_id))
-                                                          <img src="{{ asset('staff/icon/M.png') }}" width="85%" height="85%">
+                                                          <img src="{{ asset('staff/icon/Main.png') }}" width="85%" height="85%">
                                                         @elseif($slider_group->id == 2)
-                                                          <img src="{{ asset('staff/icon/HB.png') }}" width="85%" height="85%">
+                                                          <img src="{{ asset('staff/icon/Home2.png') }}" width="85%" height="85%">
                                                         @endif
                                                     </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">

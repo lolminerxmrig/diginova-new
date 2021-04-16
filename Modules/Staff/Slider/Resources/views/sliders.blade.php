@@ -117,7 +117,7 @@
                           </td>
 
                           <td class="c-ui-table__cell" style="min-width: 90px">
-                            <img src="{{ asset("staff/icon/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}" width="85%" height="85%">
+                            <img src="{{ asset("staff/icon/" . $slider->en_name . ".png") }}" width="85%" height="85%">
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
@@ -131,9 +131,6 @@
                                   {{ $slider->size . 'px' }}
                               </span>
                           </td>
-
-
-
 
                           <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;">
                             <input type="text" name="link" value="{{ ($slider->images()->exists())? $slider->images()->first()->link : '' }}" class="c-content-input__origin js-attribute-old-value link {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'c-ui-input--disabled' : '' }}" {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'disabled' : '' }}>

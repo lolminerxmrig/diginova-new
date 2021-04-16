@@ -824,7 +824,7 @@
                             <div class="c-form">
                                 <label class="c-RD-profile__input-name" for="index_meta_keywords">کلمات کلیدی: (meta keywords)</label>
                                 <div class="c-ui-input">
-                                  <input class="form-control tagify" name="index_meta_keywords" value="{{ $settings->where('name', 'index_meta_keywords')->first()->value }}" autofocus="" style="background: white !important; border-color:#e6e9ed!important; width: 100% !important;">
+                                  <input class="form-control tagify" name="index_meta_keywords" value="{{ $settings->where('name', 'index_meta_keywords')->first()->value }}" style="background: white !important; border-color:#e6e9ed!important; width: 100% !important;">
                                 </div>
                             </div>
                           </div>
@@ -864,7 +864,7 @@
                           <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
                             <span style="display: block;">لوگو هدر سایت</span>
                             <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 110x30px</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">اندازه استاندارد: png, svg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg</span>
                           </div>
                         </div>
 
@@ -898,7 +898,7 @@
                           <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
                             <span style="display: block;">فاوآیکون</span>
                             <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 96x96px</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">اندازه استاندارد: png, svg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg</span>
                           </div>
                         </div>
 
@@ -930,7 +930,7 @@
                           </div>
                           <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
                             <span style="display: block;">نماد فروشگاه در صفحه محصول</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 24x24px</span><span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">اندازه استاندارد: png, svg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 24x24px</span><span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg</span>
                           </div>
                         </div>
 
@@ -2132,7 +2132,7 @@
                         <div class="c-grid__row">
                           <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                             <div class="c-form">
-                              <label class="c-RD-profile__input-name" for="invoice_company_fax_phone">تلفن و فکس:</label>
+                              <label class="c-RD-profile__input-name" for="invoice_company_fax_phone">تلفن:</label>
                               <div class="c-ui-input ">
                                 <input type="text" name="invoice_company_fax_phone" value="{{ $settings->where('name', 'invoice_company_fax_phone')->first()->value }}" class="c-ui-input__field c-ui-input__RD-field">
                               </div>
@@ -2194,7 +2194,7 @@
                               </span>
 
                             <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 600x300px</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">اندازه استاندارد: png, svg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg</span>
 
                           </div>
                         </div>
