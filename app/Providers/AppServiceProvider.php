@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
             view()->share('site_title', $settings->where('name', 'site_title')->first()->value);
             view()->share('description', $settings->where('name', 'index_meta_description')->first()->value);
             view()->share('index_meta_keywords', $settings->where('name', 'index_meta_keywords')->first()->value);
+            view()->share('site_index_status', $settings->where('name', 'site_index_status')->first()->value);
 
             view()->share('header_logo', count($settings->where('name', 'header_logo')->first()->media) ? $settings->where('name', 'header_logo')->first()->media()->first() : null);
             view()->share('favicon_image', count($settings->where('name', 'favicon_image')->first()->media) ? $settings->where('name', 'favicon_image')->first()->media()->first() : null);

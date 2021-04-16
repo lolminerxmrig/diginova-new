@@ -99,4 +99,14 @@ function getState($id)
 
 }
 
+function getSingleImage($model)
+{
+  if($model->images()->first()->media()->exists())
+  {
+    return $output = $site_url . '/' . $model->images()->first()->media->first()->path . '/'. $model->images()->first()->media->first()->name;
+  }
+  return null;
+}
+
+
 
