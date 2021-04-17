@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="c-login__email-info-image">
-        <img alt="DIGIKALA.COM" src="{{ asset('assets/images/login-logo.svg') }}">
+        <img alt="DIGIKALA.COM" src="{{ asset('assets/login-logo.svg') }}">
     </div>
 
     <div class="c-login__email-info-header">

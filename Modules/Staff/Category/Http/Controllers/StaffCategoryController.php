@@ -172,11 +172,11 @@ class StaffCategoryController extends Controller
         $imageExtension = $request->file('image')->extension();
 
         $input['image'] = time() . '.' . $imageExtension;
-        $request->file('image')->move(public_path('media/categories/images'), $input['image']);
+        $request->file('image')->move(public_path('media/categories'), $input['image']);
 
         $media = Media::create([
             'name' => $input['image'],
-            'path' => 'media/categories/images',
+            'path' => 'media/categories',
             'person_id' => auth()->guard('staff')->user()->id,
             'person_role' => 'staff' ,
         ]);
@@ -198,11 +198,11 @@ class StaffCategoryController extends Controller
         $imageSize = $request->file('image')->getSize();
 
         $input['image'] = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('media/categories/images'), $input['image']);
+        $request->image->move(public_path('media/categories'), $input['image']);
 
         $media = Media::create([
             'name' => $input['image'],
-            'path' => 'media/categories/images',
+            'path' => 'media/categories',
             'person_id' => auth()->guard('staff')->user()->id,
             'person_role' => 'staff',
         ]);

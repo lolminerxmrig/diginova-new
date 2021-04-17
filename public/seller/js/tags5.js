@@ -2920,7 +2920,7 @@ let IndexAction = {
         let $uploadGalleryContainer = $('#uploadGalleryContainer');
 
         window.UIkit.upload($uploadGalleryContainer, {
-            url: '/products/create/step/images/upload/images',
+            url: '/products/create/step/upload',
             multiple: true,
             concurrent: 1,
             beforeSend: function (environment) {
@@ -3057,7 +3057,7 @@ let IndexAction = {
         let $uploadsItem;
 
         window.UIkit.upload($this, {
-            url: '/content/create/product/step/images/upload/images3d/',
+            url: '/content/create/product/step/upload3d/',
             beforeSend: function (environment) {
                 $that.data.fileRequests = environment.xhr;
             },

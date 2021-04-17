@@ -604,19 +604,19 @@
   <meta name="robots" content="noindex, nofollow">
 
 
-  <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/images/icons/iphone-pwa-icon-57.png') }} ">
-  <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/images/icons/iphone-pwa-icon-60.png') }} ">
-  <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/images/icons/iphone-pwa-icon-72.png') }} ">
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/images/icons/iphone-pwa-icon-76.png') }} ">
-  <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/images/icons/iphone-pwa-icon-114.png') }} ">
-  <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/images/icons/iphone-pwa-icon-120.png') }} ">
-  <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/images/icons/iphone-pwa-icon-144.png') }} ">
-  <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/images/icons/iphone-pwa-icon-152.png') }} ">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/icons/iphone-pwa-icon-180.png') }} ">
-  <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/icons/android-icon-192x192.png') }} ">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/icons/favicon-32x32.png') }} ">
-  <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/images/icons/favicon-96x96.png') }} ">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/icons/favicon-16x16.png') }} ">
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/icons/iphone-pwa-icon-57.png') }} ">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/icons/iphone-pwa-icon-60.png') }} ">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/icons/iphone-pwa-icon-72.png') }} ">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/icons/iphone-pwa-icon-76.png') }} ">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/icons/iphone-pwa-icon-114.png') }} ">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/icons/iphone-pwa-icon-120.png') }} ">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/icons/iphone-pwa-icon-144.png') }} ">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/icons/iphone-pwa-icon-152.png') }} ">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/icons/iphone-pwa-icon-180.png') }} ">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/icons/android-icon-192x192.png') }} ">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/icons/favicon-32x32.png') }} ">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/icons/favicon-96x96.png') }} ">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/icons/favicon-16x16.png') }} ">
 
   <link rel="manifest" href="/manifest.json?v=1.4">
   <meta name="msapplication-TileColor" content="#ffffff">

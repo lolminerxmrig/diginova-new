@@ -26,7 +26,7 @@ Route::domain('staff.diginova.test')->prefix('slider-groups')->name('staff.slide
     Route::get('slider/{id}', [StaffSliderController::class, 'slider'])
       ->name('slider');
 
-    Route::get('slider/{id}/images', [StaffSliderController::class, 'sliderImages'])
+    Route::get('slider/{id}', [StaffSliderController::class, 'sliderImages'])
       ->name('sliderImages');
 
     Route::post('custom-ajax-upload', [StaffSliderController::class, 'customUploadImage'])
