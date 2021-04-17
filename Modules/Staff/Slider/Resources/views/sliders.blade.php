@@ -164,7 +164,7 @@
 
                                   <a href="{{ ($slider->images()->exists() && $slider->images->first()->media()->exists())? $site_url . '/' . $slider->images()->first()->media->first()->path . '/'. $slider->images()->first()->media->first()->name : '' }}"
                                      class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;">
-                                  <span data-tooltip-body="" style="min-height:20px; width: auto;">شاهده تصویر</span>
+                                  <span data-tooltip-body="" style="min-height:20px; width: auto;">مشاهده تصویر</span>
                                 </a>
 
                               @else

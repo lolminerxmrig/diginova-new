@@ -1,9 +1,5 @@
 <?php
   $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
-  $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
-  $banner3 = \Modules\Staff\Slider\Models\Slider::find(3);
-  $banner4 = \Modules\Staff\Slider\Models\Slider::find(4);
-  $slider1 = \Modules\Staff\Slider\Models\Slider::find(5);
 ?>
 <!DOCTYPE html>
 <html dir="rtl">
@@ -52,7 +48,10 @@
   <!-- page js variables -->
   <script src="{{ asset('assets/js/sentry.js') }} "></script>
   <script src="{{ asset('assets/js/indexAction.js') }} "></script>
+
   <style>
+
+
     @media screen and (-ms-high-contrast: none) {
       .c-shipment-page__to-payment-sticky, .c-checkout__to-shipping-sticky {
         position: relative !important;
@@ -73,6 +72,9 @@
         position: relative !important;
       }
     }
+
+
+
   </style>
 
 </head>
@@ -82,7 +84,7 @@
 
 <header class="c-header js-header">
 
-  @if(\Modules\Staff\Slider\Models\Slider::find(1)->images()->exists())
+  @if($banner1->images()->exists() && $banner1->images()->first()->media()->exists())
   <aside class="c-adplacement c-adplacement__placeholder c-adplacement__container-row c-adplacement__container-row--top">
     <a href="#" class="c-adplacement__item" target="_blank" style="background-image: url({{ ($banner1->images()->first()->media()->exists())?  $site_url . '/' . $banner1->images()->first()->media->first()->path . '/'. $banner1->images()->first()->media->first()->name : '' }})" title="{{ ($banner2->images()->first()->media()->exists())?  $banner2->images()->first()->alt : '' }}"></a>
   </aside>

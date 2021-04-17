@@ -585,7 +585,8 @@
 </head>
 <body class="t-index" style="" cz-shortcut-listen="true">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJWK7Z7"
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJWK7Z7"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <style>
@@ -3256,37 +3257,15 @@
 <main id="main">
     <div id="HomePageTopBanner"></div>
     <div id="content">
-{{--        <script type="text/html" id="emarsys-template"><![CDATA[--}}
-{{--            {{ if (SC.page.products.length) { }}--}}
-{{--            <div class="swiper-container swiper-container-horizontal js-swiper-emarsys js-snt-carousel" data-snt-carousel-length="{{= SC.page.products.length }}"><div class="swiper-wrapper">--}}
-{{--                    {{ for (var loopIndex=0; loopIndex< SC.page.products.length; loopIndex++) { }}--}}
-{{--                    {{ var p = SC.page.products[loopIndex]; }}--}}
-{{--                    <div class="swiper-slide" data-carousel="{{= SC.recommender.container.id}}" data-id="{{= p.id }}"><a  data-snt-event="dkRecommendationClick"--}}
-{{--                                                                                                                          data-snt-params='{"type":"carousel","item":"product-click","item_option":"{{= p.id }}"}'--}}
-{{--                                                                                                                          class="c-product-box js-url js-snt-carousel_product" data-scarabitem="{{= p.id }}" data-snt-position="{{= loopIndex+1 }}" title="{{=  p.title}}" href="{{= p.link.replace('http://www.digikala.com/', '/').replace('https://www.digikala.com/', '/').toLowerCase() }}"><span class="c-product-box__img"><img alt="{{=  p.title }}" width="350" src="{{= p.image.replace('http://', '//').replace('/120/', '/220/') }}" class="swiper-lazy">--}}
-{{--                                 {{if(p.c_fast_shopping_badge){}}--}}
-{{--                                     <img class="c-product-box__fmcg-symbol js-fresh-badge" src="/fresh-badge.svg">--}}
-{{--                                 {{ } }}--}}
-{{--                             </span><span class="c-product-box__title">{{= p.title.substr(0, 50) + (p.title.length > 50 ? '...' : '') }}</span><div class="c-product-box__price-row"><div class="c-product-box__price-item"><div class="c-new-price"><div class="c-new-price__old-value">--}}
-{{--                                            {{ if (p.msrp  > p.price) { }}--}}
-{{--                                            <del>{{= Emarsys.convertToFaDigit(Emarsys.formatCurrency(p.msrp, false, '' ))}}</del><span class="c-new-price__discount">{{= Emarsys.convertToFaDigit(Math.round((p.msrp - p.price) / p.msrp * 100) + '') }}٪</span>--}}
-{{--                                            {{ } }}--}}
-{{--                                        </div><div class="c-new-price__value">--}}
-{{--                                            {{= Emarsys.convertToFaDigit(Emarsys.formatCurrency(p.price, false, '' ))}}--}}
-{{--                                            <span class="c-new-price__currency">تومان</span></div></div></div></div></a></div>--}}
-{{--                    {{ } }}--}}
-{{--                </div><div data-snt-event="dkRecommendationClick"--}}
-{{--                           data-snt-params='{"type":"carousel","item":"nav-click","item_option":"right"}'--}}
-{{--                           class="swiper-button-prev js-swiper-button-prev"></div><div data-snt-event="dkRecommendationClick"--}}
-{{--                                                                                       data-snt-params='{"type":"carousel","item":"nav-click","item_option":"right"}'--}}
-{{--                                                                                       class="swiper-button-next js-swiper-button-next"></div></div>--}}
-{{--            {{ } }}--}}
-
-{{--            ]]>--}}
-{{--        </script>--}}
         <article class="container container--home">
             <div class="o-page">
+              <aside class="c-adplacement c-adplacement__margin-bottom">
+                <a href="https://www.digikala.com/main/food-beverage/?&promo_name=%D8%B3%DB%8C%D9%86+%D9%85%D8%AB%D9%84+%D8%B3%D9%88%D9%BE%D8%B1%D9%85%D8%A7%D8%B1%DA%A9%D8%AA&promo_position=home_top_slider&promo_creative=65895&bCode=65895" class="c-adplacement__item" target="_blank" title="سین مثل سوپرمارکت">
+                  <img src="https://dkstatics-public.digikala.com/digikala-adservice-banners/f0945e8dce44e8e5ccc03e76f9a8c9335ba594f9_1615705561.jpg?x-oss-process=image/quality,q_80" alt="سین مثل سوپرمارکت" loading="lazy"/>
+                </a>
+              </aside>
                 <div class="o-page__row o-page__row--main-top">
+
                     <div class="o-page__two-thirds o-page__two-thirds--right">
                         <section class="c-adplacement-head-slider c-adplacement-head-slider--home">
                             <div class="c-swiper c-swiper--promo-box c-main-slider-container ">

@@ -1,9 +1,13 @@
 @php
-  $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
   $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
   $banner3 = \Modules\Staff\Slider\Models\Slider::find(3);
   $banner4 = \Modules\Staff\Slider\Models\Slider::find(4);
   $slider1 = \Modules\Staff\Slider\Models\Slider::find(5);
+  $bannerGroup1 = \Modules\Staff\Slider\Models\Slider::find(6);
+  $bannerGroup2 = \Modules\Staff\Slider\Models\Slider::find(7);
+  $bannerGroup3 = \Modules\Staff\Slider\Models\Slider::find(8);
+  $bannerGroup4 = \Modules\Staff\Slider\Models\Slider::find(9);
+  $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
 @endphp
 
 @extends('layouts.front.master')
@@ -28,12 +32,12 @@
   </script>
 
   <style>
-      .c-header__logo-img {
-        background: url({{ !is_null($header_logo)? $site_url . '/' . $header_logo->path . '/'. $header_logo->name : '' }}) {{ is_null($header_logo)? 'unset !important;' : 'no-repeat 50%;' }} !important;
+    .c-header__logo-img {
+      background: url({{ !is_null($header_logo)? $site_url . '/' . $header_logo->path . '/'. $header_logo->name : '' }}) {{ is_null($header_logo)? 'unset !important;' : 'no-repeat 50%;' }} !important;
 
-        {{--background: unset !important;--}}
-        {{--background: url({{ !is_null($header_logo)? $site_url . '/' . $header_logo->path . '/'. $header_logo->name : '' }}) no-repeat 50%;--}}
-      }
+    {{--background: unset !important;--}}
+  {{--background: url({{ !is_null($header_logo)? $site_url . '/' . $header_logo->path . '/'. $header_logo->name : '' }}) no-repeat 50%;--}}
+  }
   </style>
 @endsection
 
@@ -42,146 +46,62 @@
     <div id="HomePageTopBanner"></div>
     <div id="content">
 
-      {{--    <script type="text/html" id="emarsys-template"><![CDATA[--}}
-
-      {{--      {{ if (SC.page.products.length) { }}--}}
-      {{--      <div class="swiper-container swiper-container-horizontal js-swiper-emarsys js-snt-carousel"--}}
-      {{--           data-snt-carousel-length="{{= SC.page.products.length }}">--}}
-      {{--        <div class="swiper-wrapper">--}}
-      {{--          {{ for (var loopIndex=0; loopIndex< SC.page.products.length; loopIndex++) { }}--}}
-      {{--          {{ var p = SC.page.products[loopIndex]; }}--}}
-      {{--          <div class="swiper-slide" data-carousel="{{= SC.recommender.container.id}}" data-id="{{= p.id }}"><a--}}
-      {{--              data-snt-event="dkRecommendationClick"--}}
-      {{--              data-snt-params='{"type":"carousel","item":"product-click","item_option":"{{= p.id }}"}'--}}
-      {{--              class="c-product-box js-url js-snt-carousel_product" data-scarabitem="{{= p.id }}"--}}
-      {{--              data-snt-position="{{= loopIndex+1 }}" title="{{=  p.title}}"--}}
-      {{--              href="{{= p.link.replace('http://www.digikala.com/', '/').replace('https://www.digikala.com/', '/').toLowerCase() }}"><span--}}
-      {{--                class="c-product-box__img"><img alt="{{=  p.title }}" width="350"--}}
-      {{--                                                src="{{= p.image.replace('http://', '//').replace('/120/', '/220/') }}"--}}
-      {{--                                                class="swiper-lazy">--}}
-      {{--                                    {{if(p.c_fast_shopping_badge){}}--}}
-      {{--                                        <img class="c-product-box__fmcg-symbol js-fresh-badge" src="/fresh-badge.svg">--}}
-      {{--                                    {{ } }}--}}
-      {{--                                </span><span--}}
-      {{--                class="c-product-box__title">{{= p.title.substr(0, 50) + (p.title.length > 50 ? '...' : '') }}</span>--}}
-      {{--              <div class="c-product-box__price-row">--}}
-      {{--                <div class="c-product-box__price-item">--}}
-      {{--                  <div class="c-new-price">--}}
-      {{--                    <div class="c-new-price__old-value">--}}
-      {{--                      {{ if (p.msrp  > p.price) { }}--}}
-      {{--                      <del>{{= Emarsys.convertToFaDigit(Emarsys.formatCurrency(p.msrp, false, '' ))}}</del>--}}
-      {{--                      <span class="c-new-price__discount">{{= Emarsys.convertToFaDigit(Math.round((p.msrp - p.price) / p.msrp * 100) + '') }}٪</span>--}}
-      {{--                      {{ } }}--}}
-      {{--                    </div>--}}
-      {{--                    <div class="c-new-price__value">--}}
-      {{--                      {{= Emarsys.convertToFaDigit(Emarsys.formatCurrency(p.price, false, '' ))}}--}}
-      {{--                      <span class="c-new-price__currency">تومان</span></div>--}}
-      {{--                  </div>--}}
-      {{--                </div>--}}
-      {{--              </div>--}}
-      {{--            </a></div>--}}
-      {{--          {{ } }}--}}
-      {{--        </div>--}}
-      {{--        <div data-snt-event="dkRecommendationClick"--}}
-      {{--             data-snt-params='{"type":"carousel","item":"nav-click","item_option":"right"}'--}}
-      {{--             class="swiper-button-prev js-swiper-button-prev"></div>--}}
-      {{--        <div data-snt-event="dkRecommendationClick"--}}
-      {{--             data-snt-params='{"type":"carousel","item":"nav-click","item_option":"right"}'--}}
-      {{--             class="swiper-button-next js-swiper-button-next"></div>--}}
-      {{--      </div>--}}
-      {{--      {{ } }}--}}
-
-      {{--      ]]></script>--}}
-
       <article class="container container--home">
         <div class="o-page">
           <div class="o-page__row o-page__row--main-top">
+
+            <aside class="c-adplacement c-adplacement__margin-bottom">
+              @if($banner2->images()->exists() && $banner2->images()->first()->media()->exists())
+                <a href="{{ $banner2->images()->first()->link }}" class="c-adplacement__item" target="_blank" title="{{ $banner2->images()->first()->alt }}">
+                  <img src="{{ ($banner2->images()->first()->media()->exists())?  $site_url . '/' . $banner2->images()->first()->media->first()->path . '/'. $banner2->images()->first()->media->first()->name : '' }}" alt="{{ ($banner2->images()->first()->media()->exists())?  $banner2->images()->first()->alt : '' }}" loading="lazy"/>
+                </a>
+              @endif
+            </aside>
+
             <div class="o-page__two-thirds o-page__two-thirds--right">
               <section class="c-adplacement-head-slider c-adplacement-head-slider--home">
                 <div class="c-swiper c-swiper--promo-box c-main-slider-container ">
-                  <div class="swiper-container swiper-container-horizontal js-main-page-slider">
-                    <div class="swiper-wrapper dkms-placement-slider c-adplacement" data-dkms="1"><a
-                        href="https://www.digikala.com/?ref=nav_logo&promo_name=%D8%AA%D8%A8%D8%B1%DB%8C%DA%A9+%D8%B3%D8%A7%D9%84+%D9%86%D9%88&promo_position=home_slider_new&promo_creative=66475&bCode=66475"
-                        class="c-main-slider__slide swiper-slide js-main-page-slider-image"
-                        title="تبریک سال نو"
-                        data-id="66475"
-                        data-is-trackable=""
-                        target="_blank"
-                        style="background-image: url('https://dkstatics-public.digikala.com/digikala-adservice-banners/52640feb5c611727f7bd6aeab8843ed39825edb3_1616094457.jpg?x-oss-process=image/quality,q_80')"></a><a
-                        href="https://www.digikala.com/product-list/plp_4077788/?has_ship_by_seller=1&pageno=1&sortby=4&promo_name=%DA%A9%D8%AF+%D8%AA%D8%AE%D9%81%DB%8C%D9%81+%D8%A7%D8%B1%D8%B3%D8%A7%D9%84+%D8%AA%D9%88%D8%B3%D8%B7+%D9%81%D8%B1%D9%88%D8%B4%D9%86%D8%AF%D9%87&promo_position=home_slider_new&promo_creative=61210&bCode=61210"
-                        class="c-main-slider__slide swiper-slide js-main-page-slider-image"
-                        title="کد تخفیف ارسال توسط فروشنده"
-                        data-id="61210"
-                        data-is-trackable=""
-                        target="_blank"
-                        style="background-image: url('https://dkstatics-public.digikala.com/digikala-adservice-banners/2a97987d206ff5d27414b28a2e69a593e97d4a3f_1616015161.jpg?x-oss-process=image/quality,q_80')"></a><a
-                        href="https://www.digikala.com/landings/stock-clearance/?&promo_name=%D8%A7%D9%86%D8%A8%D8%A7%D8%B1%D8%AA%DA%A9%D8%A7%D9%86%DB%8C&promo_position=home_slider_new&promo_creative=65528&bCode=65528"
-                        class="c-main-slider__slide swiper-slide js-main-page-slider-image"
-                        title="انبارتکانی"
-                        data-id="65528"
-                        data-is-trackable=""
-                        target="_blank"
-                        style="background-image: url('https://dkstatics-public.digikala.com/digikala-adservice-banners/374b1f4091eb6f61a5bee8f2cd98564a8bd80737_1615896748.jpg?x-oss-process=image/quality,q_80')"></a><a
-                        href="https://www.digikala.com/users/referral/?&promo_name=%D8%AF%D8%B9%D9%88%D8%AA+%D9%BE%D8%B1+%D8%AC%D8%A7%DB%8C%D8%B2%D9%87&promo_position=home_top_slider&promo_creative=60843&bCode=60843"
-                        class="c-main-slider__slide swiper-slide js-main-page-slider-image"
-                        title="دعوت پر جایزه"
-                        data-id="60843"
-                        data-is-trackable=""
-                        target="_blank"
-                        style="background-image: url('https://dkstatics-public.digikala.com/digikala-adservice-banners/3288a90d81389270095e95c992fc13ed08fc61e2_1614148977.jpg?x-oss-process=image/quality,q_80')"></a><a
-                        href="https://www.digikala.com/search/category-digikala-gift-card/?price[min]=20000&price[max]=557001&pageno=1&sortby=4&promo_name=%DA%A9%D8%A7%D8%B1%D8%AA+%D9%87%D8%AF%DB%8C%D9%87&promo_position=home_slider_new&promo_creative=65927&bCode=65927"
-                        class="c-main-slider__slide swiper-slide js-main-page-slider-image"
-                        title="کارت هدیه"
-                        data-id="65927"
-                        data-is-trackable=""
-                        target="_blank"
-                        style="background-image: url('https://dkstatics-public.digikala.com/digikala-adservice-banners/d5390395972a5ed826cdc34cf799b663ae581859_1615738577.jpg?x-oss-process=image/quality,q_80')"></a><a
-                        href="https://www.digikala.com/product/dkp-3940558/?&promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%B4%D8%A7%D8%AA%D9%84&promo_position=home_slider_new&promo_creative=66000&bCode=66000"
-                        class="c-main-slider__slide swiper-slide js-main-page-slider-image"
-                        title="پارتنرشیپ - شاتل"
-                        data-id="66000"
-                        data-is-trackable=""
-                        target="_blank"
-                        style="background-image: url('https://dkstatics-public.digikala.com/digikala-adservice-banners/520a49df9a41a7da2e718f1566f2cb55d0c394f1_1615726035.jpg?x-oss-process=image/quality,q_80')"></a><a
-                        href="https://www.digikala.com/brand/pril/?category[0]=6920&has_selling_stock=1&seller_condition[0]=digikala&pageno=1&last_filter=seller_condition&last_value=digikala&sortby=1&promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%BE%D8%B1%DB%8C%D9%84&promo_position=home_slider_new&promo_creative=66089&bCode=66089"
-                        class="c-main-slider__slide swiper-slide js-main-page-slider-image"
-                        title="پارتنرشیپ - پریل"
-                        data-id="66089"
-                        data-is-trackable=""
-                        target="_blank"
-                        style="background-image: url('https://dkstatics-public.digikala.com/digikala-adservice-banners/4380509862f69c20c2c968dd1d28418cb6a34f5e_1615743314.jpg?x-oss-process=image/quality,q_80')"></a><a
-                        href="https://www.digikala.com/product-list/plp_3735666/?&promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%B4%D8%A7%D9%88%D9%85%D8%A7&promo_position=home_slider_new&promo_creative=66180&bCode=66180"
-                        class="c-main-slider__slide swiper-slide js-main-page-slider-image"
-                        title="پارتنرشیپ - شاوما"
-                        data-id="66180"
-                        data-is-trackable=""
-                        target="_blank"
-                        style="background-image: url('https://dkstatics-public.digikala.com/digikala-adservice-banners/6c43546b54ca1b271c16d5aae1cec93dae3592ec_1615807848.jpg?x-oss-process=image/quality,q_80')"></a>
+                  <div class="swiper-container swiper-container-horizontal js-main-page-slider swiper-container-fade swiper-container-rtl">
+                    <div class="swiper-wrapper dkms-placement-slider c-adplacement" style="transition-duration: 0ms;">
+                      @if($slider1->images()->exists() && $slider1->images()->first()->media()->exists())
+                        @foreach($slider1->images as $image)
+                          <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="c-main-slider__slide swiper-slide js-main-page-slider-image" title="{{ ($image->media()->exists())? $image->alt : '' }}" data-is-trackable="" target="_blank" style="background-image: url({{ $site_url . '/' . $image->media->first()->path . '/'. $image->media->first()->name }}); width: 875px; transition-duration: 0ms; opacity: 1; transform: translate3d(1750px, 0px, 0px);"></a>
+                        @endforeach
+                      @endif
                     </div>
-                    <div class="swiper-pagination c-main-slider__actions"></div>
+                    <div class="swiper-pagination c-main-slider__actions swiper-pagination-clickable swiper-pagination-bullets">
+                    </div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                   </div>
                 </div>
               </section>
             </div>
+
             <div class="o-page__one-thirds o-page__one-thirds--left">
-              <aside class="c-adplacement c-adplacement__margin-bottom">
+              <aside class="c-adplacement c-adplacement__container-column">
                 @if($banner3->images()->exists() && $banner3->images()->first()->media()->exists())
-                  <a href="" class="c-adplacement__item" target="_blank" title="سین مثل سوپرمارکت">
-                    <img src="{{ ($banner3->images()->first()->media()->exists())?  $site_url . '/' . $banner3->images()->first()->media->first()->path . '/'. $banner2->images()->first()->media->first()->name : '' }}" alt="{{ ($banner3->images()->first()->media()->exists())?  $banner3->images()->first()->alt : '' }}" loading="lazy"/>
+                  <a href="{{ $banner3->images()->first()->link }}" class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column" target="_blank" data-is-trackable="" title="{{ $banner3->images()->first()->alt }}">
+                    <div class="c-adplacement__sponsored_box">
+                      <img src="{{ ($banner3->images()->first()->media()->exists())?  $site_url . '/' . $banner3->images()->first()->media->first()->path . '/'. $banner3->images()->first()->media->first()->name : '' }}" alt="{{ ($banner3->images()->first()->media()->exists())?  $banner3->images()->first()->alt : '' }}" loading="lazy"/>
+                    </div>
                   </a>
                 @endif
                 @if($banner4->images()->exists() && $banner4->images()->first()->media()->exists())
-                  <a href="" class="c-adplacement__item" target="_blank" title="سین مثل سوپرمارکت">
-                    <img src="{{ ($banner4->images()->first()->media()->exists())?  $site_url . '/' . $banner4->images()->first()->media->first()->path . '/'. $banner4->images()->first()->media->first()->name : '' }}" alt="{{ ($banner4->images()->first()->media()->exists())?  $banner4->images()->first()->alt : '' }}" loading="lazy"/>
+                  <a href="{{ $banner4->images()->first()->link }}" class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column" target="_blank" data-is-trackable="" title="{{ $banner4->images()->first()->alt }}">
+                    <div class="c-adplacement__sponsored_box">
+                      <img src="{{ ($banner4->images()->first()->media()->exists())?  $site_url . '/' . $banner4->images()->first()->media->first()->path . '/'. $banner4->images()->first()->media->first()->name : '' }}" alt="{{ ($banner4->images()->first()->media()->exists())?  $banner4->images()->first()->alt : '' }}" loading="lazy"/>
+                    </div>
                   </a>
                 @endif
               </aside>
             </div>
+
           </div>
         </div>
       </article>
+
+
       <script>
         var carouselDataTracker = {
           "carouselPosition": "INCREDIBLE-OFFER",
@@ -987,51 +907,17 @@
       <article class="container container--home">
         <div class="o-page">
           <div class="o-page__row"></div>
-          <aside class="c-adplacement c-adplacement__container-row"><a
-              href="https://www.digistyle.com/plp/plp_4050380/?sortby=26&utm_source=DIGIKALA&utm_medium=TypeA&utm_campaign=Foroush%20vije&promo_name=%D8%A8%DB%8C%D8%B4%D8%AA%D8%B1%DB%8C%D9%86+%D8%AA%D8%AE%D9%81%DB%8C%D9%81+%D9%87%D8%A7%DB%8C+%D8%A8%D9%87%D8%A7%D8%B1%DB%8C+%D8%AF%DB%8C%D8%AC%DB%8C+%D8%A7%D8%B3%D8%AA%D8%A7%DB%8C%D9%84&promo_position=home_top&promo_creative=66005&bCode=66005"
-              class="c-adplacement__item js-banner-impression-adro"
-              data-id="66005"
-              data-observed="0"
-              target="_blank"
-              data-is-trackable=""
-              title="بیشترین تخفیف های بهاری دیجی استایل">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/4d63d2f3a2d3580ff9b7250614a63948c4998192_1615731689.gif"
-                  alt="بیشترین تخفیف های بهاری دیجی استایل" loading="lazy"/></div>
-            </a><a
-              href="https://fidibo.com/landings/goodmood2?utm_source=site&utm_medium=digikala&utm_campaign=goodmood&promo_name=%D8%AE%D9%88%D8%B4%D8%AD%D8%A7%D9%84+%D8%A8%D8%A7+%DA%A9%D8%AA%D8%A7%D8%A8&promo_position=home_middle&promo_creative=66397&bCode=66397"
-              class="c-adplacement__item js-banner-impression-adro"
-              data-id="66397"
-              data-observed="0"
-              target="_blank"
-              data-is-trackable=""
-              title="خوشحال با کتاب">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/171049bba987ce52378d49324864e1b815e48332_1616014923.jpg?x-oss-process=image/quality,q_80"
-                  alt="خوشحال با کتاب" loading="lazy"/></div>
-            </a><a
-              href="https://www.digikala.com/brand-landing/molfix/?&promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%85%D9%88%D9%84%D9%81%DB%8C%DA%A9%D8%B3&promo_position=home_top&promo_creative=65531&bCode=65531"
-              class="c-adplacement__item js-banner-impression-adro"
-              data-id="65531"
-              data-observed="0"
-              target="_blank"
-              data-is-trackable=""
-              title="پارتنرشیپ - مولفیکس">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/6a477ddfff3258987c3bc76da36313229ec9ec7c_1615388874.jpg?x-oss-process=image/quality,q_80"
-                  alt="پارتنرشیپ - مولفیکس" loading="lazy"/></div>
-            </a><a
-              href="https://www.digikala.com/brand-landing/jacsaf/?&promo_name=%DA%98%DA%A9+%D8%B3%D8%A7%D9%81+%D9%BE%D8%A7%D8%B1%D8%B3&promo_position=home_top&promo_creative=65842&bCode=65842"
-              class="c-adplacement__item js-banner-impression-adro"
-              data-id="65842"
-              data-observed="0"
-              target="_blank"
-              data-is-trackable=""
-              title="ژک ساف پارس">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/6fa2a9afb2cbf0518d6b6b3538625b69538fcaf9_1615630556.jpg?x-oss-process=image/quality,q_80"
-                  alt="ژک ساف پارس" loading="lazy"/></div>
-            </a></aside>
+          <aside class="c-adplacement c-adplacement__container-row">
+            @if($bannerGroup1->images()->exists())
+              @foreach($bannerGroup1->images as $image)
+                <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank" data-is-trackable="" title="{{ ($image->media()->exists())? $image->alt : '' }}">
+                  <div class="c-adplacement__sponsored_box">
+                    <img src="{{ $site_url . '/' . $image->media->first()->path . '/'. $image->media->first()->name }}" alt="{{ ($image->media()->exists())? $image->alt : '' }}" loading="lazy">
+                  </div>
+                </a>
+              @endforeach
+            @endif
+          </aside>
         </div>
       </article>
       <script>
@@ -2816,40 +2702,17 @@
       </div>
       <article class="container container--home">
         <div class="o-page">
-          <aside class="c-adplacement"><a
-              href="https://www.digikala.com/brand/sharin/?&promo_name=%D8%B4%D8%A7%D8%B1%DB%8C%D9%86&promo_position=home_top_advertisement&promo_creative=65238&bCode=65238"
-              class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b"
-              data-id="65238"
-              data-observed="0"
-              target="_blank"
-              title="شارین"
-              data-is-trackable="">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/306e552efa99862216fcd26eddf7f491f95f3fc6_1615205565.jpg?x-oss-process=image/quality,q_80"
-                  alt="شارین" loading="lazy"/></div>
-            </a><a
-              href="https://www.digikala.com/seller/%DB%B5adkp/?&promo_name=%D9%BE%D8%A7%D9%85%D8%A7&promo_position=home_top_advertisement&promo_creative=65845&bCode=65845"
-              class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b"
-              data-id="65845"
-              data-observed="0"
-              target="_blank"
-              title="پاما"
-              data-is-trackable="1">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/3f9813fbc415925c060967a95f9ec83726029b2b_1615630923.jpg?x-oss-process=image/quality,q_80"
-                  alt="پاما" loading="lazy"/>
-                <div class="c-adplacement__badge
-         js-adro-badge-view
-        "
-                >
-                  <div class="c-adplacement__badge-container ">
-                    <div class="c-adplacement__badge-container--img"><img
-                        src="https://www.digikala.com/static/files/52672319.svg"><span
-                        class="c-adplacement__badge-container--txt">Ad</span></div>
+          <aside class="c-adplacement">
+            @if($bannerGroup2->images()->exists())
+              @foreach($bannerGroup2->images as $image)
+                <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b" data-observed="0" target="_blank" title="{{ ($image->media()->exists())? $image->alt : '' }}" data-is-trackable="">
+                  <div class="c-adplacement__sponsored_box">
+                    <img src="{{ $site_url . '/' . $image->media->first()->path . '/'. $image->media->first()->name }}" alt="{{ ($image->media()->exists())? $image->alt : '' }}" loading="lazy"/>
                   </div>
-                </div>
-              </div>
-            </a></aside>
+                </a>
+              @endforeach
+            @endif
+          </aside>
           <div class="o-page__row o-grid o-page__row--main-page js-recommendation-home_1-row">
             <div class="col-9">
               <section class="c-swiper c-swiper--products has-placeholder recommendation-swiper  js-sntracker-carousel"
@@ -2912,51 +2775,17 @@
           </div>
         </section>
         <aside class="c-about-digikala-items">
-          <aside class="c-adplacement c-adplacement__container-row"><a
-              href="https://www.digikala.com/landings/seller-introduction//?&promo_name=%D9%81%D8%B1%D9%88%D8%B4%D9%86%D8%AF%D9%87+%D8%B4%D9%88%DB%8C%D8%AF&promo_position=home_static_image&promo_creative=14789&bCode=14789"
-              class="c-adplacement__item js-banner-impression-adro"
-              data-id="14789"
-              data-observed="0"
-              target="_blank"
-              data-is-trackable=""
-              title="فروشنده شوید">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/76998daf25428efd1a62130b631abfe65b2ceea8_1612288934.jpg?x-oss-process=image/quality,q_80"
-                  alt="فروشنده شوید" loading="lazy"/></div>
-            </a><a
-              href="https://www.digikala.com/landings/village-businesses/?&promo_name=%DA%A9%D8%B3%D8%A8+%D9%88+%DA%A9%D8%A7%D8%B1%D9%87%D8%A7%DB%8C+%D8%B1%D9%88%D8%B3%D8%AA%D8%A7%DB%8C%DB%8C&promo_position=home_static_image&promo_creative=61663&bCode=61663"
-              class="c-adplacement__item js-banner-impression-adro"
-              data-id="61663"
-              data-observed="0"
-              target="_blank"
-              data-is-trackable=""
-              title="کسب و کارهای روستایی">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/956cd52f1f18f11284016c86561d53bcdcfdeedd_1612606849.jpg?x-oss-process=image/quality,q_80"
-                  alt="کسب و کارهای روستایی" loading="lazy"/></div>
-            </a><a
-              href="https://www.digikala.com/landings/nahal/?&promo_name=%D9%86%D9%87%D8%A7%D9%84+-+CSR&promo_position=home_static_image&promo_creative=63754&bCode=63754"
-              class="c-adplacement__item js-banner-impression-adro"
-              data-id="63754"
-              data-observed="0"
-              target="_blank"
-              data-is-trackable=""
-              title="نهال - CSR">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/c824ada57b41ca448fa17bd4b5fa11840aaecee5_1614243750.jpg?x-oss-process=image/quality,q_80"
-                  alt="نهال - CSR" loading="lazy"/></div>
-            </a><a
-              href="https://www.digikala.com/landings/giftcard-customers/?&promo_name=%DA%A9%D8%A7%D8%B1%D8%AA+%D9%87%D8%AF%DB%8C%D9%87&promo_position=home_static_image&promo_creative=19022&bCode=19022"
-              class="c-adplacement__item js-banner-impression-adro"
-              data-id="19022"
-              data-observed="0"
-              target="_blank"
-              data-is-trackable=""
-              title="کارت هدیه">
-              <div class="c-adplacement__sponsored_box"><img
-                  src="https://dkstatics-public.digikala.com/digikala-adservice-banners/4733b740d15e74f00d50ac92fb126911632b8053_1599385682.jpg?x-oss-process=image/quality,q_80"
-                  alt="کارت هدیه" loading="lazy"/></div>
-            </a></aside>
+          <aside class="c-adplacement c-adplacement__container-row">
+            @if($bannerGroup3->images()->exists())
+              @foreach($bannerGroup3->images as $image)
+                <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank" data-is-trackable="" title="{{ ($image->media()->exists())? $image->alt : '' }}">
+                  <div class="c-adplacement__sponsored_box">
+                    <img src="{{ $site_url . '/' . $image->media->first()->path . '/'. $image->media->first()->name }}" alt="{{ ($image->media()->exists())? $image->alt : '' }}" loading="lazy">
+                  </div>
+                </a>
+              @endforeach
+            @endif
+          </aside>
         </aside>
         <section class="c-swiper c-swiper--products has-placeholder recommendation-swiper u-hidden js-sntracker-carousel"
                  id="recommendation-home_3">
@@ -2992,29 +2821,22 @@
             </div>
           </div>
         </section>
-        <aside class="c-adplacement c-adplacement__container-row"><a
-            href="https://www.digikala.com/brand/arian-nakh-baf/?&promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%A2%D8%B1%DB%8C%D8%A7%D9%86+%D9%86%D8%AE+%D8%A8%D8%A7%D9%81&promo_position=home_middle&promo_creative=64905&bCode=64905"
-            class="c-adplacement__item js-banner-impression-adro"
-            data-id="64905"
-            data-observed="0"
-            target="_blank"
-            data-is-trackable=""
-            title="پارتنرشیپ - آریان نخ باف">
-            <div class="c-adplacement__sponsored_box"><img
-                src="https://dkstatics-public.digikala.com/digikala-adservice-banners/9ba8fa23a193e5218d0782580f959e55d1514089_1615015933.jpg?x-oss-process=image/quality,q_80"
-                alt="پارتنرشیپ - آریان نخ باف" loading="lazy"/></div>
-          </a><a
-            href="https://www.digikala.com/brand/madar/?&promo_name=%D9%85%D8%A7%D8%AF%D8%B1&promo_position=home_middle&promo_creative=65995&bCode=65995"
-            class="c-adplacement__item js-banner-impression-adro"
-            data-id="65995"
-            data-observed="0"
-            target="_blank"
-            data-is-trackable=""
-            title="مادر">
-            <div class="c-adplacement__sponsored_box"><img
-                src="https://dkstatics-public.digikala.com/digikala-adservice-banners/fe7df8c48164f69b69e9fe5e979c126545abc2ff_1615724049.jpg?x-oss-process=image/quality,q_80"
-                alt="مادر" loading="lazy"/></div>
-          </a></aside>
+        <aside class="c-adplacement c-adplacement__container-row">
+{{--          <a href="" class="c-adplacement__item js-banner-impression-adro" data-observed="0" target="_blank" data-is-trackable="" title="">--}}
+{{--            <div class="c-adplacement__sponsored_box">--}}
+{{--              <img src="https://dkstatics-public.digikala.com/digikala-adservice-banners/9ba8fa23a193e5218d0782580f959e55d1514089_1615015933.jpg?x-oss-process=image/quality,q_80" alt="" loading="lazy"/>--}}
+{{--            </div>--}}
+{{--          </a>--}}
+{{--          @if($bannerGroup2->images()->exists())--}}
+{{--            @foreach($bannerGroup2->images as $image)--}}
+{{--              <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank" data-is-trackable="" title="{{ ($image->media()->exists())? $image->alt : '' }}">--}}
+{{--                <div class="c-adplacement__sponsored_box">--}}
+{{--                  <img src="{{ $site_url . '/' . $image->media->first()->path . '/'. $image->media->first()->name }}" alt="{{ ($image->media()->exists())? $image->alt : '' }}" loading="lazy">--}}
+{{--                </div>--}}
+{{--              </a>--}}
+{{--            @endforeach--}}
+{{--          @endif--}}
+        </aside>
         <section class="c-swiper c-swiper--products has-placeholder recommendation-swiper u-hidden js-sntracker-carousel"
                  id="recommendation-home_5">
           <div class="recommendation-swiper__mask js-swiper-mask-recommendation-home_5 u-hidden"><p>این پیشنهاد به شما
@@ -3606,22 +3428,18 @@
           });
         </script>
         <section class="c-swiper c-swiper--products js-sntracker-carousel " id="sn-carousels-1">
-          <div class="o-headline
-                    "><span>
-
-
-                                                                    محصولات پربازدید اخیر
-
-                            </span></div>
-          <div class="c-box"
-               id="sn-carousels-1"
-          >
+          <div class="o-headline">
+            <span>
+              محصولات پربازدید اخیر
+            </span>
+          </div>
+          <div class="c-box" id="sn-carousels-1">
             <div class="swiper-container swiper-container-horizontal js-swiper-products">
               <div class="swiper-wrapper">
                 <div class="swiper-slide js-sntracker-carousel-item" data-carousel="sn-carousels-1" data-id="3754319"
                      data-position="1">
-                  <div class="c-product-box"><a data-id="3754319"
-                                                class="c-product-box__img js-url js-product-url js-carousel-ga-product-box"
+                  <div class="c-product-box">
+                    <a class="c-product-box__img js-url js-product-url js-carousel-ga-product-box"
                                                 href="/product/dkp-3754319/گوشی-موبایل-شیائومی-مدل-poco-x3-m2007j20cg-دو-سیم-کارت-ظرفیت-128-گیگابایت"><img
                         data-src-swiper="https://dkstatics-public.digikala.com/digikala-products/a1981f054f980e183cb23ff39799bd37ac983ae4_1605350003.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
                         alt="گوشی موبایل شیائومی مدل POCO X3 M2007J20CG دو سیم‌ کارت ظرفیت 128 گیگابایت"
@@ -4213,18 +4031,8 @@
             </div>
           </div>
         </section>
-        <aside class="c-adplacement c-adplacement--main-page-inner c-adplacement__container-row"><a
-            href="https://www.digikala.com/product-list/plp_2172148/?&promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%AF%DB%8C%D8%A7%DA%A9%D9%88&promo_position=home_bottom&promo_creative=65848&bCode=65848"
-            class="c-adplacement__item js-banner-impression-adro"
-            data-id="65848"
-            data-observed="0"
-            target="_blank"
-            data-is-trackable=""
-            title="پارتنرشیپ - دیاکو">
-            <div class="c-adplacement__sponsored_box"><img
-                src="https://dkstatics-public.digikala.com/digikala-adservice-banners/92afb0f51f4fc434ae230b5457b14622a397abcb_1615636191.jpg?x-oss-process=image/quality,q_80"
-                alt="پارتنرشیپ - دیاکو" loading="lazy"/></div>
-          </a></aside>
+
+
         <div class="swiper-products-container" data-type="homepagelatest">
           <script>
             var carouselDataTracker = {
@@ -5463,6 +5271,19 @@
           });
         </script>
 
+
+        <aside class="c-adplacement">
+          @if($bannerGroup4->images()->exists())
+            @foreach($bannerGroup4->images as $image)
+              <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b" data-observed="0" target="_blank" title="{{ ($image->media()->exists())? $image->alt : '' }}" data-is-trackable="">
+                <div class="c-adplacement__sponsored_box">
+                  <img src="{{ $site_url . '/' . $image->media->first()->path . '/'. $image->media->first()->name }}" alt="{{ ($image->media()->exists())? $image->alt : '' }}" loading="lazy"/>
+                </div>
+              </a>
+            @endforeach
+          @endif
+        </aside>
+
         <section class="c-swiper c-swiper--products js-sntracker-carousel " id="sn-carousels-3">
           <div class="o-headline ">
             <span>محصولات پرفروش اخیر</span>
@@ -5519,30 +5340,27 @@
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide js-sntracker-carousel-item" data-carousel="sn-carousels-3" data-id="3501717"
-                     data-position="2">
-                  <div class="c-product-box"><a data-id="3501717"
-                                                class="c-product-box__img js-url js-product-url js-carousel-ga-product-box"
-                                                href="/product/dkp-3501717/ماسک-تنفسی-مدل-ملت-بلون-بسته-51-عددی"><img
-                        data-src-swiper="https://dkstatics-public.digikala.com/digikala-products/8466ef4c6363a8ef19b41ff43813b2bfc8eec17f_1605071646.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                        alt="ماسک تنفسی مدل ملت بلون بسته 51 عددی"
-                        class="swiper-lazy"></a>
-                    <div class="c-product-box__title"><a data-id="3501717"
-                                                         class="js-product-url js-carousel-ga-product-box"
-                                                         href="/product/dkp-3501717/ماسک-تنفسی-مدل-ملت-بلون-بسته-51-عددی">
+                <div class="swiper-slide js-sntracker-carousel-item" data-carousel="sn-carousels-3">
+                  <div class="c-product-box">
+                    <a class="c-product-box__img js-url js-product-url js-carousel-ga-product-box" href="">
+                      <img data-src-swiper="https://dkstatics-public.digikala.com/digikala-products/8466ef4c6363a8ef19b41ff43813b2bfc8eec17f_1605071646.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" alt="" class="swiper-lazy">
+                    </a>
+                    <div class="c-product-box__title">
+                      <a class="js-product-url js-carousel-ga-product-box" href="">
                         ماسک تنفسی مدل ملت بلون بسته 51 عددی
-                      </a></div>
+                      </a>
+                    </div>
                     <div class="c-product-box__price-row">
-                      <div class="c-product-box__price-item"><a data-id="3501717"
-                                                                class="js-product-url js-carousel-ga-product-box"
-                                                                href="/product/dkp-3501717/ماسک-تنفسی-مدل-ملت-بلون-بسته-51-عددی">
+                      <div class="c-product-box__price-item">
+                        <a class="js-product-url js-carousel-ga-product-box" href="">
                           <div class="c-new-price">
                             <div class="c-new-price__old-value"></div>
                             <div class="c-new-price__value">
                               ۲۱,۷۱۰
                               <span class="c-new-price__currency">تومان</span></div>
                           </div>
-                        </a></div>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -5577,6 +5395,7 @@
             </div>
           </div>
         </section>
+
         <script>
           var carouselDataTracker = {
             "carouselPosition": "HOME_9",
@@ -5760,6 +5579,7 @@
               window.carouselData.push(carouselDataTracker);
           }
         </script>
+
         <script>
           window.dataLayer.push({
             "event": "eec.productImpression", "ecommerce": {
@@ -6108,6 +5928,20 @@
             }
           });
         </script>
+
+        @if($banner5->images()->exists() && $banner5->images()->first()->media()->exists())
+        <aside class="c-adplacement c-adplacement--main-page-inner c-adplacement__container-row">
+          <a href="{{ $banner5->images()->first()->link }}" class="c-adplacement__item js-banner-impression-adro" data-observed="0" target="_blank" data-is-trackable="" title="{{ $banner5->images()->first()->alt }}">
+            <div class="c-adplacement__sponsored_box">
+              <img src="{{ ($banner5->images()->first()->media()->exists())?  $site_url . '/' . $banner5->images()->first()->media->first()->path . '/'. $banner5->images()->first()->media->first()->name : '' }}" alt="{{ ($banner5->images()->first()->media()->exists())?  $banner5->images()->first()->alt : '' }}" loading="lazy"/></div>
+          </a>
+        </aside>
+        @endif
+
+{{--          <a href="{{ $banner5->images()->first()->link }}" class="c-adplacement__item" target="_blank" title="{{ $banner5->images()->first()->alt }}">--}}
+{{--            <img src="{{ ($banner5->images()->first()->media()->exists())?  $site_url . '/' . $banner5->images()->first()->media->first()->path . '/'. $banner5->images()->first()->media->first()->name : '' }}" alt="{{ ($banner5->images()->first()->media()->exists())?  $banner5->images()->first()->alt : '' }}" loading="lazy"/>--}}
+{{--          </a>--}}
+
         <section class="c-swiper c-swiper--products js-sntracker-carousel " id="sn-carousels-4">
           <div class="o-headline">
             <span>منتخب محصولات تخفیف و حراج</span>
@@ -6819,5 +6653,5 @@
     <div id="sidebar">
       <aside></aside>
     </div>
-</main>
+  </main>
 @endsection

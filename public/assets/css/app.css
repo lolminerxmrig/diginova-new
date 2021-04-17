@@ -823,6 +823,10 @@ body.t-header-light .c-header {
   position: absolute!important
 }
 
+@font-face {
+  font-family: digikala;
+  src: url(../fonts/75921636.eot) format("eot"), url(../fonts/e837fdde.woff2) format("woff2"), url(../fonts/c1997b4e.woff) format("woff"), url(../fonts/ec8c6ad7.ttf) format("truetype")
+}
 
 .btn-action--add-to-cart:before,
 .btn-action--preview:before,
