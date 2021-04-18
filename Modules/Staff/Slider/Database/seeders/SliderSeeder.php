@@ -15,7 +15,6 @@ class SliderSeeder extends Seeder
      */
     public function run()
     {
-
         $slider_groups_table = __DIR__.'/../slider_groups.sql';
         DB::unprepared(file_get_contents($slider_groups_table));
 

@@ -29,11 +29,12 @@ class DatabaseSeeder extends Seeder
         $this->call('Modules\Staff\Warranty\Database\seeders\WarrantySeeder');
 //        $this->call('Modules\Staff\Product\Database\seeders\ProductSeeder');
         $this->call('Modules\Staff\Promotion\Database\seeders\PromotionSeeder');
-//        $this->call('Modules\Staff\Slider\Database\seeders\SliderSeeder');
         $this->call('Modules\Staff\Setting\Database\seeders\SettingSeeder');
         $this->call('Modules\Staff\Nav\Database\seeders\NavSeeder');
+        $this->call('Modules\Staff\Slider\Database\seeders\SliderSeeder');
 
-        $this->call(MediaSeeder::class);
+
+      $this->call(MediaSeeder::class);
         $this->call(StateSeeder::class);
     }
 }
