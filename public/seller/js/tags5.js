@@ -2481,7 +2481,7 @@ let IndexAction = {
 
             $mainImageErrorContainer.addClass('hidden');
 
-            if (($that.imagesRequired() || $imagesCount > 0) && $imagesCount < 0) {
+            if (($that.imagesRequired() || $imagesCount > 0) && $imagesCount < 1) {
                 hasImageErrors = true;
                 let $div = $('<div/>');
                 $div.html('حداقل دو تصویر آپلود کنید');
