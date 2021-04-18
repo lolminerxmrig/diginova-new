@@ -18875,13 +18875,13 @@ input[type=checkbox]:checked+.c-ui-new-switch__slider span {
   left: 50%;
   -webkit-transform: translate(-50%);
   transform: translate(-50%);
-  background: url(../svg/bc60cf05.svg) no-repeat 50% 50%;
-  background-size: contain
+  /*background: url(../svg/bc60cf05.svg) no-repeat 50% 50%;*/
+  background-size: contain !important;
 }
 
 .c-header--birthday .t-header-light .c-header .c-header__logo-img {
   background-image: url(../2fc8708f.png)!important;
-  background-size: contain
+  background-size: contain !important;
 }
 
 .c-header__right-side {
@@ -19195,7 +19195,7 @@ input[type=checkbox]:checked+.c-ui-new-switch__slider span {
   display: block;
   text-align: right;
   text-indent: -1000em;
-  background: url(../svg/bc60cf05.svg) no-repeat 50%;
+  /*background: url(../svg/bc60cf05.svg) no-repeat 50%;*/
   background-size: contain;
   -webkit-transition: background-position .3s cubic-bezier(.17, .67, .49, .93);
   transition: background-position .3s cubic-bezier(.17, .67, .49, .93)

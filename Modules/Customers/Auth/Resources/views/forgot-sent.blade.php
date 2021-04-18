@@ -19,5 +19,5 @@
         لطفاً به صندوق الکترونیکی خود مراجعه کرده و بر روی لینک ارسال شده کلیک نمائید.
     </p>
 
-    <a href="{{ route('indexPage') }}" class="o-btn o-btn--full-width o-btn--outlined-red-lg">بازگشت به {{ $fa_store_name }}</a>
+    <a href="{{ route('front.indexPage') }}" class="o-btn o-btn--full-width o-btn--outlined-red-lg">بازگشت به {{ $fa_store_name }}</a>
 @endsection

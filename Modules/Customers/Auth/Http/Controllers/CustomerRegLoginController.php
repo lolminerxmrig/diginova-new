@@ -142,7 +142,7 @@ class CustomerRegLoginController extends Controller
             session()->forget('c_mobile');
             session()->forget('c_email');
             $request->session()->regenerate();
-            return redirect()->route('indexPage');
+            return redirect()->route('front.indexPage');
         }
         return back()->withErrors([
             'wrongEmailPass' => 'اطلاعات کاربری نادرست است',
@@ -162,7 +162,7 @@ class CustomerRegLoginController extends Controller
                 return redirect()->route('customer.welcomme');
             }
             else{
-                return redirect()->route('indexPage');
+                return redirect()->route('front.indexPage');
             }
         }
         else
@@ -188,7 +188,7 @@ class CustomerRegLoginController extends Controller
         Auth::guard('customer')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('indexPage');
+        return redirect()->route('front.indexPage');
     }
 
     public function welcome()

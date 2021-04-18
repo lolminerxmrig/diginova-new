@@ -1,5 +1,25 @@
 <?php
   $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
+  $footer_desc_title = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->first()->value;
+  $footer_description = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->first()->value;
+  $footer_slogan = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->first()->value;
+  $custom_footer_code = \Modules\Staff\Setting\Models\Setting::where('name', 'custom_footer_code')->first()->value;
+  $copyright_text = \Modules\Staff\Setting\Models\Setting::where('name', 'copyright_text')->first()->value;
+  $store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value;
+  $store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
+  $ecunion_link = \Modules\Staff\Setting\Models\Setting::where('name', 'ecunion_link')->first()->value;
+  $enamad_link = \Modules\Staff\Setting\Models\Setting::where('name', 'enamad_link')->first()->value;
+  $samandehi_link = \Modules\Staff\Setting\Models\Setting::where('name', 'samandehi_link')->first()->value;
+  $instagram_link = \Modules\Staff\Setting\Models\Setting::where('name', 'instagram_link')->first()->value;
+  $twitter_link = \Modules\Staff\Setting\Models\Setting::where('name', 'twitter_link')->first()->value;
+  $aparat_link = \Modules\Staff\Setting\Models\Setting::where('name', 'aparat_link')->first()->value;
+  $linkedin_link = \Modules\Staff\Setting\Models\Setting::where('name', 'linkedin_link')->first()->value;
+  $whatsapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'whatsapp_link')->first()->value;
+  $telegram_link = \Modules\Staff\Setting\Models\Setting::where('name', 'telegram_link')->first()->value;
+  $googleplay_link = \Modules\Staff\Setting\Models\Setting::where('name', 'googleplay_link')->first()->value;
+  $cafebazaar_link = \Modules\Staff\Setting\Models\Setting::where('name', 'cafebazaar_link')->first()->value;
+  $myket_link = \Modules\Staff\Setting\Models\Setting::where('name', 'myket_link')->first()->value;
+  $sibapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'sibapp_link')->first()->value;
 ?>
 <!DOCTYPE html>
 <html dir="rtl">
@@ -51,7 +71,6 @@
 
   <style>
 
-
     @media screen and (-ms-high-contrast: none) {
       .c-shipment-page__to-payment-sticky, .c-checkout__to-shipping-sticky {
         position: relative !important;
@@ -73,14 +92,17 @@
       }
     }
 
-
+{{--    @if(!is_null($header_logo))--}}
+{{--      .c-header__logo-img {--}}
+{{--        background: url({{ $site_url . '/' . $header_logo->path . '/'. $header_logo->name }}) no-repeat 50% !important;--}}
+{{--      }--}}
+{{--    @endif--}}
 
   </style>
 
 </head>
 
 <body class="t-index has-top-banner" style="">
-
 
 <header class="c-header js-header">
 
@@ -94,12 +116,12 @@
     <div class="c-header__row js-header-sticky">
       <div class="c-header__right-side">
         <div class="c-header__logo ">
-          <a data-snt-event="dkHeaderClick" data-snt-params='{"item":"digikala-logo","item_option":null}' href="/?ref=nav_logo" class="c-header__logo-img">Digikala</a>
+          <a href="{{ route('front.indexPage') }}" class="c-header__logo-img" style="background: url({{ !is_null($header_logo)? $site_url . '/' . $header_logo->path . '/'. $header_logo->name : '' }}) {{ is_null($header_logo)? 'unset !important;' : 'no-repeat 50%;' }} !important; background-size: contain !important;">Diginova</a>
         </div>
         <div class="c-header__search">
           <div class="c-search js-search" data-event="using_search_box" data-event-category="header_section">
             <span class="c-search__reset u-hidden js-search-reset"></span>
-            <input type="text" name="q" placeholder="جستجو در دیجی‌کالا …" class="js-search-input" autocomplete="off" value="">
+            <input type="text" name="q" placeholder="جستجو در {{ $fa_store_name }} …" class="js-search-input" autocomplete="off" value="">
             <div class="c-search__results js-search-results">
               <ul class="js-autosuggest-results-list c-search__results-list c-search__results-list--autosuggest"></ul>
               <ul class="js-results-list c-search__results-list"></ul>
@@ -129,7 +151,8 @@
       <div class=" c-header__action">
 
         @if(auth()->guard('customer')->check())
-          <div class="c-header__btn-container">    <input type="hidden" id="topBarMeta" data-cart_count="0" data-cart_items="[]">
+          <div class="c-header__btn-container">
+            <input type="hidden" id="topBarMeta" data-cart_count="0" data-cart_items="[]">
 
             <input type="hidden" id="ESILogged" data-logged="1" data-user_id="9735394" data-email="mehdi.jalaliii03@gmail.com" data-default_phone="09389701200" data-login_phone="09389701200" data-mobile_phone="09389701200" data-first_name="مهدی" data-last_name="جلالی">
 
@@ -143,7 +166,7 @@
                       <img src="https://www.digikala.com/static/files/fd4840b2.svg">
                     </div>
                     <div class="c-header__profile-dropdown-user-info">
-                      <p class="c-header__profile-dropdown-user-name">مهدی جلالی</p>
+                      <p class="c-header__profile-dropdown-user-name">{{ customerFullName() }}</p>
                       <span class="c-header__profile-dropdown-user-profile-link">مشاهده حساب کاربری</span>
                     </div>
                   </div>
@@ -159,7 +182,7 @@
                       <a class="c-header__profile-dropdown-account-item-title c-header__profile-dropdown-account-item-title--link  js-wallet-activation-url" href="">فعال سازی کیف پول</a>
                     </div>
 
-                    <div class="c-header__profile-dropdown-account-item">
+                    <div class="c-header__profile-dropdown-account-item u-hidden">
                       <span class="c-header__profile-dropdown-account-item-title">دیجی‌کلاب</span>
                       <span class="c-header__profile-dropdown-account-item-amount">
                             <span class="c-header__profile-dropdown-account-item-amount-number js-dc-point">۰</span>
@@ -174,12 +197,12 @@
                   <div class="c-header__profile-dropdown-action-container">
                     <a href="/profile/orders/" data-snt-event="dkHeaderClick" data-snt-params="{&quot;item&quot;:&quot;account&quot;,&quot;item_option&quot;:&quot;orders&quot;}" class="c-header__profile-dropdown-action c-header__profile-dropdown-action--orders ">سفارش‌های من</a>
                   </div>
-                  <div class="c-header__profile-dropdown-action-container u-hidden">
+                  <div class="c-header__profile-dropdown-action-container">
                     <a href="/profile/favorites/?convert=true" class="c-header__profile-dropdown-action c-header__profile-dropdown-action--favorites">
                       لیست مورد علاقه
                     </a>
                   </div>
-                  <div class="c-header__profile-dropdown-action-container">
+                  <div class="c-header__profile-dropdown-action-container u-hidden">
                     <a href="/digiclub/rewards/" class="c-header__profile-dropdown-action c-header__profile-dropdown-action--digiclub-gifts">
                       جوایز دیجی‌کلاب
                     </a>
@@ -986,7 +1009,7 @@
               <li class="js-categories-bar-item"><a
                   class="c-navi-new-list__category-link c-navi-new-list__category-link--my-digikala c-navi-new-list__category-link--bold"
                   href="/my-digikala/">
-                  دیجی‌کالای من
+                  {{ $fa_store_name }}ی من
                 </a></li>
 
               <li class="js-categories-bar-item c-navi-new-list__category-link--visible-in-wide"><a
@@ -1043,7 +1066,7 @@
 
 <div class="remodal c-remodal-account" data-remodal-id="login" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-  <div class="c-remodal-account__headline">ورود به دیجی‌کالا</div>
+  <div class="c-remodal-account__headline">ورود به {{ $fa_store_name }}</div>
   <div class="c-remodal-account__content">
     <form class="c-form-account" id="loginFormModal">
       <div class="c-message-light c-message-light--info" id="login-form-msg"></div>
@@ -1072,7 +1095,7 @@
 
       <div class="c-form-account__row c-form-account__row--submit">
         <div class="c-form-account__col">
-          <button class="btn-login login-button-js">ورود به دیجی‌کالا</button>
+          <button class="btn-login login-button-js">ورود به {{ $fa_store_name }}</button>
         </div>
       </div>
 
@@ -1087,7 +1110,7 @@
   </div>
   <div class="c-remodal-account__footer is-highlighted"><span>کاربر جدید هستید؟</span>
     <a data-snt-event="dkLoginClick" data-snt-params='{"type":"signup","site":"login-modal"}' href="/users/login-register/?_back=https://www.digikala.com/" class="btn-link-spoiler">
-      ثبت‌نام در دیجی‌کالا
+      ثبت‌نام در {{ $fa_store_name }}
     </a>
   </div>
 </div>
@@ -1230,7 +1253,7 @@
         <nav class="c-footer__links--col">
           <div class="o-headline-links">
             <div>
-              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"index-title","item_option":"راهنمای خرید از دیجی‌کالا"}' href="#">راهنمای خرید از دیجی‌کالا</a>
+              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"index-title","item_option":"راهنمای خرید از {{ $fa_store_name }}"}' href="#">راهنمای خرید از {{ $fa_store_name }}</a>
             </div>
           </div>
           <ul class="c-footer__links-ul">
@@ -1269,26 +1292,26 @@
         <nav class="c-footer__links--col">
           <div class="o-headline-links">
             <div><a data-snt-event="dkFooterClick"
-                    data-snt-params='{"item":"index-title","item_option":"با دیجی‌کالا"}'
-                    href="/page/about/">با دیجی‌کالا</a></div>
+                    data-snt-params='{"item":"index-title","item_option":"با {{ $fa_store_name }}"}'
+                    href="/page/about/">با {{ $fa_store_name }}</a></div>
           </div>
           <ul class="c-footer__links-ul">
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params='{"item":"index-item","item_option":"اتاق خبر"}'
-                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر دیجی‌کالا</a></li>
+                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"فروش در دیجی‌کالا"}'
-                   href="https://www.digikala.com/landings/seller-introduction/" target="_blank">فروش در دیجی‌کالا</a>
+                   data-snt-params='{"item":"index-item","item_option":"فروش در {{ $fa_store_name }}"}'
+                   href="https://www.digikala.com/landings/seller-introduction/" target="_blank">فروش در {{ $fa_store_name }}</a>
             </li>
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params='{"item":"index-item","item_option":"فرصت‌های شغلی"}'
                    href="http://careers.digikala.com/" target="_blank">فرصت‌های شغلی</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"تماس با دیجی‌کالا"}'
-                   href="/page/contact-us/">تماس با دیجی‌کالا</a></li>
+                   data-snt-params='{"item":"index-item","item_option":"تماس با {{ $fa_store_name }}"}'
+                   href="/page/contact-us/">تماس با {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"درباره دیجی‌کالا"}'
-                   href="/page/about/">درباره دیجی‌کالا</a></li>
+                   data-snt-params='{"item":"index-item","item_option":"درباره {{ $fa_store_name }}"}'
+                   href="/page/about/">درباره {{ $fa_store_name }}</a></li>
             <li><a data-snt-event="dkFooterClick"
                    data-snt-params='{"item":"index-item","item_option":"راهنمای هویت بصری"}'
                    href="/branding/">راهنمای هویت بصری</a></li>
@@ -1296,41 +1319,37 @@
         </nav>
       </div>
       <nav class="c-footer__form">
-        <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/"
-              method="post">
+        <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/" method="post">
           <fieldset>
-            <legend class="c-form-newsletter__title">از تخفیف‌ها و جدیدترین‌های دیجی‌کالا باخبر
+            <legend class="c-form-newsletter__title">از تخفیف‌ها و جدیدترین‌های {{ $fa_store_name }} باخبر
               شوید:
             </legend>
-            <div class="c-form-newsletter__row"><input class="c-ui-input__field c-ui-input__field--right-placeholder"
-                                                       type="text"
-                                                       name="subscribe[email]"
-                                                       placeholder="آدرس ایمیل خود را وارد کنید"/>
-              <button type="submit" class="btn-secondary"
-                      id="btnSubmitNewsletterSubscription"
-                      data-snt-event="dkFooterClick"
-                      data-snt-params='{"item":"send-email","item_option":null}'
-                      data-event="newsletter_subscription"
-                      data-event-category="footer_section"
-                      data-event-label="logged_in: False - current-page: /">
+            <div class="c-form-newsletter__row">
+              <input class="c-ui-input__field c-ui-input__field--right-placeholder c-ui-input--disabled" type="text" name="subscribe[email]" placeholder="... به زودی" disabled/>
+              <button type="submit" class="btn-secondary" id="btnSubmitNewsletterSubscription" disabled>
                 ارسال
               </button>
             </div>
           </fieldset>
         </form>
         <div class="c-footer__community">
-          <div class="c-footer__social"><span>دیجی‌کالا را در شبکه‌های اجتماعی دنبال کنید:</span>
+          <div class="c-footer__social">
+            <span>{{ $fa_store_name }} را در شبکه‌های اجتماعی دنبال کنید:</span>
             <div class="c-footer__social-images">
-              <div class="c-footer__social-links"><a href="https://www.linkedin.com/company/digikala/"
-                                                     class="c-footer__social-link c-footer__social-link--linkedin"
-                                                     target="_blank"></a><a
-                  href="https://www.aparat.com/digikala/%D8%AF%DB%8C%D8%AC%DB%8C_%DA%A9%D8%A7%D9%84%D8%A7"
-                  class="c-footer__social-link c-footer__social-link--aparat"
-                  target="_blank"></a><a href="https://twitter.com/digikalacom"
-                                         class="c-footer__social-link c-footer__social-link--twitter"
-                                         target="_blank"></a><a href="https://www.instagram.com/digikalacom/"
-                                                                class="c-footer__social-link c-footer__social-link--instagram"
-                                                                target="_blank"></a></div>
+              <div class="c-footer__social-links">
+                @if(!is_null($linkedin_link))
+                  <a href="{{ $linkedin_link }}" class="c-footer__social-link c-footer__social-link--linkedin" target="_blank"></a>
+                @endif
+                @if(!is_null($aparat_link))
+                  <a href="{{ $aparat_link }}" class="c-footer__social-link c-footer__social-link--aparat" target="_blank"></a>
+                @endif
+                @if(!is_null($twitter_link))
+                  <a href="{{ $twitter_link }}" class="c-footer__social-link c-footer__social-link--twitter" target="_blank"></a>
+                @endif
+                @if(!is_null($instagram_link))
+                  <a href="{{ $instagram_link }}" class="c-footer__social-link c-footer__social-link--instagram" target="_blank"></a>
+                @endif
+              </div>
             </div>
           </div>
         </div>
@@ -1340,18 +1359,20 @@
     <nav class="c-footer__address">
       <ul class="c-footer__contact">
         <li>
-          هفت روز هفته ، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم
+          {{ persianNum($footer_slogan) }}
         </li>
-        <li>
-          شماره تماس :
-          <a data-snt-event="dkFooterClick"
-             data-snt-params='{"item":"call","item_option":null}'
-             href="/faq/question/80/">۶۱۹۳۰۰۰۰ - ۰۲۱</a></li>
-        <li>
-          آدرس ایمیل :
-          <a data-snt-event="dkFooterClick"
-             data-snt-params='{"item":"mail","item_option":null}'
-             href="mailto:info@digikala.com">info@digikala.com</a></li>
+        @if(!is_null($store_phone))
+          <li>
+            شماره تماس :
+            <a>{{ persianNum(0 . $store_phone) }}</a>
+          </li>
+        @endif
+        @if(!is_null($store_email))
+          <li>
+            آدرس ایمیل :
+            <a href="mailto:{{ $store_email }}">{{ $store_email }}</a>
+          </li>
+        @endif
       </ul>
     </nav>
   </div>
@@ -1359,263 +1380,46 @@
     <div class="container">
       <div class="c-footer__description-content">
         <div class="c-footer__content">
-          <article class="c-footer__seo"><h1>فروشگاه اینترنتی دیجی‌کالا، بررسی، انتخاب و خرید آنلاین</h1>
-            <p><span class="c-footer__seo--content" id="seo-main-content">دیجی&zwnj;کالا به عنوان یکی از قدیمی&zwnj;ترین فروشگاه های اینترنتی با بیش از یک دهه تجربه، با پایبندی به سه اصل، پرداخت در محل، 7 روز ضمانت بازگشت کالا و تضمین اصل&zwnj;بودن کالا موفق شده تا همگام با فروشگاه&zwnj;های معتبر جهان، به بزرگ&zwnj;ترین فروشگاه اینترنتی ایران تبدیل شود. به محض ورود به سایت دیجی&zwnj;کالا با دنیایی از کالا رو به رو می&zwnj;شوید! هر آنچه که نیاز دارید و به ذهن شما خطور می&zwnj;کند در اینجا پیدا خواهید کرد.</span><span
-                class="c-footer__seo-readmore" id="js-footer-readmore-content"
-                style="font-weight: 400;"><span> دیجی&zwnj;کالا مثل یک ویترین پر زرق و برق است که با انواع و اقسام برندهایی نظیر</span><a
-                  href="https://www.digikala.com/brand/samsung/"><span
-                    style="font-weight: 400;">سامسونگ (Samsung)</span></a><span
-                  style="font-weight: 400;">، </span><a href="https://www.digikala.com/brand/lg/"><span
-                    style="font-weight: 400;">ال جی (LG)</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/brand/apple/"><span
-                    style="font-weight: 400;">اپل (Apple)</span></a><span
-                  style="font-weight: 400;">، </span><a href="https://www.digikala.com/brand/nokia/"><span
-                    style="font-weight: 400;">نوکیا (Nokia)</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/brand/xiaomi/"><span
-                    style="font-weight: 400;">شیائومی (Xiaomi)</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/brand/huawei/"><span
-                    style="font-weight: 400;">هواوی (Huawei)</span></a><span style="font-weight: 400;"> و همچنین محصولاتی که هر فرد در زندگی شخصی، تحصیلی و کاری خود به آنها احتیاج پیدا می&zwnj;کند، چیده شده است. اینجا مرجع متنوع&zwnj;ترین کالاهای دیجیتال از </span><a
-                  href="https://www.digikala.com/search/category-mobile-phone/"><span
-                    style="font-weight: 400;">گوشی موبایل</span></a><span style="font-weight: 400;"> اندروید و iOS (آیفون) گرفته تا </span><a
-                  href="https://www.digikala.com/search/category-tablet/"><span
-                    style="font-weight: 400;">تبلت</span></a><span style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-notebook-netbook-ultrabook/"><span
-                    style="font-weight: 400;">لپ تاپ</span></a><span style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-external-hard-disk/"><span
-                    style="font-weight: 400;">هارد اکسترنال</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-speaker/"><span
-                    style="font-weight: 400;">اسپیکر</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-headphone/"><span
-                    style="font-weight: 400;">هدفون</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-handsfree/"><span
-                    style="font-weight: 400;">هندزفری</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://www.digikala.com/search/category-power-bank/"><span
-                    style="font-weight: 400;">پاور بانک</span></a><span
-                  style="font-weight: 400;"> است. دیجی&zwnj;کالا همچنین یک بازار آنلاین برای خرید جدیدترین و ضروری&zwnj;ترین لوازم خانگی همانند </span><a
-                  href="https://www.digikala.com/search/category-carpet/"><span
-                    style="font-weight: 400;">فرش</span></a><span style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-curtain/"><span
-                    style="font-weight: 400;">پرده</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-wallpaper/"><span
-                    style="font-weight: 400;">کاغذ دیواری</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-household-furniture/"><span
-                    style="font-weight: 400;">مبلمان</span></a><span style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-tv-tables/"><span
-                    style="font-weight: 400;">میز تلویزیون</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://www.digikala.com/search/category-dishwasher/"><span
-                    style="font-weight: 400;">ماشین ظرفشویی</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://www.digikala.com/search/category-washing-machines/"><span
-                    style="font-weight: 400;">لباسشویی</span></a><span style="font-weight: 400;"> است تا هر فرد بتواند مطابق با سلیقه شخصی خود، خانه رویاهایش را بسازد. حتی می&zwnj;توانید محیط کار خود را با بهترین </span><a
-                  href="https://www.digikala.com/search/category-office-machines/"><span
-                    style="font-weight: 400;">ماشین های اداری</span></a><span style="font-weight: 400;"> نظیر پرینتر، اسکنر و </span><a
-                  href="https://www.digikala.com/search/category-stationery/"><span
-                    style="font-weight: 400;">لوازم التحریر</span></a><span
-                  style="font-weight: 400;"> تجهیز کنید. علاوه بر این، می&zwnj;توانید با سر زدن به شبکه های اجتماعی دیجی کالا نظیر </span><a
-                  href="https://www.facebook.com/DigiKalaPortal/"><span
-                    style="font-weight: 400;">فیس بوک</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://telegram.me/digikala"><span
-                    style="font-weight: 400;">تلگرام</span></a><span
-                  style="font-weight: 400;"> از جدیدترین مدل&zwnj;های </span><a
-                  href="https://www.digikala.com/main/apparel/"><span
-                    style="font-weight: 400;">لباس</span></a><span
-                  style="font-weight: 400;">، اکسسوری، </span><a
-                  href="https://www.digikala.com/search/category-women-bags/"><span
-                    style="font-weight: 400;">کیف</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://www.digikala.com/search/category-women-shoes/"><span
-                    style="font-weight: 400;">کفش</span></a><span style="font-weight: 400;"> زنانه، مردانه، بچه گانه، دخترانه، پسرانه و نوزاد مطلع شوید و از مشهورترین برندهای دنیا نظیر </span><a
-                  href="https://www.digikala.com/brand/nike/"><span style="font-weight: 400;">نایکی</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/brand/adidas/"><span
-                    style="font-weight: 400;">آدیداس</span></a><span style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/brand/reebok/"><span
-                    style="font-weight: 400;">ریباک</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/brand/columbia/"><span
-                    style="font-weight: 400;">کلمبیا</span></a><span style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/brand/hugo-boss/"><span
-                    style="font-weight: 400;">باس</span></a><span
-                  style="font-weight: 400;">، </span><a href="https://www.digikala.com/brand/gucci/"><span
-                    style="font-weight: 400;">گوچی</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://www.digikala.com/brand/mango/"><span
-                    style="font-weight: 400;">مانگو</span></a><span style="font-weight: 400;"> اجناس اصل و باکیفیت خریداری نمایید. همچنین با سر زدن به محصولات آرایشی و بهداشتی، لوازم شخصی برقی و انواع </span><a
-                  href="https://www.digikala.com/search/category-perfume/"><span
-                    style="font-weight: 400;">عطر و ادکلن اصل</span></a><span
-                  style="font-weight: 400;"> تجربه&zwnj;ای جدید از خرید آنلاین کسب کنید و برای خرید انواع </span><a
-                  href="https://www.digikala.com/main/sport-entertainment/traveling-equipment/"><span
-                    style="font-weight: 400;">لوازم سفر</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-bicycles/"><span
-                    style="font-weight: 400;">دوچرخه</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://www.digikala.com/main/book-and-media/musicalinstruments/"><span
-                    style="font-weight: 400;">آلات موسیقی</span></a><span style="font-weight: 400;"> با مقایسه دقیق محصولات دیگر دچار سردرگمی نشوید. این روزها با اضافه شدن </span><a
-                  href="https://www.digikala.com/main/food-beverage/"><span
-                    style="font-weight: 400;">محصولات سوپرمارکت</span></a><span
-                  style="font-weight: 400;"> (دیجی کالا فرش)، انواع خواربار، </span><a
-                  href="https://www.digikala.com/search/category-fruits-and-vegetables/"><span
-                    style="font-weight: 400;">میوه و سبزیجات</span></a><span
-                  style="font-weight: 400;">، </span><a
-                  href="https://www.digikala.com/search/category-protein-foods/"><span
-                    style="font-weight: 400;">مواد پروتئینی</span></a><span style="font-weight: 400;"> اعم از گوشت، مرغ و ماهی و انواع </span><a
-                  href="https://www.digikala.com/search/category-beverages/"><span
-                    style="font-weight: 400;">نوشیدنی</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://www.digikala.com/search/category-snacks/"><span style="font-weight: 400;">تنقلات</span></a><span
-                  style="font-weight: 400;"> و </span><a
-                  href="https://www.digikala.com/landings/attari/"><span
-                    style="font-weight: 400;">عطاری آنلاین</span></a><span
-                  style="font-weight: 400;"> می توانید کلیه نیازهای خود را تنها با چند کلیک سفارش داده و در کمترین زمان ممکن درب منزل تحویل بگیرید. مناسب&zwnj;ترین جمله درباره دیجی&zwnj;کالا ،بازار بزرگ اینترنتی، است؛ چرا که با قدم گذاشتن در آن می&zwnj;توانید، یک خرید اینترنتی لذت بخش، با قیمت مناسب و ارزان به همراه تخفیف ویژه در حراج ها را تجربه کنید.</span></span><a
-                data-snt-event="dkFooterClick"
-                data-snt-params='{"item":"read-more","item_option":null}'
-                href="#" id="js-footer-readmore">مشاهده بیشتر</a><br/>
-
+          <article class="c-footer__seo">
+            <h1>{{ persianNum($footer_desc_title) }}</h1>
+            <p>
+              <span class="c-footer__seo--content" id="seo-main-content">
+                {{ persianNum($footer_description) }}
+              </span>
+{{--              <span class="c-footer__seo-readmore" id="js-footer-readmore-content" style="font-weight: 400;">--}}
+{{--              <span style="font-weight: 400;"> می توانید کلیه نیازهای خود را تنها با چند کلیک سفارش داده و در کمترین زمان ممکن درب منزل تحویل بگیرید. مناسب&zwnj;ترین جمله درباره دیجی&zwnj;کالا ،بازار بزرگ اینترنتی، است؛ چرا که با قدم گذاشتن در آن می&zwnj;توانید، یک خرید اینترنتی لذت بخش، با قیمت مناسب و ارزان به همراه تخفیف ویژه در حراج ها را تجربه کنید.</span></span>--}}
+{{--              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"read-more","item_option":null}' href="#" id="js-footer-readmore">مشاهده بیشتر</a><br/>--}}
             </p>
           </article>
         </div>
+
         <aside>
           <ul class="c-footer__safety-partner">
             <li>
-              <img src="https://www.digikala.com/static/files/1e5dab5a.png"
-                     class="c-footer__safety-partner-3" width="90" alt=""
-                     onclick="window.open('https://www.ecunion.ir/verify/digikala.com?token=35858775acf0232a8063', 'Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')"
-                     data-snt-event="dkFooterClick"
-                     loading="lazy"
-                     data-snt-params='{"item":"varification","item_option":"samandehi"}'
-                     style="cursor:pointer">
+              <img src="https://www.digikala.com/static/files/1e5dab5a.png" class="c-footer__safety-partner-3" width="90" alt="" onclick="window.open('https://www.ecunion.ir/verify/digikala.com?token=35858775acf0232a8063', 'Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')" data-snt-event="dkFooterClick" loading="lazy" data-snt-params='{"item":"varification","item_option":"samandehi"}' style="cursor:pointer">
             </li>
+
             <li class="c-footer__safety-partner-2">
-              <img src="https://trustseal.enamad.ir/logo.aspx?id=19077&amp;p=fFt0HzOPfbIzeRkW" alt=""
-                onclick="window.open(&quot;https://trustseal.enamad.ir/?id=19077&amp;Code=sScdOJOzhFxtcEqkjP7P&quot;)"
-                data-snt-event="dkFooterClick"
-                loading="lazy"
-                data-snt-params='{"item":"varification","item_option":"enamad"}'
-                style="cursor:pointer" id="sScdOJOzhFxtcEqkjP7P">
+              <img src="https://trustseal.enamad.ir/logo.aspx?id=19077&amp;p=fFt0HzOPfbIzeRkW" alt="" onclick="window.open(&quot;https://trustseal.enamad.ir/?id=19077&amp;Code=sScdOJOzhFxtcEqkjP7P&quot;)" data-snt-event="dkFooterClick" loading="lazy" data-snt-params='{"item":"varification","item_option":"enamad"}' style="cursor:pointer" id="sScdOJOzhFxtcEqkjP7P">
             </li>
 
             <li class="c-footer__safety-partner-3">
-              <img id='nbqeoeukjxlzjzpejzpe' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=28177&p=uiwkmcsirfthjyoejyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi'
-                                                        loading="lazy"
-                                                        src='https://logo.samandehi.ir/logo.aspx?id=28177&p=odrfaqgwnbpdyndtyndt'/>
+              <img id='nbqeoeukjxlzjzpejzpe' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=28177&p=uiwkmcsirfthjyoejyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' loading="lazy" src='https://logo.samandehi.ir/logo.aspx?id=28177&p=odrfaqgwnbpdyndtyndt'/>
             </li>
           </ul>
         </aside>
+
       </div>
 
       <div class="c-footer__copyright">
         <div class="c-footer__copyright--text">
-          استفاده از مطالب فروشگاه اینترنتی دیجی‌کالا فقط برای مقاصد غیرتجاری و با ذکر منبع
-          بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن آوازه (فروشگاه آنلاین دیجی‌کالا) می‌باشد.
+          {{ persianNum($copyright_text) }}
         </div>
       </div>
     </div>
   </div>
 </footer>
-<div class="js-chat-box u-hidden">
-  <div class="c-cro--faq-access js-chat-box-container-btn">
-    <div class="c-cro__inside"></div>
-  </div>
-  <div class="c-cro--faq-questions-container js-chat-box-container u-hidden">
-    <div class="c-cro--questions-container">
-      <div class="js-chat-box-faq">
-        <div class="c-cro--questions-container__welecomming">
-          <div class="js-chat-box-welcoming"><span class="c-cro--questions-container__welecomming--hi">سلام</span><br>
-            جواب سوال&zwnj;هاتون رو می&zwnj;تونید در زیر پیدا کنید.
-            در غیر اینصورت از ما بپرسید، ما همیشه به سوالاتتون جواب می&zwnj;دهیم.
-          </div>
-        </div>
-        <div class="c-cro--questions js-chat-box-questions"></div>
-      </div>
-      <div class="c-cro__bot-wrapper js-chat-box-user-data u-hidden">
-        <div class="c-cro__bot-header">
-          پشتیبانی آنلاین
-        </div>
-        <form id="chatbotForm" class="c-cro__bot-form"><p>
-            برای راهنمایی بهتر لطفا اطلاعات زیر را وارد کنید:
-          </p><label class="o-form__field-container">
-            <div class="o-form__field-label">نام*</div>
-            <div class="o-form__field-frame"><input name="chatbot[name]" type="" placeholder=""
-                                                    value="" class="o-form__field js-input-field "/></div>
-          </label><label class="o-form__field-container">
-            <div class="o-form__field-label">شماره موبایل*</div>
-            <div class="o-form__field-frame"><input name="chatbot[phone]" type="" placeholder=""
-                                                    value="" class="o-form__field js-input-field "/></div>
-          </label><label class="o-form__field-container">
-            <div class="o-form__field-label">ایمیل*</div>
-            <div class="o-form__field-frame"><input name="chatbot[email]" type="" placeholder=""
-                                                    value="" class="o-form__field js-input-field "/></div>
-          </label>
-          <button type="submit" class="o-btn o-btn--full-width o-btn--outlined-red-lg">
-            شروع گفتگو
-          </button>
-        </form>
-      </div>
-      <div class="c-cro__bot-wrapper c-cro__bot-wrapper--with-pattern js-chat-bot u-hidden">
-        <div class="c-cro__bot-header">
-          پشتیبانی آنلاین
-        </div>
-        <div class="c-cro__support-status-bar"><p>
-            پیشتیبان هوش مصنوعی دیجی‌کالا
-          </p><a class="c-wiki__trigger c-wiki c-wiki__holder js-dk-wiki-trigger">
-            <div class="c-wiki__container js-dk-wiki is-right">
-              <div class="c-wiki__arrow"></div>
-              <p class="c-wiki__text">
-                من ربات هوشمند گفت و گوی آنلاین دیجی‌کالا هستم و در حال حاضر در حال آموزش دیدن برای پاسخگویی بهتر و
-                انتقال پیام شما به پاسخگوی مرتبط با مشکلتان هستم.
-              </p></div>
-          </a></div>
-        <div class="c-cro__chat-body">
-          <div class="js-chatbot-body">
-            <div class="c-cro__chat-message c-cro__chat-message--dk"><p>
-                به پشتیبانی هوشمند دیجی‌کالا خوش آمدید. لطفا سوال خود را بپرسید.
-              </p><span>
-                                    پشتیبان هوش مصنوعی
-                                </span></div>
-          </div>
-          <div class="c-cro__feedback-section js-chatbot-feedback u-hidden"><p data-icon="Icon-Action-Question">آیا
-              پاسخی که گرفتید مناسب بود؟</p>
-            <button type="button" class="js-chatbot-feedback-button" data-rate="1">بله</button>
-            <button type="button" class="js-chatbot-feedback-button" data-rate="-1">خیر</button>
-          </div>
-        </div>
-        <div class="c-cro__send-message"><textarea rows="2" class="js-chat-bot-text-area"
-                                                   placeholder="متن پیام خود را بنویسید ..."></textarea>
-          <button type="button" class="js-chat-bot-send-msg disabled">
-            ارسال
-          </button>
-        </div>
-      </div>
-      <div class="js-chat-center-iframe u-w-full u-hidden"></div>
-      <div class="c-cro__loader-container js-chat-box-loader">
-        <div class="c-remodal-loader__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="115" height="30" viewBox="0 0 115 30">
-            <path fill="#EE384E" fill-rule="evenodd"
-                  d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z"/>
-          </svg>
-        </div>
-        <div class="c-remodal-loader__bullets">
-          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--1"></div>
-          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--2"></div>
-          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--3"></div>
-          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <script type="application/ld+json">
                 {
     "@context": "https://schema.org",

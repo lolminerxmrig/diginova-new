@@ -31,14 +31,7 @@
     var activateUrl = "";
   </script>
 
-  <style>
-    .c-header__logo-img {
-      background: url({{ !is_null($header_logo)? $site_url . '/' . $header_logo->path . '/'. $header_logo->name : '' }}) {{ is_null($header_logo)? 'unset !important;' : 'no-repeat 50%;' }} !important;
 
-    {{--background: unset !important;--}}
-  {{--background: url({{ !is_null($header_logo)? $site_url . '/' . $header_logo->path . '/'. $header_logo->name : '' }}) no-repeat 50%;--}}
-  }
-  </style>
 @endsection
 
 @section('content')

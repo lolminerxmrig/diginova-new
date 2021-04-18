@@ -15,7 +15,7 @@
         حساب کاربری شما در {{ $fa_store_name }} ساخته شد. از خرید از میان بیش از ۲٬۰۰۰٬۰۰۰ تنوع کالا لذت ببرید
     </p>
 
-    <a href="{{ route('indexPage') }}" class="o-btn o-btn--full-width o-btn--outlined-red-lg c-login__form-action">
+    <a href="{{ route('front.indexPage') }}" class="o-btn o-btn--full-width o-btn--outlined-red-lg c-login__form-action">
         ادامه
     </a>
 

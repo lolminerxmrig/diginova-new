@@ -108,5 +108,15 @@ function getSingleImage($model)
   return null;
 }
 
+function customerFullName()
+{
+    if (auth()->guard('customer')->check()) {
+      if (!is_null(auth()->guard('customer')->user()->first_name)) {
+        return auth()->guard('customer')->user()->first_name . ' ' . auth()->guard('customer')->user()->last_name;
+      }
+      return persianNum(0 . auth()->guard('customer')->user()->mobile);
+    }
+    return null;
+}
 
 
