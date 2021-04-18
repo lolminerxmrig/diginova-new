@@ -1,8 +1,3 @@
-
---
--- Dumping data for table `sliders`
---
-
 INSERT INTO `sliders` (`id`, `name`, `status`, `size`, `type`, `group_id`, `created_at`, `updated_at`) VALUES
 (1, 'HH-A (بنر)', 'active', '2800x100', 'banner', 1, NULL, NULL),
 (2, 'HH-B (بنر)', 'active', '1645x105', 'banner', 1, NULL, NULL),
