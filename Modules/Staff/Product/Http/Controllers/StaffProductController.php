@@ -200,66 +200,6 @@ class StaffProductController extends Controller
         return View::make("staffproduct::ajax.attributes-step", compact('attr_groups'));
     }
 
-    public function stepUploadImages(Request $request)
-    {
-
-        $messages = [
-            'files.*.mimes' => 'فرمت تصویر غیر مجاز است',
-            'files.*.max' => 'حجم عکس بیشتر از مقدار مجاز است',
-            'files.*.dimensions' => 'اندازه تصویر مناسب نیست',
-        ];
-
-        $validator = Validator::make($request->all(), [
-            'files.*' => 'required|mimes:jpg|max:6144|dimensions:min_width=300,min_height=300,max_width=2500,max_height=2500',
-        ], $messages);
-
-
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            $data = [
-                "status" => true,
-                "data" => [
-                    "errors" => [
-                        "error" => "$error"
-                    ],
-                    "slot" => "$request->slot",
-                ]
-            ];
-        } else {
-
-            $image = $request->file('files');
-            foreach ($image as $files) {
-                $destinationPath = public_path('media/products/');
-                $file_name = time() . rand(10000, 100000) . "." . $files->getClientOriginalExtension();
-                $files->move($destinationPath, $file_name);
-                $data[] = $file_name;
-
-
-                $media = Media::create([
-                    'name' => $file_name,
-                    'path' => 'media/products',
-                    'person_id' => auth()->guard('staff')->user()->id,
-                    'person_role' => 'staff',
-                    'status' => 0,
-                ]);
-            }
-
-            $path = $site_url . '/media/products/' . $file_name;
-
-
-            $data = [
-                "status" => true,
-                "data" => [
-                    "id" => "$media->id",
-                    "url" => "$path",
-                    "tempFile" => true,
-                    "slot" => "$request->slot"
-                ]
-            ];
-        }
-        return response()->json($data, 200);
-    }
-
     public function store(Request $request)
     {
 
@@ -447,7 +387,9 @@ class StaffProductController extends Controller
             }
         }
 
-        foreach ($request->images['images'] as $key => $value)
+        if (isset($request->images['images']))
+        {
+          foreach ($request->images['images'] as $key => $value)
         {
             if($request['images']['main_image'] == $value){
                 $is_main = 1;
@@ -488,6 +430,7 @@ class StaffProductController extends Controller
                 }
             }
 
+        }
         }
 
 
@@ -941,5 +884,78 @@ class StaffProductController extends Controller
         $product = Product::findOrFail($request->product_id);
         return View::make("staffproduct::ajax.variant.ajax-variant-list", compact('product', 'settings'));
     }
+
+
+
+    public function stepUploadImages(Request $request)
+    {
+
+      Log::info($request->all());
+
+      $messages = [
+        'files.*.mimes' => 'فرمت تصویر غیر مجاز است',
+        'files.*.max' => 'حجم عکس بیشتر از مقدار مجاز است',
+        'files.*.dimensions' => 'اندازه تصویر مناسب نیست',
+      ];
+
+      $validator = Validator::make($request->all(), [
+//        'files.*' => 'required|mimes:jpg|max:6144|dimensions:min_width=300,min_height=300,max_width=2500,max_height=2500',
+      ], $messages);
+
+
+      if ($validator->fails()) {
+        $error = $validator->errors()->first();
+        $data = [
+          "status" => true,
+          "data" => [
+            "errors" => [
+              "error" => "$error"
+            ],
+            "slot" => "$request->slot",
+          ]
+        ];
+
+        return response()->json($data, 200);
+
+      }
+      else
+      {
+
+          $image = $request->file('image');
+          $destinationPath = public_path('media/products/');
+          $file_name = time() . rand(10000, 100000) . "." . $image->getClientOriginalExtension();
+          $image->move($destinationPath, $file_name);
+          $data[] = $file_name;
+
+
+          $media = Media::create([
+            'name' => $file_name,
+            'path' => 'media/products',
+            'person_id' => auth()->guard('staff')->user()->id,
+            'person_role' => 'staff',
+            'status' => 0,
+          ]);
+
+          $site_url = Setting::where('name', 'site_url')->first()->value;
+
+          $path = $site_url . '/media/products/' . $file_name;
+
+
+          $data = [
+            "status" => true,
+            "data" => [
+              "id" => "$media->id",
+              "url" => "$path",
+              "tempFile" => true,
+              "slot" => "$request->slot"
+            ]
+          ];
+
+          return response()->json($data, 200);
+
+      }
+    }
+
+
 
 }
