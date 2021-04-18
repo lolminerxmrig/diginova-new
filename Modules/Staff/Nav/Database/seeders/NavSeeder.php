@@ -15,14 +15,10 @@ class NavSeeder extends Seeder
      */
     public function run()
     {
-
-        $nav_groups_table = __DIR__.'/../nav_groups.sql';
-        DB::unprepared(file_get_contents($nav_groups_table));
+        $navs_table = __DIR__.'/../nav_locations.sql';
+        DB::unprepared(file_get_contents($navs_table));
 
         $navs_table = __DIR__.'/../navs.sql';
         DB::unprepared(file_get_contents($navs_table));
-
-        $nav_images_table = __DIR__.'/../nav_images.sql';
-        DB::unprepared(file_get_contents($nav_images_table));
     }
 }
