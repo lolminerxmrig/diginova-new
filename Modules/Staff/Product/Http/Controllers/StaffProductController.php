@@ -244,7 +244,7 @@ class StaffProductController extends Controller
                 ]);
             }
 
-            $path = env('APP_URL') . '/media/products/' . $file_name;
+            $path = $site_url . '/media/products/' . $file_name;
 
 
             $data = [

@@ -1875,7 +1875,7 @@
                                                                 عنوان سئو:
                                                             </label>
                                                             <div class="field-wrapper">
-                                                                <input type="text" name="seo_title" class="c-content-input__origin js-suggested-title-fa js-edit-mode-title-fa" value="{{ $product->seo->title }}">
+                                                                <input type="text" name="seo_title" class="c-content-input__origin js-suggested-title-fa js-edit-mode-title-fa" value="{{ ($product->seo()->exists())? $product->seo->title : '' }}">
                                                             </div>
                                                             <div>
                                                             </div>
@@ -1892,7 +1892,7 @@
                                                                 کلمات کلیدی
                                                             </label>
                                                             <div class="field-wrapper">
-                                                                <input name='seo_keyword_meta' value="{{ $product->seo->keyword }}">
+                                                                <input name='seo_keyword_meta' value="{{ ($product->seo()->exists())? $product->seo->keyword : '' }}">
                                                             </div>
                                                             <div>
                                                             </div>
@@ -1904,7 +1904,7 @@
                                                             </label>
 
                                                             <div class="field-wrapper">
-                                                                <textarea class="uk-textarea uk-textarea--attr" name="seo_description_meta">{{ $product->seo->description }}</textarea>
+                                                                <textarea class="uk-textarea uk-textarea--attr" name="seo_description_meta">{{ ($product->seo()->exists())? $product->seo->description : '' }}</textarea>
                                                             </div>
                                                         </div>
 
@@ -1914,11 +1914,10 @@
                                                             </label>
 
                                                             <div class="field-wrapper">
-                                                                <textarea class="uk-textarea uk-textarea--attr" name="seo_custom_meta" placeholder='<meta name="robots" content="index, follow">'>{{ $product->seo->custom_code }}</textarea>
+                                                                <textarea class="uk-textarea uk-textarea--attr" name="seo_custom_meta" placeholder='<meta name="robots" content="index, follow">'>{{ ($product->seo()->exists())? $product->seo->custom_code : '' }}</textarea>
                                                             </div>
                                                         </div>
                                                         <!-- end seo section  -->
-
 
                                                     </form>
                                                     <div class="c-content-accordion__step-controls c-content-accordion__step-controls--spacer">
@@ -2097,7 +2096,7 @@
                                                                                             <input type="hidden" name="images[main_image]" id="mainImageContainer"  value="{{$image->id}}"/>
                                                                                         @endif
                                                                                         <div class="c-content-upload__img-container">
-                                                                                            <img src="{{ env('APP_URL') . '/' .$image->path . '/' . $image->name }}" alt="" class="c-content-upload__img">
+                                                                                            <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" alt="" class="c-content-upload__img">
                                                                                         </div>
                                                                                         <div class="c-content-upload__mid-container">
                                                                                             <div class="c-content-upload__mid-container--top">

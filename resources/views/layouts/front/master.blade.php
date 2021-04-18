@@ -1222,101 +1222,30 @@
   <div class="container">
     <div class="c-footer__jumpup">
       <span id="js-jump-to-top" class="c-footer__jumpup-container">
-        <span data-snt-event="dkFooterClick" data-snt-params='{"item":"jump-to-top","item_option":null}' class="c-footer__jumpup-angle"></span>
+        <span class="c-footer__jumpup-angle"></span>
             برگشت به بالا
         </span>
     </div>
-    <nav class="c-footer__feature-innerbox">
-      <a data-snt-event="dkFooterClick"  data-snt-params='{"item":"slogan-image","item_option":"تحویل اکسپرس"}' class="c-footer__badge" href="#">
-        <div class="c-footer__feature-item c-footer__feature-item--1">تحویل اکسپرس</div>
-      </a>
 
-      <a data-snt-event="dkFooterClick" data-snt-params='{"item":"slogan-image","item_option":"پشتیبانی ۲۴ ساعته"}' class="c-footer__badge" href="#">
-        <div class="c-footer__feature-item c-footer__feature-item--3">پشتیبانی ۲۴ ساعته</div>
-      </a>
-
-      <a data-snt-event="dkFooterClick" data-snt-params='{"item":"slogan-image","item_option":"پرداخت در محل"}' class="c-footer__badge" href="#">
-        <div class="c-footer__feature-item c-footer__feature-item--4">پرداخت در محل</div>
-      </a>
-
-      <a data-snt-event="dkFooterClick" data-snt-params='{"item":"slogan-image","item_option":"۷ روز ضمانت بازگشت"}' class="c-footer__badge" href="#">
-        <div class="c-footer__feature-item c-footer__feature-item--5">۷ روز ضمانت بازگشت</div>
-      </a>
-
-      <a data-snt-event="dkFooterClick" data-snt-params='{"item":"slogan-image","item_option":"ضمانت اصل‌بودن کالا"}' lass="c-footer__badge" href="#">
-        <div class="c-footer__feature-item c-footer__feature-item--6">ضمانت اصل‌بودن کالا</div>
-      </a>
-    </nav>
     <hr/>
     <div class="c-footer__middlebar">
       <div class="c-footer__links">
-        <nav class="c-footer__links--col">
-          <div class="o-headline-links">
-            <div>
-              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"index-title","item_option":"راهنمای خرید از {{ $fa_store_name }}"}' href="#">راهنمای خرید از {{ $fa_store_name }}</a>
+        @foreach(\Modules\Staff\Nav\Models\NavLocation::find(2)->navs as $nav)
+          <nav class="c-footer__links--col">
+            <div class="o-headline-links">
+              <div>
+                <a href="{{ $nav->link }}">{{ $nav->name }}</a>
+              </div>
             </div>
-          </div>
-          <ul class="c-footer__links-ul">
-            <li>
-              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"index-item","item_option":"نحوه ثبت سفارش"}' href="#">نحوه ثبت سفارش</a></li>
-            <li>
-              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"index-item","item_option":"رویه ارسال سفارش"}' href="#">رویه ارسال سفارش</a></li>
-            <li>
-              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"index-item","item_option":"شیوه‌های پرداخت"}' ref="#">شیوه‌های پرداخت</a></li>
-          </ul>
-        </nav>
-        <nav class="c-footer__links--col">
-          <div class="o-headline-links">
-            <div><a data-snt-event="dkFooterClick"
-                    data-snt-params='{"item":"index-title","item_option":"خدمات مشتریان"}'
-                    href="/faq/">خدمات مشتریان</a></div>
-          </div>
-          <ul class="c-footer__links-ul">
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"پاسخ به پرسش‌های متداول"}'
-                   href="/faq/">پاسخ به پرسش‌های متداول</a></li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"رویه‌های بازگرداندن کالا"}'
-                   href="/faq/question/83/">رویه‌های بازگرداندن کالا</a></li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"شرایط استفاده"}'
-                   href="/page/terms/">شرایط استفاده</a></li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"حریم خصوصی"}'
-                   href="/page/privacy/">حریم خصوصی</a></li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"گزارش باگ"}'
-                   href="/bug-report/">گزارش باگ</a></li>
-          </ul>
-        </nav>
-        <nav class="c-footer__links--col">
-          <div class="o-headline-links">
-            <div><a data-snt-event="dkFooterClick"
-                    data-snt-params='{"item":"index-title","item_option":"با {{ $fa_store_name }}"}'
-                    href="/page/about/">با {{ $fa_store_name }}</a></div>
-          </div>
-          <ul class="c-footer__links-ul">
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"اتاق خبر"}'
-                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر {{ $fa_store_name }}</a></li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"فروش در {{ $fa_store_name }}"}'
-                   href="https://www.digikala.com/landings/seller-introduction/" target="_blank">فروش در {{ $fa_store_name }}</a>
-            </li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"فرصت‌های شغلی"}'
-                   href="http://careers.digikala.com/" target="_blank">فرصت‌های شغلی</a></li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"تماس با {{ $fa_store_name }}"}'
-                   href="/page/contact-us/">تماس با {{ $fa_store_name }}</a></li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"درباره {{ $fa_store_name }}"}'
-                   href="/page/about/">درباره {{ $fa_store_name }}</a></li>
-            <li><a data-snt-event="dkFooterClick"
-                   data-snt-params='{"item":"index-item","item_option":"راهنمای هویت بصری"}'
-                   href="/branding/">راهنمای هویت بصری</a></li>
-          </ul>
-        </nav>
+            <ul class="c-footer__links-ul">
+              @foreach($nav->children as $item)
+                <li>
+                  <a href="{{ $item->link }}">{{ $item->name }}</a>
+                </li>
+              @endforeach
+            </ul>
+          </nav>
+        @endforeach
       </div>
       <nav class="c-footer__form">
         <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/" method="post">
