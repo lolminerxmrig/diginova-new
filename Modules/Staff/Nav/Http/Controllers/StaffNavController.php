@@ -37,11 +37,11 @@ class StaffNavController extends Controller
     $imageExtension = $request->image->extension();
 
     $input['image'] = time() . '.' . $imageExtension;
-    $request->image->move(public_path('media/images'), $input['image']);
+    $request->image->move(public_path('media'), $input['image']);
 
     $media = Media::create([
       'name' => $input['image'],
-      'path' => 'media/images',
+      'path' => 'media',
       'person_id' => auth()->guard('staff')->user()->id,
       'person_role' => 'staff' ,
     ]);
@@ -291,7 +291,7 @@ class StaffNavController extends Controller
         Nav::updateOrCreate(['id' => $positions[$i]], [
           'name' => $request->menu_names[$i],
           'link' => $request->menu_links[$i],
-          'style' => isset($request->menu_styles) ? $request->menu_styles[$i] : null,
+          'style' => isset($request->menu_styles[$i]) ? $request->menu_styles[$i] : null,
           'position' => $i,
           'type' => 'menu',
           'parent_id' => $request->parent_id,

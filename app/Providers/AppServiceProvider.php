@@ -7,6 +7,7 @@ use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Support\ServiceProvider;
 use Modules\Staff\Shiping\Models\DeliveryMethodValue;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -102,6 +103,9 @@ class AppServiceProvider extends ServiceProvider
             'postSefareshi.sefareshi.tariff.higher.edgePart' => DeliveryMethodValue::find(22)->neighboring_provinces,
             'postSefareshi.sefareshi.tariff.higher.outsidePart' => DeliveryMethodValue::find(22)->extra_province,
           ]);
+
+          Schema::defaultStringLength(191);
+
         }
 
       Schema::defaultStringLength(191);

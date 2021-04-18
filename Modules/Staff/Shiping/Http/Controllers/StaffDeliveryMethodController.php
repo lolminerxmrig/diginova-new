@@ -149,11 +149,11 @@ class StaffDeliveryMethodController extends Controller
     $imageExtension = $request->image->extension();
 
     $input['image'] = time() . '.' . $imageExtension;
-    $request->image->move(public_path('media/images'), $input['image']);
+    $request->image->move(public_path('media'), $input['image']);
 
     $media = Media::create([
       'name' => $input['image'],
-      'path' => 'media/images',
+      'path' => 'media',
       'person_id' => auth()->guard('staff')->user()->id,
       'person_role' => 'staff' ,
     ]);

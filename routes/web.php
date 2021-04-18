@@ -14,5 +14,4 @@ use Modules\Customers\Front\Http\Controllers\FrontController;
 |
 */
 
-Route::get('/', [FrontController::class, 'index'])
-  ->name('front.indexPage');
+Route::get('/', [FrontController::class, 'index'])->name('front.indexPage');

@@ -11,8 +11,8 @@
     @csrf
 
     <div class="c-login__header-logo c-login__header-logo--lg">
-        <a href="{{ route('indexPage') }}">
-            <img alt="DIGIKALA.COM" src="{{ asset('assets/images/login-logo.svg') }}">
+        <a href="{{ route('front.indexPage') }}">
+            <img alt="DIGIKALA.COM" src="{{ asset('assets/login-logo.svg') }}">
         </a>
     </div>
 

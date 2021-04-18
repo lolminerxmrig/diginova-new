@@ -1083,7 +1083,7 @@
                                 <select name="store_city" class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-contact-city-select select2-hidden-accessible" aria-hidden="true">
                                   <option value=""> انتخاب کنید </option>
                                   @foreach($states->where('type', 'state') as $state)
-                                    <option value="{{ $state->id }}" {{ ($settings->where('name', 'store_city')->first()->states()->first()->id == $state->id)? 'selected' : '' }}> {{ $state->name }} </option>
+                                    <option value="" {{ ($settings->where('name', 'store_city')->first()->states()->first()->id == $state->id)? 'selected' : '' }}> {{ $state->name }} </option>
                                   @endforeach
                                 </select>
                               </div>

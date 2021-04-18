@@ -418,11 +418,11 @@ class StaffSettingController extends Controller
       $imageExtension = $request->image->extension();
 
       $input['image'] = time() . '.' . $imageExtension;
-      $request->image->move(public_path('media/settings/images'), $input['image']);
+      $request->image->move(public_path('media/settings'), $input['image']);
 
       $media = Media::create([
         'name' => $input['image'],
-        'path' => 'media/settings/images',
+        'path' => 'media/settings',
         'person_id' => auth()->guard('staff')->user()->id,
         'person_role' => 'staff' ,
       ]);

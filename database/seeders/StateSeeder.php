@@ -16,5 +16,8 @@ class StateSeeder extends Seeder
     {
         $state_table = __DIR__.'/../states.sql';
         DB::unprepared(file_get_contents($state_table));
+
+        $zonables_table = __DIR__.'/../zonables.sql';
+        DB::unprepared(file_get_contents($zonables_table));
     }
 }

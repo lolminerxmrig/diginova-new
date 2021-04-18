@@ -1,32 +1,29 @@
+
 --
 -- Dumping data for table `media`
 --
 
-INSERT INTO `media` (`id`, `name`, `path`, `person_role`, `person_id`, `status`, `created_at`, `updated_at`)
-VALUES (1, '161498218243068.jpg', 'media/images', 'staff', 1, 1, '2021-03-05 22:09:42', '2021-03-05 22:09:48'),
-       (2, '161498218246843.jpg', 'media/images', 'staff', 1, 1, '2021-03-05 22:09:42', '2021-03-05 22:09:48'),
-       (3, '161503831458166.jpg', 'media/images', 'staff', 1, 1, '2021-03-06 13:45:14', '2021-03-06 13:45:19'),
-       (4, '161503831586349.jpg', 'media/images', 'staff', 1, 1, '2021-03-06 13:45:15', '2021-03-06 13:45:19'),
-       (5, '161503838320704.jpg', 'media/images', 'staff', 1, 1, '2021-03-06 13:46:23', '2021-03-06 13:46:28'),
-       (6, '161503838385096.jpg', 'media/images', 'staff', 1, 1, '2021-03-06 13:46:24', '2021-03-06 13:46:27');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `media`
---
-ALTER TABLE `media`
-    ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `media`
---
-ALTER TABLE `media`
-    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-COMMIT;
+INSERT INTO `media` (`id`, `name`, `path`, `person_role`, `person_id`, `status`, `created_at`, `updated_at`) VALUES
+(7, '1618655590.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 10:33:10', '2021-04-17 10:33:10'),
+(8, '1618655603.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 10:33:23', '2021-04-17 10:33:23'),
+(9, '1618659885.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 11:44:45', '2021-04-17 11:44:45'),
+(10, '1618659892.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 11:44:52', '2021-04-17 11:44:52'),
+(11, '1618659897.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 11:44:57', '2021-04-17 11:44:57'),
+(14, '1618664751.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 13:05:52', '2021-04-17 13:05:52'),
+(16, '1618670917.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 14:48:37', '2021-04-17 14:48:37'),
+(17, '1618672716.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 15:18:36', '2021-04-17 15:18:36'),
+(18, '1618672727.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 15:18:47', '2021-04-17 15:18:47'),
+(19, '1618672736.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 15:18:56', '2021-04-17 15:18:56'),
+(21, '1618672841.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 15:20:41', '2021-04-17 15:20:41'),
+(22, '1618675471.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 16:04:32', '2021-04-17 16:04:32'),
+(23, '1618675481.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 16:04:41', '2021-04-17 16:04:41'),
+(24, '1618678904.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 17:01:44', '2021-04-17 17:01:44'),
+(25, '1618678917.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 17:01:57', '2021-04-17 17:01:57'),
+(26, '1618678926.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 17:02:06', '2021-04-17 17:02:06'),
+(27, '1618678936.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 17:02:16', '2021-04-17 17:02:16'),
+(28, '1618686445.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 19:07:25', '2021-04-17 19:07:25'),
+(29, '1618686448.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 19:07:28', '2021-04-17 19:07:28'),
+(30, '1618687139.jpg', 'media/sliders', 'staff', 1, NULL, '2021-04-17 19:18:59', '2021-04-17 19:18:59'),
+(31, '1618689596.svg', 'media/settings', 'staff', 1, NULL, '2021-04-17 19:59:56', '2021-04-17 19:59:56'),
+(32, '1618715025.png', 'media/settings', 'staff', 1, NULL, '2021-04-18 03:03:45', '2021-04-18 03:03:45'),
+(33, '1618715029.png', 'media/settings', 'staff', 1, NULL, '2021-04-18 03:03:49', '2021-04-18 03:03:49');

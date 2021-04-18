@@ -21,15 +21,10 @@ class Nav extends Model
     }
 
 
-
-
-
-
     public function group()
     {
        return $this->belongsTo(NavGroup::class, 'group_id');
     }
-
 
 
     public function images()
@@ -37,9 +32,14 @@ class Nav extends Model
       return $this->hasMany(NavImage::class);
     }
 
-//    public function image()
-//    {
-//      return $this->hasOne(NavImage::class);
-//    }
+    public function children()
+    {
+      return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
+    public function parent()
+    {
+      return $this->belongsTo(self::class, 'parent_id');
+    }
 
 }

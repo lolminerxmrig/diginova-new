@@ -325,7 +325,7 @@
                                                                                 <li class="c-content-upload__gallery-row js-uploads-row li-error" id="1dsWB">
                                                                                     <div class="c-content-upload__img-container">
                                                                                         @if(count($brand->media))
-                                                                                        <img name="uploaded" id="preview_uploading" src="{{ env('APP_URL') . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}"
+                                                                                        <img name="uploaded" id="preview_uploading" src="{{ $site_url . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}"
                                                                                              data-id="{{ ($brand->media()->first()->id)? $brand->media()->first()->id : 0 }}" class="c-content-upload__img js-upload-thumb upload-image">
                                                                                         @else
                                                                                             <img name="uploaded" id="preview_uploading" src=""

@@ -6,7 +6,7 @@
         <li class="c-content-upload__gallery-row js-uploads-row li-error" id="1dsWB">
 
             <div class="c-content-upload__img-container">
-                <img name="uploaded" id="preview_uploading" src="{{ (($cat_media)? env('APP_URL') . '/' .$cat_media->path . '/' . $cat_media->name : '') }}" data-id="{{ ($cat_media)? $cat_media->id : '' }}" class="c-content-upload__img js-upload-thumb upload-image">
+                <img name="uploaded" id="preview_uploading" src="{{ (($cat_media)? $site_url . '/' .$cat_media->path . '/' . $cat_media->name : '') }}" data-id="{{ ($cat_media)? $cat_media->id : '' }}" class="c-content-upload__img js-upload-thumb upload-image">
                 <div class="c-content-upload__img-loader" style="display: none;">
                     <div class="progress__wrapper">
                         <span class="progress"></span>
