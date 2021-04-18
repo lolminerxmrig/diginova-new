@@ -1,5 +1,18 @@
-INSERT INTO navs (id, name, link, style, position, type, status, has_ads, parent_id, location_id, created_at, updated_at) VALUES (1, 'راهنمای خرید از دیجی‌کالا', '#', null, '1', 'common', 'active', 0, null, 2, '2021-04-18 12:29:02', '2021-04-18 12:29:02');
-INSERT INTO navs (id, name, link, style, position, type, status, has_ads, parent_id, location_id, created_at, updated_at) VALUES (2, 'خدمات مشتریان', '#', null, '2', 'common', 'active', 0, null, 2, '2021-04-18 12:29:20', '2021-04-18 12:29:20');
-INSERT INTO navs (id, name, link, style, position, type, status, has_ads, parent_id, location_id, created_at, updated_at) VALUES (3, 'خدمات مشتریان', '#', null, '2', 'common', 'active', 0, null, 2, '2021-04-18 12:29:20', '2021-04-18 12:29:20');
-INSERT INTO navs (id, name, link, style, position, type, status, has_ads, parent_id, location_id, created_at, updated_at) VALUES (4, 'تست', 'test', 'bold', '0', 'menu', 'active', 0, 1, null, '2021-04-18 13:12:36', '2021-04-18 13:12:36');
-INSERT INTO navs (id, name, link, style, position, type, status, has_ads, parent_id, location_id, created_at, updated_at) VALUES (5, 'تست دو', 'test2', null, '1', 'menu', 'active', 0, 1, null, '2021-04-18 13:23:43', '2021-04-18 13:24:14');
+INSERT INTO `navs` (`id`, `name`, `link`, `style`, `position`, `type`, `status`, `has_ads`, `parent_id`, `location_id`, `created_at`, `updated_at`) VALUES
+(1, 'راهنمای خرید از دیجی نوا', '#', NULL, '0', 'common', 'active', 0, NULL, 2, '2021-04-18 07:59:02', '2021-04-18 12:33:18'),
+(2, 'خدمات مشتریان', '#', NULL, '1', 'common', 'active', 0, NULL, 2, '2021-04-18 07:59:20', '2021-04-18 12:33:18'),
+(3, 'با دیجی‌ نوا', '#', NULL, '2', 'common', 'active', 0, NULL, 2, '2021-04-18 07:59:20', '2021-04-18 12:33:18'),
+(4, 'نحوه ثبت سفارش', '#', NULL, '0', 'menu', 'active', 0, 1, NULL, '2021-04-18 08:42:36', '2021-04-18 12:29:15'),
+(5, 'رویه ارسال سفارش', '#', NULL, '1', 'menu', 'active', 0, 1, NULL, '2021-04-18 08:53:43', '2021-04-18 12:29:15'),
+(6, 'شیوه‌های پرداخت', '#', NULL, '2', 'menu', 'active', 0, 1, NULL, '2021-04-18 12:29:15', '2021-04-18 12:29:15'),
+(7, 'پاسخ به پرسش‌های متداول', '#', NULL, '0', 'menu', 'active', 0, 2, NULL, '2021-04-18 12:31:00', '2021-04-18 12:31:00'),
+(8, 'رویه‌های بازگرداندن کالا', '#', NULL, '1', 'menu', 'active', 0, 2, NULL, '2021-04-18 12:31:00', '2021-04-18 12:31:00'),
+(9, 'شرایط استفاده', '#', NULL, '2', 'menu', 'active', 0, 2, NULL, '2021-04-18 12:31:00', '2021-04-18 12:31:00'),
+(10, 'حریم خصوصی', '#', NULL, '3', 'menu', 'active', 0, 2, NULL, '2021-04-18 12:31:00', '2021-04-18 12:31:00'),
+(11, 'گزارش باگ', '#', NULL, '4', 'menu', 'active', 0, 2, NULL, '2021-04-18 12:31:00', '2021-04-18 12:31:00'),
+(12, 'اتاق خبر دیجی‌ نوا', '#', NULL, '0', 'menu', 'active', 0, 3, NULL, '2021-04-18 12:32:51', '2021-04-18 12:32:51'),
+(13, 'فروش در دیجی نوا', '#', NULL, '1', 'menu', 'active', 0, 3, NULL, '2021-04-18 12:32:51', '2021-04-18 12:32:51'),
+(14, 'فرصت‌های شغلی', '#', NULL, '2', 'menu', 'active', 0, 3, NULL, '2021-04-18 12:32:51', '2021-04-18 12:32:51'),
+(15, 'تماس با دیجی نوا', '#', NULL, '3', 'menu', 'active', 0, 3, NULL, '2021-04-18 12:32:51', '2021-04-18 12:32:51'),
+(16, 'درباره دیجی نوا', '#', NULL, '4', 'menu', 'active', 0, 3, NULL, '2021-04-18 12:32:51', '2021-04-18 12:32:51'),
+(17, 'راهنمای هویت بصری', '#', NULL, '5', 'menu', 'active', 0, 3, NULL, '2021-04-18 12:32:51', '2021-04-18 12:32:51');
