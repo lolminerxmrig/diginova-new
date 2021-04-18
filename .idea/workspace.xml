@@ -13,8 +13,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c6adf28-119f-4cef-ae06-bfc6c99776b8" name="test" comment="Svg's login &amp; Navs sql">
+    <list default="true" id="4c6adf28-119f-4cef-ae06-bfc6c99776b8" name="test" comment="temp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/seller/js/tags5.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/seller/js/tags5.js" afterDir="false" />
     </list>
     <list id="aca6119d-1593-413f-8e01-a44ff24a8d7d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -662,7 +663,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Svg's login &amp; Navs sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="Svg's login &amp; Navs sql" />
+    <MESSAGE value="temp" />
+    <option name="LAST_COMMIT_MESSAGE" value="temp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
