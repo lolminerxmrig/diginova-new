@@ -15,6 +15,16 @@
   <component name="ChangeListManager">
     <list default="true" id="4c6adf28-119f-4cef-ae06-bfc6c99776b8" name="test" comment="Svg's login &amp; Navs sql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/attribute_groups.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/attribute_groups.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/attribute_values.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/attribute_values.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/attributes.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Attribute/Database/attributes.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Brand/Database/brands.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Brand/Database/brands.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Database/categories.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Database/categories.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Category/Database/categorizables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Category/Database/categorizables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Type/Database/types.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Type/Database/types.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Unit/Database/unit_values.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Unit/Database/unit_values.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Unit/Database/units.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Unit/Database/units.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Staff/Warranty/Database/warranties.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Staff/Warranty/Database/warranties.sql" afterDir="false" />
     </list>
     <list id="aca6119d-1593-413f-8e01-a44ff24a8d7d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -638,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618750003713</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Svg's login &amp; Navs sql">
+      <created>1618750230008</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618750230008</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <option name="createBranch" value="false" />
     <servers />
   </component>
