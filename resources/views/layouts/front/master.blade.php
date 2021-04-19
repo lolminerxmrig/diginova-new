@@ -284,7 +284,7 @@
                       <div class="c-navi-new-list__inner-categories">
                         @if($nav->children()->exists())
                           @foreach($nav->children as $key => $megamenu)
-                            <a href="{{ $megamenu->link }}" class="c-navi-new-list__inner-category c-navi-new-list__inner-category--hovered js-mega-menu-category c-navi-new-list__inner-category--electronics" data-index="{{ $key }}">{{ persianNum($megamenu->name) }}</a>
+                            <a href="{{ $megamenu->link }}" class="c-navi-new-list__inner-category js-mega-menu-category c-navi-new-list__inner-category--electronics {{ ($key == 0)? 'c-navi-new-list__inner-category--hovered ' : '' }}" data-index="{{ $key }}">{{ persianNum($megamenu->name) }}</a>
                           @endforeach
                         @endif
                       </div>
@@ -567,7 +567,7 @@
     <hr/>
     <div class="c-footer__middlebar">
       <div class="c-footer__links">
-        @foreach(\Modules\Staff\Nav\Models\NavLocation::find(2)->navs as $nav)
+        @foreach(\Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null) as $nav)
           <nav class="c-footer__links--col">
             <div class="o-headline-links">
               <div>
