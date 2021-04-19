@@ -313,8 +313,19 @@ class StaffNavController extends Controller
   {
     $nav = Nav::find($request->nav_id);
     $media_id = $nav->media()->first()->id;
+
+    $media = Media::find($media_id);
+    $user_id = auth()->guard('staff')->user()->id;
+
+
     $nav->media()->detach();
-    Media::find($media_id)->delete();
+
+    if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
+      unlink(public_path("$media->path/") . $media->name);
+      $media->delete();
+    }
+
+
 
     return response()->json([
       'status' => true,

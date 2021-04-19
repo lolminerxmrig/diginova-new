@@ -449,6 +449,8 @@ $('.save-nav').on('click', function (e) {
         timeout: 3000
       });
 
+      window.location.href = "{{ route('staff.navs.megamenuItems', ['id' => $nav->id] ) }}";
+
     },
 
     error: function (errors) {

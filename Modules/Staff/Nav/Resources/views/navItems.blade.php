@@ -456,6 +456,7 @@ $('.save-nav').on('click', function (e) {
         pos: 'top-left',
         timeout: 3000
       });
+      window.location.href = "{{ route('staff.navs.navItems', ['id' => $nav->id] ) }}";
 
     },
 

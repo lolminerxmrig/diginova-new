@@ -98,6 +98,19 @@
       width: 40% !important;
     }
 
+    .c-navi-new-list__category--main::before {
+      content: unset !important;
+    }
+
+    .menu-icons {
+      float: right;
+      width: 22px !important;
+      height: 24px !important;
+      margin-left: 4px;
+      margin-top: 0px !important;
+      background-size: 20px !important;
+    }
+
   </style>
 
 </head>
@@ -279,12 +292,20 @@
               @foreach($header_navs->where('parent_id', null) as $nav)
                 @if($nav->type == 'megamenu')
                   <li class="js-categories-bar-item js-mega-menu-main-item js-categories-item c-navi-new-list__category-container-main">
-                  <div class="c-navi-new-list__category c-navi-new-list__category--main">{{ persianNum($nav->name) }}</div>
+                  <div class="c-navi-new-list__category c-navi-new-list__category--main">
+                    <span class="menu-icons" style="background: url({{ ($nav->media()->exists())? $site_url . '/' . $nav->media()->first()->path . '/' . $nav->media()->first()->name : '' }}) no-repeat !important; background-size: 20px !important;"></span>
+                    {{ persianNum($nav->name) }}
+                  </div>
                     <div class="c-navi-new-list__sublist js-mega-menu-categories-options c-navi-new__ads-holder">
                       <div class="c-navi-new-list__inner-categories">
                         @if($nav->children()->exists())
                           @foreach($nav->children as $key => $megamenu)
-                            <a href="{{ $megamenu->link }}" class="c-navi-new-list__inner-category js-mega-menu-category c-navi-new-list__inner-category--electronics {{ ($key == 0)? 'c-navi-new-list__inner-category--hovered ' : '' }}" data-index="{{ $key }}">{{ persianNum($megamenu->name) }}</a>
+                            <a href="{{ $megamenu->link }}" class="c-navi-new-list__inner-category js-mega-menu-category {{ ($key == 0)? 'c-navi-new-list__inner-category--hovered ' : '' }}" data-index="{{ $key }}">
+                              @if($megamenu->media()->exists())
+                                <span class="menu-icons" style="background: url({{ ($megamenu->media()->exists())? $site_url . '/' . $megamenu->media()->first()->path . '/' . $megamenu->media()->first()->name : '' }}) no-repeat !important; background-size: 20px !important;"></span>
+                              @endif
+                              {{ persianNum($megamenu->name) }}
+                            </a>
                           @endforeach
                         @endif
                       </div>
@@ -319,6 +340,7 @@
                     </div>
                   </li>
                 @elseif($nav->children()->exists())
+
                   <li class="js-categories-bar-item js-mega-menu-main-item js-promotion-mega-menu">
                     <a href="{{ $nav->link }}" class="c-navi-new-list__category-link c-navi-new-list__category-link--amazing c-navi-new-list__category-link--bold">{{ persianNum($nav->name) }}</a>
                     <div class="c-navi-new-list__sublist c-navi-new-list__sublist--promotion js-mega-menu-categories-options" style="display: none;">
@@ -342,7 +364,6 @@
                       </div>
                     </div>
                   </li>
-
 
                 @else
                   <li class="js-categories-bar-item">
