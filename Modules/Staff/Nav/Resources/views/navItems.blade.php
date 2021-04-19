@@ -116,7 +116,9 @@
 
                       <label class="c-ui-form__label" for="product_page_title">
                         آیکون فهرست: (اختیاری)
-                        <a class="c-ui-btn c-ui-btn--next mr-a delete-icon-nav"  style="margin-left: 21px;width: 59px !important;height: 20px !important;min-width: 45px !important;border-radius: 5px;font-size: 10px;box-shadow: unset;font-weight: bold;" id="submit-form">حذف آیکون</a>
+                        @if($nav->media()->exists())
+                          <a class="c-ui-btn c-ui-btn--next mr-a delete-icon-nav"  style="margin-left: 21px;width: 59px !important;height: 20px !important;min-width: 45px !important;border-radius: 5px;font-size: 10px;box-shadow: unset;font-weight: bold;" id="submit-form">حذف آیکون</a>
+                        @endif
                       </label>
 
                       <div class="field-wrapper">
