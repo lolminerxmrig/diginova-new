@@ -20,6 +20,8 @@
   $cafebazaar_link = \Modules\Staff\Setting\Models\Setting::where('name', 'cafebazaar_link')->first()->value;
   $myket_link = \Modules\Staff\Setting\Models\Setting::where('name', 'myket_link')->first()->value;
   $sibapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'sibapp_link')->first()->value;
+
+  $header_navs = \Modules\Staff\Nav\Models\NavLocation::find(1)->navs;
 ?>
 <!DOCTYPE html>
 <html dir="rtl">
@@ -92,11 +94,9 @@
       }
     }
 
-{{--    @if(!is_null($header_logo))--}}
-{{--      .c-header__logo-img {--}}
-{{--        background: url({{ $site_url . '/' . $header_logo->path . '/'. $header_logo->name }}) no-repeat 50% !important;--}}
-{{--      }--}}
-{{--    @endif--}}
+    .c-navi-new-list__sublist--promotion .c-navi-new-list__sublist-option {
+      width: 40% !important;
+    }
 
   </style>
 
@@ -224,7 +224,6 @@
           </div>
         @endif
 
-
         <div id="mini-cart" class="c-header__btn-container">
           <div class="c-header__btn-cart-container ">
             <a id="cart-button" class="c-header__btn-cart c-header__btn-adding--no-drop-down" data-snt-event="dkHeaderClick" data-snt-params='{"item":"mini-cart","item_option":null}' data-counter="۰" href="/cart/" data-event="mini_cart_click" data-event-category="header_section" data-event-label="items: 0 - total price: "></a>
@@ -237,8 +236,6 @@
                   <span>مشاهده سبد خرید</span>
                 </a>
               </div>
-
-
             </div>
           </div>
           <div class="remodal c-modal c-u-minicart__modal u-hidden js-minicart-modal" data-remodal-id="universal-mini-cart" role="dialog" aria-labelledby="modalTitle" tabindex="-1z" aria-describedby="modalDesc" data-remodal-options="">
@@ -278,750 +275,90 @@
         <ul class="c-navi-new-list">
           <li class="c-navi-new-list__categories">
             <ul class="c-navi-new-list__category-item">
-              <li class="c-navi-new-list__a-hover js-navi-new-list-category-hover">
-                <div></div>
-              </li>
-              <li class="js-categories-bar-item js-mega-menu-main-item js-categories-item c-navi-new-list__category-container-main">
-                <div class="c-navi-new-list__category c-navi-new-list__category--main">دسته‌بندی کالاها</div>
-                <div class="c-navi-new-list__sublist js-mega-menu-categories-options c-navi-new__ads-holder">
-                  <div class="c-navi-new-list__inner-categories">
-                    <a href="" class="c-navi-new-list__inner-category c-navi-new-list__inner-category--hovered js-mega-menu-category" data-index="1">کالای دیجیتال</a>
-                  </div>
-                  <div class="c-navi-new-list__options-container">
-                    <div class="c-navi-new-list__options-list  js-mega-menu-category-options is-active" id="categories-1">
-                      <div class="c-navi-new-list__sublist-top-bar">
-                        <a href="٫" class="c-navi-new-list__sublist-see-all-cats">
-                          همه دسته‌بندی‌های کالای دیجیتال
-                        </a>
+
+              @foreach($header_navs->where('parent_id', null) as $nav)
+                @if($nav->type == 'megamenu')
+                  <li class="js-categories-bar-item js-mega-menu-main-item js-categories-item c-navi-new-list__category-container-main">
+                  <div class="c-navi-new-list__category c-navi-new-list__category--main">{{ persianNum($nav->name) }}</div>
+                    <div class="c-navi-new-list__sublist js-mega-menu-categories-options c-navi-new__ads-holder">
+                      <div class="c-navi-new-list__inner-categories">
+                        @if($nav->children()->exists())
+                          @foreach($nav->children as $key => $megamenu)
+                            <a href="{{ $megamenu->link }}" class="c-navi-new-list__inner-category c-navi-new-list__inner-category--hovered js-mega-menu-category c-navi-new-list__inner-category--electronics" data-index="{{ $key }}">{{ persianNum($megamenu->name) }}</a>
+                          @endforeach
+                        @endif
                       </div>
-                      <ul>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title" data-event="megamenu_click" data-event-category="header_section" data-event-label="category_en: mobile - category_fa: لوازم جانبی گوشی - level: 2">
-                          <a data-snt-event="dkMegaMenuClick" data-snt-params='{"type":"option-title","category_title":"لوازم جانبی گوشی"}' href="/search/category-mobile-accessories/" class=" c-navi-new__big-display-title"><span>لوازم جانبی گوشی</span></a><a data-snt-event="dkMegaMenuClick" data-snt-params='{"type":"option-title","category_title":"لوازم جانبی گوشی"}' href="/search/category-mobile-accessories/" class=" c-navi-new__medium-display-title">
-                            <span>لوازم جانبی گوشی</span>
-                          </a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item" data-event="megamenu_click" data-event-category="header_section" data-event-label="category_en: cell phone pouch cover - category_fa: کیف و کاور گوشی - level: 3">
-                          <a data-snt-event="dkMegaMenuClick" data-snt-params='{"type":"option-item","category_title":"کیف و کاور گوشی"}' href="/search/category-cell-phone-pouch-cover/" class=" c-navi-new__big-display-title">
-                            کیف و کاور گوشی
-                          </a>
-                          <a data-snt-event="dkMegaMenuClick" data-snt-params='{"type":"option-item","category_title":"کیف و کاور گوشی"}' href="/search/category-cell-phone-pouch-cover/" class=" c-navi-new__medium-display-title">
-                            کیف و کاور گوشی
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="c-navi-new-list__options-list  js-mega-menu-category-options" id="categories-2">
-                      <div class="c-navi-new-list__sublist-top-bar"><a href="/main/vehicles/"
-                                                                       class="c-navi-new-list__sublist-see-all-cats">
-                          همه دسته‌بندی‌های وسایل نقلیه و صنعتی
-                        </a></div>
-                      <ul>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: خودروهای ایرانی و خارجی - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"خودروهای ایرانی و خارجی"}'
-                            href="/search/category-cars/" class=" c-navi-new__big-display-title"><span>خودروهای ایرانی و خارجی</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"خودروهای ایرانی و خارجی"}'
-                            href="/search/category-cars/" class=" c-navi-new__medium-display-title"><span>خودروهای ایرانی و خارجی</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: موتور سیکلت - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"موتور سیکلت"}'
-                            href="/search/category-motorbike/"
-                            class=" c-navi-new__big-display-title"><span>موتور سیکلت</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"موتور سیکلت"}'
-                            href="/search/category-motorbike/" class=" c-navi-new__medium-display-title"><span>موتور سیکلت</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لوازم جانبی خودرو و موتورسیکلت - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم جانبی خودرو و موتورسیکلت"}'
-                            href="/search/category-car-accessory-parts/" class=" c-navi-new__big-display-title"><span>لوازم جانبی خودرو و موتورسیکلت</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم جانبی خودرو و موتورسیکلت"}'
-                            href="/search/category-car-accessory-parts/"
-                            class=" c-navi-new__medium-display-title"><span>لوازم جانبی خودرو و موتورسیکلت</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لوازم تزیینی - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"لوازم تزیینی"}'
-                            href="/search/category-in-car-accessorie/" class=" c-navi-new__big-display-title">
-                            لوازم تزیینی
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"لوازم تزیینی"}'
-                                 href="/search/category-in-car-accessorie/" class=" c-navi-new__medium-display-title">
-                            لوازم تزیینی
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: سیستم صوتی و تصویری - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"سیستم صوتی و تصویری"}'
-                            href="/search/category-car-stereo/" class=" c-navi-new__big-display-title">
-                            سیستم صوتی و تصویری
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"سیستم صوتی و تصویری"}'
-                                 href="/search/category-car-stereo/" class=" c-navi-new__medium-display-title">
-                            سیستم صوتی و تصویری
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: نظافت و نگهداری خودرو - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"نظافت و نگهداری خودرو"}'
-                            href="/search/category-car-cleaning-and-maintenance/"
-                            class=" c-navi-new__big-display-title">
-                            نظافت و نگهداری خودرو
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"نظافت و نگهداری خودرو"}'
-                                 href="/search/category-car-cleaning-and-maintenance/"
-                                 class=" c-navi-new__medium-display-title">
-                            نظافت و نگهداری خودرو
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: کلاه کاسکت و  لوازم جانبی موتور - level: 3">
-                          <a data-snt-event="dkMegaMenuClick"
-                             data-snt-params='{"type":"option-item","category_title":"کلاه کاسکت و  لوازم جانبی موتور"}'
-                             href="/search/category-motorbike-accessory-parts/" class=" c-navi-new__big-display-title">
-                            کلاه کاسکت و لوازم جانبی موتور
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"کلاه کاسکت و  لوازم جانبی موتور"}'
-                                 href="/search/category-motorbike-accessory-parts/"
-                                 class=" c-navi-new__medium-display-title">
-                            کلاه کاسکت و لوازم جانبی موتور
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لوازم یدکی خودرو و موتورسیکلت - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم یدکی خودرو و موتورسیکلت"}'
-                            href="/search/category-car-spare-parts/" class=" c-navi-new__big-display-title"><span>لوازم یدکی خودرو و موتورسیکلت</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم یدکی خودرو و موتورسیکلت"}'
-                            href="/search/category-car-spare-parts/" class=" c-navi-new__medium-display-title"><span>لوازم یدکی خودرو و موتورسیکلت</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: دیسک و صفحه کلاچ - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"دیسک و صفحه کلاچ"}'
-                            href="/search/category-clutch-kit/" class=" c-navi-new__big-display-title">
-                            دیسک و صفحه کلاچ
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"دیسک و صفحه کلاچ"}'
-                                 href="/search/category-clutch-kit/" class=" c-navi-new__medium-display-title">
-                            دیسک و صفحه کلاچ
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: جلوبندی و تعلیق - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"جلوبندی و تعلیق"}'
-                            href="/search/category-suspension-systems-and-component/"
-                            class=" c-navi-new__big-display-title">
-                            جلوبندی و تعلیق
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"جلوبندی و تعلیق"}'
-                                 href="/search/category-suspension-systems-and-component/"
-                                 class=" c-navi-new__medium-display-title">
-                            جلوبندی و تعلیق
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: چراغ خودرو - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"چراغ خودرو"}'
-                            href="/search/category-automotive-lighting/" class=" c-navi-new__big-display-title">
-                            چراغ خودرو
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"چراغ خودرو"}'
-                                 href="/search/category-automotive-lighting/" class=" c-navi-new__medium-display-title">
-                            چراغ خودرو
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: تسمه خودرو - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"تسمه خودرو"}'
-                            href="/search/category-engine-belt/" class=" c-navi-new__big-display-title">
-                            تسمه خودرو
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"تسمه خودرو"}'
-                                 href="/search/category-engine-belt/" class=" c-navi-new__medium-display-title">
-                            تسمه خودرو
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: کمک فنر - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"کمک فنر"}'
-                            href="/search/category-shock-absorber/" class=" c-navi-new__big-display-title">
-                            کمک فنر
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"کمک فنر"}'
-                                 href="/search/category-shock-absorber/" class=" c-navi-new__medium-display-title">
-                            کمک فنر
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لوازم مصرفی خودرو و موتورسیکلت - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم مصرفی خودرو و موتورسیکلت"}'
-                            href="/search/category-consumable-parts/" class=" c-navi-new__big-display-title"><span>لوازم مصرفی خودرو و موتورسیکلت</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم مصرفی خودرو و موتورسیکلت"}'
-                            href="/search/category-consumable-parts/" class=" c-navi-new__medium-display-title"><span>لوازم مصرفی خودرو و موتورسیکلت</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لاستیک و تایر - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"لاستیک و تایر"}'
-                            href="/search/category-tire/" class=" c-navi-new__big-display-title">
-                            لاستیک و تایر
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"لاستیک و تایر"}'
-                                 href="/search/category-tire/" class=" c-navi-new__medium-display-title">
-                            لاستیک و تایر
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لنت ترمز - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"لنت ترمز"}'
-                            href="/search/category-brake-pad/" class=" c-navi-new__big-display-title">
-                            لنت ترمز
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"لنت ترمز"}'
-                                 href="/search/category-brake-pad/" class=" c-navi-new__medium-display-title">
-                            لنت ترمز
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: روغن موتور و ضد یخ - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"روغن موتور و ضد یخ"}'
-                            href="/search/category-oils-and-additives/" class=" c-navi-new__big-display-title">
-                            روغن موتور و ضد یخ
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"روغن موتور و ضد یخ"}'
-                                 href="/search/category-oils-and-additives/" class=" c-navi-new__medium-display-title">
-                            روغن موتور و ضد یخ
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: مکمل سوخت و روغن و انواع فیلتر - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"مکمل سوخت و روغن و انواع فیلتر"}'
-                            href="/search/category-car-oil-and-fuel-additive/" class=" c-navi-new__big-display-title">
-                            مکمل سوخت و روغن و انواع فیلتر
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"مکمل سوخت و روغن و انواع فیلتر"}'
-                                 href="/search/category-car-oil-and-fuel-additive/"
-                                 class=" c-navi-new__medium-display-title">
-                            مکمل سوخت و روغن و انواع فیلتر
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en: Sport Gadgets - category_fa: ابزار برقی - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"ابزار برقی"}'
-                            href="/search/category-power-tools/"
-                            class=" c-navi-new__big-display-title"><span>ابزار برقی</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"ابزار برقی"}'
-                            href="/search/category-power-tools/" class=" c-navi-new__medium-display-title"><span>ابزار برقی</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: دریل، پیچ گوشتی برقی و شارژی - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"دریل، پیچ گوشتی برقی و شارژی"}'
-                            href="/search/category-cordlessscrewdriver/" class=" c-navi-new__big-display-title">
-                            دریل، پیچ گوشتی برقی و شارژی
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"دریل، پیچ گوشتی برقی و شارژی"}'
-                                 href="/search/category-cordlessscrewdriver/" class=" c-navi-new__medium-display-title">
-                            دریل، پیچ گوشتی برقی و شارژی
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: فرز و سنگ رومیزی - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"فرز و سنگ رومیزی"}'
-                            href="/search/category-anglegrinder/" class=" c-navi-new__big-display-title">
-                            فرز و سنگ رومیزی
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"فرز و سنگ رومیزی"}'
-                                 href="/search/category-anglegrinder/" class=" c-navi-new__medium-display-title">
-                            فرز و سنگ رومیزی
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: موتور برق - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"موتور برق"}'
-                            href="/search/category-electric-engine/" class=" c-navi-new__big-display-title">
-                            موتور برق
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"موتور برق"}'
-                                 href="/search/category-electric-engine/" class=" c-navi-new__medium-display-title">
-                            موتور برق
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: مکنده و دمنده - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"مکنده و دمنده"}'
-                            href="/search/category-blower/" class=" c-navi-new__big-display-title">
-                            مکنده و دمنده
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"مکنده و دمنده"}'
-                                 href="/search/category-blower/" class=" c-navi-new__medium-display-title">
-                            مکنده و دمنده
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: کارواش - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"کارواش"}'
-                            href="/search/category-carwash/" class=" c-navi-new__big-display-title">
-                            کارواش
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"کارواش"}'
-                                 href="/search/category-carwash/" class=" c-navi-new__medium-display-title">
-                            کارواش
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: کمپرسور و جک خودرو - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"کمپرسور و جک خودرو"}'
-                            href="/search/category-car-tools/" class=" c-navi-new__big-display-title">
-                            کمپرسور و جک خودرو
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"کمپرسور و جک خودرو"}'
-                                 href="/search/category-car-tools/" class=" c-navi-new__medium-display-title">
-                            کمپرسور و جک خودرو
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: ابزار همه کاره برقی و شارژی - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"ابزار همه کاره برقی و شارژی"}'
-                            href="/search/category-multitool/" class=" c-navi-new__big-display-title">
-                            ابزار همه کاره برقی و شارژی
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"ابزار همه کاره برقی و شارژی"}'
-                                 href="/search/category-multitool/" class=" c-navi-new__medium-display-title">
-                            ابزار همه کاره برقی و شارژی
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: ابزار غیر برقی - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"ابزار غیر برقی"}'
-                            href="/search/category-non-electrical-tools/" class=" c-navi-new__big-display-title"><span>ابزار غیر برقی</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"ابزار غیر برقی"}'
-                            href="/search/category-non-electrical-tools/"
-                            class=" c-navi-new__medium-display-title"><span>ابزار غیر برقی</span></a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: ابزار دستی - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"ابزار دستی"}'
-                            href="/search/category-hand-tools/" class=" c-navi-new__big-display-title">
-                            ابزار دستی
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"ابزار دستی"}'
-                                 href="/search/category-hand-tools/" class=" c-navi-new__medium-display-title">
-                            ابزار دستی
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: مجموعه ابزار - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"مجموعه ابزار"}'
-                            href="/search/category-tools-set/" class=" c-navi-new__big-display-title">
-                            مجموعه ابزار
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"مجموعه ابزار"}'
-                                 href="/search/category-tools-set/" class=" c-navi-new__medium-display-title">
-                            مجموعه ابزار
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: نردبان - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"نردبان"}'
-                            href="/search/category-ladders/" class=" c-navi-new__big-display-title">
-                            نردبان
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"نردبان"}'
-                                 href="/search/category-ladders/" class=" c-navi-new__medium-display-title">
-                            نردبان
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: پیچ گوشتی و فازمتر - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"پیچ گوشتی و فازمتر"}'
-                            href="/search/category-screwdriver/" class=" c-navi-new__big-display-title">
-                            پیچ گوشتی و فازمتر
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"پیچ گوشتی و فازمتر"}'
-                                 href="/search/category-screwdriver/" class=" c-navi-new__medium-display-title">
-                            پیچ گوشتی و فازمتر
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: نظم دهنده ابزار - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"نظم دهنده ابزار"}'
-                            href="/search/category-tool-organizer/" class=" c-navi-new__big-display-title">
-                            نظم دهنده ابزار
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"نظم دهنده ابزار"}'
-                                 href="/search/category-tool-organizer/" class=" c-navi-new__medium-display-title">
-                            نظم دهنده ابزار
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: متر، تراز، اندازه‌گیری دقیق - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"متر، تراز، اندازه‌گیری دقیق"}'
-                            href="/search/category-measurement/" class=" c-navi-new__big-display-title">
-                            متر، تراز، اندازه‌گیری دقیق
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"متر، تراز، اندازه‌گیری دقیق"}'
-                                 href="/search/category-measurement/" class=" c-navi-new__medium-display-title">
-                            متر، تراز، اندازه‌گیری دقیق
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لوازم روانکاری - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"لوازم روانکاری"}'
-                            href="/search/category-oilcan/" class=" c-navi-new__big-display-title">
-                            لوازم روانکاری
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"لوازم روانکاری"}'
-                                 href="/search/category-oilcan/" class=" c-navi-new__medium-display-title">
-                            لوازم روانکاری
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: چسب صنعتی - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"چسب صنعتی"}'
-                            href="/search/category-industrial-glue/" class=" c-navi-new__big-display-title">
-                            چسب صنعتی
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"چسب صنعتی"}'
-                                 href="/search/category-industrial-glue/" class=" c-navi-new__medium-display-title">
-                            چسب صنعتی
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لوازم و یراق آلات ساختمانی - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم و یراق آلات ساختمانی"}'
-                            href="/search/category-construction-tools-and-equipment/"
-                            class=" c-navi-new__big-display-title"><span>لوازم و یراق آلات ساختمانی</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم و یراق آلات ساختمانی"}'
-                            href="/search/category-construction-tools-and-equipment/"
-                            class=" c-navi-new__medium-display-title"><span>لوازم و یراق آلات ساختمانی</span></a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: شیرآلات - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"شیرآلات"}'
-                            href="/search/category-faucets/" class=" c-navi-new__big-display-title">
-                            شیرآلات
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"شیرآلات"}'
-                                 href="/search/category-faucets/" class=" c-navi-new__medium-display-title">
-                            شیرآلات
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: رنگ - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"رنگ"}'
-                            href="/search/category-color/" class=" c-navi-new__big-display-title">
-                            رنگ
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"رنگ"}'
-                                 href="/search/category-color/" class=" c-navi-new__medium-display-title">
-                            رنگ
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: دستگیره در - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"دستگیره در"}'
-                            href="/search/category-doorknob/" class=" c-navi-new__big-display-title">
-                            دستگیره در
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"دستگیره در"}'
-                                 href="/search/category-doorknob/" class=" c-navi-new__medium-display-title">
-                            دستگیره در
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لوازم باغبانی - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم باغبانی"}'
-                            href="/search/category-gardening-tools/" class=" c-navi-new__big-display-title"><span>لوازم باغبانی</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"لوازم باغبانی"}'
-                            href="/search/category-gardening-tools/" class=" c-navi-new__medium-display-title"><span>لوازم باغبانی</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: قیچی‌، چاقو و ابزار باغبانی - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"قیچی‌، چاقو و ابزار باغبانی"}'
-                            href="/search/category-scissors/" class=" c-navi-new__big-display-title">
-                            قیچی‌، چاقو و ابزار باغبانی
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"قیچی‌، چاقو و ابزار باغبانی"}'
-                                 href="/search/category-scissors/" class=" c-navi-new__medium-display-title">
-                            قیچی‌، چاقو و ابزار باغبانی
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: بذر و تخم گیاهان - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"بذر و تخم گیاهان"}'
-                            href="/search/category-plants-grain-and-seeds/" class=" c-navi-new__big-display-title">
-                            بذر و تخم گیاهان
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"بذر و تخم گیاهان"}'
-                                 href="/search/category-plants-grain-and-seeds/"
-                                 class=" c-navi-new__medium-display-title">
-                            بذر و تخم گیاهان
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: تبر، بیل و کلنگ - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"تبر، بیل و کلنگ"}'
-                            href="/search/category-axeshovelandpick/" class=" c-navi-new__big-display-title">
-                            تبر، بیل و کلنگ
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"تبر، بیل و کلنگ"}'
-                                 href="/search/category-axeshovelandpick/" class=" c-navi-new__medium-display-title">
-                            تبر، بیل و کلنگ
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: خاک، کود و آفت کش - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"خاک، کود و آفت کش"}'
-                            href="/search/category-soils-and-fertilizers/" class=" c-navi-new__big-display-title">
-                            خاک، کود و آفت کش
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"خاک، کود و آفت کش"}'
-                                 href="/search/category-soils-and-fertilizers/"
-                                 class=" c-navi-new__medium-display-title">
-                            خاک، کود و آفت کش
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: نور و روشنایی - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"نور و روشنایی"}'
-                            href="/search/category-lighting/"
-                            class=" c-navi-new__big-display-title"><span>نور و روشنایی</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"نور و روشنایی"}'
-                            href="/search/category-lighting/" class=" c-navi-new__medium-display-title"><span>نور و روشنایی</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لوسترو آباژور - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"لوسترو آباژور"}'
-                            href="/search/category-hanging-lamps/" class=" c-navi-new__big-display-title">
-                            لوسترو آباژور
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"لوسترو آباژور"}'
-                                 href="/search/category-hanging-lamps/" class=" c-navi-new__medium-display-title">
-                            لوسترو آباژور
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: لامپ - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"لامپ"}'
-                            href="/search/category-lamp/" class=" c-navi-new__big-display-title">
-                            لامپ
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"لامپ"}'
-                                 href="/search/category-lamp/" class=" c-navi-new__medium-display-title">
-                            لامپ
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: چندراهی برق و محافظ ولتاژ - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"چندراهی برق و محافظ ولتاژ"}'
-                            href="/search/category-power-strip/" class=" c-navi-new__big-display-title">
-                            چندراهی برق و محافظ ولتاژ
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"چندراهی برق و محافظ ولتاژ"}'
-                                 href="/search/category-power-strip/" class=" c-navi-new__medium-display-title">
-                            چندراهی برق و محافظ ولتاژ
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: تجهیزات ایمنی و کار - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"تجهیزات ایمنی و کار"}'
-                            href="/search/category-safety-tools/" class=" c-navi-new__big-display-title"><span>تجهیزات ایمنی و کار</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"تجهیزات ایمنی و کار"}'
-                            href="/search/category-safety-tools/" class=" c-navi-new__medium-display-title"><span>تجهیزات ایمنی و کار</span></a>
-                        </li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: کفش ایمنی - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"کفش ایمنی"}'
-                            href="/search/category-safety-shoes/" class=" c-navi-new__big-display-title">
-                            کفش ایمنی
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"کفش ایمنی"}'
-                                 href="/search/category-safety-shoes/" class=" c-navi-new__medium-display-title">
-                            کفش ایمنی
-                          </a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: حفاظتی و امنیتی - level: 2"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"حفاظتی و امنیتی"}'
-                            href="/search/category-protection-and-security-equipment/"
-                            class=" c-navi-new__big-display-title"><span>حفاظتی و امنیتی</span></a><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-title","category_title":"حفاظتی و امنیتی"}'
-                            href="/search/category-protection-and-security-equipment/"
-                            class=" c-navi-new__medium-display-title"><span>حفاظتی و امنیتی</span></a></li>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item"
-                            data-event="megamenu_click" data-event-category="header_section"
-                            data-event-label="category_en:  - category_fa: گاوصندوق - level: 3"><a
-                            data-snt-event="dkMegaMenuClick"
-                            data-snt-params='{"type":"option-item","category_title":"گاوصندوق"}'
-                            href="/search/category-safe/" class=" c-navi-new__big-display-title">
-                            گاوصندوق
-                          </a><a data-snt-event="dkMegaMenuClick"
-                                 data-snt-params='{"type":"option-item","category_title":"گاوصندوق"}'
-                                 href="/search/category-safe/" class=" c-navi-new__medium-display-title">
-                            گاوصندوق
-                          </a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="js-categories-bar-item">
-                <a href="/main/food-beverage/" class="c-navi-new-list__category-link c-navi-new-list__category-link--fresh c-navi-new-list__category-link--bold">سوپرمارکت</a>
-              </li>
-              <li class="js-categories-bar-item js-mega-menu-main-item">
-                <a href="/promotion-center/" class="c-navi-new-list__category-link c-navi-new-list__category-link--amazing c-navi-new-list__category-link--bold">
-                  تخفیف ها
-                </a>
-                <div class="c-navi-new-list__sublist c-navi-new-list__sublist--promotion js-mega-menu-categories-options">
-                  <div class="c-navi-new-list__options-container">
-                    <div class="c-navi-new-list__options-list is-active">
-                      <div class="c-navi-new-list__sublist-top-bar">
-                        <a href="/promotion-center/" class="c-navi-new-list__sublist-see-all-cats">
-                          مشاهده همه تخفیف‌ها و پیشنهادها
-                        </a>
+                      <div class="c-navi-new-list__options-container">
+                        @if($nav->children()->exists())
+                          @foreach($nav->children as $i => $menu)
+                            <div class="c-navi-new-list__options-list js-mega-menu-category-options {{ ($i == 0)? 'is-active' : '' }}" id="categories-{{ $i }}">
+                              <div class="c-navi-new-list__sublist-top-bar">
+                                <a href="{{ $menu->link }}" class="c-navi-new-list__sublist-see-all-cats">
+                                  همه دسته‌بندی‌های {{ persianNum($menu->name) }}
+                                </a>
+                              </div>
+                              <ul>
+                                @foreach($menu->children as $menu)
+                                  <li class="{{ ($menu->style == 'bold')? 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title' : 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item' }}" data-event="megamenu_click" data-event-category="header_section">
+                                    <a href="{{ $menu->link }}" class="c-navi-new__big-display-title">
+                                      {{ persianNum($menu->name) }}
+                                    </a>
+                                    <a href="{{ $menu->link }}" class="c-navi-new__medium-display-title">
+                                      {{ persianNum($menu->name) }}
+                                    </a>
+                                  </li>
+                                @endforeach
+
+                                  <a data-snt-event="dkMegaMenuClick" data-snt-params="{&quot;type&quot;:&quot;option-title&quot;,&quot;category_title&quot;:&quot;لوازم جانبی خودرو و موتورسیکلت&quot;}" href="/search/category-car-accessory-parts/" class=" c-navi-new__big-display-title"><span>لوازم جانبی خودرو و موتورسیکلت</span></a>
+
+                              </ul>
+                            </div>
+                          @endforeach
+                        @endif
                       </div>
-                      <ul>
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title">
-                          <a href="/incredible-offers/" class=" c-navi-new__big-display-title">
-                            <span>کالاهای شگفت‌انگیز</span>
-                          </a>
-                          <a href="/incredible-offers/" class=" c-navi-new__medium-display-title"><span>کالاهای شگفت‌انگیز</span>
-                          </a>
-                        </li>
-
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item">
-                          <a
-                            href="/landing-page/?category%5B0%5D=5966&promotion_types%5B0%5D=incredible_offer&promotion_types%5B1%5D=promotion&promotion_times%5B0%5D=active"
-                            class=" c-navi-new__big-display-title">
-                            کالای دیجیتال
-                          </a><a
-                            href="/landing-page/?category%5B0%5D=5966&promotion_types%5B0%5D=incredible_offer&promotion_types%5B1%5D=promotion&promotion_times%5B0%5D=active"
-                            class=" c-navi-new__medium-display-title">
-                            کالای دیجیتال
-                          </a>
-                        </li>
-
-
-
-
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item c-navi-new-list__sublist-option--has-circle">
-                          <a href="/promotion-center/category-based-products/22/" class=" c-navi-new__big-display-title">
-                            ساک و چمدان کمتر از ۱۰۰ هزار تومان
-                          </a>
-                          <a href="/promotion-center/category-based-products/22/" class=" c-navi-new__medium-display-title">
-                            ساک و چمدان کمتر از ۱۰۰ هزار تومان
-                          </a>
-                        </li>
-
-
-                        <div class="c-navi-new-list__sublist-divider"></div>
-                        <li
-                          class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--has-icon c-navi-new-list__sublist-option--new-customer">
-                          <a href="/landings/new-customer/" class=" c-navi-new__big-display-title">
-                            مشتریان جدید
-                          </a><a href="/landings/new-customer/" class=" c-navi-new__medium-display-title">
-                            مشتریان جدید
-                          </a></li>
-
-                        <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--has-icon c-navi-new-list__sublist-option--best-selling">
-                          <a href="/best-selling/" class=" c-navi-new__big-display-title">
-                            پرفروش‌ترین‌ کالاها
-                          </a><a href="/best-selling/" class=" c-navi-new__medium-display-title">
-                            پرفروش‌ترین‌ کالاها
-                          </a>
-                        </li>
-
-                      </ul>
                     </div>
-                  </div>
-                </div>
-              </li>
-              <li class="js-categories-bar-item"><a
-                  class="c-navi-new-list__category-link c-navi-new-list__category-link--my-digikala c-navi-new-list__category-link--bold"
-                  href="/my-digikala/">
-                  {{ $fa_store_name }}ی من
-                </a></li>
+                  </li>
+                @elseif($nav->children()->exists())
+                  <li class="js-categories-bar-item js-mega-menu-main-item js-promotion-mega-menu">
+                    <a href="{{ $nav->link }}" class="c-navi-new-list__category-link c-navi-new-list__category-link--amazing c-navi-new-list__category-link--bold">{{ persianNum($nav->name) }}</a>
+                    <div class="c-navi-new-list__sublist c-navi-new-list__sublist--promotion js-mega-menu-categories-options" style="display: none;">
+                      <div class="c-navi-new-list__options-container">
+                        <div class="c-navi-new-list__options-list is-active">
+                          <div class="c-navi-new-list__sublist-top-bar">
+                            <a href="{{ $nav->link }}" class="c-navi-new-list__sublist-see-all-cats">
+                              مشاهده همه {{ persianNum($nav->name) }}
+                            </a>
+                          </div>
+                          <ul>
+                            @if($nav->children()->exists())
+                              @foreach($nav->children as $key => $item)
+                                <li class="{{ ($item->style == 'bold')? 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title' : 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item' }}">
+                                  <a href="{{ $item->link }}" class="c-navi-new__big-display-title"><span>{{ persianNum($item->name) }}</span></a>
+                                </li>
+                              @endforeach
+                            @endif
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
 
-              <li class="js-categories-bar-item c-navi-new-list__category-link--visible-in-wide"><a
-                  class="c-navi-new-list__category-link" target="_blank" href="/faq/">
-                  سوالی دارید؟
-                </a></li>
-              <li class="js-categories-bar-item"><a
-                  class="c-navi-new-list__category-link c-navi-new-list__category-link--visible-in-wide"
-                  target="_blank"
-                  href="https://www.digikala.com/landings/seller-introduction/?headerEntry=1">
-                  فروشنده شوید
-                </a></li>
+
+                @else
+                  <li class="js-categories-bar-item">
+                    <a href="{{ $megamenu->link }}" class="c-navi-new-list__category-link c-navi-new-list__category-link--fresh c-navi-new-list__category-link--bold">{{ persianNum($megamenu->name) }}</a>
+                  </li>
+                @endif
+              @endforeach
+
+
+
+
+
+
+
+
+
             </ul>
           </li>
 {{--          <li class="c-navi-new-list__categories">--}}
@@ -1234,7 +571,7 @@
           <nav class="c-footer__links--col">
             <div class="o-headline-links">
               <div>
-                <a href="{{ $nav->link }}">{{ $nav->name }}</a>
+                <a href="{{ $nav->link }}">{{ persianNum($nav->name) }}</a>
               </div>
             </div>
             <ul class="c-footer__links-ul">

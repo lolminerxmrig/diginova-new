@@ -1,0 +1,12 @@
+<ul>
+  @foreach($menu->children as $menu)
+  <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item" data-event="megamenu_click" data-event-category="header_section">
+    <a href="{{ $menu->link }}" class="c-navi-new__big-display-title">
+      {{ persianNum($menu->name) }}
+    </a>
+    <a href="{{ $menu->link }}" class="c-navi-new__medium-display-title">
+      {{ persianNum($menu->name) }}
+    </a>
+  </li>
+  @endforeach
+</ul>
