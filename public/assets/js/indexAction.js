@@ -7,9 +7,9 @@ var IndexAction = {
             this.initDiscountBox,
         ];
 
-        if (isModuleActive('DK_Recommendation')) {
-            functions.push(this.initDKRecommendations);
-        }
+        // if (isModuleActive('DK_Recommendation')) {
+        //     functions.push(this.initDKRecommendations);
+        // }
 
         if(isModuleActive('ml_main_page_ab_test')) {
             functions.push(this.initMyLandingMainPageTestSwiper);

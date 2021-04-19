@@ -17,7 +17,7 @@ class CreateSeoContentsTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('keyword')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->text('custom_code')->nullable();
             $table->nullableMorphs('seoable');
             $table->timestamps();

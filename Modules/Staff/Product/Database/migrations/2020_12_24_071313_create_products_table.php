@@ -31,7 +31,7 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->json('advantages')->nullable();
             $table->json('disadvantages')->nullable();
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

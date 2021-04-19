@@ -1169,9 +1169,10 @@ var Sentry = function (n) {
             this.nn = new sn(n)
         }
 
-        return n.prototype.getDsn = function () {
-            return this.nn
-          },
+        // return n.prototype.getDsn = function () {
+        //     return this.nn
+        //   },
+
           n.prototype.getStoreEndpoint = function () {
             return "" + this.tn() + this.getStoreEndpointPath()
           },
@@ -29926,7 +29927,7 @@ var Sentry = function (n) {
 
       var ServicesAutoSuggest = $.extend(false, Services, {
         ajaxBeforeSendCallback: function (jqXHR, settings) {
-          settings.duplicateUrl = "/ajax/autosuggest/";
+          settings.duplicateUrl = "mainsearch";
         }
       });
 
@@ -30033,7 +30034,7 @@ var Sentry = function (n) {
         }
 
         ServicesAutoSuggest.ajaxGETRequestJSON(
-          "/ajax/autosuggest/", {
+          "mainsearch", {
             q: ""
           },
           function (data) {
@@ -30259,7 +30260,7 @@ var Sentry = function (n) {
 
             timeout = setTimeout(function () {
               ServicesAutoSuggest.ajaxGETRequestJSON(
-                "/ajax/autosuggest/", {
+                "mainsearch", {
                   q: searchInputValue
                 },
                 processResponse,
