@@ -497,7 +497,13 @@ $('#save-menus').on('click', function (e) {
   var menu_link = $("input[name ='menu_link']").map(function(){return $(this).val();}).get();
 
   var menu_style = $("input[name='menu_style']").map(function(){
-    if($(this).is(':checked')){return 'bold';}
+    if($(this).is(':checked'))
+    {
+      return 'bold';
+    }
+    else {
+      return '';
+    }
   }).get();
 
   var position = $("tbody").sortable('serialize');
