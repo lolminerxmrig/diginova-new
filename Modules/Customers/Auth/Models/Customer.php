@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Customer\Models\CustomerAddresses;
+use Modules\Staff\Order\Models\Order;
 
 
 class Customer extends Authenticatable
@@ -52,4 +53,8 @@ class Customer extends Authenticatable
       return $this->hasOne(State::class);
     }
 
+    public function orders()
+    {
+      return $this->hasMany(Order::class);
+    }
 }

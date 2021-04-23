@@ -418,6 +418,7 @@ function tagifyLoader() {
     var input2 = document.querySelector('input[name=disadvantages]');
     new Tagify(input2);
 }
+
 function initExpandRow() {
     var $expandBtn = $('.js-expand-comment'),
         $expandRow = $('.js-expanded-row');
@@ -525,19 +526,6 @@ $(document).on('click', '.cancell-btn', function () {
     $('span[data-id=' + comment_id + ']').removeClass('c-ui-table__expander-control--expanded');
     $('tr[data-expand-target=' + comment_id + ']').addClass('c-ui-table__expand-row--hidden');
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 $(document).on('click', '.delete-btn', function () {

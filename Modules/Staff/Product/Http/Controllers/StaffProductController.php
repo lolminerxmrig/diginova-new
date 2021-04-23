@@ -789,8 +789,8 @@ class StaffProductController extends Controller
                 'stock_count' => $request->product_variants["variant_{$i}_marketplace_seller_stock"],
                 'variant_code' => $variant_code,
                 'shipping_type' => 'site',
-                'variantable_type' => 'staff',
-                'variantable_id' => auth()->guard('staff')->user()->id,
+//                'variantable_type' => 'staff',
+//                'variantable_id' => auth()->guard('staff')->user()->id,
             ]);
             $i++;
         }

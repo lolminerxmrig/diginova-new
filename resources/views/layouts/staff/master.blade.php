@@ -98,6 +98,10 @@
                     </li>
 
                     <li>
+                      <a href="{{ route('staff.ratings.index') }}">گزینه های امتیازدهی</a>
+                    </li>
+
+                    <li>
                       <a href="{{ route('staff.units.index') }}">واحد ها</a>
                     </li>
 

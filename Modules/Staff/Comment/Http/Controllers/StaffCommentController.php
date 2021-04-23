@@ -83,7 +83,6 @@ class StaffCommentController extends Controller
             ], 400);
         }
 
-        Log::info($request->recommend_status);
 
         Comment::find($request->comment_id)->update([
             'text' => $request->text,

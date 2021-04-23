@@ -576,10 +576,10 @@ var showPriceModal = 0;
 var newSeller = 1;
 var is_yalda = 0;
 
-@if($product->category()->first()->variantGroup()->first()->type !== 0)
-var coloredMode = true;
+@if(isset($product->category()->first()->variantGroup()->first()->type) && $product->category()->first()->variantGroup()->first()->type !== 0)
+  var coloredMode = true;
 @else
-var noColorNoSizeMode = true;
+  var noColorNoSizeMode = true;
 @endif
 </script>
 
@@ -588,8 +588,6 @@ var noColorNoSizeMode = true;
 @section('content')
 
 @php
-    $site_url = $settings->where('name', 'site_url')->first()->value;
-    $fa_store_name = $settings->where('name', 'site_name')->first()->value;
     $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
     $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
 @endphp
@@ -656,8 +654,7 @@ var noColorNoSizeMode = true;
                                                             </div>
 
                                                             <div class="c-variant__secondary-info--table-cell">
-                                                                <span
-                                                                    class="c-variant__info">تنوع مجاز این کالا:</span>
+                                                                <span class="c-variant__info">تنوع مجاز این کالا:</span>
                                                                 <span class="c-variant__info--main">{{ $product->category()->first()->variantGroup()->first()->name }}</span>
                                                             </div>
                                                         </li>

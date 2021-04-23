@@ -1,7 +1,7 @@
-@php
-    $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
-    $fa_store_name = $settings->where('name', 'site_name')->first()->value;
-@endphp
+{{--@php--}}
+{{--    $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;--}}
+{{--    $fa_store_name = $settings->where('name', 'site_name')->first()->value;--}}
+{{--@endphp--}}
 <div class="c-grid__row js-table-container">
     <div class="c-grid__col">
         <div class="c-variation-diversity">

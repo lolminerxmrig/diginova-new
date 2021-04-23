@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Customers\Front\Http\Controllers\FrontController;
+use Modules\Staff\Setting\Models\Setting;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,17 @@ use Modules\Customers\Front\Http\Controllers\FrontController;
 */
 
 
+
+
+//Route::middleware('web')->name('front.')->group(function(){
+//  $product_code_prefix = mb_strtolower(Setting::where('name', 'product_code_prefix')->first()->value);
+//
+//
+//  Route::get("product/$product_code_prefix-{product_code}", [FrontController::class, 'productPage'])->name('productPage');
+//
+//});
+
+// ajax routes
 Route::middleware('web')->name('front.')->group(function(){
 
   Route::get('mainsearch', [FrontController::class, 'mainSearch'])->name('front.mainSearch');

@@ -27551,7 +27551,7 @@ var Sentry = function (n) {
         this.initGeneralAlertModal,
         this.initGeneralInformationModal,
         this.initErrorMessages,
-        this.initGoogleAnalyticsEvents,
+        // this.initGoogleAnalyticsEvents,
         this.initBackButtons,
         this.overrideServerErrors,
         this.initBrowserBackHandler,
@@ -27574,9 +27574,9 @@ var Sentry = function (n) {
         this.initUniversalMiniCart,
       ];
 
-      if (isModuleActive('console_greeting')) {
-        functions.push(this.initConsoleGreeting);
-      }
+      // if (isModuleActive('console_greeting')) {
+      //   functions.push(this.initConsoleGreeting);
+      // }
 
       if (isModuleActive('chatbox_all_pages')) {
         functions.push(this.initFaqShortAnswer);
@@ -27637,7 +27637,7 @@ var Sentry = function (n) {
     },
 
     initConsoleGreeting: function () {
-      console.log("%c                        *((((((((((((((((((((((((((((((((((((((((((((((((((((((((((####(#####(/*,.                                                  \n" +
+console.log("%c                        *((((((((((((((((((((((((((((((((((((((((((((((((((((((((((####(#####(/*,.                                                  \n" +
         "                        ,(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((##(############(*.                                            \n" +
         "                        /(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((####((############(,                                        \n" +
         "                        /(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((##################*                                     \n" +

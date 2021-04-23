@@ -2,13 +2,16 @@
 
 namespace Modules\Customers\Front\Http\Controllers;
 
-use _HumbugBox7eb78fbcc73e\http\Env\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
+use Modules\Customers\Front\Models\CustomerFavorite;
 use Modules\Customers\Panel\Models\Customer;
+use Modules\Staff\Comment\Models\Comment;
+use Modules\Staff\Product\Models\Product;
+use Illuminate\Support\Facades\Request;
 
 class FrontController extends Controller
 {
@@ -17,6 +20,45 @@ class FrontController extends Controller
   {
     $customer = Auth::guard('customer')->user();
     return view('front::index', compact('customer'));
+  }
+
+  public function productPage($product_code) {
+    $product = Product::where('product_code', $product_code)->firstOrFail();
+    return view('front::product', compact('product'));
+  }
+
+  public function addToFavorites($product_id)
+  {
+    $customer_id = Auth::guard('customer')->user()->id;
+    if (!CustomerFavorite::where('product_id', $product_id)->where('customer_id', $customer_id)->exists()) {
+      CustomerFavorite::create([
+        'customer_id' => $customer_id,
+        'product_id' => $product_id,
+      ]);
+
+      return response()->json([
+        'status' => true,
+        'data' => null,
+      ]);
+
+    }
+
+    return response()->json([
+      'status' => false,
+      'data' => null,
+    ]);
+
+  }
+
+  public function removeFromFavorites($product_id)
+  {
+      $customer_id = Auth::guard('customer')->user()->id;
+      CustomerFavorite::where('product_id', $product_id)->where('customer_id', $customer_id)->first()->delete();
+
+      return response()->json([
+        'status' => true,
+        'data' => null,
+      ]);
   }
 
   public function mainSearch(Request $request)
@@ -32,6 +74,47 @@ class FrontController extends Controller
 
   public function mainSearchFilters()
   {
+
+  }
+
+  public function categoryPage()
+  {
+
+  }
+
+  public function productComments($product_id)
+  {
+    $product = Product::find($product_id);
+    $comments = Product::find($product_id)->comments()->where('publish_status', 'accepted')->get();
+    return view('front::ajax.product.comments', compact('comments', 'product'));
+  }
+
+  public function createComment($product_id)
+  {
+    $product = Product::where('product_code', $product_id)->first();
+    return view('front::create-comment', compact('product'));
+  }
+
+  public function createComments(Request $request, $product_code)
+  {
+
+    Comment::create([
+      'title' => isset($request->title)? $request->title : '',
+      'text' => isset($request->text)? $request->text : '',
+      'recommend' => isset($request->recommend)? $request->recommend : '',
+      'advantages' => isset($request->advantages)? json_encode($request->advantages) : '',
+      'disadvantages' => isset($request->disadvantages)? json_encode($request->disadvantages) : '',
+      'product_id' => Product::where('product_code', $product_code)->first()->id,
+      'customer_id' => auth()->guard('customer')->user()->id,
+    ]);
+
+    return response()->json([
+      'status' => false,
+      'data' => [
+        'errors' => 'dkdkdkd',
+      ]
+    ]);
+
 
   }
 

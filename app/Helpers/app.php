@@ -119,4 +119,32 @@ function customerFullName()
     return null;
 }
 
+function fullBreadcrumb($id, $stateBeginWith = null, $cityBeginWith = ' - ', $districtBeginWith = ' - ')
+{
+  if (\App\Models\State::where('id', $id)->exists())
+  {
+    $zone = \App\Models\State::find($id);
+  }
+  else {
+    return null;
+  }
+
+  if ($zone->type == 'district') {
+    $district = $zone->name;
+    $city = $zone->parent->name;
+    $state = $zone->parent->parent->name;
+  }
+  elseif ($zone->type == 'city')
+  {
+    $city = $zone->name;
+    $state = $zone->parent->name;
+  }
+
+  $output = !is_null($stateBeginWith)? $stateBeginWith  : '';   // استان
+  $output .= $state; // نام استان
+  $output .= $cityBeginWith . $city; // پیشوند + نام شهر
+  $output .= (isset($district))? $districtBeginWith . $district : ''; // پیشوند +نام محله
+
+  return $output;
+}
 

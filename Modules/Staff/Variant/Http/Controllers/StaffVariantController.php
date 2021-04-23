@@ -194,7 +194,8 @@ class StaffVariantController extends Controller
     public function saveConfig(Request $request) {
         $category = Category::find($request->category_id);
         $variantGroup = VariantGroup::find($request->variant_g_id);
-        $category->variantGroup()->detach();
-        $category->variantGroup()->attach($variantGroup);
+//        $category->variantGroup()->detach();
+//        $category->variantGroup()->attach($variantGroup);
+        $category->variantGroup()->sync($variantGroup);
     }
 }

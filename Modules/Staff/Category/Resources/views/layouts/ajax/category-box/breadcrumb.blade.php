@@ -4,6 +4,7 @@
       {{ $category->name }}
   </li>
 @else
+
   <?php
     if (isset($main_cat)){
       unset($main_cat);
@@ -19,8 +20,8 @@
         $category = $category->parent;
     } while (isset($category->parent));
     $lists = array_reverse($lists,true);
-
   ?>
+
   <li class="c-content-categories__selected-category appended-box">
       <?php  $main_cat = Modules\Staff\Category\Models\Category::find($main_cat->id) ?>
       {{ $main_cat->name }}

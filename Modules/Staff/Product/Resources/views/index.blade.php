@@ -192,24 +192,21 @@
                                                         <td class="c-ui-table__cell" style="min-width: 90px">
                                                             @foreach($product->media as $image)
                                                                 @if($product->media && ($image->pivot->is_main == 1))
-                                                                    <img
-                                                                        src="{{ $site_url . '/' .$image->path . '/' . $image->name }}"
-                                                                        width="75" height="75">
+                                                                    <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
                                                                 @endif
                                                             @endforeach
                                                         </td>
 
                                                         <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                             <div class="uk-flex uk-flex-column">
-                                                                <a href="{{$site_url}}/{{ $product_code_prefix }}-{{ $product->product_code }}/"
-                                                                   target="_blank">
-                                                          <span
-                                                              class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"
-                                                              style="margin:auto;">
-                                                               {{ $product->title_fa }}
-                                                          </span>
-                                                                    <span
-                                                                        class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
+                                                                <a href="{{ route('front.productPage', $product->product_code) }}" target="_blank">
+{{--                                                                <a href="{{$site_url}}/{{ $product_code_prefix }}-{{ $product->product_code }}/" target="_blank">--}}
+                                                                  <span
+                                                                      class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"
+                                                                      style="margin:auto;">
+                                                                       {{ $product->title_fa }}
+                                                                  </span>
+                                                                    <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                                 </a>
                                                                 <div class="uk-flex">
                                                                     <span
