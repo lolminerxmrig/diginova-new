@@ -26,10 +26,10 @@ $product_categories = array_reverse($product_categories,true);
     var supernova_mode = "production";
     var supernova_tracker_url = "https:\/\/etrackerd.digikala.com\/tracker\/events\/";
     var variants = {
-    @if ($product->variants()->exists())
-      @foreach ($product->variants as $item)
-      @if($item->variant()->exists() && !is_null($item->variant->value))
-        "{{ $item->variant->id }}": {
+      @if ($product->variants()->exists())
+        @foreach ($product->variants as $item)
+        @if($item->variant()->exists() && !is_null($item->variant->value))
+      "{{ $item->variant->id }}": {
         "id": {{ $item->variant->id }},
         "active": true,
         "active_digistyle": true,
@@ -146,7 +146,7 @@ $product_categories = array_reverse($product_categories,true);
       },
       @endif
       @endforeach
-    @endif
+      @endif
 
       // "14976390": {
       //   "id": 14976390,
@@ -1432,27 +1432,14 @@ $product_categories = array_reverse($product_categories,true);
                       <div class="c-product__seller-row c-product__seller-row--add-to-cart">
                         <a
                           class="js-ab-product-action btn-add-to-cart btn-add-to-cart--full-width js-add-to-cart js-cart-page-add-to-cart js-btn-add-to-cart"
-                          data-product-id="{{ $product->id }}" data-variant="{{ $item->variant->id }}" href="/cart/add/15488759/1/"
+                          data-product-id="{{ $product->id }}" data-variant="{{ $item->variant->id }}"
+                          href="/cart/add/15488759/1/"
                           data-event="add_to_cart" data-event-category="ecommerce"
                           data-event-label="price: 509900000 - seller: marketplace - seller_name: شادی لند - seller_rating: 81 - multiple_configs: True - position: 0">
                           <span class="btn-add-to-cart__txt">افزودن به سبد خرید</span>
                         </a>
                       </div>
                     </div>
-
-                    {{--                  <a href="#suppliers">--}}
-                    {{--                    <div--}}
-                    {{--                      class="c-product-shipping-limitation c-product-shipping-limitation__mt-8 js-btn-supplier-list js-btn-cheapest-price u-hidden">--}}
-                    {{--                      <div class="c-product-shipping-limitation__title c-product-shipping-limitation__title--info">--}}
-                    {{--                        این کالا را ارزان‌تر بخرید--}}
-                    {{--                      </div>--}}
-                    {{--                      <div class="c-product-shipping-limitation__dsc">--}}
-                    {{--                        از--}}
-                    {{--                        <span class="js-cheapest-price">۵۱,۸۹۰,۰۰۰ 0000011</span> تومان--}}
-                    {{--                        توسط فروشندگان دیگر--}}
-                    {{--                      </div>--}}
-                    {{--                    </div>--}}
-                    {{--                  </a>--}}
 
                   </div>
                 </div>
@@ -1471,8 +1458,7 @@ $product_categories = array_reverse($product_categories,true);
                 فروش ویژه
               </div>
               <div class="c-product-gallery__offer js-amazing-offer u-hidden">
-                <img class="c-product-gallery__offer-img"
-                     src="https://www.digikala.com/static/files/6fbe3569.svg">
+                <img class="c-product-gallery__offer-img" src="https://www.digikala.com/static/files/6fbe3569.svg">
               </div>
               <div class="c-gallery ">
                 <div class="c-gallery__item">
@@ -1508,233 +1494,45 @@ $product_categories = array_reverse($product_categories,true);
                         class="c-tooltip c-tooltip--left c-tooltip--short">مقایسه</span></li>
                   </ul>
                   <div class="c-gallery__img">
-                    <img class="js-gallery-img"
-                         data-src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
-                         title="{{ $product->title_fa }}"
-                         alt="{{ $product->title_fa }}"
-                         data-zoom-image="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,w_1280/quality,q_80"
-                         src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
-                         loading="lazy">
+                    @foreach($product->media as $image)
+                      @if($product->media && ($image->pivot->is_main == 1))
+                        <img class="js-gallery-img"
+                             data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
+                             title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}"
+                             data-zoom-image="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,w_1280/quality,q_80"
+                             src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
+                             loading="lazy">
+                      @endif
+                    @endforeach
+                    {{--                    <img class="js-gallery-img" data-src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80" title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-zoom-image="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,w_1280/quality,q_80" src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"   loading="lazy">--}}
                     <div class="c-gallery__main-img-badges-container"></div>
                   </div>
+
                 </div>
                 <ul class="c-gallery__items">
-                  <li class="is-diviter">
-                    <div class="thumb-wrapper thumb-wrapper--blur js-gallery-video" data-snt-event="dkProductPageClick"
-                         data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;video&quot;}">
-                      <img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
-                        title="{{ $product->title_fa }} video button"
-                        alt="{{ $product->title_fa }} video button"
-                        src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
-                        loading="lazy">
-                      <div class="c-gallery__count-circle">
-                        <div class="btn-option btn-option--play-video"></div>
-                        <span class="c-tooltip c-tooltip--left c-tooltip--short">نمایش ویدیو</span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="2" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1602671368.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 1"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1602671368.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="3" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/d3a25e245201a00e4ee68c2f2e4b9c437712a3f0_1602671369.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 2"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/d3a25e245201a00e4ee68c2f2e4b9c437712a3f0_1602671369.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="4" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/2fe36ebb47c6c22158e0c3f62acb8043b516fe7d_1602671371.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 3"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/2fe36ebb47c6c22158e0c3f62acb8043b516fe7d_1602671371.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="5" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/1d3132f88b1513030d6e5e15ae3fc483953f40f6_1602671371.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 4"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/1d3132f88b1513030d6e5e15ae3fc483953f40f6_1602671371.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="6" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/98c56166fe774a2ae81baef6c9ab5bb299ee08e6_1606735162.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 5"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/98c56166fe774a2ae81baef6c9ab5bb299ee08e6_1606735162.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="7" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/0e8fa0d4c5607a2768d1d718db56c96423413e91_1606735164.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 6"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/0e8fa0d4c5607a2768d1d718db56c96423413e91_1606735164.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="8" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606735167.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 7"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606735167.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="9" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606735170.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 8"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606735170.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="10" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper">
-                      <img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606735174.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 9" data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606735174.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count">
-                      <span class="c-gallery__count-circle"><div
-                          class="c-gallery__three-bullets"></div>
-                      </span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="11" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606735179.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 10"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606735179.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="12" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606735182.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 11"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606735182.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="13" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/e5ce7aadd4394fba2e667d32a207457cfb9f59b6_1606735185.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 12"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/e5ce7aadd4394fba2e667d32a207457cfb9f59b6_1606735185.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="14" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012089.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 13"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012089.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
-                  <li class="js-product-thumb-img" data-slide-index="15" data-event="album_usage"
-                      data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
-                    <div class="thumb-wrapper"><img
-                        data-src="https://dkstatics-public.digikala.com/digikala-products/467aa3f13a7f2919e14d9cd47cc9dfef0d9156ec_1618047804.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="" data-snt-event="dkProductPageClick"
-                        data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                        alt="{{ $product->title_fa }} thumb 1 14"
-                        data-type=""
-                        src="https://dkstatics-public.digikala.com/digikala-products/467aa3f13a7f2919e14d9cd47cc9dfef0d9156ec_1618047804.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                      <div class="c-gallery__images-count"><span class="c-gallery__count-circle"><div
-                            class="c-gallery__three-bullets"></div></span></div>
-                    </div>
-                  </li>
+
+                  @if($product->media()->exists())
+                    @foreach($product->media as $key => $image)
+                      <li class="js-product-thumb-img" data-slide-index="{{ $key+1 }}" data-event="album_usage"
+                          data-event-category="product_page" data-event-label="{{ $product->id }}-num of pics:14">
+                        <div class="thumb-wrapper">
+                          <img
+                            data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                            title="" data-snt-event="dkProductPageClick"
+                            data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
+                            alt="{{ $product->title_fa }} thumb 1 {{ $key+1 }}" data-type=""
+                            src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                            loading="lazy">
+                          <div class="c-gallery__images-count">
+                          <span class="c-gallery__count-circle">
+                            <div class="c-gallery__three-bullets"></div>
+                          </span>
+                          </div>
+                        </div>
+                      </li>
+                    @endforeach
+                  @endif
                 </ul>
-                {{--                <div class="c-product__feedback js-feedback-survey" data-variant="{{ $item->variant->id }}"><a--}}
-                {{--                    class="js-feedback-survey-btn" href="javascript:">بازخورد درباره این کالا</a>--}}
-                {{--                </div>--}}
               </div>
             </section>
           </article>
@@ -1878,7 +1676,8 @@ $product_categories = array_reverse($product_categories,true);
                         </div>
                         <div class="c-table-suppliers__cell c-table-suppliers__cell--action">
                           <a class=" o-btn o-btn--outlined-red-md js-variant-add-to-cart js-btn-add-to-cart" href=""
-                             data-variant="{{ $item->variant->id }}" data-snt-event="dkProductPageClick" data-snt-params=""
+                             data-variant="{{ $item->variant->id }}" data-snt-event="dkProductPageClick"
+                             data-snt-params=""
                              data-event="add_to_cart" data-event-category="ecommerce" data-event-label="">
                             افزودن به سبد
                           </a>
@@ -1999,7 +1798,8 @@ $product_categories = array_reverse($product_categories,true);
                     </div>
                     <div class="c-table-suppliers__cell c-table-suppliers__cell--action"><a
                         class=" o-btn o-btn--outlined-red-md js-variant-add-to-cart js-btn-add-to-cart"
-                        href="/cart/add/15488759/1/" data-variant="{{ $item->variant->id }}" data-snt-event="dkProductPageClick"
+                        href="/cart/add/15488759/1/" data-variant="{{ $item->variant->id }}"
+                        data-snt-event="dkProductPageClick"
                         data-snt-params="{&quot;item&quot;:&quot;seller-add-to-cart&quot;,&quot;item_option&quot;:null}"
                         data-event="add_to_cart" data-event-category="ecommerce"
                         data-event-label="items: price: 518900000 - seller: marketplace - multiple_configs: True - position: 1">
@@ -3714,7 +3514,9 @@ $product_categories = array_reverse($product_categories,true);
                   فروش ویژه
                 </div>
                 <div class="c-mini-buy-box__product-info">
-                  <img class="c-mini-buy-box__product-info--img" src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $product->title_fa }}">
+                  <img class="c-mini-buy-box__product-info--img"
+                       src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
+                       alt="{{ $product->title_fa }}">
                   <div class="c-mini-buy-box__product-info--info">
                     <div class="title">{{ $product->title_fa }}</div>
                     <div class="colors "><label data-color-code="#9E9E9E" class="js-variant-color"
@@ -3754,26 +3556,27 @@ $product_categories = array_reverse($product_categories,true);
                 </div>
                 <div class="c-mini-buy-box__btn-row"><a class="
 o-btn o-btn--contained-red-lg c-product__add-to-cart-btn js-add-to-cart js-btn-add-to-cart js-mini-add-to-cart js-ab-product-action"
-                                                        data-product-id="{{ $product->id }}" data-variant="{{ $item->variant->id }}"
+                                                        data-product-id="{{ $product->id }}"
+                                                        data-variant="{{ $item->variant->id }}"
                                                         href="/cart/add/15488759/1/" data-event="add_to_cart"
                                                         data-event-category="ecommerce"
                                                         data-event-label="price: 509900000 - seller: marketplace - seller_name: شادی لند - seller_rating: 81 - multiple_configs: True - position: 0">
                     افزودن به سبد خرید
                   </a></div>
               </div>
-{{--              <a href="#suppliers">--}}
-{{--                <div--}}
-{{--                  class="c-product-shipping-limitation c-product-shipping-limitation__mt-8 js-btn-supplier-list js-btn-cheapest-price u-hidden">--}}
-{{--                  <div class="c-product-shipping-limitation__title">--}}
-{{--                    این کالا را ارزان‌تر بخرید--}}
-{{--                  </div>--}}
-{{--                  <div class="c-product-shipping-limitation__dsc">--}}
-{{--                    از--}}
-{{--                    <span class="js-cheapest-price">۵۱,۸۹۰,۰۰۰ </span> تومان--}}
-{{--                    توسط فروشندگان دیگر--}}
-{{--                  </div>--}}
-{{--                </div>--}}
-{{--              </a>--}}
+              {{--              <a href="#suppliers">--}}
+              {{--                <div--}}
+              {{--                  class="c-product-shipping-limitation c-product-shipping-limitation__mt-8 js-btn-supplier-list js-btn-cheapest-price u-hidden">--}}
+              {{--                  <div class="c-product-shipping-limitation__title">--}}
+              {{--                    این کالا را ارزان‌تر بخرید--}}
+              {{--                  </div>--}}
+              {{--                  <div class="c-product-shipping-limitation__dsc">--}}
+              {{--                    از--}}
+              {{--                    <span class="js-cheapest-price">۵۱,۸۹۰,۰۰۰ </span> تومان--}}
+              {{--                    توسط فروشندگان دیگر--}}
+              {{--                  </div>--}}
+              {{--                </div>--}}
+              {{--              </a>--}}
               <div data-id="" data-url="" class="c-mini-buy-box__cpc-placement js-mini-buy-box-cpc-placement u-hidden">
                 <img class="js-image" src="" alt="">
                 <div class="c-mini-buy-box__cpc-placement--body">
@@ -4754,6 +4557,657 @@ o-btn o-btn--contained-red-lg c-product__add-to-cart-btn js-add-to-cart js-btn-a
 @endsection
 
 @section('source')
+
+  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
+    <div class="remodal c-remodal-gallery remodal-is-initialized remodal-is-closed" data-remodal-id="gallery"
+         role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
+      <div class="c-remodal-gallery__main js-level-one-gallery is-open">
+        <div class="c-remodal-gallery__top-bar">
+          <div class="c-remodal-gallery__tabs js-top-bar-tabs">
+            <div class="c-remodal-gallery__tab c-remodal-gallery__tab--selected js-gallery-tab" data-id="1">تصاویر
+              رسمی
+            </div>
+          </div>
+          <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
+        </div>
+        <div class="c-remodal-gallery__content js-gallery-tab-content is-active" id="gallery-content-1">
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-video-container">
+            <div
+              class="video-js vjs-default-skin vjs-big-play-centered vjs-paused vjs-fluid pdp-video-container-dimensions vjs-controls-enabled vjs-workinghover vjs-v7 vjs-user-active"
+              id="pdp-video-container" tabindex="-1" lang="en-us" role="region" aria-label="Video Player">
+              <video id="pdp-video-container_html5_api" class="vjs-tech" tabindex="-1" preload="none"></video>
+              <div class="vjs-poster vjs-hidden" tabindex="-1" aria-disabled="false"></div>
+              <div class="vjs-text-track-display" aria-live="off" aria-atomic="true"></div>
+              <div class="vjs-loading-spinner" dir="ltr"><span class="vjs-control-text">Video Player is loading.</span>
+              </div>
+              <button class="vjs-big-play-button" type="button" title="Play Video" aria-disabled="false"><span
+                  aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
+                                                                               aria-live="polite">Play Video</span>
+              </button>
+              <div class="vjs-control-bar" dir="ltr">
+                <button class="vjs-play-control vjs-control vjs-button" type="button" title="Play"
+                        aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span
+                    class="vjs-control-text" aria-live="polite">Play</span></button>
+                <div class="vjs-volume-panel vjs-control vjs-volume-panel-horizontal">
+                  <button class="vjs-mute-control vjs-control vjs-button" type="button" title="Mute"
+                          aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span
+                      class="vjs-control-text" aria-live="polite">Mute</span></button>
+                  <div class="vjs-volume-control vjs-control vjs-volume-horizontal">
+                    <div tabindex="0" class="vjs-volume-bar vjs-slider-bar vjs-slider vjs-slider-horizontal"
+                         role="slider" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                         aria-label="Volume Level" aria-live="polite" aria-valuetext="100%">
+                      <div class="vjs-volume-level"><span class="vjs-control-text"></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="vjs-current-time vjs-time-control vjs-control"><span class="vjs-control-text"
+                                                                                 role="presentation">Current Time </span><span
+                    class="vjs-current-time-display" aria-live="off" role="presentation">0:00</span></div>
+                <div class="vjs-time-control vjs-time-divider" aria-hidden="true">
+                  <div><span>/</span></div>
+                </div>
+                <div class="vjs-duration vjs-time-control vjs-control"><span class="vjs-control-text"
+                                                                             role="presentation">Duration </span><span
+                    class="vjs-duration-display" aria-live="off" role="presentation">0:00</span></div>
+                <div class="vjs-progress-control vjs-control">
+                  <div tabindex="0" class="vjs-progress-holder vjs-slider vjs-slider-horizontal" role="slider"
+                       aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress Bar">
+                    <div class="vjs-load-progress"><span class="vjs-control-text"><span>Loaded</span>: <span
+                          class="vjs-control-text-loaded-percentage">0%</span></span></div>
+                    <div class="vjs-mouse-display">
+                      <div class="vjs-time-tooltip" aria-hidden="true"></div>
+                    </div>
+                    <div class="vjs-play-progress vjs-slider-bar" aria-hidden="true">
+                      <div class="vjs-time-tooltip" aria-hidden="true"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="vjs-live-control vjs-control vjs-hidden">
+                  <div class="vjs-live-display" aria-live="off"><span class="vjs-control-text">Stream Type </span>LIVE
+                  </div>
+                </div>
+                <button class="vjs-seek-to-live-control vjs-control vjs-at-live-edge" type="button"
+                        title="Seek to live, currently playing live" aria-disabled="true"><span aria-hidden="true"
+                                                                                                class="vjs-icon-placeholder"></span><span
+                    class="vjs-control-text" aria-live="polite">Seek to live, currently playing live</span><span
+                    class="vjs-seek-to-live-text" aria-hidden="true">LIVE</span></button>
+                <div class="vjs-remaining-time vjs-time-control vjs-control"><span class="vjs-control-text"
+                                                                                   role="presentation">Remaining Time </span><span
+                    aria-hidden="true">-</span><span class="vjs-remaining-time-display" aria-live="off"
+                                                     role="presentation">0:00</span></div>
+                <div class="vjs-custom-control-spacer vjs-spacer "></div>
+                <div class="vjs-playback-rate vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
+                  <button class="vjs-playback-rate vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
+                          aria-disabled="false" title="Playback Rate" aria-haspopup="true" aria-expanded="false"><span
+                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
+                                                                                   aria-live="polite">Playback Rate</span>
+                  </button>
+                  <div class="vjs-menu">
+                    <ul class="vjs-menu-content" role="menu"></ul>
+                  </div>
+                  <div class="vjs-playback-rate-value">1x</div>
+                </div>
+                <div
+                  class="vjs-chapters-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
+                  <button class="vjs-chapters-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
+                          aria-disabled="false" title="Chapters" aria-haspopup="true" aria-expanded="false"><span
+                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
+                                                                                   aria-live="polite">Chapters</span>
+                  </button>
+                  <div class="vjs-menu">
+                    <ul class="vjs-menu-content" role="menu">
+                      <li class="vjs-menu-title" tabindex="-1">Chapters</li>
+                    </ul>
+                  </div>
+                </div>
+                <div
+                  class="vjs-descriptions-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
+                  <button class="vjs-descriptions-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
+                          aria-disabled="false" title="Descriptions" aria-haspopup="true" aria-expanded="false"><span
+                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
+                                                                                   aria-live="polite">Descriptions</span>
+                  </button>
+                  <div class="vjs-menu">
+                    <ul class="vjs-menu-content" role="menu">
+                      <li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false"
+                          aria-checked="true"><span class="vjs-menu-item-text">descriptions off</span><span
+                          class="vjs-control-text" aria-live="polite">, selected</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div
+                  class="vjs-subs-caps-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
+                  <button class="vjs-subs-caps-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
+                          aria-disabled="false" title="Captions" aria-haspopup="true" aria-expanded="false"><span
+                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
+                                                                                   aria-live="polite">Captions</span>
+                  </button>
+                  <div class="vjs-menu">
+                    <ul class="vjs-menu-content" role="menu">
+                      <li class="vjs-menu-item vjs-texttrack-settings" tabindex="-1" role="menuitem"
+                          aria-disabled="false"><span class="vjs-menu-item-text">captions settings</span><span
+                          class="vjs-control-text" aria-live="polite">, opens captions settings dialog</span></li>
+                      <li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false"
+                          aria-checked="true"><span class="vjs-menu-item-text">captions off</span><span
+                          class="vjs-control-text" aria-live="polite">, selected</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="vjs-audio-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
+                  <button class="vjs-audio-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
+                          aria-disabled="false" title="Audio Track" aria-haspopup="true" aria-expanded="false"><span
+                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
+                                                                                   aria-live="polite">Audio Track</span>
+                  </button>
+                  <div class="vjs-menu">
+                    <ul class="vjs-menu-content" role="menu"></ul>
+                  </div>
+                </div>
+                <button class="vjs-picture-in-picture-control vjs-control vjs-button" type="button"
+                        title="Picture-in-Picture" aria-disabled="false"><span aria-hidden="true"
+                                                                               class="vjs-icon-placeholder"></span><span
+                    class="vjs-control-text" aria-live="polite">Picture-in-Picture</span></button>
+                <button class="vjs-fullscreen-control vjs-control vjs-button" type="button" title="Fullscreen"
+                        aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span
+                    class="vjs-control-text" aria-live="polite">Fullscreen</span></button>
+              </div>
+              <div class="vjs-error-display vjs-modal-dialog vjs-hidden " tabindex="-1"
+                   aria-describedby="pdp-video-container_component_427_description" aria-hidden="true"
+                   aria-label="Modal Window" role="dialog"><p class="vjs-modal-dialog-description vjs-control-text"
+                                                              id="pdp-video-container_component_427_description">This is
+                  a modal window.</p>
+                <div class="vjs-modal-dialog-content" role="document"></div>
+              </div>
+              <div class="vjs-modal-dialog vjs-hidden  vjs-text-track-settings" tabindex="-1"
+                   aria-describedby="pdp-video-container_component_432_description" aria-hidden="true"
+                   aria-label="Caption Settings Dialog" role="dialog"><p
+                  class="vjs-modal-dialog-description vjs-control-text"
+                  id="pdp-video-container_component_432_description">Beginning of dialog window. Escape will cancel and
+                  close the window.</p>
+                <div class="vjs-modal-dialog-content" role="document">
+                  <div class="vjs-track-settings-colors">
+                    <fieldset class="vjs-fg-color vjs-track-setting">
+                      <legend id="captions-text-legend-pdp-video-container_component_432">Text</legend>
+                      <label id="captions-foreground-color-pdp-video-container_component_432"
+                             class="vjs-label">Color</label><select
+                        aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432">
+                        <option id="captions-foreground-color-pdp-video-container_component_432-White" value="#FFF"
+                                aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432-White">
+                          White
+                        </option>
+                        <option id="captions-foreground-color-pdp-video-container_component_432-Black" value="#000"
+                                aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432-Black">
+                          Black
+                        </option>
+                        <option id="captions-foreground-color-pdp-video-container_component_432-Red" value="#F00"
+                                aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432-Red">
+                          Red
+                        </option>
+                        <option id="captions-foreground-color-pdp-video-container_component_432-Green" value="#0F0"
+                                aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432-Green">
+                          Green
+                        </option>
+                        <option id="captions-foreground-color-pdp-video-container_component_432-Blue" value="#00F"
+                                aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432-Blue">
+                          Blue
+                        </option>
+                        <option id="captions-foreground-color-pdp-video-container_component_432-Yellow" value="#FF0"
+                                aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432-Yellow">
+                          Yellow
+                        </option>
+                        <option id="captions-foreground-color-pdp-video-container_component_432-Magenta" value="#F0F"
+                                aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432-Magenta">
+                          Magenta
+                        </option>
+                        <option id="captions-foreground-color-pdp-video-container_component_432-Cyan" value="#0FF"
+                                aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432 captions-foreground-color-pdp-video-container_component_432-Cyan">
+                          Cyan
+                        </option>
+                      </select><span class="vjs-text-opacity vjs-opacity"><label
+                          id="captions-foreground-opacity-pdp-video-container_component_432" class="vjs-label">Transparency</label><select
+                          aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-opacity-pdp-video-container_component_432"><option
+                            id="captions-foreground-opacity-pdp-video-container_component_432-Opaque" value="1"
+                            aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-opacity-pdp-video-container_component_432 captions-foreground-opacity-pdp-video-container_component_432-Opaque">Opaque</option><option
+                            id="captions-foreground-opacity-pdp-video-container_component_432-SemiTransparent"
+                            value="0.5"
+                            aria-labelledby="captions-text-legend-pdp-video-container_component_432 captions-foreground-opacity-pdp-video-container_component_432 captions-foreground-opacity-pdp-video-container_component_432-SemiTransparent">Semi-Transparent</option></select></span>
+                    </fieldset>
+                    <fieldset class="vjs-bg-color vjs-track-setting">
+                      <legend id="captions-background-pdp-video-container_component_432">Background</legend>
+                      <label id="captions-background-color-pdp-video-container_component_432"
+                             class="vjs-label">Color</label><select
+                        aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432">
+                        <option id="captions-background-color-pdp-video-container_component_432-Black" value="#000"
+                                aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432-Black">
+                          Black
+                        </option>
+                        <option id="captions-background-color-pdp-video-container_component_432-White" value="#FFF"
+                                aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432-White">
+                          White
+                        </option>
+                        <option id="captions-background-color-pdp-video-container_component_432-Red" value="#F00"
+                                aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432-Red">
+                          Red
+                        </option>
+                        <option id="captions-background-color-pdp-video-container_component_432-Green" value="#0F0"
+                                aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432-Green">
+                          Green
+                        </option>
+                        <option id="captions-background-color-pdp-video-container_component_432-Blue" value="#00F"
+                                aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432-Blue">
+                          Blue
+                        </option>
+                        <option id="captions-background-color-pdp-video-container_component_432-Yellow" value="#FF0"
+                                aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432-Yellow">
+                          Yellow
+                        </option>
+                        <option id="captions-background-color-pdp-video-container_component_432-Magenta" value="#F0F"
+                                aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432-Magenta">
+                          Magenta
+                        </option>
+                        <option id="captions-background-color-pdp-video-container_component_432-Cyan" value="#0FF"
+                                aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432 captions-background-color-pdp-video-container_component_432-Cyan">
+                          Cyan
+                        </option>
+                      </select><span class="vjs-bg-opacity vjs-opacity"><label
+                          id="captions-background-opacity-pdp-video-container_component_432" class="vjs-label">Transparency</label><select
+                          aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-opacity-pdp-video-container_component_432"><option
+                            id="captions-background-opacity-pdp-video-container_component_432-Opaque" value="1"
+                            aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-opacity-pdp-video-container_component_432 captions-background-opacity-pdp-video-container_component_432-Opaque">Opaque</option><option
+                            id="captions-background-opacity-pdp-video-container_component_432-SemiTransparent"
+                            value="0.5"
+                            aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-opacity-pdp-video-container_component_432 captions-background-opacity-pdp-video-container_component_432-SemiTransparent">Semi-Transparent</option><option
+                            id="captions-background-opacity-pdp-video-container_component_432-Transparent" value="0"
+                            aria-labelledby="captions-background-pdp-video-container_component_432 captions-background-opacity-pdp-video-container_component_432 captions-background-opacity-pdp-video-container_component_432-Transparent">Transparent</option></select></span>
+                    </fieldset>
+                    <fieldset class="vjs-window-color vjs-track-setting">
+                      <legend id="captions-window-pdp-video-container_component_432">Window</legend>
+                      <label id="captions-window-color-pdp-video-container_component_432"
+                             class="vjs-label">Color</label><select
+                        aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432">
+                        <option id="captions-window-color-pdp-video-container_component_432-Black" value="#000"
+                                aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432-Black">
+                          Black
+                        </option>
+                        <option id="captions-window-color-pdp-video-container_component_432-White" value="#FFF"
+                                aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432-White">
+                          White
+                        </option>
+                        <option id="captions-window-color-pdp-video-container_component_432-Red" value="#F00"
+                                aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432-Red">
+                          Red
+                        </option>
+                        <option id="captions-window-color-pdp-video-container_component_432-Green" value="#0F0"
+                                aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432-Green">
+                          Green
+                        </option>
+                        <option id="captions-window-color-pdp-video-container_component_432-Blue" value="#00F"
+                                aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432-Blue">
+                          Blue
+                        </option>
+                        <option id="captions-window-color-pdp-video-container_component_432-Yellow" value="#FF0"
+                                aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432-Yellow">
+                          Yellow
+                        </option>
+                        <option id="captions-window-color-pdp-video-container_component_432-Magenta" value="#F0F"
+                                aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432-Magenta">
+                          Magenta
+                        </option>
+                        <option id="captions-window-color-pdp-video-container_component_432-Cyan" value="#0FF"
+                                aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432 captions-window-color-pdp-video-container_component_432-Cyan">
+                          Cyan
+                        </option>
+                      </select><span class="vjs-window-opacity vjs-opacity"><label
+                          id="captions-window-opacity-pdp-video-container_component_432"
+                          class="vjs-label">Transparency</label><select
+                          aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-opacity-pdp-video-container_component_432"><option
+                            id="captions-window-opacity-pdp-video-container_component_432-Transparent" value="0"
+                            aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-opacity-pdp-video-container_component_432 captions-window-opacity-pdp-video-container_component_432-Transparent">Transparent</option><option
+                            id="captions-window-opacity-pdp-video-container_component_432-SemiTransparent" value="0.5"
+                            aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-opacity-pdp-video-container_component_432 captions-window-opacity-pdp-video-container_component_432-SemiTransparent">Semi-Transparent</option><option
+                            id="captions-window-opacity-pdp-video-container_component_432-Opaque" value="1"
+                            aria-labelledby="captions-window-pdp-video-container_component_432 captions-window-opacity-pdp-video-container_component_432 captions-window-opacity-pdp-video-container_component_432-Opaque">Opaque</option></select></span>
+                    </fieldset>
+                  </div>
+                  <div class="vjs-track-settings-font">
+                    <fieldset class="vjs-font-percent vjs-track-setting">
+                      <legend id="captions-font-size-pdp-video-container_component_432" class="">Font Size</legend>
+                      <select aria-labelledby="captions-font-size-pdp-video-container_component_432">
+                        <option id="captions-font-size-pdp-video-container_component_432-50" value="0.50"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-50">
+                          50%
+                        </option>
+                        <option id="captions-font-size-pdp-video-container_component_432-75" value="0.75"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-75">
+                          75%
+                        </option>
+                        <option id="captions-font-size-pdp-video-container_component_432-100" value="1.00"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-100">
+                          100%
+                        </option>
+                        <option id="captions-font-size-pdp-video-container_component_432-125" value="1.25"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-125">
+                          125%
+                        </option>
+                        <option id="captions-font-size-pdp-video-container_component_432-150" value="1.50"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-150">
+                          150%
+                        </option>
+                        <option id="captions-font-size-pdp-video-container_component_432-175" value="1.75"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-175">
+                          175%
+                        </option>
+                        <option id="captions-font-size-pdp-video-container_component_432-200" value="2.00"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-200">
+                          200%
+                        </option>
+                        <option id="captions-font-size-pdp-video-container_component_432-300" value="3.00"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-300">
+                          300%
+                        </option>
+                        <option id="captions-font-size-pdp-video-container_component_432-400" value="4.00"
+                                aria-labelledby="captions-font-size-pdp-video-container_component_432 captions-font-size-pdp-video-container_component_432-400">
+                          400%
+                        </option>
+                      </select></fieldset>
+                    <fieldset class="vjs-edge-style vjs-track-setting">
+                      <legend id="pdp-video-container_component_432" class="">Text Edge Style</legend>
+                      <select aria-labelledby="pdp-video-container_component_432">
+                        <option id="pdp-video-container_component_432-None" value="none"
+                                aria-labelledby="pdp-video-container_component_432 pdp-video-container_component_432-None">
+                          None
+                        </option>
+                        <option id="pdp-video-container_component_432-Raised" value="raised"
+                                aria-labelledby="pdp-video-container_component_432 pdp-video-container_component_432-Raised">
+                          Raised
+                        </option>
+                        <option id="pdp-video-container_component_432-Depressed" value="depressed"
+                                aria-labelledby="pdp-video-container_component_432 pdp-video-container_component_432-Depressed">
+                          Depressed
+                        </option>
+                        <option id="pdp-video-container_component_432-Uniform" value="uniform"
+                                aria-labelledby="pdp-video-container_component_432 pdp-video-container_component_432-Uniform">
+                          Uniform
+                        </option>
+                        <option id="pdp-video-container_component_432-Dropshadow" value="dropshadow"
+                                aria-labelledby="pdp-video-container_component_432 pdp-video-container_component_432-Dropshadow">
+                          Dropshadow
+                        </option>
+                      </select></fieldset>
+                    <fieldset class="vjs-font-family vjs-track-setting">
+                      <legend id="captions-font-family-pdp-video-container_component_432" class="">Font Family</legend>
+                      <select aria-labelledby="captions-font-family-pdp-video-container_component_432">
+                        <option id="captions-font-family-pdp-video-container_component_432-ProportionalSansSerif"
+                                value="proportionalSansSerif"
+                                aria-labelledby="captions-font-family-pdp-video-container_component_432 captions-font-family-pdp-video-container_component_432-ProportionalSansSerif">
+                          Proportional Sans-Serif
+                        </option>
+                        <option id="captions-font-family-pdp-video-container_component_432-MonospaceSansSerif"
+                                value="monospaceSansSerif"
+                                aria-labelledby="captions-font-family-pdp-video-container_component_432 captions-font-family-pdp-video-container_component_432-MonospaceSansSerif">
+                          Monospace Sans-Serif
+                        </option>
+                        <option id="captions-font-family-pdp-video-container_component_432-ProportionalSerif"
+                                value="proportionalSerif"
+                                aria-labelledby="captions-font-family-pdp-video-container_component_432 captions-font-family-pdp-video-container_component_432-ProportionalSerif">
+                          Proportional Serif
+                        </option>
+                        <option id="captions-font-family-pdp-video-container_component_432-MonospaceSerif"
+                                value="monospaceSerif"
+                                aria-labelledby="captions-font-family-pdp-video-container_component_432 captions-font-family-pdp-video-container_component_432-MonospaceSerif">
+                          Monospace Serif
+                        </option>
+                        <option id="captions-font-family-pdp-video-container_component_432-Casual" value="casual"
+                                aria-labelledby="captions-font-family-pdp-video-container_component_432 captions-font-family-pdp-video-container_component_432-Casual">
+                          Casual
+                        </option>
+                        <option id="captions-font-family-pdp-video-container_component_432-Script" value="script"
+                                aria-labelledby="captions-font-family-pdp-video-container_component_432 captions-font-family-pdp-video-container_component_432-Script">
+                          Script
+                        </option>
+                        <option id="captions-font-family-pdp-video-container_component_432-SmallCaps" value="small-caps"
+                                aria-labelledby="captions-font-family-pdp-video-container_component_432 captions-font-family-pdp-video-container_component_432-SmallCaps">
+                          Small Caps
+                        </option>
+                      </select></fieldset>
+                  </div>
+                  <div class="vjs-track-settings-controls">
+                    <button type="button" class="vjs-default-button" title="restore all settings to the default values">
+                      Reset<span class="vjs-control-text"> restore all settings to the default values</span></button>
+                    <button type="button" class="vjs-done-button">Done</button>
+                  </div>
+                </div>
+                <button class="vjs-close-button vjs-control vjs-button" type="button" aria-disabled="false"
+                        title="Close Modal Dialog"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span
+                    class="vjs-control-text" aria-live="polite">Close Modal Dialog</span></button>
+                <p class="vjs-control-text">End of dialog window.</p></div>
+            </div>
+          </div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-1" data-slide-title="Slide "><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1602671368.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1602671368.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 1" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1602671368.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-2 is-active"
+               data-slide-title="Slide 1"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/d3a25e245201a00e4ee68c2f2e4b9c437712a3f0_1602671369.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/d3a25e245201a00e4ee68c2f2e4b9c437712a3f0_1602671369.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 2" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/d3a25e245201a00e4ee68c2f2e4b9c437712a3f0_1602671369.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-3" data-slide-title="Slide 2"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/2fe36ebb47c6c22158e0c3f62acb8043b516fe7d_1602671371.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/2fe36ebb47c6c22158e0c3f62acb8043b516fe7d_1602671371.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 3" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/2fe36ebb47c6c22158e0c3f62acb8043b516fe7d_1602671371.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-4" data-slide-title="Slide 3"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/1d3132f88b1513030d6e5e15ae3fc483953f40f6_1602671371.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/1d3132f88b1513030d6e5e15ae3fc483953f40f6_1602671371.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 4" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/1d3132f88b1513030d6e5e15ae3fc483953f40f6_1602671371.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-5" data-slide-title="Slide 4"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/98c56166fe774a2ae81baef6c9ab5bb299ee08e6_1606735162.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/98c56166fe774a2ae81baef6c9ab5bb299ee08e6_1606735162.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 5" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/98c56166fe774a2ae81baef6c9ab5bb299ee08e6_1606735162.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-6" data-slide-title="Slide 5"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/0e8fa0d4c5607a2768d1d718db56c96423413e91_1606735164.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/0e8fa0d4c5607a2768d1d718db56c96423413e91_1606735164.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 6" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/0e8fa0d4c5607a2768d1d718db56c96423413e91_1606735164.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-7" data-slide-title="Slide 6"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606735167.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606735167.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 7" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606735167.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-8" data-slide-title="Slide 7"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606735170.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606735170.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 8" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606735170.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-9" data-slide-title="Slide 8"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606735174.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606735174.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 9" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606735174.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-10" data-slide-title="Slide 9"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606735179.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606735179.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 10" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606735179.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-11" data-slide-title="Slide 10"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606735182.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606735182.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 11" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606735182.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-12" data-slide-title="Slide 11"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/e5ce7aadd4394fba2e667d32a207457cfb9f59b6_1606735185.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/e5ce7aadd4394fba2e667d32a207457cfb9f59b6_1606735185.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 12" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/e5ce7aadd4394fba2e667d32a207457cfb9f59b6_1606735185.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-13" data-slide-title="Slide 12"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012089.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012089.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 13" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012089.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-14" data-slide-title="Slide 13"><img
+              data-src="https://dkstatics-public.digikala.com/digikala-products/467aa3f13a7f2919e14d9cd47cc9dfef0d9156ec_1618047804.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/467aa3f13a7f2919e14d9cd47cc9dfef0d9156ec_1618047804.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              class="pannable-image" title=""
+              alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت main 1 14" data-type=""
+              src="https://dkstatics-public.digikala.com/digikala-products/467aa3f13a7f2919e14d9cd47cc9dfef0d9156ec_1618047804.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+              loading="lazy"></div>
+          <div class="c-remodal-gallery__info">
+            <div class="c-remodal-gallery__title">گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512
+              گیگابایت
+            </div>
+            <div class="c-remodal-gallery__thumbs js-official-thumbs">
+              <div class="c-remodal-gallery__thumb is-video js-image-thumb"
+                   data-video-cover="https://dkstatics-public.digikala.com/digikala-video-cover/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image/resize,w_600/quality,q_80"
+                   data-video-src="https://dkstatics-public.digikala.com/digikala-video-playlist/65a9742d046a76387e9514dfea87b2de0594e0e2_1606734556.m3u8"
+                   data-product-id="3555626" data-id="1" data-gtm-vis-first-on-screen-9070001_346="10295"
+                   data-gtm-vis-total-visible-time-9070001_346="100" data-gtm-vis-has-fired-9070001_346="1"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-video-cover/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image/resize,m_fill,h_115,w_115"
+                  alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت video"
+                  src="https://dkstatics-public.digikala.com/digikala-video-cover/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image/resize,m_fill,h_115,w_115"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="1"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1602671368.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 1"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1602671368.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb c-remodal-gallery__thumb--selected" data-order="2">
+                <img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/d3a25e245201a00e4ee68c2f2e4b9c437712a3f0_1602671369.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 2"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/d3a25e245201a00e4ee68c2f2e4b9c437712a3f0_1602671369.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="3"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/2fe36ebb47c6c22158e0c3f62acb8043b516fe7d_1602671371.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 3"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/2fe36ebb47c6c22158e0c3f62acb8043b516fe7d_1602671371.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="4"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/1d3132f88b1513030d6e5e15ae3fc483953f40f6_1602671371.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 4"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/1d3132f88b1513030d6e5e15ae3fc483953f40f6_1602671371.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="5"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/98c56166fe774a2ae81baef6c9ab5bb299ee08e6_1606735162.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 5"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/98c56166fe774a2ae81baef6c9ab5bb299ee08e6_1606735162.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="6"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/0e8fa0d4c5607a2768d1d718db56c96423413e91_1606735164.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 6"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/0e8fa0d4c5607a2768d1d718db56c96423413e91_1606735164.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="7"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606735167.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 7"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606735167.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="8"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606735170.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 8"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606735170.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="9"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606735174.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 9"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606735174.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="10"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606735179.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 10"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606735179.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="11"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606735182.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 11"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606735182.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="12"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/e5ce7aadd4394fba2e667d32a207457cfb9f59b6_1606735185.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 12"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/e5ce7aadd4394fba2e667d32a207457cfb9f59b6_1606735185.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="13"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012089.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 13"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012089.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="14"><img
+                  data-src="https://dkstatics-public.digikala.com/digikala-products/467aa3f13a7f2919e14d9cd47cc9dfef0d9156ec_1618047804.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 512 گیگابایت thumb 2 14"
+                  data-type=""
+                  src="https://dkstatics-public.digikala.com/digikala-products/467aa3f13a7f2919e14d9cd47cc9dfef0d9156ec_1618047804.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                  loading="lazy"></div>
+            </div>
+            <div class="c-remodal-gallery__other-imgs js-comments-files-thumbnails-summary js-see-more-imgs"></div>
+          </div>
+        </div>
+        <div
+          class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
+          id="gallery-content-2"></div>
+      </div>
+      <div class="c-remodal-gallery__main js-level-two-gallery js-comments">
+        <div class="c-remodal-gallery__top-bar">
+          <div class="c-remodal-gallery__back js-back-comment">
+            دیدگاه خریدار
+          </div>
+          <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="c-remodal-gallery__main js-answers">
+        <div class="c-remodal-gallery__top-bar">
+          <div class="c-remodal-gallery__head-title">
+            پاسخ فروشنده
+          </div>
+          <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="remodal-wrapper remodal-is-closed" style="display: none;">
     <div class="remodal c-modal c-u-minicart__modal u-hidden js-minicart-modal remodal-is-initialized remodal-is-closed"
          data-remodal-id="universal-mini-cart" role="dialog" aria-labelledby="modalTitle" tabindex="-1"
@@ -5032,697 +5486,6 @@ o-btn o-btn--contained-red-lg c-product__add-to-cart-btn js-add-to-cart js-btn-a
     </div>
   </div>
 
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-gallery remodal-is-initialized remodal-is-closed" data-remodal-id="gallery"
-         role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
-      <div class="c-remodal-gallery__main js-level-one-gallery">
-        <div class="c-remodal-gallery__top-bar">
-          <div class="c-remodal-gallery__tabs js-top-bar-tabs">
-            <div class="c-remodal-gallery__tab c-remodal-gallery__tab--selected js-gallery-tab" data-id="1">تصاویر
-              رسمی
-            </div>
-          </div>
-          <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
-        </div>
-        <div class="c-remodal-gallery__content is-active js-gallery-tab-content" id="gallery-content-1">
-          <div class="c-remodal-gallery__main-img js-gallery-main-img js-video-container">
-            <div
-              class="video-js vjs-default-skin vjs-big-play-centered vjs-paused vjs-fluid pdp-video-container-dimensions vjs-controls-enabled vjs-workinghover vjs-v7 vjs-user-active"
-              id="pdp-video-container" tabindex="-1" role="region" aria-label="Video Player" lang="en-us">
-              <video id="pdp-video-container_html5_api" class="vjs-tech" tabindex="-1" preload="none"></video>
-              <div class="vjs-poster vjs-hidden" tabindex="-1" aria-disabled="false"></div>
-              <div class="vjs-text-track-display" aria-live="off" aria-atomic="true"></div>
-              <div class="vjs-loading-spinner" dir="ltr"><span class="vjs-control-text">Video Player is loading.</span>
-              </div>
-              <button class="vjs-big-play-button" type="button" title="Play Video" aria-disabled="false"><span
-                  aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
-                                                                               aria-live="polite">Play Video</span>
-              </button>
-              <div class="vjs-control-bar" dir="ltr">
-                <button class="vjs-play-control vjs-control vjs-button" type="button" title="Play"
-                        aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span
-                    class="vjs-control-text" aria-live="polite">Play</span></button>
-                <div class="vjs-volume-panel vjs-control vjs-volume-panel-horizontal">
-                  <button class="vjs-mute-control vjs-control vjs-button" type="button" title="Mute"
-                          aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span
-                      class="vjs-control-text" aria-live="polite">Mute</span></button>
-                  <div class="vjs-volume-control vjs-control vjs-volume-horizontal">
-                    <div tabindex="0" class="vjs-volume-bar vjs-slider-bar vjs-slider vjs-slider-horizontal"
-                         role="slider" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
-                         aria-label="Volume Level" aria-live="polite" aria-valuetext="100%">
-                      <div class="vjs-volume-level"><span class="vjs-control-text"></span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="vjs-current-time vjs-time-control vjs-control"><span class="vjs-control-text"
-                                                                                 role="presentation">Current Time </span><span
-                    class="vjs-current-time-display" aria-live="off" role="presentation">0:00</span></div>
-                <div class="vjs-time-control vjs-time-divider" aria-hidden="true">
-                  <div><span>/</span></div>
-                </div>
-                <div class="vjs-duration vjs-time-control vjs-control"><span class="vjs-control-text"
-                                                                             role="presentation">Duration </span><span
-                    class="vjs-duration-display" aria-live="off" role="presentation">0:00</span></div>
-                <div class="vjs-progress-control vjs-control">
-                  <div tabindex="0" class="vjs-progress-holder vjs-slider vjs-slider-horizontal" role="slider"
-                       aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Progress Bar">
-                    <div class="vjs-load-progress"><span class="vjs-control-text"><span>Loaded</span>: <span
-                          class="vjs-control-text-loaded-percentage">0%</span></span></div>
-                    <div class="vjs-mouse-display">
-                      <div class="vjs-time-tooltip" aria-hidden="true"></div>
-                    </div>
-                    <div class="vjs-play-progress vjs-slider-bar" aria-hidden="true">
-                      <div class="vjs-time-tooltip" aria-hidden="true"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="vjs-live-control vjs-control vjs-hidden">
-                  <div class="vjs-live-display" aria-live="off"><span class="vjs-control-text">Stream Type </span>LIVE
-                  </div>
-                </div>
-                <button class="vjs-seek-to-live-control vjs-control vjs-at-live-edge" type="button"
-                        title="Seek to live, currently playing live" aria-disabled="true"><span aria-hidden="true"
-                                                                                                class="vjs-icon-placeholder"></span><span
-                    class="vjs-control-text" aria-live="polite">Seek to live, currently playing live</span><span
-                    class="vjs-seek-to-live-text" aria-hidden="true">LIVE</span></button>
-                <div class="vjs-remaining-time vjs-time-control vjs-control"><span class="vjs-control-text"
-                                                                                   role="presentation">Remaining Time </span><span
-                    aria-hidden="true">-</span><span class="vjs-remaining-time-display" aria-live="off"
-                                                     role="presentation">0:00</span></div>
-                <div class="vjs-custom-control-spacer vjs-spacer "></div>
-                <div class="vjs-playback-rate vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
-                  <button class="vjs-playback-rate vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
-                          aria-disabled="false" title="Playback Rate" aria-haspopup="true" aria-expanded="false"><span
-                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
-                                                                                   aria-live="polite">Playback Rate</span>
-                  </button>
-                  <div class="vjs-menu">
-                    <ul class="vjs-menu-content" role="menu"></ul>
-                  </div>
-                  <div class="vjs-playback-rate-value">1x</div>
-                </div>
-                <div
-                  class="vjs-chapters-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
-                  <button class="vjs-chapters-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
-                          aria-disabled="false" title="Chapters" aria-haspopup="true" aria-expanded="false"><span
-                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
-                                                                                   aria-live="polite">Chapters</span>
-                  </button>
-                  <div class="vjs-menu">
-                    <ul class="vjs-menu-content" role="menu">
-                      <li class="vjs-menu-title" tabindex="-1">Chapters</li>
-                    </ul>
-                  </div>
-                </div>
-                <div
-                  class="vjs-descriptions-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
-                  <button class="vjs-descriptions-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
-                          aria-disabled="false" title="Descriptions" aria-haspopup="true" aria-expanded="false"><span
-                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
-                                                                                   aria-live="polite">Descriptions</span>
-                  </button>
-                  <div class="vjs-menu">
-                    <ul class="vjs-menu-content" role="menu">
-                      <li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false"
-                          aria-checked="true"><span class="vjs-menu-item-text">descriptions off</span><span
-                          class="vjs-control-text" aria-live="polite">, selected</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div
-                  class="vjs-subs-caps-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
-                  <button class="vjs-subs-caps-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
-                          aria-disabled="false" title="Captions" aria-haspopup="true" aria-expanded="false"><span
-                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
-                                                                                   aria-live="polite">Captions</span>
-                  </button>
-                  <div class="vjs-menu">
-                    <ul class="vjs-menu-content" role="menu">
-                      <li class="vjs-menu-item vjs-texttrack-settings" tabindex="-1" role="menuitem"
-                          aria-disabled="false"><span class="vjs-menu-item-text">captions settings</span><span
-                          class="vjs-control-text" aria-live="polite">, opens captions settings dialog</span></li>
-                      <li class="vjs-menu-item vjs-selected" tabindex="-1" role="menuitemradio" aria-disabled="false"
-                          aria-checked="true"><span class="vjs-menu-item-text">captions off</span><span
-                          class="vjs-control-text" aria-live="polite">, selected</span></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="vjs-audio-button vjs-menu-button vjs-menu-button-popup vjs-control vjs-button vjs-hidden">
-                  <button class="vjs-audio-button vjs-menu-button vjs-menu-button-popup vjs-button" type="button"
-                          aria-disabled="false" title="Audio Track" aria-haspopup="true" aria-expanded="false"><span
-                      aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text"
-                                                                                   aria-live="polite">Audio Track</span>
-                  </button>
-                  <div class="vjs-menu">
-                    <ul class="vjs-menu-content" role="menu"></ul>
-                  </div>
-                </div>
-                <button class="vjs-fullscreen-control vjs-control vjs-button" type="button" title="Fullscreen"
-                        aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span
-                    class="vjs-control-text" aria-live="polite">Fullscreen</span></button>
-              </div>
-              <div class="vjs-error-display vjs-modal-dialog vjs-hidden " tabindex="-1"
-                   aria-describedby="pdp-video-container_component_415_description" aria-hidden="true"
-                   aria-label="Modal Window" role="dialog"><p class="vjs-modal-dialog-description vjs-control-text"
-                                                              id="pdp-video-container_component_415_description">This is
-                  a modal window.</p>
-                <div class="vjs-modal-dialog-content" role="document"></div>
-              </div>
-              <div class="vjs-modal-dialog vjs-hidden  vjs-text-track-settings" tabindex="-1"
-                   aria-describedby="pdp-video-container_component_420_description" aria-hidden="true"
-                   aria-label="Caption Settings Dialog" role="dialog"><p
-                  class="vjs-modal-dialog-description vjs-control-text"
-                  id="pdp-video-container_component_420_description">Beginning of dialog window. Escape will cancel and
-                  close the window.</p>
-                <div class="vjs-modal-dialog-content" role="document">
-                  <div class="vjs-track-settings-colors">
-                    <fieldset class="vjs-fg-color vjs-track-setting">
-                      <legend id="captions-text-legend-pdp-video-container_component_420">Text</legend>
-                      <label id="captions-foreground-color-pdp-video-container_component_420"
-                             class="vjs-label">Color</label><select
-                        aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420">
-                        <option id="captions-foreground-color-pdp-video-container_component_420-White" value="#FFF"
-                                aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420-White">
-                          White
-                        </option>
-                        <option id="captions-foreground-color-pdp-video-container_component_420-Black" value="#000"
-                                aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420-Black">
-                          Black
-                        </option>
-                        <option id="captions-foreground-color-pdp-video-container_component_420-Red" value="#F00"
-                                aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420-Red">
-                          Red
-                        </option>
-                        <option id="captions-foreground-color-pdp-video-container_component_420-Green" value="#0F0"
-                                aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420-Green">
-                          Green
-                        </option>
-                        <option id="captions-foreground-color-pdp-video-container_component_420-Blue" value="#00F"
-                                aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420-Blue">
-                          Blue
-                        </option>
-                        <option id="captions-foreground-color-pdp-video-container_component_420-Yellow" value="#FF0"
-                                aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420-Yellow">
-                          Yellow
-                        </option>
-                        <option id="captions-foreground-color-pdp-video-container_component_420-Magenta" value="#F0F"
-                                aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420-Magenta">
-                          Magenta
-                        </option>
-                        <option id="captions-foreground-color-pdp-video-container_component_420-Cyan" value="#0FF"
-                                aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420 captions-foreground-color-pdp-video-container_component_420-Cyan">
-                          Cyan
-                        </option>
-                      </select><span class="vjs-text-opacity vjs-opacity"><label
-                          id="captions-foreground-opacity-pdp-video-container_component_420" class="vjs-label">Transparency</label><select
-                          aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-opacity-pdp-video-container_component_420"><option
-                            id="captions-foreground-opacity-pdp-video-container_component_420-Opaque" value="1"
-                            aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-opacity-pdp-video-container_component_420 captions-foreground-opacity-pdp-video-container_component_420-Opaque">Opaque</option><option
-                            id="captions-foreground-opacity-pdp-video-container_component_420-SemiTransparent"
-                            value="0.5"
-                            aria-labelledby="captions-text-legend-pdp-video-container_component_420 captions-foreground-opacity-pdp-video-container_component_420 captions-foreground-opacity-pdp-video-container_component_420-SemiTransparent">Semi-Transparent</option></select></span>
-                    </fieldset>
-                    <fieldset class="vjs-bg-color vjs-track-setting">
-                      <legend id="captions-background-pdp-video-container_component_420">Background</legend>
-                      <label id="captions-background-color-pdp-video-container_component_420"
-                             class="vjs-label">Color</label><select
-                        aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420">
-                        <option id="captions-background-color-pdp-video-container_component_420-Black" value="#000"
-                                aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420-Black">
-                          Black
-                        </option>
-                        <option id="captions-background-color-pdp-video-container_component_420-White" value="#FFF"
-                                aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420-White">
-                          White
-                        </option>
-                        <option id="captions-background-color-pdp-video-container_component_420-Red" value="#F00"
-                                aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420-Red">
-                          Red
-                        </option>
-                        <option id="captions-background-color-pdp-video-container_component_420-Green" value="#0F0"
-                                aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420-Green">
-                          Green
-                        </option>
-                        <option id="captions-background-color-pdp-video-container_component_420-Blue" value="#00F"
-                                aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420-Blue">
-                          Blue
-                        </option>
-                        <option id="captions-background-color-pdp-video-container_component_420-Yellow" value="#FF0"
-                                aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420-Yellow">
-                          Yellow
-                        </option>
-                        <option id="captions-background-color-pdp-video-container_component_420-Magenta" value="#F0F"
-                                aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420-Magenta">
-                          Magenta
-                        </option>
-                        <option id="captions-background-color-pdp-video-container_component_420-Cyan" value="#0FF"
-                                aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420 captions-background-color-pdp-video-container_component_420-Cyan">
-                          Cyan
-                        </option>
-                      </select><span class="vjs-bg-opacity vjs-opacity"><label
-                          id="captions-background-opacity-pdp-video-container_component_420" class="vjs-label">Transparency</label><select
-                          aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-opacity-pdp-video-container_component_420"><option
-                            id="captions-background-opacity-pdp-video-container_component_420-Opaque" value="1"
-                            aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-opacity-pdp-video-container_component_420 captions-background-opacity-pdp-video-container_component_420-Opaque">Opaque</option><option
-                            id="captions-background-opacity-pdp-video-container_component_420-SemiTransparent"
-                            value="0.5"
-                            aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-opacity-pdp-video-container_component_420 captions-background-opacity-pdp-video-container_component_420-SemiTransparent">Semi-Transparent</option><option
-                            id="captions-background-opacity-pdp-video-container_component_420-Transparent" value="0"
-                            aria-labelledby="captions-background-pdp-video-container_component_420 captions-background-opacity-pdp-video-container_component_420 captions-background-opacity-pdp-video-container_component_420-Transparent">Transparent</option></select></span>
-                    </fieldset>
-                    <fieldset class="vjs-window-color vjs-track-setting">
-                      <legend id="captions-window-pdp-video-container_component_420">Window</legend>
-                      <label id="captions-window-color-pdp-video-container_component_420"
-                             class="vjs-label">Color</label><select
-                        aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420">
-                        <option id="captions-window-color-pdp-video-container_component_420-Black" value="#000"
-                                aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420-Black">
-                          Black
-                        </option>
-                        <option id="captions-window-color-pdp-video-container_component_420-White" value="#FFF"
-                                aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420-White">
-                          White
-                        </option>
-                        <option id="captions-window-color-pdp-video-container_component_420-Red" value="#F00"
-                                aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420-Red">
-                          Red
-                        </option>
-                        <option id="captions-window-color-pdp-video-container_component_420-Green" value="#0F0"
-                                aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420-Green">
-                          Green
-                        </option>
-                        <option id="captions-window-color-pdp-video-container_component_420-Blue" value="#00F"
-                                aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420-Blue">
-                          Blue
-                        </option>
-                        <option id="captions-window-color-pdp-video-container_component_420-Yellow" value="#FF0"
-                                aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420-Yellow">
-                          Yellow
-                        </option>
-                        <option id="captions-window-color-pdp-video-container_component_420-Magenta" value="#F0F"
-                                aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420-Magenta">
-                          Magenta
-                        </option>
-                        <option id="captions-window-color-pdp-video-container_component_420-Cyan" value="#0FF"
-                                aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420 captions-window-color-pdp-video-container_component_420-Cyan">
-                          Cyan
-                        </option>
-                      </select><span class="vjs-window-opacity vjs-opacity"><label
-                          id="captions-window-opacity-pdp-video-container_component_420"
-                          class="vjs-label">Transparency</label><select
-                          aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-opacity-pdp-video-container_component_420"><option
-                            id="captions-window-opacity-pdp-video-container_component_420-Transparent" value="0"
-                            aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-opacity-pdp-video-container_component_420 captions-window-opacity-pdp-video-container_component_420-Transparent">Transparent</option><option
-                            id="captions-window-opacity-pdp-video-container_component_420-SemiTransparent" value="0.5"
-                            aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-opacity-pdp-video-container_component_420 captions-window-opacity-pdp-video-container_component_420-SemiTransparent">Semi-Transparent</option><option
-                            id="captions-window-opacity-pdp-video-container_component_420-Opaque" value="1"
-                            aria-labelledby="captions-window-pdp-video-container_component_420 captions-window-opacity-pdp-video-container_component_420 captions-window-opacity-pdp-video-container_component_420-Opaque">Opaque</option></select></span>
-                    </fieldset>
-                  </div>
-                  <div class="vjs-track-settings-font">
-                    <fieldset class="vjs-font-percent vjs-track-setting">
-                      <legend id="captions-font-size-pdp-video-container_component_420" class="">Font Size</legend>
-                      <select aria-labelledby="captions-font-size-pdp-video-container_component_420">
-                        <option id="captions-font-size-pdp-video-container_component_420-50" value="0.50"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-50">
-                          50%
-                        </option>
-                        <option id="captions-font-size-pdp-video-container_component_420-75" value="0.75"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-75">
-                          75%
-                        </option>
-                        <option id="captions-font-size-pdp-video-container_component_420-100" value="1.00"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-100">
-                          100%
-                        </option>
-                        <option id="captions-font-size-pdp-video-container_component_420-125" value="1.25"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-125">
-                          125%
-                        </option>
-                        <option id="captions-font-size-pdp-video-container_component_420-150" value="1.50"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-150">
-                          150%
-                        </option>
-                        <option id="captions-font-size-pdp-video-container_component_420-175" value="1.75"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-175">
-                          175%
-                        </option>
-                        <option id="captions-font-size-pdp-video-container_component_420-200" value="2.00"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-200">
-                          200%
-                        </option>
-                        <option id="captions-font-size-pdp-video-container_component_420-300" value="3.00"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-300">
-                          300%
-                        </option>
-                        <option id="captions-font-size-pdp-video-container_component_420-400" value="4.00"
-                                aria-labelledby="captions-font-size-pdp-video-container_component_420 captions-font-size-pdp-video-container_component_420-400">
-                          400%
-                        </option>
-                      </select></fieldset>
-                    <fieldset class="vjs-edge-style vjs-track-setting">
-                      <legend id="pdp-video-container_component_420" class="">Text Edge Style</legend>
-                      <select aria-labelledby="pdp-video-container_component_420">
-                        <option id="pdp-video-container_component_420-None" value="none"
-                                aria-labelledby="pdp-video-container_component_420 pdp-video-container_component_420-None">
-                          None
-                        </option>
-                        <option id="pdp-video-container_component_420-Raised" value="raised"
-                                aria-labelledby="pdp-video-container_component_420 pdp-video-container_component_420-Raised">
-                          Raised
-                        </option>
-                        <option id="pdp-video-container_component_420-Depressed" value="depressed"
-                                aria-labelledby="pdp-video-container_component_420 pdp-video-container_component_420-Depressed">
-                          Depressed
-                        </option>
-                        <option id="pdp-video-container_component_420-Uniform" value="uniform"
-                                aria-labelledby="pdp-video-container_component_420 pdp-video-container_component_420-Uniform">
-                          Uniform
-                        </option>
-                        <option id="pdp-video-container_component_420-Dropshadow" value="dropshadow"
-                                aria-labelledby="pdp-video-container_component_420 pdp-video-container_component_420-Dropshadow">
-                          Dropshadow
-                        </option>
-                      </select></fieldset>
-                    <fieldset class="vjs-font-family vjs-track-setting">
-                      <legend id="captions-font-family-pdp-video-container_component_420" class="">Font Family</legend>
-                      <select aria-labelledby="captions-font-family-pdp-video-container_component_420">
-                        <option id="captions-font-family-pdp-video-container_component_420-ProportionalSansSerif"
-                                value="proportionalSansSerif"
-                                aria-labelledby="captions-font-family-pdp-video-container_component_420 captions-font-family-pdp-video-container_component_420-ProportionalSansSerif">
-                          Proportional Sans-Serif
-                        </option>
-                        <option id="captions-font-family-pdp-video-container_component_420-MonospaceSansSerif"
-                                value="monospaceSansSerif"
-                                aria-labelledby="captions-font-family-pdp-video-container_component_420 captions-font-family-pdp-video-container_component_420-MonospaceSansSerif">
-                          Monospace Sans-Serif
-                        </option>
-                        <option id="captions-font-family-pdp-video-container_component_420-ProportionalSerif"
-                                value="proportionalSerif"
-                                aria-labelledby="captions-font-family-pdp-video-container_component_420 captions-font-family-pdp-video-container_component_420-ProportionalSerif">
-                          Proportional Serif
-                        </option>
-                        <option id="captions-font-family-pdp-video-container_component_420-MonospaceSerif"
-                                value="monospaceSerif"
-                                aria-labelledby="captions-font-family-pdp-video-container_component_420 captions-font-family-pdp-video-container_component_420-MonospaceSerif">
-                          Monospace Serif
-                        </option>
-                        <option id="captions-font-family-pdp-video-container_component_420-Casual" value="casual"
-                                aria-labelledby="captions-font-family-pdp-video-container_component_420 captions-font-family-pdp-video-container_component_420-Casual">
-                          Casual
-                        </option>
-                        <option id="captions-font-family-pdp-video-container_component_420-Script" value="script"
-                                aria-labelledby="captions-font-family-pdp-video-container_component_420 captions-font-family-pdp-video-container_component_420-Script">
-                          Script
-                        </option>
-                        <option id="captions-font-family-pdp-video-container_component_420-SmallCaps" value="small-caps"
-                                aria-labelledby="captions-font-family-pdp-video-container_component_420 captions-font-family-pdp-video-container_component_420-SmallCaps">
-                          Small Caps
-                        </option>
-                      </select></fieldset>
-                  </div>
-                  <div class="vjs-track-settings-controls">
-                    <button type="button" class="vjs-default-button" title="restore all settings to the default values">
-                      Reset<span class="vjs-control-text"> restore all settings to the default values</span></button>
-                    <button type="button" class="vjs-done-button">Done</button>
-                  </div>
-                </div>
-                <button class="vjs-close-button vjs-control vjs-button" type="button" aria-disabled="false"
-                        title="Close Modal Dialog"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span
-                    class="vjs-control-text" aria-live="polite">Close Modal Dialog</span></button>
-                <p class="vjs-control-text">End of dialog window.</p></div>
-            </div>
-          </div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img is-active js-img-main-1"
-               data-slide-title="Slide "><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1605962207.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1605962207.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 1" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1605962207.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-2" data-slide-title="Slide 1"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/96af446464f66a4a3b8ef89816247bee3b6b5c3f_1606734443.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/96af446464f66a4a3b8ef89816247bee3b6b5c3f_1606734443.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 2" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/96af446464f66a4a3b8ef89816247bee3b6b5c3f_1606734443.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-3" data-slide-title="Slide 2"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606734448.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606734448.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 3" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606734448.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-4" data-slide-title="Slide 3"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606734451.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606734451.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 4" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606734451.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-5" data-slide-title="Slide 4"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606734455.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606734455.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 5" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606734455.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-6" data-slide-title="Slide 5"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606734461.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606734461.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 6" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606734461.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-7" data-slide-title="Slide 6"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606734463.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606734463.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 7" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606734463.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-8" data-slide-title="Slide 7"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/40ec3ab83192168dacab014ba357aa5443161272_1606734466.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/40ec3ab83192168dacab014ba357aa5443161272_1606734466.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 8" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/40ec3ab83192168dacab014ba357aa5443161272_1606734466.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-9" data-slide-title="Slide 8"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/fb30f30fcbaabab5b32e64f356e5e7c3067b650e_1606737247.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/fb30f30fcbaabab5b32e64f356e5e7c3067b650e_1606737247.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 9" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/fb30f30fcbaabab5b32e64f356e5e7c3067b650e_1606737247.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-10" data-slide-title="Slide 9"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/78b197cd81506ed5d0705f89f9a33c629308a5b6_1607421941.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/78b197cd81506ed5d0705f89f9a33c629308a5b6_1607421941.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 10" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/78b197cd81506ed5d0705f89f9a33c629308a5b6_1607421941.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-11" data-slide-title="Slide 10"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/6b377c218097818f671734ad181fc1e8563bc1bc_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/6b377c218097818f671734ad181fc1e8563bc1bc_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 11" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/6b377c218097818f671734ad181fc1e8563bc1bc_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-12" data-slide-title="Slide 11"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/c942b751655757c0dbcc6bc3cd3ba7bca82456fd_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/c942b751655757c0dbcc6bc3cd3ba7bca82456fd_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 12" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/c942b751655757c0dbcc6bc3cd3ba7bca82456fd_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-13" data-slide-title="Slide 12"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/48c5a02abc05ec142e3906ff4e2c78479bb8a966_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/48c5a02abc05ec142e3906ff4e2c78479bb8a966_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 13" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/48c5a02abc05ec142e3906ff4e2c78479bb8a966_1607421940.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-14" data-slide-title="Slide 13"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/9ab0c8e192bd0ab7560d58cd2670d31ee431dd35_1607421942.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/9ab0c8e192bd0ab7560d58cd2670d31ee431dd35_1607421942.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 14" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/9ab0c8e192bd0ab7560d58cd2670d31ee431dd35_1607421942.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-15" data-slide-title="Slide 14"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/5b4a4e70a95927e559bc35b8a9ace99b9a7e1619_1607434937.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/5b4a4e70a95927e559bc35b8a9ace99b9a7e1619_1607434937.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 15" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/5b4a4e70a95927e559bc35b8a9ace99b9a7e1619_1607434937.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-16" data-slide-title="Slide 15"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012983.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012983.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 16" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012983.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-17" data-slide-title="Slide 16"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/631794f601e6660c40b6f5ea92c2e61181e71dec_1618046836.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/631794f601e6660c40b6f5ea92c2e61181e71dec_1618046836.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              class="pannable-image" title=""
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت main 1 17" data-type=""
-              src="https://dkstatics-public.digikala.com/digikala-products/631794f601e6660c40b6f5ea92c2e61181e71dec_1618046836.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-              loading="lazy"></div>
-          <div class="c-remodal-gallery__info">
-            <div class="c-remodal-gallery__title">گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128
-              گیگابایت
-            </div>
-            <div class="c-remodal-gallery__thumbs js-official-thumbs">
-              <div class="c-remodal-gallery__thumb is-video js-image-thumb"
-                   data-video-cover="https://dkstatics-public.digikala.com/digikala-video-cover/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image/resize,w_600/quality,q_80"
-                   data-video-src="https://dkstatics-public.digikala.com/digikala-video-playlist/65a9742d046a76387e9514dfea87b2de0594e0e2_1606734556.m3u8"
-                   data-product-id="3814476" data-id="1"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-video-cover/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image/resize,m_fill,h_115,w_115"
-                  alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت video"
-                  src="https://dkstatics-public.digikala.com/digikala-video-cover/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image/resize,m_fill,h_115,w_115"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb is-video js-image-thumb"
-                   data-video-cover="https://dkstatics-public.digikala.com/digikala-video-cover/d6de72ae3ddd09e9e8d6216126829835a4e2b63e_1611476974.jpg?x-oss-process=image/resize,w_600/quality,q_80"
-                   data-video-src="https://dkstatics-public.digikala.com/digikala-video-playlist/02d4f393e60643ded22761d47eff4e73c191721d_1611477095.m3u8"
-                   data-product-id="3814476" data-id="2"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-video-cover/d6de72ae3ddd09e9e8d6216126829835a4e2b63e_1611476974.jpg?x-oss-process=image/resize,m_fill,h_115,w_115"
-                  alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت video"
-                  src="https://dkstatics-public.digikala.com/digikala-video-cover/d6de72ae3ddd09e9e8d6216126829835a4e2b63e_1611476974.jpg?x-oss-process=image/resize,m_fill,h_115,w_115"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb is-video js-image-thumb"
-                   data-video-cover="https://dkstatics-public.digikala.com/digikala-video-cover/950fa3c93aeaa2ba6800cde148515d4813c7395c_1611477895.jpg?x-oss-process=image/resize,w_600/quality,q_80"
-                   data-video-src="https://dkstatics-public.digikala.com/digikala-video-playlist/656bc0c66b80046e0c88d9268dd4eda86f04fe08_1611477972.m3u8"
-                   data-product-id="3814476" data-id="3"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-video-cover/950fa3c93aeaa2ba6800cde148515d4813c7395c_1611477895.jpg?x-oss-process=image/resize,m_fill,h_115,w_115"
-                  alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت video"
-                  src="https://dkstatics-public.digikala.com/digikala-video-cover/950fa3c93aeaa2ba6800cde148515d4813c7395c_1611477895.jpg?x-oss-process=image/resize,m_fill,h_115,w_115"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="1"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1605962207.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 1"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/b8e8c96afe990d290e525567c591fd4bd57d50bf_1605962207.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="2"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/96af446464f66a4a3b8ef89816247bee3b6b5c3f_1606734443.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 2"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/96af446464f66a4a3b8ef89816247bee3b6b5c3f_1606734443.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="3"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606734448.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 3"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/a174e64b5cbc60b66de6a373c5b5c1166d713af3_1606734448.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="4"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606734451.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 4"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/7542028fdec96803415f4f43a469d06fe8c4b962_1606734451.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="5"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606734455.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 5"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/cafe874fb584fd25b1f20e805fec0a36384a5058_1606734455.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="6"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606734461.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 6"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/805d888f53a7afee44a300ce282f74ebea5ba642_1606734461.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="7"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606734463.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 7"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/cdbf1b502e9928190990ce5b75562a9ccea0b234_1606734463.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="8"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/40ec3ab83192168dacab014ba357aa5443161272_1606734466.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 8"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/40ec3ab83192168dacab014ba357aa5443161272_1606734466.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="9"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/fb30f30fcbaabab5b32e64f356e5e7c3067b650e_1606737247.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 9"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/fb30f30fcbaabab5b32e64f356e5e7c3067b650e_1606737247.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="10"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/78b197cd81506ed5d0705f89f9a33c629308a5b6_1607421941.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 10"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/78b197cd81506ed5d0705f89f9a33c629308a5b6_1607421941.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="11"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/6b377c218097818f671734ad181fc1e8563bc1bc_1607421940.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 11"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/6b377c218097818f671734ad181fc1e8563bc1bc_1607421940.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="12"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/c942b751655757c0dbcc6bc3cd3ba7bca82456fd_1607421940.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 12"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/c942b751655757c0dbcc6bc3cd3ba7bca82456fd_1607421940.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="13"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/48c5a02abc05ec142e3906ff4e2c78479bb8a966_1607421940.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 13"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/48c5a02abc05ec142e3906ff4e2c78479bb8a966_1607421940.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="14"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/9ab0c8e192bd0ab7560d58cd2670d31ee431dd35_1607421942.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 14"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/9ab0c8e192bd0ab7560d58cd2670d31ee431dd35_1607421942.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="15"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/5b4a4e70a95927e559bc35b8a9ace99b9a7e1619_1607434937.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 15"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/5b4a4e70a95927e559bc35b8a9ace99b9a7e1619_1607434937.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="16"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012983.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 16"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/0a9abd01d5c46f9f949de07c0517042145ca1eb8_1608012983.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-              <div class="c-remodal-gallery__thumb js-image-thumb" data-order="17"><img
-                  data-src="https://dkstatics-public.digikala.com/digikala-products/631794f601e6660c40b6f5ea92c2e61181e71dec_1618046836.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  title="" alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت thumb 2 17"
-                  data-type=""
-                  src="https://dkstatics-public.digikala.com/digikala-products/631794f601e6660c40b6f5ea92c2e61181e71dec_1618046836.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                  loading="lazy"></div>
-            </div>
-            <div class="c-remodal-gallery__other-imgs js-comments-files-thumbnails-summary js-see-more-imgs"></div>
-          </div>
-        </div>
-        <div
-          class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
-          id="gallery-content-2"></div>
-      </div>
-      <div class="c-remodal-gallery__main js-level-two-gallery js-comments"></div>
-      <div class="c-remodal-gallery__main js-answers">
-        <div class="c-remodal-gallery__top-bar">
-          <div class="c-remodal-gallery__head-title">
-            پاسخ فروشنده
-          </div>
-          <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="remodal-wrapper remodal-is-closed" style="display: none;">
     <div class="remodal c-remodal-pricing remodal-is-initialized remodal-is-closed" data-remodal-id="unfair-pricing"
@@ -6162,17 +5925,18 @@ o-btn o-btn--contained-red-lg c-product__add-to-cart-btn js-add-to-cart js-btn-a
         <div class="c-remodal-location__close js-close-modal"></div>
       </div>
       <div class="c-remodal-location__content js-addresses-container">
-        <div class="c-ui-radio-wrapper c-ui-radio--general-location js-sample-address u-hidden"><label
-            class="c-filter__label " for="generalLocationAddress"></label><label class="c-ui-radio"><input type="radio"
-                                                                                                           value=""
-                                                                                                           name="generalLocationAddress"
-                                                                                                           class=""
-                                                                                                           id="generalLocationAddress"
-                                                                                                           data-title=""><span
-              class="c-ui-radio__check"></span></label></div>
+        <div class="c-ui-radio-wrapper c-ui-radio--general-location js-sample-address u-hidden">
+          <label class="c-filter__label " for="generalLocationAddress"></label>
+          <label class="c-ui-radio">
+            <input type="radio" value="" name="generalLocationAddress" class="" id="generalLocationAddress"
+                   data-title="">
+            <span class="c-ui-radio__check"></span>
+          </label>
+        </div>
         <a href="/addresses/add/" class="c-general-location__add-address js-general-location-add-address">
           افزودن آدرس جدید
-        </a></div>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -6214,4 +5978,9 @@ o-btn o-btn--contained-red-lg c-product__add-to-cart-btn js-add-to-cart js-btn-a
     </div>
   </div>
 
+
+
+
+
 @endsection
+

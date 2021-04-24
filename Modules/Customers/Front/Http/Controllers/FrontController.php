@@ -6,12 +6,13 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Modules\Customers\Front\Models\CustomerFavorite;
 use Modules\Customers\Panel\Models\Customer;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Product\Models\Product;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
@@ -98,24 +99,45 @@ class FrontController extends Controller
   public function createComments(Request $request, $product_code)
   {
 
+    $product = Product::where('product_code', $product_code)->first();
+    $is_buyed = is_buyed($product);
+
+    $validator = Validator::make($request->all(), [
+      'title' => 'nullable',
+      'text' => 'required',
+      'recommend' => "nullable|required_if:$is_buyed,true",
+      'advantages' => 'nullable',
+      'disadvantages' => 'nullable',
+    ]);
+
+    if ($validator->fails()) {
+//      $errors = $validator->errors();
+      return response()->json([
+        'status' => false,
+        'data' => [
+          'errors' => 'خطا',
+        ]
+      ]);
+    }
+
     Comment::create([
-      'title' => isset($request->title)? $request->title : '',
-      'text' => isset($request->text)? $request->text : '',
+      'title' => $request->title,
+      'text' => $request->text,
       'recommend' => isset($request->recommend)? $request->recommend : '',
       'advantages' => isset($request->advantages)? json_encode($request->advantages) : '',
       'disadvantages' => isset($request->disadvantages)? json_encode($request->disadvantages) : '',
-      'product_id' => Product::where('product_code', $product_code)->first()->id,
+      'product_id' => $product->id,
       'customer_id' => auth()->guard('customer')->user()->id,
     ]);
 
     return response()->json([
-      'status' => false,
-      'data' => [
-        'errors' => 'dkdkdkd',
-      ]
-    ]);
-
+      'status' => true,
+      'data' => null,
+    ], 200);
 
   }
+
+
+
 
 }

@@ -1,35 +1,22 @@
 <?php
 
-  $store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
-  $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
+$store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
+$banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
 
-  $category=$product->category->first();
+$category = $product->category->first();
 
-  do
-  {
-    $product_categories[] = $category;
-    $category = $category->parent;
-  } while (isset($category->parent));
-
+do {
   $product_categories[] = $category;
-  $product_categories = array_reverse($product_categories,true);
+  $category = $category->parent;
+} while (isset($category->parent));
+
+$product_categories[] = $category;
+$product_categories = array_reverse($product_categories, true);
 
 
-  $customer = auth()->guard('customer')->user();
+$customer = auth()->guard('customer')->user();
 
-  if (auth()->guard('customer')->check()) {
-    $is_buyed = $customer->orders()->whereHas('consignment_variants', function ($q) use ($product) {
-      $q->where('product_id', $product->id);
-      $q->where('order_status_id', 4);
-    })->exists();
-  }
-  else
-  {
-    $is_buyed = false;
-  }
-
-
-
+$is_buyed = is_buyed($product);
 
 
 ?>
@@ -167,9 +154,6 @@
 
                       <div class="c-comments-product__attributes-row">
 
-
-
-
                         @foreach ($product->categories()->first()->ratings as $item)
                           <div class="c-comments-product__attributes-col  js-valid-row" style="margin-bottom: 35px;">
                             <div class="c-comments-product__attributes-title">
@@ -214,7 +198,8 @@
                         <div class="c-form-comment__col ">
                           <div class="c-form-comment__title">عنوان نظر شما</div>
                           <label class="c-ui-input">
-                            <input class="c-ui-input__field" type="text" name="title" value="" placeholder="عنوان نظر خود را بنویسید">
+                            <input class="c-ui-input__field" type="text" name="title" value=""
+                                   placeholder="عنوان نظر خود را بنویسید">
                           </label>
                         </div>
                       </div>
@@ -224,8 +209,10 @@
                             نقاط قوت
                           </div>
                           <div class="c-ui-input c-ui-input--add-point">
-                            <input title="advantages" class="c-ui-input__field" type="text" id="advantage-input" value="">
-                            <button class="c-ui-input__point js-icon-form-add" type="button" style="display: none;"></button>
+                            <input title="advantages" class="c-ui-input__field" type="text" id="advantage-input"
+                                   value="">
+                            <button class="c-ui-input__point js-icon-form-add" type="button"
+                                    style="display: none;"></button>
                           </div>
                           <div class="c-form-comment__dynamic-labels js-advantages-list"></div>
                         </div>
@@ -234,8 +221,10 @@
                             ضعف
                           </div>
                           <div class="c-ui-input c-ui-input--add-point">
-                            <input title="disadvantages" class="c-ui-input__field" type="text" id="disadvantage-input" value="">
-                            <button class="c-ui-input__point js-icon-form-add" type="button" style="display: none;"></button>
+                            <input title="disadvantages" class="c-ui-input__field" type="text" id="disadvantage-input"
+                                   value="">
+                            <button class="c-ui-input__point js-icon-form-add" type="button"
+                                    style="display: none;"></button>
                           </div>
                           <div class="c-form-comment__dynamic-labels js-disadvantages-list"></div>
                         </div>
@@ -244,41 +233,44 @@
                         <div class="c-form-comment__col">
                           <div class="c-form-comment__title">متن نظر شما (اجباری)</div>
                           <label class="c-ui-textarea js-comment">
-                            <textarea class="c-ui-textarea__field" name="text" placeholder="متن نظر خود را بنویسید"></textarea>
+                            <textarea class="c-ui-textarea__field" name="text"
+                                      placeholder="متن نظر خود را بنویسید"></textarea>
                           </label>
                         </div>
                       </div>
                       @if($is_buyed == true)
-                      <div class="c-form-comment__row">
-                        <div class="c-form-comment__col">
-                          <div class="c-form-comment__questions"><p>آیا خرید این محصول را به دوستانتان پیشنهاد می
-                              کنید؟</p>
-                            <ul>
-                              <li>
-                                <label for="add-comment_question_1">پیشنهاد می‌کنم</label>
-                                <label class="c-ui-radio">
-                                  <input type="radio" name="recommend" value="recommended" id="add-comment_question_1">
-                                  <span class="c-ui-radio__check"></span>
-                                </label>
-                              </li>
-                              <li>
-                                <label for="add-comment_question_2">خیر ، پیشنهاد نمی‌کنم</label>
-                                <label class="c-ui-radio">
-                                  <input type="radio" name="recommend" value="not_recommended" id="add-comment_question_2">
-                                  <span class="c-ui-radio__check"></span>
-                                </label>
-                              </li>
-                              <li>
-                                <label for="add-comment_question_3">نظری ندارم</label>
-                                <label class="c-ui-radio">
-                                  <input type="radio" name="recommend" value="no_idea" id="add-comment_question_3">
-                                  <span class="c-ui-radio__check"></span>
-                                </label>
-                              </li>
-                            </ul>
+                        <div class="c-form-comment__row">
+                          <div class="c-form-comment__col">
+                            <div class="c-form-comment__questions"><p>آیا خرید این محصول را به دوستانتان پیشنهاد می
+                                کنید؟</p>
+                              <ul>
+                                <li>
+                                  <label for="add-comment_question_1">پیشنهاد می‌کنم</label>
+                                  <label class="c-ui-radio">
+                                    <input type="radio" name="recommend" value="recommended"
+                                           id="add-comment_question_1">
+                                    <span class="c-ui-radio__check"></span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <label for="add-comment_question_2">خیر ، پیشنهاد نمی‌کنم</label>
+                                  <label class="c-ui-radio">
+                                    <input type="radio" name="recommend" value="not_recommended"
+                                           id="add-comment_question_2">
+                                    <span class="c-ui-radio__check"></span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <label for="add-comment_question_3">نظری ندارم</label>
+                                  <label class="c-ui-radio">
+                                    <input type="radio" name="recommend" value="no_idea" id="add-comment_question_3">
+                                    <span class="c-ui-radio__check"></span>
+                                  </label>
+                                </li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
-                      </div>
                       @endif
                       <div class="c-form-comment__row">
                         <div class="c-form-comment__col c-comments-anonymous">
@@ -293,7 +285,8 @@
                       </div>
                       <div class="c-form-comment__row">
                         <div class="c-form-comment__col c-form-comment__col--half-width">
-                          <button data-id="{{ $product->id }}" class="btn-default js-comment-submit-button" type="submit">
+                          <button data-id="{{ $product->id }}" class="btn-default js-comment-submit-button"
+                                  type="submit">
                             ثبت نظر
                           </button>
                         </div>
@@ -1815,4 +1808,23 @@
     </div>
   </div>
 
+  <script>
+    // توکن csrf
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+  </script>
+
+  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
+    <div class="remodal c-remodal-confirm remodal-is-initialized remodal-is-closed"
+         data-remodal-id="add-comment-success-modal" role="dialog" aria-labelledby="modal1Title"
+         aria-describedby="modal1Desc" tabindex="-1">
+      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+      <div class="c-remodal-confirm__icon c-remodal-confirm__icon--comment-success"></div>
+      <div class="c-remodal-confirm__title">نظر شما ثبت گردید و پس از تایید، نمایش داده خواهد شد</div>
+    </div>
+  </div>
 @endsection
+

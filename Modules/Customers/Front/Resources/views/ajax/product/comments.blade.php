@@ -186,7 +186,7 @@
 
                 @foreach($disadvantages as $disadvantage)
                   <div class="c-comments__modal-evaluation-item c-comments__modal-evaluation-item--negative">
-                    {{ $disadvantage['value'] }}
+{{--                    {{ $disadvantage['value'] }}--}}
                   </div>
                 @endforeach
               </div>

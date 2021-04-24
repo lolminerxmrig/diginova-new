@@ -148,3 +148,18 @@ function fullBreadcrumb($id, $stateBeginWith = null, $cityBeginWith = ' - ', $di
   return $output;
 }
 
+function is_buyed($product)
+{
+  $customer = auth()->guard('customer')->user();
+
+  if (auth()->guard('customer')->check()) {
+    return $is_buyed = $customer->orders()->whereHas('consignment_variants', function ($q) use ($product) {
+      $q->where('product_id', $product->id);
+      $q->where('order_status_id', 4);
+    })->exists();
+  }
+  else
+  {
+    return $is_buyed = false;
+  }
+}

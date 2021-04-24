@@ -415,8 +415,16 @@ function tagifyLoader() {
     var input = document.querySelector('input[name=advantages]');
     new Tagify(input);
 
+  // var tagify = new Tagify(input, {
+  //   originalInputValueFormat: valuesArr.map(item => item.value)
+  // });
+
     var input2 = document.querySelector('input[name=disadvantages]');
     new Tagify(input2);
+
+
+
+
 }
 
 function initExpandRow() {

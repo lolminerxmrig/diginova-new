@@ -36,6 +36,7 @@
   <meta name="theme-color" content="#fb3449">
   <meta name="msapplication-navbutton-color" content="#fb3449">
   <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <link rel="canonical" href="{{ $site_url }}"/>
 
@@ -49,6 +50,7 @@
   <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1025px.css') }} " media="screen and (min-width: 1025px)">
   <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1366px.css') }} " media="screen and (min-width: 1366px)">
   <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} " media="screen and (min-width: 1680px)">
+
 
   <link rel="manifest" href="{{ asset('assets/manifest.json') }}?v=1.4">
 

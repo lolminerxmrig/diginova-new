@@ -342,7 +342,7 @@ var AddCommentAction = {
                 var formData = new FormData(this);
 
                 $.ajax({
-                    url: '/ajax/product/comments/add/' + productId + '/',
+                    url: '/ajax/product/comments/add/' + productId,
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -421,49 +421,49 @@ var AddCommentAction = {
 
         if(isModuleActive('remove_title_mandatory')) {
             rules = $.extend({}, {
-                'comment[comment]': {
+                'text': {
                     required: true,
                     rangelength: [5, 10000]
                 },
-                'comment[recommend]': {
+                'recommend': {
                     required: true
                 }
             }, rules);
 
             errors = $.extend({}, {
-                'comment[comment]': {
+                'text': {
                     'required': 'متن وارد نشده است',
                     'rangelength': 'متن نقد و بررسی شما باید بین ۵ تا ۱۰۰۰ کاراکتر باشد'
                 },
-                'comment[recommend]': {
+                'recommend': {
                     'required': 'لطفا یک گزینه را انتخاب کنید'
                 }
             }, errors);
         } else {
             rules = $.extend({}, {
-                'comment[comment]': {
+                'text': {
                     required: true,
                     rangelength: [5, 10000]
                 },
-                'comment[title]': {
+                'title': {
                     required: true,
                     rangelength: [5, 250]
                 },
-                'comment[recommend]': {
+                'recommend': {
                     required: true
                 }
             }, rules);
 
             errors = $.extend({}, {
-                'comment[comment]': {
+                'text': {
                     'required': 'متن وارد نشده است',
                     'rangelength': 'متن نقد و بررسی شما باید بین ۵ تا ۱۰۰۰ کاراکتر باشد'
                 },
-                'comment[title]': {
+                'title': {
                     'required': 'متن وارد نشده است',
                     'rangelength': 'عنوان نقد و بررسی شما باید بین ۵ تا ۲۵۰ کاراکتر باشد'
                 },
-                'comment[recommend]': {
+                'recommend': {
                     'required': 'لطفا یک گزینه را انتخاب کنید'
                 }
             }, errors);
@@ -507,14 +507,14 @@ var AddCommentAction = {
             }
 
 
-            rateRules['comment[rating][' + i + ']'] = {
+            rateRules['rating[' + i + ']'] = {
                 required: true,
                 digits: true,
                 minlength: 2,
                 rangelength: [2, 3]
             };
 
-            rateErrors['comment[rating][' + i + ']'] = {
+            rateErrors['rating[' + i + ']'] = {
                 required: 'امتیاز دهید!',
                 digits: '"امتیاز" دهید!',
                 minlength: 'امتیاز دهید!',
