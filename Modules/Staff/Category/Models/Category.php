@@ -62,7 +62,7 @@ class Category extends Model
 
     public function products()
     {
-        return $this->morphedByMany(Product::class);
+        return $this->morphedByMany(Product::class, 'categorizable', 'categorizables', 'category_id', 'categorizable_id');
     }
 
     public function media()

@@ -28,37 +28,9 @@ class FrontController extends Controller
   public function productPage($product_code)
   {
     $product = Product::where('product_code', $product_code)->with('variants')->firstOrFail();
-
-    if ($product->variants()->exists())
-    {
-      $min_variant_price = $product->variants->min('sale_price');
-      $min_variants = $product->variants()->where('sale_price', $min_variant_price)->get();
-
-      $min_promotion_price = 0;
-      $min_promotion_variants = null;
-      foreach ($product->variants as $variant)
-      {
-        if ($variant->promotions()->exists() && $variant->promotions()->min('promotion_price') > $min_promotion_price)
-        {
-          $min_promotion_price = ($variant->promotions()->exists())? $variant->promotions()->min('promotion_price') : $min_promotion_price;
-          $min_promotion_variants = $variant->whereHas('promotions', function (Builder $query) use ($min_promotion_price) {
-            $query->where('promotion_price', $min_promotion_price);
-          })->get();
-        }
-      }
-
-      if ($min_variant_price < $min_promotion_price) {
-        $max_stock_count = $min_variants->max('stock_count');
-        $variant_defualt = $min_variants->where('stock_count', $max_stock_count)->first();
-      }
-      else {
-        $max_stock_count = $min_promotion_variants->max('stock_count');
-        $variant_defualt = $min_promotion_variants->where('stock_count', $max_stock_count)->first();
-      }
-    }
-
+    $variant_defualt = variant_defualt($product);
+//    dd($variant_defualt->promotions);
     return view('front::product', compact('product', 'variant_defualt'));
-
   }
 
   public function addToFavorites($product_id)

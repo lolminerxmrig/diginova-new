@@ -204,3 +204,23 @@ function variant_defualt($product, $type = 'model')
     return null;
 
 }
+
+function product_price($product, $type = 'model')
+{
+
+  $promotion_min_price = 0;
+
+  $variant_defualt = variant_defualt($product, $type);
+
+  if ($variant_defualt->promotions()->exists()) {
+    $promotion_min_price = $variant_defualt->promotions()->min('promotion_price');
+  }
+
+  if ($promotion_min_price < $variant_defualt->sale_price) {
+    return $product_price = $promotion_min_price;
+  }
+  else {
+    return $product_price = $variant_defualt->sale_price;
+  }
+
+}
