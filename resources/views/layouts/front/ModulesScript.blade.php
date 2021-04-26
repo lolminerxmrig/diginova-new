@@ -321,7 +321,7 @@
   var module_ship_by_seller_profile = 1;
   var module_shipping_v2 = 1;
   var module_ship_by_seller_checkout = 1;
-  var module_ship_by_seller_product = 1;
+  var module_ship_by_seller_product = 0;
   var module_new_cpo_icon_config = 1;
   var module_separated_delete_button = 1;
   var module_new_profile_notification = 1;

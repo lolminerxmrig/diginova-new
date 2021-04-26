@@ -16,11 +16,9 @@ class Promotion extends Model
     protected $table = 'promotions';
     protected $fillable = ['promotion_price', 'percent', 'start_at', 'end_at', 'promotion_limit', 'promotion_order_limit', 'status', 'campain_id'];
 
-
     public function productVariants()
     {
         return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
     }
-
 
 }

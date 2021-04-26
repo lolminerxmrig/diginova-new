@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\Builder;
+
 function persianNum($str){
     $english = array('0','1','2','3','4','5','6','7','8','9');
     $persian = array('۰','۱','۲','۳','۴','۵','۶','۷','۸','۹');
@@ -162,4 +164,43 @@ function is_buyed($product)
   {
     return $is_buyed = false;
   }
+}
+
+function variant_defualt($product, $type = 'model')
+{
+
+    if ($type == 'id') {
+      $product = \Modules\Staff\Product\Models\Product::find($product);
+    }
+
+    if ($product->variants()->exists())
+    {
+      $min_variant_price = $product->variants->min('sale_price');
+      $min_variants = $product->variants()->where('sale_price', $min_variant_price)->get();
+
+      $min_promotion_price = 0;
+      $min_promotion_variants = null;
+      foreach ($product->variants as $variant)
+      {
+        if ($variant->promotions()->exists() && $variant->promotions()->min('promotion_price') > $min_promotion_price)
+        {
+          $min_promotion_price = ($variant->promotions()->exists())? $variant->promotions()->min('promotion_price') : $min_promotion_price;
+          $min_promotion_variants = $variant->whereHas('promotions', function (Builder $query) use ($min_promotion_price) {
+            $query->where('promotion_price', $min_promotion_price);
+          })->get();
+        }
+      }
+
+      if ($min_variant_price < $min_promotion_price) {
+        $max_stock_count = $min_variants->max('stock_count');
+        return $variant_defualt = $min_variants->where('stock_count', $max_stock_count)->first();
+      }
+      else {
+        $max_stock_count = $min_promotion_variants->max('stock_count');
+        return $variant_defualt = $min_promotion_variants->where('stock_count', $max_stock_count)->first();
+      }
+    }
+
+    return null;
+
 }

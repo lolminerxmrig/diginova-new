@@ -1,7 +1,7 @@
 @php
   $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
 
-  $category = $product->category->first();
+  $category=$product->category->first();
   do
   {
   $product_categories[] = $category;
@@ -20,209 +20,119 @@
   <meta name="keywords" content=""/>
   <link rel="canonical" href=""/>
 
+{{--  <script>--}}
+{{--    var supernova_mode = "production";--}}
+{{--    var supernova_tracker_url = "https:\/\/etrackerd.digikala.com\/tracker\/events\/";--}}
+
+
+{{--    var defaultVariantId = {{ $item->variant->id }};--}}
+{{--    var maxVisibleVariant = 3;--}}
+{{--    var maxVisibleSupplier = 3;--}}
+{{--    var hasColorOrSize = true;--}}
+{{--    var sellerStatistics = [];--}}
+{{--    var hasQuickView = false;--}}
+{{--    var cart = {"cartId": 0, "variants": [], "products": [], "itemCount": 0, "isPlusUser": false};--}}
+{{--    var productId = {{ $product->id }};--}}
+{{--    var videos = {--}}
+{{--      "8339": {--}}
+{{--        "src": "https:\/\/dkstatics-public.digikala.com\/digikala-video\/3fc190b9a3418b2189cf418fd6dbd93ea646dc13_1606733823.mp4",--}}
+{{--        "playlist": "https:\/\/dkstatics-public.digikala.com\/digikala-video-playlist\/65a9742d046a76387e9514dfea87b2de0594e0e2_1606734556.m3u8",--}}
+{{--        "sources": [{"file": "https:\/\/dkstatics-public.digikala.com\/digikala-video-playlist\/65a9742d046a76387e9514dfea87b2de0594e0e2_1606734556.m3u8"}, [{"file": "https:\/\/dkstatics-public.digikala.com\/digikala-video\/bb17e3c7ca87ea4e1cfc5702f8649f55cb413f5d_1606733850.mp4"}], [{"file": "https:\/\/dkstatics-public.digikala.com\/digikala-video\/1249707355e3e3fcf21b52e0b1b9ac0c10298eb5_1606734555.mp4"}]],--}}
+{{--        "cover_big": "https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,w_600\/quality,q_80",--}}
+{{--        "cover_thumb_small": "https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,m_fill,h_64,w_64",--}}
+{{--        "cover_thumb_big": "https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,m_fill,h_115,w_115",--}}
+{{--        "title": "iphone 12 pro",--}}
+{{--        "description": "",--}}
+{{--        "duration": 140--}}
+{{--      }--}}
+{{--    };--}}
+{{--    var enhanced_ecommerce = {--}}
+{{--      "id": {{ $product->id }},--}}
+{{--      "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 512 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",--}}
+{{--      "category": "MO",--}}
+{{--      "category_id": 11,--}}
+{{--      "brand": "apple",--}}
+{{--      "variant": {{ $item->variant->id }},--}}
+{{--      "price": 509900000,--}}
+{{--      "discount_percent": 0,--}}
+{{--      "quantity": 1--}}
+{{--    };--}}
+{{--    var categoryId = 11;--}}
+{{--    var nowTimeInUTC = "2021-04-19 16:52:13";--}}
+{{--    var emarsysCategoryBreadcrumb = [];--}}
+{{--    var emarsysBrand = "\u0627\u067e\u0644";--}}
+{{--    var ecpd2 = {--}}
+{{--      "id": {{ $product->id }},--}}
+{{--      "title": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 512 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",--}}
+{{--      "has_gift": false,--}}
+{{--      "is_exclusive": false,--}}
+{{--      "is_incredible": 0,--}}
+{{--      "is_selling_and_sales": 0,--}}
+{{--      "multi_color": true,--}}
+{{--      "multi_size": false,--}}
+{{--      "multi_warranty": true,--}}
+{{--      "multi_seller": true,--}}
+{{--      "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644", "\u0645\u0648\u0628\u0627\u06cc\u0644", "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"],--}}
+{{--      "supply_category": ["MO", "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"],--}}
+{{--      "category": {"id": 11, "title": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"},--}}
+{{--      "brand": {"id": 10, "title": "\u0627\u067e\u0644"},--}}
+{{--      "price": {"selling_price": 509900000, "discount_percent": 0},--}}
+{{--      "status": "marketable",--}}
+{{--      "variants": [{"id": {{ $item->variant->id }}, "seller": 4064, "color": 11, "size": 0, "warranty": 4832}, {--}}
+{{--        "id": 14976390,--}}
+{{--        "seller": 106110,--}}
+{{--        "color": 15,--}}
+{{--        "size": 0,--}}
+{{--        "warranty": 4832--}}
+{{--      }, {"id": 15859017, "seller": 517122, "color": 11, "size": 0, "warranty": 4832}, {--}}
+{{--        "id": 15488759,--}}
+{{--        "seller": 517122,--}}
+{{--        "color": 1,--}}
+{{--        "size": 0,--}}
+{{--        "warranty": 4832--}}
+{{--      }, {"id": 14209917, "seller": 4064, "color": 15, "size": 0, "warranty": 4832}, {--}}
+{{--        "id": 15865260,--}}
+{{--        "seller": 439730,--}}
+{{--        "color": 42,--}}
+{{--        "size": 0,--}}
+{{--        "warranty": 2817--}}
+{{--      }],--}}
+{{--      "image_url": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",--}}
+{{--      "product_url": "https:\/\/www.digikala.com\/product\/dkp-{{ $product->id }}"--}}
+{{--    };--}}
+{{--    var isbn = null;--}}
+{{--    var min_price_in_last_month = 499990000;--}}
+{{--    var isPDP = true;--}}
+{{--    var faqPageTitle = "pdp_section";--}}
+{{--    var isAnanasFriendly = true;--}}
+{{--    var userId = null;--}}
+{{--    var adroRCActivation = true;--}}
+{{--    var loginRegisterUrlWithBack = "\/users\/login-register\/?_back=https:\/\/www.digikala.com\/product\/dkp-{{ $product->id }}\/%25DA%25AF%25D9%2588%25D8%25B4%25DB%258C-%25D9%2585%25D9%2588%25D8%25A8%25D8%25A7%25DB%258C%25D9%2584-%25D8%25A7%25D9%25BE%25D9%2584-%25D9%2585%25D8%25AF%25D9%2584-iphone-12-pro-max-a2412-%25D8%25AF%25D9%2588-%25D8%25B3%25DB%258C%25D9%2585-%25DA%25A9%25D8%25A7%25D8%25B1%25D8%25AA-%25D8%25B8%25D8%25B1%25D9%2581%25DB%258C%25D8%25AA-512-%25DA%25AF%25DB%258C%25DA%25AF%25D8%25A7%25D8%25A8%25D8%25A7%25DB%258C%25D8%25AA";--}}
+{{--    var isNewCustomer = false;--}}
+{{--    var digiclubLuckyDrawEndTime = "2021-06-23 15:30:28";--}}
+{{--    var activateUrl = "\/digiclub\/activate\/";--}}
+{{--  </script>--}}
+
 
   <script>
     var supernova_mode = "production";
     var supernova_tracker_url = "https:\/\/etrackerd.digikala.com\/tracker\/events\/";
-    var variants = {
-      @if ($product->variants()->exists())
-        @foreach ($product->variants as $key => $item)
-          @if($item->variant()->exists() && !is_null($item->variant->value))
-
-      <?php
-        $promotion_price = null;
-        if ($item->promotions()->exists()) {
-          $promotion_price = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
-          $promotion_timer = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first()->end_at;
-        }
-        if ($promotion_price == null) {
-          $promotion_price = $item->sale_price;
-          $promotion_timer = 'false';
-        }
-      ?>
-
-      "{{ $item->variant_code }}": {
-              "id": {{ $item->variant_code }},
-              "active": true,
-              "active_digistyle": true,
-              "ovl_selling_active": true,
-              "title": "{{ $product->title_fa }}",
-              "color": {
-                "id": {{ $item->variant_code }},
-                "title": "{{ $item->variant->name }}",
-                "code": "{{ $item->variant->value }}",
-                "hexCode": "{{ $item->variant->value }}",
-                "hex_code": "{{ $item->variant->value }}"
-              },
-              "size": [],
-              "site": "digikala",
-              "warranty": {
-                "id": {{ $item->warranty->first()->id }},
-                "title": "{{ $item->warranty->first()->name }}",
-                "description": null,
-                "phone": null,
-                "address": null,
-                "working_hours": null,
-                "condition": null
-              },
-              "marketplace_seller": {
-                "id": 4064,
-                "name": "{{ $fa_store_name }}",
-                "rate": 81,
-                "rateCount": 2475,
-                "rating": {
-                  "cancel_percentage": 99.8,
-                  "cancel_summarize": "excellent",
-                  "return_percentage": 99.9,
-                  "return_summarize": "excellent",
-                  "ship_on_time_percentage": 100,
-                  "ship_on_time_summarize": "excellent",
-                  "final_score": 5,
-                  "final_percentage": 100
-                },
-                "stars": 5,
-                "is_trusted": false,
-                "is_official_seller": false,
-                "is_roosta": false,
-                "url": "\/seller\/5ac7s\/",
-                "registerTimeAgo": "3 \u0633\u0627\u0644, 3 \u0645\u0627\u0647"
-              },
-              "leadTime": 1,
-              "shipping_type": "seller",
-              "gifts": [],
-              "gift_product_ids": [],
-              "seller_lead_time": 0,
-              "market_place_selling_stock": 1,
-              "is_fresh": false,
-              "scheduled_stock": false,
-              "promotion_price_id": null,
-              "is_digikala_owner": {{ (\Modules\Staff\Setting\Models\Setting::where('name', 'symbol_image')->first()->media()->exists())? 'true' : 'false' }},
-              "rank": 99.81,
-              "sr": null,
-              "has_similar_variants": true,
-              "fast_shopping_badge": false,
-              "fast_shopping_confirm": false,
-              "is_multi_warehouse": false,
-              "is_ship_by_seller": true,
-              "is_eligible_for_jet_delivery": false,
-              "plus_cash_back": null,
-              "stats": null,
-              "available_on_website": true,
-              "provider": "seller",
-              "is_heavy": false,
-              "is_electronic": false,
-              "sbs_seller_cities": [1698],
-              "price_list": {
-                "id": {{ $item->variant_code }},
-                "discount_percent": null,
-                "rrp_price": {{ $item->sale_price }},
-                "selling_price": {{ $promotion_price }},
-                "is_incredible_offer": {{ ($item->promotions()->exists())? 'true' : 'false' }},
-                "is_plus_offer": false,
-                "is_sponsored_offer": false,
-                "is_locked_for_plus": false,
-                "promotion_id": null,
-                @if ($promotion_timer !== 'false') "timer": "{{ $promotion_timer }}" @else "timer":false @endif,
-                "pre_sell": false,
-                "variant_id": {{ $item->variant_code }},
-                "orderLimit": 1,
-                "initial_limit": null,
-                "tags": null,
-                "cache_key_created_at": "2021-04-20 14:12:42",
-                "cache_update_source": "supernova-digikala-desktop",
-                "discount_amount": 0,
-                "discount": 0,
-                "show_discount_badge": false,
-                "marketable_stock": 1,
-                "plus_variant_cash_back": 0
-              },
-              "addToCartUrl": "\/cart\/add\/14209915\/1\/",
-              "addToYaldaCartUrl": "\/ajax\/cart\/move\/save-for-yalda\/14209915\/",
-              "dcPoint": 150,
-              "is_free_shipment": true,
-              "providerData": {
-                "description": "\u0645\u0648\u062c\u0648\u062f \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u0641\u0631\u0648\u0634\u0646\u062f\u0647",
-                "providers": [{
-                  "title": "تست عنوان",
-                  "description": "تست توضیح"
-                }],
-                "hasLeadTime": false,
-                "badge_type": "without_lead_time"
-              },
-              "newProviderData": [{
-                "type": "seller",
-                "has_lead_time": false,
-                "text": "تست متن"
-              }],
-              "isExistsInWarehouse": true
-            },
-          @endif
-        @endforeach
-      @endif
-    };
-    var defaultVariantId = {{ $variant_defualt->variant_code }};
+    var variants = {"14209915":{"id":14209915,"active":true,"active_digistyle":true,"ovl_selling_active":true,"title":"\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 512 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a | \u062e\u0627\u06a9\u0633\u062a\u0631\u06cc | \u06af\u0627\u0631\u0627\u0646\u062a\u06cc 18 \u0645\u0627\u0647\u0647 \u0647\u0645\u0631\u0627\u0647 \u06af\u0633\u062a\u0631 \u0646\u0642\u0631\u0647 \u0641\u0627\u0645","color":{"id":11,"title":"\u062e\u0627\u06a9\u0633\u062a\u0631\u06cc","code":"#9E9E9E","hexCode":"#9E9E9E","hex_code":"#9E9E9E"},"size":[],"site":"digikala","warranty":{"id":4832,"title":"\u06af\u0627\u0631\u0627\u0646\u062a\u06cc 18 \u0645\u0627\u0647\u0647 \u0647\u0645\u0631\u0627\u0647 \u06af\u0633\u062a\u0631 \u0646\u0642\u0631\u0647 \u0641\u0627\u0645","description":null,"phone":null,"address":null,"working_hours":null,"condition":null},"marketplace_seller":{"id":4064,"name":"\u0634\u0627\u062f\u06cc \u0644\u0646\u062f","rate":81,"rateCount":2475,"rating":{"cancel_percentage":99.8,"cancel_summarize":"excellent","return_percentage":99.9,"return_summarize":"excellent","ship_on_time_percentage":100,"ship_on_time_summarize":"excellent","final_score":5,"final_percentage":100},"stars":5,"is_trusted":false,"is_official_seller":false,"is_roosta":false,"url":"\/seller\/5ac7s\/","registerTimeAgo":"3 \u0633\u0627\u0644, 3 \u0645\u0627\u0647"},"leadTime":1,"shipping_type":"seller","gifts":[],"gift_product_ids":[],"seller_lead_time":0,"market_place_selling_stock":1,"is_fresh":false,"scheduled_stock":false,"promotion_price_id":null,"is_digikala_owner":false,"rank":99.81,"sr":null,"has_similar_variants":true,"fast_shopping_badge":false,"fast_shopping_confirm":false,"is_multi_warehouse":false,"is_ship_by_seller":true,"is_eligible_for_jet_delivery":false,"plus_cash_back":null,"stats":null,"available_on_website":true,"provider":"seller","is_heavy":false,"is_electronic":false,"sbs_seller_cities":[1698],"price_list":{"id":424483758,"discount_percent":null,"rrp_price":495900000,"selling_price":495900000,"is_incredible_offer":false,"is_plus_offer":false,"is_sponsored_offer":false,"is_locked_for_plus":false,"promotion_id":null,"timer":null,"pre_sell":false,"variant_id":14209915,"orderLimit":1,"initial_limit":null,"tags":null,"cache_key_created_at":"2021-04-20 14:12:42","cache_update_source":"supernova-digikala-desktop","discount_amount":0,"discount":0,"show_discount_badge":false,"marketable_stock":1,"plus_variant_cash_back":0},"addToCartUrl":"\/cart\/add\/14209915\/1\/","addToYaldaCartUrl":"\/ajax\/cart\/move\/save-for-yalda\/14209915\/","dcPoint":150,"is_free_shipment":true,"providerData":{"description":"\u0645\u0648\u062c\u0648\u062f \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u0641\u0631\u0648\u0634\u0646\u062f\u0647","providers":[{"title":"\u0627\u0631\u0633\u0627\u0644 \u062a\u0648\u0633\u0637 \u0641\u0631\u0648\u0634\u0646\u062f\u0647","description":"\u0627\u06cc\u0646 \u06a9\u0627\u0644\u0627 \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u0645\u0648\u062c\u0648\u062f \u0648 \u0622\u0645\u0627\u062f\u0647 \u067e\u0631\u062f\u0627\u0632\u0634 \u0627\u0633\u062a \u0648 \u0627\u0645\u06a9\u0627\u0646 \u0627\u0631\u0633\u0627\u0644 \u0645\u0633\u062a\u0642\u06cc\u0645 \u062a\u0648\u0633\u0637 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u062f\u0627\u0631\u062f."}],"hasLeadTime":false,"badge_type":"without_lead_time"},"newProviderData":[{"type":"seller","has_lead_time":false,"text":"\u0627\u0631\u0633\u0627\u0644 \u0641\u0631\u0648\u0634\u0646\u062f\u0647"}],"isExistsInWarehouse":true},"14209917":{"id":14209917,"active":true,"active_digistyle":true,"ovl_selling_active":true,"title":"\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 512 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a | \u0637\u0644\u0627\u06cc\u06cc | \u06af\u0627\u0631\u0627\u0646\u062a\u06cc 18 \u0645\u0627\u0647\u0647 \u0647\u0645\u0631\u0627\u0647 \u06af\u0633\u062a\u0631 \u0646\u0642\u0631\u0647 \u0641\u0627\u0645","color":{"id":15,"title":"\u0637\u0644\u0627\u06cc\u06cc","code":"#c99212","hexCode":"#c99212","hex_code":"#c99212"},"size":[],"site":"digikala","warranty":{"id":4832,"title":"\u06af\u0627\u0631\u0627\u0646\u062a\u06cc 18 \u0645\u0627\u0647\u0647 \u0647\u0645\u0631\u0627\u0647 \u06af\u0633\u062a\u0631 \u0646\u0642\u0631\u0647 \u0641\u0627\u0645","description":null,"phone":null,"address":null,"working_hours":null,"condition":null},"marketplace_seller":{"id":4064,"name":"\u0634\u0627\u062f\u06cc \u0644\u0646\u062f","rate":81,"rateCount":2475,"rating":{"cancel_percentage":99.8,"cancel_summarize":"excellent","return_percentage":99.9,"return_summarize":"excellent","ship_on_time_percentage":100,"ship_on_time_summarize":"excellent","final_score":5,"final_percentage":100},"stars":5,"is_trusted":false,"is_official_seller":false,"is_roosta":false,"url":"\/seller\/5ac7s\/","registerTimeAgo":"3 \u0633\u0627\u0644, 3 \u0645\u0627\u0647"},"leadTime":1,"shipping_type":"both","gifts":[],"gift_product_ids":[],"seller_lead_time":1,"market_place_selling_stock":1,"is_fresh":false,"scheduled_stock":false,"promotion_price_id":null,"is_digikala_owner":false,"rank":95.69,"sr":null,"has_similar_variants":true,"fast_shopping_badge":false,"fast_shopping_confirm":false,"is_multi_warehouse":false,"is_ship_by_seller":true,"is_eligible_for_jet_delivery":false,"plus_cash_back":null,"stats":null,"available_on_website":true,"provider":"both","is_heavy":false,"is_electronic":false,"sbs_seller_cities":[1698],"price_list":{"id":424483826,"discount_percent":null,"rrp_price":504900000,"selling_price":504900000,"is_incredible_offer":false,"is_plus_offer":false,"is_sponsored_offer":false,"is_locked_for_plus":false,"promotion_id":null,"timer":null,"pre_sell":false,"variant_id":14209917,"orderLimit":1,"initial_limit":null,"tags":null,"cache_key_created_at":"2021-04-20 14:12:54","cache_update_source":"supernova-digikala-bellatrix","discount_amount":0,"discount":0,"show_discount_badge":false,"marketable_stock":1,"plus_variant_cash_back":0},"addToCartUrl":"\/cart\/add\/14209917\/1\/","addToYaldaCartUrl":"\/ajax\/cart\/move\/save-for-yalda\/14209917\/","dcPoint":150,"is_free_shipment":true,"providerData":{"description":"\u0645\u0648\u062c\u0648\u062f \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u0641\u0631\u0648\u0634\u0646\u062f\u0647","providers":[{"title":"\u0627\u0631\u0633\u0627\u0644 \u062a\u0648\u0633\u0637 \u0641\u0631\u0648\u0634\u0646\u062f\u0647","description":"\u0627\u06cc\u0646 \u06a9\u0627\u0644\u0627 \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u0645\u0648\u062c\u0648\u062f \u0648 \u0622\u0645\u0627\u062f\u0647 \u067e\u0631\u062f\u0627\u0632\u0634 \u0627\u0633\u062a \u0648 \u0627\u0645\u06a9\u0627\u0646 \u0627\u0631\u0633\u0627\u0644 \u0645\u0633\u062a\u0642\u06cc\u0645 \u062a\u0648\u0633\u0637 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u062f\u0627\u0631\u062f."},{"title":"\u0627\u0631\u0633\u0627\u0644 \u062a\u0648\u0633\u0637 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u0627\u0632 1 \u0631\u0648\u0632 \u06a9\u0627\u0631\u06cc \u062f\u06cc\u06af\u0631","description":"\u0627\u06cc\u0646 \u06a9\u0627\u0644\u0627 \u067e\u0633 \u0627\u0632 \u0645\u062f\u062a \u0632\u0645\u0627\u0646 \u0645\u0634\u062e\u0635 \u0634\u062f\u0647 \u062a\u0648\u0633\u0637 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u062a\u0627\u0645\u06cc\u0646 \u0648 \u0622\u0645\u0627\u062f\u0647 \u067e\u0631\u062f\u0627\u0632\u0634 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f \u0648 \u062a\u0648\u0633\u0637 \u067e\u06cc\u06a9 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u062f\u0631 \u0628\u0627\u0632\u0647 \u0627\u0646\u062a\u062e\u0627\u0628\u06cc \u0627\u0631\u0633\u0627\u0644 \u062e\u0648\u0627\u0647\u062f \u0634\u062f."}],"hasLeadTime":false,"badge_type":"without_lead_time"},"newProviderData":[{"type":"digikala","has_lead_time":true,"text":"\u0627\u0631\u0633\u0627\u0644 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u0627\u0632 1 \u0631\u0648\u0632 \u06a9\u0627\u0631\u06cc \u062f\u06cc\u06af\u0631"},{"type":"seller","has_lead_time":true,"text":"\u0627\u0631\u0633\u0627\u0644 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u0627\u0632 1 \u0631\u0648\u0632 \u06a9\u0627\u0631\u06cc \u062f\u06cc\u06af\u0631"}],"isExistsInWarehouse":false},"15859017":{"id":15859017,"active":true,"active_digistyle":true,"ovl_selling_active":true,"title":"\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 512 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a | \u062e\u0627\u06a9\u0633\u062a\u0631\u06cc | \u06af\u0627\u0631\u0627\u0646\u062a\u06cc 18 \u0645\u0627\u0647\u0647 \u0647\u0645\u0631\u0627\u0647 \u06af\u0633\u062a\u0631 \u0646\u0642\u0631\u0647 \u0641\u0627\u0645","color":{"id":11,"title":"\u062e\u0627\u06a9\u0633\u062a\u0631\u06cc","code":"#9E9E9E","hexCode":"#9E9E9E","hex_code":"#9E9E9E"},"size":[],"site":"digikala","warranty":{"id":4832,"title":"\u06af\u0627\u0631\u0627\u0646\u062a\u06cc 18 \u0645\u0627\u0647\u0647 \u0647\u0645\u0631\u0627\u0647 \u06af\u0633\u062a\u0631 \u0646\u0642\u0631\u0647 \u0641\u0627\u0645","description":null,"phone":null,"address":null,"working_hours":null,"condition":null},"marketplace_seller":{"id":517122,"name":"\u0647\u0645\u0631\u0627\u0647 \u0645\u0627\u06a9\u0627\u0646","rate":82,"rateCount":65,"rating":{"cancel_percentage":98.9,"cancel_summarize":"very_bad","return_percentage":100,"return_summarize":"excellent","ship_on_time_percentage":100,"ship_on_time_summarize":"excellent","final_score":3.5,"final_percentage":70},"stars":3.5,"is_trusted":false,"is_official_seller":false,"is_roosta":false,"url":"\/seller\/cwe4n\/","registerTimeAgo":"4 \u0645\u0627\u0647, 3 \u0647\u0641\u062a\u0647"},"leadTime":1,"shipping_type":"both","gifts":[],"gift_product_ids":[],"seller_lead_time":0,"market_place_selling_stock":2,"is_fresh":false,"scheduled_stock":false,"promotion_price_id":null,"is_digikala_owner":false,"rank":90.53,"sr":null,"has_similar_variants":false,"fast_shopping_badge":false,"fast_shopping_confirm":false,"is_multi_warehouse":false,"is_ship_by_seller":true,"is_eligible_for_jet_delivery":false,"plus_cash_back":null,"stats":null,"available_on_website":true,"provider":"both","is_heavy":false,"is_electronic":false,"sbs_seller_cities":[1698,2464,2438,2445,1623,1855,1516,2275,1476,1386,1437,2176,2589,2196,1983],"price_list":{"id":423383107,"discount_percent":null,"rrp_price":534000000,"selling_price":534000000,"is_incredible_offer":false,"is_plus_offer":false,"is_sponsored_offer":false,"is_locked_for_plus":false,"promotion_id":null,"timer":null,"pre_sell":false,"variant_id":15859017,"orderLimit":1,"initial_limit":null,"tags":null,"cache_key_created_at":"2021-04-19 14:12:51","cache_update_source":"supernova-digikala-bellatrix","discount_amount":0,"discount":0,"show_discount_badge":false,"marketable_stock":2,"plus_variant_cash_back":0},"addToCartUrl":"\/cart\/add\/15859017\/1\/","addToYaldaCartUrl":"\/ajax\/cart\/move\/save-for-yalda\/15859017\/","dcPoint":150,"is_free_shipment":true,"providerData":{"description":"\u0645\u0648\u062c\u0648\u062f \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u0641\u0631\u0648\u0634\u0646\u062f\u0647","providers":[{"title":"\u0627\u0631\u0633\u0627\u0644 \u062a\u0648\u0633\u0637 \u0641\u0631\u0648\u0634\u0646\u062f\u0647","description":"\u0627\u06cc\u0646 \u06a9\u0627\u0644\u0627 \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u0645\u0648\u062c\u0648\u062f \u0648 \u0622\u0645\u0627\u062f\u0647 \u067e\u0631\u062f\u0627\u0632\u0634 \u0627\u0633\u062a \u0648 \u0627\u0645\u06a9\u0627\u0646 \u0627\u0631\u0633\u0627\u0644 \u0645\u0633\u062a\u0642\u06cc\u0645 \u062a\u0648\u0633\u0637 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u062f\u0627\u0631\u062f."},{"title":"\u0627\u0631\u0633\u0627\u0644 \u062a\u0648\u0633\u0637 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u0627\u0632 1 \u0631\u0648\u0632 \u06a9\u0627\u0631\u06cc \u062f\u06cc\u06af\u0631","description":"\u0627\u06cc\u0646 \u06a9\u0627\u0644\u0627 \u067e\u0633 \u0627\u0632 \u0645\u062f\u062a \u0632\u0645\u0627\u0646 \u0645\u0634\u062e\u0635 \u0634\u062f\u0647 \u062a\u0648\u0633\u0637 \u0641\u0631\u0648\u0634\u0646\u062f\u0647 \u062f\u0631 \u0627\u0646\u0628\u0627\u0631 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u062a\u0627\u0645\u06cc\u0646 \u0648 \u0622\u0645\u0627\u062f\u0647 \u067e\u0631\u062f\u0627\u0632\u0634 \u0645\u06cc\u200c\u06af\u0631\u062f\u062f \u0648 \u062a\u0648\u0633\u0637 \u067e\u06cc\u06a9 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u062f\u0631 \u0628\u0627\u0632\u0647 \u0627\u0646\u062a\u062e\u0627\u0628\u06cc \u0627\u0631\u0633\u0627\u0644 \u062e\u0648\u0627\u0647\u062f \u0634\u062f."}],"hasLeadTime":false,"badge_type":"without_lead_time"},"newProviderData":[{"type":"digikala","has_lead_time":true,"text":"\u0627\u0631\u0633\u0627\u0644 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u0627\u0632 1 \u0631\u0648\u0632 \u06a9\u0627\u0631\u06cc \u062f\u06cc\u06af\u0631"},{"type":"seller","has_lead_time":false,"text":"\u0627\u0631\u0633\u0627\u0644 \u0641\u0631\u0648\u0634\u0646\u062f\u0647"}],"isExistsInWarehouse":true}};
+    var defaultVariantId = 14209915;
     var maxVisibleVariant = 3;
     var maxVisibleSupplier = 3;
     var hasColorOrSize = true;
     var sellerStatistics = [];
     var hasQuickView = false;
-    var cart = {"cartId": 0, "variants": [], "products": [], "itemCount": 0, "isPlusUser": false};
+    var cart = {"cartId":0,"variants":[],"products":[],"itemCount":0,"isPlusUser":false};
     var productId = 3555626;
-    var videos = {
-      "8339": {
-        "src": "https:\/\/dkstatics-public.digikala.com\/digikala-video\/3fc190b9a3418b2189cf418fd6dbd93ea646dc13_1606733823.mp4",
-        "playlist": "https:\/\/dkstatics-public.digikala.com\/digikala-video-playlist\/65a9742d046a76387e9514dfea87b2de0594e0e2_1606734556.m3u8",
-        "sources": [{"file": "https:\/\/dkstatics-public.digikala.com\/digikala-video-playlist\/65a9742d046a76387e9514dfea87b2de0594e0e2_1606734556.m3u8"}, [{"file": "https:\/\/dkstatics-public.digikala.com\/digikala-video\/bb17e3c7ca87ea4e1cfc5702f8649f55cb413f5d_1606733850.mp4"}], [{"file": "https:\/\/dkstatics-public.digikala.com\/digikala-video\/1249707355e3e3fcf21b52e0b1b9ac0c10298eb5_1606734555.mp4"}]],
-        "cover_big": "https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,w_600\/quality,q_80",
-        "cover_thumb_small": "https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,m_fill,h_64,w_64",
-        "cover_thumb_big": "https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,m_fill,h_115,w_115",
-        "title": "iphone 12 pro",
-        "description": "",
-        "duration": 140
-      }
-    };
-    var enhanced_ecommerce = {
-      "id": 3555626,
-      "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 512 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-      "category": "MO",
-      "category_id": 11,
-      "brand": "apple",
-      "variant": {{ $variant_defualt->variant_code }},
-      "price": 495900000,
-      "discount_percent": 0,
-      "quantity": 1
-    };
+    var videos = {"8339":{"src":"https:\/\/dkstatics-public.digikala.com\/digikala-video\/3fc190b9a3418b2189cf418fd6dbd93ea646dc13_1606733823.mp4","playlist":"https:\/\/dkstatics-public.digikala.com\/digikala-video-playlist\/65a9742d046a76387e9514dfea87b2de0594e0e2_1606734556.m3u8","sources":[{"file":"https:\/\/dkstatics-public.digikala.com\/digikala-video-playlist\/65a9742d046a76387e9514dfea87b2de0594e0e2_1606734556.m3u8"},[{"file":"https:\/\/dkstatics-public.digikala.com\/digikala-video\/bb17e3c7ca87ea4e1cfc5702f8649f55cb413f5d_1606733850.mp4"}],[{"file":"https:\/\/dkstatics-public.digikala.com\/digikala-video\/1249707355e3e3fcf21b52e0b1b9ac0c10298eb5_1606734555.mp4"}]],"cover_big":"https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,w_600\/quality,q_80","cover_thumb_small":"https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,m_fill,h_64,w_64","cover_thumb_big":"https:\/\/dkstatics-public.digikala.com\/digikala-video-cover\/2088368572727bc4faca00bc828ca8196a65d3a8_1606733831.jpg?x-oss-process=image\/resize,m_fill,h_115,w_115","title":"iphone 12 pro","description":"","duration":140}};
+    var enhanced_ecommerce = {"id":3555626,"name":"\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 512 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a","category":"MO","category_id":11,"brand":"apple","variant":14209915,"price":495900000,"discount_percent":0,"quantity":1};
     var categoryId = 11;
     var nowTimeInUTC = "2021-04-20 10:36:12";
     var emarsysCategoryBreadcrumb = [];
     var emarsysBrand = "\u0627\u067e\u0644";
-    var ecpd2 = {
-      "id": 3555626,
-      "title": "تست عنوان",
-      "has_gift": false,
-      "is_exclusive": false,
-      "is_incredible": 0,
-      "is_selling_and_sales": 0,
-      "multi_color": true,
-      "multi_size": false,
-      "multi_warranty": true,
-      "multi_seller": true,
-      "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644", "\u0645\u0648\u0628\u0627\u06cc\u0644", "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"],
-      "supply_category": ["MO", "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"],
-      "category": {"id": 11, "title": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"},
-      "brand": {"id": 10, "title": "\u0627\u067e\u0644"},
-      "price": {"selling_price": 495900000, "discount_percent": 0},
-      "status": "marketable",
-      "variants": [{"id": {{ $variant_defualt->variant_code }}, "seller": 00, "color": 11, "size": 00, "warranty": 4832}, {
-        "id": 14209917,
-        "seller": 00,
-        "color": 15,
-        "size": 0,
-        "warranty": 00
-      }, {"id": 15859017, "seller": 517122, "color": 11, "size": 0, "warranty": 4832}],
-      "image_url": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-      "product_url": "https:\/\/www.digikala.com\/product\/dkp-3555626"
-    };
+    var ecpd2 = {"id":3555626,"title":"\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 512 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a","has_gift":false,"is_exclusive":false,"is_incredible":0,"is_selling_and_sales":0,"multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"site_category":["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644","\u0645\u0648\u0628\u0627\u06cc\u0644","\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"],"supply_category":["MO","\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"],"category":{"id":11,"title":"\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644"},"brand":{"id":10,"title":"\u0627\u067e\u0644"},"price":{"selling_price":495900000,"discount_percent":0},"status":"marketable","variants":[{"id":14209915,"seller":4064,"color":11,"size":0,"warranty":4832},{"id":14209917,"seller":4064,"color":15,"size":0,"warranty":4832},{"id":15859017,"seller":517122,"color":11,"size":0,"warranty":4832}],"image_url":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60","product_url":"https:\/\/www.digikala.com\/product\/dkp-3555626"};
     var isbn = null;
     var min_price_in_last_month = 499999000;
     var isPDP = true;
@@ -242,10 +152,10 @@
   <script src="{{ asset('assets/new/js/jwplayer.core.controls.js') }} "></script>
   <script src="{{ asset('assets/new/js/jwplayer.core.controls.html5.js') }} "></script>
   <script src="{{ asset('assets/new/js/provider.hlsjs.js') }} "></script>
-  {{--  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>--}}
-  {{--  <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>--}}
-  {{--  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>--}}
-  {{--  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>--}}
+{{--  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>--}}
+{{--  <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>--}}
+{{--  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>--}}
+{{--  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>--}}
   <script src="{{ asset('assets/new/js/url.min.js') }} "></script>
 
   <style>
@@ -410,26 +320,10 @@
                       <div class="c-product__circle-variants">
                         <div class="c-product__circle-variants__title">
                           <header>رنگ :</header>
-                          <span class="js-color-title"></span>
-                        </div>
-                        <ul class="js-product-variants">
-                          @foreach ($product->variants as $item)
-                            @if($item->variant()->exists() && !is_null($item->variant->value))
-                              <li class="js-c-ui-variant c-circle-variant__item" data-event="config_change" data-event-category="product_page" data-event-label="change: color">
-                                <label data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;change-color&quot;,&quot;item_option&quot;:&quot;{{ $item->variant->name }}&quot;}"
-                                    class="js-circle-variant-color c-circle-variant c-circle-variant--color" data-code="{{ $item->variant->value }}">
-                                  <input type="radio" value="{{ $item->variant_code }}" name="color" id="variant" class="js-variant-selector js-color-filter-item"
-{{--                                         {{ $item->variant->variant_code }}--}}
-                                     checked="" data-title="{{ $item->variant->name }}" data-type="color">
-                                  <span class="c-circle-variant__border"></span>
-                                  <span class="c-tooltip c-tooltip--small-bottom c-tooltip--short">{{ $item->variant->name }}</span>
-                                  <span class="c-circle-variant__shape" style="background-color: {{ $item->variant->value }}"></span>
-                                </label>
-                              </li>
-                            @endif
-                          @endforeach
-                        </ul>
-                      </div>
+                          <span class="js-color-title"></span></div>
+{{--                        اصلی--}}
+                        <ul class="js-product-variants"><li class="js-c-ui-variant c-circle-variant__item" data-event="config_change" data-event-category="product_page" data-event-label="change: color"><label data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;change-color&quot;,&quot;item_option&quot;:&quot;خاکستری&quot;}" class="js-circle-variant-color c-circle-variant c-circle-variant--color" data-code="#9E9E9E"><input type="radio" value="11" name="color" id="variant" class="" checked="" data-title="خاکستری" data-type="color"><span class="c-circle-variant__border"></span><span class="c-tooltip c-tooltip--small-bottom c-tooltip--short">خاکستری</span><span class="c-circle-variant__shape" style="background-color: #9E9E9E"></span></label></li><li class="js-c-ui-variant c-circle-variant__item" data-event="config_change" data-event-category="product_page" data-event-label="change: color"><label data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;change-color&quot;,&quot;item_option&quot;:&quot;طلایی&quot;}" class="js-circle-variant-color c-circle-variant c-circle-variant--color" data-code="#c99212"><input type="radio" value="15" name="color" id="variant" class="js-variant-selector js-color-filter-item" data-title="طلایی" data-type="color"><span class="c-circle-variant__border"></span><span class="c-tooltip c-tooltip--small-bottom c-tooltip--short">طلایی</span><span class="c-circle-variant__shape" style="background-color: #c99212"></span></label></li></ul>
+                       </div>
                     @endif
 
                     {{--                    <div class="c-product__size-wrapper">--}}
@@ -472,116 +366,147 @@
                     {{--                      </div>--}}
                     {{--                    </div>--}}
 
-                    @if ($product->attributes()->exists())
-                        <div class="c-product__params js-is-expandable" data-collapse-count="3">
-                          <ul data-title="ویژگی‌های کالا">
-                              @foreach ($product->attributes()->where('is_favorite', 1)->get()->unique('name') as $key => $attr)
-                                @if($key > 4)
-                                  @continue
-                                @endif
-                                <li>
-                                  <span>{{ $attr->name }}:</span>
-                                  @if ($attr->type == 1 || $attr->type == 2)
-                                    <span>{{ $product->attributes->find($attr->id)->pivot->value }}</span>
-                                  @elseif ($attr->type == 3)
-                                    <span>
-                                     @foreach($attr->values as $value)
-                                        {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
-                                      @endforeach
-                                  </span>
-                                  @elseif ($attr->type == 4)
 
-                                    @php $arrays = null; @endphp
-                                    @foreach($product->attributes as $pAttr)
-                                      @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
-                                        <?php $pArray[] = $pAttr->pivot->value_id; ?>
-                                      @endif
-                                    @endforeach
+                    <div class="c-product__params js-is-expandable" data-collapse-count="3">
+                      <ul data-title="ویژگی‌های کالا">
+                        @if ($product->attributes()->exists())
+                          @foreach ($product->attributes()->where('is_favorite', 1)->get()->unique('name') as $key => $attr)
+                            @if($key > 4)
+                              @continue
+                            @endif
+                            <li>
+                              <span>{{ $attr->name }}:</span>
+                              @if ($attr->type == 1 || $attr->type == 2)
+                                <span>{{ $product->attributes->find($attr->id)->pivot->value }}</span>
+                              @elseif ($attr->type == 3)
+                                <span>
+                                 @foreach($attr->values as $value)
+                                    {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
+                                  @endforeach
+                              </span>
+                              @elseif ($attr->type == 4)
 
-                                    <span>
-                                      @foreach($attr->values as $key => $value)
-                                        {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attr->values) !== $key+1)? '، ' : '' }}
-                                      @endforeach
-                                    </span>
-
-                                  @elseif ($attr->type == 5)
-                                    <span>{{ $product->attributes->find($attr->id)->pivot->value . ' ' . (isset($attr->unit)? $attr->unit->name : '')  }}</span>
+                                @php $arrays = null; @endphp
+                                @foreach($product->attributes as $pAttr)
+                                  @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
+                                    <?php $pArray[] = $pAttr->pivot->value_id; ?>
                                   @endif
-                                </li>
-                              @endforeach
+                                @endforeach
 
-                              @foreach ($product->attributes()->where('is_favorite', 1)->get()->unique('name') as $key => $attr)
-                                @if($key < 5)
-                                  @continue
-                                @endif
-                                <li class="js-more-attrs c-product__params-more">
-                                  <span>{{ $attr->name }}:</span>
-                                  @if ($attr->type == 1 || $attr->type == 2)
-                                    <span>{{ $product->attributes->find($attr->id)->pivot->value }}</span>
-                                  @elseif ($attr->type == 3)
-                                    <span>
-                                     @foreach($attr->values as $value)
-                                        {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
-                                      @endforeach
-                                  </span>
-                                  @elseif ($attr->type == 4)
+                                <span>
+                                  @foreach($attr->values as $key => $value)
+                                    {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attr->values) !== $key+1)? '، ' : '' }}
+                                  @endforeach
+                                </span>
 
-                                    @php $arrays = null; @endphp
-                                    @foreach($product->attributes as $pAttr)
-                                      @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
-                                        <?php $pArray[] = $pAttr->pivot->value_id; ?>
-                                      @endif
-                                    @endforeach
-
-                                    <span>
-                                      @foreach($attr->values as $key => $value)
-                                        {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attr->values) !== $key+1)? '، ' : '' }}
-                                      @endforeach
-                                    </span>
-
-                                  @elseif ($attr->type == 5)
-                                    <span>{{ $product->attributes->find($attr->id)->pivot->value . ' ' . (isset($attr->unit)? $attr->unit->name : '')  }}</span>
-                                  @endif
-                                </li>
-                              @endforeach
-
-                              @if ($product->attributes()->where('is_favorite', 1)->exists() && count($product->attributes()->where('is_favorite', 1)->get()) > 5)
-                                <li class="c-product__params-more-handler" data-sign="+">
-                                  <button data-snt-event="dkProductPageClick"
-                                          data-snt-params="{&quot;item&quot;:&quot;more-attributes&quot;,&quot;item_option&quot;:null}"
-                                          class="btn-link-spoiler js-more-attr-button c-product__show-more-btn">موارد بیشتر
-                                  </button>
-                                </li>
+                              @elseif ($attr->type == 5)
+                                <span>{{ $product->attributes->find($attr->id)->pivot->value . ' ' . (isset($attr->unit)? $attr->unit->name : '')  }}</span>
                               @endif
-                          </ul>
-                        </div>
-                      @endif
+                            </li>
+                          @endforeach
+                        @endif
 
 
+                        @if ($product->attributes()->exists())
+                          @foreach ($product->attributes()->where('is_favorite', 1)->get()->unique('name') as $key => $attr)
+                            @if($key < 5)
+                              @continue
+                            @endif
+                            <li class="js-more-attrs c-product__params-more">
+                              <span>{{ $attr->name }}:</span>
+                              @if ($attr->type == 1 || $attr->type == 2)
+                                <span>{{ $product->attributes->find($attr->id)->pivot->value }}</span>
+                              @elseif ($attr->type == 3)
+                                <span>
+                                 @foreach($attr->values as $value)
+                                    {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
+                                  @endforeach
+                              </span>
+                              @elseif ($attr->type == 4)
+
+                                @php $arrays = null; @endphp
+                                @foreach($product->attributes as $pAttr)
+                                  @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
+                                    <?php $pArray[] = $pAttr->pivot->value_id; ?>
+                                  @endif
+                                @endforeach
+
+                                <span>
+                                  @foreach($attr->values as $key => $value)
+                                    {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attr->values) !== $key+1)? '، ' : '' }}
+                                  @endforeach
+                                </span>
+
+                              @elseif ($attr->type == 5)
+                                <span>{{ $product->attributes->find($attr->id)->pivot->value . ' ' . (isset($attr->unit)? $attr->unit->name : '')  }}</span>
+                              @endif
+                            </li>
+                          @endforeach
+                        @endif
 
 
+                        @if ($product->attributes()->where('is_favorite', 1)->exists() && count($product->attributes()->where('is_favorite', 1)->get()) > 5)
+                          <li class="c-product__params-more-handler" data-sign="+">
+                            <button data-snt-event="dkProductPageClick"
+                                    data-snt-params="{&quot;item&quot;:&quot;more-attributes&quot;,&quot;item_option&quot;:null}"
+                                    class="btn-link-spoiler js-more-attr-button c-product__show-more-btn">موارد بیشتر
+                            </button>
+                          </li>
+                        @endif
+
+                      </ul>
+                    </div>
                   </div>
                 </div>
-
-
                 <div class="c-product__summary js-product-summary" style="opacity: 1;">
-                  <div class="c-box" style="margin-bottom: 20px;">
+                  <div class="c-box">
                     <div class="c-product__seller-info js-seller-info">
                       <div class="js-seller-info-changable c-product__seller-box">
-                        <div class="c-product__seller-row c-product__seller-row--seller js-seller-variant">
-                          <i class="c-product__seller-row--trusted-seller js-mini-not-digikala-seller js-mini-is-trusted u-hidden"></i>
-                          <i class="c-product__seller-row--official-seller js-mini-not-digikala-seller js-mini-is-official u-hidden"></i>
-                          <div class="c-product__seller-row-main  ">
+                        <div class="c-product__seller-counter">
+                          <div>فروشنده</div>
+                        </div>
+                        <div
+                          class="c-product__seller-row c-product__seller-row--seller c-product__seller-row--clickable js-seller-info-seller js-seller-variant">
+                          <i
+                            class="c-product__seller-row--trusted-seller js-mini-not-digikala-seller js-mini-is-trusted u-hidden"></i>
+                          <i
+                            class="c-product__seller-row--official-seller js-mini-not-digikala-seller js-mini-is-official u-hidden"></i>
+                          <div class="c-product__seller-row-main c-product__seller-row-main--arrow-left">
                             <div class="c-product__seller-first-line">
                               <span class="c-product__seller-name js-seller-name">{{ $fa_store_name }}</span>
+                              <span
+                                class="c-product__seller-details-badge-container js-seller-badge js-seller-trusted u-hidden">
+                              <span class="c-badge-seller c-badge-seller--prominent">برگزیده</span>
+                            </span>
+                              <span
+                                class="c-product__seller-details-badge-container js-seller-badge js-seller-official u-hidden">
+                              <span class="c-badge-seller c-badge-seller--official">رسمی</span>
+                            </span>
+                            </div>
+                            <div class="c-product__seller-second-line js-seller-final-score-container">
+                              عملکرد:
+                              <span class="u-text-bold js-seller-final-score">۳.۵</span>
+                              از ۵
+                              <span class="js-seller-rate-container u-hidden">
+                              <span class="u-divider"></span>
+                              <span class="u-text-bold js-seller-rate">
+                                  ٪
+                              </span>
+                              رضایت از کالا
+                            </span>
+                            </div>
+                            <div class="c-product__seller-second-line js-seller-empty-score u-hidden">
+                              عملکرد محاسبه نشده
                             </div>
                           </div>
                         </div>
                         <div class="c-product-info-box js-seller-info-expand">
                           <div class="c-product-info-box__header">
                             <div class="c-product-info-box__header-back-btn js-product-info-box-back-btn"></div>
-                            <div><label>اطلاعات تکمیلی فروشنده</label><span
-                                class="c-product-info-box__seller-info-modal js-seller-rate-info-modal"></span></div>
+                            <div>
+                              <label>اطلاعات تکمیلی فروشنده</label>
+                              <span class="c-product-info-box__seller-info-modal js-seller-rate-info-modal"></span>
+                            </div>
                           </div>
                           <div class="c-product-info-box__body-wrapper">
                             <div class="c-product-info-box__body">
@@ -589,10 +514,15 @@
                                 <div class="c-seller-rating js-buyBox-seller-info">
                                   <div class="c-seller-rating__title c-seller-rating__title--inBuyBox">
                                     <div class="js-sellerName">{{ $fa_store_name }}</div>
-                                  </div>
+                                    <a class="js-sellerUrl" href="/seller/cwe۴n/">مشاهده دیگر کالا‌ها</a></div>
+                                  {{--                                    <div class="c-seller-rating__subtitle js-seller-register-time">--}}
+                                  {{--                                      عضویت از --}}
+                                  {{--                                      <label class="u-mx-4 js-sellerTimeAgo">۴ ماه, ۳ هفته</label>--}}
+                                  {{--                                      پیش--}}
+                                  {{--                                    </div>--}}
                                   <div class="c-seller-rating__text">
                                     <div class="c-seller-rating__thin-text">عملکرد:</div>
-                                    <div class="c-seller-rating__bold-text js-finalScore">۵</div>
+                                    <div class="c-seller-rating__bold-text js-finalScore">۳.۵</div>
                                   </div>
                                   <div
                                     class="c-seller-rating__ratings js-round-progress-holder c-seller-rating__ratings--buy-box">
@@ -611,27 +541,27 @@
                                     </div>
                                     <div class="c-round-progress__container">
                                       <div class="c-round-progress js-round-progress js-cancelPer green"
-                                           data-value="99.8" data-level-1="98" data-level-2="96">
+                                           data-value="98.9" data-level-1="98" data-level-2="96">
                                         <div
                                           class="c-round-progress__half c-round-progress__half--left js-round-progress-left"
                                           style="transform: unset;"></div>
                                         <div
                                           class="c-round-progress__half c-round-progress__half--right js-round-progress-right"
-                                          style="transform: rotate(0.72deg);"></div>
-                                        <div class="c-round-progress__value js-round-progress-text">۹۹.۸٪</div>
+                                          style="transform: rotate(3.96deg);"></div>
+                                        <div class="c-round-progress__value js-round-progress-text">۹۸.۹٪</div>
                                       </div>
                                       <div class="c-round-progress__label">تعهد ارسال</div>
                                     </div>
                                     <div class="c-round-progress__container">
                                       <div class="c-round-progress js-round-progress js-returnPer green"
-                                           data-value="99.9" data-level-1="98" data-level-2="96">
+                                           data-value="100" data-level-1="98" data-level-2="96">
                                         <div
                                           class="c-round-progress__half c-round-progress__half--left js-round-progress-left"
                                           style="transform: unset;"></div>
                                         <div
                                           class="c-round-progress__half c-round-progress__half--right js-round-progress-right"
-                                          style="transform: rotate(0.36deg);"></div>
-                                        <div class="c-round-progress__value js-round-progress-text">۹۹.۹٪</div>
+                                          style="transform: rotate(0deg);"></div>
+                                        <div class="c-round-progress__value js-round-progress-text">۱۰۰٪</div>
                                       </div>
                                       <div class="c-round-progress__label">بدون ثبت مرجوعی</div>
                                     </div>
@@ -663,8 +593,8 @@
                         <div
                           class="c-product__seller-row c-product__seller-row--guarantee c-product__seller-row--clickable js-seller-info-guarantee"
                           style="pointer-events: none;">
-                          <div class="c-product__seller-row-main js-guarantee-text">گارانتی ۱۸ ماهه همراه گستر نقره
-                            فام
+                          <div class="c-product__seller-row-main js-guarantee-text">
+                            گارانتی ۱۸ ماهه همراه گستر نقره فام
                           </div>
                           <div class="c-product__seller-extra js-guarantee-extra-toggle u-hidden"></div>
                         </div>
@@ -683,17 +613,20 @@
                             </div>
                           </div>
                         </div>
-
-
-
-
-
-
-                        <div class="c-product__seller-row c-product__seller-row--column js-seller-info-shipment c-product__seller-row--clickable"><div class="c-product__seller-row-main c-product__seller-row-main--arrow-left"><span class="c-product__delivery-warehouse js-provider-main-title c-product__delivery-warehouse--no-lead-time">موجود در انبار {{ $fa_store_name }}</span></div><ul class="c-line-bullet-list c-product__sender-list js-provider-list"><li class=""><span class="c-line-bullet-list__item  c-line-bullet-list__item--digikala no-lead-time">ارسال {{ $fa_store_name }}</span><span class="js-ab-shipment-free-badge u-hidden free-badge">رایگان</span></li></ul></div>
-
-
-
-
+                        <div
+                          class="c-product__seller-row c-product__seller-row--column js-seller-info-shipment c-product__seller-row--clickable">
+                          <div class="c-product__seller-row-main c-product__seller-row-main--arrow-left">
+                          <span
+                            class="c-product__delivery-warehouse js-provider-main-title c-product__delivery-warehouse--no-lead-time">موجود در انبار فروشنده</span>
+                          </div>
+                          <ul class="c-line-bullet-list c-product__sender-list js-provider-list">
+                            <li class=""><span class="c-line-bullet-list__item  c-line-bullet-list__item--digikala ">ارسال {{ $fa_store_name }} از ۱ روز کاری دیگر</span><span
+                                class="js-ab-shipment-free-badge u-hidden free-badge">رایگان</span></li>
+                            <li class=""><span
+                                class="c-line-bullet-list__item  c-line-bullet-list__item--seller no-lead-time">ارسال فروشنده</span><span
+                                class="js-ab-shipment-free-badge u-hidden free-badge">رایگان</span></li>
+                          </ul>
+                        </div>
                         <div class="c-product-info-box js-shipment-info-expand">
                           <div class="c-product-info-box__header">
                             <div class="c-product-info-box__header-back-btn js-product-info-box-back-btn"></div>
@@ -703,14 +636,13 @@
                             <div class="c-product-info-box__body">
                               <div class="c-shipment-info-box__row js-shipment-info-main-container">
                                 <div class="c-shipment-info-box__row--title">
-                                  ارسال توسط {{ $fa_store_name }}
+                                  ارسال توسط فروشنده
                                   <span class="js-ab-shipment-free-badge u-hidden">رایگان</span></div>
                                 <div class="c-shipment-info-box__row--content">
-                                  این کالا در انبار {{ $fa_store_name }} موجود و آماده پردازش است و امکان ارسال مستقیم توسط {{ $fa_store_name }}
-                                  را دارد.
+                                  این کالا در انبار فروشنده موجود و آماده پردازش است و امکان ارسال مستقیم توسط فروشنده
+                                  دارد.
                                   <p class="free-badge js-ab-shipment-free-badge u-hidden">کالا‌هایی با قیمت بیش از ۳۰۰
-                                    هزار تومان به صورت رایگان ارسال خواهند شد.</p>
-                                </div>
+                                    هزار تومان به صورت رایگان ارسال خواهند شد.</p></div>
                               </div>
                             </div>
                           </div>
@@ -741,32 +673,35 @@
                             </div>
                           </div>
                         </div>
-{{--                        <div class="c-product__seller-row c-product__seller-row--best-price-row js-data-best-price">--}}
-{{--                          بهترین قیمت ۳۰ روز گذشته--}}
-{{--                        </div>--}}
+
+                        <div
+                          class="c-product__seller-row c-product__seller-row--best-price-row js-data-best-price u-hidden">
+                          بهترین قیمت ۳۰ روز گذشته
+                        </div>
                         <div class="c-product__seller-row c-product__seller-row--price">
                           <div class="c-product__seller-price-info">
                             <div class="c-product__seller-price-label">
-                              قیمت محصول
+                              قیمت فروشنده
                               <span class="js-dk-wiki-trigger c-wiki c-wiki__holder">
-                                <span class="c-wiki-sign"></span>
-                                <div class="c-wiki__container js-dk-wiki is-right">
-                                  <div class="c-wiki__arrow"></div>
-                                  <p class="c-wiki__text">
-                                        این کالا توسط فروشنده آن، {{ $fa_store_name }}، قیمت‌گذاری شده‌ است.
-                                    </p>
-                                </div>
-                              </span>
+                              <span class="c-wiki-sign"></span>
+                              <div class="c-wiki__container js-dk-wiki is-right">
+                                <div class="c-wiki__arrow"></div>
+                                <p
+                                  class="c-wiki__text">
+          این کالا توسط فروشنده آن، شادی لند، قیمت‌گذاری شده‌ است.
+      </p>
+                              </div>
+                            </span>
                             </div>
                             <div class="c-product__seller-price-prev js-rrp-price u-hidden">
-
+                              ۵۰,۹۹۰,۰۰۰
                             </div>
                             <div class="c-product__seller-price-off js-discount-value u-hidden">
                               ۰٪
                             </div>
                           </div>
                           <div class="c-product__seller-price-real">
-                            <div class="c-product__seller-price-pure js-price-value">۴۹,۵۹۰,۰۰۰</div>
+                            <div class="c-product__seller-price-pure js-price-value">۵۱,۸۹۰,۰۰۰0000011</div>
                             تومان
                           </div>
                           <div
@@ -776,30 +711,21 @@
                           </div>
                         </div>
                       </div>
-                      <div class="c-product__seller-row c-product__seller-row--add-to-cart"><a
+                      <div class="c-product__seller-row c-product__seller-row--add-to-cart">
+                        <a
                           class="js-ab-product-action btn-add-to-cart btn-add-to-cart--full-width js-add-to-cart js-cart-page-add-to-cart js-btn-add-to-cart"
-                          data-product-id="3555626" data-variant="{{ $variant_defualt->variant_code }}" href="/cart/add/{{ $variant_defualt->variant_code }}/1/"
+                          data-product-id="{{ $product->id }}" data-variant=""
+{{--                          {{ $item->variant->id }}--}}
+                          href="/cart/add/15488759/1/"
                           data-event="add_to_cart" data-event-category="ecommerce"
-                          data-event-label="price: 495900000 - seller: marketplace - seller_name: {{ $fa_store_name }} - seller_rating: 81 - multiple_configs: True - position: 0"><span
-                            class="btn-add-to-cart__txt">افزودن به سبد خرید</span></a></div>
-                    </div>
-                    <a href="">
-                      <div
-                        class="c-product-shipping-limitation c-product-shipping-limitation__mt-8 js-btn-supplier-list js-btn-cheapest-price u-hidden">
-                        <div class="c-product-shipping-limitation__title c-product-shipping-limitation__title--info">
-                          این کالا را ارزان‌تر بخرید
-                        </div>
-                        <div class="c-product-shipping-limitation__dsc">
-                          از
-                          <span class="js-cheapest-price">۵۰,۴۹۰,۰۰۰ </span> تومان
-                          توسط فروشندگان دیگر
-                        </div>
+                          data-event-label="price: 509900000 - seller: marketplace - seller_name: شادی لند - seller_rating: 81 - multiple_configs: True - position: 0">
+                          <span class="btn-add-to-cart__txt">افزودن به سبد خرید</span>
+                        </a>
                       </div>
-                    </a>
+                    </div>
+
                   </div>
                 </div>
-
-
               </div>
               <div class="c-product__usp">
                 <aside class="c-product__feature">
@@ -817,8 +743,8 @@
               </div>
               <div class="c-product-gallery__offer js-amazing-offer u-hidden">
                 <img class="c-product-gallery__offer-img" src="https://www.digikala.com/static/files/6fbe3569.svg">
-                <div class="c-product-gallery__timer js-counter"></div>
               </div>
+
 
               <div class="c-gallery ">
 
@@ -857,12 +783,7 @@
                   <div class="c-gallery__img">
                     @foreach($product->media as $image)
                       @if($product->media && ($image->pivot->is_main == 1))
-                        <img class="js-gallery-img"
-                             data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
-                             title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}"
-                             data-zoom-image="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,w_1280/quality,q_80"
-                             src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
-                             loading="lazy">
+                        <img class="js-gallery-img" data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80" title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-zoom-image="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,w_1280/quality,q_80" src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80" loading="lazy">
                       @endif
                     @endforeach
                     <div class="c-gallery__main-img-badges-container"></div>
@@ -872,16 +793,11 @@
                 <ul class="c-gallery__items">
                   @if($product->media()->exists())
                     @foreach($product->media as $key => $image)
-                      <li class="js-product-thumb-img" data-slide-index="{{ $key+1 }}" data-event="album_usage"
-                          data-event-category="product_page" data-event-label="3555626-num of pics:14">
+                      <li class="js-product-thumb-img" data-slide-index="{{ $key+1 }}" data-event="album_usage" data-event-category="product_page" data-event-label="3555626-num of pics:14">
                         <div class="thumb-wrapper">
-                          <img
-                            data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                            title="" data-snt-event="dkProductPageClick"
-                            data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
-                            alt="{{ $product->title_fa }} thumb 1 {{ $key+1 }}" data-type=""
-                            src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                            loading="lazy">
+                          <img data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                            title="" data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
+                            alt="{{ $product->title_fa }} thumb 1 {{ $key+1 }}" data-type="" src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" loading="lazy">
                           <div class="c-gallery__images-count">
                           <span class="c-gallery__count-circle">
                             <div class="c-gallery__three-bullets"></div>
@@ -931,13 +847,13 @@
                   @foreach ($product->variants as $item)
                     @if($item->variant()->exists() && !is_null($item->variant->value))
 
-                      <div class="c-table-suppliers__row js-supplier" data-variant="{{ $item->variant_code }}">
+                      <div class="c-table-suppliers__row js-supplier" data-variant="{{ $item->variant->id }}">
                         <div class="c-table-suppliers__cell c-table-suppliers__cell--title">
                           <span class="c-table-suppliers__seller-icon "></span>
                           <div class="c-table-suppliers__seller-wrapper">
                             <p class="c-table-suppliers__seller-name">
                               <a data-snt-event="dkProductPageClick" data-snt-params="" href="">
-                                {{ $fa_store_name }}
+                                شادی لند
                               </a>
                             </p>
                             <div class="c-table-suppliers__rating">
@@ -952,7 +868,7 @@
                           <div class="c-table-suppliers__seller-info summary-overlay">
                             <div class="c-seller-rating ">
                               <div class="c-seller-rating__title ">
-                                {{ $fa_store_name }}
+                                شادی لند
                               </div>
                               <div class="c-seller-rating__subtitle js-seller-register-time ">عضویت از
                                 <label class="u-mx-4 js-sellerTimeAgo">۳ سال, ۳ ماه</label> پیش
@@ -1040,7 +956,7 @@
                         </div>
                         <div class="c-table-suppliers__cell c-table-suppliers__cell--action">
                           <a class=" o-btn o-btn--outlined-red-md js-variant-add-to-cart js-btn-add-to-cart" href=""
-                             data-variant="{{ $item->variant_code }}" data-snt-event="dkProductPageClick"
+                             data-variant="{{ $item->variant->id }}" data-snt-event="dkProductPageClick"
                              data-snt-params=""
                              data-event="add_to_cart" data-event-category="ecommerce" data-event-label="">
                             افزودن به سبد
@@ -1077,7 +993,9 @@
                           <div class="c-seller-rating__title ">
                             {{ $fa_store_name }}
                           </div>
-
+                          <div class="c-seller-rating__subtitle js-seller-register-time ">عضویت از <label
+                              class="u-mx-4 js-sellerTimeAgo">۴ ماه, ۳ هفته</label> پیش
+                          </div>
                           <div class="c-seller-rating__text">
                             <div class="c-seller-rating__thin-text">عملکرد:</div>
                             <div class="c-seller-rating__bold-text js-finalScore">۳.۵</div>
@@ -1149,19 +1067,18 @@
                         ارسال فروشنده
                       </div>
                     </div>
-                    <div class="c-table-suppliers__cell c-table-suppliers__cell--guarantee">
-                      <span>گارانتی ۱۸ ماهه همراه گستر نقره فام</span>
+                    <div class="c-table-suppliers__cell c-table-suppliers__cell--guarantee"><span>گارانتی ۱۸ ماهه همراه گستر نقره فام</span>
                     </div>
                     <div class="c-table-suppliers__cell c-table-suppliers__cell--price ">
                       <div class="c-price">
                         <div class="c-price__value">
-                          ۵۱,۸۹۰,۰۰۰
+                          ۵۱,۸۹۰,۰۰۰0000011
                         </div>
                       </div>
                     </div>
-                    <div class="c-table-suppliers__cell c-table-suppliers__cell--action">
-                      <a class=" o-btn o-btn--outlined-red-md js-variant-add-to-cart js-btn-add-to-cart"
-                        href="/cart/add/15488759/1/" data-variant=""
+                    <div class="c-table-suppliers__cell c-table-suppliers__cell--action"><a
+                        class=" o-btn o-btn--outlined-red-md js-variant-add-to-cart js-btn-add-to-cart"
+                        href="/cart/add/15488759/1/" data-variant="{{ $item->variant->id }}"
                         data-snt-event="dkProductPageClick"
                         data-snt-params="{&quot;item&quot;:&quot;seller-add-to-cart&quot;,&quot;item_option&quot;:null}"
                         data-event="add_to_cart" data-event-category="ecommerce"
@@ -1198,9 +1115,7 @@
             <div class="c-carousel__header">
               <div class="c-title ">
                 <div class="c-title__content-right c-title__content-right--has-underline">
-                  <div class="c-title__title-container">
-                    <h4 class="c-title__title">محصولات مرتبط</h4>
-                  </div>
+                  <div class="c-title__title-container"><h4 class="c-title__title">محصولات مرتبط</h4></div>
                 </div>
               </div>
             </div>
@@ -2029,84 +1944,41 @@
                   }
                 });
               </script>
-
-
-              <div class="swiper-container swiper-container-horizontal c-carousel__container js-swiper-products swiper-container-rtl">
+              <div
+                class="swiper-container swiper-container-horizontal c-carousel__container js-swiper-products swiper-container-rtl">
                 <div class="swiper-wrapper">
-                  @foreach ($product->variants as $key => $item)
-                    <div class="swiper-slide c-carousel__slide {{ ($key == 0)? 'swiper-slide-active' : '' }} {{ ($key == 1)? 'swiper-slide-next' : '' }}" data-id="{{ $item->product_code }}" data-position="{{ $key+1 }}" style="width: 316px;">
-                      <li>
-{{--                        {{ route('front.productPage', $item->product_code) }}--}}
-                        {{ dd($item->product_code) }}
-                        <a href=""
-                           data-id="{{ $item->product_code }}" class="c-product-box__box-link js-product-url js-carousel-ga-product-box">
-                        </a>
-                        <div class="js-product-cart c-product-box c-product-box--product-card c-product-box--has-overflow c-product-box--card-macro c-product-box--plus-badge " title="{{ $item->title_fa }}">
-                          <div class="c-product-box__img js-url js-snt-carousel_product" title="{{ $item->title_fa }}">
-                          <span class="u-hidden c-product-box__title-special js-ab-app-incredible-product">
+                  <div class="swiper-slide c-carousel__slide swiper-slide-active" data-id="3893718" data-position="1"
+                       style="width: 316px;" data-gtm-vis-first-on-screen-9070001_346="364406"
+                       data-gtm-vis-total-visible-time-9070001_346="100" data-gtm-vis-has-fired-9070001_346="1">
+                    <li><a
+                        href="/product/dkp-3893718/گوشی-موبایل-اپل-مدل-iphone-12-pro-max-a2412-دو-سیم-کارت-ظرفیت-256-گیگابایت"
+                        data-id="3893718" class="c-product-box__box-link js-product-url js-carousel-ga-product-box"
+                        data-gtm-vis-first-on-screen-9070001_346="364414"
+                        data-gtm-vis-total-visible-time-9070001_346="100" data-gtm-vis-has-fired-9070001_346="1"></a>
+                      <div
+                        class="js-product-cart c-product-box c-product-box--product-card c-product-box--has-overflow c-product-box--card-macro c-product-box--plus-badge "
+                        title="">
+                        <div class="c-product-box__img js-url js-snt-carousel_product"
+                             title="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 256 گیگابایت"><span
+                            class="u-hidden c-product-box__title-special js-ab-app-incredible-product">
                           شگفت‌انگیز اخـتـصـاصـی اپـلیـکیـشـن
-                          </span>
-                            @foreach($product->media as $image)
-                              @if($product->media && ($image->pivot->is_main == 1))
-                                <img alt="{{ $item->title_fa }}" src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" class=" js-ab-not-app-incredible-product swiper-lazy swiper-lazy-loaded" loading="lazy">
-                              @endif
-                            @endforeach
-                          </div>
-                          <div class="u-hidden c-product-box__title c-product-box__title--app-incredible js-ab-app-incredible-product">
-                          <span class="c-product-box__title-special-sub">
-                              مشاهده و خرید این کالا تنها با اپلیکیشن {{ $fa_store_name }} امکان‌پذیر می‌باشد
-                          </span>
-                          </div>
-                          <div class="c-product-box__title  js-ab-not-app-incredible-product">
-                            {{ $item->title_fa }}
-                          </div>
-                          <div class="c-product-box__digiplus c-product-box__digiplus--full u-invisible">
-                          <span class="c-product-box__digiplus-data c-digiplus-sign--before">
-                              ۰ تومان هدیه نقدی
-                          </span>
-                          </div>
-                          <div class="c-product-box__row c-product-box__row--price">
-                            <div class="c-price">
-                              <div class="c-price__value c-price__value--plp js-price-complete-details">
-                                <div class="c-price__value-wrapper">
-                                  ۳۹,۳۰۰,۰۰۰ <span class="c-price__currency">تومان</span></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="c-product-box__amazing">
-                            <div class="c-product-box__remained"></div>
-                          </div>
+                  </span><img alt="گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 256 گیگابایت"
+                              src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607433995.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
+                              class=" js-ab-not-app-incredible-product swiper-lazy swiper-lazy-loaded" loading="lazy">
                         </div>
-                      </li>
-                    </div>
-
-                  @endforeach
-
-                  <div class="swiper-slide c-carousel__slide swiper-slide-active" data-id="3893718" data-position="1" style="width: 316px;">
-                    <li>
-                      <a href=""
-                        data-id="3893718" class="c-product-box__box-link js-product-url js-carousel-ga-product-box">
-                      </a>
-                      <div class="js-product-cart c-product-box c-product-box--product-card c-product-box--has-overflow c-product-box--card-macro c-product-box--plus-badge " title="">
-                        <div class="c-product-box__img js-url js-snt-carousel_product" title="نام محصول واریانت">
-                          <span class="u-hidden c-product-box__title-special js-ab-app-incredible-product">
-                          شگفت‌انگیز اخـتـصـاصـی اپـلیـکیـشـن
-                          </span>
-                          <img alt="نام محصول واریانت" src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607433995.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" class=" js-ab-not-app-incredible-product swiper-lazy swiper-lazy-loaded" loading="lazy">
-                        </div>
-                        <div class="u-hidden c-product-box__title c-product-box__title--app-incredible js-ab-app-incredible-product">
-                          <span class="c-product-box__title-special-sub">
-                              مشاهده و خرید این کالا تنها با اپلیکیشن {{ $fa_store_name }} امکان‌پذیر می‌باشد
-                          </span>
-                        </div>
+                        <div
+                          class="u-hidden c-product-box__title c-product-box__title--app-incredible js-ab-app-incredible-product"><span
+                            class="c-product-box__title-special-sub">
+                  مشاهده و خرید این کالا تنها با اپلیکیشن {{ $fa_store_name }} امکان‌پذیر می‌باشد
+              </span></div>
                         <div class="c-product-box__title  js-ab-not-app-incredible-product">
                           گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 256 گیگابایت
+
                         </div>
-                        <div class="c-product-box__digiplus c-product-box__digiplus--full u-invisible">
-                          <span class="c-product-box__digiplus-data c-digiplus-sign--before">
-                              ۰ تومان هدیه نقدی
-                          </span>
-                        </div>
+                        <div class="c-product-box__digiplus c-product-box__digiplus--full u-invisible"><span
+                            class="c-product-box__digiplus-data c-digiplus-sign--before">
+                  ۰ تومان هدیه نقدی
+              </span></div>
                         <div class="c-product-box__row c-product-box__row--price">
                           <div class="c-price">
                             <div class="c-price__value c-price__value--plp js-price-complete-details">
@@ -2643,13 +2515,10 @@
                       </div>
                     </li>
                   </div>
-
                 </div>
                 <div class="swiper-button-prev js-swiper-button-prev swiper-button-disabled"></div>
                 <div class="swiper-button-next js-swiper-button-next"></div>
               </div>
-
-
             </div>
           </div>
           <div class="c-product__bottom-section u-mt-12 has-mini-buybox">
@@ -2688,7 +2557,8 @@
                         <div class="c-title__title-container"><h4 class="c-title__title">عنوان تست</h4></div>
                         <span class="c-title__description">آگهی شده</span></div>
                     </div>
-                    <div class="c-adplacement__badge ad-badge">
+                    <div class="c-adplacement__badge
+      ad-badge">
                       <div class="c-adplacement__badge-container ">
                         <div class="c-adplacement__badge-container--img"><img
                             src="https://www.digikala.com/static/files/52672319.svg"><span
@@ -2895,7 +2765,6 @@
                     @if ($filledAttrGCount > 1)
                       <a href="#" class="c-params__collapse--link js-open-product-params">نمایش همه مشخصات کالا</a>
                     @endif
-
                   </article>
                 </div>
 
@@ -2909,6 +2778,14 @@
                   <div class="c-content-expert__separator"></div>
                 </div>
 
+                {{--                <div class="c-faq js-product-tab-content js-faq-container" id="questions" data-method="questions"--}}
+                {{--                     data-fetch-from-service="1">--}}
+                {{--                  <div class="o-box__header">--}}
+                {{--                    <span class="o-box__title">پرسش و پاسخ</span>--}}
+                {{--                    <span class="o-box__header-desc">{{ $product->title_en }}</span></div>--}}
+                {{--                  <div class="js-content"></div>--}}
+                {{--                </div>--}}
+
               </div>
             </div>
             <div class="c-mini-buy-box-fixed">
@@ -2917,57 +2794,55 @@
                   فروش ویژه
                 </div>
                 <div class="c-mini-buy-box__product-info">
-                  @foreach($product->media as $image)
-                    @if($product->media && ($image->pivot->is_main == 1))
-                      <img class="c-mini-buy-box__product-info--img" src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $product->title_fa }}">
-                    @endif
-                  @endforeach
+                  <img class="c-mini-buy-box__product-info--img"
+                       src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607438980.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
+                       alt="{{ $product->title_fa }}">
                   <div class="c-mini-buy-box__product-info--info">
                     <div class="title">{{ $product->title_fa }}</div>
-                    <div class="colors ">
-                      <label data-color-code="#9E9E9E" class="js-variant-color" style="background-color: rgb(158, 158, 158);"></label>
-                      <span class="js-color-title">خاکستری</span>
-                    </div>
-                    <div class="sizes u-hidden">
-                      <span class="js-size-title"></span>
-                    </div>
+                    <div class="colors "><label data-color-code="#9E9E9E" class="js-variant-color"
+                                                style="background-color: rgb(158, 158, 158);"></label><span
+                        class="js-color-title">خاکستری</span></div>
+                    <div class="sizes u-hidden"><span class="js-size-title"></span></div>
                   </div>
                 </div>
                 <div class="c-mini-buy-box__row c-mini-buy-box__seller-digikala u-hidden js-mini-digikala-seller">
                   {{ $fa_store_name }}
                 </div>
-                <div class="c-mini-buy-box__row c-mini-buy-box__seller js-mini-not-digikala-seller">
-                  <i class="green-verified js-mini-is-trusted u-hidden"></i>
-                  <i class="blue-verified js-mini-is-official u-hidden"></i>
-                  <label class="js-mini-seller-name">{{ $fa_store_name }}</label>
-                </div>
-                <div class="c-mini-buy-box__row c-mini-buy-box__warranty js-guarantee-text">
-
+                <div class="c-mini-buy-box__row c-mini-buy-box__seller js-mini-not-digikala-seller"><i
+                    class="green-verified js-mini-is-trusted u-hidden"></i><i
+                    class="blue-verified js-mini-is-official u-hidden"></i><label class="js-mini-seller-name">همراه
+                    ماکان</label></div>
+                <div class="c-mini-buy-box__row c-mini-buy-box__warranty ">
+                  گارانتی ۱۸ ماهه همراه گستر نقره فام
                 </div>
                 <div class="c-mini-buy-box__row c-mini-buy-box__stock ">
                   موجود در انبار فروشنده
                 </div>
-{{--                <div class="c-mini-buy-box__row c-mini-buy-box__best-price js-data-best-price u-hidden">--}}
-{{--                  بهترین قیمت ۳۰ روز گذشته--}}
-{{--                </div>--}}
+                <div class="c-mini-buy-box__row c-mini-buy-box__best-price js-data-best-price u-hidden">
+                  بهترین قیمت ۳۰ روز گذشته
+                </div>
                 <div class="c-product__seller-row c-product__seller-row--price c-mini-buy-box__price-row">
                   <div class="c-product__seller-price-info">
                     <del class="c-product__mini-seller-price-prev js-rrp-price u-hidden">
-
+                      ۵۰,۹۹۰,۰۰۰
                     </del>
                     <div class="c-product__seller-price-off js-discount-value u-hidden">
                       ٪
                     </div>
                   </div>
                   <div class="c-product__mini-seller-price-real">
-                    <div class="c-product__mini-seller-price-pure js-price-value"></div>
+                    <div class="c-product__mini-seller-price-pure js-price-value">۵۱,۸۹۰,۰۰۰0000011</div>
                     <span class="c-mini-buy-box__toman">تومان</span></div>
                 </div>
-                <div class="c-mini-buy-box__btn-row">
-                  <a class="o-btn o-btn--contained-red-lg c-product__add-to-cart-btn js-add-to-cart js-btn-add-to-cart js-mini-add-to-cart js-ab-product-action" data-product-id="{{ $product->id }}" data-variant="" href="/cart/add/15488759/1/" data-event="add_to_cart" data-event-category="ecommerce" data-event-label="price: 509900000 - seller: marketplace - seller_name: {{ $fa_store_name }} - seller_rating: 81 - multiple_configs: True - position: 0">
+                <div class="c-mini-buy-box__btn-row"><a class="
+o-btn o-btn--contained-red-lg c-product__add-to-cart-btn js-add-to-cart js-btn-add-to-cart js-mini-add-to-cart js-ab-product-action"
+                                                        data-product-id="{{ $product->id }}"
+                                                        data-variant="{{ $item->variant->id }}"
+                                                        href="/cart/add/15488759/1/" data-event="add_to_cart"
+                                                        data-event-category="ecommerce"
+                                                        data-event-label="price: 509900000 - seller: marketplace - seller_name: شادی لند - seller_rating: 81 - multiple_configs: True - position: 0">
                     افزودن به سبد خرید
-                  </a>
-                </div>
+                  </a></div>
               </div>
               {{--              <a href="#suppliers">--}}
               {{--                <div--}}
@@ -3969,25 +3844,19 @@
       <div class="c-remodal-gallery__main js-level-one-gallery is-open">
         <div class="c-remodal-gallery__top-bar">
           <div class="c-remodal-gallery__tabs js-top-bar-tabs">
-            <div class="c-remodal-gallery__tab c-remodal-gallery__tab--selected js-gallery-tab" data-id="1">تصاویر
-              رسمی
-            </div>
+            <div class="c-remodal-gallery__tab c-remodal-gallery__tab--selected js-gallery-tab" data-id="1">تصاویر رسمی</div>
           </div>
           <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
         </div>
         <div class="c-remodal-gallery__content js-gallery-tab-content is-active" id="gallery-content-1">
           @foreach($product->media as $key => $image)
             @if($product->media()->exists())
-              <div
-                class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-{{ $key+1 }} {{ ($key == 0)? 'is-active js-img-main-1' : '' }}"
-                data-slide-title="Slide {{ $key+1 }}">
-                <img
-                  data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                  data-high-res-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                  class="pannable-image" title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
-                  src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                  loading="lazy">
-              </div>
+            <div class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-{{ $key+1 }} {{ ($key == 0)? 'is-active js-img-main-1' : '' }}" data-slide-title="Slide {{ $key+1 }}">
+              <img data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+                   data-high-res-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+                   class="pannable-image" title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
+                   src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15" loading="lazy">
+            </div>
             @endif
           @endforeach
           <div class="c-remodal-gallery__info">
@@ -3996,11 +3865,7 @@
               @if($product->media()->exists())
                 @foreach($product->media as $key => $image)
                   <div class="c-remodal-gallery__thumb js-image-thumb" data-order="{{ $key+1 }}">
-                    <img
-                      data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                      title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
-                      src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                      loading="lazy">
+                    <img data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type="" src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60" loading="lazy">
                   </div>
                 @endforeach
               @endif
@@ -4008,9 +3873,7 @@
             <div class="c-remodal-gallery__other-imgs js-comments-files-thumbnails-summary js-see-more-imgs"></div>
           </div>
         </div>
-        <div
-          class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
-          id="gallery-content-2"></div>
+        <div class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails" id="gallery-content-2"></div>
       </div>
       <div class="c-remodal-gallery__main js-level-two-gallery js-comments">
         <div class="c-remodal-gallery__top-bar">
@@ -4194,7 +4057,7 @@
                         type="checkbox" value="1" name="observed[sms]" checked="" id="notification-param-2"><span
                         class="c-ui-checkbox__check"></span></label></li>
                   <li><label class="c-form-notification__label" for="notification-param-3">سیستم پیام شخصی
-                      {{ $fa_store_name }}</label><label class="c-ui-checkbox"><input type="checkbox" value="1"
+                      دیجی‌کالا</label><label class="c-ui-checkbox"><input type="checkbox" value="1"
                                                                            name="observed[notification]" checked=""
                                                                            id="notification-param-3"><span
                         class="c-ui-checkbox__check"></span></label></li>
@@ -4239,7 +4102,7 @@
                 class="o-form__check-box-input js-auto-buy-dk-notification" name="autoBuy[notification]" value="1"
                 type="checkbox" checked=""><span class="o-form__check-box-sign"></span><span
                 class="js-ui-checkbox-label">
-            پیام شخصی {{ $fa_store_name }}
+            پیام شخصی دیجی‌کالا
         </span></label></div>
         </form>
         <div class="c-product-auto-buy__footer"><p class="c-product-auto-buy__plus-dsc" data-icon="Brand-Digiplus-Sign">
@@ -4290,7 +4153,7 @@
                         type="checkbox" value="1" name="observed[sms]" checked=""
                         id="incredible-notification-param-2"><span class="c-ui-checkbox__check"></span></label></li>
                   <li><label class="c-form-notification__label" for="incredible-notification-param-3">سیستم پیام شخصی
-                      {{ $fa_store_name }}</label><label class="c-ui-checkbox"><input type="checkbox" value="1"
+                      دیجی‌کالا</label><label class="c-ui-checkbox"><input type="checkbox" value="1"
                                                                            name="observed[notification]" checked=""
                                                                            id="incredible-notification-param-3"><span
                         class="c-ui-checkbox__check"></span></label></li>
@@ -4532,7 +4395,7 @@
               </div>
             </div>
             <div class="u-hidden " data-question="6" data-parent="5">
-              <div class="c-form-feedback__title">آدرس کالای مشابه در {{ $fa_store_name }}</div>
+              <div class="c-form-feedback__title">آدرس کالای مشابه در دیجی‌کالا</div>
               <div class="c-form-feedback__row js-valid-row">
                 <div class="c-form-feedback__col"><label class="c-ui-input"><input
                       class="c-ui-input__field c-ui-input__field--left-placeholder" type="text"
@@ -4598,7 +4461,7 @@
     <div class="remodal c-remodal-account remodal-is-initialized remodal-is-closed" data-remodal-id="login"
          role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
       <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-      <div class="c-remodal-account__headline">ورود به {{ $fa_store_name }}</div>
+      <div class="c-remodal-account__headline">ورود به دیجی‌کالا</div>
       <div class="c-remodal-account__content">
         <form class="c-form-account" id="loginFormModal" novalidate="novalidate">
           <div class="c-message-light c-message-light--info" id="login-form-msg"></div>
@@ -4622,7 +4485,7 @@
           </div>
           <div class="c-form-account__row c-form-account__row--submit">
             <div class="c-form-account__col">
-              <button class="btn-login login-button-js">ورود به {{ $fa_store_name }}</button>
+              <button class="btn-login login-button-js">ورود به دیجی‌کالا</button>
             </div>
           </div>
           <div class="c-form-account__link"><a data-snt-event="dkLoginClick"
@@ -4638,7 +4501,7 @@
           data-snt-event="dkLoginClick"
           data-snt-params="{&quot;type&quot;:&quot;signup&quot;,&quot;site&quot;:&quot;login-modal&quot;}"
           href="/users/login-register/?_back=https://www.digikala.com/product/dkp-3814476/%25DA%25AF%25D9%2588%25D8%25B4%25DB%258C-%25D9%2585%25D9%2588%25D8%25A8%25D8%25A7%25DB%258C%25D9%2584-%25D8%25A7%25D9%25BE%25D9%2584-%25D9%2585%25D8%25AF%25D9%2584-iphone-12-pro-a2408-%25D8%25AF%25D9%2588-%25D8%25B3%25DB%258C%25D9%2585-%25DA%25A9%25D8%25A7%25D8%25B1%25D8%25AA-%25D8%25B8%25D8%25B1%25D9%2581%25DB%258C%25D8%25AA-128-%25DA%25AF%25DB%258C%25DA%25AF%25D8%25A7%25D8%25A8%25D8%25A7%25DB%258C%25D8%25AA"
-          class="btn-link-spoiler">ثبت‌نام در {{ $fa_store_name }}</a></div>
+          class="btn-link-spoiler">ثبت‌نام در دیجی‌کالا</a></div>
     </div>
   </div>
 
