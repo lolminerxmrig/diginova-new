@@ -33,7 +33,11 @@
         $promotion_price = null;
         if ($item->promotions()->exists()) {
           $promotion_price = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
-          $promotion_timer = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first()->end_at;
+          if ($item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->exists()) {
+            $promotion_timer = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first()->end_at;
+          } else {
+            $promotion_timer = null;
+          }
         }
         if ($promotion_price == null) {
           $promotion_price = $item->sale_price;
@@ -236,17 +240,19 @@
     var activateUrl = "\/digiclub\/activate\/";
   </script>
 
-  <script src="{{ asset('assets/js/sentry.js') }} "></script>
+  <script src="https://www.digikala.com/static/merged/9de0886d.js"></script>
+{{--  <script src="{{ asset('assets/js/sentry.js') }}"></script>--}}
   <script src="{{ asset('assets/new/js/jwplayer.js') }} "></script>
   <script src="{{ asset('assets/new/js/jwpsrv.js') }} "></script>
   <script src="{{ asset('assets/new/js/jwplayer.core.controls.js') }} "></script>
   <script src="{{ asset('assets/new/js/jwplayer.core.controls.html5.js') }} "></script>
   <script src="{{ asset('assets/new/js/provider.hlsjs.js') }} "></script>
-  {{--  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>--}}
-  {{--  <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>--}}
-  {{--  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>--}}
-  {{--  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>--}}
-  <script src="{{ asset('assets/new/js/url.min.js') }} "></script>
+{{--    <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>--}}
+{{--    <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>--}}
+{{--    <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>--}}
+{{--    <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>--}}
+  <script src="{{ asset('assets/new/js/url.min.js') }}"></script>
+{{--  <script src="https://www.digikala.com/static/merged/3cf6da08.js"></script>--}}
 
   <style>
     body {
@@ -420,7 +426,7 @@
                                     class="js-circle-variant-color c-circle-variant c-circle-variant--color" data-code="{{ $item->variant->value }}">
                                   <input type="radio" value="{{ $item->variant_code }}" name="color" id="variant" class="js-variant-selector js-color-filter-item"
 {{--                                         {{ $item->variant->variant_code }}--}}
-                                     checked="" data-title="{{ $item->variant->name }}" data-type="color">
+                                     {{ ($variant_defualt->id == $item->id)? 'checked' : '' }} data-title="{{ $item->variant->name }}" data-type="color">
                                   <span class="c-circle-variant__border"></span>
                                   <span class="c-tooltip c-tooltip--small-bottom c-tooltip--short">{{ $item->variant->name }}</span>
                                   <span class="c-circle-variant__shape" style="background-color: {{ $item->variant->value }}"></span>
@@ -1292,101 +1298,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="c-params js-product-tab-content" id="params" data-method="params">
-                  <article class="c-params__border-bottom">
-                    <div class="o-box__header">
-                      <span class="o-box__title">مشخصات کالا</span>
-                      <span class="o-box__header-desc">{{ $product->title_en }}</span>
-                    </div>
 
-                    @if ($product->attributes()->exists())
+                @if ($product->attributes()->exists())
+                  <div class="c-params js-product-tab-content" id="params" data-method="params">
+                    <article class="c-params__border-bottom">
+                      <div class="o-box__header">
+                        <span class="o-box__title">مشخصات کالا</span>
+                        <span class="o-box__header-desc">{{ $product->title_en }}</span>
+                      </div>
+
                       @foreach($product->category[0]->attributeGroups as $key => $attrGroup)
-                        @if ($key > 0)
-                          @continue
-                        @endif
-                        <?php $filledAttrG = null; ?>
-
-                        @foreach($attrGroup->attributes as $attribute)
-                          @if(isset($product->attributes()->find($attribute->id)->pivot->product_id))
-                            <?php $filledAttrG = true; ?>
-                          @endif
-                        @endforeach
-
-                        @if (!is_null($filledAttrG))
-                          <section>
-
-                            <h3 class="c-params__title">{{ $attrGroup->name }}</h3>
-
-                            <ul class="c-params__list">
-                              @foreach($attrGroup->attributes->sortBy('position') as $attribute)
-                                <li>
-                                  @if(isset($product->attributes()->find($attribute->id)->pivot->value) && !is_null($attribute->name))
-                                    <div class="c-params__list-key"><span class="block">{{ $attribute->name }}</span>
-                                    </div>
-                                  @endif
-
-                                  @if (($attribute->type == 1 || $attribute->type == 2) && isset($product->attributes()->find($attribute->id)->pivot->value))
-                                    <div class="c-params__list-value">
-                                    <span class="block">
-                                      {{ $product->attributes()->find($attribute->id)->pivot->value }}
-                                    </span>
-                                    </div>
-                                  @elseif ($attribute->type == 3 && isset($product->attributes->find($attr->id)->pivot->value_id) && ($product->attributes->find($attr->id)->pivot->value_id == $value->id))
-                                    <div class="c-params__list-value">
-                                    <span class="block">
-                                       @foreach($attribute->values as $value)
-                                        {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
-                                      @endforeach
-                                    </span>
-                                    </div>
-                                  @elseif ($attribute->type == 4)
-                                    @php $arrays = null; @endphp
-                                    @foreach($product->attributes as $pAttr)
-                                      @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
-                                        <?php $pArray[] = $pAttr->pivot->value_id; ?>
-                                      @endif
-                                    @endforeach
-
-                                    <?php $has_value = false; ?>
-                                    @foreach($attribute->values as $key => $value)
-                                      @if ($has_value == true)
-                                        @continue
-                                      @endif
-                                      @if(in_array($value->id, $pArray))
-                                        <?php $has_value = true; ?>
-                                      @endif
-                                    @endforeach
-
-                                    @if($has_value == true)
-                                      <div class="c-params__list-value">
-                                        <span class="block">
-                                          @foreach($attribute->values as $key => $value)
-                                            {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attribute->values) !== $key+1)? '، ' : '' }}
-                                          @endforeach
-                                        </span>
-                                      </div>
-                                    @endif
-
-                                  @elseif ($attribute->type == 5 && isset($product->attributes->find($attribute->id)->pivot->value))
-                                    <div class="c-params__list-value">
-                                    <span class="block">
-                                      {{ $product->attributes->find($attribute->id)->pivot->value }} {{ ' ' . (isset($attribute->unit)? $attribute->unit->name : '')  }}
-                                    </span>
-                                    </div>
-                                  @endif
-                                </li>
-                              @endforeach
-                            </ul>
-                          </section>
-                        @endif
-                      @endforeach
-                    @endif
-
-
-                    @if ($product->attributes()->exists())
-                      <div class="c-params__collapse--content js-product-params-container">
-                        @foreach($product->category[0]->attributeGroups as $key => $attrGroup)
-                          @if ($key < 1)
+                          @if ($key > 0)
                             @continue
                           @endif
                           <?php $filledAttrG = null; ?>
@@ -1412,17 +1334,17 @@
 
                                     @if (($attribute->type == 1 || $attribute->type == 2) && isset($product->attributes()->find($attribute->id)->pivot->value))
                                       <div class="c-params__list-value">
-                                    <span class="block">
-                                      {{ $product->attributes()->find($attribute->id)->pivot->value }}
-                                    </span>
+                                      <span class="block">
+                                        {{ $product->attributes()->find($attribute->id)->pivot->value }}
+                                      </span>
                                       </div>
                                     @elseif ($attribute->type == 3 && isset($product->attributes->find($attr->id)->pivot->value_id) && ($product->attributes->find($attr->id)->pivot->value_id == $value->id))
                                       <div class="c-params__list-value">
-                                    <span class="block">
-                                       @foreach($attribute->values as $value)
-                                        {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
-                                      @endforeach
-                                    </span>
+                                      <span class="block">
+                                         @foreach($attribute->values as $value)
+                                          {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
+                                        @endforeach
+                                      </span>
                                       </div>
                                     @elseif ($attribute->type == 4)
                                       @php $arrays = null; @endphp
@@ -1444,19 +1366,19 @@
 
                                       @if($has_value == true)
                                         <div class="c-params__list-value">
-                                        <span class="block">
-                                          @foreach($attribute->values as $key => $value)
-                                            {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attribute->values) !== $key+1)? '، ' : '' }}
-                                          @endforeach
-                                        </span>
+                                          <span class="block">
+                                            @foreach($attribute->values as $key => $value)
+                                              {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attribute->values) !== $key+1)? '، ' : '' }}
+                                            @endforeach
+                                          </span>
                                         </div>
                                       @endif
 
                                     @elseif ($attribute->type == 5 && isset($product->attributes->find($attribute->id)->pivot->value))
                                       <div class="c-params__list-value">
-                                    <span class="block">
-                                      {{ $product->attributes->find($attribute->id)->pivot->value }} {{ ' ' . (isset($attribute->unit)? $attribute->unit->name : '')  }}
-                                    </span>
+                                      <span class="block">
+                                        {{ $product->attributes->find($attribute->id)->pivot->value }} {{ ' ' . (isset($attribute->unit)? $attribute->unit->name : '')  }}
+                                      </span>
                                       </div>
                                     @endif
                                   </li>
@@ -1465,27 +1387,109 @@
                             </section>
                           @endif
                         @endforeach
-                      </div>
-                    @endif
 
+                      <div class="c-params__collapse--content js-product-params-container">
+                          @foreach($product->category[0]->attributeGroups as $key => $attrGroup)
+                            @if ($key < 1)
+                              @continue
+                            @endif
+                            <?php $filledAttrG = null; ?>
 
-                    <?php $filledAttrGCount = 0; ?>
-                    @if ($product->category[0]->attributeGroups()->exists())
-                      @foreach($product->category[0]->attributeGroups as $key => $attrGroup)
-                        @foreach($attrGroup->attributes as $attribute)
-                          @if(isset($product->attributes()->find($attribute->id)->pivot->product_id))
-                            <?php $filledAttrGCount += 1; ?>
-                            @break
-                          @endif
+                            @foreach($attrGroup->attributes as $attribute)
+                              @if(isset($product->attributes()->find($attribute->id)->pivot->product_id))
+                                <?php $filledAttrG = true; ?>
+                              @endif
+                            @endforeach
+
+                            @if (!is_null($filledAttrG))
+                              <section>
+
+                                <h3 class="c-params__title">{{ $attrGroup->name }}</h3>
+
+                                <ul class="c-params__list">
+                                  @foreach($attrGroup->attributes->sortBy('position') as $attribute)
+                                    <li>
+                                      @if(isset($product->attributes()->find($attribute->id)->pivot->value) && !is_null($attribute->name))
+                                        <div class="c-params__list-key"><span class="block">{{ $attribute->name }}</span>
+                                        </div>
+                                      @endif
+
+                                      @if (($attribute->type == 1 || $attribute->type == 2) && isset($product->attributes()->find($attribute->id)->pivot->value))
+                                        <div class="c-params__list-value">
+                                      <span class="block">
+                                        {{ $product->attributes()->find($attribute->id)->pivot->value }}
+                                      </span>
+                                        </div>
+                                      @elseif ($attribute->type == 3 && isset($product->attributes->find($attr->id)->pivot->value_id) && ($product->attributes->find($attr->id)->pivot->value_id == $value->id))
+                                        <div class="c-params__list-value">
+                                      <span class="block">
+                                         @foreach($attribute->values as $value)
+                                          {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
+                                        @endforeach
+                                      </span>
+                                        </div>
+                                      @elseif ($attribute->type == 4)
+                                        @php $arrays = null; @endphp
+                                        @foreach($product->attributes as $pAttr)
+                                          @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
+                                            <?php $pArray[] = $pAttr->pivot->value_id; ?>
+                                          @endif
+                                        @endforeach
+
+                                        <?php $has_value = false; ?>
+                                        @foreach($attribute->values as $key => $value)
+                                          @if ($has_value == true)
+                                            @continue
+                                          @endif
+                                          @if(in_array($value->id, $pArray))
+                                            <?php $has_value = true; ?>
+                                          @endif
+                                        @endforeach
+
+                                        @if($has_value == true)
+                                          <div class="c-params__list-value">
+                                          <span class="block">
+                                            @foreach($attribute->values as $key => $value)
+                                              {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attribute->values) !== $key+1)? '، ' : '' }}
+                                            @endforeach
+                                          </span>
+                                          </div>
+                                        @endif
+
+                                      @elseif ($attribute->type == 5 && isset($product->attributes->find($attribute->id)->pivot->value))
+                                        <div class="c-params__list-value">
+                                      <span class="block">
+                                        {{ $product->attributes->find($attribute->id)->pivot->value }} {{ ' ' . (isset($attribute->unit)? $attribute->unit->name : '')  }}
+                                      </span>
+                                        </div>
+                                      @endif
+                                    </li>
+                                  @endforeach
+                                </ul>
+                              </section>
+                            @endif
+                          @endforeach
+                        </div>
+
+                      <?php $filledAttrGCount = 0; ?>
+                      @if ($product->category[0]->attributeGroups()->exists())
+                        @foreach($product->category[0]->attributeGroups as $key => $attrGroup)
+                          @foreach($attrGroup->attributes as $attribute)
+                            @if(isset($product->attributes()->find($attribute->id)->pivot->product_id))
+                              <?php $filledAttrGCount += 1; ?>
+                              @break
+                            @endif
+                          @endforeach
                         @endforeach
-                      @endforeach
-                    @endif
-                    @if ($filledAttrGCount > 1)
-                      <a href="#" class="c-params__collapse--link js-open-product-params">نمایش همه مشخصات کالا</a>
-                    @endif
+                      @endif
+                      @if ($filledAttrGCount > 1)
+                        <a href="#" class="c-params__collapse--link js-open-product-params">نمایش همه مشخصات کالا</a>
+                      @endif
 
-                  </article>
-                </div>
+                    </article>
+                  </div>
+                @endif
+
 
                 <div class="c-comments js-product-tab-content" id="comments" data-method="comments"
                      data-fetch-from-service="1">

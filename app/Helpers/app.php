@@ -182,16 +182,19 @@ function variant_defualt($product, $type = 'model')
       $min_promotion_variants = null;
       foreach ($product->variants as $variant)
       {
-        if ($variant->promotions()->exists() && $variant->promotions()->min('promotion_price') > $min_promotion_price)
+        if ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists() && $variant->promotions()->min('promotion_price') > $min_promotion_price)
         {
-          $min_promotion_price = ($variant->promotions()->exists())? $variant->promotions()->min('promotion_price') : $min_promotion_price;
-          $min_promotion_variants = $variant->whereHas('promotions', function (Builder $query) use ($min_promotion_price) {
-            $query->where('promotion_price', $min_promotion_price);
-          })->get();
+          $min_promotion_price = ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists())? $variant->promotions()->min('promotion_price') : $min_promotion_price;
+          if ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
+            $min_promotion_variants = $variant->whereHas('promotions', function (Builder $query) use ($min_promotion_price) {
+              $query->where('promotion_price', $min_promotion_price);
+            })->get();
+          }
         }
       }
 
-      if ($min_variant_price < $min_promotion_price) {
+      \Illuminate\Support\Facades\Log::info('min variant ' . $min_variant_price);
+      if (($min_variant_price <= $min_promotion_price) || ($min_promotion_price == 0)) {
         $max_stock_count = $min_variants->max('stock_count');
         return $variant_defualt = $min_variants->where('stock_count', $max_stock_count)->first();
       }
