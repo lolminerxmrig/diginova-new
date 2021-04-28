@@ -46,7 +46,7 @@ class ProductHasVariant extends Model
     protected $table = "product_has_variants";
 
     public function warranty(){
-        return $this->belongsTo(Warranty::class);
+      return $this->belongsTo(Warranty::class);
     }
 
     public function variant(){

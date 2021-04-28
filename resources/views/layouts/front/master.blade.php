@@ -387,7 +387,6 @@
         </span>
     </div>
 
-    <hr/>
     <div class="c-footer__middlebar">
       <div class="c-footer__links">
         @foreach(\Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null) as $nav)

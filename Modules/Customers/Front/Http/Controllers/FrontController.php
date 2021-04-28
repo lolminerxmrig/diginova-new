@@ -29,8 +29,28 @@ class FrontController extends Controller
   {
     $product = Product::where('product_code', $product_code)->with('variants')->firstOrFail();
     $variant_defualt = variant_defualt($product);
-//    dd($variant_defualt->promotions);
-    return view('front::product', compact('product', 'variant_defualt'));
+
+    $variant_ids = [];
+    foreach ($product->variants as $item) {
+      if (!in_array($item->variant->id, $variant_ids)) {
+        $variant_ids[] = $item->variant->id;
+      }
+    }
+
+    return view('front::product', compact('product', 'variant_defualt', 'variant_ids'));
+  }
+
+  public function productPageTest($product_code)
+  {
+    $product = Product::where('product_code', $product_code)->with('variants')->firstOrFail();
+    $variant_ids = [];
+    foreach ($product->variants as $item) {
+      if (!in_array($item->variant->id, $variant_ids)) {
+        $variant_ids[] = $item->variant->id;
+      }
+    }
+
+    dd($variant_ids);
   }
 
   public function addToFavorites($product_id)
@@ -142,7 +162,10 @@ class FrontController extends Controller
 
   }
 
+  public function addToCart($product_variant)
+  {
 
+  }
 
 
 }
