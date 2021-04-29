@@ -25,144 +25,146 @@
     var supernova_tracker_url = "";
     var variants = {
       @if ($product->variants()->exists())
-        @foreach ($product->variants->sortBy('sale_price') as $key => $item)
+        @foreach ($product->variants as $key => $item)
           @if($item->variant()->exists() && !is_null($item->variant->value))
-            <?php
-              $promotion_price = null;
-              if ($item->promotions()->exists()) {
-                $promotion_price = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
-                if ($item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->exists()) {
-                  $promotion_timer = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first()->end_at;
-                  $promotion = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first();
-                } else {
-                  $promotion_timer = null;
-                }
+          <?php
+            $promotion_price = null;
+            if ($item->promotions()->exists()) {
+              $promotion_price = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+              if ($item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->exists()) {
+                $promotion_timer = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first()->end_at;
+                $promotion = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first();
+              } else {
+                $promotion_timer = null;
+              }
 
-              }
-              if ($promotion_price == null) {
-                $promotion_price = $item->sale_price;
-                $promotion_timer = 'false';
-                $promotion = null;
-              }
-            ?>
-            "{{ $item->variant_code }}": {
-              "id": {{ $item->variant_code }},
-              "active": {{ ($item->status == 1)? 'true' : 'false' }},
-              "active_digistyle": true,
-              "ovl_selling_active": true,
-              "title": "{{ $product->title_fa }}",
-              @if($item->variant()->exists() && !is_null($item->variant->value))
-              "color": {
-                "id": {{ $item->variant->id }},
-                "title": "{{ $item->variant->name }}",
-                "code": "{{ $item->variant->value }}",
-                "hexCode": "{{ $item->variant->value }}",
-                "hex_code": "{{ $item->variant->value }}"
-              },
-              @else
-              "size": [],
-              @endif
-              "site": "{{ $site_url }}",
-              "warranty": {
-                "id": {{ $item->warranty->id }},
-                "title": "{{ $item->warranty->name }}",
-                "description": null,
-                "phone": null,
-                "address": null,
-                "working_hours": null,
-                "condition": null
-              },
-              "marketplace_seller": {
-              "id": 0,
-              "name": "{{ $fa_store_name }}",
-              "rate": 0,
-              "rateCount": 0,
-              "rating": {
-                "cancel_percentage": 0,
-                "cancel_summarize": "excellent",
-                "return_percentage": 0,
-                "return_summarize": "good",
-                "ship_on_time_percentage": 0,
-                "ship_on_time_summarize": "excellent",
-                "final_score": 0,
-                "final_percentage": 0
-              },
-              "stars": 0,
-              "is_trusted": false,
-              "is_official_seller": false,
-              "is_roosta": false,
-              "url": "",
-              "registerTimeAgo": ""
-            },
-              "leadTime": 0,
-              "shipping_type": "digikala",
-              "gifts": [],
-              "gift_product_ids": [],
-              "seller_lead_time": 0,
-              "market_place_selling_stock": 5,
-              "is_fresh": false,
-              "scheduled_stock": false,
-              "promotion_price_id": null,
-              "is_digikala_owner": {{ (\Modules\Staff\Setting\Models\Setting::where('name', 'symbol_image')->first()->media()->exists())? 'true' : 'false' }},
-              "rank": 0,
-              "sr": null,
-              "has_similar_variants": true,
-              "fast_shopping_badge": false,
-              "fast_shopping_confirm": false,
-              "is_multi_warehouse": false,
-              "is_ship_by_seller": false,
-              "is_eligible_for_jet_delivery": false,
-              "plus_cash_back": null,
-              "stats": null,
-              "available_on_website": {{ ($item->stock_count > 0)? 'true' : 'false' }},
-              "provider": "digikala",
-              "is_heavy": false,
-              "is_electronic": false,
-              "sbs_seller_cities": [0],
-              "price_list": {
-                "id":0{{ $item->variant_code }},
-                "discount_percent": null,
-                "rrp_price": {{ $item->sale_price }},
-                "selling_price": {{ $promotion_price }},
-                "is_incredible_offer": false,
-                "is_plus_offer": false,
-                "is_sponsored_offer": false,
-                "is_locked_for_plus": false,
-                "promotion_id": null,
-                "timer": null,
-                "pre_sell": false,
-                "variant_id": {{ $item->variant_code }},
-                "orderLimit": {{ $item->max_order_count }},
-                "initial_limit": null,
-                "tags": null,
-                "cache_key_created_at": "",
-                "cache_update_source": "supernova-digikala-desktop",
-                "discount_amount": 0,
-                "discount": 0,
-                "show_discount_badge": false,
-                "marketable_stock": {{ $item->stock_count }},
-                "plus_variant_cash_back": 0
-              },
-              "addToCartUrl": "{{ route('front.addToCart', $item->variant_code) }}",
-              "addToYaldaCartUrl": "",
-              "dcPoint": 8,
-              "is_free_shipment": false,
-              "providerData": {
-                "description": "تست پروایدر",
-                "providers": [{
-                  "title": "عنوان پروایدر",
-                  "description": "توضیح پروایدر"
-                }],
-                "hasLeadTime": false,
-                "badge_type": "without_lead_time"
-              },
-              "newProviderData": [{
-                "type": "digikala",
-                "has_lead_time": false,
-                "text": "تکست پرووایدر جدید"
-              }],
-              "isExistsInWarehouse": {{ ($item->stock_count !== 0)? 'true' : 'false' }}
-            },
+            }
+            if ($promotion_price == null) {
+              $promotion_price = $item->sale_price;
+              $promotion_timer = 'false';
+              $promotion = null;
+            }
+          ?>
+          "{{ $item->variant_code }}": {
+        "id": {{ $item->variant_code }},
+        "active": {{ ($item->status == 1)? 'true' : 'false' }},
+        "active_digistyle": true,
+        "ovl_selling_active": true,
+        "title": "{{ $product->title_fa }}",
+
+        @if($item->variant()->exists() && !is_null($item->variant->value))
+        "color": {
+          "id": {{ $item->variant->id }},
+          "title": "{{ $item->variant->name }}",
+          "code": "{{ $item->variant->value }}",
+          "hexCode": "{{ $item->variant->value }}",
+          "hex_code": "{{ $item->variant->value }}"
+        },
+        @else
+        "size": [],
+        @endif
+        "site": "{{ $site_url }}",
+        "warranty": {
+          "id": {{ $item->warranty->id }},
+          "title": "{{ $item->warranty->name }}",
+          "description": null,
+          "phone": null,
+          "address": null,
+          "working_hours": null,
+          "condition": null
+        },
+        "marketplace_seller": {
+          "id": 0,
+          "name": "",
+          "rate": 0,
+          "rateCount": 0,
+          "rating": {
+            "cancel_percentage": 0,
+            "cancel_summarize": "excellent",
+            "return_percentage": 0,
+            "return_summarize": "good",
+            "ship_on_time_percentage": 0,
+            "ship_on_time_summarize": "excellent",
+            "final_score": 0,
+            "final_percentage": 0
+          },
+          "stars": 0,
+          "is_trusted": false,
+          "is_official_seller": false,
+          "is_roosta": false,
+          "url": "",
+          "registerTimeAgo": ""
+        },
+        "leadTime": 0,
+        "shipping_type": "digikala",
+        "gifts": [],
+        "gift_product_ids": [],
+        "seller_lead_time": 0,
+        "market_place_selling_stock": 5,
+        "is_fresh": false,
+        "scheduled_stock": false,
+        "promotion_price_id": null,
+        "is_digikala_owner": false,
+        "rank": 0,
+        "sr": null,
+        "has_similar_variants": true,
+        "fast_shopping_badge": false,
+        "fast_shopping_confirm": false,
+        "is_multi_warehouse": false,
+        "is_ship_by_seller": false,
+        "is_eligible_for_jet_delivery": false,
+        "plus_cash_back": null,
+        "stats": null,
+        "available_on_website": {{ ($item->stock_count > 0)? 'true' : 'false' }},
+        "provider": "digikala",
+        "is_heavy": false,
+        "is_electronic": false,
+        "sbs_seller_cities": [0],
+        "price_list": {
+          "id":0{{ $item->variant_code }},
+          "discount_percent": null,
+          "rrp_price": {{ $item->sale_price }},
+          "selling_price": {{ $promotion_price }},
+          "is_incredible_offer": false,
+          "is_plus_offer": false,
+          "is_sponsored_offer": false,
+          "is_locked_for_plus": false,
+          "promotion_id": {{ !is_null($promotion)? $promotion->id : '' }},
+          "timer": @if ($promotion_timer !== 'false') {{ "timer" . ':' }}
+          "{{ $promotion_timer }}" @else {{ '"timer"' . ':' . 'false' }} @endif,
+          "pre_sell": false,
+          "variant_id": {{ $item->variant_code }},
+          "orderLimit": {{ $item->max_order_count }},
+          "initial_limit": null,
+          "tags": null,
+          "cache_key_created_at": "",
+          "cache_update_source": "supernova-digikala-desktop",
+          "discount_amount": 0,
+          "discount": 0,
+          "show_discount_badge": false,
+          "marketable_stock": {{ $item->stock_count }},
+          "plus_variant_cash_back": 0
+        },
+        "addToCartUrl": "{{ route('front.addToCart', $item->variant_code) }}",
+        "addToYaldaCartUrl": "",
+        "dcPoint": 8,
+        "is_free_shipment": false,
+        "providerData": {
+          "description": "تست پروایدر",
+          "providers": [{
+            "title": "عنوان پروایدر",
+            "description": "توضیح پروایدر"
+          }],
+          "hasLeadTime": false,
+          "badge_type": "without_lead_time"
+        },
+        "newProviderData": [{
+          "type": "digikala",
+          "has_lead_time": false,
+          "text": "تکست پرووایدر جدید"
+        }],
+        "isExistsInWarehouse": {{ ($item->stock_count !== 0)? 'true' : 'false' }}
+      },
           @endif
         @endforeach
       @endif
@@ -183,7 +185,7 @@
       "category_id": {{ $product->category()->first()->id }},
       "brand": "{{ $product->brand->name }}",
       "variant": {{ $item->variant_code }},
-      "price": {{ $item->sale_price }},
+      "price": {{ $item->price }},
       "discount_percent": {{ !is_null($promotion)? $promotion->percent : 0 }},
       "quantity": 1
     };
@@ -286,10 +288,10 @@
   <script src="{{ asset('assets/new/js/jwplayer.core.controls.html5.js') }} "></script>
   <script src="{{ asset('assets/new/js/provider.hlsjs.js') }} "></script>
   <script src="{{ asset('assets/new/js/url.min.js') }}"></script>
-{{--  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>--}}
-{{--    <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>--}}
-{{--    <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>--}}
-{{--    <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>--}}
+  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>
+{{--  <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>--}}
+{{--  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>--}}
+{{--  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>--}}
 
 
   <style>
@@ -329,6 +331,8 @@
     <div id="content">
       <div class="o-page js-product-page c-product-page" data-product-id="{{ $product->id }}">
         <div class="container">
+
+
           <div class="c-product__nav-container">
             <nav class="js-breadcrumb ">
               <ul vocab="https://schema.org/" typeof="BreadcrumbList" class="c-breadcrumb">
@@ -395,27 +399,76 @@
 
 
                   <div class="c-product__config-wrapper">
-                    @if (!is_null($variant_ids) && count($variant_ids))
+
+                    @if ($product->variants()->exists())
                       <div class="c-product__circle-variants">
                         <div class="c-product__circle-variants__title">
                           <header>رنگ :</header>
                           <span class="js-color-title"></span>
                         </div>
-                        <ul class="js-product-variants">
+
+
+                        @if (!is_null($variant_ids) && count($variant_ids))
+                            <ul class="js-product-variants">
                               @foreach($variant_ids as $id)
                                 <?php $variant = \Modules\Staff\Variant\Models\Variant::find($id); ?>
-                                  <li class="js-c-ui-variant c-circle-variant__item" data-event="config_change" data-event-category="product_page" data-event-label="change: color">
-                                    <label class="js-circle-variant-color c-circle-variant c-circle-variant--color" data-code="{{ $variant->value }}" data-snt-event="dkProductPageClick" data-snt-params='{"item":"change-color","item_option":"{{ $variant->name }}"}'>
-                                      <input class="js-variant-selector js-color-filter-item" data-title="{{ $variant->name }}" data-type="color" id="variant" name="color" type="radio" value="{{ $variant->id }}" {{ ($variant_defualt->variant->id == $id)? 'checked' : '' }}>
-                                      <span class="c-circle-variant__border"></span>
-                                      <span class="c-tooltip c-tooltip--small-bottom c-tooltip--short">{{ $variant->name }}</span>
-                                      <span class="c-circle-variant__shape" style="background-color: {{ $variant->value }}"></span>
-                                    </label>
-                                  </li>
+                                <li class="js-c-ui-variant c-circle-variant__item" data-event="config_change" data-event-category="product_page" data-event-label="change: color">
+                                  <label class="js-circle-variant-color c-circle-variant c-circle-variant--color"
+                                    data-code="{{ $variant->value }}" data-snt-event="dkProductPageClick"
+                                    data-snt-params="{&quot;item&quot;:&quot;change-color&quot;,&quot;item_option&quot;:&quot;{{ $variant->name }}&quot;}">
+                                    <input class="js-variant-selector js-color-filter-item" data-title="{{ $variant->name }}"
+                                      data-type="color" id="variant" name="color" type="radio" value="{{ $variant->id }}" {{ ($variant_defualt->variant->id == $id)? 'checked' : '' }}>
+                                    <span class="c-circle-variant__border"></span>
+                                    <span class="c-tooltip c-tooltip--small-bottom c-tooltip--short">{{ $variant->name }}</span>
+                                    <span class="c-circle-variant__shape" style="background-color: {{ $variant->value }}"></span>
+                                  </label>
+                                </li>
                               @endforeach
+                            @endif
                           </ul>
-                      </div>
-                    @endif
+                      @endif
+                    </div>
+
+                    {{--                    <div class="c-product__size-wrapper">--}}
+                    {{--                      <div class="c-product__size-label">--}}
+                    {{--                        اندازه :--}}
+                    {{--                      </div>--}}
+                    {{--                      <div class="c-product__product-size-wrapper">--}}
+                    {{--                        <div class="selectric-wrapper selectric-c-product__size-dropdown selectric-js-size-selector selectric-js-variant-selector">--}}
+                    {{--                          <div class="selectric-hide-select">--}}
+                    {{--                            <select class="c-product__size-dropdown js-size-selector js-variant-selector " data-type="size" name="size" tabindex="-1">--}}
+                    {{--                              <option value="66" selected="">--}}
+                    {{--                                L--}}
+                    {{--                              </option>--}}
+                    {{--                              <option value="67">--}}
+                    {{--                                XL--}}
+                    {{--                              </option>--}}
+
+                    {{--                            </select>--}}
+                    {{--                          </div>--}}
+                    {{--                          <div class="selectric">--}}
+                    {{--                            <span class="label">--}}
+                    {{--                                L--}}
+                    {{--                            </span>--}}
+                    {{--                            <b class="button">▾</b>--}}
+                    {{--                          </div>--}}
+                    {{--                          <div class="selectric-items" tabindex="-1">--}}
+                    {{--                            <div class="selectric-scroll">--}}
+                    {{--                              <ul>--}}
+                    {{--                                <li data-index="0" class="selected">--}}
+                    {{--                                  L--}}
+                    {{--                                </li>--}}
+                    {{--                                <li data-index="1" class="last">--}}
+                    {{--                                  XL--}}
+                    {{--                                </li>--}}
+                    {{--                              </ul>--}}
+                    {{--                            </div>--}}
+                    {{--                          </div>--}}
+                    {{--                          <input class="u-hidden" tabindex="0">--}}
+                    {{--                        </div>--}}
+                    {{--                      </div>--}}
+                    {{--                    </div>--}}
+
                     @if ($product->attributes()->exists())
                       <div class="c-product__params js-is-expandable" data-collapse-count="3">
                         <ul data-title="ویژگی‌های کالا">
@@ -429,10 +482,10 @@
                                 <span>{{ $product->attributes->find($attr->id)->pivot->value }}</span>
                               @elseif ($attr->type == 3)
                                 <span>
-                                   @foreach($attr->values as $value)
+                                     @foreach($attr->values as $value)
                                     {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
                                   @endforeach
-                                </span>
+                                  </span>
                               @elseif ($attr->type == 4)
 
                                 @php $arrays = null @endphp
@@ -443,10 +496,10 @@
                                 @endforeach
 
                                 <span>
-                                    @foreach($attr->values as $key => $value)
+                                      @foreach($attr->values as $key => $value)
                                     {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attr->values) !== $key+1)? '، ' : '' }}
                                   @endforeach
-                                  </span>
+                                    </span>
 
                               @elseif ($attr->type == 5)
                                 <span>{{ $product->attributes->find($attr->id)->pivot->value . ' ' . (isset($attr->unit)? $attr->unit->name : '')  }}</span>
@@ -464,10 +517,10 @@
                                 <span>{{ $product->attributes->find($attr->id)->pivot->value }}</span>
                               @elseif ($attr->type == 3)
                                 <span>
-                                   @foreach($attr->values as $value)
+                                     @foreach($attr->values as $value)
                                     {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
                                   @endforeach
-                                </span>
+                                  </span>
                               @elseif ($attr->type == 4)
 
                                 @php $arrays = null @endphp
@@ -478,10 +531,10 @@
                                 @endforeach
 
                                 <span>
-                                    @foreach($attr->values as $key => $value)
+                                      @foreach($attr->values as $key => $value)
                                     {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attr->values) !== $key+1)? '، ' : '' }}
                                   @endforeach
-                                  </span>
+                                    </span>
 
                               @elseif ($attr->type == 5)
                                 <span>{{ $product->attributes->find($attr->id)->pivot->value . ' ' . (isset($attr->unit)? $attr->unit->name : '')  }}</span>
@@ -500,6 +553,8 @@
                         </ul>
                       </div>
                     @endif
+
+
                   </div>
                 </div>
 
@@ -509,8 +564,10 @@
                     <div class="c-product__seller-info js-seller-info">
                       <div class="js-seller-info-changable c-product__seller-box">
                         <div class="c-product__seller-row c-product__seller-row--seller js-seller-variant">
-                          <i class="c-product__seller-row--trusted-seller js-mini-not-digikala-seller js-mini-is-trusted u-hidden"></i>
-                          <i class="c-product__seller-row--official-seller js-mini-not-digikala-seller js-mini-is-official u-hidden"></i>
+                          <i
+                            class="c-product__seller-row--trusted-seller js-mini-not-digikala-seller js-mini-is-trusted u-hidden"></i>
+                          <i
+                            class="c-product__seller-row--official-seller js-mini-not-digikala-seller js-mini-is-official u-hidden"></i>
                           <div class="c-product__seller-row-main  ">
                             <div class="c-product__seller-first-line">
                               <span class="c-product__seller-name js-seller-name">{{ $fa_store_name }}</span>
@@ -520,10 +577,8 @@
                         <div class="c-product-info-box js-seller-info-expand">
                           <div class="c-product-info-box__header">
                             <div class="c-product-info-box__header-back-btn js-product-info-box-back-btn"></div>
-                            <div>
-                              <label>اطلاعات تکمیلی فروشنده</label>
-                              <span class="c-product-info-box__seller-info-modal js-seller-rate-info-modal"></span>
-                            </div>
+                            <div><label>اطلاعات تکمیلی فروشنده</label><span
+                                class="c-product-info-box__seller-info-modal js-seller-rate-info-modal"></span></div>
                           </div>
                           <div class="c-product-info-box__body-wrapper">
                             <div class="c-product-info-box__body">
@@ -624,7 +679,8 @@
                         </div>
 
 
-                        <div class="c-product__seller-row c-product__seller-row--column js-seller-info-shipment c-product__seller-row--clickable">
+                        <div
+                          class="c-product__seller-row c-product__seller-row--column js-seller-info-shipment c-product__seller-row--clickable">
                           <div class="c-product__seller-row-main c-product__seller-row-main--arrow-left"><span
                               class="c-product__delivery-warehouse js-provider-main-title c-product__delivery-warehouse--no-lead-time">موجود در انبار {{ $fa_store_name }}</span>
                           </div>
@@ -648,7 +704,8 @@
                                   ارسال توسط {{ $fa_store_name }}
                                   <span class="js-ab-shipment-free-badge u-hidden">رایگان</span></div>
                                 <div class="c-shipment-info-box__row--content">
-                                  این کالا در انبار {{ $fa_store_name }} موجود و آماده پردازش است و امکان ارسال مستقیم توسط {{ $fa_store_name }}
+                                  این کالا در انبار {{ $fa_store_name }} موجود و آماده پردازش است و امکان ارسال مستقیم
+                                  توسط {{ $fa_store_name }}
                                   را دارد.
                                   <p class="free-badge js-ab-shipment-free-badge u-hidden">کالا‌هایی با قیمت بیش از ۳۰۰
                                     هزار تومان به صورت رایگان ارسال خواهند شد.</p>
@@ -657,7 +714,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="c-product__seller-row c-product__seller-row--gift c-product__seller-row--clickable js-seller-info-gift u-hidden"
+                        <div
+                          class="c-product__seller-row c-product__seller-row--gift c-product__seller-row--clickable js-seller-info-gift u-hidden"
                           style="pointer-events: none;">
                           <div class="c-product__seller-row-main js-gift-text js-single-gift "></div>
                           <div class="c-product__seller-row-main js-gift-text js-multi-gift u-hidden"><span
@@ -717,14 +775,27 @@
                           </div>
                         </div>
                       </div>
-                      <div class="c-product__seller-row c-product__seller-row--add-to-cart">
-                        <a class="js-ab-product-action btn-add-to-cart btn-add-to-cart--full-width js-add-to-cart js-cart-page-add-to-cart js-btn-add-to-cart"
+                      <div class="c-product__seller-row c-product__seller-row--add-to-cart"><a
+                          class="js-ab-product-action btn-add-to-cart btn-add-to-cart--full-width js-add-to-cart js-cart-page-add-to-cart js-btn-add-to-cart"
                           data-product-id="3555626" data-variant="{{ $variant_defualt->variant_code }}"
                           href="/cart/add/{{ $variant_defualt->variant_code }}/1/"
                           data-event="add_to_cart" data-event-category="ecommerce"
                           data-event-label="price: 495900000 - seller: marketplace - seller_name: {{ $fa_store_name }} - seller_rating: 81 - multiple_configs: True - position: 0"><span
                             class="btn-add-to-cart__txt">افزودن به سبد خرید</span></a></div>
                     </div>
+                    <a href="">
+                      <div
+                        class="c-product-shipping-limitation c-product-shipping-limitation__mt-8 js-btn-supplier-list js-btn-cheapest-price u-hidden">
+                        <div class="c-product-shipping-limitation__title c-product-shipping-limitation__title--info">
+                          این کالا را ارزان‌تر بخرید
+                        </div>
+                        <div class="c-product-shipping-limitation__dsc">
+                          از
+                          <span class="js-cheapest-price">۵۰,۴۹۰,۰۰۰ </span> تومان
+                          توسط فروشندگان دیگر
+                        </div>
+                      </div>
+                    </a>
                   </div>
                 </div>
 
@@ -824,16 +895,14 @@
 
               </div>
 
-
             </section>
-
           </article>
 
 
           <div class="js-c-box-suppliers c-box-suppliers" id="suppliers" xmlns="http://www.w3.org/1999/html">
             <div class="c-box-suppliers__headline-container">
               <div class="o-box__header">
-                <span class="o-box__title">انتخاب گارانتی برای تنوع انتخابی</span>
+                <span class="o-box__title">گارانتی های قابل انتخاب</span>
               </div>
             </div>
             <div class="c-box">
@@ -908,19 +977,273 @@
                       </div>
                     @endforeach
                   @endif
+
+                  {{--                  <div class="c-table-suppliers__row js-supplier in-filter c-table-suppliers__row--active" data-variant="13556543">--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--title">--}}
+                  {{--                      <span class="c-table-suppliers__seller-icon is-trusted  "></span>--}}
+                  {{--                      <div class="c-table-suppliers__seller-wrapper">--}}
+                  {{--                        <p class="c-table-suppliers__seller-name">--}}
+                  {{--                          <a data-snt-event="dkProductPageClick" data-snt-params='{"item":"seller-in-list","item_option":""}' href=""></a>--}}
+                  {{--                          <span class="c-badge-seller c-badge-seller--prominent">برگزیده</span>--}}
+                  {{--                        <div class="c-table-suppliers__rating">--}}
+                  {{--                          عملکرد:--}}
+                  {{--                          <span class="u-text-bold">--}}
+                  {{--                            ۴--}}
+                  {{--                        </span>--}}
+                  {{--                          از ۵--}}
+                  {{--                          <span class="u-divider"></span><span class="u-text-bold">--}}
+                  {{--                            ۸۰٪--}}
+                  {{--                        </span>--}}
+                  {{--                          رضایت از کالا--}}
+                  {{--                        </div>--}}
+                  {{--                        </p></div>--}}
+                  {{--                      <div class="c-table-suppliers__seller-info summary-overlay">--}}
+                  {{--                        <div class="c-seller-rating ">--}}
+                  {{--                          <div class="c-seller-rating__title ">--}}
+
+                  {{--                          </div>--}}
+                  {{--                          <div class="c-seller-rating__subtitle js-seller-register-time ">عضویت از--}}
+                  {{--                            <label class="u-mx-4 js-sellerTimeAgo">۶ ماه و ۱ هفته</label> پیش--}}
+                  {{--                          </div>--}}
+                  {{--                          <div class="c-seller-rating__text">--}}
+                  {{--                            <div class="c-seller-rating__thin-text">عملکرد:</div>--}}
+                  {{--                            <div class="c-seller-rating__bold-text js-finalScore">۴</div>--}}
+                  {{--                          </div>--}}
+                  {{--                          <div class="c-seller-rating__ratings ">--}}
+                  {{--                            <div class="c-round-progress__container">--}}
+                  {{--                              <div class="c-round-progress js-round-progress  green"--}}
+                  {{--                                   data-level-1="98"--}}
+                  {{--                                   data-level-2="96"--}}
+                  {{--                                   data-value="100">--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--left js-round-progress-left"></div>--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--right js-round-progress-right"></div>--}}
+                  {{--                                <div class="c-round-progress__value js-round-progress-text">--}}
+                  {{--                                  ۱۰۰٪--}}
+                  {{--                                </div>--}}
+                  {{--                              </div>--}}
+                  {{--                              <div class="c-round-progress__label">تامین به موقع</div>--}}
+                  {{--                            </div>--}}
+                  {{--                            <div class="c-round-progress__container">--}}
+                  {{--                              <div class="c-round-progress js-round-progress  green"--}}
+                  {{--                                   data-level-1="98"--}}
+                  {{--                                   data-level-2="96"--}}
+                  {{--                                   data-value="100">--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--left js-round-progress-left"></div>--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--right js-round-progress-right"></div>--}}
+                  {{--                                <div class="c-round-progress__value js-round-progress-text">--}}
+                  {{--                                  ۱۰۰٪--}}
+                  {{--                                </div>--}}
+                  {{--                              </div>--}}
+                  {{--                              <div class="c-round-progress__label">تعهد ارسال</div>--}}
+                  {{--                            </div>--}}
+                  {{--                            <div class="c-round-progress__container">--}}
+                  {{--                              <div class="c-round-progress js-round-progress  yellow"--}}
+                  {{--                                   data-level-1="98"--}}
+                  {{--                                   data-level-2="96"--}}
+                  {{--                                   data-value="97.6">--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--left js-round-progress-left"></div>--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--right js-round-progress-right"></div>--}}
+                  {{--                                <div class="c-round-progress__value js-round-progress-text">--}}
+                  {{--                                  ۹۷.۶٪--}}
+                  {{--                                </div>--}}
+                  {{--                              </div>--}}
+                  {{--                              <div class="c-round-progress__label">بدون ثبت مرجوعی</div>--}}
+                  {{--                            </div>--}}
+                  {{--                          </div>--}}
+                  {{--                          <div class="c-seller-rating__bottom  ">--}}
+                  {{--                            <div class="c-seller-rating__text">--}}
+                  {{--                              <div class="c-seller-rating__bold-text"><label--}}
+                  {{--                                  class="js-total-rate">۸۰</label>٪--}}
+                  {{--                              </div>--}}
+                  {{--                              <div class="c-seller-rating__thin-text">رضایت از کالا</div>--}}
+                  {{--                            </div>--}}
+                  {{--                            <div class="c-seller-rating__subtitle c-seller-rating__subtitle--center">--}}
+                  {{--                              از مجموع<label class="u-mx-4 js-total-count">۶</label>نفر--}}
+                  {{--                            </div>--}}
+                  {{--                            <div class="c-seller-rating__row-rating">--}}
+                  {{--                              <div class="c-line-graph__container">--}}
+                  {{--                                <div class="c-line-graph ">--}}
+                  {{--                                  <div class="c-line-graph__item c-line-graph__item--5"--}}
+                  {{--                                       style="width: 17%"></div>--}}
+                  {{--                                  <div class="c-line-graph__item c-line-graph__item--4"--}}
+                  {{--                                       style="width: 67%"></div>--}}
+                  {{--                                  <div class="c-line-graph__item c-line-graph__item--3"--}}
+                  {{--                                       style="width: 17%"></div>--}}
+                  {{--                                </div>--}}
+                  {{--                                <div class="c-line-graph__labels">--}}
+                  {{--                                  <div class="c-line-graph__label js-line-graph-right-label">--}}
+                  {{--                                    کاملا راضی--}}
+                  {{--                                  </div>--}}
+                  {{--                                  <div class="c-line-graph__label js-line-graph-left-label">--}}
+                  {{--                                    بدون نظر--}}
+                  {{--                                  </div>--}}
+                  {{--                                </div>--}}
+                  {{--                              </div>--}}
+                  {{--                            </div>--}}
+                  {{--                          </div>--}}
+                  {{--                        </div>--}}
+                  {{--                      </div>--}}
+                  {{--                    </div>--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--conditions">--}}
+                  {{--                      <div class="c-table-suppliers__sender c-table-suppliers__sender--digikala ">--}}
+                  {{--                        ارسال {{ $fa_store_name }} از ۱ روز کاری دیگر--}}
+                  {{--                      </div>--}}
+                  {{--                    </div>--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--guarantee"><span>گارانتی اصالت و سلامت فیزیکی کالا</span>--}}
+                  {{--                    </div>--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--price ">--}}
+                  {{--                      <div class="c-price">--}}
+                  {{--                        <div class="c-price__value">--}}
+                  {{--                          ۱۳۵,۰۰۰--}}
+                  {{--                        </div>--}}
+                  {{--                      </div>--}}
+                  {{--                    </div>--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--action"><a--}}
+                  {{--                        class=" o-btn o-btn--outlined-red-md js-variant-add-to-cart js-btn-add-to-cart"--}}
+                  {{--                        data-event="add_to_cart" data-event-category="ecommerce"--}}
+                  {{--                        data-event-label="items: price: 1350000 - seller: marketplace - multiple_configs: True - position: 0"--}}
+                  {{--                        data-snt-event="dkProductPageClick"--}}
+                  {{--                        data-snt-params='{"item":"seller-add-to-cart","item_option":null}' data-variant="13556543"--}}
+                  {{--                        href="https://www.digikala.com/cart/add/13556543/1/">--}}
+                  {{--                        افزودن به سبد--}}
+                  {{--                      </a>--}}
+                  {{--                    </div>--}}
+                  {{--                  </div>--}}
+                  {{--                  <div class="c-table-suppliers__row js-supplier in-filter" data-variant="13556544">--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--title"><span--}}
+                  {{--                        class="c-table-suppliers__seller-icon is-trusted  "></span>--}}
+                  {{--                      <div class="c-table-suppliers__seller-wrapper"><p--}}
+                  {{--                          class="c-table-suppliers__seller-name"><a--}}
+                  {{--                            data-snt-event="dkProductPageClick"--}}
+                  {{--                            data-snt-params='{"item":"seller-in-list","item_option":""}'--}}
+                  {{--                            href="">--}}
+
+                  {{--                          </a><span class="c-badge-seller c-badge-seller--prominent">برگزیده</span>--}}
+                  {{--                        <div class="c-table-suppliers__rating">--}}
+                  {{--                          عملکرد:--}}
+                  {{--                          <span class="u-text-bold">--}}
+                  {{--                            ۴--}}
+                  {{--                        </span>--}}
+                  {{--                          از ۵--}}
+                  {{--                          <span class="u-divider"></span><span class="u-text-bold">--}}
+                  {{--                            ۸۰٪--}}
+                  {{--                        </span>--}}
+                  {{--                          رضایت از کالا--}}
+                  {{--                        </div>--}}
+                  {{--                        </p></div>--}}
+                  {{--                      <div class="c-table-suppliers__seller-info summary-overlay">--}}
+                  {{--                        <div class="c-seller-rating ">--}}
+                  {{--                          <div class="c-seller-rating__title ">--}}
+
+                  {{--                          </div>--}}
+                  {{--                          <div class="c-seller-rating__subtitle js-seller-register-time ">عضویت از--}}
+                  {{--                            <label class="u-mx-4 js-sellerTimeAgo">۶ ماه و ۱ هفته</label> پیش--}}
+                  {{--                          </div>--}}
+                  {{--                          <div class="c-seller-rating__text">--}}
+                  {{--                            <div class="c-seller-rating__thin-text">عملکرد:</div>--}}
+                  {{--                            <div class="c-seller-rating__bold-text js-finalScore">۴</div>--}}
+                  {{--                          </div>--}}
+                  {{--                          <div class="c-seller-rating__ratings ">--}}
+                  {{--                            <div class="c-round-progress__container">--}}
+                  {{--                              <div class="c-round-progress js-round-progress  green"--}}
+                  {{--                                   data-level-1="98"--}}
+                  {{--                                   data-level-2="96"--}}
+                  {{--                                   data-value="100">--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--left js-round-progress-left"></div>--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--right js-round-progress-right"></div>--}}
+                  {{--                                <div class="c-round-progress__value js-round-progress-text">--}}
+                  {{--                                  ۱۰۰٪--}}
+                  {{--                                </div>--}}
+                  {{--                              </div>--}}
+                  {{--                              <div class="c-round-progress__label">تامین به موقع</div>--}}
+                  {{--                            </div>--}}
+                  {{--                            <div class="c-round-progress__container">--}}
+                  {{--                              <div class="c-round-progress js-round-progress  green"--}}
+                  {{--                                   data-level-1="98"--}}
+                  {{--                                   data-level-2="96"--}}
+                  {{--                                   data-value="100">--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--left js-round-progress-left"></div>--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--right js-round-progress-right"></div>--}}
+                  {{--                                <div class="c-round-progress__value js-round-progress-text">--}}
+                  {{--                                  ۱۰۰٪--}}
+                  {{--                                </div>--}}
+                  {{--                              </div>--}}
+                  {{--                              <div class="c-round-progress__label">تعهد ارسال</div>--}}
+                  {{--                            </div>--}}
+                  {{--                            <div class="c-round-progress__container">--}}
+                  {{--                              <div class="c-round-progress js-round-progress  yellow"--}}
+                  {{--                                   data-level-1="98"--}}
+                  {{--                                   data-level-2="96"--}}
+                  {{--                                   data-value="97.6">--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--left js-round-progress-left"></div>--}}
+                  {{--                                <div class="c-round-progress__half c-round-progress__half--right js-round-progress-right"></div>--}}
+                  {{--                                <div class="c-round-progress__value js-round-progress-text">--}}
+                  {{--                                  ۹۷.۶٪--}}
+                  {{--                                </div>--}}
+                  {{--                              </div>--}}
+                  {{--                              <div class="c-round-progress__label">بدون ثبت مرجوعی</div>--}}
+                  {{--                            </div>--}}
+                  {{--                          </div>--}}
+                  {{--                          <div class="c-seller-rating__bottom  ">--}}
+                  {{--                            <div class="c-seller-rating__text">--}}
+                  {{--                              <div class="c-seller-rating__bold-text"><label--}}
+                  {{--                                  class="js-total-rate">۸۰</label>٪--}}
+                  {{--                              </div>--}}
+                  {{--                              <div class="c-seller-rating__thin-text">رضایت از کالا</div>--}}
+                  {{--                            </div>--}}
+                  {{--                            <div class="c-seller-rating__subtitle c-seller-rating__subtitle--center">--}}
+                  {{--                              از مجموع<label class="u-mx-4 js-total-count">۴</label>نفر--}}
+                  {{--                            </div>--}}
+                  {{--                            <div class="c-seller-rating__row-rating">--}}
+                  {{--                              <div class="c-line-graph__container">--}}
+                  {{--                                <div class="c-line-graph ">--}}
+                  {{--                                  <div class="c-line-graph__item c-line-graph__item--5"--}}
+                  {{--                                       style="width: 50%"></div>--}}
+                  {{--                                  <div class="c-line-graph__item c-line-graph__item--4"--}}
+                  {{--                                       style="width: 25%"></div>--}}
+                  {{--                                  <div class="c-line-graph__item c-line-graph__item--2"--}}
+                  {{--                                       style="width: 25%"></div>--}}
+                  {{--                                </div>--}}
+                  {{--                                <div class="c-line-graph__labels">--}}
+                  {{--                                  <div class="c-line-graph__label js-line-graph-right-label">--}}
+                  {{--                                    کاملا راضی--}}
+                  {{--                                  </div>--}}
+                  {{--                                  <div class="c-line-graph__label js-line-graph-left-label">--}}
+                  {{--                                    ناراضی--}}
+                  {{--                                  </div>--}}
+                  {{--                                </div>--}}
+                  {{--                              </div>--}}
+                  {{--                            </div>--}}
+                  {{--                          </div>--}}
+                  {{--                        </div>--}}
+                  {{--                      </div>--}}
+                  {{--                    </div>--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--conditions">--}}
+                  {{--                      <div class="c-table-suppliers__sender c-table-suppliers__sender--digikala ">--}}
+                  {{--                        ارسال {{ $fa_store_name }} از ۱ روز کاری دیگر--}}
+                  {{--                      </div>--}}
+                  {{--                    </div>--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--guarantee"><span>گارانتی اصالت و سلامت فیزیکی کالا</span>--}}
+                  {{--                    </div>--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--price ">--}}
+                  {{--                      <div class="c-price">--}}
+                  {{--                        <div class="c-price__value">--}}
+                  {{--                          ۱۳۵,۰۰۰--}}
+                  {{--                        </div>--}}
+                  {{--                      </div>--}}
+                  {{--                    </div>--}}
+                  {{--                    <div class="c-table-suppliers__cell c-table-suppliers__cell--action"><a--}}
+                  {{--                        class=" o-btn o-btn--outlined-red-md js-variant-add-to-cart js-btn-add-to-cart"--}}
+                  {{--                        data-event="add_to_cart" data-event-category="ecommerce"--}}
+                  {{--                        data-event-label="items: price: 1350000 - seller: marketplace - multiple_configs: True - position: 0"--}}
+                  {{--                        data-snt-event="dkProductPageClick"--}}
+                  {{--                        data-snt-params='{"item":"seller-add-to-cart","item_option":null}' data-variant="13556543"--}}
+                  {{--                        href="https://www.digikala.com/cart/add/13556544/1/">--}}
+                  {{--                        افزودن به سبد--}}
+                  {{--                      </a></div>--}}
+                  {{--                  </div>--}}
+
                 </div>
-              </div>
-              <div class="c-table-suppliers-less c-table-suppliers-hidden js-table-suppliers-less">
-                <button class="o-btn o-btn--link-blue-sm o-btn--remove-padding o-btn--l-expand-more is-open js-less-supplier-button" data-is-open="0" data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;show-fewer-supplier&quot;,&quot;item_option&quot;:null}">
-                  تنها نمایش ۳ فروشنده اول
-                </button>
-              </div>
-              <div class="c-table-suppliers-more js-table-suppliers-more">
-                <button class="o-btn o-btn--link-blue-sm o-btn--l-expand-more o-btn--remove-padding js-more-supplier-button" data-event="more_sellers" data-event-category="product_page" data-event-label="3186052-category: دسته بازی, sellers: 6 - default_seller: marketplace" data-is-open="0" data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;show-more-supplier&quot;,&quot;item_option&quot;:null}">
-                  نمایش
-                  <span class="u-ml-4 u-mr-4 js-more-suppliers-count">۳</span>
-                  فروشنده دیگر این کالا
-                </button>
               </div>
             </div>
           </div>
@@ -1449,7 +1772,9 @@
           </div>
         </div>
       </div>
-      <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-gallery" data-remodal-id="gallery" role="dialog">
+      <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-gallery"
+           data-remodal-id="gallery"
+           role="dialog">
         <div class="c-remodal-gallery__main js-level-one-gallery">
           <div class="c-remodal-gallery__top-bar">
             <div class="c-remodal-gallery__tabs js-top-bar-tabs">
@@ -1460,12 +1785,17 @@
             <button aria-label="Close" class="c-remodal-gallery__close" data-remodal-action="close"></button>
           </div>
           <div class="c-remodal-gallery__content is-active js-gallery-tab-content" id="gallery-content-1">
-            <div class="c-remodal-gallery__main-img js-gallery-main-img is-active js-img-main-1" data-slide-title="Slide ">
-              <img alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 1" class="pannable-image"
+            <div class="c-remodal-gallery__main-img js-gallery-main-img js-video-container">
+              <video class="video-js vjs-default-skin vjs-big-play-centered" id="pdp-video-container"></video>
+            </div>
+            <div class="c-remodal-gallery__main-img js-gallery-main-img is-active js-img-main-1"
+                 data-slide-title="Slide "><img
+                alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 1"
+                class="pannable-image"
                 data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/c68ae5841966a9da5b033a9175bfebdfea55bf9a_1606237664.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
                 data-src="https://dkstatics-public.digikala.com/digikala-products/c68ae5841966a9da5b033a9175bfebdfea55bf9a_1606237664.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-type="" title="">
-            </div>
+                data-type=""
+                title=""></div>
             <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-2"
                  data-slide-title="Slide 1"><img
                 alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 2"
@@ -1562,55 +1892,6 @@
             class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
             id="gallery-content-2"></div>
         </div>
-
-        <div class="c-remodal-gallery__main js-level-one-gallery is-open">
-          <div class="c-remodal-gallery__top-bar">
-            <div class="c-remodal-gallery__tabs js-top-bar-tabs">
-              <div class="c-remodal-gallery__tab c-remodal-gallery__tab--selected js-gallery-tab" data-id="1">تصاویر
-                رسمی
-              </div>
-            </div>
-            <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
-          </div>
-          <div class="c-remodal-gallery__content js-gallery-tab-content is-active" id="gallery-content-1">
-            @foreach($product->media as $key => $image)
-              @if($product->media()->exists())
-                <div
-                  class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-{{ $key+1 }} {{ ($key == 0)? 'is-active js-img-main-1' : '' }}"
-                  data-slide-title="Slide {{ $key+1 }}">
-                  <img
-                    data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                    data-high-res-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                    class="pannable-image" title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
-                    src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                    loading="lazy">
-                </div>
-              @endif
-            @endforeach
-            <div class="c-remodal-gallery__info">
-              <div class="c-remodal-gallery__title">{{ $product->title_fa }}</div>
-              <div class="c-remodal-gallery__thumbs js-official-thumbs">
-                @if($product->media()->exists())
-                  @foreach($product->media as $key => $image)
-                    <div class="c-remodal-gallery__thumb js-image-thumb" data-order="{{ $key+1 }}">
-                      <img
-                        data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
-                        src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                        loading="lazy">
-                    </div>
-                  @endforeach
-                @endif
-              </div>
-              <div class="c-remodal-gallery__other-imgs js-comments-files-thumbnails-summary js-see-more-imgs"></div>
-            </div>
-          </div>
-          <div
-            class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
-            id="gallery-content-2"></div>
-        </div>
-
-
         <div class="c-remodal-gallery__main js-level-two-gallery js-comments"></div>
         <div class="c-remodal-gallery__main js-answers">
           <div class="c-remodal-gallery__top-bar">
@@ -1822,6 +2103,7 @@
 
 
 @endsection
+
 
 @section('source')
 
@@ -2057,7 +2339,8 @@
                         class="c-ui-checkbox__check"></span></label></li>
                   <li><label class="c-form-notification__label" for="notification-param-3">سیستم پیام شخصی
                       {{ $fa_store_name }}</label><label class="c-ui-checkbox"><input type="checkbox" value="1"
-                                                                                      name="observed[notification]" checked=""
+                                                                                      name="observed[notification]"
+                                                                                      checked=""
                                                                                       id="notification-param-3"><span
                         class="c-ui-checkbox__check"></span></label></li>
                 </ul>
@@ -2153,7 +2436,8 @@
                         id="incredible-notification-param-2"><span class="c-ui-checkbox__check"></span></label></li>
                   <li><label class="c-form-notification__label" for="incredible-notification-param-3">سیستم پیام شخصی
                       {{ $fa_store_name }}</label><label class="c-ui-checkbox"><input type="checkbox" value="1"
-                                                                                      name="observed[notification]" checked=""
+                                                                                      name="observed[notification]"
+                                                                                      checked=""
                                                                                       id="incredible-notification-param-3"><span
                         class="c-ui-checkbox__check"></span></label></li>
                 </ul>
@@ -2662,4 +2946,10 @@
       class="zoomWindow">&nbsp;
     </div>
   </div>
+
+
+
+
+
 @endsection
+
