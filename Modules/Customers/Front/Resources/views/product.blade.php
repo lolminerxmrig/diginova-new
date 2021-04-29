@@ -286,10 +286,22 @@
   <script src="{{ asset('assets/new/js/jwplayer.core.controls.html5.js') }} "></script>
   <script src="{{ asset('assets/new/js/provider.hlsjs.js') }} "></script>
   <script src="{{ asset('assets/new/js/url.min.js') }}"></script>
-{{--  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>--}}
-{{--    <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>--}}
-{{--    <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>--}}
-{{--    <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>--}}
+  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>
+  <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>
+  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>
+  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>
+
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/3d3f248b.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwpsrv.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.core.controls.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.core.controls.html5.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/provider.hlsjs.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/video-js.min.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/videojs-contrib-quality-levels.min.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/videojs-hls-quality-selector.min.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/41c51bf2.js"></script>--}}
+{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/222f3f4a.js"></script>--}}
 
 
   <style>
@@ -823,7 +835,6 @@
                 </ul>
 
               </div>
-
 
             </section>
 
@@ -1459,119 +1470,7 @@
             </div>
             <button aria-label="Close" class="c-remodal-gallery__close" data-remodal-action="close"></button>
           </div>
-          <div class="c-remodal-gallery__content is-active js-gallery-tab-content" id="gallery-content-1">
-            <div class="c-remodal-gallery__main-img js-gallery-main-img is-active js-img-main-1" data-slide-title="Slide ">
-              <img alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 1" class="pannable-image"
-                data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/c68ae5841966a9da5b033a9175bfebdfea55bf9a_1606237664.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-src="https://dkstatics-public.digikala.com/digikala-products/c68ae5841966a9da5b033a9175bfebdfea55bf9a_1606237664.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-type="" title="">
-            </div>
-            <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-2"
-                 data-slide-title="Slide 1"><img
-                alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 2"
-                class="pannable-image"
-                data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/92b23609f30d0a7202c41721bff8c10bb8e1941d_1606237705.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-src="https://dkstatics-public.digikala.com/digikala-products/92b23609f30d0a7202c41721bff8c10bb8e1941d_1606237705.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-type=""
-                title=""></div>
-            <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-3"
-                 data-slide-title="Slide 2"><img
-                alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 3"
-                class="pannable-image"
-                data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/f97a047bb3487bc98b9ea0dfd66c2c69b7e68882_1606237722.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-src="https://dkstatics-public.digikala.com/digikala-products/f97a047bb3487bc98b9ea0dfd66c2c69b7e68882_1606237722.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-type=""
-                title=""></div>
-            <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-4"
-                 data-slide-title="Slide 3"><img
-                alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 4"
-                class="pannable-image"
-                data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/db1996a1ca6dd14d08809d40bd823491054728c0_1606237751.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-src="https://dkstatics-public.digikala.com/digikala-products/db1996a1ca6dd14d08809d40bd823491054728c0_1606237751.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-type=""
-                title=""></div>
-            <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-5"
-                 data-slide-title="Slide 4"><img
-                alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 5"
-                class="pannable-image"
-                data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/c2948f0aec714b97c4551e649bb95e88c2b078af_1606237776.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-src="https://dkstatics-public.digikala.com/digikala-products/c2948f0aec714b97c4551e649bb95e88c2b078af_1606237776.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-type=""
-                title=""></div>
-            <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-6"
-                 data-slide-title="Slide 5"><img
-                alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 6"
-                class="pannable-image"
-                data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/828fa92e8f9c526fbeb4637dcb63a9537af696af_1606237810.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-src="https://dkstatics-public.digikala.com/digikala-products/828fa92e8f9c526fbeb4637dcb63a9537af696af_1606237810.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-type=""
-                title=""></div>
-            <div class="c-remodal-gallery__main-img js-gallery-main-img  js-img-main-7"
-                 data-slide-title="Slide 6"><img
-                alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت main 1 7"
-                class="pannable-image"
-                data-high-res-src="https://dkstatics-public.digikala.com/digikala-products/493d547019e951a892a3f4cb5a800346b3ad9bee_1606237873.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-src="https://dkstatics-public.digikala.com/digikala-products/493d547019e951a892a3f4cb5a800346b3ad9bee_1606237873.jpg?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                data-type=""
-                title=""></div>
-            <div class="c-remodal-gallery__info">
-              <div class="c-remodal-gallery__title">شارژر همراه ام پی مدل BLB-131 ظرفیت 5000 میلی آمپر
-                ساعت
-              </div>
-              <div class="c-remodal-gallery__thumbs js-official-thumbs">
-                <div class="c-remodal-gallery__thumb js-image-thumb" data-order="1"><img
-                    alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت thumb 2 1"
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/c68ae5841966a9da5b033a9175bfebdfea55bf9a_1606237664.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                    data-type=""
-                    title=""></div>
-                <div class="c-remodal-gallery__thumb js-image-thumb" data-order="2"><img
-                    alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت thumb 2 2"
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/92b23609f30d0a7202c41721bff8c10bb8e1941d_1606237705.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                    data-type=""
-                    title=""></div>
-                <div class="c-remodal-gallery__thumb js-image-thumb" data-order="3"><img
-                    alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت thumb 2 3"
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/f97a047bb3487bc98b9ea0dfd66c2c69b7e68882_1606237722.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                    data-type=""
-                    title=""></div>
-                <div class="c-remodal-gallery__thumb js-image-thumb" data-order="4"><img
-                    alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت thumb 2 4"
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/db1996a1ca6dd14d08809d40bd823491054728c0_1606237751.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                    data-type=""
-                    title=""></div>
-                <div class="c-remodal-gallery__thumb js-image-thumb" data-order="5"><img
-                    alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت thumb 2 5"
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/c2948f0aec714b97c4551e649bb95e88c2b078af_1606237776.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                    data-type=""
-                    title=""></div>
-                <div class="c-remodal-gallery__thumb js-image-thumb" data-order="6"><img
-                    alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت thumb 2 6"
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/828fa92e8f9c526fbeb4637dcb63a9537af696af_1606237810.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                    data-type=""
-                    title=""></div>
-                <div class="c-remodal-gallery__thumb js-image-thumb" data-order="7"><img
-                    alt="شارژر همراه ام پی  مدل BLB-131 ظرفیت 5000 میلی آمپر ساعت thumb 2 7"
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/493d547019e951a892a3f4cb5a800346b3ad9bee_1606237873.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                    data-type=""
-                    title=""></div>
-              </div>
-              <div class="c-remodal-gallery__other-imgs js-comments-files-thumbnails-summary js-see-more-imgs"></div>
-            </div>
-          </div>
-          <div
-            class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
-            id="gallery-content-2"></div>
-        </div>
 
-        <div class="c-remodal-gallery__main js-level-one-gallery is-open">
-          <div class="c-remodal-gallery__top-bar">
-            <div class="c-remodal-gallery__tabs js-top-bar-tabs">
-              <div class="c-remodal-gallery__tab c-remodal-gallery__tab--selected js-gallery-tab" data-id="1">تصاویر
-                رسمی
-              </div>
-            </div>
-            <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
-          </div>
           <div class="c-remodal-gallery__content js-gallery-tab-content is-active" id="gallery-content-1">
             @foreach($product->media as $key => $image)
               @if($product->media()->exists())
@@ -1605,10 +1504,12 @@
               <div class="c-remodal-gallery__other-imgs js-comments-files-thumbnails-summary js-see-more-imgs"></div>
             </div>
           </div>
+
           <div
             class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
             id="gallery-content-2"></div>
         </div>
+
 
 
         <div class="c-remodal-gallery__main js-level-two-gallery js-comments"></div>
@@ -1824,842 +1725,155 @@
 @endsection
 
 @section('source')
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-gallery remodal-is-initialized remodal-is-closed" data-remodal-id="gallery"
-         role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
-      <div class="c-remodal-gallery__main js-level-one-gallery is-open">
-        <div class="c-remodal-gallery__top-bar">
-          <div class="c-remodal-gallery__tabs js-top-bar-tabs">
-            <div class="c-remodal-gallery__tab c-remodal-gallery__tab--selected js-gallery-tab" data-id="1">تصاویر
-              رسمی
-            </div>
-          </div>
-          <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
-        </div>
-        <div class="c-remodal-gallery__content js-gallery-tab-content is-active" id="gallery-content-1">
-          @foreach($product->media as $key => $image)
-            @if($product->media()->exists())
-              <div
-                class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-{{ $key+1 }} {{ ($key == 0)? 'is-active js-img-main-1' : '' }}"
-                data-slide-title="Slide {{ $key+1 }}">
-                <img
-                  data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                  data-high-res-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                  class="pannable-image" title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
-                  src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                  loading="lazy">
-              </div>
-            @endif
-          @endforeach
-          <div class="c-remodal-gallery__info">
-            <div class="c-remodal-gallery__title">{{ $product->title_fa }}</div>
-            <div class="c-remodal-gallery__thumbs js-official-thumbs">
-              @if($product->media()->exists())
-                @foreach($product->media as $key => $image)
-                  <div class="c-remodal-gallery__thumb js-image-thumb" data-order="{{ $key+1 }}">
-                    <img
-                      data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                      title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
-                      src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
-                      loading="lazy">
-                  </div>
-                @endforeach
-              @endif
-            </div>
-            <div class="c-remodal-gallery__other-imgs js-comments-files-thumbnails-summary js-see-more-imgs"></div>
-          </div>
-        </div>
-        <div
-          class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
-          id="gallery-content-2"></div>
-      </div>
-      <div class="c-remodal-gallery__main js-level-two-gallery js-comments">
-        <div class="c-remodal-gallery__top-bar">
-          <div class="c-remodal-gallery__back js-back-comment">
-            دیدگاه خریدار
-          </div>
-          <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
-        </div>
-      </div>
-      <div class="c-remodal-gallery__main js-answers">
-        <div class="c-remodal-gallery__top-bar">
-          <div class="c-remodal-gallery__head-title">
-            پاسخ فروشنده
-          </div>
-          <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
-        </div>
-      </div>
-    </div>
+  <div class="c-fmcg-voucher-box c-fmcg-voucher-box--bf u-hidden js-wheel-floating-box">
+    <a href="https://www.digikala.com/search/?q=%20&amp;sortby=7">
+      <img class="c-fmcg-voucher-box__img"
+           src="../../static/files/9252b9fc.png"/>
+    </a>
+    <button class="c-fmcg-voucher-box__close-button js-wheel-floating-box-close" style="top: 10px;"></button>
   </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-modal c-u-minicart__modal u-hidden js-minicart-modal remodal-is-initialized remodal-is-closed"
-         data-remodal-id="universal-mini-cart" role="dialog" aria-labelledby="modalTitle" tabindex="-1"
-         aria-describedby="modalDesc" data-remodal-options="">
-      <div class="c-modal__top-bar  ">
-        <div>
-          <div class="c-u-minicart__quantity">
-            سبد خرید
-            <span>۰ کالا</span>
-          </div>
-          <a href="/cart/" class="o-link o-link--has-arrow o-link--no-border o-link--sm">مشاهده سبد خرید</a>
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-account" data-remodal-id="login"
+       role="dialog">
+    <button aria-label="Close" class="remodal-close" data-remodal-action="close"></button>
+    <div class="c-remodal-account__headline">ورود به دیجی‌کالا</div>
+    <div class="c-remodal-account__content">
+      <form class="c-form-account" id="loginFormModal">
+        <div class="c-message-light c-message-light--info" id="login-form-msg"></div>
+        <div class="c-form-account__title">پست الکترونیک یا شماره موبایل</div>
+        <div class="c-form-account__row">
+          <div class="c-form-account__col"><label class="c-ui-input c-ui-input--account-login"><input
+                autocomplete="current-email" class="c-ui-input__field" name="login[email_phone]"
+                placeholder="info@digikala.com" type="text"></label></div>
         </div>
-        <div class="c-modal__close" data-remodal-action="close"></div>
-      </div>
-      <div class="c-u-minicart"></div>
-      <div class="c-modal__footer">
-        <div class="c-header__cart-info-total">
-          <span class="c-header__cart-info-total-text">مبلغ قابل پرداخت</span>
-          <p class="c-header__cart-info-total-amount">
-            <span class="c-header__cart-info-total-amount-number"> ۰</span>
-            <span> تومان</span>
-          </p>
+        <div class="c-form-account__title">کلمه عبور</div>
+        <div class="c-form-account__row">
+          <div class="c-form-account__col"><label class="c-ui-input c-ui-input--account-password"><input
+                autocomplete="current-password" class="c-ui-input__field" name="login[password]"
+                placeholder="" type="password"></label></div>
         </div>
-
-        <div>
-          <a data-snt-event="dkHeaderClick"
-             data-snt-params="{&quot;item&quot;:&quot;mini-cart&quot;,&quot;item_option&quot;:&quot;confirm-cart&quot;}"
-             href="/shipping/" class="o-btn o-btn--contained-red-md">ثبت سفارش</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-modal c-modal--sm remodal-is-initialized remodal-is-closed" data-remodal-id="share"
-         role="dialog" aria-labelledby="modalTitle" tabindex="-1" aria-describedby="modalDesc" data-remodal-options="">
-      <div class="c-modal__top-bar  c-modal__top-bar--has-line">
-        <div class="c-modal__title ">اشتراک‌گذاری</div>
-        <div class="c-modal__close" data-remodal-action="close"></div>
-      </div>
-      <form class="c-share" id="sendToFriend" novalidate="novalidate">
-        <div class="c-share__title">
-          با استفاده از روش‌های زیر می‌توانید این صفحه را با دوستان خود به اشتراک بگذارید.
-        </div>
-        <div class="c-share__options">
-          <div class="c-share__social-buttons"><a
-              href="https://twitter.com/intent/tweet?url=https://www.digikala.com/product/dkp-3814476/%DA%AF%D9%88%D8%B4%DB%8C-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84-%D8%A7%D9%BE%D9%84-%D9%85%D8%AF%D9%84-iphone-12-pro-a2408-%D8%AF%D9%88-%D8%B3%DB%8C%D9%85-%DA%A9%D8%A7%D8%B1%D8%AA-%D8%B8%D8%B1%D9%81%DB%8C%D8%AA-128-%DA%AF%DB%8C%DA%AF%D8%A7%D8%A8%D8%A7%DB%8C%D8%AA"
-              rel="nofollow" class="o-btn c-share__social c-share__social--twitter" target="_blank"></a><a
-              href="https://www.facebook.com/sharer/sharer.php?m2w&amp;s=100&amp;p[url]=https://www.digikala.com/product/dkp-3814476/%DA%AF%D9%88%D8%B4%DB%8C-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84-%D8%A7%D9%BE%D9%84-%D9%85%D8%AF%D9%84-iphone-12-pro-a2408-%D8%AF%D9%88-%D8%B3%DB%8C%D9%85-%DA%A9%D8%A7%D8%B1%D8%AA-%D8%B8%D8%B1%D9%81%DB%8C%D8%AA-128-%DA%AF%DB%8C%DA%AF%D8%A7%D8%A8%D8%A7%DB%8C%D8%AA"
-              rel="nofollow" class="o-btn c-share__social c-share__social--fb" target="_blank"></a><a
-              href="https://wa.me?text=https://www.digikala.com/product/dkp-3814476/%DA%AF%D9%88%D8%B4%DB%8C-%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84-%D8%A7%D9%BE%D9%84-%D9%85%D8%AF%D9%84-iphone-12-pro-a2408-%D8%AF%D9%88-%D8%B3%DB%8C%D9%85-%DA%A9%D8%A7%D8%B1%D8%AA-%D8%B8%D8%B1%D9%81%DB%8C%D8%AA-128-%DA%AF%DB%8C%DA%AF%D8%A7%D8%A8%D8%A7%DB%8C%D8%AA"
-              rel="nofollow" class="o-btn c-share__social c-share__social--whatsapp" target="_blank"></a>
-            <div class="o-btn c-share__social c-share__social--email js-email-btn"></div>
-          </div>
-          <div class="o-btn o-btn--outlined-gray-sm o-btn--copy c-share__link-btn js-copy-url"
-               data-copy="https://www.digikala.com/product/dkp-3814476">
-            کپی لینک
+        <div class="c-form-account__agree"><label class="c-ui-checkbox c-ui-checkbox--primary"><input
+              id="accountAutoLogin" name="login[remember]" type="checkbox" value="1"><span
+              class="c-ui-checkbox__check"></span></label><label for="accountAutoLogin">مرا به خاطر داشته
+            باش</label></div>
+        <div class="c-form-account__row c-form-account__row--submit">
+          <div class="c-form-account__col">
+            <button class="btn-login login-button-js">ورود به دیجی‌کالا</button>
           </div>
         </div>
-        <div class="js-email-row u-hidden">
-          <div class="c-share__email-row">
-            <div class="c-share__email"><label class="o-form__field-container">
-                <div class="o-form__field-frame"><input name="send_to_friend[email]" type="email"
-                                                        placeholder="آدرس ایمیل را وارد نمایید" value=""
-                                                        class="o-form__field js-input-field "></div>
-              </label><input type="hidden" name="send_to_friend[product_id]" value="3814476"></div>
-            <button type="submit" class="o-btn o-btn--contained-red-sm">ارسال</button>
-          </div>
-        </div>
-        <div class="c-share__referral">
-          <div class="c-share__referral-content">
-            <div class="c-share__referral-title">جایزه شما</div>
-            <div class="c-share__referral-desc">با دعوت دوستانتان، پس از اولین خریدشان، کدتخفیف و امتیاز هدیه بگیرید.
-            </div>
-            <div
-              class="o-btn o-btn--outlined-gray-sm o-btn--copy o-btn--full-width c-share__referral-code js-copy-referral-code"
-              data-copy="">REFW6HTLLNCDA
-            </div>
-            <div
-              class="o-btn o-btn--outlined-red-sm o-btn--full-width o-btn--r-voucher c-share__referral-code js-get-referral-code u-hidden">
-              دریافت کد تخفیف
-            </div>
-          </div>
-          <div class="c-share__referral-img"><img src="https://www.digikala.com/static/files/84182fb2.svg"></div>
+        <div class="c-form-account__link"><a class="btn-link-spoiler"
+                                             data-snt-event="dkLoginClick"
+                                             data-snt-params='{"type":"forgetPassword","site":"login-modal"}'
+                                             href="https://www.digikala.com/users/password/forgot/">رمز عبور خود را فراموش کرده ام</a></div>
+        <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
+          یا کلمه عبور اشتباه است.
         </div>
       </form>
     </div>
+    <div class="c-remodal-account__footer is-highlighted"><span>کاربر جدید هستید؟</span><a class="btn-link-spoiler"
+                                                                                           data-snt-event="dkLoginClick"
+                                                                                           data-snt-params='{"type":"signup","site":"login-modal"}'
+                                                                                           href="https://www.digikala.com/users/login-register/?_back=https://www.digikala.com/product/dkp-3186052/%25D8%25AF%25D8%25B3%25D8%25AA%25D9%2587-%25D8%25A8%25D8%25A7%25D8%25B2%25DB%258C-%25D9%2585%25DA%2586%25D8%25B1-%25D9%2585%25D8%25AF%25D9%2584-mr-55">ثبت‌نام
+        در دیجی‌کالا</a></div>
   </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-price-chart remodal-is-initialized remodal-is-closed" data-remodal-id="price-chart"
-         role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
-      <div class="c-remodal-price-chart__main">
-        <div class="c-remodal-am-price-chart__header">
-          <div class="c-remodal-am-price-chart__title">
-            نمودار قیمت فروش
-          </div>
-          <button data-remodal-action="close" class="c-remodal-am-price-chart__close" aria-label="Close"></button>
-        </div>
-        <div class="c-remodal-am-price-chart__product-title">
-          گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت
-        </div>
-        <div class="c-remodal-price-chart__content c-remodal-am-price-chart__content">
-          <div id="productPriceChart" class="c-remodal-am-price-chart__base"></div>
-          <div class="c-remodal-am-price-chart__row">
-            <div class="c-am-chart-legend">
-              <div class="c-am-chart-legend__row"><span
-                  class="c-am-chart-legend__line c-am-chart-legend--marketable"></span><span
-                  class="c-am-chart-legend__circle c-am-chart-legend--marketable"></span><label>موجود</label></div>
-              <div class="c-am-chart-legend__row"><span
-                  class="c-am-chart-legend__line c-am-chart-legend--not-marketable"></span><span
-                  class="c-am-chart-legend__circle c-am-chart-legend--not-marketable"></span><label>ناموجود</label>
-              </div>
-              <div class="c-am-chart-legend__row"><span
-                  class="c-am-chart-legend__line c-am-chart-legend--pure-price"></span><label>قیمت بدون تخفیف</label>
-              </div>
-            </div>
-          </div>
-          <div class="c-am-chart-varient"><label class="c-am-chart-varient__label js-am-chart-varient-label"></label>
-            <ul class="c-am-chart-varient__list js-price-chart-varient-list"></ul>
-          </div>
-        </div>
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title"
+       class="remodal c-remodal-loader" data-remodal-id="loader" data-remodal-options="hashTracking: false, closeOnOutsideClick: false"
+       role="dialog">
+    <div class="c-remodal-loader__icon">
+      <svg height="30" viewBox="0 0 115 30" width="115" xmlns="http://www.w3.org/2000/svg">
+        <path d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z" fill="#EE384E"
+              fill-rule="evenodd"/>
+      </svg>
+    </div>
+    <div class="c-remodal-loader__bullets"><i class="c-remodal-loader__bullet c-remodal-loader__bullet--1"></i><i
+        class="c-remodal-loader__bullet c-remodal-loader__bullet--2"></i><i
+        class="c-remodal-loader__bullet c-remodal-loader__bullet--3"></i><i
+        class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></i></div>
+  </div>
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-general-alert" data-remodal-id="alert"
+       role="dialog">
+    <div class="c-remodal-general-alert__main">
+      <div class="c-remodal-general-alert__content"><p class="js-remodal-general-alert__text"></p>
+        <p class="c-remodal-general-alert__description js-remodal-general-alert__description"></p></div>
+      <div class="c-remodal-general-alert__actions">
+        <button class="c-remodal-general-alert__button c-remodal-general-alert__button--approve js-remodal-general-alert__button--approve"></button>
+        <button class="c-remodal-general-alert__button c-remodal-general-alert__button--cancel js-remodal-general-alert__button--cancel"></button>
       </div>
     </div>
   </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-notification remodal-is-initialized remodal-is-closed" data-remodal-id="observed"
-         role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
-      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-      <div class="c-remodal-notification__main">
-        <div class="c-remodal-notification__aside">
-          <div class="c-remodal-notification__title-ilu">به من اطلاع بده</div>
-          <div class="c-remodal-notification__ilu"></div>
-        </div>
-        <div class="c-remodal-notification__content">
-          <form class="c-form-notification" id="observed-form">
-            <div class="c-form-notification__title">اطلاع به من در زمان:</div>
-            <div class="c-form-notification__row">
-              <div class="c-form-notification__col">
-                <div class="c-form-notification__status">
-                  موجود شدن
-                </div>
-              </div>
-            </div>
-            <div class="c-form-notification__row js-observe-modal-errors u-hidden-visually">
-              <div class="c-form-notification__col">
-                <div class="c-message-light c-message-light--error js-form-error-items"></div>
-              </div>
-            </div>
-            <div class="c-form-notification__title">از طریق:</div>
-            <div class="c-form-notification__row">
-              <div class="c-form-notification__col">
-                <ul class="c-form-notification__params">
-                  <li><label class="c-form-notification__label" for="notification-param-1">ایمیل به <span
-                        class="js-observed-user-email"></span></label><label class="c-ui-checkbox"><input
-                        type="checkbox" value="1" name="observed[email]" id="notification-param-1"><span
-                        class="c-ui-checkbox__check"></span></label></li>
-                  <li><label class="c-form-notification__label" for="notification-param-2">پیامک به <span
-                        class="js-observed-user-number"></span></label><label class="c-ui-checkbox"><input
-                        type="checkbox" value="1" name="observed[sms]" checked="" id="notification-param-2"><span
-                        class="c-ui-checkbox__check"></span></label></li>
-                  <li><label class="c-form-notification__label" for="notification-param-3">سیستم پیام شخصی
-                      {{ $fa_store_name }}</label><label class="c-ui-checkbox"><input type="checkbox" value="1"
-                                                                                      name="observed[notification]" checked=""
-                                                                                      id="notification-param-3"><span
-                        class="c-ui-checkbox__check"></span></label></li>
-                </ul>
-              </div>
-            </div>
-            <div class="c-form-notification__row c-form-notification__row--submit">
-              <div class="c-form-notification__col">
-                <button type="button" id="add-to-observed" class="btn-remodal-primary">ثبت</button>
-                <button data-remodal-action="cancel" class="btn-remodal-secondary">بازگشت</button>
-              </div>
-            </div>
-          </form>
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-general-information"
+       data-remodal-id="information"
+       role="dialog">
+    <div class="c-remodal-general-information__main">
+      <div class="c-remodal-general-information__content"><p class="js-remodal-general-information__text"></p></div>
+      <div class="c-remodal-general-information__actions">
+        <button class="c-remodal-general-information__button c-remodal-general-information__button--approve js-remodal-general-information__button--approve"></button>
+      </div>
+    </div>
+  </div>
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal c-remodal-quick-view"
+       data-remodal-id="quick-view"
+       role="dialog">
+    <button aria-label="Close" class="remodal-close c-remodal__close" data-remodal-action="close"></button>
+    <div class="c-quick-view__content js-quick-view-section"></div>
+  </div>
+  <div class="remodal c-remodal-fmcg" data-remodal-id="fmcg-modal"
+       data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog">
+    <button aria-label="Close" class="remodal-close" data-remodal-action="close"></button>
+    <div class="c-remodal-fmcg__container"><img class="c-remodal-fmcg__logo" src="../../static/files/cbaed462.png"/>
+      <div class="c-remodal-fmcg__content"><p class="c-remodal-fmcg__head-text">ارسال سریع کالای
+          <span> سوپر مارکتی </span> فقط در تهران و کرج امکان پذیر است.</p>
+        <p class="c-remodal-fmcg__question">با توجه به محدودیت ارسال، آیا مایل هستید این کالا به سبد خرید شما افزوده
+          شود؟</p>
+        <div class="c-remodal-fmcg__actions">
+          <button class="c-remodal-fmcg__button c-remodal-fmcg__button--reject js-fmcg-modal-reject">خیر</button>
+          <button class="c-remodal-fmcg__button c-remodal-fmcg__button--approve js-fmcg-modal-approve">بله
+          </button>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-modal c-modal--xs remodal-is-initialized remodal-is-closed" data-remodal-id="auto-buy"
-         role="dialog" aria-labelledby="modalTitle" tabindex="-1" aria-describedby="modalDesc" data-remodal-options="">
-      <div class="c-modal__top-bar  ">
-        <div class="c-modal__title ">رزرو کالا در زمان موجود شدن</div>
-        <div class="c-modal__close" data-remodal-action="close"></div>
-      </div>
-      <div class="c-product-auto-buy o-text-right"><p class="c-product-auto-buy__dsc">
-          این کالا پس از موجود شدن به مدت یک ساعت برای شما رززو می‌گردد
-          و می‌توانید با پرداخت هزینه سفارش آن را خریداری نمایید.
-        </p><h4 class="c-product-auto-buy__notic-header">اطلاع از طریق:</h4>
-        <form id="auto-buy-form">
-          <div class="c-product-auto-buy__notic-row"><label class="o-form__check-box"><input
-                class="o-form__check-box-input js-auto-buy-user-email" name="autoBuy[email]" value="1"
-                type="checkbox"><span class="o-form__check-box-sign"></span><span class="js-ui-checkbox-label">
-            ایمیل به user@digikala.com
-        </span></label></div>
-          <div class="c-product-auto-buy__notic-row"><label class="o-form__check-box"><input
-                class="o-form__check-box-input js-auto-buy-user-phone" name="autoBuy[sms]" value="1" type="checkbox"
-                checked=""><span class="o-form__check-box-sign"></span><span class="js-ui-checkbox-label">
-            پیامک به ۰۹۱۲۳۴۵۶۷۸۹
-        </span></label></div>
-          <div class="c-product-auto-buy__notic-row"><label class="o-form__check-box"><input
-                class="o-form__check-box-input js-auto-buy-dk-notification" name="autoBuy[notification]" value="1"
-                type="checkbox" checked=""><span class="o-form__check-box-sign"></span><span
-                class="js-ui-checkbox-label">
-            پیام شخصی {{ $fa_store_name }}
-        </span></label></div>
-        </form>
-        <div class="c-product-auto-buy__footer"><p class="c-product-auto-buy__plus-dsc" data-icon="Brand-Digiplus-Sign">
-            تنها برای کاربران دیجی‌پلاس
-          </p><a href="/plus/landing/" class="o-btn o-btn--outlined-purple-lg o-btn--full-width"
-                 data-after-icon="Icon-Navigation-Chevron-Left">
-            عضویت در دیجی‌پلاس
-          </a></div>
+  <div class="c-toast__container js-toast-container">
+    <div class="c-toast js-toast" style="display: none">
+      <div class="c-toast__text js-toast-text"></div>
+      <div class="c-toast__btn-container">
+        <button class="js-toast-btn o-link o-link--sm o-link--no-border o-btn" type="button">
+          متوجه شدم
+        </button>
       </div>
     </div>
   </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-notification remodal-is-initialized remodal-is-closed"
-         data-remodal-id="incredible-observed" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc"
-         tabindex="-1">
-      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-      <div class="c-remodal-notification__main">
-        <div class="c-remodal-notification__aside">
-          <div class="c-remodal-notification__title-ilu">به من اطلاع بده</div>
-          <div class="c-remodal-notification__ilu"></div>
-        </div>
-        <div class="c-remodal-notification__content">
-          <form class="c-form-notification" id="incredible-observed-form">
-            <div class="c-form-notification__title">اطلاع به من در زمان:</div>
-            <div class="c-form-notification__row">
-              <div class="c-form-notification__col">
-                <div class="c-form-notification__status">
-                  پیشنهاد شگفت‌انگیز
-                </div>
-              </div>
-            </div>
-            <div class="c-form-notification__row js-observe-modal-errors u-hidden-visually">
-              <div class="c-form-notification__col">
-                <div class="c-message-light c-message-light--error js-form-error-items"></div>
-              </div>
-            </div>
-            <div class="c-form-notification__title">از طریق:</div>
-            <div class="c-form-notification__row">
-              <div class="c-form-notification__col">
-                <ul class="c-form-notification__params">
-                  <li><label class="c-form-notification__label" for="incredible-notification-param-1">ایمیل به <span
-                        class="js-observed-user-email"></span></label><label class="c-ui-checkbox"><input
-                        type="checkbox" value="1" name="observed[email]" id="incredible-notification-param-1"><span
-                        class="c-ui-checkbox__check"></span></label></li>
-                  <li><label class="c-form-notification__label" for="incredible-notification-param-2">پیامک به <span
-                        class="js-observed-user-number"></span></label><label class="c-ui-checkbox"><input
-                        type="checkbox" value="1" name="observed[sms]" checked=""
-                        id="incredible-notification-param-2"><span class="c-ui-checkbox__check"></span></label></li>
-                  <li><label class="c-form-notification__label" for="incredible-notification-param-3">سیستم پیام شخصی
-                      {{ $fa_store_name }}</label><label class="c-ui-checkbox"><input type="checkbox" value="1"
-                                                                                      name="observed[notification]" checked=""
-                                                                                      id="incredible-notification-param-3"><span
-                        class="c-ui-checkbox__check"></span></label></li>
-                </ul>
-              </div>
-            </div>
-            <div class="c-form-notification__row c-form-notification__row--submit">
-              <div class="c-form-notification__col">
-                <button type="button" id="add-to-incredible-observed" class="btn-remodal-primary">ثبت</button>
-                <button data-remodal-action="cancel" class="btn-remodal-secondary">بازگشت</button>
-              </div>
-            </div>
-          </form>
-        </div>
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-location js-general-location"
+       data-remodal-id="general-location"
+       role="dialog">
+    <div class="c-remodal-location__header"><span class="js-general-location-title">انتخاب استان</span>
+      <div class="c-remodal-location__close js-close-modal"></div>
+    </div>
+    <div class="c-remodal-location__content js-states-container">
+      <div class="c-general-location__row c-general-location__row--your-location js-your-location">
+        مکان‌یابی خودکار
+      </div>
+    </div>
+    <div class="c-remodal-location__content js-cities-container">
+      <div class="c-general-location__row c-general-location__row--back js-back-to-states">
+        بازگشت به لیست استان‌ها
       </div>
     </div>
   </div>
-
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-pricing remodal-is-initialized remodal-is-closed" data-remodal-id="unfair-pricing"
-         role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
-      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-      <div class="c-remodal-pricing__main">
-        <div class="c-remodal-pricing__aside">
-          <div class="c-remodal-pricing__title-img">گزارش قیمت مناسب‌تر این کالا</div>
-          <div class="c-remodal-pricing__img"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607433891.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت"
-              src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607433891.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-              loading="lazy"></div>
-        </div>
-        <div class="c-remodal-pricing__content">
-          <form class="c-form-pricing js-pricing-form" id="unfairPricingForm" novalidate="novalidate"><input
-              type="hidden" name="unfair_pricing[is_price_competitive]" id="is-price-competitive" value="0"><input
-              type="hidden" name="unfair_pricing[product_id]" value="3814476"><input type="hidden"
-                                                                                     name="unfair_pricing[observed_price]"
-                                                                                     id="pricing-observed-price">
-            <div class="c-form-pricing__title">این کالا را با چه قیمتی دیده‌اید؟</div>
-            <div
-              class="c-message-light c-message-light--margined-vertically c-message-light--success js-unfair-pricing-message u-hidden-visually">
-              <span></span></div>
-            <div
-              class="c-message-light c-message-light--margined-vertically c-message-light--error js-unfair-pricing-error u-hidden-visually"></div>
-            <div class="c-form-pricing__row js-valid-row">
-              <div class="c-form-pricing__col"><label class="c-ui-input"><input
-                    class="c-ui-input__field c-ui-input__field--has-currency js-price-delimiter" type="text"
-                    autocomplete="off" name="unfair_pricing[claimed_price]" placeholder="مثلا ۳۵۰۰۰">
-                  <div class="c-ui-input__currency">تومان</div>
-                </label></div>
-            </div>
-            <div class="c-form-pricing__row js-valid-row">
-              <div class="c-form-pricing__col"><label class="c-ui-switch c-ui-switch--primary"><input
-                    class="c-ui-switch__checkbox js-toggle-price-survey-options" type="checkbox" value="1" checked=""
-                    name="unfair_pricing[is_claimed_store_online]"><span
-                    class="c-ui-switch__slider c-ui-switch__slider--round"></span></label><span
-                  class="c-form-pricing__label-text">در فروشگاه اینترنتی دیده‌ام</span></div>
-            </div>
-            <div class="c-form-pricing__additional js-price-survey-store-container">
-              <div class="c-form-pricing__title">
-                نام فروشگاه
-              </div>
-              <div class="c-form-pricing__row js-valid-row">
-                <div class="c-form-pricing__col"><label class="c-ui-input"><input class="c-ui-input__field" type="text"
-                                                                                  name="unfair_pricing[store]"
-                                                                                  placeholder=""></label></div>
-              </div>
-              <div class="c-form-pricing__title">مکان فروشگاه</div>
-              <div class="c-form-pricing__row js-valid-row">
-                <div class="c-form-pricing__col"><label class="c-ui-input">
-                    <div class="selectric-wrapper selectric-js-ui-select">
-                      <div class="selectric-hide-select"><select class="js-ui-select" name="unfair_pricing[store_state]"
-                                                                 tabindex="-1">
-                          <option value="0">انتخاب استان</option>
-                          <option value="9">تهران</option>
-                          <option value="6">البرز</option>
-                          <option value="5">اصفهان</option>
-                          <option value="12">خراسان رضوی</option>
-                          <option value="14">خوزستان</option>
-                          <option value="28">مازندران</option>
-                          <option value="18">فارس</option>
-                          <option value="2">آذربایجان شرقی</option>
-                          <option value="3">آذربایجان غربی</option>
-                          <option value="4">اردبیل</option>
-                          <option value="7">ایلام</option>
-                          <option value="8">بوشهر</option>
-                          <option value="10">چهار محال و بختیاری</option>
-                          <option value="11">خراسان جنوبی</option>
-                          <option value="13">خراسان شمالی</option>
-                          <option value="15">زنجان</option>
-                          <option value="16">سمنان</option>
-                          <option value="17">سیستان و بلوچستان</option>
-                          <option value="19">قزوین</option>
-                          <option value="20">قم</option>
-                          <option value="21">کردستان</option>
-                          <option value="22">کرمان</option>
-                          <option value="23">کرمانشاه</option>
-                          <option value="24">کهگیلویه و بویراحمد</option>
-                          <option value="25">گلستان</option>
-                          <option value="26">گیلان</option>
-                          <option value="27">لرستان</option>
-                          <option value="29">مرکزی</option>
-                          <option value="30">هرمزگان</option>
-                          <option value="31">همدان</option>
-                          <option value="32">یزد</option>
-                        </select></div>
-                      <div class="selectric"><span class="label">انتخاب استان</span><b class="button">▾</b></div>
-                      <div class="selectric-items" tabindex="-1">
-                        <div class="selectric-scroll">
-                          <ul>
-                            <li data-index="0" class="selected">انتخاب استان</li>
-                            <li data-index="1" class="">تهران</li>
-                            <li data-index="2" class="">البرز</li>
-                            <li data-index="3" class="">اصفهان</li>
-                            <li data-index="4" class="">خراسان رضوی</li>
-                            <li data-index="5" class="">خوزستان</li>
-                            <li data-index="6" class="">مازندران</li>
-                            <li data-index="7" class="">فارس</li>
-                            <li data-index="8" class="">آذربایجان شرقی</li>
-                            <li data-index="9" class="">آذربایجان غربی</li>
-                            <li data-index="10" class="">اردبیل</li>
-                            <li data-index="11" class="">ایلام</li>
-                            <li data-index="12" class="">بوشهر</li>
-                            <li data-index="13" class="">چهار محال و بختیاری</li>
-                            <li data-index="14" class="">خراسان جنوبی</li>
-                            <li data-index="15" class="">خراسان شمالی</li>
-                            <li data-index="16" class="">زنجان</li>
-                            <li data-index="17" class="">سمنان</li>
-                            <li data-index="18" class="">سیستان و بلوچستان</li>
-                            <li data-index="19" class="">قزوین</li>
-                            <li data-index="20" class="">قم</li>
-                            <li data-index="21" class="">کردستان</li>
-                            <li data-index="22" class="">کرمان</li>
-                            <li data-index="23" class="">کرمانشاه</li>
-                            <li data-index="24" class="">کهگیلویه و بویراحمد</li>
-                            <li data-index="25" class="">گلستان</li>
-                            <li data-index="26" class="">گیلان</li>
-                            <li data-index="27" class="">لرستان</li>
-                            <li data-index="28" class="">مرکزی</li>
-                            <li data-index="29" class="">هرمزگان</li>
-                            <li data-index="30" class="">همدان</li>
-                            <li data-index="31" class="last">یزد</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <input class="u-hidden" tabindex="0"></div>
-                  </label></div>
-              </div>
-            </div>
-            <div class="c-form-pricing__additional js-price-survey-online-container">
-              <div class="c-form-pricing__title">آدرس اینترنتی فروشگاه</div>
-              <div class="c-form-pricing__row js-valid-row">
-                <div class="c-form-pricing__col"><label class="c-ui-input"><input
-                      class="c-ui-input__field c-ui-input__field--left-placeholder" type="text"
-                      name="unfair_pricing[online_store_url]" placeholder="www.example.com"></label></div>
-              </div>
-            </div>
-            <div class="c-form-pricing__row c-form-pricing__row--submit">
-              <div class="c-form-pricing__col">
-                <button type="submit" class="btn-primary js-unfair-price-submit">ثبت اطلاعات</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+  <div aria-describedby="modal1Desc"
+       aria-labelledby="modal1Title" class="remodal c-remodal-location c-remodal-location--addresses js-general-location-addresses" data-remodal-id="general-location"
+       role="dialog">
+    <div class="c-remodal-location__header"><span class="js-general-location-title">انتخاب آدرس</span>
+      <div class="c-remodal-location__close js-close-modal"></div>
     </div>
-  </div>
-
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-feedback js-feedback-modal remodal-is-initialized remodal-is-closed"
-         data-remodal-id="feedback-survey" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc"
-         tabindex="-1">
-      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-      <div class="c-remodal-feedback__main">
-        <div class="c-remodal-feedback__aside">
-          <div class="c-remodal-feedback__title-img">بازخورد در مورد این کالا</div>
-          <div class="c-remodal-feedback__img"><img
-              data-src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607433891.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-              alt="گوشی موبایل اپل مدل iPhone 12 Pro A2408 دو سیم‌ کارت ظرفیت 128 گیگابایت"
-              src="https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607433891.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-              loading="lazy"></div>
-        </div>
-        <div class="c-remodal-feedback__content">
-          <form class="c-form-feedback" id="feedbackSurveyForm" novalidate="novalidate"><input type="hidden"
-                                                                                               name="feedback-survey[product_id]"
-                                                                                               value="3814476">
-            <div
-              class="c-message-light c-message-light--margined-vertically c-message-light--success js-feedback-message u-hidden-visually">
-              <span></span></div>
-            <div
-              class="c-message-light c-message-light--margined-vertically c-message-light--error js-feedback-error u-hidden-visually"></div>
-            <div class="c-form-feedback__row js-valid-row" data-question="1" data-parent="">
-              <div class="c-form-feedback__col c-form-feedback__col--v-center"><label
-                  class="c-ui-checkbox c-ui-checkbox--green"><input type="checkbox" class="input-checkbox"
-                                                                    name="feedback_survey[1]" value="1"
-                                                                    data-question="1"><span
-                    class="c-ui-checkbox__check"></span></label><span
-                  class="c-ui-checkbox__text">نام کالا صحیح نیست</span></div>
-            </div>
-            <div class="c-form-feedback__row js-valid-row" data-question="2" data-parent="">
-              <div class="c-form-feedback__col c-form-feedback__col--v-center"><label
-                  class="c-ui-checkbox c-ui-checkbox--green"><input type="checkbox" class="input-checkbox"
-                                                                    name="feedback_survey[2]" value="1"
-                                                                    data-question="2"><span
-                    class="c-ui-checkbox__check"></span></label><span class="c-ui-checkbox__text">عکس‌های کالا مناسب نیست</span>
-              </div>
-            </div>
-            <div class="c-form-feedback__row js-valid-row" data-question="3" data-parent="">
-              <div class="c-form-feedback__col c-form-feedback__col--v-center"><label
-                  class="c-ui-checkbox c-ui-checkbox--green"><input type="checkbox" class="input-checkbox"
-                                                                    name="feedback_survey[3]" value="1"
-                                                                    data-question="3"><span
-                    class="c-ui-checkbox__check"></span></label><span class="c-ui-checkbox__text">مشخصات فنی کالا صحیح نیست</span>
-              </div>
-            </div>
-            <div class="c-form-feedback__row js-valid-row" data-question="4" data-parent="">
-              <div class="c-form-feedback__col c-form-feedback__col--v-center"><label
-                  class="c-ui-checkbox c-ui-checkbox--green"><input type="checkbox" class="input-checkbox"
-                                                                    name="feedback_survey[4]" value="1"
-                                                                    data-question="4"><span
-                    class="c-ui-checkbox__check"></span></label><span
-                  class="c-ui-checkbox__text">توضیحات کالا صحیح نیست</span></div>
-            </div>
-            <div class="c-form-feedback__row js-valid-row" data-question="8" data-parent="">
-              <div class="c-form-feedback__col c-form-feedback__col--v-center"><label
-                  class="c-ui-checkbox c-ui-checkbox--green"><input type="checkbox" class="input-checkbox"
-                                                                    name="feedback_survey[8]" value="1"
-                                                                    data-question="8"><span
-                    class="c-ui-checkbox__check"></span></label><span
-                  class="c-ui-checkbox__text">این کالا غیراصل است</span></div>
-            </div>
-            <div class="c-form-feedback__row js-valid-row js-has-related-question" data-question="5" data-parent="">
-              <div class="c-form-feedback__col c-form-feedback__col--v-center"><label
-                  class="c-ui-checkbox c-ui-checkbox--green"><input type="checkbox" class="input-checkbox"
-                                                                    name="feedback_survey[5]" value="1"
-                                                                    data-question="5"><span
-                    class="c-ui-checkbox__check"></span></label><span class="c-ui-checkbox__text">کالا تکراری است</span>
-              </div>
-            </div>
-            <div class="u-hidden " data-question="6" data-parent="5">
-              <div class="c-form-feedback__title">آدرس کالای مشابه در {{ $fa_store_name }}</div>
-              <div class="c-form-feedback__row js-valid-row">
-                <div class="c-form-feedback__col"><label class="c-ui-input"><input
-                      class="c-ui-input__field c-ui-input__field--left-placeholder" type="text"
-                      name="feedback_survey[6]" placeholder="https://www.digikala.com/product/dkp-313420/"
-                      data-question="6"></label></div>
-              </div>
-            </div>
-            <div class=" " data-question="7" data-parent="">
-              <div class="c-form-feedback__title">توضیحات</div>
-              <div class="c-form-feedback__row js-valid-row">
-                <div class="c-form-feedback__col"><label class="c-ui-textarea"><textarea class="c-ui-textarea__field"
-                                                                                         placeholder="توضیحات"
-                                                                                         name="feedback_survey[7]"
-                                                                                         data-question="7"></textarea></label>
-                </div>
-              </div>
-            </div>
-            <div class="c-form-feedback__row c-form-feedback__row--submit">
-              <div class="c-form-feedback__col">
-                <button type="submit" class="btn-primary js-feedback-survey-submit disabled">ثبت اطلاعات</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-modal c-remodal-seller-rate-info remodal-is-initialized remodal-is-closed"
-         data-remodal-id="seller-rate-info" role="dialog" aria-labelledby="modalTitle" tabindex="-1"
-         aria-describedby="modalDesc" data-remodal-options="">
-      <div class="c-modal__top-bar  ">
-        <div class="c-modal__title c-remodal-seller-rate-info__modal-title">عملکرد فروشنده</div>
-        <div class="c-modal__close" data-remodal-action="close"></div>
-      </div>
-      <div class="c-remodal-seller-rate-info__container">
-        <div class="c-remodal-seller-rate-info__title">
-          تامین به موقع:
-        </div>
-        <p class="c-remodal-seller-rate-info__text">
-          این معیار نمایانگر آن است که فروشنده در بازه‌ی زمانی اعلام شده بدون هیچ تاخیری، کالا را تامین و ارسال کرده
-          است.
-        </p>
-        <div class="c-remodal-seller-rate-info__title">
-          تعهد ارسال:
-        </div>
-        <p class="c-remodal-seller-rate-info__text">
-          این معیار نمایانگر آن است که فروشنده سفارشات ثبت شده‌ی مشتریان را بدون کنسلی (لغو سفارش) ارسال کرده است.
-        </p>
-        <div class="c-remodal-seller-rate-info__title">
-          بدون مرجوعی:
-        </div>
-        <p class="c-remodal-seller-rate-info__text">
-          این معیار نمایانگر درصد کالاهای مرجوع شده
-          از سوی مشتری است که به علت تخلفات فروشنده و با دلایل قابل قبول از طرف مشتری مرجوع شده است.
-        </p></div>
-    </div>
-  </div>
-
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-account remodal-is-initialized remodal-is-closed" data-remodal-id="login"
-         role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
-      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-      <div class="c-remodal-account__headline">ورود به {{ $fa_store_name }}</div>
-      <div class="c-remodal-account__content">
-        <form class="c-form-account" id="loginFormModal" novalidate="novalidate">
-          <div class="c-message-light c-message-light--info" id="login-form-msg"></div>
-          <div class="c-form-account__title">پست الکترونیک یا شماره موبایل</div>
-          <div class="c-form-account__row">
-            <div class="c-form-account__col"><label class="c-ui-input c-ui-input--account-login"><input
-                  class="c-ui-input__field" type="text" name="login[email_phone]" autocomplete="current-email"
-                  placeholder="info@digikala.com"></label></div>
-          </div>
-          <div class="c-form-account__title">کلمه عبور</div>
-          <div class="c-form-account__row">
-            <div class="c-form-account__col"><label class="c-ui-input c-ui-input--account-password"><input
-                  class="c-ui-input__field" name="login[password]" type="password" autocomplete="current-password"
-                  placeholder=""></label></div>
-          </div>
-          <div class="c-form-account__agree"><label class="c-ui-checkbox c-ui-checkbox--primary"><input type="checkbox"
-                                                                                                        value="1"
-                                                                                                        name="login[remember]"
-                                                                                                        id="accountAutoLogin"><span
-                class="c-ui-checkbox__check"></span></label><label for="accountAutoLogin">مرا به خاطر داشته باش</label>
-          </div>
-          <div class="c-form-account__row c-form-account__row--submit">
-            <div class="c-form-account__col">
-              <button class="btn-login login-button-js">ورود به {{ $fa_store_name }}</button>
-            </div>
-          </div>
-          <div class="c-form-account__link"><a data-snt-event="dkLoginClick"
-                                               data-snt-params="{&quot;type&quot;:&quot;forgetPassword&quot;,&quot;site&quot;:&quot;login-modal&quot;}"
-                                               href="/users/password/forgot/" class="btn-link-spoiler">رمز عبور خود را
-              فراموش کرده ام</a></div>
-          <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
-            یا کلمه عبور اشتباه است.
-          </div>
-        </form>
-      </div>
-      <div class="c-remodal-account__footer is-highlighted"><span>کاربر جدید هستید؟</span><a
-          data-snt-event="dkLoginClick"
-          data-snt-params="{&quot;type&quot;:&quot;signup&quot;,&quot;site&quot;:&quot;login-modal&quot;}"
-          href="/users/login-register/?_back=https://www.digikala.com/product/dkp-3814476/%25DA%25AF%25D9%2588%25D8%25B4%25DB%258C-%25D9%2585%25D9%2588%25D8%25A8%25D8%25A7%25DB%258C%25D9%2584-%25D8%25A7%25D9%25BE%25D9%2584-%25D9%2585%25D8%25AF%25D9%2584-iphone-12-pro-a2408-%25D8%25AF%25D9%2588-%25D8%25B3%25DB%258C%25D9%2585-%25DA%25A9%25D8%25A7%25D8%25B1%25D8%25AA-%25D8%25B8%25D8%25B1%25D9%2581%25DB%258C%25D8%25AA-128-%25DA%25AF%25DB%258C%25DA%25AF%25D8%25A7%25D8%25A8%25D8%25A7%25DB%258C%25D8%25AA"
-          class="btn-link-spoiler">ثبت‌نام در {{ $fa_store_name }}</a></div>
-    </div>
-  </div>
-
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-loader remodal-is-initialized remodal-is-closed" data-remodal-id="loader"
-         data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog"
-         aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
-      <div class="c-remodal-loader__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="115" height="30" viewBox="0 0 115 30">
-          <path fill="#EE384E" fill-rule="evenodd"
-                d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z"></path>
-        </svg>
-      </div>
-      <div class="c-remodal-loader__bullets"><i class="c-remodal-loader__bullet c-remodal-loader__bullet--1"></i><i
-          class="c-remodal-loader__bullet c-remodal-loader__bullet--2"></i><i
-          class="c-remodal-loader__bullet c-remodal-loader__bullet--3"></i><i
-          class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></i></div>
-    </div>
-  </div>
-
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-general-alert remodal-is-initialized remodal-is-closed" data-remodal-id="alert"
-         role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1">
-      <div class="c-remodal-general-alert__main">
-        <div class="c-remodal-general-alert__content"><p class="js-remodal-general-alert__text"></p>
-          <p class="c-remodal-general-alert__description js-remodal-general-alert__description"></p></div>
-        <div class="c-remodal-general-alert__actions">
-          <button
-            class="c-remodal-general-alert__button c-remodal-general-alert__button--approve js-remodal-general-alert__button--approve"></button>
-          <button
-            class="c-remodal-general-alert__button c-remodal-general-alert__button--cancel js-remodal-general-alert__button--cancel"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-general-information remodal-is-initialized remodal-is-closed"
-         data-remodal-id="information" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc"
-         tabindex="-1">
-      <div class="c-remodal-general-information__main">
-        <div class="c-remodal-general-information__content"><p class="js-remodal-general-information__text"></p></div>
-        <div class="c-remodal-general-information__actions">
-          <button
-            class="c-remodal-general-information__button c-remodal-general-information__button--approve js-remodal-general-information__button--approve"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal c-remodal-quick-view remodal-is-initialized remodal-is-closed"
-         data-remodal-id="quick-view" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc"
-         tabindex="-1">
-      <button data-remodal-action="close" class="remodal-close c-remodal__close" aria-label="Close"></button>
-      <div class="c-quick-view__content js-quick-view-section"></div>
-    </div>
-  </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-fmcg remodal-is-initialized remodal-is-closed" data-remodal-id="fmcg-modal"
-         data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog" tabindex="-1">
-      <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
-      <div class="c-remodal-fmcg__container"><img src="https://www.digikala.com/static/files/cbaed462.png"
-                                                  class="c-remodal-fmcg__logo">
-        <div class="c-remodal-fmcg__content"><p class="c-remodal-fmcg__head-text">ارسال سریع کالای
-            <span> سوپر مارکتی </span> فقط در تهران و کرج امکان پذیر است.</p>
-          <p class="c-remodal-fmcg__question">با توجه به محدودیت ارسال، آیا مایل هستید این کالا به سبد خرید شما افزوده
-            شود؟</p>
-          <div class="c-remodal-fmcg__actions">
-            <button class="c-remodal-fmcg__button c-remodal-fmcg__button--reject js-fmcg-modal-reject">خیر</button>
-            <button class="c-remodal-fmcg__button c-remodal-fmcg__button--approve js-fmcg-modal-approve">بله</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div class="remodal c-remodal-location js-general-location remodal-is-initialized remodal-is-closed"
-         data-remodal-id="general-location" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc"
-         tabindex="-1">
-      <div class="c-remodal-location__header"><span class="js-general-location-title">انتخاب استان</span>
-        <div class="c-remodal-location__close js-close-modal"></div>
-      </div>
-      <div class="c-remodal-location__content js-states-container">
-        <div class="c-general-location__row c-general-location__row--your-location js-your-location">
-          مکان‌یابی خودکار
-        </div>
-      </div>
-      <div class="c-remodal-location__content js-cities-container" style="display: none;">
-        <div class="c-general-location__row c-general-location__row--back js-back-to-states">
-          بازگشت به لیست استان‌ها
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;">
-    <div
-      class="remodal c-remodal-location c-remodal-location--addresses js-general-location-addresses remodal-is-initialized remodal-is-closed"
-      data-remodal-id="general-location" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc"
-      tabindex="-1">
-      <div class="c-remodal-location__header"><span class="js-general-location-title">انتخاب آدرس</span>
-        <div class="c-remodal-location__close js-close-modal"></div>
-      </div>
-      <div class="c-remodal-location__content js-addresses-container">
-        <div class="c-ui-radio-wrapper c-ui-radio--general-location js-sample-address u-hidden">
-          <label class="c-filter__label " for="generalLocationAddress"></label>
-          <label class="c-ui-radio">
-            <input type="radio" value="" name="generalLocationAddress" class="" id="generalLocationAddress"
-                   data-title="">
-            <span class="c-ui-radio__check"></span>
-          </label>
-        </div>
-        <a href="/addresses/add/" class="c-general-location__add-address js-general-location-add-address">
-          افزودن آدرس جدید
-        </a>
-      </div>
-    </div>
-  </div>
-
-
-  <div id="iv-container" class="">
-    <div class="iv-loader"></div>
-    <div class="iv-snap-view">
-      <div class="iv-snap-image-wrap">
-        <div class="iv-snap-handle"></div>
-      </div>
-      <div class="iv-zoom-slider">
-        <div class="iv-zoom-handle"></div>
-      </div>
-    </div>
-    <div class="iv-image-view-container"
-    <div
-    ="">
-    <div class="iv-image-wrap"></div>
-  </div>       </div>
-
-  <div class="iv-close"></div>
-
-  <div></div>
-
-  <style id="ins-free-style" innerhtml=""></style>
-
-  <div class="zoomContainer"
-       style="-webkit-transform: translateZ(0);position:absolute;left:934.1500244140625px;top:203.98333740234375px;height:341.7px;width:341.7px;">
-    <div class="zoomLens"
-         style="background-position: 0px 0px; float: right; overflow: hidden; z-index: 999; transform: translateZ(0px); opacity: 0.4; width: 227.444px; height: 144.155px; background-color: rgba(239, 57, 78, 0.1); cursor: crosshair; border: 2.5px solid rgb(239, 86, 97); background-repeat: no-repeat; position: absolute; left: 113.25px; top: 0px; display: none;">
-      &nbsp;
-    </div>
-  </div>
-
-  <div class="zoomWindowContainer" style="width: 852px;">
-    <div
-      style="overflow: hidden; background-position: -428px 0px; text-align: center; background-color: rgb(255, 255, 255); width: 852px; height: 540px; float: left; background-size: 1280px 1280px; z-index: 100; border: 0px solid rgb(136, 136, 136); background-repeat: no-repeat; position: absolute; background-image: url(&quot;https://dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607433891.jpg?x-oss-process=image/resize,w_1280/quality,q_80&quot;); top: 226.833px; left: 24px; display: none;"
-      class="zoomWindow">&nbsp;
-    </div>
+    <div class="c-remodal-location__content js-addresses-container">
+      <div class="c-ui-radio-wrapper c-ui-radio--general-location js-sample-address u-hidden"><label
+          class="c-filter__label " for="generalLocationAddress"></label><label class="c-ui-radio"><input
+            class="" data-title="" id="generalLocationAddress" name="generalLocationAddress"
+            type="radio" value=""><span class="c-ui-radio__check"></span></label></div>
+      <a class="c-general-location__add-address js-general-location-add-address"
+         href="https://www.digikala.com/addresses/add/">
+        افزودن آدرس جدید
+      </a></div>
   </div>
 @endsection
+

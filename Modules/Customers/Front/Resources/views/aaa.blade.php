@@ -903,7 +903,6 @@
 
 
             </section>
-
           </article>
 
 
@@ -1587,6 +1586,7 @@
           </div>
           <button data-remodal-action="close" class="c-remodal-gallery__close" aria-label="Close"></button>
         </div>
+
         <div class="c-remodal-gallery__content js-gallery-tab-content is-active" id="gallery-content-1">
           @foreach($product->media as $key => $image)
             @if($product->media()->exists())
@@ -1620,6 +1620,7 @@
             <div class="c-remodal-gallery__other-imgs js-comments-files-thumbnails-summary js-see-more-imgs"></div>
           </div>
         </div>
+
         <div
           class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
           id="gallery-content-2"></div>
@@ -2412,4 +2413,5 @@
       class="zoomWindow">&nbsp;
     </div>
   </div>
+
 @endsection
