@@ -64,7 +64,7 @@ $is_buyed = is_buyed($product);
     var productId = {{ $product->product_code }};
     var nowTimeInUTC = "2021-04-23 07:21:29";
     var productPageUrl = "{{ route('front.productPage', [$product->product_code]) }}";
-    var userId = {{ $customer->id }};
+    var userId = {{ (!is_null($customer))? $customer->id : '' }};
     var adroRCActivation = true;
     var loginRegisterUrlWithBack = "\/users\/login-register\/?_back=https:\/\/www.digikala.com\/product\/comment\/dkp-{{ $product->product_code }}";
     var isNewCustomer = false;

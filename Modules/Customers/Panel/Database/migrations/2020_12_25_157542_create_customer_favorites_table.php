@@ -15,9 +15,6 @@ class CreateCustomerFavoritesTable extends Migration
     {
         Schema::create('customer_favorites', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_sms');
-            $table->boolean('is_email');
-            $table->boolean('is_notification');
             $table->foreignId('customer_id');
             $table->foreignId('product_id');
             $table->timestamps();

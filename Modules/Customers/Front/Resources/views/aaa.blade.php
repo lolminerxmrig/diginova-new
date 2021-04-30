@@ -1248,8 +1248,8 @@
 
           <div class="c-product__bottom-section u-mt-12 has-mini-buybox">
             <div id="tabs" class="o-box o-box--no-border o-box--grow c-product__tabs-container" >
+              @if ($product->attributes()->exists())
               <ul class="o-box__tabs o-box__tabs--sticky js-c-box-tabs">
-                @if ($product->attributes()->exists())
                   <li data-product-id="{{ $product->id }}"
                       class="js-product-params-tab o-box__tab js-product-tab  is-active" data-fetchfromservice=""
                       data-method="params" id="tab-params">
@@ -1257,7 +1257,6 @@
                        data-snt-params="{&quot;item&quot;:&quot;product-tab&quot;,&quot;item_option&quot;:&quot;3-مشخصات&quot;}"
                        data-tab-name="params">مشخصات</a>
                   </li>
-                @endif
                 <li data-product-id="{{ $product->id }}"
                     class="js-product-comments-tab o-box__tab js-product-tab {{ (!$product->attributes()->exists())? 'is-active' : '' }} "
                     data-fetchfromservice="1" data-method="comments" id="tab-comments">
@@ -1266,6 +1265,7 @@
                      data-tab-name="comments">دیدگاه کاربران</a></li>
                 </li>
               </ul>
+              @endif
               <div>
                 <div id="recommendation-pdp-top-rate"
                      class="c-carousel c-carousel--horizontal-general u-hidden u-mt-16">

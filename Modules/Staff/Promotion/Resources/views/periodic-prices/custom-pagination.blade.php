@@ -31,14 +31,13 @@
     @endif
     @endforeach
     @if ($paginator->hasMorePages())
-
-        <li class="c-ui-paginator__control-item">
-            <a class="c-ui-paginator__control-next" data-page="{{ ($paginator->currentPage())+1 }}"></a>
-        </li>
+      <li class="c-ui-paginator__control-item">
+          <a class="c-ui-paginator__control-next" data-page="{{ ($paginator->currentPage())+1 }}"></a>
+      </li>
     @else
-        <li class="c-ui-paginator__control-item" aria-disabled="true" aria-label="@lang('pagination.next')">
-            <a class="pagination-link c-ui-paginator__control-next c-ui-paginator__control-next--disabled" aria-hidden="true" data-page="" rel="next" aria-label="@lang('pagination.next')"></a>
-        </li>
+      <li class="c-ui-paginator__control-item" aria-disabled="true" aria-label="@lang('pagination.next')">
+          <a class="pagination-link c-ui-paginator__control-next c-ui-paginator__control-next--disabled" aria-hidden="true" data-page="" rel="next" aria-label="@lang('pagination.next')"></a>
+      </li>
     @endif
 </ul>
 @endif

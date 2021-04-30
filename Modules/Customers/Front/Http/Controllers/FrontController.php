@@ -36,6 +36,7 @@ class FrontController extends Controller
         $variant_ids[] = $item->variant->id;
       }
     }
+    $ratings = $product->ratings;
 
     return view('front::product', compact('product', 'variant_defualt', 'variant_ids'));
   }
@@ -53,40 +54,6 @@ class FrontController extends Controller
     dd($variant_ids);
   }
 
-  public function addToFavorites($product_id)
-  {
-    $customer_id = Auth::guard('customer')->user()->id;
-    if (!CustomerFavorite::where('product_id', $product_id)->where('customer_id', $customer_id)->exists()) {
-      CustomerFavorite::create([
-        'customer_id' => $customer_id,
-        'product_id' => $product_id,
-      ]);
-
-      return response()->json([
-        'status' => true,
-        'data' => null,
-      ]);
-
-    }
-
-    return response()->json([
-      'status' => false,
-      'data' => null,
-    ]);
-
-  }
-
-  public function removeFromFavorites($product_id)
-  {
-      $customer_id = Auth::guard('customer')->user()->id;
-      CustomerFavorite::where('product_id', $product_id)->where('customer_id', $customer_id)->first()->delete();
-
-      return response()->json([
-        'status' => true,
-        'data' => null,
-      ]);
-  }
-
   public function mainSearch(Request $request)
   {
 
@@ -96,6 +63,7 @@ class FrontController extends Controller
       'status' => true,
       'data' => View::make('front::ajax.mainSearch')->render(),
     ], 200);
+
   }
 
   public function mainSearchFilters()
@@ -110,9 +78,18 @@ class FrontController extends Controller
 
   public function productComments($product_id)
   {
-    $product = Product::find($product_id);
-    $comments = Product::find($product_id)->comments()->where('publish_status', 'accepted')->get();
+    $product = Product::where('product_code', $product_id)->first();
+    $comments = $product->comments()->where('publish_status', 'accepted')->paginate(1);
+
     return view('front::ajax.product.comments', compact('comments', 'product'));
+  }
+
+  public function productCommentList($product_id)
+  {
+    $product = Product::where('product_code', $product_id)->first();
+    $comments = $product->comments()->where('publish_status', 'accepted')->paginate(1);
+
+    return view('front::ajax.product.commentList', compact('comments', 'product'));
   }
 
   public function createComment($product_id)
@@ -167,5 +144,41 @@ class FrontController extends Controller
 
   }
 
+  public function addToFavorites($product_id)
+  {
+    $customer_id = Auth::guard('customer')->user()->id;
+    $product_id = Product::where('product_code', $product_id)->first()->id;
+    if (!CustomerFavorite::where('product_id', $product_id)->where('customer_id', $customer_id)->exists()) {
+      CustomerFavorite::create([
+        'customer_id' => $customer_id,
+        'product_id' => $product_id,
+      ]);
+
+      return response()->json([
+        'status' => true,
+        'data' => null,
+      ]);
+
+    }
+
+
+    return response()->json([
+      'status' => true,
+      'data' => null,
+    ]);
+
+  }
+
+  public function removeFromFavorites($product_id)
+  {
+    $customer_id = Auth::guard('customer')->user()->id;
+    $product_id = Product::where('product_code', $product_id)->first()->id;
+    CustomerFavorite::where('product_id', $product_id)->where('customer_id', $customer_id)->first()->delete();
+
+    return response()->json([
+      'status' => true,
+      'data' => null,
+    ]);
+  }
 
 }

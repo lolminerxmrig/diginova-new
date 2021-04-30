@@ -8,7 +8,8 @@
     @else
         <li class="c-ui-paginator__control-item">
             <a href="{{ $paginator->previousPageUrl() }}" class="pagination-link c-ui-paginator__control-prev js-content-pager-item"
-               aria-hidden="true" aria-label="@lang('pagination.previous')"></a>
+               aria-hidden="true" aria-label="@lang('pagination.previous')">
+            </a>
         </li>
     @endif
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Modules\Customers\Front\Models\CustomerFavorite;
 use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Attribute\Models\AttributeGroup;
 use Modules\Staff\Attribute\Models\AttributeProduct;
@@ -14,6 +15,7 @@ use Modules\Staff\Attribute\Models\ProductAttributes;
 use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Comment\Models\Comment;
+use Modules\Staff\Comment\Models\CommentHasRating;
 use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 
@@ -99,4 +101,15 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function favorite()
+    {
+      return $this->hasOne(CustomerFavorite::class);
+    }
+
+    public function ratings()
+    {
+      return $this->hasMany(CommentHasRating::class);
+    }
+
 }

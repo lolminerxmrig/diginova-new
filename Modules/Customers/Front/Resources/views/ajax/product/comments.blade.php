@@ -1,109 +1,59 @@
 <div class="c-comments__container">
-  <div class="c-comments__side-bar">
-    <div class="c-comments__side-rating-container">
-      <div class="c-comments__side-rating">
-        <div class="c-comments__side-rating-main">۴.۱</div>
-        <div class="c-comments__side-rating-desc">از ۵</div>
-      </div>
-      <div class="c-comments__side-rating-bottom">
-        <div class="c-stars">
-          <span class="c-stars__item"></span>
-          <span class="c-stars__item"></span>
-          <span class="c-stars__item"></span>
-          <span class="c-stars__item"></span>
-          <span class="c-stars__item"></span>
-          <div class="c-stars__selected" style="width: 82%">
+  @if ($product->ratings()->exists())
+    <div class="c-comments__side-bar">
+      <div class="c-comments__side-rating-container">
+        <div class="c-comments__side-rating">
+          <div class="c-comments__side-rating-main">{{ persianNum(round($product->ratings()->avg('score'), 1)) }}</div>
+          <div class="c-comments__side-rating-desc">از ۵</div>
+        </div>
+        <div class="c-comments__side-rating-bottom">
+          <div class="c-stars">
             <span class="c-stars__item"></span>
             <span class="c-stars__item"></span>
             <span class="c-stars__item"></span>
             <span class="c-stars__item"></span>
             <span class="c-stars__item"></span>
+            <div class="c-stars__selected" style="width: {{ $product->ratings()->avg('score')*20 }}%">
+              <span class="c-stars__item"></span>
+              <span class="c-stars__item"></span>
+              <span class="c-stars__item"></span>
+              <span class="c-stars__item"></span>
+              <span class="c-stars__item"></span>
+            </div>
           </div>
-        </div>
 
+          <div class="c-comments__side-rating-all">
+            <?php
+            $rating_sample = $product->ratings()->first();
+            ?>
+            از مجموع {{ persianNum($product->ratings()->where('rating_id', $rating_sample->id)->count()) }} امتیاز
+          </div>
 
-        <div class="c-comments__side-rating-all">
-          از مجموع ۸۹ امتیاز
         </div>
       </div>
+
+      <ul class="c-content-expert__rating">
+        @foreach ($product->categories()->first()->ratings as $item)
+          <li>
+            <div class="c-content-expert__rating-title">{{ $item->name }}</div>
+            <div class="c-content-expert__rating-value">
+              <div class="c-rating c-rating--general js-rating">
+                <div class="c-rating__rate js-rating-value" data-rate-value="{{ ($product->ratings()->where('rating_id', $item->id)->avg('score'))*20 }}%" style="width: 82%;"></div>
+              </div>
+              <span class="c-rating__overall-word">
+              {{ persianNum(round($product->ratings()->where('rating_id', $item->id)->avg('score'), 1))  }}
+            </span>
+            </div>
+          </li>
+        @endforeach
+      </ul>
+      <div class="c-comments__add-comment-desc">دیدگاه خود را درباره این کالا بیان کنید</div>
+      <a href="{{ route('front.createComment', [$product->product_code]) }}" data-product-id="{{ $product->product_code }}" class="o-btn o-btn--outlined-red-md o-btn--full-width js-add-new-comment">افزودن دیدگاه</a>
     </div>
-    <ul class="c-content-expert__rating">
-      <li>
-        <div class="c-content-expert__rating-title">کیفیت ساخت</div>
-        <div class="c-content-expert__rating-value">
-          <div class="c-rating c-rating--general js-rating">
-            <div class="c-rating__rate js-rating-value"
-                 data-rate-value="82%"
-                 style="width: 82%;"></div>
-          </div>
-          <span class="c-rating__overall-word">۴.۱</span>
-        </div>
-      </li>
-      <li>
-        <div class="c-content-expert__rating-title">ارزش خرید به نسبت قیمت</div>
-        <div class="c-content-expert__rating-value">
-          <div class="c-rating c-rating--general js-rating">
-            <div class="c-rating__rate js-rating-value"
-                 data-rate-value="78%"
-                 style="width: 78%;"></div>
-          </div>
-          <span class="c-rating__overall-word">۳.۹</span>
-        </div>
-      </li>
-      <li>
-        <div class="c-content-expert__rating-title">نوآوری</div>
-        <div class="c-content-expert__rating-value">
-          <div class="c-rating c-rating--general js-rating">
-            <div class="c-rating__rate js-rating-value"
-                 data-rate-value="82%"
-                 style="width: 82%;"></div>
-          </div>
-          <span class="c-rating__overall-word">۴.۱</span>
-        </div>
-      </li>
-      <li>
-        <div class="c-content-expert__rating-title">امکانات و قابلیت ها</div>
-        <div class="c-content-expert__rating-value">
-          <div class="c-rating c-rating--general js-rating">
-            <div class="c-rating__rate js-rating-value"
-                 data-rate-value="82%"
-                 style="width: 82%;"></div>
-          </div>
-          <span class="c-rating__overall-word">۴.۱</span>
-        </div>
-      </li>
-      <li>
-        <div class="c-content-expert__rating-title">سهولت استفاده</div>
-        <div class="c-content-expert__rating-value">
-          <div class="c-rating c-rating--general js-rating">
-            <div class="c-rating__rate js-rating-value"
-                 data-rate-value="80%"
-                 style="width: 80%;"></div>
-          </div>
-          <span class="c-rating__overall-word">۴</span>
-        </div>
-      </li>
-      <li>
-        <div class="c-content-expert__rating-title">طراحی و ظاهر</div>
-        <div class="c-content-expert__rating-value">
-          <div class="c-rating c-rating--general js-rating">
-            <div class="c-rating__rate js-rating-value"
-                 data-rate-value="80%"
-                 style="width: 80%;"></div>
-          </div>
-          <span class="c-rating__overall-word">۴</span>
-        </div>
-      </li>
-    </ul>
-
-    <div class="c-comments__add-comment-desc">دیدگاه خود را درباره این کالا بیان کنید</div>
-    <a href="{{ route('front.createComment', [$product->product_code]) }}" data-product-id="{{ $product->product_code }}" class="o-btn o-btn--outlined-red-md o-btn--full-width js-add-new-comment">افزودن دیدگاه</a>
-  </div>
+  @endif
   <div class="c-comments__content-section">
 
     <div class="c-sort-row">
-
-
       <i class="c-icon-font c-icon-font--large  js-icon-font"
          data-icon="Icon-Action-Sort"
          data-icon-active="Icon-Action-Sort"
@@ -135,16 +85,12 @@
     <div id="product-comment-list">
 
       <div class="c-comments__list">
-        @foreach($product->comments as $comment)
+        @foreach($comments as $comment)
 
           <?php
             $advantages = json_decode($comment->advantages, true);
             $disadvantages = json_decode($comment->disadvantages, true);
-//            return $advantages;
-
-          \Illuminate\Support\Facades\Log::info(json_decode($comment->advantages, true));
           ?>
-
 
           <div class="c-comments__item c-comments__item--pdp">
           <div class="c-comments__row">
@@ -216,19 +162,11 @@
         </div>
         @endforeach
       </div>
+
       <div class="c-pager" id="comment-pagination">
-        <ul class="c-pager__items">
-          <li class="js-pagination-item "><a class="c-pager__item is-active" href="javascript:" data-page="1">۱</a></li>
-          <li class="js-pagination-item "><a class="c-pager__item" href="/ajax/product/comments/list/{{ $product->product_code }}/?mode=newest_comment&page=2" data-page="2">۲</a></li>
-          <li class="js-pagination-item "><a class="c-pager__item" href="/ajax/product/comments/list/{{ $product->product_code }}/?mode=newest_comment&page=3" data-page="3">۳</a></li>
-          <li class="js-pagination-item "><a class="c-pager__item" href="/ajax/product/comments/list/{{ $product->product_code }}/?mode=newest_comment&page=4" data-page="4">۴</a></li>
-          <li class="js-pagination-item "><a class="c-pager__item" href="/ajax/product/comments/list/{{ $product->product_code }}/?mode=newest_comment&page=5" data-page="5">۵</a></li>
-          <li class="js-pagination-item "><a class="c-pager__item" href="/ajax/product/comments/list/{{ $product->product_code }}/?mode=newest_comment&page=6" data-page="6">۶</a></li>
-          <li class="js-pagination-item ">
-            <a class="c-pager__next" href="/ajax/product/comments/list/{{ $product->product_code }}/?mode=newest_comment&page=6" data-page="6"></a>
-          </li>
-        </ul>
+        {{ $comments->links('front::ajax.product.layouts.commentPagination') }}
       </div>
+
     </div>
   </div>
 </div>
@@ -236,7 +174,6 @@
 <script src="{{ asset('staff/js/jalali-moment.browser.js') }}"></script>
 
 <script>
-
   function persianNum() {
     String.prototype.toPersianDigits = function () {
       var id = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];

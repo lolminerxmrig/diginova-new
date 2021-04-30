@@ -124,12 +124,16 @@
                 "discount_percent": null,
                 "rrp_price": {{ $item->sale_price }},
                 "selling_price": {{ $promotion_price }},
-                "is_incredible_offer": false,
+                "is_incredible_offer": {{ ($item->promotions()->exists())? 'true' : 'false' }},
                 "is_plus_offer": false,
                 "is_sponsored_offer": false,
                 "is_locked_for_plus": false,
                 "promotion_id": null,
+                @if ($promotion_timer !== 'false')
+                "timer": "{{ $promotion_timer }}",
+                @else
                 "timer": null,
+                @endif
                 "pre_sell": false,
                 "variant_id": {{ $item->variant_code }},
                 "orderLimit": {{ $item->max_order_count }},
@@ -271,9 +275,9 @@
     var isPDP = true;
     var faqPageTitle = "pdp_section";
     var isAnanasFriendly = true;
-    var userId = null;
+    var userId = {{ (auth()->guard('customer')->check())? auth()->guard('customer')->user()->id : 'null' }};
     var adroRCActivation = true;
-    var loginRegisterUrlWithBack = "{{ route('customer.regLoginPage') }}";
+    var loginRegisterUrlWithBack = "/users/login-register";
     var isNewCustomer = false;
     var digiclubLuckyDrawEndTime = "";
     var activateUrl = "";
@@ -766,34 +770,16 @@
                 <div class="c-gallery__item">
                   <ul class="c-gallery__options">
                     <li>
-                      <button data-snt-event="dkProductPageClick"
-                              data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;add-to-favorites&quot;}"
-                              id="add-to-favorite-button" class="btn-option btn-option--wishes" data-token=""></button>
-                      <span class="c-tooltip c-tooltip--left c-tooltip--short">افزودن به علاقه‌مندی</span></li>
+                      <button data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;add-to-favorites&quot;}"
+                              id="add-to-favorite-button" class="btn-option btn-option--wishes {{ ($product->favorite()->exists())? 'is-active' : '' }}" data-token=""></button>
+                      <span class="c-tooltip c-tooltip--left c-tooltip--short">افزودن به علاقه‌مندی</span>
+                    </li>
                     <li>
-                      <button data-snt-event="dkProductPageClick"
-                              data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;share&quot;}"
-                              class="btn-option btn-option--social js-btn-option--social" data-event="share"
-                              data-event-category="engagement"></button>
-                      <span class="c-tooltip c-tooltip--left c-tooltip--short">اشتراک گذاری</span></li>
+                      <button class="btn-option btn-option--stats" id="price-chart-button" data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;price-chart&quot;}" data-event="price_chart" data-event-category="product_page" data-event-label="category: گوشی موبایل, available:True"></button>
+                      <span class="c-tooltip c-tooltip--left c-tooltip--short">نمودار قیمت</span>
+                    </li>
                     <li>
-                      <button data-snt-event="dkProductPageClick"
-                              data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;alarm&quot;}"
-                              class="btn-option btn-option--alarm js-add-to-incredible-notify-button"></button>
-                      <span class="c-tooltip c-tooltip--left c-tooltip--short">
-                              اطلاع‌رسانی شگفت‌انگیز
-                      </span></li>
-                    <li>
-                      <button class="btn-option btn-option--stats" id="price-chart-button"
-                              data-snt-event="dkProductPageClick"
-                              data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;price-chart&quot;}"
-                              data-event="price_chart" data-event-category="product_page"
-                              data-event-label="category: گوشی موبایل, available:True"></button>
-                      <span class="c-tooltip c-tooltip--left c-tooltip--short">نمودار قیمت</span></li>
-                    <li><a data-snt-event="dkProductPageClick"
-                           data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;compare&quot;}"
-                           href="/compare/dkp-{{ $product->id }}/" class="btn-option btn-option--compare"></a><span
-                        class="c-tooltip c-tooltip--left c-tooltip--short">مقایسه</span></li>
+                      <a data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;compare&quot;}" href="/compare/dkp-{{ $product->id }}/" class="btn-option btn-option--compare"></a><span class="c-tooltip c-tooltip--left c-tooltip--short">مقایسه</span></li>
                   </ul>
                   <div class="c-gallery__img">
                     @foreach($product->media as $image)
@@ -1022,10 +1008,8 @@
 
           <div class="c-product__bottom-section u-mt-12 has-mini-buybox">
             <div class="o-box o-box--no-border o-box--grow c-product__tabs-container" id="tabs">
-              <ul class="o-box__tabs o-box__tabs--sticky js-c-box-tabs">
-                <li class="js-product-params-tab o-box__tab js-product-tab " data-fetchFromService=""
-                    data-method="params" data-product-id="{{ $product->id }}" id="tab-params"
-                >
+              <ul class="o-box__tabs o-box__tabs--sticky js-c-box-tabs {{ ($product->attributes()->exists())? '' : 'u-hidden' }}">
+                <li class="js-product-params-tab o-box__tab js-product-tab " data-fetchFromService="" data-method="params" data-product-id="{{ $product->id }}" id="tab-params">
                   <a data-snt-event="dkProductPageClick"
                      data-snt-params='{"item":"product-tab","item_option":"1-مشخصات"}'
                      data-tab-name="params"
@@ -1040,40 +1024,6 @@
                      href="">دیدگاه کاربران</a></li>
               </ul>
               <div>
-                <div class="c-carousel c-carousel--horizontal-general u-hidden u-mt-16"
-                     id="recommendation-pdp-top-rate">
-                  <div class="recommendation-swiper__mask js-swiper-mask-recommendation-pdp-top-rate u-hidden">
-                    <p>این پیشنهاد به شما نشان داده نخواهد شد با تشکر از باز‌خورد شما</p>
-                    <button class="js-cancel-swiper-mask" data-id="recommendation-pdp-top-rate"><i></i>
-                      بازگرداندن
-                    </button>
-                  </div>
-                  <div class="c-carousel__header">
-                    <div class="c-title ">
-                      <div class="c-title__content-right c-title__content-right--has-underline
-                                           c-title__content-right--has-ad-underline ">
-                        <div class="c-title__title-container">
-                          <h4 class="c-title__title">عنوان تست</h4>
-                        </div>
-                        <span class="c-title__description">آگهی شده</span></div>
-                    </div>
-                    <div class="c-adplacement__badge ad-badge">
-                      <div class="c-adplacement__badge-container ">
-                        <div class="c-adplacement__badge-container--img">
-                          <img src="../../static/files/52672319.svg">
-                          <span class="c-adplacement__badge-container--txt">Ad</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="c-carousel__content">
-                    <div class="swiper-container swiper-container-horizontal c-carousel__container">
-                      <div class="swiper-wrapper js-products-container"></div>
-                      <div class="swiper-button-prev js-swiper-button-prev"></div>
-                      <div class="swiper-button-next js-swiper-button-next"></div>
-                    </div>
-                  </div>
-                </div>
 
                 <div class="c-params js-product-tab-content" data-method="params" id="params" style="display: none;">
                   <article class="c-params__border-bottom">
@@ -1082,39 +1032,122 @@
                       <span class="o-box__header-desc">{{ $product->title_en }}</span>
                     </div>
                     <section>
-                      <h3 class="c-params__title">مشخصات</h3>
-                      <ul class="c-params__list">
-                        <li style="display: none;">
-                          <div class="c-params__list-key">
-                            <span class="block">ابعاد</span>
-                          </div>
-                          <div class="c-params__list-value">
-                              <span class="block">
-                                  55x10x120 میلی‌متر
-                              </span>
-                          </div>
-                        </li>
-                        <li style="display: none;">
-                          <div class="c-params__list-key">
-                            <span class="block">ابعاد</span>
-                          </div>
-                          <div class="c-params__list-value">
-                              <span class="block">
-                                  55x10x120 میلی‌متر
-                              </span>
-                          </div>
-                        </li>
-                        <li style="display: none;">
-                          <div class="c-params__list-key">
-                            <span class="block">ابعاد</span>
-                          </div>
-                          <div class="c-params__list-value">
-                              <span class="block">
-                                  55x10x120 میلی‌متر
-                              </span>
-                          </div>
-                        </li>
-                      </ul>
+
+
+                        @foreach($product->category[0]->attributeGroups as $key => $attrGroup)
+                          @if ($key > 0)
+                            @continue
+                          @endif
+                          <?php $filledAttrG = null; ?>
+
+                          @foreach($attrGroup->attributes as $attribute)
+                            @if(isset($product->attributes()->find($attribute->id)->pivot->product_id))
+                              <?php $filledAttrG = true; ?>
+                            @endif
+                          @endforeach
+
+                          @if (!is_null($filledAttrG))
+                            <section>
+
+                              <h3 class="c-params__title">{{ $attrGroup->name }}</h3>
+
+                              <ul class="c-params__list">
+                                @foreach($attrGroup->attributes->sortBy('position') as $attribute)
+                                  <li>
+                                    @if(isset($product->attributes()->find($attribute->id)->pivot->value) && !is_null($attribute->name))
+                                      <div class="c-params__list-key"><span class="block">{{ $attribute->name }}</span>
+                                      </div>
+                                    @endif
+
+                                    @if (($attribute->type == 1 || $attribute->type == 2) && isset($product->attributes()->find($attribute->id)->pivot->value))
+                                      <div class="c-params__list-value">
+                                      <span class="block">
+                                        {{ $product->attributes()->find($attribute->id)->pivot->value }}
+                                      </span>
+                                      </div>
+                                    @elseif ($attribute->type == 3 && isset($product->attributes->find($attr->id)->pivot->value_id) && ($product->attributes->find($attr->id)->pivot->value_id == $value->id))
+                                      <div class="c-params__list-value">
+                                      <span class="block">
+                                         @foreach($attribute->values as $value)
+                                          {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
+                                        @endforeach
+                                      </span>
+                                      </div>
+                                    @elseif ($attribute->type == 4)
+                                      @php $arrays = null; @endphp
+                                      @foreach($product->attributes as $pAttr)
+                                        @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
+                                          <?php $pArray[] = $pAttr->pivot->value_id; ?>
+                                        @endif
+                                      @endforeach
+
+                                      <?php $has_value = false; ?>
+                                      @foreach($attribute->values as $key => $value)
+                                        @if ($has_value == true)
+                                          @continue
+                                        @endif
+                                        @if(in_array($value->id, $pArray))
+                                          <?php $has_value = true; ?>
+                                        @endif
+                                      @endforeach
+
+                                      @if($has_value == true)
+                                        <div class="c-params__list-value">
+                                          <span class="block">
+                                            @foreach($attribute->values as $key => $value)
+                                              {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attribute->values) !== $key+1)? '، ' : '' }}
+                                            @endforeach
+                                          </span>
+                                        </div>
+                                      @endif
+
+                                    @elseif ($attribute->type == 5 && isset($product->attributes->find($attribute->id)->pivot->value))
+                                      <div class="c-params__list-value">
+                                      <span class="block">
+                                        {{ $product->attributes->find($attribute->id)->pivot->value }} {{ ' ' . (isset($attribute->unit)? $attribute->unit->name : '')  }}
+                                      </span>
+                                      </div>
+                                    @endif
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </section>
+                          @endif
+                        @endforeach
+
+{{--                      <h3 class="c-params__title">مشخصات</h3>--}}
+{{--                      <ul class="c-params__list">--}}
+{{--                        <li style="display: none;">--}}
+{{--                          <div class="c-params__list-key">--}}
+{{--                            <span class="block">ابعاد</span>--}}
+{{--                          </div>--}}
+{{--                          <div class="c-params__list-value">--}}
+{{--                              <span class="block">--}}
+{{--                                  55x10x120 میلی‌متر--}}
+{{--                              </span>--}}
+{{--                          </div>--}}
+{{--                        </li>--}}
+{{--                        <li style="display: none;">--}}
+{{--                          <div class="c-params__list-key">--}}
+{{--                            <span class="block">ابعاد</span>--}}
+{{--                          </div>--}}
+{{--                          <div class="c-params__list-value">--}}
+{{--                              <span class="block">--}}
+{{--                                  55x10x120 میلی‌متر--}}
+{{--                              </span>--}}
+{{--                          </div>--}}
+{{--                        </li>--}}
+{{--                        <li style="display: none;">--}}
+{{--                          <div class="c-params__list-key">--}}
+{{--                            <span class="block">ابعاد</span>--}}
+{{--                          </div>--}}
+{{--                          <div class="c-params__list-value">--}}
+{{--                              <span class="block">--}}
+{{--                                  55x10x120 میلی‌متر--}}
+{{--                              </span>--}}
+{{--                          </div>--}}
+{{--                        </li>--}}
+{{--                      </ul>--}}
                     </section>
                   </article>
                 </div>
@@ -1505,9 +1538,7 @@
             </div>
           </div>
 
-          <div
-            class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
-            id="gallery-content-2"></div>
+          <div class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails" id="gallery-content-2"></div>
         </div>
 
 
