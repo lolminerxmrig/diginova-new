@@ -312,6 +312,10 @@
     body {
       background-color: #fff !important;
     }
+
+    .dislike-style.is-active {
+      color: #ee434e !important;
+    }
   </style>
 
 @endsection

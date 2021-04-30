@@ -34,9 +34,9 @@ class Comment extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function feedbacks()
+    public function feedback()
     {
-        return $this->hasMany(CommentFeedback::class);
+      return $this->hasOne(CommentFeedback::class, 'comment_id');
     }
 
     public function ratings()

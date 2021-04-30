@@ -19,7 +19,6 @@ class CreateCommentsFeedbacksTable extends Migration
             $table->foreignId('comment_id');
             $table->foreignId('customer_id');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('comment_id')->references('id')->on('comments');
             $table->foreign('customer_id')->references('id')->on('customers');

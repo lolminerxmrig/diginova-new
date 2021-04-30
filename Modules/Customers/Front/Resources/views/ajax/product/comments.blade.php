@@ -154,8 +154,10 @@
             <div class="c-comments__helpful">
               <div class="c-comments__helpful-question">آیا این دیدگاه برایتان مفید بود؟</div>
               <div class="c-comments__helpful-items js-comment-like-container is-modal">
-                <div class="c-comments__helpful-yes  js-comment-like" data-comment="19789923">۰</div>
-                <div class="c-comments__helpful-no  js-comment-dislike" data-comment="19789923"></div>
+{{--                اگه کاربر لاگین کرده بود و این کامنت رو لایک کرده بود سبز بشه--}}
+{{--                ای دی کاربر رو داریم. ایدی کامنت رو داریم. --}}
+                <div class="c-comments__helpful-yes  js-comment-like {{ (!is_null($customer_id) && $comment->feedback()->where('customer_id', $customer_id)->where('status', 'like')->exists())? 'is-active' : '' }}" data-comment="{{ $comment->id }}">{{ ($comment->feedback()->exists())? persianNum($comment->feedback()->where('status', 'like')->count()) : '۰' }}</div>
+                <div class="c-comments__helpful-yes  js-comment-dislike dislike-style {{ (!is_null($customer_id) && $comment->feedback()->where('customer_id', $customer_id)->where('status', 'dislike')->exists())? 'is-active' : '' }}" data-comment="{{ $comment->id }}" style="transform: rotate(180deg);">{{ ($comment->feedback()->exists())? persianNum($comment->feedback()->where('status', 'dislike')->count()) : '۰' }}</div>
               </div>
             </div>
           </div>

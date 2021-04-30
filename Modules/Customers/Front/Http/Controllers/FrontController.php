@@ -2,7 +2,6 @@
 
 namespace Modules\Customers\Front\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +11,10 @@ use Illuminate\Support\Facades\View;
 use Modules\Customers\Front\Models\CustomerFavorite;
 use Modules\Customers\Panel\Models\Customer;
 use Modules\Staff\Comment\Models\Comment;
+use Modules\Staff\Comment\Models\CommentFeedback;
 use Modules\Staff\Product\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use Modules\Staff\Product\Models\ProductHasVariant;
 
 class FrontController extends Controller
@@ -80,8 +81,13 @@ class FrontController extends Controller
   {
     $product = Product::where('product_code', $product_id)->first();
     $comments = $product->comments()->where('publish_status', 'accepted')->paginate(1);
+    if (Auth::guard('customer')->check()) {
+      $customer_id = Auth::guard('customer')->user()->id;
+    } else {
+      $customer_id = null;
+    }
 
-    return view('front::ajax.product.comments', compact('comments', 'product'));
+    return view('front::ajax.product.comments', compact('comments', 'product', 'customer_id'));
   }
 
   public function productCommentList($product_id)
@@ -180,5 +186,105 @@ class FrontController extends Controller
       'data' => null,
     ]);
   }
+
+  public function likeComment($comment_id)
+  {
+
+      if (Auth::guard('customer')->check()) {
+        $customer_id = Auth::guard('customer')->user()->id;
+      } else {
+        return null;
+      }
+
+      if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->exists()) {
+        if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->exists()) {
+          CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->delete();
+          $likeFlag = -1;
+        }
+        else {
+          Log::info('a1');
+          if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->exists()) {
+            CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->update([
+              'status' => 'like',
+            ]);
+          }
+          $likeFlag = 1;
+        }
+      }
+      else {
+        Log::info('a2');
+        CommentFeedback::create([
+          'comment_id' => $comment_id,
+          'customer_id' => $customer_id,
+          'status' => 'like',
+        ]);
+        $likeFlag = 1;
+      }
+
+      $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'like')->count();
+      $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'dislike')->count();
+
+      return response()->json([
+        'status' => true,
+        'data' => [
+          "likes" => $comment_likes_count,
+          "dislikes" => $comment_dislikes_count,
+          "type" => 1,
+          "LikeFlag" => $likeFlag,
+          "DislikeFlag" => 0,
+        ],
+      ], 200);
+
+  }
+
+  public function dislikeComment($comment_id)
+  {
+
+      if (Auth::guard('customer')->check()) {
+        $customer_id = Auth::guard('customer')->user()->id;
+      } else {
+        return null;
+      }
+
+      if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->exists()) {
+        if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->exists()) {
+          CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->delete();
+          $dislikeFlag = -1;
+        }
+        else {
+          if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->exists()) {
+            CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->update([
+              'status' => 'dislike',
+            ]);
+          }
+          $dislikeFlag = 1;
+        }
+      }
+      else {
+        CommentFeedback::create([
+          'comment_id' => $comment_id,
+          'customer_id' => $customer_id,
+          'status' => 'dislike',
+        ]);
+        $dislikeFlag = 1;
+      }
+
+      $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'like')->count();
+      $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'dislike')->count();
+
+      return response()->json([
+        'status' => true,
+        'data' => [
+          "likes" => $comment_likes_count,
+          "dislikes" => $comment_dislikes_count,
+          "type" => 1,
+          "LikeFlag" => 0,
+          "DislikeFlag" => $dislikeFlag,
+        ],
+      ], 200);
+
+  }
+
+
 
 }
