@@ -21,7 +21,6 @@ use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 use Modules\Staff\Variant\Models\Variant;
 use Modules\Staff\Warranty\Models\Warranty;
-use function _HumbugBox7eb78fbcc73e\iter\rewindable\product;
 
 
 class ProductHasVariant extends Model

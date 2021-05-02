@@ -125,10 +125,9 @@ $is_buyed = is_buyed($product);
               <li><span property="name">ارسال نظر</span></li>
             </ul>
           </nav>
-          <form id="addCommentForm" method="post" novalidate="novalidate"><input type="hidden" name="rc"
-                                                                                 value="SVB5L3VRb0laVDh2ZldzUDg5K3BZZz09"><input
-              type="hidden" name="rd"
-              value="aVF2UU1YVW90cVVkQWFBbEVyYlN3Q2pVTG5MQWtKcUZNUEhJb1pQRTI3ZjdqS0lKeHlEOVVyUUF6Zi8yY3lTdw~~">
+          <form id="addCommentForm" method="post" novalidate="novalidate">
+            <input type="hidden" name="rc" value="">
+            <input type="hidden" name="rd" value="">
             <div class="c-box">
               <div class="c-comments-product">
                 <div class="c-comments-product__row js-valid-row">

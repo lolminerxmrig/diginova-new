@@ -28,13 +28,12 @@ Route::get("product/comment/$product_code_prefix-{product_code}", [FrontControll
 Route::get('search/category-{slug}', [FrontController::class, 'categoryPage'])->name('category');
 
 Route::prefix('ajax')->name('front.ajax.')->group(function () {
-  Route::get('product/comments/{product_id}/', [FrontController::class, 'productComments'])->name('productComments');
+  Route::get('product/comments/{product_id}', [FrontController::class, 'productComments'])->name('productComments');
   Route::get('product/comments/list/{product_id}/', [FrontController::class, 'productCommentList'])->name('productCommentList');
   Route::post('product/comments/add/{product_id}', [FrontController::class, 'createComments'])->name('createComments');
 
   Route::get('product/comments/like/{product_id}', [FrontController::class, 'likeComment'])->name('likeComment');
   Route::get('product/comments/dislike/{product_id}', [FrontController::class, 'dislikeComment'])->name('dislikeComment');
-
 
   Route::post('favorites/product/add/{product_id}', [FrontController::class, 'addToFavorites'])->name('addToFavorites');
   Route::get('favorites/product/remove/{product_id}', [FrontController::class, 'removeFromFavorites'])->name('removeFromFavorites');

@@ -77,25 +77,49 @@ class FrontController extends Controller
 
   }
 
-  public function productComments($product_id)
+  public function productComments(Request $request, $product_id)
   {
     $product = Product::where('product_code', $product_id)->first();
-    $comments = $product->comments()->where('publish_status', 'accepted')->paginate(1);
+
+    if ($request['mode'] == 'buyers'){
+      $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
+      $mode = 'buyers';
+    }
+    else {
+      $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
+      $mode = 'newest_comment';
+    }
+
     if (Auth::guard('customer')->check()) {
       $customer_id = Auth::guard('customer')->user()->id;
     } else {
       $customer_id = null;
     }
 
-    return view('front::ajax.product.comments', compact('comments', 'product', 'customer_id'));
+    return view('front::ajax.product.comments', compact('comments', 'product', 'customer_id', 'mode'));
   }
 
-  public function productCommentList($product_id)
+  public function productCommentList(Request $request, $product_id)
   {
-    $product = Product::where('product_code', $product_id)->first();
-    $comments = $product->comments()->where('publish_status', 'accepted')->paginate(1);
 
-    return view('front::ajax.product.commentList', compact('comments', 'product'));
+    $product = Product::where('product_code', $product_id)->first();
+
+    if ($request['mode'] == 'buyers'){
+      $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
+      $mode = 'buyers';
+    }
+    else {
+      $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
+      $mode = 'newest_comment';
+    }
+
+    if (Auth::guard('customer')->check()) {
+      $customer_id = Auth::guard('customer')->user()->id;
+    } else {
+      $customer_id = null;
+    }
+
+    return view('front::ajax.product.commentList', compact('comments', 'product', 'customer_id', 'mode'));
   }
 
   public function createComment($product_id)

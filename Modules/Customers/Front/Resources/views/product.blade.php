@@ -26,152 +26,152 @@
     var variants = {
       @if ($product->variants()->exists())
         @foreach ($product->variants->sortBy('sale_price') as $key => $item)
-          @if($item->variant()->exists() && !is_null($item->variant->value))
-            <?php
-              $promotion_price = null;
-              if ($item->promotions()->exists()) {
-                $promotion_price = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
-                if ($item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->exists()) {
-                  $promotion_timer = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first()->end_at;
-                  $promotion = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first();
-                } else {
-                  $promotion_timer = null;
-                }
+        @if($item->variant()->exists() && !is_null($item->variant->value))
+      <?php
+        $promotion_price = null;
+        if ($item->promotions()->exists()) {
+          $promotion_price = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+          if ($item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->exists()) {
+            $promotion_timer = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first()->end_at;
+            $promotion = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first();
+          } else {
+            $promotion_timer = null;
+          }
 
-              }
-              if ($promotion_price == null) {
-                $promotion_price = $item->sale_price;
-                $promotion_timer = 'false';
-                $promotion = null;
-              }
-            ?>
-            "{{ $item->variant_code }}": {
-              "id": {{ $item->variant_code }},
-              "active": {{ ($item->status == 1)? 'true' : 'false' }},
-              "active_digistyle": true,
-              "ovl_selling_active": true,
-              "title": "{{ $product->title_fa }}",
-              @if($item->variant()->exists() && !is_null($item->variant->value))
-              "color": {
-                "id": {{ $item->variant->id }},
-                "title": "{{ $item->variant->name }}",
-                "code": "{{ $item->variant->value }}",
-                "hexCode": "{{ $item->variant->value }}",
-                "hex_code": "{{ $item->variant->value }}"
-              },
-              @else
-              "size": [],
-              @endif
-              "site": "{{ $site_url }}",
-              "warranty": {
-                "id": {{ $item->warranty->id }},
-                "title": "{{ $item->warranty->name }}",
-                "description": null,
-                "phone": null,
-                "address": null,
-                "working_hours": null,
-                "condition": null
-              },
-              "marketplace_seller": {
-              "id": 0,
-              "name": "{{ $fa_store_name }}",
-              "rate": 0,
-              "rateCount": 0,
-              "rating": {
-                "cancel_percentage": 0,
-                "cancel_summarize": "excellent",
-                "return_percentage": 0,
-                "return_summarize": "good",
-                "ship_on_time_percentage": 0,
-                "ship_on_time_summarize": "excellent",
-                "final_score": 0,
-                "final_percentage": 0
-              },
-              "stars": 0,
-              "is_trusted": false,
-              "is_official_seller": false,
-              "is_roosta": false,
-              "url": "",
-              "registerTimeAgo": ""
-            },
-              "leadTime": 0,
-              "shipping_type": "digikala",
-              "gifts": [],
-              "gift_product_ids": [],
-              "seller_lead_time": 0,
-              "market_place_selling_stock": 5,
-              "is_fresh": false,
-              "scheduled_stock": false,
-              "promotion_price_id": null,
-              "is_digikala_owner": {{ (\Modules\Staff\Setting\Models\Setting::where('name', 'symbol_image')->first()->media()->exists())? 'true' : 'false' }},
-              "rank": 0,
-              "sr": null,
-              "has_similar_variants": true,
-              "fast_shopping_badge": false,
-              "fast_shopping_confirm": false,
-              "is_multi_warehouse": false,
-              "is_ship_by_seller": false,
-              "is_eligible_for_jet_delivery": false,
-              "plus_cash_back": null,
-              "stats": null,
-              "available_on_website": {{ ($item->stock_count > 0)? 'true' : 'false' }},
-              "provider": "digikala",
-              "is_heavy": false,
-              "is_electronic": false,
-              "sbs_seller_cities": [0],
-              "price_list": {
-                "id":0{{ $item->variant_code }},
-                "discount_percent": null,
-                "rrp_price": {{ $item->sale_price }},
-                "selling_price": {{ $promotion_price }},
-                "is_incredible_offer": {{ ($item->promotions()->exists())? 'true' : 'false' }},
-                "is_plus_offer": false,
-                "is_sponsored_offer": false,
-                "is_locked_for_plus": false,
-                "promotion_id": null,
-                @if ($promotion_timer !== 'false')
-                "timer": "{{ $promotion_timer }}",
-                @else
-                "timer": null,
-                @endif
-                "pre_sell": false,
-                "variant_id": {{ $item->variant_code }},
-                "orderLimit": {{ $item->max_order_count }},
-                "initial_limit": null,
-                "tags": null,
-                "cache_key_created_at": "",
-                "cache_update_source": "supernova-digikala-desktop",
-                "discount_amount": 0,
-                "discount": 0,
-                "show_discount_badge": false,
-                "marketable_stock": {{ $item->stock_count }},
-                "plus_variant_cash_back": 0
-              },
-              "addToCartUrl": "{{ route('front.addToCart', $item->variant_code) }}",
-              "addToYaldaCartUrl": "",
-              "dcPoint": 8,
-              "is_free_shipment": false,
-              "providerData": {
-                "description": "تست پروایدر",
-                "providers": [{
-                  "title": "عنوان پروایدر",
-                  "description": "توضیح پروایدر"
-                }],
-                "hasLeadTime": false,
-                "badge_type": "without_lead_time"
-              },
-              "newProviderData": [{
-                "type": "digikala",
-                "has_lead_time": false,
-                "text": "تکست پرووایدر جدید"
-              }],
-              "isExistsInWarehouse": {{ ($item->stock_count !== 0)? 'true' : 'false' }}
-            },
+        }
+        if ($promotion_price == null) {
+          $promotion_price = $item->sale_price;
+          $promotion_timer = 'false';
+          $promotion = null;
+        }
+        ?>
+      "{{ $item->variant_code }}": {
+        "id": {{ $item->variant_code }},
+        "active": {{ ($item->status == 1)? 'true' : 'false' }},
+        "active_digistyle": true,
+        "ovl_selling_active": true,
+        "title": "{{ $product->title_fa }}",
+        @if($item->variant()->exists() && !is_null($item->variant->value))
+        "color": {
+          "id": {{ $item->variant->id }},
+          "title": "{{ $item->variant->name }}",
+          "code": "{{ $item->variant->value }}",
+          "hexCode": "{{ $item->variant->value }}",
+          "hex_code": "{{ $item->variant->value }}"
+        },
+        @else
+        "size": [],
+        @endif
+        "site": "{{ $site_url }}",
+        "warranty": {
+          "id": {{ $item->warranty->id }},
+          "title": "{{ $item->warranty->name }}",
+          "description": null,
+          "phone": null,
+          "address": null,
+          "working_hours": null,
+          "condition": null
+        },
+        "marketplace_seller": {
+          "id": 0,
+          "name": "{{ $fa_store_name }}",
+          "rate": 0,
+          "rateCount": 0,
+          "rating": {
+            "cancel_percentage": 0,
+            "cancel_summarize": "excellent",
+            "return_percentage": 0,
+            "return_summarize": "good",
+            "ship_on_time_percentage": 0,
+            "ship_on_time_summarize": "excellent",
+            "final_score": 0,
+            "final_percentage": 0
+          },
+          "stars": 0,
+          "is_trusted": false,
+          "is_official_seller": false,
+          "is_roosta": false,
+          "url": "",
+          "registerTimeAgo": ""
+        },
+        "leadTime": 0,
+        "shipping_type": "digikala",
+        "gifts": [],
+        "gift_product_ids": [],
+        "seller_lead_time": 0,
+        "market_place_selling_stock": 5,
+        "is_fresh": false,
+        "scheduled_stock": false,
+        "promotion_price_id": null,
+        "is_digikala_owner": {{ (\Modules\Staff\Setting\Models\Setting::where('name', 'symbol_image')->first()->media()->exists())? 'true' : 'false' }},
+        "rank": 0,
+        "sr": null,
+        "has_similar_variants": true,
+        "fast_shopping_badge": false,
+        "fast_shopping_confirm": false,
+        "is_multi_warehouse": false,
+        "is_ship_by_seller": false,
+        "is_eligible_for_jet_delivery": false,
+        "plus_cash_back": null,
+        "stats": null,
+        "available_on_website": {{ ($item->stock_count > 0)? 'true' : 'false' }},
+        "provider": "digikala",
+        "is_heavy": false,
+        "is_electronic": false,
+        "sbs_seller_cities": [0],
+        "price_list": {
+          "id": 0{{ $item->variant_code }},
+          "discount_percent": null,
+          "rrp_price": {{ $item->sale_price }},
+          "selling_price": {{ $promotion_price }},
+          "is_incredible_offer": {{ ($item->promotions()->exists())? 'true' : 'false' }},
+          "is_plus_offer": false,
+          "is_sponsored_offer": false,
+          "is_locked_for_plus": false,
+          "promotion_id": null,
+          @if ($promotion_timer !== 'false')
+          "timer": "{{ $promotion_timer }}",
+          @else
+          "timer": null,
           @endif
-        @endforeach
+          "pre_sell": false,
+          "variant_id": {{ $item->variant_code }},
+          "orderLimit": {{ $item->max_order_count }},
+          "initial_limit": null,
+          "tags": null,
+          "cache_key_created_at": "",
+          "cache_update_source": "supernova-digikala-desktop",
+          "discount_amount": 0,
+          "discount": 0,
+          "show_discount_badge": false,
+          "marketable_stock": {{ $item->stock_count }},
+          "plus_variant_cash_back": 0
+        },
+        "addToCartUrl": "{{ route('front.addToCart', $item->variant_code) }}",
+        "addToYaldaCartUrl": "",
+        "dcPoint": 8,
+        "is_free_shipment": false,
+        "providerData": {
+          "description": "تست پروایدر",
+          "providers": [{
+            "title": "عنوان پروایدر",
+            "description": "توضیح پروایدر"
+          }],
+          "hasLeadTime": false,
+          "badge_type": "without_lead_time"
+        },
+        "newProviderData": [{
+          "type": "digikala",
+          "has_lead_time": false,
+          "text": "تکست پرووایدر جدید"
+        }],
+        "isExistsInWarehouse": {{ ($item->stock_count !== 0)? 'true' : 'false' }}
+      },
+      @endif
+      @endforeach
       @endif
     };
-    var defaultVariantId = {{ $variant_defualt->variant_code }};
+    var defaultVariantId = {{ !is_null($variant_defualt)? $variant_defualt->variant_code : 'null' }};
     var maxVisibleVariant = 3;
     var maxVisibleSupplier = 3;
     var hasColorOrSize = true;
@@ -185,16 +185,16 @@
       "name": "{{ $product->title_fa }}",
       "category": "{{ $product->category()->first()->en_name }}",
       "category_id": {{ $product->category()->first()->id }},
-      "brand": "{{ $product->brand->name }}",
-      "variant": {{ $item->variant_code }},
-      "price": {{ $item->sale_price }},
-      "discount_percent": {{ !is_null($promotion)? $promotion->percent : 0 }},
+      "brand": "{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}",
+      "variant": {{ isset($item)? $item->variant_code : 'null' }},
+      "price": {{ isset($item)? $item->sale_price : 'null' }},
+      "discount_percent": {{ (isset($promotion) && !is_null($promotion))? $promotion->percent : 0 }},
       "quantity": 1
     };
     var categoryId = {{ $product->category()->first()->id }};
     var nowTimeInUTC = "{{ now() }}";
     var emarsysCategoryBreadcrumb = [];
-    var emarsysBrand = "{{ $product->brand->name }}";
+    var emarsysBrand = "{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}";
     var ecpd2 = {
       "id": {{ $product->product_code }},
       "title": "{{ $product->title_fa }}",
@@ -209,7 +209,10 @@
       "site_category": ["", "", ""],
       "supply_category": ["{{ $product->category->first()->en_name }}", "{{ $product->category->first()->name }}"],
       "category": {"id": {{ $product->category->first()->id }}, "title": "{{ $product->category->first()->name }}"},
-      "brand": {"id": {{ $product->brand->id }}, "title": "{{ $product->brand->name }}"},
+      "brand": {
+        "id": {{ ($product->brand()->exists())? $product->brand->id : 0 }},
+        "title": "{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}"
+      },
       "price": {"selling_price": 782000, "discount_percent": 0},
       "status": "marketable",
       "variants": [
@@ -295,17 +298,17 @@
   <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>
   <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>
 
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/3d3f248b.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwpsrv.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.core.controls.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.core.controls.html5.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/provider.hlsjs.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/video-js.min.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/videojs-contrib-quality-levels.min.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/videojs-hls-quality-selector.min.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/41c51bf2.js"></script>--}}
-{{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/222f3f4a.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/3d3f248b.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwpsrv.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.core.controls.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/jwplayer.core.controls.html5.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/provider.hlsjs.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/video-js.min.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/videojs-contrib-quality-levels.min.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/videojs-hls-quality-selector.min.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/41c51bf2.js"></script>--}}
+  {{--  <script src="file:///home/mehdi/Music/product3/www.digikala.com/static/merged/222f3f4a.js"></script>--}}
 
 
   <style>
@@ -382,11 +385,10 @@
                   <div class="u-flex u-items-center">
                     <div class="c-product__title-container--brand">
                       <a class="c-product__title-container--brand-link"
-                         href="{{ route('category', ['slug' => $product->category->first()->slug]) . '/' . $product->brand->slug }}">{{ $product->brand->name }}</a>
+                         href="{{ route('category', ['slug' => $product->category->first()->slug]) . '/' }} {{ ($product->brand()->exists())? $product->brand->slug : 'miscellaneous' }}">{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}</a>
                       <span> / </span>
                       <a class="c-product__title-container--brand-link"
-                         href="{{ route('category', ['slug' => $product->category->first()->slug]) . '/' . $product->brand->slug }}">
-                        {{  $product->category->first()->name . ' ' .  $product->brand->name }}
+                         href="{{ route('category', ['slug' => $product->category->first()->slug]) . '/' }} {{ ($product->brand()->exists())? $product->brand->slug : 'miscellaneous' }}">{{  $product->category->first()->name . ' ' }} {{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}
                       </a>
                     </div>
                   </div>
@@ -422,20 +424,57 @@
                           <span class="js-color-title"></span>
                         </div>
                         <ul class="js-product-variants">
-                              @foreach($variant_ids as $id)
-                                <?php $variant = \Modules\Staff\Variant\Models\Variant::find($id); ?>
-                                  <li class="js-c-ui-variant c-circle-variant__item" data-event="config_change" data-event-category="product_page" data-event-label="change: color">
-                                    <label class="js-circle-variant-color c-circle-variant c-circle-variant--color" data-code="{{ $variant->value }}" data-snt-event="dkProductPageClick" data-snt-params='{"item":"change-color","item_option":"{{ $variant->name }}"}'>
-                                      <input class="js-variant-selector js-color-filter-item" data-title="{{ $variant->name }}" data-type="color" id="variant" name="color" type="radio" value="{{ $variant->id }}" {{ ($variant_defualt->variant->id == $id)? 'checked' : '' }}>
-                                      <span class="c-circle-variant__border"></span>
-                                      <span class="c-tooltip c-tooltip--small-bottom c-tooltip--short">{{ $variant->name }}</span>
-                                      <span class="c-circle-variant__shape" style="background-color: {{ $variant->value }}"></span>
-                                    </label>
-                                  </li>
-                              @endforeach
-                          </ul>
+                          @foreach($variant_ids as $id)
+                            <?php $variant = \Modules\Staff\Variant\Models\Variant::find($id); ?>
+                            <li class="js-c-ui-variant c-circle-variant__item" data-event="config_change"
+                                data-event-category="product_page" data-event-label="change: color">
+                              <label class="js-circle-variant-color c-circle-variant c-circle-variant--color"
+                                     data-code="{{ $variant->value }}" data-snt-event="dkProductPageClick"
+                                     data-snt-params='{"item":"change-color","item_option":"{{ $variant->name }}"}'>
+                                <input class="js-variant-selector js-color-filter-item"
+                                       data-title="{{ $variant->name }}" data-type="color" id="variant" name="color"
+                                       type="radio"
+                                       value="{{ $variant->id }}" {{ ($variant_defualt->variant->id == $id)? 'checked' : '' }}>
+                                <span class="c-circle-variant__border"></span>
+                                <span
+                                  class="c-tooltip c-tooltip--small-bottom c-tooltip--short">{{ $variant->name }}</span>
+                                <span class="c-circle-variant__shape" style="background-color: {{ $variant->value }}"></span>
+                              </label>
+                            </li>
+                          @endforeach
+                        </ul>
                       </div>
                     @endif
+
+{{--                    <div class="c-product__size-wrapper">--}}
+{{--                      <div class="c-product__size-label">--}}
+{{--                        اندازه :--}}
+{{--                      </div>--}}
+{{--                      <div class="c-product__product-size-wrapper">--}}
+{{--                        <div class="selectric-wrapper selectric-c-product__size-dropdown selectric-js-size-selector selectric-js-variant-selector">--}}
+{{--                          <div class="selectric-hide-select">--}}
+{{--                            <select class="c-product__size-dropdown js-size-selector js-variant-selector " data-type="size" name="size" tabindex="-1">--}}
+{{--                              <option value="66" selected="">L</option>--}}
+{{--                            </select>--}}
+{{--                          </div>--}}
+{{--                          <div class="selectric">--}}
+{{--                            <span class="label">L</span>--}}
+{{--                            <b class="button">▾</b>--}}
+{{--                          </div>--}}
+{{--                          <div class="selectric-items" tabindex="-1">--}}
+{{--                            <div class="selectric-scroll">--}}
+{{--                              <ul>--}}
+{{--                                <li data-index="0" class="selected">L</li>--}}
+{{--                                <li data-index="6" class="">۷۰</li>--}}
+{{--                                <li data-index="10" class="last">۹۰</li>--}}
+{{--                              </ul>--}}
+{{--                            </div>--}}
+{{--                          </div>--}}
+{{--                          <input class="u-hidden" tabindex="0"></div>--}}
+{{--                      </div>--}}
+{{--                    </div>--}}
+
+
                     @if ($product->attributes()->exists())
                       <div class="c-product__params js-is-expandable" data-collapse-count="3">
                         <ul data-title="ویژگی‌های کالا">
@@ -529,8 +568,10 @@
                     <div class="c-product__seller-info js-seller-info">
                       <div class="js-seller-info-changable c-product__seller-box">
                         <div class="c-product__seller-row c-product__seller-row--seller js-seller-variant">
-                          <i class="c-product__seller-row--trusted-seller js-mini-not-digikala-seller js-mini-is-trusted u-hidden"></i>
-                          <i class="c-product__seller-row--official-seller js-mini-not-digikala-seller js-mini-is-official u-hidden"></i>
+                          <i
+                            class="c-product__seller-row--trusted-seller js-mini-not-digikala-seller js-mini-is-trusted u-hidden"></i>
+                          <i
+                            class="c-product__seller-row--official-seller js-mini-not-digikala-seller js-mini-is-official u-hidden"></i>
                           <div class="c-product__seller-row-main  ">
                             <div class="c-product__seller-first-line">
                               <span class="c-product__seller-name js-seller-name">{{ $fa_store_name }}</span>
@@ -644,7 +685,8 @@
                         </div>
 
 
-                        <div class="c-product__seller-row c-product__seller-row--column js-seller-info-shipment c-product__seller-row--clickable">
+                        <div
+                          class="c-product__seller-row c-product__seller-row--column js-seller-info-shipment c-product__seller-row--clickable">
                           <div class="c-product__seller-row-main c-product__seller-row-main--arrow-left"><span
                               class="c-product__delivery-warehouse js-provider-main-title c-product__delivery-warehouse--no-lead-time">موجود در انبار {{ $fa_store_name }}</span>
                           </div>
@@ -668,7 +710,8 @@
                                   ارسال توسط {{ $fa_store_name }}
                                   <span class="js-ab-shipment-free-badge u-hidden">رایگان</span></div>
                                 <div class="c-shipment-info-box__row--content">
-                                  این کالا در انبار {{ $fa_store_name }} موجود و آماده پردازش است و امکان ارسال مستقیم توسط {{ $fa_store_name }}
+                                  این کالا در انبار {{ $fa_store_name }} موجود و آماده پردازش است و امکان ارسال مستقیم
+                                  توسط {{ $fa_store_name }}
                                   را دارد.
                                   <p class="free-badge js-ab-shipment-free-badge u-hidden">کالا‌هایی با قیمت بیش از ۳۰۰
                                     هزار تومان به صورت رایگان ارسال خواهند شد.</p>
@@ -677,7 +720,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="c-product__seller-row c-product__seller-row--gift c-product__seller-row--clickable js-seller-info-gift u-hidden"
+                        <div
+                          class="c-product__seller-row c-product__seller-row--gift c-product__seller-row--clickable js-seller-info-gift u-hidden"
                           style="pointer-events: none;">
                           <div class="c-product__seller-row-main js-gift-text js-single-gift "></div>
                           <div class="c-product__seller-row-main js-gift-text js-multi-gift u-hidden"><span
@@ -738,9 +782,11 @@
                         </div>
                       </div>
                       <div class="c-product__seller-row c-product__seller-row--add-to-cart">
-                        <a class="js-ab-product-action btn-add-to-cart btn-add-to-cart--full-width js-add-to-cart js-cart-page-add-to-cart js-btn-add-to-cart"
-                          data-product-id="3555626" data-variant="{{ $variant_defualt->variant_code }}"
-                          href="/cart/add/{{ $variant_defualt->variant_code }}/1/"
+                        <a
+                          class="js-ab-product-action btn-add-to-cart btn-add-to-cart--full-width js-add-to-cart js-cart-page-add-to-cart js-btn-add-to-cart"
+                          data-product-id="{{ $product->product_code  }}"
+                          data-variant="{{ !is_null($variant_defualt)? $variant_defualt->variant_code : '' }}"
+                          href="/cart/add/{{ !is_null($variant_defualt)? $variant_defualt->variant_code : '' }}/1/"
                           data-event="add_to_cart" data-event-category="ecommerce"
                           data-event-label="price: 495900000 - seller: marketplace - seller_name: {{ $fa_store_name }} - seller_rating: 81 - multiple_configs: True - position: 0"><span
                             class="btn-add-to-cart__txt">افزودن به سبد خرید</span></a></div>
@@ -774,16 +820,26 @@
                 <div class="c-gallery__item">
                   <ul class="c-gallery__options">
                     <li>
-                      <button data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;add-to-favorites&quot;}"
-                              id="add-to-favorite-button" class="btn-option btn-option--wishes {{ ($product->favorite()->exists())? 'is-active' : '' }}" data-token=""></button>
+                      <button data-snt-event="dkProductPageClick"
+                              data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;add-to-favorites&quot;}"
+                              id="add-to-favorite-button"
+                              class="btn-option btn-option--wishes {{ ($product->favorite()->exists())? 'is-active' : '' }}"
+                              data-token=""></button>
                       <span class="c-tooltip c-tooltip--left c-tooltip--short">افزودن به علاقه‌مندی</span>
                     </li>
                     <li>
-                      <button class="btn-option btn-option--stats" id="price-chart-button" data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;price-chart&quot;}" data-event="price_chart" data-event-category="product_page" data-event-label="category: گوشی موبایل, available:True"></button>
+                      <button class="btn-option btn-option--stats" id="price-chart-button"
+                              data-snt-event="dkProductPageClick"
+                              data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;price-chart&quot;}"
+                              data-event="price_chart" data-event-category="product_page"
+                              data-event-label="category: گوشی موبایل, available:True"></button>
                       <span class="c-tooltip c-tooltip--left c-tooltip--short">نمودار قیمت</span>
                     </li>
                     <li>
-                      <a data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;compare&quot;}" href="/compare/dkp-{{ $product->id }}/" class="btn-option btn-option--compare"></a><span class="c-tooltip c-tooltip--left c-tooltip--short">مقایسه</span></li>
+                      <a data-snt-event="dkProductPageClick"
+                         data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;compare&quot;}"
+                         href="/compare/dkp-{{ $product->id }}/" class="btn-option btn-option--compare"></a><span
+                        class="c-tooltip c-tooltip--left c-tooltip--short">مقایسه</span></li>
                   </ul>
                   <div class="c-gallery__img">
                     @foreach($product->media as $image)
@@ -912,12 +968,20 @@
                 </div>
               </div>
               <div class="c-table-suppliers-less c-table-suppliers-hidden js-table-suppliers-less">
-                <button class="o-btn o-btn--link-blue-sm o-btn--remove-padding o-btn--l-expand-more is-open js-less-supplier-button" data-is-open="0" data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;show-fewer-supplier&quot;,&quot;item_option&quot;:null}">
+                <button
+                  class="o-btn o-btn--link-blue-sm o-btn--remove-padding o-btn--l-expand-more is-open js-less-supplier-button"
+                  data-is-open="0" data-snt-event="dkProductPageClick"
+                  data-snt-params="{&quot;item&quot;:&quot;show-fewer-supplier&quot;,&quot;item_option&quot;:null}">
                   تنها نمایش ۳ فروشنده اول
                 </button>
               </div>
               <div class="c-table-suppliers-more js-table-suppliers-more">
-                <button class="o-btn o-btn--link-blue-sm o-btn--l-expand-more o-btn--remove-padding js-more-supplier-button" data-event="more_sellers" data-event-category="product_page" data-event-label="3186052-category: دسته بازی, sellers: 6 - default_seller: marketplace" data-is-open="0" data-snt-event="dkProductPageClick" data-snt-params="{&quot;item&quot;:&quot;show-more-supplier&quot;,&quot;item_option&quot;:null}">
+                <button
+                  class="o-btn o-btn--link-blue-sm o-btn--l-expand-more o-btn--remove-padding js-more-supplier-button"
+                  data-event="more_sellers" data-event-category="product_page"
+                  data-event-label="3186052-category: دسته بازی, sellers: 6 - default_seller: marketplace"
+                  data-is-open="0" data-snt-event="dkProductPageClick"
+                  data-snt-params="{&quot;item&quot;:&quot;show-more-supplier&quot;,&quot;item_option&quot;:null}">
                   نمایش
                   <span class="u-ml-4 u-mr-4 js-more-suppliers-count">۳</span>
                   فروشنده دیگر این کالا
@@ -1012,8 +1076,10 @@
 
           <div class="c-product__bottom-section u-mt-12 has-mini-buybox">
             <div class="o-box o-box--no-border o-box--grow c-product__tabs-container" id="tabs">
-              <ul class="o-box__tabs o-box__tabs--sticky js-c-box-tabs {{ ($product->attributes()->exists())? '' : 'u-hidden' }}">
-                <li class="js-product-params-tab o-box__tab js-product-tab " data-fetchFromService="" data-method="params" data-product-id="{{ $product->id }}" id="tab-params">
+              <ul
+                class="o-box__tabs o-box__tabs--sticky js-c-box-tabs {{ ($product->attributes()->exists())? '' : 'u-hidden' }}">
+                <li class="js-product-params-tab o-box__tab js-product-tab " data-fetchFromService=""
+                    data-method="params" data-product-id="{{ $product->id }}" id="tab-params">
                   <a data-snt-event="dkProductPageClick"
                      data-snt-params='{"item":"product-tab","item_option":"1-مشخصات"}'
                      data-tab-name="params"
@@ -1038,120 +1104,120 @@
                     <section>
 
 
-                        @foreach($product->category[0]->attributeGroups as $key => $attrGroup)
-                          @if ($key > 0)
-                            @continue
+                      @foreach($product->category[0]->attributeGroups as $key => $attrGroup)
+                        @if ($key > 0)
+                          @continue
+                        @endif
+                        <?php $filledAttrG = null; ?>
+
+                        @foreach($attrGroup->attributes as $attribute)
+                          @if(isset($product->attributes()->find($attribute->id)->pivot->product_id))
+                            <?php $filledAttrG = true; ?>
                           @endif
-                          <?php $filledAttrG = null; ?>
+                        @endforeach
 
-                          @foreach($attrGroup->attributes as $attribute)
-                            @if(isset($product->attributes()->find($attribute->id)->pivot->product_id))
-                              <?php $filledAttrG = true; ?>
-                            @endif
-                          @endforeach
+                        @if (!is_null($filledAttrG))
+                          <section>
 
-                          @if (!is_null($filledAttrG))
-                            <section>
+                            <h3 class="c-params__title">{{ $attrGroup->name }}</h3>
 
-                              <h3 class="c-params__title">{{ $attrGroup->name }}</h3>
+                            <ul class="c-params__list">
+                              @foreach($attrGroup->attributes->sortBy('position') as $attribute)
+                                <li>
+                                  @if(isset($product->attributes()->find($attribute->id)->pivot->value) && !is_null($attribute->name))
+                                    <div class="c-params__list-key"><span class="block">{{ $attribute->name }}</span>
+                                    </div>
+                                  @endif
 
-                              <ul class="c-params__list">
-                                @foreach($attrGroup->attributes->sortBy('position') as $attribute)
-                                  <li>
-                                    @if(isset($product->attributes()->find($attribute->id)->pivot->value) && !is_null($attribute->name))
-                                      <div class="c-params__list-key"><span class="block">{{ $attribute->name }}</span>
-                                      </div>
-                                    @endif
-
-                                    @if (($attribute->type == 1 || $attribute->type == 2) && isset($product->attributes()->find($attribute->id)->pivot->value))
-                                      <div class="c-params__list-value">
+                                  @if (($attribute->type == 1 || $attribute->type == 2) && isset($product->attributes()->find($attribute->id)->pivot->value))
+                                    <div class="c-params__list-value">
                                       <span class="block">
                                         {{ $product->attributes()->find($attribute->id)->pivot->value }}
                                       </span>
-                                      </div>
-                                    @elseif ($attribute->type == 3 && isset($product->attributes->find($attr->id)->pivot->value_id) && ($product->attributes->find($attr->id)->pivot->value_id == $value->id))
-                                      <div class="c-params__list-value">
+                                    </div>
+                                  @elseif ($attribute->type == 3 && isset($product->attributes->find($attr->id)->pivot->value_id) && ($product->attributes->find($attr->id)->pivot->value_id == $value->id))
+                                    <div class="c-params__list-value">
                                       <span class="block">
                                          @foreach($attribute->values as $value)
                                           {{ ($product->attributes->find($attr->id)->pivot->value_id == $value->id)? $value->value : ''  }}
                                         @endforeach
                                       </span>
-                                      </div>
-                                    @elseif ($attribute->type == 4)
-                                      @php $arrays = null; @endphp
-                                      @foreach($product->attributes as $pAttr)
-                                        @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
-                                          <?php $pArray[] = $pAttr->pivot->value_id; ?>
-                                        @endif
-                                      @endforeach
+                                    </div>
+                                  @elseif ($attribute->type == 4)
+                                    @php $arrays = null @endphp
+                                    @foreach($product->attributes as $pAttr)
+                                      @if (!is_null($pAttr->pivot->value_id) && ($pAttr->pivot->attribute_id == $attr->id))
+                                        <?php $pArray[] = $pAttr->pivot->value_id; ?>
+                                      @endif
+                                    @endforeach
 
-                                      <?php $has_value = false; ?>
-                                      @foreach($attribute->values as $key => $value)
-                                        @if ($has_value == true)
-                                          @continue
-                                        @endif
-                                        @if(in_array($value->id, $pArray))
-                                          <?php $has_value = true; ?>
-                                        @endif
-                                      @endforeach
+                                    <?php $has_value = false; ?>
+                                    @foreach($attribute->values as $key => $value)
+                                      @if ($has_value == true)
+                                        @continue
+                                      @endif
+                                      @if(in_array($value->id, $pArray))
+                                        <?php $has_value = true; ?>
+                                      @endif
+                                    @endforeach
 
-                                      @if($has_value == true)
-                                        <div class="c-params__list-value">
+                                    @if($has_value == true)
+                                      <div class="c-params__list-value">
                                           <span class="block">
                                             @foreach($attribute->values as $key => $value)
                                               {{ in_array($value->id, $pArray) ? $value->value :  '' }} {{ (in_array($value->id, $pArray) && count($attribute->values) !== $key+1)? '، ' : '' }}
                                             @endforeach
                                           </span>
-                                        </div>
-                                      @endif
+                                      </div>
+                                    @endif
 
-                                    @elseif ($attribute->type == 5 && isset($product->attributes->find($attribute->id)->pivot->value))
-                                      <div class="c-params__list-value">
+                                  @elseif ($attribute->type == 5 && isset($product->attributes->find($attribute->id)->pivot->value))
+                                    <div class="c-params__list-value">
                                       <span class="block">
                                         {{ $product->attributes->find($attribute->id)->pivot->value }} {{ ' ' . (isset($attribute->unit)? $attribute->unit->name : '')  }}
                                       </span>
-                                      </div>
-                                    @endif
-                                  </li>
-                                @endforeach
-                              </ul>
-                            </section>
-                          @endif
-                        @endforeach
+                                    </div>
+                                  @endif
+                                </li>
+                              @endforeach
+                            </ul>
+                          </section>
+                        @endif
+                      @endforeach
 
-{{--                      <h3 class="c-params__title">مشخصات</h3>--}}
-{{--                      <ul class="c-params__list">--}}
-{{--                        <li style="display: none;">--}}
-{{--                          <div class="c-params__list-key">--}}
-{{--                            <span class="block">ابعاد</span>--}}
-{{--                          </div>--}}
-{{--                          <div class="c-params__list-value">--}}
-{{--                              <span class="block">--}}
-{{--                                  55x10x120 میلی‌متر--}}
-{{--                              </span>--}}
-{{--                          </div>--}}
-{{--                        </li>--}}
-{{--                        <li style="display: none;">--}}
-{{--                          <div class="c-params__list-key">--}}
-{{--                            <span class="block">ابعاد</span>--}}
-{{--                          </div>--}}
-{{--                          <div class="c-params__list-value">--}}
-{{--                              <span class="block">--}}
-{{--                                  55x10x120 میلی‌متر--}}
-{{--                              </span>--}}
-{{--                          </div>--}}
-{{--                        </li>--}}
-{{--                        <li style="display: none;">--}}
-{{--                          <div class="c-params__list-key">--}}
-{{--                            <span class="block">ابعاد</span>--}}
-{{--                          </div>--}}
-{{--                          <div class="c-params__list-value">--}}
-{{--                              <span class="block">--}}
-{{--                                  55x10x120 میلی‌متر--}}
-{{--                              </span>--}}
-{{--                          </div>--}}
-{{--                        </li>--}}
-{{--                      </ul>--}}
+                      {{--                      <h3 class="c-params__title">مشخصات</h3>--}}
+                      {{--                      <ul class="c-params__list">--}}
+                      {{--                        <li style="display: none;">--}}
+                      {{--                          <div class="c-params__list-key">--}}
+                      {{--                            <span class="block">ابعاد</span>--}}
+                      {{--                          </div>--}}
+                      {{--                          <div class="c-params__list-value">--}}
+                      {{--                              <span class="block">--}}
+                      {{--                                  55x10x120 میلی‌متر--}}
+                      {{--                              </span>--}}
+                      {{--                          </div>--}}
+                      {{--                        </li>--}}
+                      {{--                        <li style="display: none;">--}}
+                      {{--                          <div class="c-params__list-key">--}}
+                      {{--                            <span class="block">ابعاد</span>--}}
+                      {{--                          </div>--}}
+                      {{--                          <div class="c-params__list-value">--}}
+                      {{--                              <span class="block">--}}
+                      {{--                                  55x10x120 میلی‌متر--}}
+                      {{--                              </span>--}}
+                      {{--                          </div>--}}
+                      {{--                        </li>--}}
+                      {{--                        <li style="display: none;">--}}
+                      {{--                          <div class="c-params__list-key">--}}
+                      {{--                            <span class="block">ابعاد</span>--}}
+                      {{--                          </div>--}}
+                      {{--                          <div class="c-params__list-value">--}}
+                      {{--                              <span class="block">--}}
+                      {{--                                  55x10x120 میلی‌متر--}}
+                      {{--                              </span>--}}
+                      {{--                          </div>--}}
+                      {{--                        </li>--}}
+                      {{--                      </ul>--}}
                     </section>
                   </article>
                 </div>
@@ -1497,7 +1563,8 @@
           </div>
         </div>
       </div>
-      <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-gallery" data-remodal-id="gallery" role="dialog">
+      <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-gallery"
+           data-remodal-id="gallery" role="dialog">
         <div class="c-remodal-gallery__main js-level-one-gallery">
           <div class="c-remodal-gallery__top-bar">
             <div class="c-remodal-gallery__tabs js-top-bar-tabs">
@@ -1542,9 +1609,10 @@
             </div>
           </div>
 
-          <div class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails" id="gallery-content-2"></div>
+          <div
+            class="c-remodal-gallery__content c-remodal-gallery__content--comments js-gallery-tab-content js-comments-with-thumbnails"
+            id="gallery-content-2"></div>
         </div>
-
 
 
         <div class="c-remodal-gallery__main js-level-two-gallery js-comments"></div>
@@ -1767,7 +1835,8 @@
     </a>
     <button class="c-fmcg-voucher-box__close-button js-wheel-floating-box-close" style="top: 10px;"></button>
   </div>
-  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-account" data-remodal-id="login"
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-account"
+       data-remodal-id="login"
        role="dialog">
     <button aria-label="Close" class="remodal-close" data-remodal-action="close"></button>
     <div class="c-remodal-account__headline">ورود به دیجی‌کالا</div>
@@ -1798,7 +1867,8 @@
         <div class="c-form-account__link"><a class="btn-link-spoiler"
                                              data-snt-event="dkLoginClick"
                                              data-snt-params='{"type":"forgetPassword","site":"login-modal"}'
-                                             href="https://www.digikala.com/users/password/forgot/">رمز عبور خود را فراموش کرده ام</a></div>
+                                             href="https://www.digikala.com/users/password/forgot/">رمز عبور خود را
+            فراموش کرده ام</a></div>
         <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
           یا کلمه عبور اشتباه است.
         </div>
@@ -1811,12 +1881,15 @@
         در دیجی‌کالا</a></div>
   </div>
   <div aria-describedby="modal1Desc" aria-labelledby="modal1Title"
-       class="remodal c-remodal-loader" data-remodal-id="loader" data-remodal-options="hashTracking: false, closeOnOutsideClick: false"
+       class="remodal c-remodal-loader" data-remodal-id="loader"
+       data-remodal-options="hashTracking: false, closeOnOutsideClick: false"
        role="dialog">
     <div class="c-remodal-loader__icon">
       <svg height="30" viewBox="0 0 115 30" width="115" xmlns="http://www.w3.org/2000/svg">
-        <path d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z" fill="#EE384E"
-              fill-rule="evenodd"/>
+        <path
+          d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z"
+          fill="#EE384E"
+          fill-rule="evenodd"/>
       </svg>
     </div>
     <div class="c-remodal-loader__bullets"><i class="c-remodal-loader__bullet c-remodal-loader__bullet--1"></i><i
@@ -1824,14 +1897,17 @@
         class="c-remodal-loader__bullet c-remodal-loader__bullet--3"></i><i
         class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></i></div>
   </div>
-  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-general-alert" data-remodal-id="alert"
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-general-alert"
+       data-remodal-id="alert"
        role="dialog">
     <div class="c-remodal-general-alert__main">
       <div class="c-remodal-general-alert__content"><p class="js-remodal-general-alert__text"></p>
         <p class="c-remodal-general-alert__description js-remodal-general-alert__description"></p></div>
       <div class="c-remodal-general-alert__actions">
-        <button class="c-remodal-general-alert__button c-remodal-general-alert__button--approve js-remodal-general-alert__button--approve"></button>
-        <button class="c-remodal-general-alert__button c-remodal-general-alert__button--cancel js-remodal-general-alert__button--cancel"></button>
+        <button
+          class="c-remodal-general-alert__button c-remodal-general-alert__button--approve js-remodal-general-alert__button--approve"></button>
+        <button
+          class="c-remodal-general-alert__button c-remodal-general-alert__button--cancel js-remodal-general-alert__button--cancel"></button>
       </div>
     </div>
   </div>
@@ -1841,7 +1917,8 @@
     <div class="c-remodal-general-information__main">
       <div class="c-remodal-general-information__content"><p class="js-remodal-general-information__text"></p></div>
       <div class="c-remodal-general-information__actions">
-        <button class="c-remodal-general-information__button c-remodal-general-information__button--approve js-remodal-general-information__button--approve"></button>
+        <button
+          class="c-remodal-general-information__button c-remodal-general-information__button--approve js-remodal-general-information__button--approve"></button>
       </div>
     </div>
   </div>
@@ -1877,7 +1954,8 @@
       </div>
     </div>
   </div>
-  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-location js-general-location"
+  <div aria-describedby="modal1Desc" aria-labelledby="modal1Title"
+       class="remodal c-remodal-location js-general-location"
        data-remodal-id="general-location"
        role="dialog">
     <div class="c-remodal-location__header"><span class="js-general-location-title">انتخاب استان</span>
@@ -1895,7 +1973,9 @@
     </div>
   </div>
   <div aria-describedby="modal1Desc"
-       aria-labelledby="modal1Title" class="remodal c-remodal-location c-remodal-location--addresses js-general-location-addresses" data-remodal-id="general-location"
+       aria-labelledby="modal1Title"
+       class="remodal c-remodal-location c-remodal-location--addresses js-general-location-addresses"
+       data-remodal-id="general-location"
        role="dialog">
     <div class="c-remodal-location__header"><span class="js-general-location-title">انتخاب آدرس</span>
       <div class="c-remodal-location__close js-close-modal"></div>
