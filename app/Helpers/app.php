@@ -227,3 +227,10 @@ function product_price($product, $type = 'model')
   }
 
 }
+
+function toman($price) {
+  if (is_numeric($price)) {
+    return $price/10;
+  }
+  return null;
+}

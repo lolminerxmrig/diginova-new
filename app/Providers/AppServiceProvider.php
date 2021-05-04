@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (\Schema::hasTable('settings') && count(Setting::all())) {
+
+      if (\Schema::hasTable('settings') && count(Setting::all())) {
             $settings = Setting::all();
 //            $settings = Setting::select('name', 'value')->get();
             view()->share('fa_store_name', $settings->where('name', 'fa_store_name')->first()->value);

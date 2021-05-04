@@ -19,7 +19,8 @@ class isStaff
     {
         if(Auth::guard('staff')->check() == false)
         {
-            return redirect('account/login');
+//            return redirect('account/login');
+          return redirect()->route('staff.loginPage');
         }
         return $next($request);
     }

@@ -12,8 +12,9 @@ use App\Models\VerifyAccount;
 
 class CustomerRegLoginController extends Controller
 {
-    public function regLoginPage()
+    public function regLoginPage(Request $request)
     {
+        session()->put('previous_url_page', session()->previousUrl());
         session()->forget('has_password');
         session()->forget('c_mobile');
         return view('customerauth::login-register');
@@ -21,7 +22,6 @@ class CustomerRegLoginController extends Controller
 
     public function check(Request $request)
     {
-//        dd($request->all());
         if (session('c_mobile'))
         {
             $request->email_phone = session('c_mobile');
@@ -114,7 +114,6 @@ class CustomerRegLoginController extends Controller
                      جدید لطفا شماره تماس خود را وارد نمایید.']);
             }
         }
-
     }
 
     public function confirmPage()
@@ -142,7 +141,8 @@ class CustomerRegLoginController extends Controller
             session()->forget('c_mobile');
             session()->forget('c_email');
             $request->session()->regenerate();
-            return redirect()->route('front.indexPage');
+
+          return redirect()->route('front.indexPage');
         }
         return back()->withErrors([
             'wrongEmailPass' => 'اطلاعات کاربری نادرست است',
@@ -159,10 +159,13 @@ class CustomerRegLoginController extends Controller
             $customer = Customer::where('mobile', $customer_mobile)->select('id')->first();
             Auth::guard('customer')->loginUsingId($customer->id, true);
             if (session('newUser')){
-                return redirect()->route('customer.welcomme');
+//              Log::info(session('previous_url_page'));
+//              return redirect(session('previous_url_page'));
+              return redirect()->route('customer.welcomme');
             }
             else{
-                return redirect()->route('front.indexPage');
+//              return redirect(session('previous_url_page'));
+              return redirect()->route('front.indexPage');
             }
         }
         else

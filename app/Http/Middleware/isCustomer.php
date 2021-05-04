@@ -19,7 +19,7 @@ class isCustomer
     {
         if(Auth::guard('customer')->check() == false)
         {
-            return view('customerauth::login');
+          return redirect()->route('customer.regLoginPage');
         }
         return $next($request);
     }

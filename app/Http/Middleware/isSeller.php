@@ -19,7 +19,8 @@ class isSeller
     {
         if(Auth::guard('seller')->check() == false)
         {
-            return view('sellerauth::login');
+//            return view('sellerauth::login');
+            return redirect()->route('seller.loginPage');
         }
         return $next($request);
     }

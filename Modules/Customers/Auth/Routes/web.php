@@ -43,6 +43,3 @@ Route::prefix('users')->middleware('web')->group(function(){
     Route::get('logout', [CustomerRegLoginController::class, 'logout'])
         ->name('customer.logout');
 });
-
-
-

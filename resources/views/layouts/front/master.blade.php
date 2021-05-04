@@ -43,13 +43,15 @@
   <link rel="shortcut icon" href="{{ !is_null($favicon_image)? $site_url . '/' . $favicon_image->path . '/'. $favicon_image->name : '' }}" type="image/icon">
   <link rel="icon" type="image/png" href="{{ !is_null($favicon_image)? $site_url . '/' . $favicon_image->path . '/'. $favicon_image->name : '' }}">
 
-  <link rel="stylesheet" href="{{ asset('assets/css/customize.css') }} ">
+{{--  <link rel="stylesheet" href="{{ asset('assets/css/customize.css') }} ">--}}
   <link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
   <link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} " media="screen and (max-height: 1184px)">
   <link rel="stylesheet" href="{{ asset('assets/new/css/max-width1365px.css') }} " media="screen and (max-width: 1365px)">
   <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1025px.css') }} " media="screen and (min-width: 1025px)">
   <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1366px.css') }} " media="screen and (min-width: 1366px)">
   <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} " media="screen and (min-width: 1680px)">
+
+  <script src="{{ asset('assets/new/js/jquery.cookie.js') }}"></script>
 
 
   <link rel="manifest" href="{{ asset('assets/manifest.json') }}?v=1.4">
@@ -492,7 +494,7 @@
             </li>
 
             <li class="c-footer__safety-partner-3">
-              <img id='nbqeoeukjxlzjzpejzpe' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=28177&p=uiwkmcsirfthjyoejyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' loading="lazy" src='https://logo.samandehi.ir/logo.aspx?id=28177&p=odrfaqgwnbpdyndtyndt'/>
+{{--              <img id='nbqeoeukjxlzjzpejzpe' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=28177&p=uiwkmcsirfthjyoejyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' loading="lazy" src='https://logo.samandehi.ir/logo.aspx?id=28177&p=odrfaqgwnbpdyndtyndt'/>--}}
             </li>
           </ul>
         </aside>
@@ -567,7 +569,6 @@
     }
 }
 </script>
-
 
 </body>
 

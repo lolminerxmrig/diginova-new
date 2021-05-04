@@ -27516,15 +27516,15 @@ var Sentry = function (n) {
   /* global __ */
 
   // init sentry
-  if (typeof module_js_crashlytics != "undefined" && !!module_js_crashlytics) {
-    try {
-      window.Sentry.init({
-        dsn: 'https://b415f70edfa3422987e9c71c127cd97c@sentry.digikala.com/4'
-      });
-    } catch (e) {
-      console.log('failed to load sentry', e);
-    }
-  }
+  // if (typeof module_js_crashlytics != "undefined" && !!module_js_crashlytics) {
+  //   try {
+  //     window.Sentry.init({
+  //       dsn: 'https://b415f70edfa3422987e9c71c127cd97c@sentry.digikala.com/4'
+  //     });
+  //   } catch (e) {
+  //     console.log('failed to load sentry', e);
+  //   }
+  // }
 
   var Main = {
     trends: [],
@@ -27711,7 +27711,7 @@ console.log("%c                        *((((((((((((((((((((((((((((((((((((((((
       function changeItemQuantity(itemData) {
         var self = this;
         Services.ajaxGETRequestJSON(
-          '/cart/change/' + itemData.variantId + '/' + itemData.count + '/', {},
+          '/cart/change/' + itemData.variantId + '/' + itemData.count, {},
           function (response) {
             window.location.reload();
           },

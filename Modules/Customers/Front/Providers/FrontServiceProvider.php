@@ -2,6 +2,7 @@
 
 namespace Modules\Customers\Front\Providers;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class FrontServiceProvider extends ServiceProvider
@@ -13,10 +14,15 @@ class FrontServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
 
-        $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
+      $this->loadMigrationsFrom(__DIR__.'/../Database/migrations');
 
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'front');
+      $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
+
+      $this->loadViewsFrom(__DIR__.'/../Resources/views', 'front');
+
+      Relation::morphMap([
+        'Cart' => 'Modules\Customers\Front\Models\Cart',
+      ]);
     }
 }

@@ -295,6 +295,34 @@ class FrontController extends Controller
   public function cart()
   {
     $carts = Cart::all();
+
+    if (Auth::guard('customer')->check() && (Cookie::get('cart_variant_ids') !== null)) {
+
+      $product_variant_ids_str = Cookie::get('cart_variant_ids');
+      $product_variant_ids_array = explode(',', $product_variant_ids_str);
+
+      $cart_variant_prices_str = Cookie::get('cart_variant_prices');
+      $cart_variant_prices_array = explode(',', $cart_variant_prices_str);
+
+      $cart_variant_promotion_prices_str = Cookie::get('cart_variant_promotion_prices');
+      $cart_variant_promotion_prices_array = explode(',', $cart_variant_promotion_prices_str);
+
+      $cart_variant_counts_str = Cookie::get('cart_variant_counts');
+      $cart_variant_counts_array = explode(',', $cart_variant_counts_str);
+
+      foreach ($product_variant_ids_array as $key => $product_variant_id) {
+        Cart::create([
+          'customer_id' => Auth::guard('customer')->user()->id,
+          'type' => 'first',
+          'count' => $cart_variant_counts_array[$key],
+          'sale_price' => $cart_variant_prices_array[$key],
+          'promotion_price' => $cart_variant_promotion_prices_array[$key],
+          'product_variant_id' => $product_variant_id,
+        ]);
+      }
+
+    }
+
     return view('front::cart', compact('carts'));
   }
 
@@ -304,7 +332,7 @@ class FrontController extends Controller
     $product_variant = ProductHasVariant::where('variant_code', $variant_code)->first();
     $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
 
-    if (!Cart::where('product_variant_id', $product_variant->id)->exists()) {
+    if (Auth::guard('customer')->check()) {
       Cart::create([
         'customer_id' => Auth::guard('customer')->user()->id,
         'type' => 'first',
@@ -313,6 +341,26 @@ class FrontController extends Controller
         'promotion_price' => $promotion_price,
         'product_variant_id' => $product_variant->id,
       ]);
+    }
+    else {
+
+
+//      $old_cart_variant_ids = (Cookie::has('cart_variant_ids'))? 'kkdkdk' : 'ddkdk';
+//      $old_cart_variant_prices = (Cookie::has('cart_variant_prices'))? Cookie::get('cart_variant_prices') : null;
+//      $old_cart_variant_promotion_prices = (Cookie::has('cart_variant_promotion_prices'))? Cookie::get('cart_variant_promotion_prices') : null;
+//      $old_cart_variant_counts = (Cookie::has('cart_variant_counts'))? Cookie::get('cart_variant_counts') : null;
+
+//      Cookie::forget('cart_variant_ids');
+
+//      cookie('tettemmtetet', 'dkkdkdkdmmmmmdk', 1111111);
+//      Cookie::forever('cart_variant_ids', "$old_cart_variant_ids" . ',' . "$product_variant->id");
+//      Cookie::forever('cart_variant_prices', "$old_cart_variant_prices" . ',' . "$product_variant->sale_price");
+//      Cookie::forever('cart_variant_promotion_prices', "$old_cart_variant_promotion_prices" . ',' . "$promotion_price");
+//      Cookie::forever('cart_variant_counts', "$old_cart_variant_counts" . ',' . "1");
+
+//      Cookie::make('nameeeeee', 'valueeee', 120);
+//      Log::info(Cookie::get('nameeeeee'));
+
     }
 
     return redirect()->route('front.cart');
@@ -323,85 +371,15 @@ class FrontController extends Controller
   {
     $product_variant_id = ProductHasVariant::where('variant_code', $variant_code)->first()->id;
     $customer = Auth::guard('customer')->user();
-    Cart::where('customer_id', $customer->id)->where('product_variant_id', $product_variant_id)->first()->update([
+    Cart::where('customer_id', $customer->id)->whereHasMorph('product_variant', function ($q) use ($product_variant_id) {
+        $q->where('variantable_type', 'Cart');
+        $q->where('product_variant_id', $product_variant_id);
+    })->first()->update([
       'count' => $count,
     ]);
 
-    return response()->json([
-      "status" => true,
-      "data" => [
-        "data" => View::make('front::layouts.cart.changeCartResponseData')->render(),
-        "miniCartData" => View::make('front::layouts.cart.miniCartData')->render(),
-        "data_layer" => [
-          "event" => "eec.addToCart",
-          "ecommerce" => [
-            "currencyCode" => "EUR",
-            "add" => [
-              "actionField" => [
-                "list" => "رنگ"
-              ],
-              "products" => [
-                [
-                  "name" => "درزگیر ترک سطوح نیپون مدل S100 وزن 1 کیلوگرم",
-                  "id" => 4826524,
-                  "price" => 415000,
-                  "brand" => "رنگ نیپون",
-                  "category" => "رنگ",
-                  "variant" => 15477082,
-                  "quantity" => 1,
-                  "dimension6" => 1,
-                  "dimension2" => 0,
-                  "dimension9" => 5,
-                  "metric6" => 1,
-                  "metric7" => 2.2,
-                  "metric8" => 1,
-                  "dimension10" => 4,
-                  "metric11" => 0,
-                  "metric12" => 0,
-                  "dimension11" => 0,
-                  "dimension15" => 0,
-                  "metric15" => false,
-                  "dimension3" => "marketplace",
-                  "dimension20" => "marketable",
-                  "dimension7" => "none"
-                ]
-              ]
-            ]
-          ]
-        ],
-        "userRecommendationSidebar" => [],
-        "userRecommendationCarousel" => []
-      ]
-    ]);
-  }
-
-  public function saveForLater($variant_code)
-  {
-
-    $product_variant_id = ProductHasVariant::where('variant_code', $variant_code)->first()->id;
-    $customer = Auth::guard('customer')->user();
-
-    Cart::where('customer_id', $customer->id)->where('product_variant_id', $product_variant_id)->first()->update([
-      'type' => 'second',
-    ]);
-
-    return response()->json([
-      'status' => true,
-      'data' => [
-        'redirectUrl' => route('front.cart'),
-      ],
-    ]);
 
   }
 
-  public function removeFromCart($variant_code)
-  {
-    $product_variant_id = ProductHasVariant::where('variant_code', $variant_code)->first()->id;
-    $customer = Auth::guard('customer')->user();
-
-    Cart::where('customer_id', $customer->id)->where('product_variant_id', $product_variant_id)->first()->delete();
-
-    return redirect()->route('front.cart');
-  }
 
 }

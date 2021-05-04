@@ -20,13 +20,9 @@ Route::get('/', [FrontController::class, 'index'])->name('front.indexPage');
 $product_code_prefix = mb_strtolower(Setting::where('name', 'product_code_prefix')->first()->value);
 
 Route::get("product/$product_code_prefix-{product_code}", [FrontController::class, 'productPage'])->name('front.productPage');
-Route::get("products/$product_code_prefix-{product_code}", [FrontController::class, 'productPageTest'])->name('front.productPageTest');
 Route::get("cart/add/{variant_code}/1/", [FrontController::class, 'addToCart'])->name('front.addToCart');
-
 Route::get("product/comment/$product_code_prefix-{product_code}", [FrontController::class, 'createComment'])->name('front.createComment');
-
 Route::get('search/category-{slug}', [FrontController::class, 'categoryPage'])->name('category');
-
 Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::get('product/comments/{product_id}', [FrontController::class, 'productComments'])->name('productComments');
   Route::get('product/comments/list/{product_id}/', [FrontController::class, 'productCommentList'])->name('productCommentList');
@@ -37,4 +33,24 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
 
   Route::post('favorites/product/add/{product_id}', [FrontController::class, 'addToFavorites'])->name('addToFavorites');
   Route::get('favorites/product/remove/{product_id}', [FrontController::class, 'removeFromFavorites'])->name('removeFromFavorites');
+
+  Route::get('cart/move/save-for-later/{variant_code}', [FrontController::class, 'saveForLater'])->name('saveForLater');
+
 });
+
+
+Route::get('cart/remove/{variant_code}', [FrontController::class, 'removeFromCart'])->name('removeFromCart');
+
+
+
+
+
+
+Route::name('front.')->middleware('web', 'customer')->group(function () {
+  Route::get("cart", [FrontController::class, 'cart'])->name('cart');
+  Route::get("cart/change/{variant_code}/{count}", [FrontController::class, 'cartChange'])->name('cartChange');
+});
+
+
+
+
