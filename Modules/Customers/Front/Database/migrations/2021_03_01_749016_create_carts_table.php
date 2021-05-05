@@ -19,8 +19,10 @@ class CreateCartsTable extends Migration
           $table->foreignId('product_variant_id');
           $table->string('type');
           $table->integer('count');
-          $table->bigInteger('sale_price');
-          $table->bigInteger('promotion_price')->nullable();
+          $table->bigInteger('old_sale_price')->nullable();
+          $table->bigInteger('new_sale_price')->nullable();
+          $table->bigInteger('old_promotion_price')->nullable();
+          $table->bigInteger('new_promotion_price')->nullable();
           $table->timestamps();
 
           $table->foreign('customer_id')->references('id')->on('customers');

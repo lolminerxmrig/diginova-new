@@ -294,8 +294,38 @@ class FrontController extends Controller
 
   public function cart()
   {
-    $carts = Cart::all();
+    $customer_id = auth()->guard('customer')->user()->id;
+    $carts = Cart::where('customer_id', $customer_id)->get();
+    $this->updateCartPrices($carts);
     return view('front::cart', compact('carts'));
+  }
+
+  public function updateCartPrices($carts)
+  {
+    foreach ($carts as $cart)
+    {
+      Log::info('id: ' . $cart);
+      $old_sale_price = $cart->old_sale_price;
+      $new_sale_price = $cart->new_sale_price;
+
+      $old_promotion_price = $cart->old_promotion_price;
+      $new_promotion_price = $cart->new_promotion_price;
+      Log::info('old');
+      Log::info('old_promotion_price' . $old_promotion_price);
+      Log::info('new_promotion_price' . $new_promotion_price);
+
+      Log::info('new');
+      Log::info('old_promotion_price' . $new_promotion_price);
+      Log::info('new_promotion_price' . $cart->product_variant()->first()->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price'));
+
+      $cart->update([
+        'old_sale_price' => $new_sale_price,
+        'new_sale_price' => $cart->product_variant()->first()->sale_price,
+
+        'old_promotion_price' => $new_promotion_price,
+        'new_promotion_price' => $cart->product_variant()->first()->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price'),
+      ]);
+    }
   }
 
   public function addToCart($variant_code)
@@ -304,13 +334,15 @@ class FrontController extends Controller
     $product_variant = ProductHasVariant::where('variant_code', $variant_code)->first();
     $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
 
-    if (!Cart::where('product_variant_id', $product_variant->id)->exists()) {
+    if (auth()->guard('customer')->check() && !Cart::where('product_variant_id', $product_variant->id)->exists()) {
       Cart::create([
         'customer_id' => Auth::guard('customer')->user()->id,
         'type' => 'first',
         'count' => 1,
-        'sale_price' => $product_variant->sale_price,
-        'promotion_price' => $promotion_price,
+        'old_sale_price' => $product_variant->sale_price,
+        'old_promotion_price' => $promotion_price,
+        'new_sale_price' => $product_variant->sale_price,
+        'new_promotion_price' => $promotion_price,
         'product_variant_id' => $product_variant->id,
       ]);
     }

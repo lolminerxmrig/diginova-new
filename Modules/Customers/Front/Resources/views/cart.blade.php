@@ -1,5 +1,6 @@
 @php
   $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
+  $firstCarts = \Modules\Customers\Front\Models\Cart::where('type', 'first')->get();
 @endphp
 
 @extends('layouts.front.master')
@@ -248,8 +249,7 @@
                                                data-id="{{ $cart->product_variant()->first()->variant_code }}">
                                             {{ persianNum($cart->count) }}
                                           </div>
-                                          <button type="button"
-                                                  class="c-quantity-selector__remove c-quantity-selector__add--disabled js-quantity-selector-remove"></button>
+                                          <button type="button" class="c-quantity-selector__remove c-quantity-selector__add--disabled js-quantity-selector-remove"></button>
                                         </div>
                                         <a class="c-cart-item__delete js-remove-from-cart"
                                            href="/cart/remove/{{ $cart->product_variant()->first()->variant_code }}/"
@@ -317,20 +317,39 @@
                     <div class="c-checkout-aside js-checkout-aside ">
                       <div class="c-checkout-bill">
                         <ul class="c-checkout-bill__summary">
+
                           <li>
-                          <span class="c-checkout-bill__item-title">
-                              قیمت کالاها(۱)
-                          </span>
+                            <span class="c-checkout-bill__item-title">
+                                قیمت کالاها({{ persianNum($firstCarts->count()) }})
+                            </span>
                             <span class="c-checkout-bill__price">
-                            ۴۱,۵۰۰
+                            {{ persianNum(number_format(toman($firstCarts->sum('sale_price')))) }}
                             <span class="c-checkout-bill__currency">
                               تومان
                             </span>
                           </span>
                           </li>
+
+                          @if($firstCarts->sum('promotion_price') > 0)
+                            <li>
+                              <span class="c-checkout-bill__item-title">
+                                  تخفیف کالاها
+                              </span>
+                              <span class="c-checkout-bill__price c-checkout-bill__price--discount">
+                                <span>
+                                  ({{ persianNum(number_format(toman($firstCarts->sum('sale_price') / $firstCarts->sum('promotion_price')) * 100)) }}٪)
+                                </span>
+                                 {{ persianNum(number_format(toman($firstCarts->sum('sale_price') - $firstCarts->sum('promotion_price')))) }}
+                                <span class="c-checkout-bill__currency">
+                                   تومان
+                                </span>
+                              </span>
+                            </li>
+                          @endif
+
                           <li class="c-checkout-bill__sum-price">
                           <span class="c-checkout-bill__item-title">
-                                  جمع سبد خرید
+                              جمع سبد خرید
                           </span>
                             <span class="c-checkout-bill__price">
                               ۴۱,۵۰۰
@@ -339,6 +358,7 @@
                             </span>
                           </span>
                           </li>
+
                           <li class="c-checkout-bill__additional-shipping-cost">
                             هزینه‌ی ارسال در ادامه بر اساس آدرس، زمان و
                             نحوه‌ی ارسال انتخابی شما‌ محاسبه و به این مبلغ اضافه خواهد شد
@@ -1258,7 +1278,7 @@
                   <div class="c-checkout-empty__empty-sfl-icon"></div>
                   <div class="c-checkout-empty__title">
                     لیست خرید بعدی شما خالی است!
-                  </div>
+                  </div>قی
                   <p class="c-checkout-empty__sfl-content">
                     شما می‌توانید محصولاتی که به سبد خرید خود افزوده‌اید
                     و فعلا قصد خرید آن‌ها را ندارید، در لیست خرید بعدی قرار داده
