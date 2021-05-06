@@ -439,14 +439,18 @@
                             </div>
                             <div class="c-cart-item__data">
                               @if ($has_count)
-                                @if (defualtCartOldPrice($cart) !== defualtCartNewPrice($cart))
-                                  @if (defualtCartOldPrice($cart) > defualtCartNewPrice($cart))
+                                <?php
+                                  $defualtCartOldPrice = defualtCartOldPrice($cart);
+                                  $defualtCartNewPrice = defualtCartNewPrice($cart);
+                                ?>
+                                @if ($defualtCartOldPrice !== $defualtCartNewPrice)
+                                  @if ($defualtCartOldPrice < $defualtCartNewPrice)
                                     <div class="c-cart-notification c-cart-notification--success c-cart-notification--arrow-down">
-                                      قیمت این کالا {{ persianNum(number_format(toman(defualtCartOldPrice($cart) - defualtCartNewPrice($cart)))) }} تومان کاهش یافته است.
+                                      قیمت این کالا {{ persianNum(number_format(toman($defualtCartOldPrice - $defualtCartNewPrice))) }} تومان کاهش یافته است.
                                     </div>
                                   @else
                                     <div class="c-cart-notification c-cart-notification--warning c-cart-notification--arrow-up">
-                                      قیمت این کالا {{ persianNum(number_format(toman(defualtCartNewPrice($cart) - defualtCartOldPrice($cart)))) }} تومان افزایش یافته است.
+                                      قیمت این کالا {{ persianNum(number_format(toman($defualtCartNewPrice - $defualtCartOldPrice))) }} تومان افزایش یافته است.
                                     </div>
                                   @endif
                                 @endif

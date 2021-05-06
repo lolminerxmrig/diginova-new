@@ -293,9 +293,9 @@ class FrontController extends Controller
 
     foreach ($carts as $item) {
       $old_sale_price = $item->old_sale_price;
-      $new_sale_price = $item->new_sale_price;
-
       $old_promotion_price = $item->old_promotion_price;
+
+      $new_sale_price = $item->new_sale_price;
       $new_promotion_price = $item->new_promotion_price;
 
       $item->update([
