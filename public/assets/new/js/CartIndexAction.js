@@ -267,7 +267,7 @@ var IndexAction = {
         $('.js-add-to-cart-from-sfl').click(function () {
             var variantId = $(this).data("variant-id");
             Services.ajaxGETRequestJSON(
-                '/ajax/save-for-later/move/cart/' + variantId + '/',
+                '/ajax/save-for-later/move/cart/' + variantId,
                 {},
                 function (response) {
                     if(isModuleActive('data_layer')) {
@@ -287,7 +287,7 @@ var IndexAction = {
 
         $('.js-move-all-from-sfl-to-cart').click(function () {
             Services.ajaxGETRequestJSON(
-                '/ajax/save-for-later/move/all/cart/',
+                '/ajax/save-for-later/move/all/cart',
                 {},
                 function (response) {
                     window.location.reload();
@@ -565,7 +565,7 @@ var IndexAction = {
                 var csrf = $(this).data('token');
 
                 Services.ajaxPOSTRequestJSON(
-                    '/ajax/save-for-later/variant/remove/' + variantId + '/',
+                    '/ajax/save-for-later/variant/remove/' + variantId,
                     {token: csrf},
                     function (response) {
                         try {

@@ -23,6 +23,7 @@ Route::get("product/$product_code_prefix-{product_code}", [FrontController::clas
 Route::get("cart/add/{variant_code}/1/", [FrontController::class, 'addToCart'])->name('front.addToCart');
 Route::get("product/comment/$product_code_prefix-{product_code}", [FrontController::class, 'createComment'])->name('front.createComment');
 Route::get('search/category-{slug}', [FrontController::class, 'categoryPage'])->name('category');
+
 Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::get('product/comments/{product_id}', [FrontController::class, 'productComments'])->name('productComments');
   Route::get('product/comments/list/{product_id}/', [FrontController::class, 'productCommentList'])->name('productCommentList');
@@ -36,15 +37,12 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
 
   Route::get('cart/move/save-for-later/{variant_code}', [FrontController::class, 'saveForLater'])->name('saveForLater');
 
+  Route::post('save-for-later/variant/remove/{variant_id}', [FrontController::class, 'removeFromSaveForLater'])->name('removeFromSaveForLater');
+  Route::get('save-for-later/move/cart/{variant_id}', [FrontController::class, 'moveToFirstCart'])->name('moveToFirstCart');
+  Route::get('save-for-later/move/all/cart', [FrontController::class, 'moveAllToFirstCart'])->name('moveAllToFirstCart');
 });
 
-
 Route::get('cart/remove/{variant_code}', [FrontController::class, 'removeFromCart'])->name('removeFromCart');
-
-
-
-
-
 
 Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::get("cart", [FrontController::class, 'cart'])->name('cart');

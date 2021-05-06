@@ -51,9 +51,6 @@
   <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1366px.css') }} " media="screen and (min-width: 1366px)">
   <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} " media="screen and (min-width: 1680px)">
 
-  <script src="{{ asset('assets/new/js/jquery.cookie.js') }}"></script>
-
-
   <link rel="manifest" href="{{ asset('assets/manifest.json') }}?v=1.4">
 
   <script>

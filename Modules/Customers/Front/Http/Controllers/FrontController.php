@@ -70,11 +70,10 @@ class FrontController extends Controller
   {
     $product = Product::where('product_code', $product_id)->first();
 
-    if ($request['mode'] == 'buyers'){
+    if ($request['mode'] == 'buyers') {
       $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
       $mode = 'buyers';
-    }
-    else {
+    } else {
       $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
       $mode = 'newest_comment';
     }
@@ -93,11 +92,10 @@ class FrontController extends Controller
 
     $product = Product::where('product_code', $product_id)->first();
 
-    if ($request['mode'] == 'buyers'){
+    if ($request['mode'] == 'buyers') {
       $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
       $mode = 'buyers';
-    }
-    else {
+    } else {
       $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
       $mode = 'newest_comment';
     }
@@ -144,9 +142,9 @@ class FrontController extends Controller
     Comment::create([
       'title' => $request->title,
       'text' => $request->text,
-      'recommend' => isset($request->recommend)? $request->recommend : '',
-      'advantages' => isset($request->advantages)? json_encode($request->advantages) : '',
-      'disadvantages' => isset($request->disadvantages)? json_encode($request->disadvantages) : '',
+      'recommend' => isset($request->recommend) ? $request->recommend : '',
+      'advantages' => isset($request->advantages) ? json_encode($request->advantages) : '',
+      'disadvantages' => isset($request->disadvantages) ? json_encode($request->disadvantages) : '',
       'product_id' => $product->id,
       'customer_id' => auth()->guard('customer')->user()->id,
     ]);
@@ -198,134 +196,157 @@ class FrontController extends Controller
   public function likeComment($comment_id)
   {
 
-      if (Auth::guard('customer')->check()) {
-        $customer_id = Auth::guard('customer')->user()->id;
-      } else {
-        return null;
-      }
+    if (Auth::guard('customer')->check()) {
+      $customer_id = Auth::guard('customer')->user()->id;
+    } else {
+      return null;
+    }
 
-      if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->exists()) {
-        if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->exists()) {
-          CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->delete();
-          $likeFlag = -1;
+    if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->exists()) {
+      if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->exists()) {
+        CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->delete();
+        $likeFlag = -1;
+      } else {
+        if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->exists()) {
+          CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->update([
+            'status' => 'like',
+          ]);
         }
-        else {
-          if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->exists()) {
-            CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->update([
-              'status' => 'like',
-            ]);
-          }
-          $likeFlag = 1;
-        }
-      }
-      else {
-        CommentFeedback::create([
-          'comment_id' => $comment_id,
-          'customer_id' => $customer_id,
-          'status' => 'like',
-        ]);
         $likeFlag = 1;
       }
+    } else {
+      CommentFeedback::create([
+        'comment_id' => $comment_id,
+        'customer_id' => $customer_id,
+        'status' => 'like',
+      ]);
+      $likeFlag = 1;
+    }
 
-      $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'like')->count();
-      $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'dislike')->count();
+    $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'like')->count();
+    $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'dislike')->count();
 
-      return response()->json([
-        'status' => true,
-        'data' => [
-          "likes" => $comment_likes_count,
-          "dislikes" => $comment_dislikes_count,
-          "type" => 1,
-          "LikeFlag" => $likeFlag,
-          "DislikeFlag" => 0,
-        ],
-      ], 200);
+    return response()->json([
+      'status' => true,
+      'data' => [
+        "likes" => $comment_likes_count,
+        "dislikes" => $comment_dislikes_count,
+        "type" => 1,
+        "LikeFlag" => $likeFlag,
+        "DislikeFlag" => 0,
+      ],
+    ], 200);
 
   }
 
   public function dislikeComment($comment_id)
   {
 
-      if (Auth::guard('customer')->check()) {
-        $customer_id = Auth::guard('customer')->user()->id;
-      } else {
-        return null;
-      }
+    if (Auth::guard('customer')->check()) {
+      $customer_id = Auth::guard('customer')->user()->id;
+    } else {
+      return null;
+    }
 
-      if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->exists()) {
-        if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->exists()) {
-          CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->delete();
-          $dislikeFlag = -1;
+    if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->exists()) {
+      if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->exists()) {
+        CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->delete();
+        $dislikeFlag = -1;
+      } else {
+        if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->exists()) {
+          CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->update([
+            'status' => 'dislike',
+          ]);
         }
-        else {
-          if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->exists()) {
-            CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->update([
-              'status' => 'dislike',
-            ]);
-          }
-          $dislikeFlag = 1;
-        }
-      }
-      else {
-        CommentFeedback::create([
-          'comment_id' => $comment_id,
-          'customer_id' => $customer_id,
-          'status' => 'dislike',
-        ]);
         $dislikeFlag = 1;
       }
+    } else {
+      CommentFeedback::create([
+        'comment_id' => $comment_id,
+        'customer_id' => $customer_id,
+        'status' => 'dislike',
+      ]);
+      $dislikeFlag = 1;
+    }
 
-      $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'like')->count();
-      $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'dislike')->count();
+    $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'like')->count();
+    $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'dislike')->count();
 
-      return response()->json([
-        'status' => true,
-        'data' => [
-          "likes" => $comment_likes_count,
-          "dislikes" => $comment_dislikes_count,
-          "type" => 1,
-          "LikeFlag" => 0,
-          "DislikeFlag" => $dislikeFlag,
-        ],
-      ], 200);
+    return response()->json([
+      'status' => true,
+      'data' => [
+        "likes" => $comment_likes_count,
+        "dislikes" => $comment_dislikes_count,
+        "type" => 1,
+        "LikeFlag" => 0,
+        "DislikeFlag" => $dislikeFlag,
+      ],
+    ], 200);
 
   }
-
 
   public function cart()
   {
-    $customer_id = auth()->guard('customer')->user()->id;
-    $carts = Cart::where('customer_id', $customer_id)->get();
-    $this->updateCartPrices($carts);
-    return view('front::cart', compact('carts'));
-  }
 
-  public function updateCartPrices($carts)
-  {
-    foreach ($carts as $cart)
-    {
-      Log::info('id: ' . $cart);
-      $old_sale_price = $cart->old_sale_price;
-      $new_sale_price = $cart->new_sale_price;
+    $customer = auth()->guard('customer')->user();
+    $carts = $customer->carts;
 
-      $old_promotion_price = $cart->old_promotion_price;
-      $new_promotion_price = $cart->new_promotion_price;
-      Log::info('old');
-      Log::info('old_promotion_price' . $old_promotion_price);
-      Log::info('new_promotion_price' . $new_promotion_price);
+    foreach ($carts as $item) {
+      $old_sale_price = $item->old_sale_price;
+      $new_sale_price = $item->new_sale_price;
 
-      Log::info('new');
-      Log::info('old_promotion_price' . $new_promotion_price);
-      Log::info('new_promotion_price' . $cart->product_variant()->first()->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price'));
+      $old_promotion_price = $item->old_promotion_price;
+      $new_promotion_price = $item->new_promotion_price;
 
-      $cart->update([
+      $item->update([
         'old_sale_price' => $new_sale_price,
-        'new_sale_price' => $cart->product_variant()->first()->sale_price,
+        'new_sale_price' => $item->product_variant()->first()->sale_price,
 
         'old_promotion_price' => $new_promotion_price,
-        'new_promotion_price' => $cart->product_variant()->first()->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price'),
+        'new_promotion_price' => $item->product_variant()->first()->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price'),
       ]);
     }
+
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $second_carts = $customer->carts()->where('type', 'second')->get();
+    $carts = $customer->carts;
+
+    return view('front::cart', compact('carts', 'first_carts', 'second_carts'));
+
+  }
+
+  public function cartChange($variant_id, $count)
+  {
+    $customer = Auth::guard('customer')->user();
+    $carts = $customer->carts;
+
+    foreach ($carts as $item) {
+      $old_sale_price = $item->old_sale_price;
+      $new_sale_price = $item->new_sale_price;
+
+      $old_promotion_price = $item->old_promotion_price;
+      $new_promotion_price = $item->new_promotion_price;
+
+      $item->update([
+        'old_sale_price' => $new_sale_price,
+        'new_sale_price' => $item->product_variant()->first()->sale_price,
+
+        'old_promotion_price' => $new_promotion_price,
+        'new_promotion_price' => $item->product_variant()->first()->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price'),
+      ]);
+    }
+
+    Cart::where('customer_id', $customer->id)->where('product_variant_id', $variant_id)->first()->update([
+      'count' => $count,
+    ]);
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    return response()->json([
+      "status" => true,
+      "data" => [
+        "data" => View::make('front::layouts.cart.changeCartResponseData', compact('first_carts'))->render(),
+//        "miniCartData" => View::make('front::layouts.cart.miniCartData')->render(),
+      ]
+    ]);
   }
 
   public function addToCart($variant_code)
@@ -351,69 +372,12 @@ class FrontController extends Controller
 
   }
 
-  public function cartChange($variant_code, $count)
-  {
-    $product_variant_id = ProductHasVariant::where('variant_code', $variant_code)->first()->id;
-    $customer = Auth::guard('customer')->user();
-    Cart::where('customer_id', $customer->id)->where('product_variant_id', $product_variant_id)->first()->update([
-      'count' => $count,
-    ]);
-
-    return response()->json([
-      "status" => true,
-      "data" => [
-        "data" => View::make('front::layouts.cart.changeCartResponseData')->render(),
-        "miniCartData" => View::make('front::layouts.cart.miniCartData')->render(),
-        "data_layer" => [
-          "event" => "eec.addToCart",
-          "ecommerce" => [
-            "currencyCode" => "EUR",
-            "add" => [
-              "actionField" => [
-                "list" => "رنگ"
-              ],
-              "products" => [
-                [
-                  "name" => "درزگیر ترک سطوح نیپون مدل S100 وزن 1 کیلوگرم",
-                  "id" => 4826524,
-                  "price" => 415000,
-                  "brand" => "رنگ نیپون",
-                  "category" => "رنگ",
-                  "variant" => 15477082,
-                  "quantity" => 1,
-                  "dimension6" => 1,
-                  "dimension2" => 0,
-                  "dimension9" => 5,
-                  "metric6" => 1,
-                  "metric7" => 2.2,
-                  "metric8" => 1,
-                  "dimension10" => 4,
-                  "metric11" => 0,
-                  "metric12" => 0,
-                  "dimension11" => 0,
-                  "dimension15" => 0,
-                  "metric15" => false,
-                  "dimension3" => "marketplace",
-                  "dimension20" => "marketable",
-                  "dimension7" => "none"
-                ]
-              ]
-            ]
-          ]
-        ],
-        "userRecommendationSidebar" => [],
-        "userRecommendationCarousel" => []
-      ]
-    ]);
-  }
-
-  public function saveForLater($variant_code)
+  public function saveForLater($variant_id)
   {
 
-    $product_variant_id = ProductHasVariant::where('variant_code', $variant_code)->first()->id;
     $customer = Auth::guard('customer')->user();
 
-    Cart::where('customer_id', $customer->id)->where('product_variant_id', $product_variant_id)->first()->update([
+    Cart::where('customer_id', $customer->id)->where('product_variant_id', $variant_id)->where('type', 'first')->first()->update([
       'type' => 'second',
     ]);
 
@@ -426,14 +390,60 @@ class FrontController extends Controller
 
   }
 
-  public function removeFromCart($variant_code)
+  public function removeFromCart($variant_id)
   {
-    $product_variant_id = ProductHasVariant::where('variant_code', $variant_code)->first()->id;
     $customer = Auth::guard('customer')->user();
 
-    Cart::where('customer_id', $customer->id)->where('product_variant_id', $product_variant_id)->first()->delete();
+    Cart::where('customer_id', $customer->id)->where('product_variant_id', $variant_id)->first()->delete();
 
     return redirect()->route('front.cart');
   }
 
+  public function removeFromSaveForLater($variant_id)
+  {
+    $customer = Auth::guard('customer')->user();
+
+    Cart::where('product_variant_id', $variant_id)->where('customer_id', $customer->id)->where('type', 'second')->first()->delete();
+
+    return response()->json([
+      'status' => true,
+      'data' => [
+        'redirectUrl' => route('front.cart'),
+      ],
+    ]);
+
+  }
+
+  public function moveToFirstCart($variant_id)
+  {
+    $customer = Auth::guard('customer')->user();
+
+    Cart::where('customer_id', $customer->id)->where('product_variant_id', $variant_id)->where('type', 'second')->first()->update([
+      'type' => 'first',
+      'count' => 1,
+    ]);
+
+    return response()->json([
+      'status' => true,
+      'data' => [
+        'redirectUrl' => route('front.cart'),
+      ],
+    ]);
+  }
+
+  public function moveAllToFirstCart()
+  {
+    $customer = Auth::guard('customer')->user();
+
+    Cart::where('customer_id', $customer->id)->where('type', 'second')->first()->update([
+      'type' => 'first',
+    ]);
+
+    return response()->json([
+      'status' => true,
+      'data' => [
+        'redirectUrl' => route('front.cart'),
+      ],
+    ]);
+  }
 }

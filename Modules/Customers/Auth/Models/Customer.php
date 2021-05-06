@@ -6,6 +6,7 @@ use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\Customers\Front\Models\Cart;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Customer\Models\CustomerAddresses;
@@ -56,5 +57,10 @@ class Customer extends Authenticatable
     public function orders()
     {
       return $this->hasMany(Order::class);
+    }
+
+    public function carts()
+    {
+      return $this->hasMany(Cart::class);
     }
 }

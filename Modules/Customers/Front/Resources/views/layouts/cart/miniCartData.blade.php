@@ -25,7 +25,7 @@
     <ul class="c-header__basket-list">
       <li class="js-mini-cart-item" data-is-fresh="">
         <a class="c-header__basket-list-item"
-           data-snt-event="dkHeaderClick"
+             data-snt-event="dkHeaderClick"
            data-snt-params='{"item":"mini-cart","item_option":"cart-item"}'
            href="/product/dkp-4826524/درزگیر-ترک-سطوح-نیپون-مدل-s100-وزن-1-کیلوگرم">
           <div class="c-header__basket-list-item-image">

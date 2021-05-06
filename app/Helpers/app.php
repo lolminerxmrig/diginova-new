@@ -234,3 +234,19 @@ function toman($price) {
   }
   return null;
 }
+
+function defualtCartOldPrice($cart){
+  if ($cart->old_promotion_price < $cart->old_sale_price) {
+    return $cart->old_promotion_price;
+  } else {
+    return $cart->old_sale_price;
+  }
+}
+
+function defualtCartNewPrice($cart){
+  if ($cart->new_promotion_price < $cart->new_sale_price) {
+    return $cart->new_promotion_price;
+  } else {
+    return $cart->new_sale_price;
+  }
+}
