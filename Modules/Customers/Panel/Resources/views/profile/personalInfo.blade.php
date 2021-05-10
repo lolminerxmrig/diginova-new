@@ -103,26 +103,26 @@
       <label class="o-form__field-container">
         <div class="o-form__field-label">نام سازمان</div>
         <div class="o-form__field-frame">
-          <input class="o-form__field js-input-field " name="additionalinfo[company_name]" placeholder="" type="text" value="{{ $customer->legal->company_name }}"/>
+          <input class="o-form__field js-input-field " name="additionalinfo[company_name]" placeholder="" type="text" value="{{ ($customer->legal()->exists())? $customer->legal->company_name : '' }}"/>
         </div>
       </label>
       <label class="o-form__field-container">
         <div class="o-form__field-label">کد اقتصادی</div>
         <div class="o-form__field-frame">
-          <input class="o-form__field js-input-field " name="additionalinfo[company_economic_number]" placeholder="" type="text" value="{{ persianNum($customer->legal->economic_number) }}"/>
+          <input class="o-form__field js-input-field " name="additionalinfo[company_economic_number]" placeholder="" type="text" value="{{ ($customer->legal()->exists())? persianNum($customer->legal->economic_number) : '' }}"/>
         </div>
       </label>
       <label class="o-form__field-container">
         <div class="o-form__field-label">شناسه ملی</div>
         <div class="o-form__field-frame">
-          <input class="o-form__field js-input-field " name="additionalinfo[company_national_identity_number]" placeholder="" type="text" value="{{ persianNum($customer->legal->nationalـidentity) }}"/>
+          <input class="o-form__field js-input-field " name="additionalinfo[company_national_identity_number]" placeholder="" type="text" value="{{ ($customer->legal()->exists())? persianNum($customer->legal->nationalـidentity) : '' }}"/>
         </div>
       </label>
 
       <label class="o-form__field-container">
         <div class="o-form__field-label">شناسه ثبت</div>
         <div class="o-form__field-frame">
-          <input class="o-form__field js-input-field " name="additionalinfo[company_registration_number]" placeholder="" type="text" value="{{ persianNum($customer->legal->registration_number) }}"/>
+          <input class="o-form__field js-input-field " name="additionalinfo[company_registration_number]" placeholder="" type="text" value="{{ ($customer->legal()->exists())? persianNum($customer->legal->registration_number) : '' }}"/>
         </div>
       </label>
 
@@ -133,7 +133,7 @@
           <option value="">انتخاب استان</option>
           @if(count($states))
             @foreach($states->where('type', 'state') as $state)
-              <option value="{{ $state->id }}" {{ ($customer->legal->city->state->id == $state->id)? 'selected' : '' }}> {{ $state->name }} </option>
+              <option value="{{ $state->id }}" {{ (($customer->legal()->exists()) && ($customer->legal->city->state->id == $state->id))? 'selected' : '' }}> {{ $state->name }} </option>
             @endforeach
           @endif
         </select>
@@ -149,7 +149,7 @@
       <label class="o-form__field-container">
         <div class="o-form__field-label">شماره تلفن ثابت</div>
         <div class="o-form__field-frame">
-          <input class="o-form__field js-input-field " name="additionalinfo[company_phone]" placeholder="" type="text" value="{{ persianNum($customer->legal->phone) }}"/></div>
+          <input class="o-form__field js-input-field " name="additionalinfo[company_phone]" placeholder="" type="text" value="{{ ($customer->legal()->exists())? persianNum($customer->legal->phone) : '' }}"/></div>
       </label>
       <div class="c-profile-personal__legal-actions">
         <button class="o-btn o-btn--contained-blue-lg">ثبت اطلاعات</button>

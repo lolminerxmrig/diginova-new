@@ -1,3 +1,6 @@
+@php
+  $customer = auth()->guard('customer')->user();
+@endphp
 <html class="" style="" dir="rtl">
 <head>
   <title>پروفایل {{ !is_null($customer->first_name)? ' - ' . $customer->first_name . ' ' . $customer->last_name : '' }} | فروشگاه اینترنتی {{ $fa_store_name }}</title>

@@ -305,6 +305,7 @@ class CustomerProfileController extends Controller
 
     public function cityLoader($id)
     {
+
         $cities = State::where('parent_id', $id)->get();
 
         foreach ($cities as $city) {

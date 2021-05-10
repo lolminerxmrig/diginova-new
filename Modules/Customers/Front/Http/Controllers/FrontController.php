@@ -2,6 +2,7 @@
 
 namespace Modules\Customers\Front\Http\Controllers;
 
+use App\Models\State;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,10 +15,13 @@ use Modules\Customers\Front\Models\CustomerFavorite;
 use Modules\Customers\Panel\Models\Customer;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Comment\Models\CommentFeedback;
+use Modules\Staff\Customer\Models\CustomerAddresses;
 use Modules\Staff\Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Modules\Staff\Product\Models\ProductHasVariant;
+use Modules\Staff\Setting\Models\Setting;
+use GuzzleHttp\Client;
 
 class FrontController extends Controller
 {
@@ -446,4 +450,158 @@ class FrontController extends Controller
       ],
     ]);
   }
+
+  public function shipping()
+  {
+//    return view('fron');
+  }
+
+  public function addAddress()
+  {
+    $states = State::all();
+    $customer = Auth::guard('customer')->user();
+    return view('front::add-address', compact('states', 'customer'));
+  }
+
+  public function cityLoader($state_id)
+  {
+
+    $state = State::find($state_id);
+    $cities = $state->childs()->where('type', 'city')->get();
+
+    foreach ($cities as $city) {
+      $cityArray[] = ['id' => $city->id, 'name' => $city->name, 'state_id' => $city->state_id];
+    }
+
+    return response()->json([
+      'status' => true,
+      'data' => $cityArray,
+    ]);
+
+  }
+
+  public function districtLoader($district_id)
+  {
+
+    $city = State::find($district_id);
+    $districts = $city->childs()->where('type', 'district')->get();
+
+    foreach ($districts as $district) {
+      $districtArray[] = ['id' => $district->id, 'name' => $district->name, 'state_id' => $district->state_id];
+    }
+
+    return response()->json([
+      'status' => true,
+      'data' => isset($districtArray)? $districtArray : '',
+    ]);
+
+  }
+
+  public function searchAddressReverse(Request $request)
+  {
+
+    $client = new Client();
+    $map_apikey = Setting::where('name', 'map_apikey')->first()->value;
+    $response = $client->get("https://map.ir/reverse?lat=$request->latitude&lon=$request->longitude&x-api-key={$map_apikey}");
+    $response = json_decode($response->getBody(), true);
+
+//    return $response;
+
+    if (State::where('name', $response['city'])->where('type', 'city')->exists()) {
+      $city_id = State::where('name', $response['city'])->where('type', 'city')->first()->id;
+    }
+    else {
+      $city_id = State::where('name', $response['district'])->where('type', 'city')->first()->id;
+    }
+    $state_id = State::where('name', $response['province'])->where('type', 'state')->first()->id;
+
+    return response()->json([
+      'status' => true,
+      'data' => [
+        'address' => $response['address_compact'],
+        'city_id' => $city_id,
+        'state_id' => $state_id,
+      ],
+    ]);
+
+  }
+
+  public function searchAddress(Request $request)
+  {
+
+    $client = new Client();
+    $map_apikey = Setting::where('name', 'map_apikey')->first()->value;
+    $response = $client->get("https://map.ir/search/v2/autocomplete?text={$request->address}&x-api-key={$map_apikey}");
+    $response = json_decode($response->getBody(), true);
+
+    foreach ($response['value'] as $key => $item) {
+      $responseItems[$key] = ['title' => $item['title'], 'address' => $item['address'], 'longitude' => $item['geom']['coordinates'][0], 'latitude' => $item['geom']['coordinates'][1], ];
+    }
+
+
+    return response()->json([
+      'status' => true,
+      'data' => $responseItems,
+
+//      'data' => [
+//        'title' => $response['value'],
+//        'address' => $response['address_compact'],
+//        'latitude' => $response['address_compact'],
+//        'longitude' => $response['address_compact'],
+//      ],
+
+    ]);
+
+  }
+
+  public function saveAddress(Request $request)
+  {
+    $customer_id = Auth::guard('customer')->user()->id;
+
+    $validator = Validator::make($request->all(), [
+      "address.lat" => "required",
+      "address.lng" => "required",
+      "address.address" => "required",
+      "address.bld_num" => "required",
+      "address.apt_id" => "nullable",
+      "address.post_code" => "required",
+      "address.recipient_is_self" => "nullable",
+      "address.first_name" => "nullable",
+      "address.last_name" => "nullable",
+      "address.national_id" => "nullable",
+      "address.mobile_phone" => "nullable",
+    ]);
+
+    if ($validator->fails()) {
+      $errors = $validator->errors();
+      return response()->json([
+        'status' => false,
+        'data' => [
+          'errors' => $errors,
+        ]
+      ]);
+    }
+
+//    dd($request->all());
+
+    CustomerAddresses::create([
+      'lan' => $request->address['lat'],
+      'len' => $request->address['lng'],
+      'address' => $request->address['address'],
+      'plaque' => $request->address['bld_num'],
+      'unit' => $request->address['apt_id'],
+      'postal_code' => $request->address['post_code'],
+      'is_recipient_self' => (isset($request->address['recipient_is_self']) && ($request->address['recipient_is_self'] == "true"))? true : false,
+      'recipient_firstname' => (isset($request->address['first_name']) && !is_null($request->address['first_name']))? $request->address['first_name'] : null,
+      'recipient_lastname' => (isset($request->address['last_name']) && !is_null($request->address['last_name']))? $request->address['last_name'] : null,
+      'recipient_national_code' => (isset($request->address['national_id']) && !is_null($request->address['national_id']))? $request->address['national_id'] : null,
+      'recipient_mobile' => (isset($request->address['mobile_phone']) && !is_null($request->address['mobile_phone']))? ltrim($request->address['mobile_phone'], 0) : null,
+//      'is_main' => $request->address[''],
+      'customer_id' => $customer_id,
+      'state_id' => (isset($request->address['district_id']) && !is_null($request->address['district_id']))? $request->address['district_id'] : $request->address['city_id'],
+    ]);
+
+    return redirect()->route('front.shipping');
+  }
+
 }
