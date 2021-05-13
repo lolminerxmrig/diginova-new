@@ -44,6 +44,9 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::get('state/cities/{id}', [FrontController::class, 'cityLoader'])->name('cityLoader');
   Route::get('city/districts/{id}', [FrontController::class, 'districtLoader'])->name('districtLoader');
 
+  Route::get('shipping/shared-addresses/default/{id}', [FrontController::class, 'changeSharedDeliveryAddress'])->name('changeSharedDeliveryAddress');
+  Route::get('shipping/address/default/{id}', [FrontController::class, 'changeCustomerDeliveryAddress'])->name('changeCustomerDeliveryAddress');
+  Route::post('shipping/address/remove/{id}', [FrontController::class, 'removeCustomerDeliveryAddress'])->name('removeCustomerDeliveryAddress');
 });
 
 Route::get('cart/remove/{variant_code}', [FrontController::class, 'removeFromCart'])->name('removeFromCart');
@@ -56,6 +59,8 @@ Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::post('addresses/search-address-reverse', [FrontController::class, 'searchAddressReverse'])->name('searchAddressReverse');
   Route::post('addresses/search-address', [FrontController::class, 'searchAddress'])->name('searchAddress');
   Route::get('shipping', [FrontController::class, 'shipping'])->name('shipping');
-
 });
 
+Route::get('tracker/events', function (){
+
+});

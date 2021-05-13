@@ -3,6 +3,7 @@
 namespace Modules\Customers\Front\Http\Controllers;
 
 use App\Models\State;
+use App\Models\StoreAddress;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,16 +13,17 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Modules\Customers\Front\Models\Cart;
 use Modules\Customers\Front\Models\CustomerFavorite;
-use Modules\Customers\Panel\Models\Customer;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Comment\Models\CommentFeedback;
-use Modules\Staff\Customer\Models\CustomerAddresses;
+use Modules\Staff\Customer\Models\CustomerAddress;
 use Modules\Staff\Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Setting\Models\Setting;
 use GuzzleHttp\Client;
+use Modules\Customers\Auth\Models\Customer;
+
 
 class FrontController extends Controller
 {
@@ -451,11 +453,6 @@ class FrontController extends Controller
     ]);
   }
 
-  public function shipping()
-  {
-//    return view('fron');
-  }
-
   public function addAddress()
   {
     $states = State::all();
@@ -582,9 +579,7 @@ class FrontController extends Controller
       ]);
     }
 
-//    dd($request->all());
-
-    CustomerAddresses::create([
+    CustomerAddress::create([
       'lan' => $request->address['lat'],
       'len' => $request->address['lng'],
       'address' => $request->address['address'],
@@ -602,6 +597,123 @@ class FrontController extends Controller
     ]);
 
     return redirect()->route('front.shipping');
+  }
+
+  public function shipping()
+  {
+    $customer = Auth::guard('customer')->user();
+
+    if (!$customer->addresses()->exists()) {
+      return redirect()->route('front.addAddress');
+    }
+
+    $states = State::all();
+    $customer = Auth::guard('customer')->user();
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $store_addresses = StoreAddress::all();
+
+    return view('front::shipping', compact('states', 'customer', 'first_carts', 'store_addresses'));
+  }
+
+  public function changeSharedDeliveryAddress($id)
+  {
+
+    $store_addresses = StoreAddress::all();
+
+    $customer = Auth::guard('customer')->user();
+
+    $customer->update([
+      "address_type" => "StoreAddress",
+      "address_id" => $id
+    ]);
+
+    $delivery_type = 'store';
+
+    return response()->json([
+      "status" => true,
+      "data" => [
+        "data" => View::make('front::ajax.shipping.changeAddress', compact('customer', 'store_addresses', 'delivery_type'))->render(),
+        "stickyCart" => View::make('front::ajax.shipping.changeAddressUpdatePrice')->render(),
+        "invalidData" => '<div class="swiper-container swiper-container-horizontal js-swiper-delivery-limit"><div class="swiper-wrapper"></div><div class="swiper-button-prev js-swiper-button-prev"></div><div class="swiper-button-next js-swiper-button-next"></div></div>',
+        "hasInvalidItems" => false,
+        "changeAddress" => false,
+        "errorMessageForInvalidItems" => null,
+        "nonInteraction" => false,
+        "skipItemIds" => [],
+        "errorMessage" => null
+      ]
+    ]);
+
+  }
+
+  public function changeCustomerDeliveryAddress($id)
+  {
+    $store_addresses = StoreAddress::all();
+
+    $customer = Auth::guard('customer')->user();
+
+    $customer->update([
+      "address_type" => "CustomerAddress",
+      "address_id" => $id
+    ]);
+
+    $delivery_type = 'customer';
+
+    return response()->json([
+      "status" => true,
+      "data" => [
+        "data" => View::make('front::ajax.shipping.changeAddress', compact('customer', 'store_addresses', 'delivery_type'))->render(),
+        "stickyCart" => View::make('front::ajax.shipping.changeAddressUpdatePrice')->render(),
+        "invalidData" => '<div class="swiper-container swiper-container-horizontal js-swiper-delivery-limit"><div class="swiper-wrapper"></div><div class="swiper-button-prev js-swiper-button-prev"></div><div class="swiper-button-next js-swiper-button-next"></div></div>',
+        "hasInvalidItems" => false,
+        "changeAddress" => false,
+        "errorMessageForInvalidItems" => null,
+        "nonInteraction" => false,
+        "skipItemIds" => [],
+        "errorMessage" => null
+      ]
+    ]);
+  }
+
+  public function removeCustomerDeliveryAddress($id)
+  {
+
+    $customer = Auth::guard('customer')->user();
+
+    CustomerAddress::where('customer_id', $customer->id)->where('id', $id)->first()->delete();
+
+    $store_addresses = StoreAddress::all();
+
+    if ($customer->where('address_type', 'CustomerAddress')->exists()) {
+      $delivery_type = 'customer';
+    }
+    else {
+      $delivery_type = 'store';
+    }
+
+    if (!$customer->delivery_address()->exists()) {
+        $defualt_address_id = $customer->addresses()->latest()->first()->id;
+        $customer->update([
+          'address_type' => 'CustomerAddress',
+          'address_id' => $defualt_address_id,
+        ]);
+    }
+
+    return response()->json([
+      "status" => true,
+      "data" => [
+        "data" => View::make('front::ajax.shipping.changeAddress', compact('customer', 'store_addresses', 'delivery_type'))->render(),
+        "stickyCart" => View::make('front::ajax.shipping.changeAddressUpdatePrice')->render(),
+        "invalidData" => '<div class="swiper-container swiper-container-horizontal js-swiper-delivery-limit"><div class="swiper-wrapper"></div><div class="swiper-button-prev js-swiper-button-prev"></div><div class="swiper-button-next js-swiper-button-next"></div></div>',
+        "hasInvalidItems" => false,
+        "changeAddress" => false,
+        "errorMessageForInvalidItems" => null,
+        "nonInteraction" => false,
+        "skipItemIds" => [],
+        "errorMessage" => null
+      ]
+    ]);
+
   }
 
 }

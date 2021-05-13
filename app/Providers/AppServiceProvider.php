@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
 use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Support\ServiceProvider;
@@ -44,9 +45,7 @@ class AppServiceProvider extends ServiceProvider
             view()->share('symbol_image', count($settings->where('name', 'symbol_image')->first()->media) ? $settings->where('name', 'symbol_image')->first()->media()->first() : null);
         }
 
-
-
-        if (\Schema::hasTable('delivery_method_values') && count(DeliveryMethodValue::all())) {
+      if (\Schema::hasTable('delivery_method_values') && count(DeliveryMethodValue::all())) {
           config()->set([
             'postPishtaz.maliat' => DeliveryMethodValue::find(1)->intra_province,
             'postPishtaz.bime' => DeliveryMethodValue::find(2)->intra_province,
@@ -110,6 +109,10 @@ class AppServiceProvider extends ServiceProvider
         }
 
       Schema::defaultStringLength(191);
+
+      Relation::morphMap([
+        'StoreAddress' => 'App\Models\StoreAddress',
+      ]);
 
     }
 }

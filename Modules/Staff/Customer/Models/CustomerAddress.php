@@ -6,7 +6,7 @@ use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CustomerAddresses extends Model
+class CustomerAddress extends Model
 {
     use HasFactory;
 

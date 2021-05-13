@@ -39,7 +39,6 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <link rel="canonical" href="{{ $site_url }}"/>
-
   <link rel="shortcut icon" href="{{ !is_null($favicon_image)? $site_url . '/' . $favicon_image->path . '/'. $favicon_image->name : '' }}" type="image/icon">
   <link rel="icon" type="image/png" href="{{ !is_null($favicon_image)? $site_url . '/' . $favicon_image->path . '/'. $favicon_image->name : '' }}">
 

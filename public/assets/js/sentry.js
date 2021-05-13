@@ -17240,6 +17240,7 @@ var Sentry = function (n) {
         }
       }
     },
+
     sendRequest: function (data, onSuccess, onFailed) {
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.open("POST", '/tracker/events/');
@@ -17253,6 +17254,7 @@ var Sentry = function (n) {
       };
       xmlhttp.send(JSON.stringify(data));
     },
+
     sendEvents: function (events, clear) {
       // if (SnTracker.isSending) return;
       // if (SnTracker.isLocked()) return;

@@ -343,7 +343,7 @@ var addressActions = {
                 return;
 
             Services.ajaxGETRequestJSON(
-                'state/cities/' + stateId,
+                'ajax/state/cities/' + stateId,
                 null,
                 function (data) {
                     $citySelector.children('select .js-not-empty').remove();

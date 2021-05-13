@@ -24,7 +24,8 @@ class StaffCustomerServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'staffcustomer');
 
         Relation::morphMap([
-            'Customer' => 'Modules\Staff\Customer\Models\Customer',
+          'Customer' => 'Modules\Customers\Auth\Models\Customer',
+          'CustomerAddress' => 'Modules\Staff\Customer\Models\CustomerAddress',
         ]);
     }
 

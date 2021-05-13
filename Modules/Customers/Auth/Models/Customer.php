@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Customers\Front\Models\Cart;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Comment\Models\Comment;
-use Modules\Staff\Customer\Models\CustomerAddresses;
+use Modules\Staff\Customer\Models\CustomerAddress;
 use Modules\Staff\Order\Models\Order;
 
 
@@ -31,6 +31,8 @@ class Customer extends Authenticatable
       'job_id',
       'newsletters',
       'return_money_method',
+      'address_type',
+      'address_id',
       'status',
     ];
 
@@ -46,7 +48,7 @@ class Customer extends Authenticatable
 
     public function addresses()
     {
-      return $this->hasMany(CustomerAddresses::class);
+      return $this->hasMany(CustomerAddress::class);
     }
 
     public function state()
@@ -62,5 +64,10 @@ class Customer extends Authenticatable
     public function carts()
     {
       return $this->hasMany(Cart::class);
+    }
+
+    public function delivery_address()
+    {
+      return $this->morphTo('address', 'address_type', 'address_id');
     }
 }

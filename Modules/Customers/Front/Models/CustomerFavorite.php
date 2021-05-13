@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Customers\Auth\Models\Customer;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Comment\Models\Comment;
-use Modules\Staff\Customer\Models\CustomerAddresses;
+use Modules\Staff\Customer\Models\CustomerAddress;
 use Modules\Staff\Product\Models\Product;
 
 

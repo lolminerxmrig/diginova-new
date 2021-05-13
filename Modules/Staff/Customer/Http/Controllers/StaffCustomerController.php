@@ -15,7 +15,7 @@ use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Category\Models\Category;
 use Modules\Customers\Auth\Models\Customer;
 use Illuminate\Http\Request;
-use Modules\Staff\Customer\Models\CustomerAddresses;
+use Modules\Staff\Customer\Models\CustomerAddress;
 
 class StaffCustomerController extends Controller
 {
@@ -134,7 +134,7 @@ class StaffCustomerController extends Controller
             $state_id = intval($request->address_city_id[$key]);
           }
 
-          CustomerAddresses::find($id)->update([
+          CustomerAddress::find($id)->update([
             'address' => $request->address[$key],
             'plaque' => $request->plaque[$key],
             'unit' => $request->unit[$key],
