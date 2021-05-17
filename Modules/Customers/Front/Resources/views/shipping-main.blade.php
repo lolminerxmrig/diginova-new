@@ -2,18 +2,7 @@
   $store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
   $store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value;
 @endphp
-
-<?php $cons_count = 0; ?>
-@foreach($weights as $weight)
-  @foreach ($first_carts as $item)
-    @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
-      <?php $cons_count++; ?>
-      @break;
-    @endif
-  @endforeach
-@endforeach
-
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html class="" style="" dir="rtl">
 <head>
   <title>آدرس و زمان ارسال | {{ $fa_store_name }}</title>
@@ -676,6 +665,7 @@
         media="screen and (min-width: 1680px)">
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
   <script>
     var supernova_mode = "production";
@@ -6340,11 +6330,12 @@
     var isNewCustomer = false;
   </script>
 
-  {{--  <script src="https://www.digikala.com/static/merged/2c59d18d.js"></script>--}}
+
+{{--  <script src="https://www.digikala.com/static/merged/2c59d18d.js"></script>--}}
   <script src="{{ asset('assets/js/sentry.js') }}"></script>
   <script src="{{ asset('assets/js/address.js') }}"></script>
-  {{--  <script src="https://www.digikala.com/static/merged/97311f4f.js"></script>--}}
-  {{--  <script src="https://www.digikala.com/static/merged/46f4b9f4.js"></script>--}}
+{{--  <script src="https://www.digikala.com/static/merged/97311f4f.js"></script>--}}
+{{--  <script src="https://www.digikala.com/static/merged/46f4b9f4.js"></script>--}}
   <script src="{{ asset('assets/new/js/map-second.js') }}"></script>
   <script src="https://www.parsimap.com/js/v3.1.0/parsimap.js?key=public"></script>
 </head>
@@ -13011,33 +13002,33 @@
 
 
 
-                      {{--                      <div class="c-checkout-address__item    js-recipient-box js-user-address-container js-address-box " data-id="2" data-address="{&quot;id&quot;:2,&quot;full_name&quot;:&quot;اسماعیل جعفری&quot;,&quot;mobile_phone&quot;:&quot;09393088135&quot;,&quot;phone_code&quot;:null,&quot;post_code&quot;:&quot;1212121212&quot;,&quot;phone&quot;:null,&quot;address&quot;:&quot;تهران،کشاورز، بوستان لاله&quot;,&quot;description&quot;:&quot;&quot;,&quot;active&quot;:true,&quot;default&quot;:false,&quot;city_id&quot;:1698,&quot;city_name&quot;:&quot;تهران&quot;,&quot;state_id&quot;:9,&quot;state_name&quot;:&quot;تهران&quot;,&quot;district_id&quot;:2713,&quot;district_name&quot;:&quot;آپادانا&quot;,&quot;building_no&quot;:&quot;1&quot;,&quot;unit&quot;:null,&quot;full_address&quot;:&quot;تهران، تهران، تهران،کشاورز، بوستان لاله، پلاک ۱&quot;,&quot;map_lon&quot;:51.39157,&quot;map_lat&quot;:35.71085,&quot;map_lon_mobile&quot;:&quot;0.00000&quot;,&quot;map_lat_mobile&quot;:&quot;0.00000&quot;,&quot;map_lon_web&quot;:&quot;0.00000&quot;,&quot;map_lat_web&quot;:&quot;0.00000&quot;,&quot;fmcg_support&quot;:true,&quot;is_shared_address&quot;:false,&quot;shared_address_id&quot;:null}">--}}
-                      {{--                        <div class="c-checkout-address__item-headline">--}}
-                      {{--                          <label class="c-outline-radio">--}}
-                      {{--                            <input type="radio" name="address">--}}
-                      {{--                            <span class="c-outline-radio__check"></span>--}}
-                      {{--                          </label>--}}
-                      {{--                          ارسال به این آدرس--}}
-                      {{--                        </div>--}}
-                      {{--                        <ul class="c-checkout-address__item-content">--}}
-                      {{--                          <li class="c-checkout-address__item-address">--}}
-                      {{--                            تهران، تهران، تهران،کشاورز، بوستان لاله، پلاک ۱--}}
-                      {{--                          </li>--}}
-                      {{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--postal-code">--}}
-                      {{--                            ۱۲۱۲۱۲۱۲۱۲--}}
-                      {{--                          </li>--}}
-                      {{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--phone">--}}
-                      {{--                            ۰۹۳۹۳۰۸۸۱۳۵--}}
-                      {{--                          </li>--}}
-                      {{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--username">--}}
-                      {{--                            اسماعیل جعفری--}}
-                      {{--                          </li>--}}
-                      {{--                        </ul>--}}
-                      {{--                        <div class="c-checkout-address__actions">--}}
-                      {{--                          <button class="o-btn o-btn--link-blue-sm js-remove-address-btn" data-id="2" data-token="{{ csrf_token() }}">حذف</button>--}}
-                      {{--                          <button class="o-btn o-btn--link-blue-sm js-edit-address-btn" data-event="edit_address" data-event-category="funnel" data-event-label="addresses: 4, position: list of addresses" data-id="2">ویرایش</button>--}}
-                      {{--                        </div>--}}
-                      {{--                      </div>--}}
+{{--                      <div class="c-checkout-address__item    js-recipient-box js-user-address-container js-address-box " data-id="2" data-address="{&quot;id&quot;:2,&quot;full_name&quot;:&quot;اسماعیل جعفری&quot;,&quot;mobile_phone&quot;:&quot;09393088135&quot;,&quot;phone_code&quot;:null,&quot;post_code&quot;:&quot;1212121212&quot;,&quot;phone&quot;:null,&quot;address&quot;:&quot;تهران،کشاورز، بوستان لاله&quot;,&quot;description&quot;:&quot;&quot;,&quot;active&quot;:true,&quot;default&quot;:false,&quot;city_id&quot;:1698,&quot;city_name&quot;:&quot;تهران&quot;,&quot;state_id&quot;:9,&quot;state_name&quot;:&quot;تهران&quot;,&quot;district_id&quot;:2713,&quot;district_name&quot;:&quot;آپادانا&quot;,&quot;building_no&quot;:&quot;1&quot;,&quot;unit&quot;:null,&quot;full_address&quot;:&quot;تهران، تهران، تهران،کشاورز، بوستان لاله، پلاک ۱&quot;,&quot;map_lon&quot;:51.39157,&quot;map_lat&quot;:35.71085,&quot;map_lon_mobile&quot;:&quot;0.00000&quot;,&quot;map_lat_mobile&quot;:&quot;0.00000&quot;,&quot;map_lon_web&quot;:&quot;0.00000&quot;,&quot;map_lat_web&quot;:&quot;0.00000&quot;,&quot;fmcg_support&quot;:true,&quot;is_shared_address&quot;:false,&quot;shared_address_id&quot;:null}">--}}
+{{--                        <div class="c-checkout-address__item-headline">--}}
+{{--                          <label class="c-outline-radio">--}}
+{{--                            <input type="radio" name="address">--}}
+{{--                            <span class="c-outline-radio__check"></span>--}}
+{{--                          </label>--}}
+{{--                          ارسال به این آدرس--}}
+{{--                        </div>--}}
+{{--                        <ul class="c-checkout-address__item-content">--}}
+{{--                          <li class="c-checkout-address__item-address">--}}
+{{--                            تهران، تهران، تهران،کشاورز، بوستان لاله، پلاک ۱--}}
+{{--                          </li>--}}
+{{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--postal-code">--}}
+{{--                            ۱۲۱۲۱۲۱۲۱۲--}}
+{{--                          </li>--}}
+{{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--phone">--}}
+{{--                            ۰۹۳۹۳۰۸۸۱۳۵--}}
+{{--                          </li>--}}
+{{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--username">--}}
+{{--                            اسماعیل جعفری--}}
+{{--                          </li>--}}
+{{--                        </ul>--}}
+{{--                        <div class="c-checkout-address__actions">--}}
+{{--                          <button class="o-btn o-btn--link-blue-sm js-remove-address-btn" data-id="2" data-token="{{ csrf_token() }}">حذف</button>--}}
+{{--                          <button class="o-btn o-btn--link-blue-sm js-edit-address-btn" data-event="edit_address" data-event-category="funnel" data-event-label="addresses: 4, position: list of addresses" data-id="2">ویرایش</button>--}}
+{{--                        </div>--}}
+{{--                      </div>--}}
 
 
 
@@ -13078,7 +13069,7 @@
                             <button class="o-btn o-btn--link-blue-sm js-remove-address-btn" data-id="{{ $address->id }}"
                                     data-token="">حذف
                             </button>
-                            <button class="o-btn o-btn--link-blue-sm js-add-address-btn" data-event="edit_address"
+                            <button class="o-btn o-btn--link-blue-sm js-edit-address-btn" data-event="edit_address"
                                     data-event-category="funnel"
                                     data-event-label="addresses: 2, position: list of addresses"
                                     data-id="{{ $address->id }}">ویرایش
@@ -13107,31 +13098,31 @@
                             @else
                               <?php $selected_store_address_id = null; ?>
                             @endif
-                            <div class="c-checkout-address__item js-recipient-box js-user-address-container js-address-box js-dropoff-return {{ ($selected_store_address_id == $item->id)? 'is-selected' : '' }}"
-                                 data-id="{{ $item->id }}" data-is-shared="true" data-event="change_address" data-event-category="funnel"
-                                 data-event-label="addresses: {{ count($store_addresses) }}"
-                                 data-address="{&quot;id&quot;:{{ $item->id }},&quot;default&quot;:true,&quot;title&quot;:&quot;xxxxxxx&quot;,&quot;address&quot;:&quot;xxxxxxx&quot;,&quot;description&quot;:&quot;xxxxxxx&quot;,&quot;fmcg_support&quot;:false,&quot;sort&quot;:0}"
-                                 data-gtm-vis-recent-on-screen-9070001_346="4423"
-                                 data-gtm-vis-first-on-screen-9070001_346="4423"
-                                 data-gtm-vis-total-visible-time-9070001_346="100"
-                                 data-gtm-vis-has-fired-9070001_346="1">
-                              <div class="c-checkout-address__item-headline">
-                                <label class="c-outline-radio">
-                                  <input type="radio" name="address" {{ ($selected_store_address_id == $item->id)? 'checked' : '' }}>
-                                  <span class="c-outline-radio__check"></span>
-                                </label>
-                                ارسال به این آدرس
-                              </div>
-                              <ul class="c-checkout-address__item-content">
-                                <li class="c-checkout-address__item-address">
-                                  {{ persianNum($item->address) }}
-                                </li>
-                                <li class="c-checkout-address__item-detail c-checkout-address__item-detail--username">
-                                  {{ $customer->first_name . ' ' . $customer->last_name }}
-                                </li>
-                              </ul>
-                              <div class="c-checkout-address__actions"></div>
+                          <div class="c-checkout-address__item js-recipient-box js-user-address-container js-address-box js-dropoff-return {{ ($selected_store_address_id == $item->id)? 'is-selected' : '' }}"
+                            data-id="{{ $item->id }}" data-is-shared="true" data-event="change_address" data-event-category="funnel"
+                            data-event-label="addresses: {{ count($store_addresses) }}"
+                            data-address="{&quot;id&quot;:{{ $item->id }},&quot;default&quot;:true,&quot;title&quot;:&quot;xxxxxxx&quot;,&quot;address&quot;:&quot;xxxxxxx&quot;,&quot;description&quot;:&quot;xxxxxxx&quot;,&quot;fmcg_support&quot;:false,&quot;sort&quot;:0}"
+                            data-gtm-vis-recent-on-screen-9070001_346="4423"
+                            data-gtm-vis-first-on-screen-9070001_346="4423"
+                            data-gtm-vis-total-visible-time-9070001_346="100"
+                            data-gtm-vis-has-fired-9070001_346="1">
+                            <div class="c-checkout-address__item-headline">
+                              <label class="c-outline-radio">
+                                <input type="radio" name="address" {{ ($selected_store_address_id == $item->id)? 'checked' : '' }}>
+                                <span class="c-outline-radio__check"></span>
+                              </label>
+                              ارسال به این آدرس
                             </div>
+                            <ul class="c-checkout-address__item-content">
+                              <li class="c-checkout-address__item-address">
+                                {{ persianNum($item->address) }}
+                              </li>
+                              <li class="c-checkout-address__item-detail c-checkout-address__item-detail--username">
+                                {{ $customer->first_name . ' ' . $customer->last_name }}
+                              </li>
+                            </ul>
+                            <div class="c-checkout-address__actions"></div>
+                          </div>
                           @endforeach
                         </div>
                       </div>
@@ -13139,9 +13130,9 @@
                   @endif
                 </div>
               </div>
-{{--              <div class="c-checkout-shipment__info">--}}
-{{--                خرید شما به دلیل وجود کالای سوپرمارکتی با انبارش متفاوت/با شرایط نگهداری خاص در چند مرحله ارسال می‌شود.--}}
-{{--              </div>--}}
+              <div class="c-checkout-shipment__info">
+                خرید شما به دلیل وجود کالای سوپرمارکتی با انبارش متفاوت/با شرایط نگهداری خاص در چند مرحله ارسال می‌شود.
+              </div>
               <form method="post" class="c-checkout-shipment__form"
                     data-has-fresh="1"
                     data-has-heavy="0"
@@ -13149,132 +13140,583 @@
                     data-multi-shipment="1" id="shipping-data-form">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-                <input type="hidden" name="shipping[is_jet_delivery_enabled]" value="" id="js-jet-delivery-enabled-input"/>
-                <input type="hidden" name="shipping[skipItemIds]" value="[1130176984,1130270410,1130270411,1130489950]" id="js-skip-item-id-input"/>
+                <input type="hidden" name="shipping[is_jet_delivery_enabled]" value=""
+                       id="js-jet-delivery-enabled-input"/><input type="hidden" name="shipping[skipItemIds]"
+                                                                  value="[1130176984,1130270410,1130270411,1130489950]"
+                                                                  id="js-skip-item-id-input"/>
+                <div class="">
+                  <div class="c-checkout-shipment js-shippment-type">
+                    <div class="c-checkout-shipment__title">
+                      شیوه و زمان ارسال
+                    </div>
+                    <div class="c-checkout-shipment__tab-row">
+                      <div class="c-checkout-shipment__tab-pill"><label><input type="radio" name="shipping[type]"
+                                                                               value="normal" checked
+                                                                               id="shipment-option-1"><span
+                            class="c-checkout-shipment__tab-pill-title c-checkout-shipment__tab-pill-title--normal">
+                                          پیشنهادی
+                                          </span><span class="c-checkout-shipment__tab-pill-dsc">
+                                          چینش مرسوله‌ها به پیشنهاد ما
+                                          </span></label>
+                      </div>
+                      <div class="c-checkout-shipment__tab-pill"><label><input type="radio" name="shipping[type]"
+                                                                               value="fast" id="shipment-option-2"><span
+                            class="c-checkout-shipment__tab-pill-title c-checkout-shipment__tab-pill-title--fast">
+                                          ارسال سریع
+                                          </span><span class="c-checkout-shipment__tab-pill-dsc">
+                                          ارسال هر مرسوله به محض آماده شدن
+                                          </span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="js-normal-delivery ">
                   <div>
-                    @foreach($weights as $weight)
-                      <?php
-                        $has_consignment = false;
-                        $i = 1;
-                        $count = 0;
-                      ?>
-                      @foreach ($first_carts as $item)
-                        @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
-                          <?php $has_consignment = true; ?>
-                        @endif
-                      @endforeach
-
-                      @if ($has_consignment)
-                       <div class="c-checkout-pack js-checkout-pack " data-parcel="0-1-1">
-                          <div class="c-checkout-pack__header">
-                            <div class="c-checkout-pack__header-title">
-                              <span>مرسوله {{ persianNum($i) }} از {{ persianNum($cons_count) }}</span>
+                    <div class="c-checkout-pack js-checkout-pack " data-parcel="0-1-1">
+                      <div class="c-checkout-pack__header">
+                        <div class="c-checkout-pack__header-title"><span>مرسوله ۱ از ۳</span></div>
+                        <div class="c-checkout-pack__header-dsc"><span>
+                    ۲
+                    کالا
+                 </span><span class="c-checkout-time-table__shipping-lead-time">
+                                            موجود در انبار دیجی‌کالا
+                                    </span></div>
+                      </div>
+                      <div class="c-checkout-pack__shipping-type-row"><label
+                          class="c-checkout-pack__shipping-type-item"><input type="radio" value="express"
+                                                                             class="js-shipping-type-selector"
+                                                                             name="shipping-type-normal-0-1-1"
+                                                                             checked="checked">
+                          <div class="c-checkout-pack__shipping-type">
+                            <div
+                              class="c-checkout-time-table__shipping-type c-checkout-time-table__shipping-type--express">
+                              ارسال عادی
                             </div>
-                            <div class="c-checkout-pack__header-dsc">
-                              <span>
-                              {{ persianNum($first_carts->count()) }}
-                              کالا
-                            </span>
-{{--                            <span class="c-checkout-time-table__shipping-lead-time">--}}
-{{--                              موجود در انبار دیجی‌کالا--}}
-{{--                            </span>--}}
+                            <div class="c-checkout-pack__shipping-type-dsc">
+                              ارسال توسط پیک دیجی‌کالا
                             </div>
                           </div>
-                          <div class="c-checkout-pack__shipping-type-row">
-                            @if ($weight->deliveryMethods()->exists())
-                              @foreach($weight->deliveryMethods()->where('status', 'active')->get() as $key => $method)
-                                <label class="c-checkout-pack__shipping-type-item">
-                                  <input type="radio" value="{{ $method->id }}" class="js-shipping-type-selector" name="shipping-type-normal-0-1-1" {{ ($key == 0)? 'checked' : '' }}>
-                                  <div class="c-checkout-pack__shipping-type">
-                                    <div class="c-checkout-time-table__shipping-type">
-                                      <span style="background-image: url({{ $site_url . '/' .  $method->media()->first()->path . '/' . $method->media()->first()->name }});     width: 25px !important;height: 19px !important; float: right; background-repeat: no-repeat; background-size: 20px; background-position: right bottom; margin-left: 0px;"></span>
-                                      {{ $method->name }}
+                        </label><label class="c-checkout-pack__shipping-type-item"><input type="radio" value="alt"
+                                                                                          class="js-shipping-type-selector"
+                                                                                          name="shipping-type-normal-0-1-1">
+                          <div class="c-checkout-pack__shipping-type">
+                            <div class="c-checkout-time-table__shipping-type c-checkout-time-table__shipping-type--alt">
+                              ارسال پستی
+                            </div>
+                            <div class="c-checkout-pack__shipping-type-dsc">
+                              اولین زمان تحویل:
+                              ۲۴ اردیبهشت
+                            </div>
+                          </div>
+                        </label></div>
+                      <div class="c-checkout-pack__row">
+                        <script>
+                          var carouselDataTracker = null;
+                          if (carouselDataTracker) {
+                            if (!window.carouselData)
+                              window.carouselData = [carouselDataTracker];
+                            else
+                              window.carouselData.push(carouselDataTracker);
+                          }
+                        </script>
+                        <section class="c-swiper c-swiper--products-compact js-swiper-box-container">
+                          <div class="c-box">
+                            <div
+                              class="swiper-container swiper-container-horizontal js-swiper-container js-swiper-cart-parcel swiper-container-rtl">
+                              <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                                <div class="swiper-slide js-product-box-container swiper-slide-active"
+                                     data-item-id="1141159823" style="width: 154.167px;">
+                                  <div class="c-product-box c-product-box--compact js-product-box"><a
+                                      class="c-product-box__img js-url"><img
+                                        alt="لپ تاپ 15 اینچی لنوو مدل Ideapad 330 - E"
+                                        class="swiper-lazy swiper-lazy-loaded"
+                                        src="https://dkstatics-public.digikala.com/digikala-products/4209444.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"></a>
+                                    <div class="c-product-box__variant c-product-box__variant--color"><span
+                                        style="background-color: #212121;"></span>
+                                      مشکی
                                     </div>
                                   </div>
-                                </label>
-                              @endforeach
-                            @endif
-                          </div>
-                          <div class="c-checkout-pack__row">
-                            <script>
-                              var carouselDataTracker = null;
-                              if (carouselDataTracker) {
-                                if (!window.carouselData)
-                                  window.carouselData = [carouselDataTracker];
-                                else
-                                  window.carouselData.push(carouselDataTracker);
-                              }
-                            </script>
-                            <section class="c-swiper c-swiper--products-compact js-swiper-box-container">
-                              <div class="c-box">
-                                <div class="swiper-container swiper-container-horizontal js-swiper-container js-swiper-cart-parcel swiper-container-rtl">
-                                  <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-
-                                    @foreach ($first_carts as $cart)
-                                      @if ($cart->product_variant()->first()->product->weight()->id == $weight->id)
-                                        <div class="swiper-slide js-product-box-container" data-item-id="{{ $cart->id }}" style="width: 154.167px;">
-                                          <div class="c-product-box c-product-box--compact js-product-box">
-                                            <a class="c-product-box__img js-url">
-                                              <?php $product = $cart->product_variant()->first()->product; ?>
-                                              @foreach($product->media as $image)
-                                                @if($product->media && ($image->pivot->is_main == 1))
-                                                  <img class="swiper-lazy swiper-lazy-loaded" alt="{{ $cart->product_variant()->first()->product->title_fa }}" src="{{ $site_url . '/' .  $cart->product_variant()->first()->product->media()->first()->path . '/' . $cart->product_variant()->first()->product->media()->first()->name }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">
-                                                @endif
-                                              @endforeach
-                                            </a>
-                                            <div class="c-product-box__variant c-product-box__variant--color">
-                                              @if (!is_null($cart->product_variant()->first()->variant->value))
-                                              <span style="background-color: {{ $cart->product_variant()->first()->variant->value }};"></span>
-                                              @endif
-                                              {{ $cart->product_variant()->first()->variant->name }}
-                                            </div>
-                                          </div>
-                                        </div>
-                                      @endif
-                                    @endforeach
-
-                                    {{--                                    <div class="swiper-slide js-product-box-container swiper-slide-active" data-item-id="1141159823" style="width: 154.167px;">--}}
-{{--                                      <div class="c-product-box c-product-box--compact js-product-box">--}}
-{{--                                        <a class="c-product-box__img js-url">--}}
-{{--                                          <img alt="لپ تاپ 15 اینچی لنوو مدل Ideapad 330 - E" class="swiper-lazy swiper-lazy-loaded" src="https://dkstatics-public.digikala.com/digikala-products/4209444.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">--}}
-{{--                                        </a>--}}
-{{--                                        <div class="c-product-box__variant c-product-box__variant--color">--}}
-{{--                                          <span style="background-color: #212121;"></span>--}}
-{{--                                          مشکی--}}
-{{--                                        </div>--}}
-{{--                                      </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="swiper-slide js-product-box-container swiper-slide-next" data-item-id="1141161050" style="width: 154.167px;">--}}
-{{--                                      <div class="c-product-box c-product-box--compact js-product-box">--}}
-{{--                                        <a class="c-product-box__img js-url">--}}
-{{--                                          <img alt="ظرف پودر رختشویی طرح ماشین لباس شویی مدل W23" class="swiper-lazy swiper-lazy-loaded" src="https://dkstatics-public.digikala.com/digikala-products/054e9141e62cb5e052a64991df2aecfa651f5a04_1606049057.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">--}}
-{{--                                        </a>--}}
-{{--                                        <div class="c-product-box__variant c-product-box__variant--color">--}}
-{{--                                          <span style="background-color: #FF80AB;"></span>--}}
-{{--                                          صورتی--}}
-{{--                                        </div>--}}
-{{--                                      </div>--}}
-{{--                                    </div>--}}
+                                </div>
+                                <div class="swiper-slide js-product-box-container swiper-slide-next"
+                                     data-item-id="1141161050" style="width: 154.167px;">
+                                  <div class="c-product-box c-product-box--compact js-product-box"><a
+                                      class="c-product-box__img js-url"><img
+                                        alt="ظرف پودر رختشویی طرح ماشین لباس شویی مدل W23"
+                                        class="swiper-lazy swiper-lazy-loaded"
+                                        src="https://dkstatics-public.digikala.com/digikala-products/054e9141e62cb5e052a64991df2aecfa651f5a04_1606049057.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"></a>
+                                    <div class="c-product-box__variant c-product-box__variant--color"><span
+                                        style="background-color: #FF80AB;"></span>
+                                      صورتی
+                                    </div>
                                   </div>
-                                  <div class="swiper-button-prev js-swiper-button-prev swiper-button-disabled"></div>
-                                  <div class="swiper-button-next js-swiper-button-next swiper-button-disabled"></div>
                                 </div>
                               </div>
-                            </section>
+                              <div class="swiper-button-prev js-swiper-button-prev swiper-button-disabled"></div>
+                              <div class="swiper-button-next js-swiper-button-next swiper-button-disabled"></div>
+                            </div>
                           </div>
-                          <div class="c-checkout-pack__row js-shipment-submit-type "
-                               data-alt-shipping-id="shipping-type-normal-0-1-1"><input
-                              id="additional-shipping-type-normal-0-1-1" type="radio"
-                              name="shipping[additional-option][normal][0-1-1]" value="3"
-                              data-cost-id="js-0-1-1-package-row-normal" class="js-checkout-additional-option"
-                              style="opacity: 0;">
+                        </section>
+                      </div>
+                      <div class="c-checkout-pack__row js-shipment-submit-type active"
+                           data-shipping-id="shipping-type-normal-0-1-1">
+                        <div class="c-checkout-time-table js-time-table">
+                          <div class="c-checkout-time-table__table-title">
+                            انتخاب زمان ارسال
+                          </div>
+                          <span class="js-package-shipping-cost u-hidden" data-price="0"
+                                data-cost-id="js-0-1-1-package-row-normal" data-post-payed="">
+                    هزینه ارسال : <span class="">رایگان</span></span>
+                          <div class="c-time-table js-time-table-container js-dynamic-time-table-container">
+                            <div
+                              class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
+                              <ul class=" swiper-wrapper">
+                                <li class="swiper-slide c-time-table__day-details swiper-slide-active"
+                                    id="day-normal-0-1-1-1"><span class="c-time-table__day-name ">
+                        چهار‌شنبه
+                    </span><span class="c-time-table__date">
+                        ۲۲ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
+                                      <input type="radio" name="shipping[time_scopes][0-1-1]" value="4088616"
+                                             id="hour-radio-0-1-1-4088616-normal"><label class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-1-1-4088616-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span><span
+                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
+                                          data-history-row-id=".js-0-1-1-package-row-normal"
+                                          data-dynamic-shipping-cost="0">
+                                                                                            رایگان
+                                                                                    </span></label></li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details swiper-slide-next"
+                                    id="day-normal-0-1-1-2"><span
+                                    class="c-time-table__day-name c-time-table__day-name--holiday">
+                        پنج‌شنبه
+                    </span><span class="c-time-table__date">
+                        ۲۳ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
+                                      <input type="radio" name="shipping[time_scopes][0-1-1]" value="4088617"
+                                             id="hour-radio-0-1-1-4088617-normal"><label class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-1-1-4088617-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span><span
+                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
+                                          data-history-row-id=".js-0-1-1-package-row-normal"
+                                          data-dynamic-shipping-cost="0">
+                                                                                            رایگان
+                                                                                    </span></label></li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details" id="day-normal-0-1-1-3"><span
+                                    class="c-time-table__day-name c-time-table__day-name--holiday">
+                        جمعه
+                    </span><span class="c-time-table__date">
+                        ۲۴ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
+                                      <input type="radio" name="shipping[time_scopes][0-1-1]" value="4088618"
+                                             id="hour-radio-0-1-1-4088618-normal"><label class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-1-1-4088618-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span><span
+                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
+                                          data-history-row-id=".js-0-1-1-package-row-normal"
+                                          data-dynamic-shipping-cost="0">
+                                                                                            رایگان
+                                                                                    </span></label></li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details" id="day-normal-0-1-1-4"><span
+                                    class="c-time-table__day-name ">
+                        شنبه
+                    </span><span class="c-time-table__date">
+                        ۲۵ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
+                                      <input type="radio" name="shipping[time_scopes][0-1-1]" value="4088619"
+                                             id="hour-radio-0-1-1-4088619-normal"><label class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-1-1-4088619-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span><span
+                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
+                                          data-history-row-id=".js-0-1-1-package-row-normal"
+                                          data-dynamic-shipping-cost="0">
+                                                                                            رایگان
+                                                                                    </span></label></li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details" id="day-normal-0-1-1-5"><span
+                                    class="c-time-table__day-name ">
+                        یکشنبه
+                    </span><span class="c-time-table__date">
+                        ۲۶ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
+                                      <input type="radio" name="shipping[time_scopes][0-1-1]" value="4088620"
+                                             id="hour-radio-0-1-1-4088620-normal"><label class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-1-1-4088620-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span><span
+                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
+                                          data-history-row-id=".js-0-1-1-package-row-normal"
+                                          data-dynamic-shipping-cost="0">
+                                                                                            رایگان
+                                                                                    </span></label></li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <div
+                                class="c-time-table__navigation c-time-table__navigation--prev js-swiper-button-prev swiper-button-disabled">
+                                <div class="c-time-table__navigation-button"
+                                     data-icon="Icon-Navigation-Chevron-Right"></div>
+                              </div>
+                              <div
+                                class="c-time-table__navigation c-time-table__navigation--next js-swiper-button-next swiper-button-disabled">
+                                <div class="c-time-table__navigation-button"
+                                     data-icon="Icon-Navigation-Chevron-Left"></div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <?php $i++; ?>
-                      @endif
+                      </div>
+                      <div class="c-checkout-pack__row js-shipment-submit-type u-hidden"
+                           data-alt-shipping-id="shipping-type-normal-0-1-1"><input
+                          id="additional-shipping-type-normal-0-1-1" type="radio"
+                          name="shipping[additional-option][normal][0-1-1]" value="3"
+                          data-cost-id="js-0-1-1-package-row-normal" class="js-checkout-additional-option"
+                          style="opacity: 0;">
+                        <div class="c-checkout-additional-options__action-container">
+                          <div class="c-checkout-additional-options__action-title">
+                            پست پیشتاز با ظرفیت اختصاصی برای دیجی کالا
+                          </div>
+                          <div class="c-checkout-additional-options__action-lead-time">
+                            زمان تقریبی تحویل از ۲۴ اردیبهشت تا ۲۸ اردیبهشت
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-checkout-pack js-checkout-pack " data-parcel="0-3-50">
+                      <div class="c-checkout-pack__header">
+                        <div class="c-checkout-pack__header-title"><span>مرسوله ۲ از ۳</span></div>
+                        <div class="c-checkout-pack__header-dsc"><span>
+                    ۱
+                    کالا
+                 </span><span class="c-checkout-time-table__shipping-lead-time">
+                                            موجود در انبار دیجی‌کالا
+                                    </span></div>
+                      </div>
+                      <div class="c-checkout-pack__shipping-type-row"><label
+                          class="c-checkout-pack__shipping-type-item"><input type="radio" value="express"
+                                                                             class="js-shipping-type-selector"
+                                                                             name="shipping-type-normal-0-3-50"
+                                                                             checked="checked">
+                          <div class="c-checkout-pack__shipping-type">
+                            <div
+                              class="c-checkout-time-table__shipping-type c-checkout-time-table__shipping-type--express">
+                              ارسال کالاهای بزرگ و سنگین
+                            </div>
+                            <div class="c-checkout-pack__shipping-type-dsc">
+                              ارسال توسط پیک دیجی‌کالا
+                            </div>
+                          </div>
+                        </label><label class="c-checkout-pack__shipping-type-item"><input type="radio" value="alt"
+                                                                                          class="js-shipping-type-selector"
+                                                                                          name="shipping-type-normal-0-3-50">
+                          <div class="c-checkout-pack__shipping-type">
+                            <div class="c-checkout-time-table__shipping-type c-checkout-time-table__shipping-type--alt">
+                              ارسال پستی
+                            </div>
+                            <div class="c-checkout-pack__shipping-type-dsc">
+                              اولین زمان تحویل:
+                              ۲۴ اردیبهشت
+                            </div>
+                          </div>
+                        </label></div>
+                      <div class="c-checkout-pack__row">
+                        <script>
+                          var carouselDataTracker = null;
+                          if (carouselDataTracker) {
+                            if (!window.carouselData)
+                              window.carouselData = [carouselDataTracker];
+                            else
+                              window.carouselData.push(carouselDataTracker);
+                          }
+                        </script>
+                        <section class="c-swiper c-swiper--products-compact js-swiper-box-container">
+                          <div class="c-box">
+                            <div
+                              class="swiper-container swiper-container-horizontal js-swiper-container js-swiper-cart-parcel swiper-container-rtl">
+                              <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                                <div class="swiper-slide js-product-box-container swiper-slide-active"
+                                     data-item-id="1141160289" style="width: 154.167px;">
+                                  <div class="c-product-box c-product-box--compact js-product-box"><a
+                                      class="c-product-box__img js-url"><img
+                                        alt="تلویزیون ال ای دی هوشمند جی پلاس مدل GTV-50LU722S سایز 50 اینچ"
+                                        class="swiper-lazy swiper-lazy-loaded"
+                                        data-src="https://dkstatics-public.digikala.com/digikala-products/263ded325772a4e5bbd3d2f0333614a075ea2fee_1608722999.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
+                                        src="https://dkstatics-public.digikala.com/digikala-products/263ded325772a4e5bbd3d2f0333614a075ea2fee_1608722999.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
+                                        loading="lazy"></a></div>
+                                </div>
+                              </div>
+                              <div class="swiper-button-prev js-swiper-button-prev swiper-button-disabled"></div>
+                              <div class="swiper-button-next js-swiper-button-next swiper-button-disabled"></div>
+                            </div>
+                          </div>
+                        </section>
+                      </div>
+                      <div class="c-checkout-pack__row js-shipment-submit-type active"
+                           data-shipping-id="shipping-type-normal-0-3-50">
+                        <div class="c-checkout-time-table js-time-table">
+                          <div class="c-checkout-time-table__table-title">
+                            انتخاب زمان ارسال
+                          </div>
+                          <span class="js-package-shipping-cost u-hidden" data-price="250000"
+                                data-cost-id="js-0-3-50-package-row-normal" data-post-payed="">
+                              هزینه ارسال : ۲۵,۰۰۰ تومان
+                          </span>
+                          <div class="c-time-table js-time-table-container ">
+                            <div
+                              class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
+                              <ul class=" swiper-wrapper">
+                                <li class="swiper-slide c-time-table__day-details swiper-slide-active"
+                                    id="day-normal-0-3-50-1"><span class="c-time-table__day-name ">
+                        چهار‌شنبه
+                    </span><span class="c-time-table__date">
+                        ۲۲ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-3-50]"
+                                                                                                value="4088616"
+                                                                                                id="hour-radio-0-3-50-4088616-normal"><label
+                                        class="c-time-table__radio-label
 
-                    @endforeach
+                                            " for="hour-radio-0-3-50-4088616-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span></label></li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details swiper-slide-next"
+                                    id="day-normal-0-3-50-2"><span
+                                    class="c-time-table__day-name c-time-table__day-name--holiday">
+                        پنج‌شنبه
+                    </span><span class="c-time-table__date">
+                        ۲۳ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-3-50]"
+                                                                                                value="4088617"
+                                                                                                id="hour-radio-0-3-50-4088617-normal"><label
+                                        class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-3-50-4088617-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span></label></li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details" id="day-normal-0-3-50-3"><span
+                                    class="c-time-table__day-name c-time-table__day-name--holiday">
+                        جمعه
+                    </span><span class="c-time-table__date">
+                        ۲۴ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-3-50]"
+                                                                                                value="4088618"
+                                                                                                id="hour-radio-0-3-50-4088618-normal"><label
+                                        class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-3-50-4088618-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span></label></li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details" id="day-normal-0-3-50-4"><span
+                                    class="c-time-table__day-name ">
+                        شنبه
+                    </span><span class="c-time-table__date">
+                        ۲۵ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-3-50]"
+                                                                                                value="4088619"
+                                                                                                id="hour-radio-0-3-50-4088619-normal"><label
+                                        class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-3-50-4088619-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span></label></li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details" id="day-normal-0-3-50-5"><span
+                                    class="c-time-table__day-name ">
+                        یکشنبه
+                    </span><span class="c-time-table__date">
+                        ۲۶ اردیبهشت
+                    </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-3-50]"
+                                                                                                value="4088620"
+                                                                                                id="hour-radio-0-3-50-4088620-normal"><label
+                                        class="c-time-table__radio-label
+
+                                            " for="hour-radio-0-3-50-4088620-normal"><span>
+                                        بازه
+                                        ۹
+                                        -
+                                        ۲۲
+                                                                            </span></label></li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <div
+                                class="c-time-table__navigation c-time-table__navigation--prev js-swiper-button-prev swiper-button-disabled">
+                                <div class="c-time-table__navigation-button"
+                                     data-icon="Icon-Navigation-Chevron-Right"></div>
+                              </div>
+                              <div
+                                class="c-time-table__navigation c-time-table__navigation--next js-swiper-button-next swiper-button-disabled">
+                                <div class="c-time-table__navigation-button"
+                                     data-icon="Icon-Navigation-Chevron-Left"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="c-checkout-pack__row js-shipment-submit-type u-hidden"
+                           data-alt-shipping-id="shipping-type-normal-0-3-50"><input
+                          id="additional-shipping-type-normal-0-3-50" type="radio"
+                          name="shipping[additional-option][normal][0-3-50]" value="3"
+                          data-cost-id="js-0-3-50-package-row-normal" class="js-checkout-additional-option"
+                          style="opacity: 0;">
+                        <div class="c-checkout-additional-options__action-container">
+                          <div class="c-checkout-additional-options__action-title">
+                            پست پیشتاز با ظرفیت اختصاصی برای دیجی کالا
+                          </div>
+                          <div class="c-checkout-additional-options__action-lead-time">
+                            زمان تقریبی تحویل از ۲۴ اردیبهشت تا ۲۸ اردیبهشت
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-checkout-pack js-checkout-pack " data-parcel="1-2-50">
+                      <div class="c-checkout-pack__header">
+                        <div class="c-checkout-pack__header-title"><span>مرسوله ۳ از ۳</span></div>
+                        <div class="c-checkout-pack__header-dsc"><span>
+                    ۱
+                    کالا
+                 </span><span class="c-checkout-time-table__shipping-lead-time">
+                                            تامین کالا از
+                        ۱
+                        روز کاری آینده
+                                    </span></div>
+                      </div>
+                      <div class="c-checkout-pack__sub-header ">
+                        <div class="c-checkout-time-table__shipping-type c-checkout-time-table__shipping-type--heavy">
+                          ارسال
+
+                          کالاهای فوق سنگین
+                        </div>
+                      </div>
+                      <div class="c-checkout-pack__row">
+                        <script>
+                          var carouselDataTracker = null;
+                          if (carouselDataTracker) {
+                            if (!window.carouselData)
+                              window.carouselData = [carouselDataTracker];
+                            else
+                              window.carouselData.push(carouselDataTracker);
+                          }
+                        </script>
+                        <section class="c-swiper c-swiper--products-compact js-swiper-box-container">
+                          <div class="c-box">
+                            <div
+                              class="swiper-container swiper-container-horizontal js-swiper-container js-swiper-cart-parcel swiper-container-rtl">
+                              <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                                <div class="swiper-slide js-product-box-container swiper-slide-active"
+                                     data-item-id="1141160646" style="width: 154.167px;">
+                                  <div class="c-product-box c-product-box--compact js-product-box"><a
+                                      class="c-product-box__img js-url"><img alt="یخچال و فریزر امرسان مدلBFN20D321"
+                                                                             class="swiper-lazy swiper-lazy-loaded"
+                                                                             data-src="https://dkstatics-public.digikala.com/digikala-products/d0d7d3b8675a649d9f0fea8a05bfd173e182c036_1593933390.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
+                                                                             src="https://dkstatics-public.digikala.com/digikala-products/d0d7d3b8675a649d9f0fea8a05bfd173e182c036_1593933390.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
+                                                                             loading="lazy"></a>
+                                    <div class="c-product-box__variant c-product-box__variant--color"><span
+                                        style="background-color: #e0e0e0;"></span>
+                                      طوسی
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="swiper-button-prev js-swiper-button-prev swiper-button-disabled"></div>
+                              <div class="swiper-button-next js-swiper-button-next swiper-button-disabled"></div>
+                            </div>
+                          </div>
+                        </section>
+                      </div>
+                      <div class="c-checkout-pack__row js-shipment-submit-type active">
+                        <div
+                          class="c-checkout-time-table c-checkout-time-table__time c-checkout-time-table__time--no-flex">
+                          <div class="c-checkout-additional-options__action-bar">
+                            <div class="c-checkout-additional-options__checkbox-container"><label
+                                class="c-checkout-additional-options__freight-logo"></label></div>
+                            <div class="c-checkout-additional-options__action-container">
+                              <div
+                                class="c-checkout-additional-options__action-title c-checkout-additional-options__action-title--no-pointer">
+                                باربری (هزینه ارسال به‌صورت پس‌کرایه-حداقل ۱۲۰ هزار تومان)
+                              </div>
+                              <div
+                                class="c-checkout-additional-options__action-lead-time c-checkout-additional-options__action-lead-time--not-pointer">
+                                زمان تقریبی تحویل از ۷ تا ۱۸ روز
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -13329,21 +13771,134 @@
                           </div>
                         </section>
                       </div>
-                      <div class="c-checkout-pack__row js-shipment-submit-type active" data-shipping-id="shipping-type-fast-0-1-29">
+                      <div class="c-checkout-pack__row js-shipment-submit-type active"
+                           data-shipping-id="shipping-type-fast-0-1-29">
                         <div class="c-checkout-time-table js-time-table">
                           <div class="c-checkout-time-table__table-title">
                             انتخاب زمان ارسال
                           </div>
-                          <span class="js-package-shipping-cost u-hidden" data-price="180000" data-cost-id="js-0-1-29-package-row-fast" data-post-payed="">
-                            هزینه ارسال : ۱۸,۰۰۰ تومان
-                          </span>
+                          <span class="js-package-shipping-cost u-hidden" data-price="180000"
+                                data-cost-id="js-0-1-29-package-row-fast" data-post-payed="">
+                                             هزینه ارسال : ۱۸,۰۰۰ تومان
+                                             </span>
                           <div class="c-time-table js-time-table-container ">
-                            <div class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
-                              <div class="c-time-table__navigation c-time-table__navigation--prev js-swiper-button-prev swiper-button-disabled">
-                                <div class="c-time-table__navigation-button" data-icon="Icon-Navigation-Chevron-Right"></div>
+                            <div
+                              class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
+                              <ul class=" swiper-wrapper">
+                                <li class="swiper-slide c-time-table__day-details swiper-slide-active"
+                                    id="day-fast-0-1-29-1">
+                                                         <span class="c-time-table__day-name ">
+                                                         دو‌شنبه
+                                                         </span><span class="c-time-table__date">
+                                                         ۲۰ اردیبهشت
+                                                         </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-1-29]"
+                                                                                                value="8874624"
+                                                                                                id="hour-radio-0-1-29-8874624-fast"><label
+                                        class="c-time-table__radio-label
+                                                               " for="hour-radio-0-1-29-8874624-fast"><span>
+                                                               بازه
+                                                               ۱۹
+                                                               -
+                                                               ۲۲
+                                                               </span></label>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li class="swiper-slide c-time-table__day-details swiper-slide-next"
+                                    id="day-fast-0-1-29-2">
+                                                         <span class="c-time-table__day-name ">
+                                                         سه‌شنبه
+                                                         </span><span class="c-time-table__date">
+                                                         ۲۱ اردیبهشت
+                                                         </span>
+                                  <ul class="c-time-table__hour-container">
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-1-29]"
+                                                                                                value="8874821"
+                                                                                                id="hour-radio-0-1-29-8874821-fast"><label
+                                        class="c-time-table__radio-label
+                                                               " for="hour-radio-0-1-29-8874821-fast"><span>
+                                                               بازه
+                                                               ۹
+                                                               -
+                                                               ۱۲
+                                                               </span></label>
+                                    </li>
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-1-29]"
+                                                                                                value="8874826"
+                                                                                                id="hour-radio-0-1-29-8874826-fast"><label
+                                        class="c-time-table__radio-label
+                                                               " for="hour-radio-0-1-29-8874826-fast"><span>
+                                                               بازه
+                                                               ۱۱
+                                                               -
+                                                               ۱۴
+                                                               </span></label>
+                                    </li>
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-1-29]"
+                                                                                                value="8874831"
+                                                                                                id="hour-radio-0-1-29-8874831-fast"><label
+                                        class="c-time-table__radio-label
+                                                               " for="hour-radio-0-1-29-8874831-fast"><span>
+                                                               بازه
+                                                               ۱۳
+                                                               -
+                                                               ۱۶
+                                                               </span></label>
+                                    </li>
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-1-29]"
+                                                                                                value="8874836"
+                                                                                                id="hour-radio-0-1-29-8874836-fast"><label
+                                        class="c-time-table__radio-label
+                                                               " for="hour-radio-0-1-29-8874836-fast"><span>
+                                                               بازه
+                                                               ۱۵
+                                                               -
+                                                               ۱۸
+                                                               </span></label>
+                                    </li>
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-1-29]"
+                                                                                                value="8874841"
+                                                                                                id="hour-radio-0-1-29-8874841-fast"><label
+                                        class="c-time-table__radio-label
+                                                               " for="hour-radio-0-1-29-8874841-fast"><span>
+                                                               بازه
+                                                               ۱۷
+                                                               -
+                                                               ۲۰
+                                                               </span></label>
+                                    </li>
+                                    <li class="c-outline-radio c-time-table__hour-item "><input type="radio"
+                                                                                                name="shipping[time_scopes][0-1-29]"
+                                                                                                value="8874846"
+                                                                                                id="hour-radio-0-1-29-8874846-fast"><label
+                                        class="c-time-table__radio-label
+                                                               " for="hour-radio-0-1-29-8874846-fast"><span>
+                                                               بازه
+                                                               ۱۹
+                                                               -
+                                                               ۲۲
+                                                               </span></label>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                              <div
+                                class="c-time-table__navigation c-time-table__navigation--prev js-swiper-button-prev swiper-button-disabled">
+                                <div class="c-time-table__navigation-button"
+                                     data-icon="Icon-Navigation-Chevron-Right"></div>
                               </div>
-                              <div class="c-time-table__navigation c-time-table__navigation--next js-swiper-button-next swiper-button-disabled">
-                                <div class="c-time-table__navigation-button" data-icon="Icon-Navigation-Chevron-Left"></div>
+                              <div
+                                class="c-time-table__navigation c-time-table__navigation--next js-swiper-button-next swiper-button-disabled">
+                                <div class="c-time-table__navigation-button"
+                                     data-icon="Icon-Navigation-Chevron-Left"></div>
                               </div>
                             </div>
                           </div>
@@ -13426,7 +13981,8 @@
                                 data-cost-id="js-1-1-1-package-row-fast" data-post-payed="">
                                              هزینه ارسال : <span class="">رایگان</span></span>
                           <div class="c-time-table js-time-table-container js-dynamic-time-table-container">
-                            <div class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
+                            <div
+                              class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
                               <ul class=" swiper-wrapper">
                                 <li class="swiper-slide c-time-table__day-details swiper-slide-active"
                                     id="day-fast-1-1-1-1">
@@ -14252,11 +14808,13 @@
                 </div>
               </form>
             </div>
-            <div class="c-checkout__actions">
-              <a href="/cart/" class="c-checkout__actions--back"
-                  data-snt-event='dkShippingPageClick' data-snt-params='{"item":"back_to_cart","item_option":null}'
-                  data-event="back_to_cart_link" data-event-category="funnel" data-event-label="items: 4, addresses: 2">
-                  بازگشت به سبد خرید
+            <div class="c-checkout__actions"><a href="/cart/" class="c-checkout__actions--back"
+                                                data-snt-event='dkShippingPageClick'
+                                                data-snt-params='{"item":"back_to_cart","item_option":null}'
+                                                data-event="back_to_cart_link"
+                                                data-event-category="funnel"
+                                                data-event-label="items: 4, addresses: 2">
+                بازگشت به سبد خرید
               </a>
             </div>
           </section>
@@ -14264,56 +14822,30 @@
             <div class="c-checkout-aside js-checkout-aside">
               <div class="c-checkout-bill">
                 <ul class="c-checkout-bill__summary">
-                  <?php $sum_sale_price = 0; ?>
-                  @foreach($first_carts as $priceItem)
-                    <?php $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count); ?>
-                  @endforeach
-                  <li>
-                    <span class="c-checkout-bill__item-title">
-                      قیمت کالاها
-                      ({{ persianNum($first_carts->count()) }})
-                    </span>
-                    <span class="c-checkout-bill__price">
-                      {{ persianNum(number_format(toman($sum_sale_price))) }}
-                      <span class="c-checkout-bill__currency">
-                          تومان
-                      </span>
-                    </span>
-                  </li>
-
-                  @if($first_carts->sum('new_promotion_price') > 0)
-
-                    <?php $sum_promotion_price = 0; ?>
-                    @foreach($first_carts as $priceItem)
-                      @if ($priceItem->new_sale_price > $priceItem->new_promotion_price)
-                        <?php $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count); ?>
-                      @endif
-                    @endforeach
-                    <li>
-                      <span class="c-checkout-bill__item-title">
-                          تخفیف کالاها
-                      </span>
-                      <span class="c-checkout-bill__price c-checkout-bill__price--discount">
-                        <span>
-                          ({{ persianNum(number_format(($sum_promotion_price / $sum_sale_price) * 100)) }}٪)
-                        </span>
-                          {{ persianNum(number_format(toman($sum_promotion_price))) }}
-                        <span class="c-checkout-bill__currency"> تومان </span>
-                      </span>
-                    </li>
-                  @endif
-
-                  <li class="c-checkout-bill__sum-price">
-                    <span class="c-checkout-bill__item-title">
-                        جمع
-                    </span>
-                    <span class="c-checkout-bill__price">
-                      {{ persianNum(number_format(toman($sum_promotion_price))) }}
-                      <span class="c-checkout-bill__currency">
-                          تومان
-                      </span>
-                    </span>
-                  </li>
+                  <li><span class="c-checkout-bill__item-title">
+                    قیمت کالاها
+                    (۴)
+                </span><span class="c-checkout-bill__price">
+                    ۲۷,۸۹۷,۵۰۰
+                    <span class="c-checkout-bill__currency">
+                        تومان
+                    </span></span></li>
+                  <li><span class="c-checkout-bill__item-title">
+                        تخفیف کالاها
+                    </span><span class="c-checkout-bill__price c-checkout-bill__price--discount"><span>
+                                (۱٪)
+                            </span>
+                                                ۱۷۱,۰۰۰
+                        <span class="c-checkout-bill__currency">
+                           تومان
+                        </span></span></li>
+                  <li class="c-checkout-bill__sum-price"><span class="c-checkout-bill__item-title">
+                    جمع
+                </span><span class="c-checkout-bill__price">
+                    ۲۷,۷۲۶,۵۰۰
+                    <span class="c-checkout-bill__currency">
+                        تومان
+                    </span></span></li>
                   <li>
                     <div class="c-checkout-bill__item-title"><span>
                         هزینه ارسال

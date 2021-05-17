@@ -216,7 +216,7 @@ var MapActions = {
 
         if (lat > 0 && lng > 0) {
           Services.ajaxPOSTRequestJSON(
-            '/addresses/search-address-reverse/',
+            '/addresses/search-address-reverse',
             {'latitude': lat, 'longitude': lng},
             function (data) {
               upperThis.selectedCityId = data.city_id;
@@ -483,7 +483,7 @@ var MapActions = {
     function updateAddressOnChange(e) {
       $(document).trigger('changeReverseAddressInProgress');
       Services.ajaxPOSTRequestJSON(
-        '/addresses/search-address-reverse/',
+        '/addresses/search-address-reverse',
         {'latitude': map.getCenter().lat, 'longitude': map.getCenter().lng},
         function (data) {
           $(document).trigger('changeReverseAddress', data);

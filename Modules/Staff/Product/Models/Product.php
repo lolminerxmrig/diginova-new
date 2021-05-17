@@ -112,4 +112,9 @@ class Product extends Model
       return $this->hasMany(CommentHasRating::class);
     }
 
+    public function weight()
+    {
+      return $this->morphToMany(ProductWeight::class, 'weightable', 'weightables', 'wheight_id', 'weightable_id')->first();
+    }
+
 }

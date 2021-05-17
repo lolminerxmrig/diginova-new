@@ -13,9 +13,9 @@ class ProductWeight extends Model
 
     protected $fillable = ['name', 'status'];
 
-    public function deliveryMethod()
+    public function deliveryMethods()
     {
-      return $this->morphedByMany(DeliveryMethod::class, 'weightable', 'weightables');
+      return $this->morphedByMany(DeliveryMethod::class, 'weightable', 'weightables', 'wheight_id', 'weightable_id');
     }
 
 }

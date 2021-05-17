@@ -20,6 +20,7 @@ use Modules\Staff\Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Modules\Staff\Product\Models\ProductHasVariant;
+use Modules\Staff\Product\Models\ProductWeight;
 use Modules\Staff\Setting\Models\Setting;
 use GuzzleHttp\Client;
 use Modules\Customers\Auth\Models\Customer;
@@ -611,8 +612,9 @@ class FrontController extends Controller
     $customer = Auth::guard('customer')->user();
     $first_carts = $customer->carts()->where('type', 'first')->get();
     $store_addresses = StoreAddress::all();
+    $weights = ProductWeight::all();
 
-    return view('front::shipping', compact('states', 'customer', 'first_carts', 'store_addresses'));
+    return view('front::shipping', compact('states', 'customer', 'first_carts', 'store_addresses', 'weights'));
   }
 
   public function changeSharedDeliveryAddress($id)

@@ -343,7 +343,7 @@ var addressActions = {
                 return;
 
             Services.ajaxGETRequestJSON(
-                'ajax/state/cities/' + stateId,
+                '/ajax/state/cities/' + stateId,
                 null,
                 function (data) {
                     $citySelector.children('select .js-not-empty').remove();
@@ -400,7 +400,7 @@ var addressActions = {
             }
 
             Services.ajaxGETRequestJSON(
-                'ajax/city/districts/' + cityId,
+                '/ajax/city/districts/' + cityId + '/',
                 null,
                 function (data) {
                     if (data.length !== 0) {
@@ -767,7 +767,7 @@ var addressActions = {
         var $districtSelector = $addressForm.find('.js-select-district');
 
         Services.ajaxGETRequestJSON(
-            'ajax/city/districts/' + cityId,
+            '/ajax/city/districts/' + cityId + '/',
             null,
             function (data) {
                 if (data.length !== 0) {
