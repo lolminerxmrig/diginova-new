@@ -47,7 +47,7 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::get('shipping/shared-addresses/default/{id}', [FrontController::class, 'changeSharedDeliveryAddress'])->name('changeSharedDeliveryAddress');
   Route::get('shipping/address/default/{id}', [FrontController::class, 'changeCustomerDeliveryAddress'])->name('changeCustomerDeliveryAddress');
   Route::post('shipping/address/remove/{id}', [FrontController::class, 'removeCustomerDeliveryAddress'])->name('removeCustomerDeliveryAddress');
-  Route::post('shipping/addresses/add', [FrontController::class, 'saveAddress'])->name('saveAddress');
+  Route::post('shipping/addresses/add', [FrontController::class, 'saveAddressFromShipping'])->name('saveAddressFromShipping');
 
 });
 

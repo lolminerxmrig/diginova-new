@@ -12985,7 +12985,7 @@
                       </li>
                       <li class="c-checkout-contact__item">
                         <button type="button" class="o-link o-link--sm o-link--has-arrow" id="change-address-btn">
-                          تغییر یا ویرایش آدرس
+                          تغییر آدرس
                         </button>
                       </li>
                     </ul>
@@ -13078,11 +13078,11 @@
                             <button class="o-btn o-btn--link-blue-sm js-remove-address-btn" data-id="{{ $address->id }}"
                                     data-token="">حذف
                             </button>
-                            <button class="o-btn o-btn--link-blue-sm js-add-address-btn" data-event="edit_address"
-                                    data-event-category="funnel"
-                                    data-event-label="addresses: 2, position: list of addresses"
-                                    data-id="{{ $address->id }}">ویرایش
-                            </button>
+{{--                            <button class="o-btn o-btn--link-blue-sm js-add-address-btn" data-event="edit_address"--}}
+{{--                                    data-event-category="funnel"--}}
+{{--                                    data-event-label="addresses: 2, position: list of addresses"--}}
+{{--                                    data-id="{{ $address->id }}">ویرایش--}}
+{{--                            </button>--}}
                           </div>
                         </div>
                       @endforeach
@@ -14308,52 +14308,52 @@
                         جمع
                     </span>
                     <span class="c-checkout-bill__price">
-                      {{ persianNum(number_format(toman($sum_promotion_price))) }}
+                      {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
                       <span class="c-checkout-bill__currency">
                           تومان
                       </span>
                     </span>
                   </li>
                   <li>
-                    <div class="c-checkout-bill__item-title"><span>
+                    <div class="c-checkout-bill__item-title">
+                      <span>
                         هزینه ارسال
-                    </span>
+                      </span>
                       <div class="c-checkout-bill__shipping-history js-normal-delivery ">
-                        ۳
-                        مرسوله
+                        {{ persianNum($cons_count) }} مرسوله
                         <div class="c-checkout-bill__shipping-history-container">
-                          <div class="c-checkout-bill__shipping-history-row js-0-1-1-package-row-normal js-package-row"
-                               data-cost="0" data-alt-cost="0" data-default-cost="0" data-post-payed="0"
-                               data-plus-shipping="0" data-dynamic-shipping="1"><span
-                              class="c-checkout-bill__shipping-history-title js-package-row-title">
-                        مرسوله
-                        ۱
-                        <span class="c-checkout-bill__shipping-history-title--expressShipping">
-                            ارسال عادی
-                        </span></span><span
-                              class="c-checkout-bill__shipping-history-title js-package-row-alt-title u-hidden">
-                            مرسوله
-                            ۱
-                            <span class="c-checkout-bill__shipping-history-title--altShipping">
-                                ارسال پستی
-                            </span></span><span
-                              class="c-checkout-bill__shipping-history-price c-checkout-bill__shipping-history-price--free-plus c-digiplus-sign--after js-package-row-plus-free-amount u-hidden"><span
-                                class="c-checkout__plus-delivery-counter">
-                                 از ۰
+                          <div class="c-checkout-bill__shipping-history-row js-0-1-1-package-row-normal js-package-row" data-cost="0" data-alt-cost="0" data-default-cost="0" data-post-payed="0" data-plus-shipping="0" data-dynamic-shipping="1">
+                            <span class="c-checkout-bill__shipping-history-title js-package-row-title">
+                              مرسوله ۱
+                              <span class="c-checkout-bill__shipping-history-title--expressShipping">
+                                  ارسال عادی
+                              </span>
+                            </span>
+                            <span class="c-checkout-bill__shipping-history-title js-package-row-alt-title u-hidden">
+                              مرسوله ۱
+                              <span class="c-checkout-bill__shipping-history-title--altShipping">
+                                  ارسال پستی
+                              </span>
+                            </span>
+                            <span class="c-checkout-bill__shipping-history-price c-checkout-bill__shipping-history-price--free-plus c-digiplus-sign--after js-package-row-plus-free-amount u-hidden"><span class="c-checkout__plus-delivery-counter">
+                              از ۰
                             </span>
                             رایگان پلاس
-                        </span><span class="c-checkout-bill__shipping-history-price js-package-row-non-free-amount
-                                     u-hidden"><span
+                        </span>
+                            <span class="c-checkout-bill__shipping-history-price js-package-row-non-free-amount u-hidden">
+                              <span
                                 class="c-checkout-bill__shipping-history-price--amount js-package-row-amount">
                                 ۰
                             </span><span class="c-checkout-bill__shipping-history-price--currency">
                                 تومان
-                            </span></span><span
-                              class="c-checkout-bill__shipping-history-price--free js-package-row-free-amount u-hidden">
+                            </span></span>
+                            <span class="c-checkout-bill__shipping-history-price--free js-package-row-free-amount u-hidden">
                             رایگان
-                        </span><span class="c-checkout-bill__shipping-history-price js-select-time-message">
+                        </span>
+                            <span class="c-checkout-bill__shipping-history-price js-select-time-message">
                                 زمان ارسال را انتخاب کنید
-                            </span></div>
+                            </span>
+                          </div>
                           <div class="c-checkout-bill__shipping-history-row js-0-3-50-package-row-normal js-package-row"
                                data-cost="250000" data-alt-cost="0" data-default-cost="250000" data-post-payed="0"
                                data-plus-shipping="0" data-dynamic-shipping="0"><span
@@ -14398,42 +14398,49 @@
                         </div>
                       </div>
                     </div>
-                    <span
-                      class="c-checkout-bill__item-title c-checkout-bill__item-title--plus c-digiplus-sign--after js-plus-free-shipping hidden">
-                    رایگان پلاس
-                </span><span class="c-checkout-bill__item-title js-not-free-shipping"><span class="js-shipping-cost">۲۵,۰۰۰ </span>
-                    تومان
-                </span><span class="c-checkout-bill__item-title js-free-shipping hidden">
-                    رایگان
-                </span><span class="c-checkout-bill__item-title js-dynamic-shipping-msg hidden">
-                    وابسته به زمان ارسال
-                </span><span class="c-checkout-bill__item-title js-shipping-divider">
-                    +
-                </span><span class="c-checkout-bill__item-title js-shipping-post-paid">
-                    پس کرایه
-                </span></li>
-                  <li class="c-checkout-bill__shipping-cost-notice js-dynamic-shipping-cost-notice">
-                    هزینه بر اساس وزن، حجم مرسوله و زمان تحویل تعیین شده است.
+                    <span class="c-checkout-bill__item-title c-checkout-bill__item-title--plus c-digiplus-sign--after js-plus-free-shipping hidden">
+                      رایگان پلاس
+                    </span>
+                    <span class="c-checkout-bill__item-title js-not-free-shipping">
+                      <span class="js-shipping-cost">۲۵,۰۰۰ </span>
+                      تومان
+                    </span>
+                    <span class="c-checkout-bill__item-title js-free-shipping hidden">
+                      رایگان
+                    </span>
+                    <span class="c-checkout-bill__item-title js-dynamic-shipping-msg hidden">
+                      وابسته به زمان ارسال
+                    </span>
+                    <span class="c-checkout-bill__item-title js-shipping-divider">
+                      +
+                    </span>
+                    <span class="c-checkout-bill__item-title js-shipping-post-paid">
+                     پس کرایه
+                    </span>
                   </li>
-                  <li class="c-checkout-bill__total-price"><span class="c-checkout-bill__total-price--title">
-                    مبلغ قابل پرداخت
-                </span><span class="c-checkout-bill__total-price--amount" id="cartPayablePrice"><span class="js-price"
-                                                                                                      data-price="277265000">۲۷,۷۵۱,۵۰۰ </span><span
-                        class="c-checkout-bill__total-price--currency">
+                  <li class="c-checkout-bill__shipping-cost-notice js-dynamic-shipping-cost-notice">
+                    هزینه بر اساس وزن و حجم مرسوله تعیین شده است.
+                  </li>
+                  <li class="c-checkout-bill__total-price">
+                    <span class="c-checkout-bill__total-price--title">
+                      مبلغ قابل پرداخت
+                    </span>
+                    <span class="c-checkout-bill__total-price--amount" id="cartPayablePrice">
+                      <span class="js-price" data-price="277265000">۲۷,۷۵۱,۵۰۰ </span>
+                      <span class="c-checkout-bill__total-price--currency">
                         تومان
-                    </span></span></li>
-                  <li class="c-checkout-bill__to-forward-button"><a href=""
-                                                                    class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data"
-                                                                    style="display: none; pointer-events: all; cursor: pointer;">
+                      </span>
+                    </span>
+                  </li>
+                  <li class="c-checkout-bill__to-forward-button">
+                    <a href="" class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="display: none; pointer-events: all; cursor: pointer;">
                       ادامه فرآیند خرید
                     </a>
-                    <button type="button"
-                            class="o-btn o-btn--full-width o-btn--outlined-red-lg js-inform-package-section">
+                    <button type="button" class="o-btn o-btn--full-width o-btn--outlined-red-lg js-inform-package-section">
                       برای ادامه، زمان ارسال را تعیین کنید
                     </button>
                   </li>
                 </ul>
-                {{--                <div class="c-checkout-bill__cash-back"></div>--}}
               </div>
             </div>
           </aside>

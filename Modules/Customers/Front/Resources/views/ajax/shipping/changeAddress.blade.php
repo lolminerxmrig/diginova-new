@@ -14,7 +14,7 @@
         </li>
         <li class="c-checkout-contact__item">
           <button type="button" class="o-link o-link--sm o-link--has-arrow" id="change-address-btn">
-            تغییر یا ویرایش آدرس
+            تغییر آدرس
           </button>
         </li>
       </ul>
@@ -93,11 +93,11 @@
               <button class="o-btn o-btn--link-blue-sm js-remove-address-btn" data-id="{{ $address->id }}"
                       data-token="">حذف
               </button>
-              <button class="o-btn o-btn--link-blue-sm js-edit-address-btn" data-event="edit_address"
-                      data-event-category="funnel"
-                      data-event-label="addresses: 2, position: list of addresses"
-                      data-id="{{ $address->id }}">ویرایش
-              </button>
+{{--              <button class="o-btn o-btn--link-blue-sm js-edit-address-btn" data-event="edit_address"--}}
+{{--                      data-event-category="funnel"--}}
+{{--                      data-event-label="addresses: 2, position: list of addresses"--}}
+{{--                      data-id="{{ $address->id }}">ویرایش--}}
+{{--              </button>--}}
             </div>
           </div>
         @endforeach

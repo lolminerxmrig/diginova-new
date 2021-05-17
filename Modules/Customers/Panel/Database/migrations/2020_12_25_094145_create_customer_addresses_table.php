@@ -20,7 +20,7 @@ class CreateCustomerAddressTable extends Migration
             $table->text('address')->nullable();
             $table->integer('plaque')->nullable();
             $table->integer('unit')->nullable();
-            $table->integer('postal_code')->nullable();
+            $table->bigInteger('postal_code')->nullable();
             $table->string('recipient_firstname')->nullable();
             $table->string('recipient_lastname')->nullable();
             $table->bigInteger('recipient_national_code')->nullable();

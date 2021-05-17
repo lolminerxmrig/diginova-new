@@ -552,7 +552,7 @@ class FrontController extends Controller
 
   }
 
-  public function saveAddress(Request $request)
+  public function saveAddressLogic($request)
   {
     $customer_id = Auth::guard('customer')->user()->id;
 
@@ -596,8 +596,43 @@ class FrontController extends Controller
       'customer_id' => $customer_id,
       'state_id' => (isset($request->address['district_id']) && !is_null($request->address['district_id']))? $request->address['district_id'] : $request->address['city_id'],
     ]);
+  }
 
+  public function saveAddress(Request $request)
+  {
+    $this->saveAddressLogic($request);
     return redirect()->route('front.shipping');
+  }
+
+  public function saveAddressFromShipping(Request $request)
+  {
+
+    $this->saveAddressLogic($request);
+
+    $store_addresses = StoreAddress::all();
+    $customer = Auth::guard('customer')->user();
+    if ($customer->where('address_type', 'CustomerAddress')->exists()) {
+      $delivery_type = 'customer';
+    }
+    else {
+      $delivery_type = 'store';
+    }
+
+    return response()->json([
+      "status" => true,
+      "data" => [
+        "data" => View::make('front::ajax.shipping.changeAddress', compact('customer', 'store_addresses', 'delivery_type'))->render(),
+        "stickyCart" => View::make('front::ajax.shipping.changeAddressUpdatePrice')->render(),
+        "invalidData" => '<div class="swiper-container swiper-container-horizontal js-swiper-delivery-limit"><div class="swiper-wrapper"></div><div class="swiper-button-prev js-swiper-button-prev"></div><div class="swiper-button-next js-swiper-button-next"></div></div>',
+        "hasInvalidItems" => false,
+        "changeAddress" => false,
+        "errorMessageForInvalidItems" => null,
+        "nonInteraction" => false,
+        "skipItemIds" => [],
+        "errorMessage" => null
+      ]
+    ]);
+
   }
 
   public function shipping()
