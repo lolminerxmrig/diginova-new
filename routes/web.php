@@ -61,6 +61,8 @@ Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::post('addresses/search-address-reverse', [FrontController::class, 'searchAddressReverse'])->name('searchAddressReverse');
   Route::post('addresses/search-address', [FrontController::class, 'searchAddress'])->name('searchAddress');
   Route::get('shipping', [FrontController::class, 'shipping'])->name('shipping');
+  Route::get('peyment', [FrontController::class, 'peyment'])->name('peyment');
+
 });
 
 Route::get('tracker/events', function (){

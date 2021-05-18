@@ -555,6 +555,7 @@ class FrontController extends Controller
   public function saveAddressLogic($request)
   {
     $customer_id = Auth::guard('customer')->user()->id;
+    $customer = Auth::guard('customer')->user();
 
     $validator = Validator::make($request->all(), [
       "address.lat" => "required",
@@ -596,6 +597,15 @@ class FrontController extends Controller
       'customer_id' => $customer_id,
       'state_id' => (isset($request->address['district_id']) && !is_null($request->address['district_id']))? $request->address['district_id'] : $request->address['city_id'],
     ]);
+
+    if (!$customer->delivery_address()->exists()) {
+      $defualt_address_id = $customer->addresses()->latest()->first()->id;
+      $customer->update([
+        'address_type' => 'CustomerAddress',
+        'address_id' => $defualt_address_id,
+      ]);
+    }
+
   }
 
   public function saveAddress(Request $request)
@@ -717,7 +727,9 @@ class FrontController extends Controller
 
     $customer = Auth::guard('customer')->user();
 
-    CustomerAddress::where('customer_id', $customer->id)->where('id', $id)->first()->delete();
+    if (CustomerAddress::where('customer_id', $customer->id)->where('id', $id)->exists()) {
+      CustomerAddress::where('customer_id', $customer->id)->where('id', $id)->first()->delete();
+    }
 
     $store_addresses = StoreAddress::all();
 
@@ -728,7 +740,7 @@ class FrontController extends Controller
       $delivery_type = 'store';
     }
 
-    if (!$customer->delivery_address()->exists()) {
+    if (!$customer->delivery_address()->exists() && $customer->addresses()->exists()) {
         $defualt_address_id = $customer->addresses()->latest()->first()->id;
         $customer->update([
           'address_type' => 'CustomerAddress',
@@ -751,6 +763,12 @@ class FrontController extends Controller
       ]
     ]);
 
+  }
+
+  public function peyment()
+  {
+    $customer = Auth::guard('customer')->user();
+    return view('front::peyment', compact('customer'));
   }
 
 }

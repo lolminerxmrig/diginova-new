@@ -135,9 +135,9 @@
                     <div class="field-wrapper">
 
                       <div id="iconUpload" class="c-content-modal__uploads-label {{ (!$delivery_method->media()->exists())? 'empty' : '' }}">
-                            <span uk-form-custom="" class="uk-form-custom">
-                                <input id="brandLogoFile" type="file" class="hidden">
-                            </span>
+                        <span uk-form-custom="" class="uk-form-custom">
+                            <input id="brandLogoFile" type="file" class="hidden">
+                        </span>
 
                         <label for="brandLogoFile" class="c-content-modal__uploads-preview">
                           <img src="{{ ($delivery_method->media()->exists())? $site_url . '/' . $delivery_method->media()->first()->path . '/' . $delivery_method->media()->first()->name : '' }}" id="iconUploadPreview" class="c-content-modal__uploads-img" alt="">
@@ -149,8 +149,8 @@
                         </label>
 
                         <span class="c-content-modal__list c-content-modal__uploads-tooltips">
-                                <span class="c-content-modal__uploads-text">آیکون منو را در نسبت ۱ در ۱ بارگذاری کنید.</span>
-                            </span>
+                          <span class="c-content-modal__uploads-text">آیکون منو را در نسبت ۱ در ۱ بارگذاری کنید.</span>
+                        </span>
 
                       </div>
 
@@ -167,17 +167,14 @@
                         <select id="method_cost_type" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible c-ui-input--disabled"
                                 name="method_cost_type" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;" {{ ($delivery_method->id == 1 || $delivery_method->id == 2) ? 'disabled' : '' }}>
                           @if(count($deliveryCostDetTypes))
-                              <?php $i = 1 ?>
-                            @foreach($deliveryCostDetTypes as $deliveryCostDetType)
+                            @foreach($deliveryCostDetTypes as $key => $deliveryCostDetType)
                                 <?php
-                                  if( ($delivery_method->id !== 1 && $delivery_method->id !== 2) && ($i == 1) ) {
-                                    $i++;
+                                  if( ($delivery_method->id !== 1 && $delivery_method->id !== 2) && ($key == 0 || $key == 1) ) {
                                     continue;
                                   }
                                 ?>
 
                               <option class="option-control" value="{{ $deliveryCostDetType->id }}" {{ ($delivery_method->deliveryCostDetType->id == $deliveryCostDetType->id)? 'selected' : '' }}>{{ $deliveryCostDetType->name }}</option>
-                              <?php $i++ ?>
                             @endforeach
                           @endif
                         </select>
@@ -187,7 +184,7 @@
                       <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">
                         <div class="field-wrapper">
                           <label class="c-ui-form__label delivery_cost-lable" for="product_page_title">
-                            @if($delivery_method->deliveryCostDetType->id == 2)
+                            @if($delivery_method->deliveryCostDetType->id == 3)
                               هزینه ارسال:
                             @else
                               حداقل هزینه ارسال:
@@ -205,22 +202,9 @@
 
                 </div>
 
-{{--                <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">--}}
-{{--                  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" style="padding-right: 0px !important;width: 32%;">--}}
-{{--                    <label class="c-ui-form__label" for="product_page_title">پرداخت در محل:</label>--}}
-{{--                    <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">--}}
-{{--                      <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">--}}
-{{--                        <input type="checkbox" class="c-ui-checkbox__origin" name="peyment_on_locale" value="1">--}}
-{{--                        <span class="c-ui-checkbox__check"></span>--}}
-{{--                        <span class="c-ui-checkbox__label">روش "پرداخت در محل" برای مشتری فعال باشد</span>--}}
-{{--                      </label>--}}
-{{--                    </div>--}}
-{{--                  </div>--}}
-{{--                </div>--}}
 
                 <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">
                   <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" style="padding-right: 0px !important;width: 32%;">
-
                     <label class="c-ui-form__label" for="product_page_title">ارسال رایگان:</label>
                     <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                       <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" >
@@ -230,8 +214,6 @@
                       </label>
                     </div>
                   </div>
-
-
 
                   <div class="uk-flex uk-flex-column" style="">
                     <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">
@@ -258,7 +240,7 @@
                       <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">
                         <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1" {{ count($delivery_method->states)? 'checked' : '' }}>
                         <span class="c-ui-checkbox__check"></span>
-                        <span class="c-ui-checkbox__label">تعیین محدودیت برای استان و یا شهر</span>
+                        <span class="c-ui-checkbox__label">تعیین محدودیت برای استان</span>
                       </label>
                     </div>
                   </div>
@@ -267,12 +249,11 @@
                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div" style=" {{ !count($delivery_method->states)? 'display: none' : '' }}">
 
                   <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px; margin-top: 20px;">
-                    استان یا شهر:
+                    استان:
                     <span class="uk-form-label__required"></span>
                   </label>
 
                   <div class="field-wrapper ui-select ui-select__container ui-select__container--product" style="text-align: right; border-color: #e6e9ed !important;">
-
                     <select name="method_states" class="uk-input uk-input--select js-select-origin method_states" multiple="multiple" style="text-align: right; border-color: #e6e9ed !important;">
 {{--                      {{ (count($product->category[0]->types) == 0)? 'disabled' : '' }}--}}
 
@@ -286,13 +267,12 @@
                       @endphp
 
                       @if(isset($states) && !is_null($states))
-                        @foreach($states as $state)
-                          <option value="{{ $state->id }}" {{ (isset($this_states) && in_array($state->id, $this_states))? 'selected' : '' }} >{{ ($state->type == 'state')? 'استان ' : ''  }}{{ $state->name }}</option>
+                        @foreach($states->where('type', 'state') as $state)
+                          <option value="{{ $state->id }}" {{ (isset($this_states) && in_array($state->id, $this_states))? 'selected' : '' }} >{{ $state->name }}</option>
                         @endforeach
                       @endif
 
                     </select>
-
                     <span class="select-counter"></span>
                     <div class="js-select-options"></div>
                   </div>

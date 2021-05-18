@@ -77,9 +77,6 @@ class StaffDeliveryMethodController extends Controller
         ]);
 
         if ($request->cost__det_type == 2 || $request->cost__det_type == 3) {
-          Log::info('dddvvv');
-          Log::info($request->delivery_cost);
-
           $deliveryMethod->update([
             'delivery_cost' => $request->delivery_cost,
           ]);
@@ -144,7 +141,7 @@ class StaffDeliveryMethodController extends Controller
       ]);
     }
 
-  public function UploadImage(Request $request)
+    public function UploadImage(Request $request)
   {
     $imageExtension = $request->image->extension();
 

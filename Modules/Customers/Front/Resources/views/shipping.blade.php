@@ -634,9 +634,7 @@
   </script>
   <!-- End Insider Javascript -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon"
-        href="{{ !is_null($favicon_image)? $site_url . '/' . $favicon_image->path . '/'. $favicon_image->name : '' }}"
-        type="image/icon">
+  <link rel="shortcut icon" href="{{ !is_null($favicon_image)? $site_url . '/' . $favicon_image->path . '/'. $favicon_image->name : '' }}" type="image/icon">
   <link rel="icon" type="image/png"
         href="{{ !is_null($favicon_image)? $site_url . '/' . $favicon_image->path . '/'. $favicon_image->name : '' }}">
   <meta name="robots" content="noindex, nofollow"/>
@@ -6340,11 +6338,8 @@
     var isNewCustomer = false;
   </script>
 
-  {{--  <script src="https://www.digikala.com/static/merged/2c59d18d.js"></script>--}}
   <script src="{{ asset('assets/js/sentry.js') }}"></script>
   <script src="{{ asset('assets/js/address.js') }}"></script>
-  {{--  <script src="https://www.digikala.com/static/merged/97311f4f.js"></script>--}}
-  {{--  <script src="https://www.digikala.com/static/merged/46f4b9f4.js"></script>--}}
   <script src="{{ asset('assets/new/js/map-second.js') }}"></script>
   <script src="https://www.parsimap.com/js/v3.1.0/parsimap.js?key=public"></script>
 </head>
