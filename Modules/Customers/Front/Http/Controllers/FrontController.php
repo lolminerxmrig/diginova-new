@@ -24,10 +24,18 @@ use Modules\Staff\Product\Models\ProductWeight;
 use Modules\Staff\Setting\Models\Setting;
 use GuzzleHttp\Client;
 use Modules\Customers\Auth\Models\Customer;
+use Modules\Staff\Shiping\Http\postPishtaz;
+use Modules\Staff\Shiping\Http\postSefareshi;
+use Modules\Staff\Shiping\Models\DeliveryMethod;
 
 
 class FrontController extends Controller
 {
+
+  public function test()
+  {
+    return view('front::shipping');
+  }
 
   public function index()
   {
@@ -659,7 +667,135 @@ class FrontController extends Controller
     $store_addresses = StoreAddress::all();
     $weights = ProductWeight::all();
 
-    return view('front::shipping', compact('states', 'customer', 'first_carts', 'store_addresses', 'weights'));
+    foreach($weights as $i => $weight) {
+      foreach ($first_carts as $item) {
+        if ($item->product_variant()->first()->product->weight()->id == $weight->id) {
+          $has_consignment = true;
+        }
+
+        if (isset($has_consignment) && $has_consignment) {
+          $sum_weight = 0;
+          foreach ($first_carts as $key => $cart) {
+            if ($cart->product_variant()->first()->product->weight()->id == $weight->id) {
+              $sum_weight += $cart->product_variant()->first()->product->weight;
+              if ($first_carts->count()-1 == $key) {
+                if ($weight->deliveryMethods()->exists()) {
+                  foreach($weight->deliveryMethods()->where('status', 'active')->get() as $key => $method) {
+                    if($sum_weight > 5000 && $method->id == 1) {
+                      continue;
+                    }
+                    $method_ids[] = $method->id;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+
+    return view('front::shipping', compact('states', 'customer', 'first_carts', 'store_addresses', 'weights', 'consignment_shipping_cost', 'method_ids'));
+
+  }
+
+  public function shippingCost(Request $request)
+  {
+    $customer = Auth::guard('customer')->user();
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $weights = ProductWeight::all();
+    $method_ids = $request->method_ids;
+
+    $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+    return response()->json([
+      "status" => true,
+      "data" => [
+        "data" => View::make('front::ajax.shipping.changeAddressUpdatePrice', compact('customer', 'first_carts', 'weights', 'consignment_shipping_cost', 'method_ids'))->render(),
+      ]
+    ]);
+  }
+
+  public function shippingCostLogic($customer, $weights, $method_ids)
+  {
+
+//    $method_ids = [2,2];
+
+    $store_addresses = StoreAddress::all();
+
+    if ($customer->where('address_type', 'CustomerAddress')->exists()) {
+      $delivery_type = 'customer';
+    }
+    else {
+      $delivery_type = 'store';
+    }
+
+    $cart = $customer->carts()->where('type', 'first')->get();
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $weights = ProductWeight::all();
+
+    $settings = Setting::all();
+    $store_state_id = ($settings->where('name', 'store_city')->count() && $settings->where('name', 'store_city')->first()->states()->exists())? $settings->where('name', 'store_city')->first()->states()->first()->id : 1;
+
+    if ($customer->where('address_type', 'CustomerAddress')->exists()) {
+      $customer_state_id = $customer->delivery_address->id;
+    } else {
+      $customer_state_id = 0;
+    }
+
+    foreach($weights as $i => $weight) {
+      foreach ($cart as $key => $item) {
+        if (($item->product_variant()->first()->product->weight()->id == $weight->id)) {
+          $fillable_weight_ids[] = $weight->id;
+          if (isset($consignment_weight[$weight->id])) {
+            $consignment_weight[$weight->id] += $item->product_variant()->first()->product->weight;
+          } else {
+            $consignment_weight[$weight->id] = $item->product_variant()->first()->product->weight;
+          }
+          Log::info("consignment_weight {$weight->id}: " . $item->product_variant()->first()->product->weight);
+        }
+      }
+    }
+
+    $fillable_weight_ids = array_unique($fillable_weight_ids);
+
+    foreach ($fillable_weight_ids as $j => $f_weight_id) {
+      if (!isset($method_ids[$j])) {
+        $method_ids[$j] = $weight->deliveryMethods()->where('status', 'active')->first()->id;
+      }
+
+      if ($method_ids[$j] == 2 && $customer_state_id !== 0) {
+        $consignment_shipping_cost[$f_weight_id] = postPishtaz::pishtaz($store_state_id , $customer_state_id , $consignment_weight[$f_weight_id])->getPrice();
+        if (($consignment_shipping_cost[$f_weight_id] % 10000) > 5000 ) {
+          $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id]+ (10000 - $consignment_shipping_cost[$f_weight_id] % 10000);
+        } else {
+          $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id] - ($consignment_shipping_cost[$f_weight_id] % 10000);
+        }
+      }
+
+      if ($method_ids[$j] == 1 && $customer_state_id !== 0) {
+        $consignment_shipping_cost[$f_weight_id] = postSefareshi::sefarshi($store_state_id , $customer_state_id , $consignment_weight[$f_weight_id])->getPrice();
+        if (($consignment_shipping_cost[$f_weight_id] % 10000) > 5000 ) {
+          $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id]+ (10000 - $consignment_shipping_cost[$f_weight_id] % 10000);
+        } else {
+          $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id] - ($consignment_shipping_cost[$f_weight_id] % 10000);
+        }
+      }
+      elseif ($method_ids[$j] == 3) {
+        $consignment_shipping_cost[$f_weight_id] = -1;
+      }
+      elseif ($method_ids[$j] == 4) {
+        $consignment_shipping_cost[$f_weight_id] = !is_null(DeliveryMethod::find(4)->delivery_cost)? DeliveryMethod::find(4)->delivery_cost : 0;
+      }
+      if (($method_ids[$j] == 1 || $method_ids[$j] == 2) &&  $customer_state_id == 0) {
+        $consignment_shipping_cost[$f_weight_id] = 0;
+      }
+
+    }
+
+
+    return $consignment_shipping_cost;
+
   }
 
   public function changeSharedDeliveryAddress($id)
@@ -743,7 +879,7 @@ class FrontController extends Controller
     if (!$customer->delivery_address()->exists() && $customer->addresses()->exists()) {
         $defualt_address_id = $customer->addresses()->latest()->first()->id;
         $customer->update([
-          'address_type' => 'CustomerAddress',
+          'address  _type' => 'CustomerAddress',
           'address_id' => $defualt_address_id,
         ]);
     }
@@ -771,4 +907,8 @@ class FrontController extends Controller
     return view('front::peyment', compact('customer'));
   }
 
+
 }
+
+
+

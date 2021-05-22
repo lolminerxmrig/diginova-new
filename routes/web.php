@@ -49,6 +49,8 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::post('shipping/address/remove/{id}', [FrontController::class, 'removeCustomerDeliveryAddress'])->name('removeCustomerDeliveryAddress');
   Route::post('shipping/addresses/add', [FrontController::class, 'saveAddressFromShipping'])->name('saveAddressFromShipping');
 
+  Route::post('shipping-cost', [FrontController::class, 'shippingCost'])->name('shippingCost');
+
 });
 
 Route::get('cart/remove/{variant_code}', [FrontController::class, 'removeFromCart'])->name('removeFromCart');
@@ -62,6 +64,8 @@ Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::post('addresses/search-address', [FrontController::class, 'searchAddress'])->name('searchAddress');
   Route::get('shipping', [FrontController::class, 'shipping'])->name('shipping');
   Route::get('peyment', [FrontController::class, 'peyment'])->name('peyment');
+
+  Route::get('test', [FrontController::class, 'test'])->name('test');
 
 });
 

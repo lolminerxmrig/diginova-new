@@ -645,7 +645,6 @@
   <div class="uk-container uk-container-large">
     <div class="c-grid">
       <div class="c-grid__row c-grid__row--lg-top">
-
         <form method="POST" id="profile-form" data-name="profile" class="c-grid__col c-grid__col--lg-9 c-grid__col--xs-gap c-grid__col--sm-gap js-profile-page" novalidate="novalidate">
           <div class="c-grid__row">
             <div class="c-grid__col">

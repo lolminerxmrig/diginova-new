@@ -72,7 +72,7 @@ final class postSefareshi {
         $type = $this->type ;
         $weight = $this->weight  ;
         $weightType = $this->setWeight() ;
-        $partType = $this->setPart() ;
+        $partType = $this->setPart();
         $price = config(sprintf("postSefareshi.%s.tariff.%s.%s" , $type , $weightType , $partType )) ;
 
         if(  in_array( $weightType , ["higher" , 5000] ) ){

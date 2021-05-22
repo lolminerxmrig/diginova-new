@@ -678,5665 +678,715 @@
   <script>
     var supernova_mode = "production";
     var userInformation = {
-      "firstName": "\u0645\u0647\u062f\u06cc",
-      "lastName": "\u062c\u0644\u0627\u0644\u06cc",
-      "nationalSecurityNumber": "4900508349",
-      "mobile": "{{ 0 . $customer->mobile }}"
+      "firstName": "{{ $customer->first_name }}",
+      "lastName": "{{ $customer->last_name }}",
+      "nationalSecurityNumber": "{{ $customer->national_code }}",
+      "mobile": "{{ !is_null($customer->mobile)? 0 . $customer->mobile : "" }}"
     };
-    var addressAjaxUrls = {
-      "add": "\/ajax\/shipping\/addresses\/add\/",
-      "edit": "\/ajax\/shipping\/addresses\/edit\/",
-      "delete": "\/ajax\/shipping\/address\/remove\/"
-    };
+    // var addressAjaxUrls = {
+    //   "add": "\/ajax\/shipping\/addresses\/add\/",
+    //   "edit": "\/ajax\/shipping\/addresses\/edit\/",
+    //   "delete": "\/ajax\/shipping\/address\/remove\/"
+    // };
     var pageName = "Shipping";
-    var hasInvalidItem = false;
-    var defaultShippingMode = "normal";
-    var fmcgProducts = [{
-      "id": 2161415,
-      "default_variant_id": 6100184,
-      "add_to_cart_url": "\/cart\/add\/6100184\/1\/",
-      "url": "\/product\/dkp-2161415\/\u06a9\u0631\u0647-\u0633\u0646\u062a\u06cc-\u0634\u06a9\u0644\u06cc-\u0645\u0642\u062f\u0627\u0631-100-\u06af\u0631\u0645",
-      "title": "\u06a9\u0631\u0647 \u0633\u0646\u062a\u06cc \u0634\u06a9\u0644\u06cc \u0645\u0642\u062f\u0627\u0631 100 \u06af\u0631\u0645",
-      "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114087213.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-      "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114087213.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-      "defaultLang": "fa",
-      "price": {
-        "rrp_price": 100000,
-        "selling_price": 98000,
-        "discount_percent": 2,
-        "marketable_stock": 752,
-        "orderLimit": 5,
-        "is_incredible_offer": false,
-        "is_sponsored_offer": false,
-        "timer": null,
-        "plus_variant_cash_back": 5000,
-        "remaining_percentage": 75
-      },
-      "has_quick_view": true,
-      "fast_shopping_badge": true,
-      "fast_shopping_confirm": true,
-      "category": "Butter",
-      "brand": "Shakelli",
-      "index_attributes": [],
-      "rating": {
-        "rating": 87.4,
-        "count": 7324
-      },
-      "has_selling_stock": true,
-      "status": "marketable",
-      "product_parameters": {
-        "seller": {
-          "count": 1
-        },
-        "index_attributes": [],
-        "warranty": {
-          "count": 1
-        }
-      },
-      "cpc_data": null,
-      "badge": {
-        "is_incredible_offer": false,
-        "is_selling_and_sales": true,
-        "has_promotion_badge": true,
-        "is_plus_promotion": false,
-        "is_early_access": false,
-        "is_app_incredible": false,
-        "is_themeable": false,
-        "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-        "color": null,
-        "image": null
-      },
-      "has_promotion_stock": true
-    },
-      {
-        "id": 784631,
-        "default_variant_id": 1675439,
-        "add_to_cart_url": "\/cart\/add\/1675439\/1\/",
-        "url": "\/product\/dkp-784631\/\u0634\u06cc\u0631-\u0646\u06cc\u0645-\u0686\u0631\u0628-\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9-\u06a9\u0648\u0647\u067e\u0646\u0627\u0647-\u0645\u0642\u062f\u0627\u0631-940-\u0645\u06cc\u0644\u06cc-\u0644\u06cc\u062a\u0631",
-        "title": "\u0634\u06cc\u0631 \u0646\u06cc\u0645 \u0686\u0631\u0628 \u0627\u0631\u06af\u0627\u0646\u06cc\u06a9 \u06a9\u0648\u0647\u067e\u0646\u0627\u0647 \u0645\u0642\u062f\u0627\u0631 940 \u0645\u06cc\u0644\u06cc \u0644\u06cc\u062a\u0631",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3dd9e882edbbb3f30c03f06eac5e5cc362247e7b_1613902845.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3dd9e882edbbb3f30c03f06eac5e5cc362247e7b_1613902845.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 127000,
-          "selling_price": 127000,
-          "discount_percent": 0,
-          "marketable_stock": 239,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Milk2",
-        "brand": "Koohpanah",
-        "index_attributes": [{
-          "id": 31456,
-          "title": "\u0637\u0639\u0645",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50288,
-            "code": "Native",
-            "title": "\u0633\u0627\u062f\u0647"
-          }]
-        },
-          {
-            "id": 42683,
-            "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 13,
-            "values": [{
-              "id": 90506,
-              "code": "family",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }
-        ],
-        "rating": {
-          "rating": 89.8,
-          "count": 9943
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31456,
-            "title": "\u0637\u0639\u0645",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50288,
-              "code": "Native",
-              "title": "\u0633\u0627\u062f\u0647"
-            }]
-          },
-            {
-              "id": 42683,
-              "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-              "postfix": null,
-              "prefix": null,
-              "textValue": null,
-              "sort": 13,
-              "values": [{
-                "id": 90506,
-                "code": "family",
-                "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-              }]
-            }
-          ],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 4418767,
-        "default_variant_id": 14247326,
-        "add_to_cart_url": "\/cart\/add\/14247326\/1\/",
-        "url": "\/product\/dkp-4418767\/\u06af\u0648\u062c\u0647-\u0641\u0631\u0646\u06af\u06cc-\u0628\u0648\u062a\u0647-\u0627\u06cc-\u0645\u06cc\u0648\u0631\u06cc-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u06af\u0648\u062c\u0647 \u0641\u0631\u0646\u06af\u06cc \u0628\u0648\u062a\u0647 \u0627\u06cc \u0645\u06cc\u0648\u0631\u06cc - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/f872efc1c50f8e0b9a21664af500a2ce6e907305_1612870144.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/f872efc1c50f8e0b9a21664af500a2ce6e907305_1612870144.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 123700,
-          "selling_price": 109800,
-          "discount_percent": 11,
-          "marketable_stock": 353,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 95
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "\u0645\u06cc\u0648\u0631\u06cc",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 80.6,
-          "count": 719
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 1485662,
-        "default_variant_id": 4452046,
-        "add_to_cart_url": "\/cart\/add\/4452046\/1\/",
-        "url": "\/product\/dkp-1485662\/\u0645\u0627\u0633\u062a-\u0633\u0628\u0648-\u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9-\u0647\u0631\u0627\u0632-2-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0645\u0627\u0633\u062a \u0633\u0628\u0648 \u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9 \u0647\u0631\u0627\u0632 - 2 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/121654251.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/121654251.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 355000,
-          "selling_price": 264000,
-          "discount_percent": 26,
-          "marketable_stock": 173,
-          "orderLimit": 5,
-          "is_incredible_offer": true,
-          "is_sponsored_offer": false,
-          "timer": "2021-05-11 00:00:00",
-          "plus_variant_cash_back": 11000,
-          "remaining_percentage": 33
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Yogurt",
-        "brand": "\u0647\u0631\u0627\u0632",
-        "index_attributes": [{
-          "id": 39162,
-          "title": "\u0646\u0648\u0639 \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc",
-          "postfix": null,
-          "prefix": "- \u062f\u0627\u0631\u0627\u06cc \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0632 \u0646\u0648\u0639:",
-          "textValue": null,
-          "sort": 2,
-          "values": [{
-            "id": 76171,
-            "code": "familypackage",
-            "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 31507,
-          "title": "\u0646\u0648\u0639 \u0645\u0627\u0633\u062a",
-          "postfix": null,
-          "prefix": "\u0645\u0627\u0633\u062a:",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 76482,
-            "code": "Sabu",
-            "title": "\u0633\u0628\u0648"
-          }]
-        }, {
-          "id": 43475,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 255,
-          "values": [{
-            "id": 94357,
-            "code": "fullfat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 43476,
-          "title": "\u0645\u0646\u0627\u0633\u0628 \u06af\u06cc\u0627\u0647\u062e\u0648\u0627\u0631\u0627\u0646",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 255,
-          "values": [{
-            "id": 94360,
-            "code": "yes",
-            "title": "\u0628\u0644\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 88.8,
-          "count": 3720
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 39162,
-            "title": "\u0646\u0648\u0639 \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc",
-            "postfix": null,
-            "prefix": "- \u062f\u0627\u0631\u0627\u06cc \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0632 \u0646\u0648\u0639:",
-            "textValue": null,
-            "sort": 2,
-            "values": [{
-              "id": 76171,
-              "code": "familypackage",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 31507,
-            "title": "\u0646\u0648\u0639 \u0645\u0627\u0633\u062a",
-            "postfix": null,
-            "prefix": "\u0645\u0627\u0633\u062a:",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 76482,
-              "code": "Sabu",
-              "title": "\u0633\u0628\u0648"
-            }]
-          }, {
-            "id": 43475,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 255,
-            "values": [{
-              "id": 94357,
-              "code": "fullfat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 43476,
-            "title": "\u0645\u0646\u0627\u0633\u0628 \u06af\u06cc\u0627\u0647\u062e\u0648\u0627\u0631\u0627\u0646",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 255,
-            "values": [{
-              "id": 94360,
-              "code": "yes",
-              "title": "\u0628\u0644\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": true,
-          "is_selling_and_sales": false,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u0634\u06af\u0641\u062a \u0627\u0646\u06af\u06cc\u0632",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 784830,
-        "default_variant_id": 1672635,
-        "add_to_cart_url": "\/cart\/add\/1672635\/1\/",
-        "url": "\/product\/dkp-784830\/\u0642\u0627\u0631\u0686-\u062f\u06a9\u0645\u0647-\u0627\u06cc-\u06a9\u0627\u0645\u0644-\u0645\u0644\u0627\u0631\u062f-400-\u06af\u0631\u0645",
-        "title": "\u0642\u0627\u0631\u0686 \u062f\u06a9\u0645\u0647\u200c \u0627\u06cc \u06a9\u0627\u0645\u0644 \u0645\u0644\u0627\u0631\u062f - 400 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3572192.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3572192.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 218000,
-          "selling_price": 188500,
-          "discount_percent": 14,
-          "marketable_stock": 9,
-          "orderLimit": 10,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 11000,
-          "remaining_percentage": 99
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "Malard",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 85.8,
-          "count": 9103
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 857042,
-        "default_variant_id": 1711402,
-        "add_to_cart_url": "\/cart\/add\/1711402\/1\/",
-        "url": "\/product\/dkp-857042\/\u0645\u0648\u0632-\u0641\u0644\u0647-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0645\u0648\u0632 \u0641\u0644\u0647 - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/240992cb6c985ec12d16832689e0f8b827fccfb0_1609143915.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/240992cb6c985ec12d16832689e0f8b827fccfb0_1609143915.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 295000,
-          "selling_price": 274300,
-          "discount_percent": 7,
-          "marketable_stock": 44,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 60
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Fruits",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [{
-          "id": 41762,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 85892,
-            "code": "yes",
-            "title": "\u0628\u0644\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 78.2,
-          "count": 2177
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41762,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 85892,
-              "code": "yes",
-              "title": "\u0628\u0644\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 4365879,
-        "default_variant_id": 14047605,
-        "add_to_cart_url": "\/cart\/add\/14047605\/1\/",
-        "url": "\/product\/dkp-4365879\/\u0633\u064a\u0628-\u0632\u0645\u064a\u0646\u064a-\u0645\u064a\u0648\u0631\u064a-2-\u06a9\u064a\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0633\u064a\u0628 \u0632\u0645\u064a\u0646\u064a \u0645\u064a\u0648\u0631\u064a - 2 \u06a9\u064a\u0644\u0648\u06af\u0631\u0645\t",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/056a31de92d78b37e878392d79bab6434b7c9385_1612176504.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/056a31de92d78b37e878392d79bab6434b7c9385_1612176504.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 135000,
-          "selling_price": 119800,
-          "discount_percent": 11,
-          "marketable_stock": 340,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 96
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "\u0645\u06cc\u0648\u0631\u06cc",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 79,
-          "count": 630
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 856752,
-        "default_variant_id": 1711309,
-        "add_to_cart_url": "\/cart\/add\/1711309\/1\/",
-        "url": "\/product\/dkp-856752\/\u067e\u0646\u06cc\u0631-\u0644\u0628\u0646\u0647-\u0622\u0646\u0627-\u06a9\u0627\u0644\u0647-\u0645\u0642\u062f\u0627\u0631-750\u06af\u0631\u0645",
-        "title": "\u067e\u0646\u06cc\u0631 \u0644\u0628\u0646\u0647 \u0622\u0646\u0627 \u06a9\u0627\u0644\u0647 \u0645\u0642\u062f\u0627\u0631 750\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/121762758.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/121762758.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 396000,
-          "selling_price": 252000,
-          "discount_percent": 36,
-          "marketable_stock": 608,
-          "orderLimit": 10,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 13000,
-          "remaining_percentage": 99
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Pizza Cheese",
-        "brand": "Kalleh",
-        "index_attributes": [{
-          "id": 31657,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50727,
-            "code": "Full fat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 31658,
-          "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 50730,
-            "code": "Mold",
-            "title": "\u0642\u0627\u0644\u0628\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 88.4,
-          "count": 1342
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31657,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50727,
-              "code": "Full fat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 31658,
-            "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 50730,
-              "code": "Mold",
-              "title": "\u0642\u0627\u0644\u0628\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 2161383,
-        "default_variant_id": 6100213,
-        "add_to_cart_url": "\/cart\/add\/6100213\/1\/",
-        "url": "\/product\/dkp-2161383\/\u06a9\u0631\u0647-\u0633\u0646\u062a\u06cc-\u0634\u06a9\u0644\u06cc-\u0645\u0642\u062f\u0627\u0631-50-\u06af\u0631\u0645",
-        "title": "\u06a9\u0631\u0647 \u0633\u0646\u062a\u06cc \u0634\u06a9\u0644\u06cc \u0645\u0642\u062f\u0627\u0631 50 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114103090.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114103090.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 54000,
-          "selling_price": 52900,
-          "discount_percent": 2,
-          "marketable_stock": 654,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": 89
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Butter",
-        "brand": "Shakelli",
-        "index_attributes": [],
-        "rating": {
-          "rating": 88,
-          "count": 5147
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 775122,
-        "default_variant_id": 1674868,
-        "add_to_cart_url": "\/cart\/add\/1674868\/1\/",
-        "url": "\/product\/dkp-775122\/\u067e\u0646\u06cc\u0631-\u0633\u0641\u06cc\u062f-\u062a\u0627\u0632\u0647-\u06a9\u0645-\u0686\u0631\u0628-\u0631\u0648\u0632\u0627\u0646\u0647-\u0645\u0642\u062f\u0627\u0631-515-\u06af\u0631\u0645",
-        "title": "\u067e\u0646\u06cc\u0631 \u0633\u0641\u06cc\u062f \u062a\u0627\u0632\u0647 \u06a9\u0645 \u0686\u0631\u0628 \u0631\u0648\u0632\u0627\u0646\u0647 \u0645\u0642\u062f\u0627\u0631 515 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3520684.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3520684.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 275000,
-          "selling_price": 275000,
-          "discount_percent": 0,
-          "marketable_stock": 226,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Pizza Cheese",
-        "brand": "Rouzaneh",
-        "index_attributes": [{
-          "id": 31657,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50727,
-            "code": "Full fat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 31658,
-          "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 50730,
-            "code": "Mold",
-            "title": "\u0642\u0627\u0644\u0628\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 87.8,
-          "count": 748
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31657,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50727,
-              "code": "Full fat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 31658,
-            "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 50730,
-              "code": "Mold",
-              "title": "\u0642\u0627\u0644\u0628\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 768775,
-        "default_variant_id": 1674245,
-        "add_to_cart_url": "\/cart\/add\/1674245\/1\/",
-        "url": "\/product\/dkp-768775\/\u0633\u0628\u0632\u06cc-\u062e\u0648\u0631\u062f\u0646-\u062f\u06a9\u062a\u0631-\u0628\u06cc\u0698\u0646-180-\u06af\u0631\u0645",
-        "title": "\u0633\u0628\u0632\u06cc \u062e\u0648\u0631\u062f\u0646 \u062f\u06a9\u062a\u0631 \u0628\u06cc\u0698\u0646 - 180 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3499382.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3499382.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 155000,
-          "selling_price": 108500,
-          "discount_percent": 30,
-          "marketable_stock": 59,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 22
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "\u062f\u06a9\u062a\u0631 \u0628\u06cc\u0698\u0646",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 82.2,
-          "count": 3952
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 1099852,
-        "default_variant_id": 3615796,
-        "add_to_cart_url": "\/cart\/add\/3615796\/1\/",
-        "url": "\/product\/dkp-1099852\/\u062e\u0631\u0645\u0627\u06cc-\u0645\u0636\u0627\u0641\u062a\u06cc-\u0628\u0645-\u062a\u0646\u062f\u06cc\u0633-\u0633\u0627\u063a\u0631-\u0645\u0642\u062f\u0627\u0631-600-\u06af\u0631\u0645",
-        "title": "\u062e\u0631\u0645\u0627\u06cc \u0645\u0636\u0627\u0641\u062a\u06cc \u0628\u0645 \u062a\u0646\u062f\u06cc\u0633 \u0633\u0627\u063a\u0631 \u0645\u0642\u062f\u0627\u0631 600 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/5229345.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/5229345.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 435000,
-          "selling_price": 435000,
-          "discount_percent": 0,
-          "marketable_stock": 10,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 20000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": false,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u062e\u0631\u0645\u0627",
-        "brand": "\u0633\u0627\u063a\u0631",
-        "index_attributes": [],
-        "rating": {
-          "rating": 83.2,
-          "count": 2302
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 1485668,
-        "default_variant_id": 4451824,
-        "add_to_cart_url": "\/cart\/add\/4451824\/1\/",
-        "url": "\/product\/dkp-1485668\/\u0645\u0627\u0633\u062a-\u0633\u0628\u0648-\u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9-\u0647\u0631\u0627\u0632-\u0648\u0632\u0646-2200-\u06af\u0631\u0645",
-        "title": "\u0645\u0627\u0633\u062a \u0633\u0628\u0648 \u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9 \u0647\u0631\u0627\u0632 \u0648\u0632\u0646 2200 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public-2.digikala.com\/digikala-products\/110534631.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public-2.digikala.com\/digikala-products\/110534631.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 365000,
-          "selling_price": 365000,
-          "discount_percent": 0,
-          "marketable_stock": 505,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Yogurt",
-        "brand": "\u0647\u0631\u0627\u0632",
-        "index_attributes": [{
-          "id": 39162,
-          "title": "\u0646\u0648\u0639 \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc",
-          "postfix": null,
-          "prefix": "- \u062f\u0627\u0631\u0627\u06cc \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0632 \u0646\u0648\u0639:",
-          "textValue": null,
-          "sort": 2,
-          "values": [{
-            "id": 76171,
-            "code": "familypackage",
-            "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 31507,
-          "title": "\u0646\u0648\u0639 \u0645\u0627\u0633\u062a",
-          "postfix": null,
-          "prefix": "\u0645\u0627\u0633\u062a:",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 76482,
-            "code": "Sabu",
-            "title": "\u0633\u0628\u0648"
-          }]
-        }],
-        "rating": {
-          "rating": 87.6,
-          "count": 976
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 39162,
-            "title": "\u0646\u0648\u0639 \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc",
-            "postfix": null,
-            "prefix": "- \u062f\u0627\u0631\u0627\u06cc \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0632 \u0646\u0648\u0639:",
-            "textValue": null,
-            "sort": 2,
-            "values": [{
-              "id": 76171,
-              "code": "familypackage",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 31507,
-            "title": "\u0646\u0648\u0639 \u0645\u0627\u0633\u062a",
-            "postfix": null,
-            "prefix": "\u0645\u0627\u0633\u062a:",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 76482,
-              "code": "Sabu",
-              "title": "\u0633\u0628\u0648"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 888686,
-        "default_variant_id": 1772029,
-        "add_to_cart_url": "\/cart\/add\/1772029\/1\/",
-        "url": "\/product\/dkp-888686\/\u062e\u0627\u0645\u0647-\u0635\u0628\u062d\u0627\u0646\u0647-\u0645\u06cc\u0647\u0646-\u0645\u0642\u062f\u0627\u0631-200-\u06af\u0631\u0645",
-        "title": "\u062e\u0627\u0645\u0647 \u0635\u0628\u062d\u0627\u0646\u0647 \u0645\u06cc\u0647\u0646 \u0645\u0642\u062f\u0627\u0631 200 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114949771.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114949771.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 120000,
-          "selling_price": 120000,
-          "discount_percent": 0,
-          "marketable_stock": 137,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Cream",
-        "brand": "\u0645\u06cc\u0647\u0646",
-        "index_attributes": [{
-          "id": 31493,
-          "title": "\u0637\u0639\u0645",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0637\u0639\u0645",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50433,
-            "code": "Simple",
-            "title": "\u0633\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 39164,
-          "title": "\u0645\u0642\u062f\u0627\u0631",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 76174,
-            "code": "below200g",
-            "title": "\u062a\u0627 200 \u06af\u0631\u0645"
-          }]
-        }],
-        "rating": {
-          "rating": 87,
-          "count": 3766
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31493,
-            "title": "\u0637\u0639\u0645",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0637\u0639\u0645",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50433,
-              "code": "Simple",
-              "title": "\u0633\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 39164,
-            "title": "\u0645\u0642\u062f\u0627\u0631",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 76174,
-              "code": "below200g",
-              "title": "\u062a\u0627 200 \u06af\u0631\u0645"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 1024200,
-        "default_variant_id": 2152927,
-        "add_to_cart_url": "\/cart\/add\/2152927\/1\/",
-        "url": "\/product\/dkp-1024200\/\u0634\u06cc\u0631-\u06a9\u0645-\u0686\u0631\u0628-\u062f\u0648\u0645\u06cc\u0646\u0648-1-\u0644\u06cc\u062a\u0631-\u0628\u0633\u062a\u0647-4-\u0639\u062f\u062f\u06cc",
-        "title": "\u0634\u06cc\u0631 \u06a9\u0645 \u0686\u0631\u0628 \u062f\u0648\u0645\u06cc\u0646\u0648 - 1 \u0644\u06cc\u062a\u0631 \u0628\u0633\u062a\u0647 4 \u0639\u062f\u062f\u06cc",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/083313af20bc805bdb642ed7232c969cf7b5dab7_1612349454.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/083313af20bc805bdb642ed7232c969cf7b5dab7_1612349454.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 560000,
-          "selling_price": 504000,
-          "discount_percent": 10,
-          "marketable_stock": 6,
-          "orderLimit": 10,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 18000,
-          "remaining_percentage": 47
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Milk2",
-        "brand": "\u062f\u0648\u0645\u06cc\u0646\u0648",
-        "index_attributes": [{
-          "id": 31456,
-          "title": "\u0637\u0639\u0645",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50288,
-            "code": "Native",
-            "title": "\u0633\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 42683,
-          "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 13,
-          "values": [{
-            "id": 90506,
-            "code": "family",
-            "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 88.8,
-          "count": 3912
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31456,
-            "title": "\u0637\u0639\u0645",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50288,
-              "code": "Native",
-              "title": "\u0633\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 42683,
-            "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 13,
-            "values": [{
-              "id": 90506,
-              "code": "family",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 1464604,
-        "default_variant_id": 3750522,
-        "add_to_cart_url": "\/cart\/add\/3750522\/1\/",
-        "url": "\/product\/dkp-1464604\/\u062e\u06cc\u0627\u0631-\u0627\u0635\u0641\u0647\u0627\u0646-\u0641\u0644\u0647-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u062e\u06cc\u0627\u0631 \u0627\u0635\u0641\u0647\u0627\u0646 \u0641\u0644\u0647 - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/56a4ab408a5c39cff1cdbdacb3f14293e3625f8d_1618143559.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/56a4ab408a5c39cff1cdbdacb3f14293e3625f8d_1618143559.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 80000,
-          "selling_price": 80000,
-          "discount_percent": 0,
-          "marketable_stock": 228,
-          "orderLimit": 30,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Fruits",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [{
-          "id": 41762,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 85893,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 85.4,
-          "count": 717
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41762,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 85893,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 1004683,
-        "default_variant_id": 2086477,
-        "add_to_cart_url": "\/cart\/add\/2086477\/1\/",
-        "url": "\/product\/dkp-1004683\/\u0645\u0627\u0633\u062a-\u06a9\u0641\u06cc\u0631-\u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9-\u0646\u0627\u0631\u06cc-\u06a9\u0627\u0644\u0647-\u0645\u0642\u062f\u0627\u0631-1400-\u06af\u0631\u0645",
-        "title": "\u0645\u0627\u0633\u062a \u06a9\u0641\u06cc\u0631 \u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9 \u0646\u0627\u0631\u06cc \u06a9\u0627\u0644\u0647 \u0645\u0642\u062f\u0627\u0631 1400 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4717511.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4717511.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 310000,
-          "selling_price": 248000,
-          "discount_percent": 20,
-          "marketable_stock": 188,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 11000,
-          "remaining_percentage": 99
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Yogurt",
-        "brand": "Kalleh",
-        "index_attributes": [{
-          "id": 39162,
-          "title": "\u0646\u0648\u0639 \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc",
-          "postfix": null,
-          "prefix": "- \u062f\u0627\u0631\u0627\u06cc \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0632 \u0646\u0648\u0639:",
-          "textValue": null,
-          "sort": 2,
-          "values": [{
-            "id": 76171,
-            "code": "familypackage",
-            "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 31507,
-          "title": "\u0646\u0648\u0639 \u0645\u0627\u0633\u062a",
-          "postfix": null,
-          "prefix": "\u0645\u0627\u0633\u062a:",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 83338,
-            "code": "probiotic",
-            "title": "\u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9"
-          }]
-        }, {
-          "id": 43475,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 255,
-          "values": [{
-            "id": 94356,
-            "code": "low fat",
-            "title": "\u06a9\u0645 \u0686\u0631\u0628"
-          }]
-        }],
-        "rating": {
-          "rating": 87.6,
-          "count": 2256
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 39162,
-            "title": "\u0646\u0648\u0639 \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc",
-            "postfix": null,
-            "prefix": "- \u062f\u0627\u0631\u0627\u06cc \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0632 \u0646\u0648\u0639:",
-            "textValue": null,
-            "sort": 2,
-            "values": [{
-              "id": 76171,
-              "code": "familypackage",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 31507,
-            "title": "\u0646\u0648\u0639 \u0645\u0627\u0633\u062a",
-            "postfix": null,
-            "prefix": "\u0645\u0627\u0633\u062a:",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 83338,
-              "code": "probiotic",
-              "title": "\u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9"
-            }]
-          }, {
-            "id": 43475,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 255,
-            "values": [{
-              "id": 94356,
-              "code": "low fat",
-              "title": "\u06a9\u0645 \u0686\u0631\u0628"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 4365868,
-        "default_variant_id": 14047643,
-        "add_to_cart_url": "\/cart\/add\/14047643\/1\/",
-        "url": "\/product\/dkp-4365868\/\u067e\u064a\u0627\u0632-\u0632\u0631\u062f-\u0645\u064a\u0648\u0631\u064a-2-\u06a9\u064a\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u067e\u064a\u0627\u0632 \u0632\u0631\u062f \u0645\u064a\u0648\u0631\u064a - 2 \u06a9\u064a\u0644\u0648\u06af\u0631\u0645\t",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/45d7a84f30f49d8cbf742b77ed104a1704e7c950_1612176542.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/45d7a84f30f49d8cbf742b77ed104a1704e7c950_1612176542.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 116200,
-          "selling_price": 103200,
-          "discount_percent": 11,
-          "marketable_stock": 164,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 97
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "\u0645\u06cc\u0648\u0631\u06cc",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 76.4,
-          "count": 353
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 857318,
-        "default_variant_id": 1711434,
-        "add_to_cart_url": "\/cart\/add\/1711434\/1\/",
-        "url": "\/product\/dkp-857318\/\u062e\u06cc\u0627\u0631-\u06af\u0644\u062e\u0627\u0646\u0647\u0627\u06cc-\u0641\u0644\u0647-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u062e\u06cc\u0627\u0631 \u06af\u0644\u062e\u0627\u0646\u0647\u200c\u0627\u06cc \u0641\u0644\u0647 - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/943c6c4603d7766eb0c73460945547a90c9fbef4_1609663404.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/943c6c4603d7766eb0c73460945547a90c9fbef4_1609663404.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 88000,
-          "selling_price": 76800,
-          "discount_percent": 13,
-          "marketable_stock": 115,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": 94
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Fruits",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [{
-          "id": 41762,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 85893,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 85,
-          "count": 1815
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41762,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 85893,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 1464601,
-        "default_variant_id": 3760272,
-        "add_to_cart_url": "\/cart\/add\/3760272\/1\/",
-        "url": "\/product\/dkp-1464601\/\u062e\u0631\u0645\u0627-\u0639\u0633\u0644\u06cc-\u062a\u0627\u0632\u0647-\u0645\u0642\u062f\u0627\u0631-800-\u06af\u0631\u0645",
-        "title": "\u062e\u0631\u0645\u0627 \u0639\u0633\u0644\u06cc \u062a\u0627\u0632\u0647 \u0645\u0642\u062f\u0627\u0631 800 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110333468.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110333468.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 220000,
-          "selling_price": 220000,
-          "discount_percent": 0,
-          "marketable_stock": 27,
-          "orderLimit": 30,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": false,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u062e\u0631\u0645\u0627",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [],
-        "rating": {
-          "rating": 85.4,
-          "count": 1102
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 769934,
-        "default_variant_id": 1649544,
-        "add_to_cart_url": "\/cart\/add\/1649544\/1\/",
-        "url": "\/product\/dkp-769934\/\u0630\u0631\u062a-\u0634\u06cc\u0631\u06cc\u0646-\u0645\u0646\u062c\u0645\u062f-\u0646\u0648\u0628\u0631-\u0633\u0628\u0632-\u0645\u0642\u062f\u0627\u0631-400-\u06af\u0631\u0645",
-        "title": "\u0630\u0631\u062a \u0634\u06cc\u0631\u06cc\u0646 \u0645\u0646\u062c\u0645\u062f \u0646\u0648\u0628\u0631 \u0633\u0628\u0632 \u0645\u0642\u062f\u0627\u0631 400 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3496898.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3496898.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 259000,
-          "selling_price": 259000,
-          "discount_percent": 0,
-          "marketable_stock": 219,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 12000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Frozen food",
-        "brand": "\u0646\u0648\u0628\u0631 \u0633\u0628\u0632",
-        "index_attributes": [{
-          "id": 39197,
-          "title": "\u0645\u0634\u062a\u0645\u0644 \u0628\u0631",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 1,
-          "values": [{
-            "id": 76367,
-            "code": "corn",
-            "title": "\u0630\u0631\u062a"
-          }]
-        }],
-        "rating": {
-          "rating": 85.6,
-          "count": 1364
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 39197,
-            "title": "\u0645\u0634\u062a\u0645\u0644 \u0628\u0631",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 1,
-            "values": [{
-              "id": 76367,
-              "code": "corn",
-              "title": "\u0630\u0631\u062a"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 856885,
-        "default_variant_id": 1711361,
-        "add_to_cart_url": "\/cart\/add\/1711361\/1\/",
-        "url": "\/product\/dkp-856885\/\u067e\u0646\u06cc\u0631-\u0648\u0631\u0642\u0647-\u0627\u06cc-\u06af\u0648\u062f\u0627-\u06a9\u0627\u0644\u0647-180-\u06af\u0631\u0645",
-        "title": "\u067e\u0646\u06cc\u0631 \u0648\u0631\u0642\u0647 \u0627\u06cc \u06af\u0648\u062f\u0627 \u06a9\u0627\u0644\u0647 - 180 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4005445.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4005445.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 220000,
-          "selling_price": 172700,
-          "discount_percent": 22,
-          "marketable_stock": 558,
-          "orderLimit": 5,
-          "is_incredible_offer": true,
-          "is_sponsored_offer": false,
-          "timer": "2021-05-11 00:00:00",
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 62
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Pizza Cheese",
-        "brand": "Kalleh",
-        "index_attributes": [{
-          "id": 31657,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50727,
-            "code": "Full fat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 31658,
-          "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 50729,
-            "code": "Sheets",
-            "title": "\u0648\u0631\u0642\u0647\u200c\u0627\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 88.6,
-          "count": 1944
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31657,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50727,
-              "code": "Full fat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 31658,
-            "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 50729,
-              "code": "Sheets",
-              "title": "\u0648\u0631\u0642\u0647\u200c\u0627\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": true,
-          "is_selling_and_sales": false,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u0634\u06af\u0641\u062a \u0627\u0646\u06af\u06cc\u0632",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 856997,
-        "default_variant_id": 1711398,
-        "add_to_cart_url": "\/cart\/add\/1711398\/1\/",
-        "url": "\/product\/dkp-856997\/\u0644\u06cc\u0645\u0648-\u062a\u0631\u0634-\u0633\u0646\u06af\u06cc-\u0641\u0644\u0647-500-\u06af\u0631\u0645",
-        "title": "\u0644\u06cc\u0645\u0648 \u062a\u0631\u0634 \u0633\u0646\u06af\u06cc \u0641\u0644\u0647 - 500 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/70a6a969c9ab8ee7735ee2e6172869057551716c_1609144147.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/70a6a969c9ab8ee7735ee2e6172869057551716c_1609144147.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 115000,
-          "selling_price": 109200,
-          "discount_percent": 5,
-          "marketable_stock": 113,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 100
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Fruits",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [{
-          "id": 41762,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 85893,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 83.2,
-          "count": 1105
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41762,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 85893,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 1577602,
-        "default_variant_id": 5297163,
-        "add_to_cart_url": "\/cart\/add\/5297163\/1\/",
-        "url": "\/product\/dkp-1577602\/\u0634\u06cc\u0631-\u062a\u0627\u0632\u0647-\u06a9\u0645-\u0686\u0631\u0628-\u067e\u0627\u06a9-\u062d\u062c\u0645-1-\u0644\u06cc\u062a\u0631",
-        "title": "\u0634\u06cc\u0631 \u062a\u0627\u0632\u0647 \u06a9\u0645 \u0686\u0631\u0628 \u067e\u0627\u06a9 \u062d\u062c\u0645 1 \u0644\u06cc\u062a\u0631",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110938214.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110938214.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 80000,
-          "selling_price": 80000,
-          "discount_percent": 0,
-          "marketable_stock": 146,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Milk2",
-        "brand": "\u067e\u0627\u06a9",
-        "index_attributes": [{
-          "id": 31456,
-          "title": "\u0637\u0639\u0645",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50288,
-            "code": "Native",
-            "title": "\u0633\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 42683,
-          "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 13,
-          "values": [{
-            "id": 90506,
-            "code": "family",
-            "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 85.6,
-          "count": 3923
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31456,
-            "title": "\u0637\u0639\u0645",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50288,
-              "code": "Native",
-              "title": "\u0633\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 42683,
-            "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 13,
-            "values": [{
-              "id": 90506,
-              "code": "family",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 1512922,
-        "default_variant_id": 4036323,
-        "add_to_cart_url": "\/cart\/add\/4036323\/1\/",
-        "url": "\/product\/dkp-1512922\/\u0634\u06cc\u0631-\u0646\u06cc\u0645-\u0686\u0631\u0628-\u0631\u0627\u0645\u06a9-\u0645\u0642\u062f\u0627\u0631-1-\u0644\u06cc\u062a\u0631",
-        "title": "\u0634\u06cc\u0631 \u0646\u06cc\u0645 \u0686\u0631\u0628 \u0631\u0627\u0645\u06a9 \u0645\u0642\u062f\u0627\u0631 1 \u0644\u06cc\u062a\u0631",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114917578.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114917578.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 95000,
-          "selling_price": 85500,
-          "discount_percent": 10,
-          "marketable_stock": 94,
-          "orderLimit": 12,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": 96
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Milk2",
-        "brand": "\u0631\u0627\u0645\u06a9",
-        "index_attributes": [{
-          "id": 31456,
-          "title": "\u0637\u0639\u0645",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50288,
-            "code": "Native",
-            "title": "\u0633\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 42683,
-          "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 13,
-          "values": [{
-            "id": 90506,
-            "code": "family",
-            "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 89,
-          "count": 3657
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31456,
-            "title": "\u0637\u0639\u0645",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50288,
-              "code": "Native",
-              "title": "\u0633\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 42683,
-            "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 13,
-            "values": [{
-              "id": 90506,
-              "code": "family",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 876551,
-        "default_variant_id": 1746875,
-        "add_to_cart_url": "\/cart\/add\/1746875\/1\/",
-        "url": "\/product\/dkp-876551\/\u0647\u0645\u0628\u0631\u06af\u0631-95-\u062f\u0631\u0635\u062f-\u0645\u0647\u06cc\u0627-\u067e\u0631\u0648\u062a\u0626\u06cc\u0646-400-\u06af\u0631\u0645",
-        "title": "\u0647\u0645\u0628\u0631\u06af\u0631 95 \u062f\u0631\u0635\u062f \u0645\u0647\u06cc\u0627 \u067e\u0631\u0648\u062a\u0626\u06cc\u0646 - 400 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4079550.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4079550.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 540000,
-          "selling_price": 540000,
-          "discount_percent": 0,
-          "marketable_stock": 209,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 24000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Frozen food",
-        "brand": "Mahya Protein",
-        "index_attributes": [{
-          "id": 39197,
-          "title": "\u0645\u0634\u062a\u0645\u0644 \u0628\u0631",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 1,
-          "values": [{
-            "id": 76383,
-            "code": "hamburger",
-            "title": "\u0647\u0645\u0628\u0631\u06af\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 84.6,
-          "count": 4357
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 39197,
-            "title": "\u0645\u0634\u062a\u0645\u0644 \u0628\u0631",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 1,
-            "values": [{
-              "id": 76383,
-              "code": "hamburger",
-              "title": "\u0647\u0645\u0628\u0631\u06af\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 1934918,
-        "default_variant_id": 5603431,
-        "add_to_cart_url": "\/cart\/add\/5603431\/1\/",
-        "url": "\/product\/dkp-1934918\/\u06a9\u0627\u0644\u0628\u0627\u0633-90-\u062f\u0631\u0635\u062f-\u06af\u0648\u0634\u062a-\u0645\u0631\u063a-\u0628\u0627-\u0637\u0639\u0645-\u062f\u0648\u062f-\u0641\u0627\u0631\u0633\u06cc-\u0648\u0632\u0646-250-\u06af\u0631\u0645",
-        "title": "\u06a9\u0627\u0644\u0628\u0627\u0633 90 \u062f\u0631\u0635\u062f \u06af\u0648\u0634\u062a \u0645\u0631\u063a \u0628\u0627 \u0637\u0639\u0645 \u062f\u0648\u062f \u0641\u0627\u0631\u0633\u06cc \u0648\u0632\u0646 250 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/112897153.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/112897153.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 418000,
-          "selling_price": 263300,
-          "discount_percent": 37,
-          "marketable_stock": 14,
-          "orderLimit": 10,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 84
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Sausages",
-        "brand": "\u0641\u0627\u0631\u0633\u06cc",
-        "index_attributes": [{
-          "id": 31542,
-          "title": "\u062a\u0647\u06cc\u0647 \u0634\u062f\u0647 \u0627\u0632",
-          "postfix": null,
-          "prefix": "\u062a\u0647\u06cc\u0647 \u0634\u062f\u0647 \u0627\u0632 :",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50494,
-            "code": "Chicken",
-            "title": "\u06af\u0648\u0634\u062a \u0645\u0631\u063a"
-          }]
-        }, {
-          "id": 39161,
-          "title": "\u062f\u0631\u0635\u062f \u06af\u0648\u0634\u062a",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 6,
-          "values": [{
-            "id": 96757,
-            "code": "90",
-            "title": "90"
-          }]
-        }],
-        "rating": {
-          "rating": 85.2,
-          "count": 851
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31542,
-            "title": "\u062a\u0647\u06cc\u0647 \u0634\u062f\u0647 \u0627\u0632",
-            "postfix": null,
-            "prefix": "\u062a\u0647\u06cc\u0647 \u0634\u062f\u0647 \u0627\u0632 :",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50494,
-              "code": "Chicken",
-              "title": "\u06af\u0648\u0634\u062a \u0645\u0631\u063a"
-            }]
-          }, {
-            "id": 39161,
-            "title": "\u062f\u0631\u0635\u062f \u06af\u0648\u0634\u062a",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 6,
-            "values": [{
-              "id": 96757,
-              "code": "90",
-              "title": "90"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 857334,
-        "default_variant_id": 1711508,
-        "add_to_cart_url": "\/cart\/add\/1711508\/1\/",
-        "url": "\/product\/dkp-857334\/\u0647\u0648\u06cc\u062c-\u0641\u0644\u0647-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0647\u0648\u06cc\u062c \u0641\u0644\u0647 - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/541cde97fc9ce57d7a1c028944e393e4172dac49_1609143830.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/541cde97fc9ce57d7a1c028944e393e4172dac49_1609143830.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 105000,
-          "selling_price": 94500,
-          "discount_percent": 10,
-          "marketable_stock": 31,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": 99
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85890,
-            "code": "yes",
-            "title": "\u0628\u0644\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 80.4,
-          "count": 1120
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85890,
-              "code": "yes",
-              "title": "\u0628\u0644\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 3994679,
-        "default_variant_id": 12839016,
-        "add_to_cart_url": "\/cart\/add\/12839016\/1\/",
-        "url": "\/product\/dkp-3994679\/\u062e\u06cc\u0627\u0631-\u0645\u06cc\u0648\u0631\u06cc-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u062e\u06cc\u0627\u0631 \u0645\u06cc\u0648\u0631\u06cc - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/692178cd6a10ad4d6f0f353cb7d0af80376bf77c_1612359738.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/692178cd6a10ad4d6f0f353cb7d0af80376bf77c_1612359738.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 106200,
-          "selling_price": 94300,
-          "discount_percent": 11,
-          "marketable_stock": 219,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 0,
-          "remaining_percentage": 98
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Fruits",
-        "brand": "\u0645\u06cc\u0648\u0631\u06cc",
-        "index_attributes": [{
-          "id": 41762,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 85893,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 82,
-          "count": 885
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41762,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 85893,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 4221486,
-        "default_variant_id": 13626332,
-        "add_to_cart_url": "\/cart\/add\/13626332\/1\/",
-        "url": "\/product\/dkp-4221486\/\u06a9\u0631\u0647-\u06af\u06cc\u0627\u0647\u06cc-\u0632\u0639\u0641\u0631\u0627\u0646\u06cc-\u0644\u0627\u062f\u0646-250-\u06af\u0631\u0645",
-        "title": "\u06a9\u0631\u0647 \u06af\u06cc\u0627\u0647\u06cc \u0632\u0639\u0641\u0631\u0627\u0646\u06cc \u0644\u0627\u062f\u0646 - 250 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/2794ef7174310518fe61b58e6eaf26d8a255f657_1610539504.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/2794ef7174310518fe61b58e6eaf26d8a255f657_1610539504.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 80000,
-          "selling_price": 73600,
-          "discount_percent": 8,
-          "marketable_stock": 327,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": 94
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Butter",
-        "brand": "Ladan",
-        "index_attributes": [],
-        "rating": {
-          "rating": 88,
-          "count": 410
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 856812,
-        "default_variant_id": 1711313,
-        "add_to_cart_url": "\/cart\/add\/1711313\/1\/",
-        "url": "\/product\/dkp-856812\/\u067e\u0646\u06cc\u0631-\u062e\u0627\u0645\u0647-\u0627\u06cc-\u0648\u06cc\u0644\u06cc-\u06a9\u0627\u0644\u0647-350-\u06af\u0631\u0645",
-        "title": "\u067e\u0646\u06cc\u0631 \u062e\u0627\u0645\u0647 \u0627\u06cc \u0648\u06cc\u0644\u06cc \u06a9\u0627\u0644\u0647 - 350 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/8b203453ace0384d886b221d62df356b5ba0bb50_1614169370.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/8b203453ace0384d886b221d62df356b5ba0bb50_1614169370.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 225000,
-          "selling_price": 195000,
-          "discount_percent": 0,
-          "marketable_stock": 250,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Pizza Cheese",
-        "brand": "Kalleh",
-        "index_attributes": [{
-          "id": 31657,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50726,
-            "code": "Low fat",
-            "title": "\u06a9\u0645 \u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 31658,
-          "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 50730,
-            "code": "Mold",
-            "title": "\u0642\u0627\u0644\u0628\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 89.8,
-          "count": 4241
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31657,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50726,
-              "code": "Low fat",
-              "title": "\u06a9\u0645 \u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 31658,
-            "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 50730,
-              "code": "Mold",
-              "title": "\u0642\u0627\u0644\u0628\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 2010661,
-        "default_variant_id": 5548234,
-        "add_to_cart_url": "\/cart\/add\/5548234\/1\/",
-        "url": "\/product\/dkp-2010661\/\u06a9\u0627\u0644\u0628\u0627\u0633-90-\u062f\u0631\u0635\u062f-\u06af\u0648\u0634\u062a-\u0645\u0631\u063a-\u0647\u0627\u06cc\u0632\u0645-\u0648\u0632\u0646-250-\u06af\u0631\u0645",
-        "title": "\u06a9\u0627\u0644\u0628\u0627\u0633 90 \u062f\u0631\u0635\u062f \u06af\u0648\u0634\u062a \u0645\u0631\u063a \u0647\u0627\u06cc\u0632\u0645 \u0648\u0632\u0646 250 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/113266576.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/113266576.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 438000,
-          "selling_price": 438000,
-          "discount_percent": 0,
-          "marketable_stock": 18,
-          "orderLimit": 3,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Sausages",
-        "brand": "\u0647\u0627\u06cc\u0632\u0645",
-        "index_attributes": [{
-          "id": 31542,
-          "title": "\u062a\u0647\u06cc\u0647 \u0634\u062f\u0647 \u0627\u0632",
-          "postfix": null,
-          "prefix": "\u062a\u0647\u06cc\u0647 \u0634\u062f\u0647 \u0627\u0632 :",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50494,
-            "code": "Chicken",
-            "title": "\u06af\u0648\u0634\u062a \u0645\u0631\u063a"
-          }]
-        }, {
-          "id": 39161,
-          "title": "\u062f\u0631\u0635\u062f \u06af\u0648\u0634\u062a",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 6,
-          "values": [{
-            "id": 76169,
-            "code": "above70percent",
-            "title": "\u0628\u0627\u0644\u0627\u06cc 70 \u062f\u0631\u0635\u062f"
-          }]
-        }],
-        "rating": {
-          "rating": 83.4,
-          "count": 1010
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31542,
-            "title": "\u062a\u0647\u06cc\u0647 \u0634\u062f\u0647 \u0627\u0632",
-            "postfix": null,
-            "prefix": "\u062a\u0647\u06cc\u0647 \u0634\u062f\u0647 \u0627\u0632 :",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50494,
-              "code": "Chicken",
-              "title": "\u06af\u0648\u0634\u062a \u0645\u0631\u063a"
-            }]
-          }, {
-            "id": 39161,
-            "title": "\u062f\u0631\u0635\u062f \u06af\u0648\u0634\u062a",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 6,
-            "values": [{
-              "id": 76169,
-              "code": "above70percent",
-              "title": "\u0628\u0627\u0644\u0627\u06cc 70 \u062f\u0631\u0635\u062f"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 1748995,
-        "default_variant_id": 4607671,
-        "add_to_cart_url": "\/cart\/add\/4607671\/1\/",
-        "url": "\/product\/dkp-1748995\/\u067e\u06cc\u0627\u0632-\u0633\u0641\u06cc\u062f-\u0641\u0644\u0647-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u067e\u06cc\u0627\u0632 \u0633\u0641\u06cc\u062f \u0641\u0644\u0647 - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/cd4c080c36cc5b1f7f64ca933b5ed84365fb2a35_1609664445.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/cd4c080c36cc5b1f7f64ca933b5ed84365fb2a35_1609664445.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 56000,
-          "selling_price": 53700,
-          "discount_percent": 4,
-          "marketable_stock": 105,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 0,
-          "remaining_percentage": 85
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 84.2,
-          "count": 1301
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 3729650,
-        "default_variant_id": 12142152,
-        "add_to_cart_url": "\/cart\/add\/12142152\/1\/",
-        "url": "\/product\/dkp-3729650\/\u067e\u0646\u06cc\u0631-\u067e\u06cc\u062a\u0632\u0627-\u0645\u062e\u0644\u0648\u0637-\u0645\u0637\u0647\u0631-500-\u06af\u0631\u0645",
-        "title": "\u067e\u0646\u06cc\u0631 \u067e\u06cc\u062a\u0632\u0627 \u0645\u062e\u0644\u0648\u0637 \u0645\u0637\u0647\u0631 - 500 \u06af\u0631\u0645 ",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/2ba6f95a5fef5a4b0475a6d9b00da0badd454881_1605073099.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/2ba6f95a5fef5a4b0475a6d9b00da0badd454881_1605073099.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 530000,
-          "selling_price": 530000,
-          "discount_percent": 0,
-          "marketable_stock": 3,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 19000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Pizza Cheese",
-        "brand": "\u0645\u0637\u0647\u0631",
-        "index_attributes": [{
-          "id": 31657,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50727,
-            "code": "Full fat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 31658,
-          "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 50728,
-            "code": "Grated",
-            "title": "\u0631\u0646\u062f\u0647 \u0634\u062f\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 89.6,
-          "count": 623
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31657,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50727,
-              "code": "Full fat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 31658,
-            "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 50728,
-              "code": "Grated",
-              "title": "\u0631\u0646\u062f\u0647 \u0634\u062f\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 792198,
-        "default_variant_id": 1671429,
-        "add_to_cart_url": "\/cart\/add\/1671429\/1\/",
-        "url": "\/product\/dkp-792198\/\u0633\u06cc\u0646\u0647-\u0628\u06cc-\u067e\u0648\u0633\u062a-\u0645\u0647\u06cc\u0627-\u067e\u0631\u0648\u062a\u0626\u06cc\u0646-18-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0633\u06cc\u0646\u0647 \u0628\u06cc \u067e\u0648\u0633\u062a \u0645\u0647\u06cc\u0627 \u067e\u0631\u0648\u062a\u0626\u06cc\u0646 - 1.8 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3612810.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3612810.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 891000,
-          "selling_price": 891000,
-          "discount_percent": 0,
-          "marketable_stock": 1,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": false,
-        "fast_shopping_confirm": false,
-        "category": "Chicken",
-        "brand": "Mahya Protein",
-        "index_attributes": [{
-          "id": 31525,
-          "title": "\u0637\u0639\u0645",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0637\u0639\u0645:",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50487,
-            "code": "simple",
-            "title": "\u0633\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 42054,
-          "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc \u06a9\u0628\u0627\u0628",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 87209,
-            "code": "yes",
-            "title": "\u0628\u0644\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 83.6,
-          "count": 3287
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31525,
-            "title": "\u0637\u0639\u0645",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0637\u0639\u0645:",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50487,
-              "code": "simple",
-              "title": "\u0633\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 42054,
-            "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc \u06a9\u0628\u0627\u0628",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 87209,
-              "code": "yes",
-              "title": "\u0628\u0644\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 4327780,
-        "default_variant_id": 14003895,
-        "add_to_cart_url": "\/cart\/add\/14003895\/1\/",
-        "url": "\/product\/dkp-4327780\/\u067e\u0646\u06cc\u0631-\u062e\u0627\u0645\u0647-\u0627\u06cc-\u0648\u06cc\u0644\u06cc-\u06a9\u0627\u0644\u0647-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u067e\u0646\u06cc\u0631 \u062e\u0627\u0645\u0647 \u0627\u06cc \u0648\u06cc\u0644\u06cc \u06a9\u0627\u0644\u0647 - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645  ",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/b853b31d09ea9e86cfdc1c33537dcde2115e1f4d_1611989330.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/b853b31d09ea9e86cfdc1c33537dcde2115e1f4d_1611989330.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 550000,
-          "selling_price": 520000,
-          "discount_percent": 0,
-          "marketable_stock": 6,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 18000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Pizza Cheese",
-        "brand": "Kalleh",
-        "index_attributes": [{
-          "id": 31657,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50727,
-            "code": "Full fat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 31658,
-          "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 50730,
-            "code": "Mold",
-            "title": "\u0642\u0627\u0644\u0628\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 89.6,
-          "count": 302
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31657,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50727,
-              "code": "Full fat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 31658,
-            "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 50730,
-              "code": "Mold",
-              "title": "\u0642\u0627\u0644\u0628\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 2561528,
-        "default_variant_id": 8120746,
-        "add_to_cart_url": "\/cart\/add\/8120746\/1\/",
-        "url": "\/product\/dkp-2561528\/\u067e\u0646\u06cc\u0631-\u0644\u0628\u0646\u0647-\u0622\u0644\u06cc\u0645\u0627-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u067e\u0646\u06cc\u0631 \u0644\u0628\u0646\u0647 \u0622\u0644\u06cc\u0645\u0627 - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/119828057.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/119828057.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 450000,
-          "selling_price": 450000,
-          "discount_percent": 0,
-          "marketable_stock": 602,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 16000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Pizza Cheese",
-        "brand": "\u0622\u0644\u06cc\u0645\u0627",
-        "index_attributes": [{
-          "id": 31657,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50727,
-            "code": "Full fat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 31658,
-          "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 50730,
-            "code": "Mold",
-            "title": "\u0642\u0627\u0644\u0628\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 89.4,
-          "count": 766
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31657,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50727,
-              "code": "Full fat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 31658,
-            "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 50730,
-              "code": "Mold",
-              "title": "\u0642\u0627\u0644\u0628\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 4906034,
-        "default_variant_id": 16092764,
-        "add_to_cart_url": "\/cart\/add\/16092764\/1\/",
-        "url": "\/product\/dkp-4906034\/\u06a9\u0631\u0647-\u06af\u06cc\u0627\u0647\u06cc-\u0644\u0627\u062f\u0646-250-\u06af\u0631\u0645-\u0645\u062c\u0645\u0648\u0639\u0647-3-\u0639\u062f\u062f\u06cc",
-        "title": "\u06a9\u0631\u0647 \u06af\u06cc\u0627\u0647\u06cc \u0644\u0627\u062f\u0646 - 250 \u06af\u0631\u0645 \u0645\u062c\u0645\u0648\u0639\u0647 3 \u0639\u062f\u062f\u06cc ",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4c97ac38fbe57d56f53089bf47e3bbc6c8ff4acb_1618733770.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4c97ac38fbe57d56f53089bf47e3bbc6c8ff4acb_1618733770.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 240000,
-          "selling_price": 204000,
-          "discount_percent": 15,
-          "marketable_stock": 466,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 97
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Butter",
-        "brand": "Ladan",
-        "index_attributes": [],
-        "rating": {
-          "rating": 93.4,
-          "count": 3
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 2509069,
-        "default_variant_id": 7399365,
-        "add_to_cart_url": "\/cart\/add\/7399365\/1\/",
-        "url": "\/product\/dkp-2509069\/\u062e\u0631\u0645\u0627-\u0631\u0627\u06cc\u0627\u0646-\u0633\u0627\u063a\u0631-580-\u06af\u0631\u0645",
-        "title": "\u062e\u0631\u0645\u0627 \u0631\u0627\u06cc\u0627\u0646 \u0633\u0627\u063a\u0631 - 580 \u06af\u0631\u0645 ",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/119536846.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/119536846.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 395000,
-          "selling_price": 395000,
-          "discount_percent": 0,
-          "marketable_stock": 4,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 18000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": false,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u062e\u0631\u0645\u0627",
-        "brand": "\u0633\u0627\u063a\u0631",
-        "index_attributes": [],
-        "rating": {
-          "rating": 82.6,
-          "count": 2108
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 856935,
-        "default_variant_id": 1711345,
-        "add_to_cart_url": "\/cart\/add\/1711345\/1\/",
-        "url": "\/product\/dkp-856935\/\u067e\u0646\u06cc\u0631-\u0644\u0628\u0646\u0647-\u06a9\u0627\u0644\u0647-350-\u06af\u0631\u0645",
-        "title": "\u067e\u0646\u06cc\u0631 \u0644\u0628\u0646\u0647 \u06a9\u0627\u0644\u0647 - 350 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/121811660.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/121811660.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 198000,
-          "selling_price": 180000,
-          "discount_percent": 0,
-          "marketable_stock": 230,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Pizza Cheese",
-        "brand": "Kalleh",
-        "index_attributes": [{
-          "id": 31657,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50727,
-            "code": "Full fat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 31658,
-          "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-          "postfix": null,
-          "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 50730,
-            "code": "Mold",
-            "title": "\u0642\u0627\u0644\u0628\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 87.8,
-          "count": 3197
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31657,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50727,
-              "code": "Full fat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 31658,
-            "title": "\u0634\u06a9\u0644 \u067e\u0646\u06cc\u0631",
-            "postfix": null,
-            "prefix": "\u067e\u0646\u06cc\u0631 \u0628\u0647 \u0634\u06a9\u0644",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 50730,
-              "code": "Mold",
-              "title": "\u0642\u0627\u0644\u0628\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 3674260,
-        "default_variant_id": 11946128,
-        "add_to_cart_url": "\/cart\/add\/11946128\/1\/",
-        "url": "\/product\/dkp-3674260\/\u06a9\u0634\u06a9-\u0633\u0645\u06cc\u0647-650-\u06af\u0631\u0645",
-        "title": "\u06a9\u0634\u06a9 \u0633\u0645\u06cc\u0647 - 650 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/6d1a49f8c173f8a533b6bd0066d7fdc5ce5c1441_1604843162.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/6d1a49f8c173f8a533b6bd0066d7fdc5ce5c1441_1604843162.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 285000,
-          "selling_price": 242200,
-          "discount_percent": 15,
-          "marketable_stock": 332,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 13000,
-          "remaining_percentage": 99
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Whey",
-        "brand": "Somayeh",
-        "index_attributes": [],
-        "rating": {
-          "rating": 87.4,
-          "count": 429
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }
-    ];
-    var userFastShippingPurchaseHistory = {
-      "header": {
-        "title": "\u067e\u0631\u062a\u06a9\u0631\u0627\u0631\u062a\u0631\u06cc\u0646 \u062e\u0631\u06cc\u062f\u0647\u0627\u06cc \u0634\u0645\u0627",
-        "title_en": "Frequently bought products"
-      },
-      "data_layer": "{\"event\":\"eec.productImpression\",\"ecommerce\":{\"currencyCode\":\"EUR\",\"impressions\":[{\"name\":\"\\u06a9\\u0631\\u0645 \\u062a\\u0631\\u06a9 \\u062f\\u0633\\u062a \\u0648 \\u067e\\u0627 \\u062c\\u06cc \\u0645\\u062f\\u0644 Br001 \\u062d\\u062c\\u0645 50 \\u0645\\u06cc\\u0644\\u06cc\\u200c\\u0644\\u06cc\\u062a\\u0631\",\"id\":841139,\"price\":137400,\"brand\":\"\\u062c\\u06cc\",\"category\":\"\\u06a9\\u0631\\u0645 \\u0648 \\u0631\\u0648\\u063a\\u0646 \\u0631\\u0641\\u0639 \\u062a\\u0631\\u06a9 \\u0628\\u062f\\u0646\",\"list\":\"category-\\u06a9\\u0631\\u0645 \\u0648 \\u0631\\u0648\\u063a\\u0646 \\u0631\\u0641\\u0639 \\u062a\\u0631\\u06a9 \\u0628\\u062f\\u0646\",\"position\":1,\"dimension6\":1,\"dimension2\":14,\"dimension9\":4.5,\"metric6\":4747,\"dimension11\":0,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u06a9\\u0631\\u0647 \\u0633\\u0646\\u062a\\u06cc \\u0634\\u06a9\\u0644\\u06cc \\u0645\\u0642\\u062f\\u0627\\u0631 100 \\u06af\\u0631\\u0645\",\"id\":2161415,\"price\":98000,\"brand\":\"\\u0634\\u06a9\\u0644\\u06cc\",\"category\":\"\\u06a9\\u0631\\u0647 \\u062d\\u06cc\\u0648\\u0627\\u0646\\u06cc \\u0648 \\u06af\\u06cc\\u0627\\u0647\\u06cc\",\"list\":\"category-\\u06a9\\u0631\\u0647 \\u062d\\u06cc\\u0648\\u0627\\u0646\\u06cc \\u0648 \\u06af\\u06cc\\u0627\\u0647\\u06cc\",\"position\":2,\"dimension6\":1,\"dimension2\":2,\"dimension9\":4.4,\"metric6\":7324,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"},{\"name\":\"\\u0634\\u06cc\\u0631 \\u0646\\u06cc\\u0645 \\u0686\\u0631\\u0628 \\u0627\\u0631\\u06af\\u0627\\u0646\\u06cc\\u06a9 \\u06a9\\u0648\\u0647\\u067e\\u0646\\u0627\\u0647 \\u0645\\u0642\\u062f\\u0627\\u0631 940 \\u0645\\u06cc\\u0644\\u06cc \\u0644\\u06cc\\u062a\\u0631\",\"id\":784631,\"price\":127000,\"brand\":\"\\u06a9\\u0648\\u0647\\u067e\\u0646\\u0627\\u0647\",\"category\":\"\\u0634\\u06cc\\u0631\",\"list\":\"category-\\u0634\\u06cc\\u0631\",\"position\":3,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.5,\"metric6\":9943,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u06a9\\u0646\\u0633\\u0631\\u0648 \\u0645\\u0627\\u0647\\u06cc \\u062a\\u0648\\u0646 \\u062f\\u0631 \\u0631\\u0648\\u063a\\u0646 \\u06af\\u06cc\\u0627\\u0647\\u06cc \\u0637\\u0628\\u06cc\\u0639\\u062a - 180 \\u06af\\u0631\\u0645\",\"id\":847467,\"price\":195000,\"brand\":\"\\u0637\\u0628\\u06cc\\u0639\\u062a\",\"category\":\"\\u06a9\\u0646\\u0633\\u0631\\u0648 \\u0645\\u0627\\u0647\\u06cc\",\"list\":\"category-\\u06a9\\u0646\\u0633\\u0631\\u0648 \\u0645\\u0627\\u0647\\u06cc\",\"position\":4,\"dimension6\":1,\"dimension2\":30,\"dimension9\":4.3,\"metric6\":11620,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"incredible\"},{\"name\":\"\\u06af\\u0648\\u062c\\u0647 \\u0641\\u0631\\u0646\\u06af\\u06cc \\u0628\\u0648\\u062a\\u0647 \\u0627\\u06cc \\u0645\\u06cc\\u0648\\u0631\\u06cc - 1 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":4418767,\"price\":109800,\"brand\":\"\\u0645\\u06cc\\u0648\\u0631\\u06cc\",\"category\":\"\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"list\":\"category-\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"position\":5,\"dimension6\":1,\"dimension2\":11,\"dimension9\":4.1,\"metric6\":719,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"},{\"name\":\"\\u0642\\u0631\\u0635 \\u0645\\u0627\\u0634\\u06cc\\u0646 \\u0638\\u0631\\u0641\\u0634\\u0648\\u06cc\\u06cc \\u0647\\u0648\\u0645 \\u067e\\u0644\\u0627\\u0633 \\u0645\\u062f\\u0644 Lemon \\u0628\\u0633\\u062a\\u0647 24 \\u0639\\u062f\\u062f\\u06cc\",\"id\":3431048,\"price\":830000,\"brand\":\"\\u0647\\u0648\\u0645 \\u067e\\u0644\\u0627\\u0633\",\"category\":\"\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"list\":\"category-\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"position\":6,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":6211,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0633\\u0633 \\u06af\\u0648\\u062c\\u0647 \\u0641\\u0631\\u0646\\u06af\\u06cc \\u0628\\u06cc\\u0698\\u0646 \\u0648\\u0632\\u0646 550 \\u06af\\u0631\\u0645\",\"id\":1481847,\"price\":135000,\"brand\":\"\\u0628\\u06cc\\u0698\\u0646\",\"category\":\"\\u0633\\u0633\",\"list\":\"category-\\u0633\\u0633\",\"position\":7,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":4964,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0645\\u0648\\u0632 \\u0641\\u0644\\u0647 - 1 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":857042,\"price\":274300,\"brand\":\"\\u0645\\u062a\\u0641\\u0631\\u0642\\u0647\",\"category\":\"\\u0645\\u06cc\\u0648\\u0647\",\"list\":\"category-\\u0645\\u06cc\\u0648\\u0647\",\"position\":8,\"dimension6\":1,\"dimension2\":7,\"dimension9\":4,\"metric6\":2177,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"},{\"name\":\"\\u0631\\u0648\\u063a\\u0646 \\u0645\\u062e\\u0635\\u0648\\u0635 \\u0633\\u0631\\u062e \\u06a9\\u0631\\u062f\\u0646\\u06cc \\u0628\\u0647\\u0627\\u0631 - 1.5 \\u0644\\u06cc\\u062a\\u0631\",\"id\":1537796,\"price\":160000,\"brand\":\"\\u0628\\u0647\\u0627\\u0631\",\"category\":\"\\u0631\\u0648\\u063a\\u0646\",\"list\":\"category-\\u0631\\u0648\\u063a\\u0646\",\"position\":9,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.5,\"metric6\":5543,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0633\\u064a\\u0628 \\u0632\\u0645\\u064a\\u0646\\u064a \\u0645\\u064a\\u0648\\u0631\\u064a - 2 \\u06a9\\u064a\\u0644\\u0648\\u06af\\u0631\\u0645\\t\",\"id\":4365879,\"price\":119800,\"brand\":\"\\u0645\\u06cc\\u0648\\u0631\\u06cc\",\"category\":\"\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"list\":\"category-\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"position\":10,\"dimension6\":1,\"dimension2\":11,\"dimension9\":4,\"metric6\":630,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"},{\"name\":\"\\u062e\\u0631\\u0645\\u0627 \\u0639\\u0633\\u0644\\u06cc \\u062a\\u0627\\u0632\\u0647 \\u0645\\u0642\\u062f\\u0627\\u0631 800 \\u06af\\u0631\\u0645\",\"id\":1464601,\"price\":220000,\"brand\":\"\\u0645\\u062a\\u0641\\u0631\\u0642\\u0647\",\"category\":\"\\u062e\\u0631\\u0645\\u0627\",\"list\":\"category-\\u062e\\u0631\\u0645\\u0627\",\"position\":11,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.3,\"metric6\":1102,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc \\u067e\\u0646\\u0647 \\u0631\\u06cc\\u06af\\u0627\\u062a\\u0647 \\u0632\\u0631 \\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646 \\u0645\\u0642\\u062f\\u0627\\u0631 500 \\u06af\\u0631\\u0645\",\"id\":633507,\"price\":73600,\"brand\":\"\\u0632\\u0631\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\",\"category\":\"\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc\\u060c \\u067e\\u0627\\u0633\\u062a\\u0627 \\u0648 \\u0631\\u0634\\u062a\\u0647\",\"list\":\"category-\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc\\u060c \\u067e\\u0627\\u0633\\u062a\\u0627 \\u0648 \\u0631\\u0634\\u062a\\u0647\",\"position\":12,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":5730,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u067e\\u0648\\u062f\\u0631 \\u0645\\u0627\\u0634\\u06cc\\u0646 \\u0638\\u0631\\u0641\\u0634\\u0648\\u06cc\\u06cc \\u067e\\u0631\\u06cc\\u0644 \\u0645\\u0642\\u062f\\u0627\\u0631 1 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":3886246,\"price\":565000,\"brand\":\"\\u067e\\u0631\\u06cc\\u0644\",\"category\":\"\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"list\":\"category-\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"position\":13,\"dimension6\":1,\"dimension2\":13,\"dimension9\":4.3,\"metric6\":1919,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"incredible\"},{\"name\":\"\\u0645\\u0627\\u06cc\\u0639 \\u0638\\u0631\\u0641\\u0634\\u0648\\u06cc\\u06cc \\u067e\\u0631\\u06cc\\u0644 5+ \\u0628\\u0627 \\u0631\\u0627\\u06cc\\u062d\\u0647 \\u0644\\u06cc\\u0645\\u0648 \\u0645\\u0642\\u062f\\u0627\\u0631 3.75 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":3754869,\"price\":644000,\"brand\":\"\\u067e\\u0631\\u06cc\\u0644\",\"category\":\"\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"list\":\"category-\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"position\":14,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.5,\"metric6\":942,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u067e\\u0648\\u062f\\u0631 \\u0645\\u0627\\u0634\\u06cc\\u0646 \\u0644\\u0628\\u0627\\u0633\\u0634\\u0648\\u06cc\\u06cc \\u067e\\u0631\\u0633\\u06cc\\u0644 \\u0645\\u062f\\u0644 \\u06cc\\u0648\\u0646\\u06cc\\u0648\\u0631\\u0633\\u0627\\u0644 \\u0645\\u0642\\u062f\\u0627\\u0631 500 \\u06af\\u0631\\u0645 - \\u0645\\u062c\\u0645\\u0648\\u0639\\u0647 5 \\u0639\\u062f\\u062f\\u06cc \\u062a\\u062e\\u0641\\u06cc\\u0641 \\u062f\\u0627\\u0631\",\"id\":4104531,\"price\":567000,\"brand\":\"\\u067e\\u0631\\u0633\\u06cc\\u0644\",\"category\":\"\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0644\\u0628\\u0627\\u0633\",\"list\":\"category-\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0644\\u0628\\u0627\\u0633\",\"position\":15,\"dimension6\":1,\"dimension2\":10,\"dimension9\":4.4,\"metric6\":1047,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0645\\u0627\\u0633\\u062a \\u0633\\u0628\\u0648 \\u067e\\u0631\\u0648\\u0628\\u06cc\\u0648\\u062a\\u06cc\\u06a9 \\u0647\\u0631\\u0627\\u0632 - 2 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":1485662,\"price\":264000,\"brand\":\"\\u0647\\u0631\\u0627\\u0632\",\"category\":\"\\u0645\\u0627\\u0633\\u062a\",\"list\":\"category-\\u0645\\u0627\\u0633\\u062a\",\"position\":16,\"dimension6\":1,\"dimension2\":26,\"dimension9\":4.5,\"metric6\":3720,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"incredible\"},{\"name\":\"\\u0627\\u0633\\u067e\\u0627\\u06af\\u062a\\u06cc \\u0642\\u0637\\u0631 1.2 \\u0632\\u0631 \\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646 \\u0645\\u0642\\u062f\\u0627\\u0631 700 \\u06af\\u0631\\u0645\",\"id\":633380,\"price\":86000,\"brand\":\"\\u0632\\u0631\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\",\"category\":\"\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc\\u060c \\u067e\\u0627\\u0633\\u062a\\u0627 \\u0648 \\u0631\\u0634\\u062a\\u0647\",\"list\":\"category-\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc\\u060c \\u067e\\u0627\\u0633\\u062a\\u0627 \\u0648 \\u0631\\u0634\\u062a\\u0647\",\"position\":17,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":6359,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u062e\\u06cc\\u0627\\u0631\\u0634\\u0648\\u0631 \\u0642\\u0644\\u0645\\u06cc \\u0627\\u0635\\u0627\\u0644\\u062a - 1.5 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645 \",\"id\":3712166,\"price\":450000,\"brand\":\"\\u0627\\u0635\\u0627\\u0644\\u062a\",\"category\":\"\\u062e\\u06cc\\u0627\\u0631\\u0634\\u0648\\u0631 \\u0648 \\u062a\\u0631\\u0634\\u06cc\\u062c\\u0627\\u062a\",\"list\":\"category-\\u062e\\u06cc\\u0627\\u0631\\u0634\\u0648\\u0631 \\u0648 \\u062a\\u0631\\u0634\\u06cc\\u062c\\u0627\\u062a\",\"position\":18,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":1769,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u062e\\u0627\\u0645\\u0647 \\u0635\\u0628\\u062d\\u0627\\u0646\\u0647 \\u0645\\u06cc\\u0647\\u0646 \\u0645\\u0642\\u062f\\u0627\\u0631 200 \\u06af\\u0631\\u0645\",\"id\":888686,\"price\":120000,\"brand\":\"\\u0645\\u06cc\\u0647\\u0646\",\"category\":\"\\u062e\\u0627\\u0645\\u0647\",\"list\":\"category-\\u062e\\u0627\\u0645\\u0647\",\"position\":19,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":3766,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0642\\u0627\\u0631\\u0686 \\u062f\\u06a9\\u0645\\u0647\\u200c \\u0627\\u06cc \\u06a9\\u0627\\u0645\\u0644 \\u0645\\u0644\\u0627\\u0631\\u062f - 400 \\u06af\\u0631\\u0645\",\"id\":784830,\"price\":188500,\"brand\":\"\\u0645\\u0644\\u0627\\u0631\\u062f\",\"category\":\"\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"list\":\"category-\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"position\":20,\"dimension6\":1,\"dimension2\":14,\"dimension9\":4.3,\"metric6\":9103,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"}]}}",
-      "products": [{
-        "id": 841139,
-        "default_variant_id": 10530607,
-        "add_to_cart_url": "\/cart\/add\/10530607\/1\/",
-        "url": "\/product\/dkp-841139\/\u06a9\u0631\u0645-\u062a\u0631\u06a9-\u062f\u0633\u062a-\u0648-\u067e\u0627-\u062c\u06cc-\u0645\u062f\u0644-br001-\u062d\u062c\u0645-50-\u0645\u06cc\u0644\u06cc\u0644\u06cc\u062a\u0631",
-        "title": "\u06a9\u0631\u0645 \u062a\u0631\u06a9 \u062f\u0633\u062a \u0648 \u067e\u0627 \u062c\u06cc \u0645\u062f\u0644 Br001 \u062d\u062c\u0645 50 \u0645\u06cc\u0644\u06cc\u200c\u0644\u06cc\u062a\u0631",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110235065.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110235065.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 160000,
-          "selling_price": 137400,
-          "discount_percent": 0,
-          "marketable_stock": 864,
-          "orderLimit": 30,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 0,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": false,
-        "fast_shopping_confirm": false,
-        "category": "\u06a9\u0631\u0645 \u0648 \u0631\u0648\u063a\u0646 \u0631\u0641\u0639 \u062a\u0631\u06a9 \u0628\u062f\u0646",
-        "brand": "\u062c\u06cc",
-        "index_attributes": [{
-          "id": 19803,
-          "title": "\u0648\u06cc\u062a\u0627\u0645\u06cc\u0646",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 2,
-          "values": [{
-            "id": 23928,
-            "code": "no",
-            "title": "\u0646\u062f\u0627\u0631\u062f"
-          }]
-        }, {
-          "id": 19805,
-          "title": "\u0639\u0635\u0627\u0631\u0647",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 23931,
-            "code": "no",
-            "title": "\u0646\u062f\u0627\u0631\u062f"
-          }]
-        }, {
-          "id": 19806,
-          "title": "\u0646\u0648\u0639 \u0645\u062d\u0641\u0638\u0647 \u0646\u06af\u0647 \u062f\u0627\u0631\u0646\u062f\u0647",
-          "postfix": null,
-          "prefix": "- \u0646\u0648\u0639 \u0645\u062d\u0641\u0638\u0647 \u0646\u06af\u0647 \u062f\u0627\u0631\u0646\u062f\u0647:",
-          "textValue": null,
-          "sort": 6,
-          "values": [{
-            "id": 23932,
-            "code": "tupe",
-            "title": "\u062a\u06cc\u0648\u067e\u06cc"
-          }]
-        }, {
-          "id": 19808,
-          "title": "\u06a9\u0634\u0648\u0631 \u0645\u0628\u062f\u0627 \u0628\u0631\u0646\u062f",
-          "postfix": null,
-          "prefix": "- \u06a9\u0634\u0648\u0631 \u0645\u0628\u062f\u0627 \u0628\u0631\u0646\u062f:",
-          "textValue": null,
-          "sort": 8,
-          "values": [{
-            "id": 23936,
-            "code": "iran",
-            "title": "\u0627\u06cc\u0631\u0627\u0646"
-          }]
-        }],
-        "rating": {
-          "rating": 89,
-          "count": 4747
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 44
-          },
-          "index_attributes": [{
-            "id": 19803,
-            "title": "\u0648\u06cc\u062a\u0627\u0645\u06cc\u0646",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 2,
-            "values": [{
-              "id": 23928,
-              "code": "no",
-              "title": "\u0646\u062f\u0627\u0631\u062f"
-            }]
-          }, {
-            "id": 19805,
-            "title": "\u0639\u0635\u0627\u0631\u0647",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 23931,
-              "code": "no",
-              "title": "\u0646\u062f\u0627\u0631\u062f"
-            }]
-          }, {
-            "id": 19806,
-            "title": "\u0646\u0648\u0639 \u0645\u062d\u0641\u0638\u0647 \u0646\u06af\u0647 \u062f\u0627\u0631\u0646\u062f\u0647",
-            "postfix": null,
-            "prefix": "- \u0646\u0648\u0639 \u0645\u062d\u0641\u0638\u0647 \u0646\u06af\u0647 \u062f\u0627\u0631\u0646\u062f\u0647:",
-            "textValue": null,
-            "sort": 6,
-            "values": [{
-              "id": 23932,
-              "code": "tupe",
-              "title": "\u062a\u06cc\u0648\u067e\u06cc"
-            }]
-          }, {
-            "id": 19808,
-            "title": "\u06a9\u0634\u0648\u0631 \u0645\u0628\u062f\u0627 \u0628\u0631\u0646\u062f",
-            "postfix": null,
-            "prefix": "- \u06a9\u0634\u0648\u0631 \u0645\u0628\u062f\u0627 \u0628\u0631\u0646\u062f:",
-            "textValue": null,
-            "sort": 8,
-            "values": [{
-              "id": 23936,
-              "code": "iran",
-              "title": "\u0627\u06cc\u0631\u0627\u0646"
-            }]
-          }],
-          "warranty": {
-            "count": 3
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 2161415,
-        "default_variant_id": 6100184,
-        "add_to_cart_url": "\/cart\/add\/6100184\/1\/",
-        "url": "\/product\/dkp-2161415\/\u06a9\u0631\u0647-\u0633\u0646\u062a\u06cc-\u0634\u06a9\u0644\u06cc-\u0645\u0642\u062f\u0627\u0631-100-\u06af\u0631\u0645",
-        "title": "\u06a9\u0631\u0647 \u0633\u0646\u062a\u06cc \u0634\u06a9\u0644\u06cc \u0645\u0642\u062f\u0627\u0631 100 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114087213.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114087213.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 100000,
-          "selling_price": 98000,
-          "discount_percent": 2,
-          "marketable_stock": 752,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": 75
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Butter",
-        "brand": "Shakelli",
-        "index_attributes": [],
-        "rating": {
-          "rating": 87.4,
-          "count": 7324
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 784631,
-        "default_variant_id": 1675439,
-        "add_to_cart_url": "\/cart\/add\/1675439\/1\/",
-        "url": "\/product\/dkp-784631\/\u0634\u06cc\u0631-\u0646\u06cc\u0645-\u0686\u0631\u0628-\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9-\u06a9\u0648\u0647\u067e\u0646\u0627\u0647-\u0645\u0642\u062f\u0627\u0631-940-\u0645\u06cc\u0644\u06cc-\u0644\u06cc\u062a\u0631",
-        "title": "\u0634\u06cc\u0631 \u0646\u06cc\u0645 \u0686\u0631\u0628 \u0627\u0631\u06af\u0627\u0646\u06cc\u06a9 \u06a9\u0648\u0647\u067e\u0646\u0627\u0647 \u0645\u0642\u062f\u0627\u0631 940 \u0645\u06cc\u0644\u06cc \u0644\u06cc\u062a\u0631",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3dd9e882edbbb3f30c03f06eac5e5cc362247e7b_1613902845.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3dd9e882edbbb3f30c03f06eac5e5cc362247e7b_1613902845.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 127000,
-          "selling_price": 127000,
-          "discount_percent": 0,
-          "marketable_stock": 239,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Milk2",
-        "brand": "Koohpanah",
-        "index_attributes": [{
-          "id": 31456,
-          "title": "\u0637\u0639\u0645",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50288,
-            "code": "Native",
-            "title": "\u0633\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 42683,
-          "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 13,
-          "values": [{
-            "id": 90506,
-            "code": "family",
-            "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 89.8,
-          "count": 9943
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31456,
-            "title": "\u0637\u0639\u0645",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0637\u0639\u0645 :",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50288,
-              "code": "Native",
-              "title": "\u0633\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 42683,
-            "title": "\u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 13,
-            "values": [{
-              "id": 90506,
-              "code": "family",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 847467,
-        "default_variant_id": 1747145,
-        "add_to_cart_url": "\/cart\/add\/1747145\/1\/",
-        "url": "\/product\/dkp-847467\/\u06a9\u0646\u0633\u0631\u0648-\u0645\u0627\u0647\u06cc-\u062a\u0648\u0646-\u062f\u0631-\u0631\u0648\u063a\u0646-\u06af\u06cc\u0627\u0647\u06cc-\u0637\u0628\u06cc\u0639\u062a-180-\u06af\u0631\u0645",
-        "title": "\u06a9\u0646\u0633\u0631\u0648 \u0645\u0627\u0647\u06cc \u062a\u0648\u0646 \u062f\u0631 \u0631\u0648\u063a\u0646 \u06af\u06cc\u0627\u0647\u06cc \u0637\u0628\u06cc\u0639\u062a - 180 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public-2.digikala.com\/digikala-products\/110255540.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public-2.digikala.com\/digikala-products\/110255540.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 280000,
-          "selling_price": 195000,
-          "discount_percent": 30,
-          "marketable_stock": 2144,
-          "orderLimit": 5,
-          "is_incredible_offer": true,
-          "is_sponsored_offer": false,
-          "timer": "2021-05-11 00:00:00",
-          "plus_variant_cash_back": 13000,
-          "remaining_percentage": 47
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Tuna fish",
-        "brand": "\u0637\u0628\u06cc\u0639\u062a",
-        "index_attributes": [{
-          "id": 41529,
-          "title": "\u0637\u0639\u0645\u200c\u062f\u0627\u0631",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 84353,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }, {
-          "id": 41530,
-          "title": "\u0647\u0645\u0631\u0627\u0647 \u0628\u0627",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 6,
-          "values": [{
-            "id": 84354,
-            "code": "Cooking oil",
-            "title": "\u0631\u0648\u063a\u0646 \u06af\u06cc\u0627\u0647\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 86,
-          "count": 11620
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 2
-          },
-          "index_attributes": [{
-            "id": 41529,
-            "title": "\u0637\u0639\u0645\u200c\u062f\u0627\u0631",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 84353,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }, {
-            "id": 41530,
-            "title": "\u0647\u0645\u0631\u0627\u0647 \u0628\u0627",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 6,
-            "values": [{
-              "id": 84354,
-              "code": "Cooking oil",
-              "title": "\u0631\u0648\u063a\u0646 \u06af\u06cc\u0627\u0647\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": true,
-          "is_selling_and_sales": false,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u0634\u06af\u0641\u062a \u0627\u0646\u06af\u06cc\u0632",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 4418767,
-        "default_variant_id": 14247326,
-        "add_to_cart_url": "\/cart\/add\/14247326\/1\/",
-        "url": "\/product\/dkp-4418767\/\u06af\u0648\u062c\u0647-\u0641\u0631\u0646\u06af\u06cc-\u0628\u0648\u062a\u0647-\u0627\u06cc-\u0645\u06cc\u0648\u0631\u06cc-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u06af\u0648\u062c\u0647 \u0641\u0631\u0646\u06af\u06cc \u0628\u0648\u062a\u0647 \u0627\u06cc \u0645\u06cc\u0648\u0631\u06cc - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/f872efc1c50f8e0b9a21664af500a2ce6e907305_1612870144.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/f872efc1c50f8e0b9a21664af500a2ce6e907305_1612870144.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 123700,
-          "selling_price": 109800,
-          "discount_percent": 11,
-          "marketable_stock": 353,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 95
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "\u0645\u06cc\u0648\u0631\u06cc",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 80.6,
-          "count": 719
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 3431048,
-        "default_variant_id": 11070302,
-        "add_to_cart_url": "\/cart\/add\/11070302\/1\/",
-        "url": "\/product\/dkp-3431048\/\u0642\u0631\u0635-\u0645\u0627\u0634\u06cc\u0646-\u0638\u0631\u0641\u0634\u0648\u06cc\u06cc-\u0647\u0648\u0645-\u067e\u0644\u0627\u0633-\u0645\u062f\u0644-lemon-\u0628\u0633\u062a\u0647-24-\u0639\u062f\u062f\u06cc",
-        "title": "\u0642\u0631\u0635 \u0645\u0627\u0634\u06cc\u0646 \u0638\u0631\u0641\u0634\u0648\u06cc\u06cc \u0647\u0648\u0645 \u067e\u0644\u0627\u0633 \u0645\u062f\u0644 Lemon \u0628\u0633\u062a\u0647 24 \u0639\u062f\u062f\u06cc",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/a3bff777c5e1536425aadb94eec1706cabe5e56f_1617518254.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/a3bff777c5e1536425aadb94eec1706cabe5e56f_1617518254.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 830000,
-          "selling_price": 830000,
-          "discount_percent": 0,
-          "marketable_stock": 352,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 23000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u0634\u0648\u06cc\u0646\u062f\u0647 \u0638\u0631\u0648\u0641",
-        "brand": "\u0647\u0648\u0645 \u067e\u0644\u0627\u0633",
-        "index_attributes": [{
-          "id": 22466,
-          "title": "\u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627\u06cc",
-          "textValue": null,
-          "sort": 3,
-          "values": [{
-            "id": 29672,
-            "code": "cleaning",
-            "title": "\u062a\u0645\u06cc\u0632 \u06a9\u0646\u0646\u062f\u06af\u06cc"
-          }, {
-            "id": 29675,
-            "code": "bleach",
-            "title": "\u0633\u0641\u06cc\u062f \u06a9\u0646\u0646\u062f\u06af\u06cc"
-          }, {
-            "id": 29676,
-            "code": "balms",
-            "title": "\u0628\u0631\u0627\u0642 \u06a9\u0646\u0646\u062f\u06af\u06cc"
-          }, {
-            "id": 29677,
-            "code": "removing-stains",
-            "title": "\u0644\u06a9\u0647 \u0632\u062f\u0627\u06cc\u06cc"
-          }, {
-            "id": 29678,
-            "code": "removing-oil",
-            "title": "\u0686\u0631\u0628\u06cc \u0632\u062f\u0627\u06cc\u06cc"
-          }]
-        }, {
-          "id": 22467,
-          "title": "\u0631\u0627\u06cc\u062d\u0647",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 29683,
-            "code": "yes",
-            "title": "\u062f\u0627\u0631\u062f"
-          }]
-        }, {
-          "id": 22468,
-          "title": "\u0646\u0648\u0639 \u0631\u0627\u06cc\u062d\u0647",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 29685,
-            "code": "lemon",
-            "title": "\u0644\u06cc\u0645\u0648"
-          }]
-        }, {
-          "id": 25108,
-          "title": "\u0635\u0627\u062f\u0631 \u06a9\u0646\u0646\u062f\u0647 \u0645\u062c\u0648\u0632",
-          "postfix": null,
-          "prefix": "- \u0635\u0627\u062f\u0631 \u06a9\u0646\u0646\u062f\u0647 \u0645\u062c\u0648\u0632:",
-          "textValue": null,
-          "sort": 8,
-          "values": [{
-            "id": 35309,
-            "code": "food and drug administration",
-            "title": "\u0633\u0627\u0632\u0645\u0627\u0646 \u063a\u0630\u0627 \u0648 \u062f\u0627\u0631\u0648"
-          }]
-        }],
-        "rating": {
-          "rating": 86.2,
-          "count": 6211
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 12
-          },
-          "index_attributes": [{
-            "id": 22466,
-            "title": "\u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627\u06cc",
-            "textValue": null,
-            "sort": 3,
-            "values": [{
-              "id": 29672,
-              "code": "cleaning",
-              "title": "\u062a\u0645\u06cc\u0632 \u06a9\u0646\u0646\u062f\u06af\u06cc"
-            }, {
-              "id": 29675,
-              "code": "bleach",
-              "title": "\u0633\u0641\u06cc\u062f \u06a9\u0646\u0646\u062f\u06af\u06cc"
-            }, {
-              "id": 29676,
-              "code": "balms",
-              "title": "\u0628\u0631\u0627\u0642 \u06a9\u0646\u0646\u062f\u06af\u06cc"
-            }, {
-              "id": 29677,
-              "code": "removing-stains",
-              "title": "\u0644\u06a9\u0647 \u0632\u062f\u0627\u06cc\u06cc"
-            }, {
-              "id": 29678,
-              "code": "removing-oil",
-              "title": "\u0686\u0631\u0628\u06cc \u0632\u062f\u0627\u06cc\u06cc"
-            }]
-          }, {
-            "id": 22467,
-            "title": "\u0631\u0627\u06cc\u062d\u0647",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 29683,
-              "code": "yes",
-              "title": "\u062f\u0627\u0631\u062f"
-            }]
-          }, {
-            "id": 22468,
-            "title": "\u0646\u0648\u0639 \u0631\u0627\u06cc\u062d\u0647",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 29685,
-              "code": "lemon",
-              "title": "\u0644\u06cc\u0645\u0648"
-            }]
-          }, {
-            "id": 25108,
-            "title": "\u0635\u0627\u062f\u0631 \u06a9\u0646\u0646\u062f\u0647 \u0645\u062c\u0648\u0632",
-            "postfix": null,
-            "prefix": "- \u0635\u0627\u062f\u0631 \u06a9\u0646\u0646\u062f\u0647 \u0645\u062c\u0648\u0632:",
-            "textValue": null,
-            "sort": 8,
-            "values": [{
-              "id": 35309,
-              "code": "food and drug administration",
-              "title": "\u0633\u0627\u0632\u0645\u0627\u0646 \u063a\u0630\u0627 \u0648 \u062f\u0627\u0631\u0648"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 1481847,
-        "default_variant_id": 4085750,
-        "add_to_cart_url": "\/cart\/add\/4085750\/1\/",
-        "url": "\/product\/dkp-1481847\/\u0633\u0633-\u06af\u0648\u062c\u0647-\u0641\u0631\u0646\u06af\u06cc-\u0628\u06cc\u0698\u0646-\u0648\u0632\u0646-550-\u06af\u0631\u0645",
-        "title": "\u0633\u0633 \u06af\u0648\u062c\u0647 \u0641\u0631\u0646\u06af\u06cc \u0628\u06cc\u0698\u0646 \u0648\u0632\u0646 550 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110428654.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110428654.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 135000,
-          "selling_price": 135000,
-          "discount_percent": 0,
-          "marketable_stock": 780,
-          "orderLimit": 20,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u0633\u0633",
-        "brand": "Bijan",
-        "index_attributes": [],
-        "rating": {
-          "rating": 87.8,
-          "count": 4964
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 857042,
-        "default_variant_id": 1711402,
-        "add_to_cart_url": "\/cart\/add\/1711402\/1\/",
-        "url": "\/product\/dkp-857042\/\u0645\u0648\u0632-\u0641\u0644\u0647-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0645\u0648\u0632 \u0641\u0644\u0647 - 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/240992cb6c985ec12d16832689e0f8b827fccfb0_1609143915.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/240992cb6c985ec12d16832689e0f8b827fccfb0_1609143915.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 295000,
-          "selling_price": 274300,
-          "discount_percent": 7,
-          "marketable_stock": 44,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 60
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Fruits",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [{
-          "id": 41762,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 85892,
-            "code": "yes",
-            "title": "\u0628\u0644\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 78.2,
-          "count": 2177
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41762,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 85892,
-              "code": "yes",
-              "title": "\u0628\u0644\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 1537796,
-        "default_variant_id": 3974862,
-        "add_to_cart_url": "\/cart\/add\/3974862\/1\/",
-        "url": "\/product\/dkp-1537796\/\u0631\u0648\u063a\u0646-\u0645\u062e\u0635\u0648\u0635-\u0633\u0631\u062e-\u06a9\u0631\u062f\u0646\u06cc-\u0628\u0647\u0627\u0631-15-\u0644\u06cc\u062a\u0631",
-        "title": "\u0631\u0648\u063a\u0646 \u0645\u062e\u0635\u0648\u0635 \u0633\u0631\u062e \u06a9\u0631\u062f\u0646\u06cc \u0628\u0647\u0627\u0631 - 1.5 \u0644\u06cc\u062a\u0631",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/5760826ad88e793694cb760ca268934c9590d168_1596620086.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/5760826ad88e793694cb760ca268934c9590d168_1596620086.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 160000,
-          "selling_price": 160000,
-          "discount_percent": 0,
-          "marketable_stock": 1069,
-          "orderLimit": 2,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u0631\u0648\u063a\u0646",
-        "brand": "Bahar",
-        "index_attributes": [{
-          "id": 41819,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 10,
-          "values": [{
-            "id": 86059,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 88.2,
-          "count": 5543
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41819,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 10,
-            "values": [{
-              "id": 86059,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 4365879,
-        "default_variant_id": 14047605,
-        "add_to_cart_url": "\/cart\/add\/14047605\/1\/",
-        "url": "\/product\/dkp-4365879\/\u0633\u064a\u0628-\u0632\u0645\u064a\u0646\u064a-\u0645\u064a\u0648\u0631\u064a-2-\u06a9\u064a\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0633\u064a\u0628 \u0632\u0645\u064a\u0646\u064a \u0645\u064a\u0648\u0631\u064a - 2 \u06a9\u064a\u0644\u0648\u06af\u0631\u0645\t",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/056a31de92d78b37e878392d79bab6434b7c9385_1612176504.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/056a31de92d78b37e878392d79bab6434b7c9385_1612176504.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 135000,
-          "selling_price": 119800,
-          "discount_percent": 11,
-          "marketable_stock": 340,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": 96
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "\u0645\u06cc\u0648\u0631\u06cc",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 79,
-          "count": 630
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 1464601,
-        "default_variant_id": 3760272,
-        "add_to_cart_url": "\/cart\/add\/3760272\/1\/",
-        "url": "\/product\/dkp-1464601\/\u062e\u0631\u0645\u0627-\u0639\u0633\u0644\u06cc-\u062a\u0627\u0632\u0647-\u0645\u0642\u062f\u0627\u0631-800-\u06af\u0631\u0645",
-        "title": "\u062e\u0631\u0645\u0627 \u0639\u0633\u0644\u06cc \u062a\u0627\u0632\u0647 \u0645\u0642\u062f\u0627\u0631 800 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110333468.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110333468.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 220000,
-          "selling_price": 220000,
-          "discount_percent": 0,
-          "marketable_stock": 27,
-          "orderLimit": 30,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": false,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u062e\u0631\u0645\u0627",
-        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-        "index_attributes": [],
-        "rating": {
-          "rating": 85.4,
-          "count": 1102
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 633507,
-        "default_variant_id": 1147392,
-        "add_to_cart_url": "\/cart\/add\/1147392\/1\/",
-        "url": "\/product\/dkp-633507\/\u0645\u0627\u06a9\u0627\u0631\u0648\u0646\u06cc-\u067e\u0646\u0647-\u0631\u06cc\u06af\u0627\u062a\u0647-\u0632\u0631-\u0645\u0627\u06a9\u0627\u0631\u0648\u0646-\u0645\u0642\u062f\u0627\u0631-500-\u06af\u0631\u0645",
-        "title": "\u0645\u0627\u06a9\u0627\u0631\u0648\u0646\u06cc \u067e\u0646\u0647 \u0631\u06cc\u06af\u0627\u062a\u0647 \u0632\u0631 \u0645\u0627\u06a9\u0627\u0631\u0648\u0646 \u0645\u0642\u062f\u0627\u0631 500 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/94c5029bd98b1aebce75fd1fe8d8e2df124986fd_1607498098.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/94c5029bd98b1aebce75fd1fe8d8e2df124986fd_1607498098.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 73600,
-          "selling_price": 73600,
-          "discount_percent": 0,
-          "marketable_stock": 1424,
-          "orderLimit": 30,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u0645\u0627\u06a9\u0627\u0631\u0648\u0646\u06cc\u060c \u067e\u0627\u0633\u062a\u0627 \u0648 \u0631\u0634\u062a\u0647",
-        "brand": "Zar Macaron",
-        "index_attributes": [{
-          "id": 30948,
-          "title": "\u0641\u0631\u0645",
-          "postfix": null,
-          "prefix": "- \u0641\u0631\u0645:",
-          "textValue": null,
-          "sort": 3,
-          "values": [{
-            "id": 49971,
-            "code": "pipe",
-            "title": "\u0644\u0648\u0644\u0647\u200c\u0627\u06cc"
-          }]
-        }, {
-          "id": 41775,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 85913,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 88,
-          "count": 5730
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 30948,
-            "title": "\u0641\u0631\u0645",
-            "postfix": null,
-            "prefix": "- \u0641\u0631\u0645:",
-            "textValue": null,
-            "sort": 3,
-            "values": [{
-              "id": 49971,
-              "code": "pipe",
-              "title": "\u0644\u0648\u0644\u0647\u200c\u0627\u06cc"
-            }]
-          }, {
-            "id": 41775,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 85913,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 3886246,
-        "default_variant_id": 12476007,
-        "add_to_cart_url": "\/cart\/add\/12476007\/1\/",
-        "url": "\/product\/dkp-3886246\/\u067e\u0648\u062f\u0631-\u0645\u0627\u0634\u06cc\u0646-\u0638\u0631\u0641\u0634\u0648\u06cc\u06cc-\u067e\u0631\u06cc\u0644-\u0645\u0642\u062f\u0627\u0631-1-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u067e\u0648\u062f\u0631 \u0645\u0627\u0634\u06cc\u0646 \u0638\u0631\u0641\u0634\u0648\u06cc\u06cc \u067e\u0631\u06cc\u0644 \u0645\u0642\u062f\u0627\u0631 1 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/f41050b5fc57fb8dce642f7079d5cc1459dfbcb6_1606832625.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/f41050b5fc57fb8dce642f7079d5cc1459dfbcb6_1606832625.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 648375,
-          "selling_price": 565000,
-          "discount_percent": 13,
-          "marketable_stock": 874,
-          "orderLimit": 5,
-          "is_incredible_offer": true,
-          "is_sponsored_offer": false,
-          "timer": "2021-05-11 00:00:00",
-          "plus_variant_cash_back": 24000,
-          "remaining_percentage": 87
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u0634\u0648\u06cc\u0646\u062f\u0647 \u0638\u0631\u0648\u0641",
-        "brand": "Pril",
-        "index_attributes": [{
-          "id": 22466,
-          "title": "\u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627\u06cc",
-          "textValue": null,
-          "sort": 3,
-          "values": [{
-            "id": 29678,
-            "code": "removing-oil",
-            "title": "\u0686\u0631\u0628\u06cc \u0632\u062f\u0627\u06cc\u06cc"
-          }]
-        }, {
-          "id": 22467,
-          "title": "\u0631\u0627\u06cc\u062d\u0647",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 29683,
-            "code": "yes",
-            "title": "\u062f\u0627\u0631\u062f"
-          }]
-        }, {
-          "id": 22468,
-          "title": "\u0646\u0648\u0639 \u0631\u0627\u06cc\u062d\u0647",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 29685,
-            "code": "lemon",
-            "title": "\u0644\u06cc\u0645\u0648"
-          }]
-        }, {
-          "id": 25108,
-          "title": "\u0635\u0627\u062f\u0631 \u06a9\u0646\u0646\u062f\u0647 \u0645\u062c\u0648\u0632",
-          "postfix": null,
-          "prefix": "- \u0635\u0627\u062f\u0631 \u06a9\u0646\u0646\u062f\u0647 \u0645\u062c\u0648\u0632:",
-          "textValue": null,
-          "sort": 8,
-          "values": [{
-            "id": 35309,
-            "code": "food and drug administration",
-            "title": "\u0633\u0627\u0632\u0645\u0627\u0646 \u063a\u0630\u0627 \u0648 \u062f\u0627\u0631\u0648"
-          }]
-        }],
-        "rating": {
-          "rating": 85.8,
-          "count": 1919
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 22466,
-            "title": "\u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627\u06cc",
-            "textValue": null,
-            "sort": 3,
-            "values": [{
-              "id": 29678,
-              "code": "removing-oil",
-              "title": "\u0686\u0631\u0628\u06cc \u0632\u062f\u0627\u06cc\u06cc"
-            }]
-          }, {
-            "id": 22467,
-            "title": "\u0631\u0627\u06cc\u062d\u0647",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 29683,
-              "code": "yes",
-              "title": "\u062f\u0627\u0631\u062f"
-            }]
-          }, {
-            "id": 22468,
-            "title": "\u0646\u0648\u0639 \u0631\u0627\u06cc\u062d\u0647",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 29685,
-              "code": "lemon",
-              "title": "\u0644\u06cc\u0645\u0648"
-            }]
-          }, {
-            "id": 25108,
-            "title": "\u0635\u0627\u062f\u0631 \u06a9\u0646\u0646\u062f\u0647 \u0645\u062c\u0648\u0632",
-            "postfix": null,
-            "prefix": "- \u0635\u0627\u062f\u0631 \u06a9\u0646\u0646\u062f\u0647 \u0645\u062c\u0648\u0632:",
-            "textValue": null,
-            "sort": 8,
-            "values": [{
-              "id": 35309,
-              "code": "food and drug administration",
-              "title": "\u0633\u0627\u0632\u0645\u0627\u0646 \u063a\u0630\u0627 \u0648 \u062f\u0627\u0631\u0648"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": true,
-          "is_selling_and_sales": false,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u0634\u06af\u0641\u062a \u0627\u0646\u06af\u06cc\u0632",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 3754869,
-        "default_variant_id": 12146826,
-        "add_to_cart_url": "\/cart\/add\/12146826\/1\/",
-        "url": "\/product\/dkp-3754869\/\u0645\u0627\u06cc\u0639-\u0638\u0631\u0641\u0634\u0648\u06cc\u06cc-\u067e\u0631\u06cc\u0644-5-\u0628\u0627-\u0631\u0627\u06cc\u062d\u0647-\u0644\u06cc\u0645\u0648-\u0645\u0642\u062f\u0627\u0631-375-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0645\u0627\u06cc\u0639 \u0638\u0631\u0641\u0634\u0648\u06cc\u06cc \u067e\u0631\u06cc\u0644 5+ \u0628\u0627 \u0631\u0627\u06cc\u062d\u0647 \u0644\u06cc\u0645\u0648 \u0645\u0642\u062f\u0627\u0631 3.75 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/186fd77785ddb3e70d02a8903994404b78534ee6_1605349624.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/186fd77785ddb3e70d02a8903994404b78534ee6_1605349624.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 644000,
-          "selling_price": 644000,
-          "discount_percent": 0,
-          "marketable_stock": 1799,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 24000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u0634\u0648\u06cc\u0646\u062f\u0647 \u0638\u0631\u0648\u0641",
-        "brand": "Pril",
-        "index_attributes": [{
-          "id": 22466,
-          "title": "\u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627\u06cc",
-          "textValue": null,
-          "sort": 3,
-          "values": [{
-            "id": 29672,
-            "code": "cleaning",
-            "title": "\u062a\u0645\u06cc\u0632 \u06a9\u0646\u0646\u062f\u06af\u06cc"
-          }]
-        }],
-        "rating": {
-          "rating": 88.8,
-          "count": 942
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 22466,
-            "title": "\u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0642\u0627\u0628\u0644\u06cc\u062a \u0647\u0627\u06cc",
-            "textValue": null,
-            "sort": 3,
-            "values": [{
-              "id": 29672,
-              "code": "cleaning",
-              "title": "\u062a\u0645\u06cc\u0632 \u06a9\u0646\u0646\u062f\u06af\u06cc"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 4104531,
-        "default_variant_id": 13216892,
-        "add_to_cart_url": "\/cart\/add\/13216892\/1\/",
-        "url": "\/product\/dkp-4104531\/\u067e\u0648\u062f\u0631-\u0645\u0627\u0634\u064a\u0646-\u0644\u0628\u0627\u0633\u0634\u0648\u064a\u06cc-\u067e\u0631\u0633\u064a\u0644-\u0645\u062f\u0644-\u064a\u0648\u0646\u064a\u0648\u0631\u0633\u0627\u0644-\u0628\u0633\u062a\u0647-5-\u0639\u062f\u062f\u06cc",
-        "title": "\u067e\u0648\u062f\u0631 \u0645\u0627\u0634\u06cc\u0646 \u0644\u0628\u0627\u0633\u0634\u0648\u06cc\u06cc \u067e\u0631\u0633\u06cc\u0644 \u0645\u062f\u0644 \u06cc\u0648\u0646\u06cc\u0648\u0631\u0633\u0627\u0644 \u0645\u0642\u062f\u0627\u0631 500 \u06af\u0631\u0645 - \u0645\u062c\u0645\u0648\u0639\u0647 5 \u0639\u062f\u062f\u06cc \u062a\u062e\u0641\u06cc\u0641 \u062f\u0627\u0631",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/43090c16a2f761086f587bde1ab7c29c66870f6a_1609143290.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/43090c16a2f761086f587bde1ab7c29c66870f6a_1609143290.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 630000,
-          "selling_price": 567000,
-          "discount_percent": 0,
-          "marketable_stock": 5588,
-          "orderLimit": 5,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 19000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u0634\u0648\u06cc\u0646\u062f\u0647 \u0631\u062e\u062a",
-        "brand": "Persil",
-        "index_attributes": [{
-          "id": 22562,
-          "title": "\u0631\u0627\u06cc\u062d\u0647",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 29917,
-            "code": "yes",
-            "title": "\u062f\u0627\u0631\u062f"
-          }]
-        }],
-        "rating": {
-          "rating": 88,
-          "count": 1047
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 22562,
-            "title": "\u0631\u0627\u06cc\u062d\u0647",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 29917,
-              "code": "yes",
-              "title": "\u062f\u0627\u0631\u062f"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 1485662,
-        "default_variant_id": 4452046,
-        "add_to_cart_url": "\/cart\/add\/4452046\/1\/",
-        "url": "\/product\/dkp-1485662\/\u0645\u0627\u0633\u062a-\u0633\u0628\u0648-\u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9-\u0647\u0631\u0627\u0632-2-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u0645\u0627\u0633\u062a \u0633\u0628\u0648 \u067e\u0631\u0648\u0628\u06cc\u0648\u062a\u06cc\u06a9 \u0647\u0631\u0627\u0632 - 2 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/121654251.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/121654251.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 355000,
-          "selling_price": 264000,
-          "discount_percent": 26,
-          "marketable_stock": 173,
-          "orderLimit": 5,
-          "is_incredible_offer": true,
-          "is_sponsored_offer": false,
-          "timer": "2021-05-11 00:00:00",
-          "plus_variant_cash_back": 11000,
-          "remaining_percentage": 33
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Yogurt",
-        "brand": "\u0647\u0631\u0627\u0632",
-        "index_attributes": [{
-          "id": 39162,
-          "title": "\u0646\u0648\u0639 \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc",
-          "postfix": null,
-          "prefix": "- \u062f\u0627\u0631\u0627\u06cc \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0632 \u0646\u0648\u0639:",
-          "textValue": null,
-          "sort": 2,
-          "values": [{
-            "id": 76171,
-            "code": "familypackage",
-            "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 31507,
-          "title": "\u0646\u0648\u0639 \u0645\u0627\u0633\u062a",
-          "postfix": null,
-          "prefix": "\u0645\u0627\u0633\u062a:",
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 76482,
-            "code": "Sabu",
-            "title": "\u0633\u0628\u0648"
-          }]
-        }, {
-          "id": 43475,
-          "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 255,
-          "values": [{
-            "id": 94357,
-            "code": "fullfat",
-            "title": "\u067e\u0631\u0686\u0631\u0628"
-          }]
-        }, {
-          "id": 43476,
-          "title": "\u0645\u0646\u0627\u0633\u0628 \u06af\u06cc\u0627\u0647\u062e\u0648\u0627\u0631\u0627\u0646",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 255,
-          "values": [{
-            "id": 94360,
-            "code": "yes",
-            "title": "\u0628\u0644\u0647"
-          }]
-        }],
-        "rating": {
-          "rating": 88.8,
-          "count": 3720
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 39162,
-            "title": "\u0646\u0648\u0639 \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc",
-            "postfix": null,
-            "prefix": "- \u062f\u0627\u0631\u0627\u06cc \u0628\u0633\u062a\u0647\u200c\u0628\u0646\u062f\u06cc \u0627\u0632 \u0646\u0648\u0639:",
-            "textValue": null,
-            "sort": 2,
-            "values": [{
-              "id": 76171,
-              "code": "familypackage",
-              "title": "\u062e\u0627\u0646\u0648\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 31507,
-            "title": "\u0646\u0648\u0639 \u0645\u0627\u0633\u062a",
-            "postfix": null,
-            "prefix": "\u0645\u0627\u0633\u062a:",
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 76482,
-              "code": "Sabu",
-              "title": "\u0633\u0628\u0648"
-            }]
-          }, {
-            "id": 43475,
-            "title": "\u0645\u06cc\u0632\u0627\u0646 \u0686\u0631\u0628\u06cc",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 255,
-            "values": [{
-              "id": 94357,
-              "code": "fullfat",
-              "title": "\u067e\u0631\u0686\u0631\u0628"
-            }]
-          }, {
-            "id": 43476,
-            "title": "\u0645\u0646\u0627\u0633\u0628 \u06af\u06cc\u0627\u0647\u062e\u0648\u0627\u0631\u0627\u0646",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 255,
-            "values": [{
-              "id": 94360,
-              "code": "yes",
-              "title": "\u0628\u0644\u0647"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": true,
-          "is_selling_and_sales": false,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u0634\u06af\u0641\u062a \u0627\u0646\u06af\u06cc\u0632",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }, {
-        "id": 633380,
-        "default_variant_id": 1173534,
-        "add_to_cart_url": "\/cart\/add\/1173534\/1\/",
-        "url": "\/product\/dkp-633380\/\u0627\u0633\u067e\u0627\u06af\u062a\u06cc-\u0642\u0637\u0631-12-\u0632\u0631-\u0645\u0627\u06a9\u0627\u0631\u0648\u0646-\u0645\u0642\u062f\u0627\u0631-700-\u06af\u0631\u0645",
-        "title": "\u0627\u0633\u067e\u0627\u06af\u062a\u06cc \u0642\u0637\u0631 1.2 \u0632\u0631 \u0645\u0627\u06a9\u0627\u0631\u0648\u0646 \u0645\u0642\u062f\u0627\u0631 700 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/15855e83e5f72db9dd89e997be69fa9d92cc8081_1606043020.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/15855e83e5f72db9dd89e997be69fa9d92cc8081_1606043020.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 86000,
-          "selling_price": 86000,
-          "discount_percent": 0,
-          "marketable_stock": 3482,
-          "orderLimit": 30,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 5000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "\u0645\u0627\u06a9\u0627\u0631\u0648\u0646\u06cc\u060c \u067e\u0627\u0633\u062a\u0627 \u0648 \u0631\u0634\u062a\u0647",
-        "brand": "Zar Macaron",
-        "index_attributes": [{
-          "id": 30948,
-          "title": "\u0641\u0631\u0645",
-          "postfix": null,
-          "prefix": "- \u0641\u0631\u0645:",
-          "textValue": null,
-          "sort": 3,
-          "values": [{
-            "id": 49156,
-            "code": "noodel",
-            "title": "\u0631\u0634\u062a\u0647\u200c\u0627\u06cc"
-          }]
-        }, {
-          "id": 41775,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 85913,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 87.4,
-          "count": 6359
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 30948,
-            "title": "\u0641\u0631\u0645",
-            "postfix": null,
-            "prefix": "- \u0641\u0631\u0645:",
-            "textValue": null,
-            "sort": 3,
-            "values": [{
-              "id": 49156,
-              "code": "noodel",
-              "title": "\u0631\u0634\u062a\u0647\u200c\u0627\u06cc"
-            }]
-          }, {
-            "id": 41775,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 85913,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 3712166,
-        "default_variant_id": 12207141,
-        "add_to_cart_url": "\/cart\/add\/12207141\/1\/",
-        "url": "\/product\/dkp-3712166\/\u062e\u06cc\u0627\u0631\u0634\u0648\u0631-\u0642\u0644\u0645\u06cc-\u0627\u0635\u0627\u0644\u062a-15-\u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-        "title": "\u062e\u06cc\u0627\u0631\u0634\u0648\u0631 \u0642\u0644\u0645\u06cc \u0627\u0635\u0627\u0644\u062a - 1.5 \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645 ",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/b6759c9e8c711284a3ac799ee28743335cfcfd91_1605450405.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/b6759c9e8c711284a3ac799ee28743335cfcfd91_1605450405.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 450000,
-          "selling_price": 450000,
-          "discount_percent": 0,
-          "marketable_stock": 1996,
-          "orderLimit": 30,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 23000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Salted and Marzipan",
-        "brand": "\u0627\u0635\u0627\u0644\u062a",
-        "index_attributes": [],
-        "rating": {
-          "rating": 86.6,
-          "count": 1769
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 888686,
-        "default_variant_id": 1772029,
-        "add_to_cart_url": "\/cart\/add\/1772029\/1\/",
-        "url": "\/product\/dkp-888686\/\u062e\u0627\u0645\u0647-\u0635\u0628\u062d\u0627\u0646\u0647-\u0645\u06cc\u0647\u0646-\u0645\u0642\u062f\u0627\u0631-200-\u06af\u0631\u0645",
-        "title": "\u062e\u0627\u0645\u0647 \u0635\u0628\u062d\u0627\u0646\u0647 \u0645\u06cc\u0647\u0646 \u0645\u0642\u062f\u0627\u0631 200 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114949771.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114949771.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 120000,
-          "selling_price": 120000,
-          "discount_percent": 0,
-          "marketable_stock": 137,
-          "orderLimit": 4,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 10000,
-          "remaining_percentage": null
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Cream",
-        "brand": "\u0645\u06cc\u0647\u0646",
-        "index_attributes": [{
-          "id": 31493,
-          "title": "\u0637\u0639\u0645",
-          "postfix": null,
-          "prefix": "\u0628\u0627 \u0637\u0639\u0645",
-          "textValue": null,
-          "sort": 4,
-          "values": [{
-            "id": 50433,
-            "code": "Simple",
-            "title": "\u0633\u0627\u062f\u0647"
-          }]
-        }, {
-          "id": 39164,
-          "title": "\u0645\u0642\u062f\u0627\u0631",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 5,
-          "values": [{
-            "id": 76174,
-            "code": "below200g",
-            "title": "\u062a\u0627 200 \u06af\u0631\u0645"
-          }]
-        }],
-        "rating": {
-          "rating": 87,
-          "count": 3766
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 31493,
-            "title": "\u0637\u0639\u0645",
-            "postfix": null,
-            "prefix": "\u0628\u0627 \u0637\u0639\u0645",
-            "textValue": null,
-            "sort": 4,
-            "values": [{
-              "id": 50433,
-              "code": "Simple",
-              "title": "\u0633\u0627\u062f\u0647"
-            }]
-          }, {
-            "id": 39164,
-            "title": "\u0645\u0642\u062f\u0627\u0631",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 5,
-            "values": [{
-              "id": 76174,
-              "code": "below200g",
-              "title": "\u062a\u0627 200 \u06af\u0631\u0645"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": null,
-        "has_promotion_stock": false
-      }, {
-        "id": 784830,
-        "default_variant_id": 1672635,
-        "add_to_cart_url": "\/cart\/add\/1672635\/1\/",
-        "url": "\/product\/dkp-784830\/\u0642\u0627\u0631\u0686-\u062f\u06a9\u0645\u0647-\u0627\u06cc-\u06a9\u0627\u0645\u0644-\u0645\u0644\u0627\u0631\u062f-400-\u06af\u0631\u0645",
-        "title": "\u0642\u0627\u0631\u0686 \u062f\u06a9\u0645\u0647\u200c \u0627\u06cc \u06a9\u0627\u0645\u0644 \u0645\u0644\u0627\u0631\u062f - 400 \u06af\u0631\u0645",
-        "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3572192.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3572192.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
-        "defaultLang": "fa",
-        "price": {
-          "rrp_price": 218000,
-          "selling_price": 188500,
-          "discount_percent": 14,
-          "marketable_stock": 9,
-          "orderLimit": 10,
-          "is_incredible_offer": false,
-          "is_sponsored_offer": false,
-          "timer": null,
-          "plus_variant_cash_back": 11000,
-          "remaining_percentage": 99
-        },
-        "has_quick_view": true,
-        "fast_shopping_badge": true,
-        "fast_shopping_confirm": true,
-        "category": "Vegetables",
-        "brand": "Malard",
-        "index_attributes": [{
-          "id": 41761,
-          "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-          "postfix": null,
-          "prefix": null,
-          "textValue": null,
-          "sort": 7,
-          "values": [{
-            "id": 85891,
-            "code": "no",
-            "title": "\u062e\u06cc\u0631"
-          }]
-        }],
-        "rating": {
-          "rating": 85.8,
-          "count": 9103
-        },
-        "has_selling_stock": true,
-        "status": "marketable",
-        "product_parameters": {
-          "seller": {
-            "count": 1
-          },
-          "index_attributes": [{
-            "id": 41761,
-            "title": "\u0627\u0631\u06af\u0627\u0646\u06cc\u06a9",
-            "postfix": null,
-            "prefix": null,
-            "textValue": null,
-            "sort": 7,
-            "values": [{
-              "id": 85891,
-              "code": "no",
-              "title": "\u062e\u06cc\u0631"
-            }]
-          }],
-          "warranty": {
-            "count": 1
-          }
-        },
-        "cpc_data": null,
-        "badge": {
-          "is_incredible_offer": false,
-          "is_selling_and_sales": true,
-          "has_promotion_badge": true,
-          "is_plus_promotion": false,
-          "is_early_access": false,
-          "is_app_incredible": false,
-          "is_themeable": false,
-          "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
-          "color": null,
-          "image": null
-        },
-        "has_promotion_stock": true
-      }]
-    };
-    var snDeliveryOptions = {
-      "delivery_options": {
-        "eco": [{
-          "product_ids": {
-            "1130176984": 1977404
-          },
-          "available_time_windows": {
-            "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 19,
-              "to": 22
-            }],
-            "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 11,
-              "to": 14
-            }, {
-              "from": 13,
-              "to": 16
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 17,
-              "to": 20
-            }, {
-              "from": 19,
-              "to": 22
-            }]
-          },
-          "full_time_windows": []
-        }, {
-          "product_ids": {
-            "1130270410": 2217851,
-            "1130270411": 4826524,
-            "1130489950": 4142175
-          },
-          "available_time_windows": {
-            "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u062c\u0645\u0639\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }]
-          },
-          "full_time_windows": []
-        }],
-        "fast": [{
-          "product_ids": {
-            "1130176984": 1977404
-          },
-          "available_time_windows": {
-            "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 19,
-              "to": 22
-            }],
-            "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 11,
-              "to": 14
-            }, {
-              "from": 13,
-              "to": 16
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 17,
-              "to": 20
-            }, {
-              "from": 19,
-              "to": 22
-            }]
-          },
-          "full_time_windows": []
-        }, {
-          "product_ids": {
-            "1130270410": 2217851,
-            "1130489950": 4142175
-          },
-          "available_time_windows": {
-            "\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u062c\u0645\u0639\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u06cc\u06a9\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }]
-          },
-          "full_time_windows": []
-        }, {
-          "product_ids": {
-            "1130270411": 4826524
-          },
-          "available_time_windows": {
-            "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u062c\u0645\u0639\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }]
-          },
-          "full_time_windows": []
-        }],
-        "normal": [{
-          "product_ids": {
-            "1130176984": 1977404
-          },
-          "available_time_windows": {
-            "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 19,
-              "to": 22
-            }],
-            "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 11,
-              "to": 14
-            }, {
-              "from": 13,
-              "to": 16
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 17,
-              "to": 20
-            }, {
-              "from": 19,
-              "to": 22
-            }]
-          },
-          "full_time_windows": []
-        }, {
-          "product_ids": {
-            "1130270410": 2217851,
-            "1130270411": 4826524,
-            "1130489950": 4142175
-          },
-          "available_time_windows": {
-            "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }],
-            "\u062c\u0645\u0639\u0647": [{
-              "from": 9,
-              "to": 12
-            }, {
-              "from": 12,
-              "to": 15
-            }, {
-              "from": 15,
-              "to": 18
-            }, {
-              "from": 18,
-              "to": 21
-            }]
-          },
-          "full_time_windows": []
-        }]
-      }
-    };
-    var userHasFastShippingPurchaseHistory = true;
-    var nonInteraction = false;
-    var isPlusUser = false;
-    var skipItemIds = [1130176984, 1130270410, 1130270411, 1130489950];
+    // var hasInvalidItem = false;
+    // var defaultShippingMode = "normal";
+    // var fmcgProducts = [
+    //   {
+    //   "id": 2161415,
+    //   "default_variant_id": 6100184,
+    //   "add_to_cart_url": "\/cart\/add\/6100184\/1\/",
+    //   "url": "\/product\/dkp-2161415\/\u06a9\u0631\u0647-\u0633\u0646\u062a\u06cc-\u0634\u06a9\u0644\u06cc-\u0645\u0642\u062f\u0627\u0631-100-\u06af\u0631\u0645",
+    //   "title": "\u06a9\u0631\u0647 \u0633\u0646\u062a\u06cc \u0634\u06a9\u0644\u06cc \u0645\u0642\u062f\u0627\u0631 100 \u06af\u0631\u0645",
+    //   "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114087213.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
+    //   "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/114087213.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
+    //   "defaultLang": "fa",
+    //   "price": {
+    //     "rrp_price": 100000,
+    //     "selling_price": 98000,
+    //     "discount_percent": 2,
+    //     "marketable_stock": 752,
+    //     "orderLimit": 5,
+    //     "is_incredible_offer": false,
+    //     "is_sponsored_offer": false,
+    //     "timer": null,
+    //     "plus_variant_cash_back": 5000,
+    //     "remaining_percentage": 75
+    //   },
+    //   "has_quick_view": true,
+    //   "fast_shopping_badge": true,
+    //   "fast_shopping_confirm": true,
+    //   "category": "Butter",
+    //   "brand": "Shakelli",
+    //   "index_attributes": [],
+    //   "rating": {
+    //     "rating": 87.4,
+    //     "count": 7324
+    //   },
+    //   "has_selling_stock": true,
+    //   "status": "marketable",
+    //   "product_parameters": {
+    //     "seller": {
+    //       "count": 1
+    //     },
+    //     "index_attributes": [],
+    //     "warranty": {
+    //       "count": 1
+    //     }
+    //   },
+    //   "cpc_data": null,
+    //   "badge": {
+    //     "is_incredible_offer": false,
+    //     "is_selling_and_sales": true,
+    //     "has_promotion_badge": true,
+    //     "is_plus_promotion": false,
+    //     "is_early_access": false,
+    //     "is_app_incredible": false,
+    //     "is_themeable": false,
+    //     "title": "\u0641\u0631\u0648\u0634 \u0648\u06cc\u0698\u0647",
+    //     "color": null,
+    //     "image": null
+    //   },
+    //   "has_promotion_stock": true
+    // },
+    // ];
+    // var userFastShippingPurchaseHistory = {
+    //   "header": {
+    //     "title": "\u067e\u0631\u062a\u06a9\u0631\u0627\u0631\u062a\u0631\u06cc\u0646 \u062e\u0631\u06cc\u062f\u0647\u0627\u06cc \u0634\u0645\u0627",
+    //     "title_en": "Frequently bought products"
+    //   },
+    //   "data_layer": "{\"event\":\"eec.productImpression\",\"ecommerce\":{\"currencyCode\":\"EUR\",\"impressions\":[{\"name\":\"\\u06a9\\u0631\\u0645 \\u062a\\u0631\\u06a9 \\u062f\\u0633\\u062a \\u0648 \\u067e\\u0627 \\u062c\\u06cc \\u0645\\u062f\\u0644 Br001 \\u062d\\u062c\\u0645 50 \\u0645\\u06cc\\u0644\\u06cc\\u200c\\u0644\\u06cc\\u062a\\u0631\",\"id\":841139,\"price\":137400,\"brand\":\"\\u062c\\u06cc\",\"category\":\"\\u06a9\\u0631\\u0645 \\u0648 \\u0631\\u0648\\u063a\\u0646 \\u0631\\u0641\\u0639 \\u062a\\u0631\\u06a9 \\u0628\\u062f\\u0646\",\"list\":\"category-\\u06a9\\u0631\\u0645 \\u0648 \\u0631\\u0648\\u063a\\u0646 \\u0631\\u0641\\u0639 \\u062a\\u0631\\u06a9 \\u0628\\u062f\\u0646\",\"position\":1,\"dimension6\":1,\"dimension2\":14,\"dimension9\":4.5,\"metric6\":4747,\"dimension11\":0,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u06a9\\u0631\\u0647 \\u0633\\u0646\\u062a\\u06cc \\u0634\\u06a9\\u0644\\u06cc \\u0645\\u0642\\u062f\\u0627\\u0631 100 \\u06af\\u0631\\u0645\",\"id\":2161415,\"price\":98000,\"brand\":\"\\u0634\\u06a9\\u0644\\u06cc\",\"category\":\"\\u06a9\\u0631\\u0647 \\u062d\\u06cc\\u0648\\u0627\\u0646\\u06cc \\u0648 \\u06af\\u06cc\\u0627\\u0647\\u06cc\",\"list\":\"category-\\u06a9\\u0631\\u0647 \\u062d\\u06cc\\u0648\\u0627\\u0646\\u06cc \\u0648 \\u06af\\u06cc\\u0627\\u0647\\u06cc\",\"position\":2,\"dimension6\":1,\"dimension2\":2,\"dimension9\":4.4,\"metric6\":7324,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"},{\"name\":\"\\u0634\\u06cc\\u0631 \\u0646\\u06cc\\u0645 \\u0686\\u0631\\u0628 \\u0627\\u0631\\u06af\\u0627\\u0646\\u06cc\\u06a9 \\u06a9\\u0648\\u0647\\u067e\\u0646\\u0627\\u0647 \\u0645\\u0642\\u062f\\u0627\\u0631 940 \\u0645\\u06cc\\u0644\\u06cc \\u0644\\u06cc\\u062a\\u0631\",\"id\":784631,\"price\":127000,\"brand\":\"\\u06a9\\u0648\\u0647\\u067e\\u0646\\u0627\\u0647\",\"category\":\"\\u0634\\u06cc\\u0631\",\"list\":\"category-\\u0634\\u06cc\\u0631\",\"position\":3,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.5,\"metric6\":9943,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u06a9\\u0646\\u0633\\u0631\\u0648 \\u0645\\u0627\\u0647\\u06cc \\u062a\\u0648\\u0646 \\u062f\\u0631 \\u0631\\u0648\\u063a\\u0646 \\u06af\\u06cc\\u0627\\u0647\\u06cc \\u0637\\u0628\\u06cc\\u0639\\u062a - 180 \\u06af\\u0631\\u0645\",\"id\":847467,\"price\":195000,\"brand\":\"\\u0637\\u0628\\u06cc\\u0639\\u062a\",\"category\":\"\\u06a9\\u0646\\u0633\\u0631\\u0648 \\u0645\\u0627\\u0647\\u06cc\",\"list\":\"category-\\u06a9\\u0646\\u0633\\u0631\\u0648 \\u0645\\u0627\\u0647\\u06cc\",\"position\":4,\"dimension6\":1,\"dimension2\":30,\"dimension9\":4.3,\"metric6\":11620,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"incredible\"},{\"name\":\"\\u06af\\u0648\\u062c\\u0647 \\u0641\\u0631\\u0646\\u06af\\u06cc \\u0628\\u0648\\u062a\\u0647 \\u0627\\u06cc \\u0645\\u06cc\\u0648\\u0631\\u06cc - 1 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":4418767,\"price\":109800,\"brand\":\"\\u0645\\u06cc\\u0648\\u0631\\u06cc\",\"category\":\"\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"list\":\"category-\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"position\":5,\"dimension6\":1,\"dimension2\":11,\"dimension9\":4.1,\"metric6\":719,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"},{\"name\":\"\\u0642\\u0631\\u0635 \\u0645\\u0627\\u0634\\u06cc\\u0646 \\u0638\\u0631\\u0641\\u0634\\u0648\\u06cc\\u06cc \\u0647\\u0648\\u0645 \\u067e\\u0644\\u0627\\u0633 \\u0645\\u062f\\u0644 Lemon \\u0628\\u0633\\u062a\\u0647 24 \\u0639\\u062f\\u062f\\u06cc\",\"id\":3431048,\"price\":830000,\"brand\":\"\\u0647\\u0648\\u0645 \\u067e\\u0644\\u0627\\u0633\",\"category\":\"\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"list\":\"category-\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"position\":6,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":6211,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0633\\u0633 \\u06af\\u0648\\u062c\\u0647 \\u0641\\u0631\\u0646\\u06af\\u06cc \\u0628\\u06cc\\u0698\\u0646 \\u0648\\u0632\\u0646 550 \\u06af\\u0631\\u0645\",\"id\":1481847,\"price\":135000,\"brand\":\"\\u0628\\u06cc\\u0698\\u0646\",\"category\":\"\\u0633\\u0633\",\"list\":\"category-\\u0633\\u0633\",\"position\":7,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":4964,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0645\\u0648\\u0632 \\u0641\\u0644\\u0647 - 1 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":857042,\"price\":274300,\"brand\":\"\\u0645\\u062a\\u0641\\u0631\\u0642\\u0647\",\"category\":\"\\u0645\\u06cc\\u0648\\u0647\",\"list\":\"category-\\u0645\\u06cc\\u0648\\u0647\",\"position\":8,\"dimension6\":1,\"dimension2\":7,\"dimension9\":4,\"metric6\":2177,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"},{\"name\":\"\\u0631\\u0648\\u063a\\u0646 \\u0645\\u062e\\u0635\\u0648\\u0635 \\u0633\\u0631\\u062e \\u06a9\\u0631\\u062f\\u0646\\u06cc \\u0628\\u0647\\u0627\\u0631 - 1.5 \\u0644\\u06cc\\u062a\\u0631\",\"id\":1537796,\"price\":160000,\"brand\":\"\\u0628\\u0647\\u0627\\u0631\",\"category\":\"\\u0631\\u0648\\u063a\\u0646\",\"list\":\"category-\\u0631\\u0648\\u063a\\u0646\",\"position\":9,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.5,\"metric6\":5543,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0633\\u064a\\u0628 \\u0632\\u0645\\u064a\\u0646\\u064a \\u0645\\u064a\\u0648\\u0631\\u064a - 2 \\u06a9\\u064a\\u0644\\u0648\\u06af\\u0631\\u0645\\t\",\"id\":4365879,\"price\":119800,\"brand\":\"\\u0645\\u06cc\\u0648\\u0631\\u06cc\",\"category\":\"\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"list\":\"category-\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"position\":10,\"dimension6\":1,\"dimension2\":11,\"dimension9\":4,\"metric6\":630,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"},{\"name\":\"\\u062e\\u0631\\u0645\\u0627 \\u0639\\u0633\\u0644\\u06cc \\u062a\\u0627\\u0632\\u0647 \\u0645\\u0642\\u062f\\u0627\\u0631 800 \\u06af\\u0631\\u0645\",\"id\":1464601,\"price\":220000,\"brand\":\"\\u0645\\u062a\\u0641\\u0631\\u0642\\u0647\",\"category\":\"\\u062e\\u0631\\u0645\\u0627\",\"list\":\"category-\\u062e\\u0631\\u0645\\u0627\",\"position\":11,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.3,\"metric6\":1102,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc \\u067e\\u0646\\u0647 \\u0631\\u06cc\\u06af\\u0627\\u062a\\u0647 \\u0632\\u0631 \\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646 \\u0645\\u0642\\u062f\\u0627\\u0631 500 \\u06af\\u0631\\u0645\",\"id\":633507,\"price\":73600,\"brand\":\"\\u0632\\u0631\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\",\"category\":\"\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc\\u060c \\u067e\\u0627\\u0633\\u062a\\u0627 \\u0648 \\u0631\\u0634\\u062a\\u0647\",\"list\":\"category-\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc\\u060c \\u067e\\u0627\\u0633\\u062a\\u0627 \\u0648 \\u0631\\u0634\\u062a\\u0647\",\"position\":12,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":5730,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u067e\\u0648\\u062f\\u0631 \\u0645\\u0627\\u0634\\u06cc\\u0646 \\u0638\\u0631\\u0641\\u0634\\u0648\\u06cc\\u06cc \\u067e\\u0631\\u06cc\\u0644 \\u0645\\u0642\\u062f\\u0627\\u0631 1 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":3886246,\"price\":565000,\"brand\":\"\\u067e\\u0631\\u06cc\\u0644\",\"category\":\"\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"list\":\"category-\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"position\":13,\"dimension6\":1,\"dimension2\":13,\"dimension9\":4.3,\"metric6\":1919,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"incredible\"},{\"name\":\"\\u0645\\u0627\\u06cc\\u0639 \\u0638\\u0631\\u0641\\u0634\\u0648\\u06cc\\u06cc \\u067e\\u0631\\u06cc\\u0644 5+ \\u0628\\u0627 \\u0631\\u0627\\u06cc\\u062d\\u0647 \\u0644\\u06cc\\u0645\\u0648 \\u0645\\u0642\\u062f\\u0627\\u0631 3.75 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":3754869,\"price\":644000,\"brand\":\"\\u067e\\u0631\\u06cc\\u0644\",\"category\":\"\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"list\":\"category-\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0638\\u0631\\u0648\\u0641\",\"position\":14,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.5,\"metric6\":942,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u067e\\u0648\\u062f\\u0631 \\u0645\\u0627\\u0634\\u06cc\\u0646 \\u0644\\u0628\\u0627\\u0633\\u0634\\u0648\\u06cc\\u06cc \\u067e\\u0631\\u0633\\u06cc\\u0644 \\u0645\\u062f\\u0644 \\u06cc\\u0648\\u0646\\u06cc\\u0648\\u0631\\u0633\\u0627\\u0644 \\u0645\\u0642\\u062f\\u0627\\u0631 500 \\u06af\\u0631\\u0645 - \\u0645\\u062c\\u0645\\u0648\\u0639\\u0647 5 \\u0639\\u062f\\u062f\\u06cc \\u062a\\u062e\\u0641\\u06cc\\u0641 \\u062f\\u0627\\u0631\",\"id\":4104531,\"price\":567000,\"brand\":\"\\u067e\\u0631\\u0633\\u06cc\\u0644\",\"category\":\"\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0644\\u0628\\u0627\\u0633\",\"list\":\"category-\\u0634\\u0648\\u06cc\\u0646\\u062f\\u0647 \\u0644\\u0628\\u0627\\u0633\",\"position\":15,\"dimension6\":1,\"dimension2\":10,\"dimension9\":4.4,\"metric6\":1047,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0645\\u0627\\u0633\\u062a \\u0633\\u0628\\u0648 \\u067e\\u0631\\u0648\\u0628\\u06cc\\u0648\\u062a\\u06cc\\u06a9 \\u0647\\u0631\\u0627\\u0632 - 2 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645\",\"id\":1485662,\"price\":264000,\"brand\":\"\\u0647\\u0631\\u0627\\u0632\",\"category\":\"\\u0645\\u0627\\u0633\\u062a\",\"list\":\"category-\\u0645\\u0627\\u0633\\u062a\",\"position\":16,\"dimension6\":1,\"dimension2\":26,\"dimension9\":4.5,\"metric6\":3720,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"incredible\"},{\"name\":\"\\u0627\\u0633\\u067e\\u0627\\u06af\\u062a\\u06cc \\u0642\\u0637\\u0631 1.2 \\u0632\\u0631 \\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646 \\u0645\\u0642\\u062f\\u0627\\u0631 700 \\u06af\\u0631\\u0645\",\"id\":633380,\"price\":86000,\"brand\":\"\\u0632\\u0631\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\",\"category\":\"\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc\\u060c \\u067e\\u0627\\u0633\\u062a\\u0627 \\u0648 \\u0631\\u0634\\u062a\\u0647\",\"list\":\"category-\\u0645\\u0627\\u06a9\\u0627\\u0631\\u0648\\u0646\\u06cc\\u060c \\u067e\\u0627\\u0633\\u062a\\u0627 \\u0648 \\u0631\\u0634\\u062a\\u0647\",\"position\":17,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":6359,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u062e\\u06cc\\u0627\\u0631\\u0634\\u0648\\u0631 \\u0642\\u0644\\u0645\\u06cc \\u0627\\u0635\\u0627\\u0644\\u062a - 1.5 \\u06a9\\u06cc\\u0644\\u0648\\u06af\\u0631\\u0645 \",\"id\":3712166,\"price\":450000,\"brand\":\"\\u0627\\u0635\\u0627\\u0644\\u062a\",\"category\":\"\\u062e\\u06cc\\u0627\\u0631\\u0634\\u0648\\u0631 \\u0648 \\u062a\\u0631\\u0634\\u06cc\\u062c\\u0627\\u062a\",\"list\":\"category-\\u062e\\u06cc\\u0627\\u0631\\u0634\\u0648\\u0631 \\u0648 \\u062a\\u0631\\u0634\\u06cc\\u062c\\u0627\\u062a\",\"position\":18,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":1769,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u062e\\u0627\\u0645\\u0647 \\u0635\\u0628\\u062d\\u0627\\u0646\\u0647 \\u0645\\u06cc\\u0647\\u0646 \\u0645\\u0642\\u062f\\u0627\\u0631 200 \\u06af\\u0631\\u0645\",\"id\":888686,\"price\":120000,\"brand\":\"\\u0645\\u06cc\\u0647\\u0646\",\"category\":\"\\u062e\\u0627\\u0645\\u0647\",\"list\":\"category-\\u062e\\u0627\\u0645\\u0647\",\"position\":19,\"dimension6\":1,\"dimension2\":0,\"dimension9\":4.4,\"metric6\":3766,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"none\"},{\"name\":\"\\u0642\\u0627\\u0631\\u0686 \\u062f\\u06a9\\u0645\\u0647\\u200c \\u0627\\u06cc \\u06a9\\u0627\\u0645\\u0644 \\u0645\\u0644\\u0627\\u0631\\u062f - 400 \\u06af\\u0631\\u0645\",\"id\":784830,\"price\":188500,\"brand\":\"\\u0645\\u0644\\u0627\\u0631\\u062f\",\"category\":\"\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"list\":\"category-\\u0635\\u06cc\\u0641\\u06cc \\u0648 \\u0633\\u0628\\u0632\\u06cc\\u062c\\u0627\\u062a\",\"position\":20,\"dimension6\":1,\"dimension2\":14,\"dimension9\":4.3,\"metric6\":9103,\"dimension11\":1,\"dimension20\":\"marketable\",\"dimension18\":\"most-viewed\",\"dimension19\":\"selected-from-fresh\",\"dimension7\":\"special-offer\"}]}}",
+    //   "products": [
+    //     {
+    //     "id": 841139,
+    //     "default_variant_id": 10530607,
+    //     "add_to_cart_url": "\/cart\/add\/10530607\/1\/",
+    //     "url": "\/product\/dkp-841139\/\u06a9\u0631\u0645-\u062a\u0631\u06a9-\u062f\u0633\u062a-\u0648-\u067e\u0627-\u062c\u06cc-\u0645\u062f\u0644-br001-\u062d\u062c\u0645-50-\u0645\u06cc\u0644\u06cc\u0644\u06cc\u062a\u0631",
+    //     "title": "\u06a9\u0631\u0645 \u062a\u0631\u06a9 \u062f\u0633\u062a \u0648 \u067e\u0627 \u062c\u06cc \u0645\u062f\u0644 Br001 \u062d\u062c\u0645 50 \u0645\u06cc\u0644\u06cc\u200c\u0644\u06cc\u062a\u0631",
+    //     "image": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110235065.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
+    //     "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/110235065.jpg?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
+    //     "defaultLang": "fa",
+    //     "price": {
+    //       "rrp_price": 160000,
+    //       "selling_price": 137400,
+    //       "discount_percent": 0,
+    //       "marketable_stock": 864,
+    //       "orderLimit": 30,
+    //       "is_incredible_offer": false,
+    //       "is_sponsored_offer": false,
+    //       "timer": null,
+    //       "plus_variant_cash_back": 0,
+    //       "remaining_percentage": null
+    //     },
+    //     "has_quick_view": true,
+    //     "fast_shopping_badge": false,
+    //     "fast_shopping_confirm": false,
+    //     "category": "\u06a9\u0631\u0645 \u0648 \u0631\u0648\u063a\u0646 \u0631\u0641\u0639 \u062a\u0631\u06a9 \u0628\u062f\u0646",
+    //     "brand": "\u062c\u06cc",
+    //     "index_attributes": [{
+    //       "id": 19803,
+    //       "title": "\u0648\u06cc\u062a\u0627\u0645\u06cc\u0646",
+    //       "postfix": null,
+    //       "prefix": null,
+    //       "textValue": null,
+    //       "sort": 2,
+    //       "values": [{
+    //         "id": 23928,
+    //         "code": "no",
+    //         "title": "\u0646\u062f\u0627\u0631\u062f"
+    //       }]
+    //     },
+    //       {
+    //         "id": 19805,
+    //         "title": "\u0639\u0635\u0627\u0631\u0647",
+    //         "postfix": null,
+    //         "prefix": null,
+    //         "textValue": null,
+    //         "sort": 4,
+    //         "values": [{
+    //           "id": 23931,
+    //           "code": "no",
+    //           "title": "\u0646\u062f\u0627\u0631\u062f"
+    //         }]
+    //       },
+    //       {
+    //         "id": 19806,
+    //         "title": "\u0646\u0648\u0639 \u0645\u062d\u0641\u0638\u0647 \u0646\u06af\u0647 \u062f\u0627\u0631\u0646\u062f\u0647",
+    //         "postfix": null,
+    //         "prefix": "- \u0646\u0648\u0639 \u0645\u062d\u0641\u0638\u0647 \u0646\u06af\u0647 \u062f\u0627\u0631\u0646\u062f\u0647:",
+    //         "textValue": null,
+    //         "sort": 6,
+    //         "values": [{
+    //           "id": 23932,
+    //           "code": "tupe",
+    //           "title": "\u062a\u06cc\u0648\u067e\u06cc"
+    //         }]
+    //       },
+    //       {
+    //         "id": 19808,
+    //         "title": "\u06a9\u0634\u0648\u0631 \u0645\u0628\u062f\u0627 \u0628\u0631\u0646\u062f",
+    //         "postfix": null,
+    //         "prefix": "- \u06a9\u0634\u0648\u0631 \u0645\u0628\u062f\u0627 \u0628\u0631\u0646\u062f:",
+    //         "textValue": null,
+    //         "sort": 8,
+    //         "values": [{
+    //           "id": 23936,
+    //           "code": "iran",
+    //           "title": "\u0627\u06cc\u0631\u0627\u0646"
+    //         }]
+    //       }],
+    //     "rating": {
+    //       "rating": 89,
+    //       "count": 4747
+    //     },
+    //     "has_selling_stock": true,
+    //     "status": "marketable",
+    //     "product_parameters": {
+    //       "seller": {
+    //         "count": 44
+    //       },
+    //       "index_attributes": [{
+    //         "id": 19803,
+    //         "title": "\u0648\u06cc\u062a\u0627\u0645\u06cc\u0646",
+    //         "postfix": null,
+    //         "prefix": null,
+    //         "textValue": null,
+    //         "sort": 2,
+    //         "values": [{
+    //           "id": 23928,
+    //           "code": "no",
+    //           "title": "\u0646\u062f\u0627\u0631\u062f"
+    //         }]
+    //       },
+    //         {
+    //           "id": 19805,
+    //           "title": "\u0639\u0635\u0627\u0631\u0647",
+    //           "postfix": null,
+    //           "prefix": null,
+    //           "textValue": null,
+    //           "sort": 4,
+    //           "values": [{
+    //             "id": 23931,
+    //             "code": "no",
+    //             "title": "\u0646\u062f\u0627\u0631\u062f"
+    //           }]
+    //         },
+    //         {
+    //           "id": 19806,
+    //           "title": "\u0646\u0648\u0639 \u0645\u062d\u0641\u0638\u0647 \u0646\u06af\u0647 \u062f\u0627\u0631\u0646\u062f\u0647",
+    //           "postfix": null,
+    //           "prefix": "- \u0646\u0648\u0639 \u0645\u062d\u0641\u0638\u0647 \u0646\u06af\u0647 \u062f\u0627\u0631\u0646\u062f\u0647:",
+    //           "textValue": null,
+    //           "sort": 6,
+    //           "values": [{
+    //             "id": 23932,
+    //             "code": "tupe",
+    //             "title": "\u062a\u06cc\u0648\u067e\u06cc"
+    //           }]
+    //         },
+    //         {
+    //           "id": 19808,
+    //           "title": "\u06a9\u0634\u0648\u0631 \u0645\u0628\u062f\u0627 \u0628\u0631\u0646\u062f",
+    //           "postfix": null,
+    //           "prefix": "- \u06a9\u0634\u0648\u0631 \u0645\u0628\u062f\u0627 \u0628\u0631\u0646\u062f:",
+    //           "textValue": null,
+    //           "sort": 8,
+    //           "values": [{
+    //             "id": 23936,
+    //             "code": "iran",
+    //             "title": "\u0627\u06cc\u0631\u0627\u0646"
+    //           }]
+    //         }],
+    //       "warranty": {
+    //         "count": 3
+    //       }
+    //     },
+    //     "cpc_data": null,
+    //     "badge": null,
+    //     "has_promotion_stock": false
+    //   },
+    // };
+    // var snDeliveryOptions = {
+    //   "delivery_options": {
+    //     "eco": [{
+    //       "product_ids": {
+    //         "1130176984": 1977404
+    //       },
+    //       "available_time_windows": {
+    //         "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
+    //           "from": 19,
+    //           "to": 22
+    //         }],
+    //         "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
+    //           "from": 9,
+    //           "to": 12
+    //         },
+    //           {
+    //             "from": 11,
+    //             "to": 14
+    //           },
+    //           {
+    //             "from": 13,
+    //             "to": 16
+    //           },
+    //           {
+    //             "from": 15,
+    //             "to": 18
+    //           },
+    //           {
+    //             "from": 17,
+    //             "to": 20
+    //           },
+    //           {
+    //             "from": 19,
+    //             "to": 22
+    //           }]
+    //       },
+    //       "full_time_windows": []
+    //     },
+    //       {
+    //         "product_ids": {
+    //           "1130270410": 2217851,
+    //           "1130270411": 4826524,
+    //           "1130489950": 4142175
+    //         },
+    //         "available_time_windows": {
+    //           "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u062c\u0645\u0639\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }]
+    //         },
+    //         "full_time_windows": []
+    //       }],
+    //     "fast": [{
+    //       "product_ids": {
+    //         "1130176984": 1977404
+    //       },
+    //       "available_time_windows": {
+    //         "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
+    //           "from": 19,
+    //           "to": 22
+    //         }],
+    //         "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
+    //           "from": 9,
+    //           "to": 12
+    //         },
+    //           {
+    //             "from": 11,
+    //             "to": 14
+    //           },
+    //           {
+    //             "from": 13,
+    //             "to": 16
+    //           },
+    //           {
+    //             "from": 15,
+    //             "to": 18
+    //           },
+    //           {
+    //             "from": 17,
+    //             "to": 20
+    //           },
+    //           {
+    //             "from": 19,
+    //             "to": 22
+    //           }]
+    //       },
+    //       "full_time_windows": []
+    //     },
+    //       {
+    //         "product_ids": {
+    //           "1130270410": 2217851,
+    //           "1130489950": 4142175
+    //         },
+    //         "available_time_windows": {
+    //           "\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u062c\u0645\u0639\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u06cc\u06a9\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }]
+    //         },
+    //         "full_time_windows": []
+    //       },
+    //       {
+    //         "product_ids": {
+    //           "1130270411": 4826524
+    //         },
+    //         "available_time_windows": {
+    //           "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u062c\u0645\u0639\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }]
+    //         },
+    //         "full_time_windows": []
+    //       }],
+    //     "normal": [{
+    //       "product_ids": {
+    //         "1130176984": 1977404
+    //       },
+    //       "available_time_windows": {
+    //         "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
+    //           "from": 19,
+    //           "to": 22
+    //         }],
+    //         "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
+    //           "from": 9,
+    //           "to": 12
+    //         },
+    //           {
+    //             "from": 11,
+    //             "to": 14
+    //           },
+    //           {
+    //             "from": 13,
+    //             "to": 16
+    //           },
+    //           {
+    //             "from": 15,
+    //             "to": 18
+    //           },
+    //           {
+    //             "from": 17,
+    //             "to": 20
+    //           },
+    //           {
+    //             "from": 19,
+    //             "to": 22
+    //           }]
+    //       },
+    //       "full_time_windows": []
+    //     },
+    //       {
+    //         "product_ids": {
+    //           "1130270410": 2217851,
+    //           "1130270411": 4826524,
+    //           "1130489950": 4142175
+    //         },
+    //         "available_time_windows": {
+    //           "\u062f\u0648\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u0633\u0647\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u067e\u0646\u062c\u200c\u0634\u0646\u0628\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }],
+    //           "\u062c\u0645\u0639\u0647": [{
+    //             "from": 9,
+    //             "to": 12
+    //           },
+    //             {
+    //               "from": 12,
+    //               "to": 15
+    //             },
+    //             {
+    //               "from": 15,
+    //               "to": 18
+    //             },
+    //             {
+    //               "from": 18,
+    //               "to": 21
+    //             }]
+    //         },
+    //         "full_time_windows": []
+    //       }]
+    //   }
+    // };
+    // var userHasFastShippingPurchaseHistory = true;
+    // var nonInteraction = false;
+    // var isPlusUser = false;
+    // var skipItemIds = [1130176984, 1130270410, 1130270411, 1130489950];
     var dataLayerData = null;
     var faqPageTitle = "shipping_section";
-    var userId = 9735394;
-    var adroRCActivation = true;
+    var userId = {{ $customer->id }};
+    // var adroRCActivation = true;
     var loginRegisterUrlWithBack = "";
     var isNewCustomer = false;
   </script>
+
 
   <script src="{{ asset('assets/js/sentry.js') }}"></script>
   <script src="{{ asset('assets/js/address.js') }}"></script>
@@ -13003,39 +8053,6 @@
                   </div>
                   <div class="c-checkout-address__content js-ui-tab-content" data-tab-content-id="userAddresses">
                     <div class="c-checkout-address__content">
-
-
-
-                      {{--                      <div class="c-checkout-address__item    js-recipient-box js-user-address-container js-address-box " data-id="2" data-address="{&quot;id&quot;:2,&quot;full_name&quot;:&quot;اسماعیل جعفری&quot;,&quot;mobile_phone&quot;:&quot;09393088135&quot;,&quot;phone_code&quot;:null,&quot;post_code&quot;:&quot;1212121212&quot;,&quot;phone&quot;:null,&quot;address&quot;:&quot;تهران،کشاورز، بوستان لاله&quot;,&quot;description&quot;:&quot;&quot;,&quot;active&quot;:true,&quot;default&quot;:false,&quot;city_id&quot;:1698,&quot;city_name&quot;:&quot;تهران&quot;,&quot;state_id&quot;:9,&quot;state_name&quot;:&quot;تهران&quot;,&quot;district_id&quot;:2713,&quot;district_name&quot;:&quot;آپادانا&quot;,&quot;building_no&quot;:&quot;1&quot;,&quot;unit&quot;:null,&quot;full_address&quot;:&quot;تهران، تهران، تهران،کشاورز، بوستان لاله، پلاک ۱&quot;,&quot;map_lon&quot;:51.39157,&quot;map_lat&quot;:35.71085,&quot;map_lon_mobile&quot;:&quot;0.00000&quot;,&quot;map_lat_mobile&quot;:&quot;0.00000&quot;,&quot;map_lon_web&quot;:&quot;0.00000&quot;,&quot;map_lat_web&quot;:&quot;0.00000&quot;,&quot;fmcg_support&quot;:true,&quot;is_shared_address&quot;:false,&quot;shared_address_id&quot;:null}">--}}
-                      {{--                        <div class="c-checkout-address__item-headline">--}}
-                      {{--                          <label class="c-outline-radio">--}}
-                      {{--                            <input type="radio" name="address">--}}
-                      {{--                            <span class="c-outline-radio__check"></span>--}}
-                      {{--                          </label>--}}
-                      {{--                          ارسال به این آدرس--}}
-                      {{--                        </div>--}}
-                      {{--                        <ul class="c-checkout-address__item-content">--}}
-                      {{--                          <li class="c-checkout-address__item-address">--}}
-                      {{--                            تهران، تهران، تهران،کشاورز، بوستان لاله، پلاک ۱--}}
-                      {{--                          </li>--}}
-                      {{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--postal-code">--}}
-                      {{--                            ۱۲۱۲۱۲۱۲۱۲--}}
-                      {{--                          </li>--}}
-                      {{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--phone">--}}
-                      {{--                            ۰۹۳۹۳۰۸۸۱۳۵--}}
-                      {{--                          </li>--}}
-                      {{--                          <li class="c-checkout-address__item-detail c-checkout-address__item-detail--username">--}}
-                      {{--                            اسماعیل جعفری--}}
-                      {{--                          </li>--}}
-                      {{--                        </ul>--}}
-                      {{--                        <div class="c-checkout-address__actions">--}}
-                      {{--                          <button class="o-btn o-btn--link-blue-sm js-remove-address-btn" data-id="2" data-token="{{ csrf_token() }}">حذف</button>--}}
-                      {{--                          <button class="o-btn o-btn--link-blue-sm js-edit-address-btn" data-event="edit_address" data-event-category="funnel" data-event-label="addresses: 4, position: list of addresses" data-id="2">ویرایش</button>--}}
-                      {{--                        </div>--}}
-                      {{--                      </div>--}}
-
-
-
                       @foreach($customer->addresses as $address)
                         @if ($customer->where('address_type', 'CustomerAddress')->exists())
                           <?php $is_selected_id = $customer->delivery_address->id; ?>
@@ -13134,34 +8151,30 @@
                   @endif
                 </div>
               </div>
-{{--              <div class="c-checkout-shipment__info">--}}
-{{--                خرید شما به دلیل وجود کالای سوپرمارکتی با انبارش متفاوت/با شرایط نگهداری خاص در چند مرحله ارسال می‌شود.--}}
-{{--              </div>--}}
-              <form method="post" class="c-checkout-shipment__form"
-                    data-has-fresh="1"
-                    data-has-heavy="0"
-                    data-has-normal="1"
-                    data-multi-shipment="1" id="shipping-data-form">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+              <form method="post" class="c-checkout-shipment__form" data-has-fresh="1" data-has-heavy="0" data-has-normal="1" data-multi-shipment="1" id="shipping-data-form">
 
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <input type="hidden" name="shipping[is_jet_delivery_enabled]" value="" id="js-jet-delivery-enabled-input"/>
                 <input type="hidden" name="shipping[skipItemIds]" value="[1130176984,1130270410,1130270411,1130489950]" id="js-skip-item-id-input"/>
+
                 <div class="js-normal-delivery ">
                   <div>
-                    @foreach($weights as $weight)
+                    @foreach($weights as $i => $weight)
+
                       <?php
                         $has_consignment = false;
                         $i = 1;
                         $count = 0;
                       ?>
+
                       @foreach ($first_carts as $item)
                         @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
                           <?php $has_consignment = true; ?>
                         @endif
                       @endforeach
 
-                      @if ($has_consignment)
-                       <div class="c-checkout-pack js-checkout-pack " data-parcel="0-1-1">
+                      @if (isset($has_consignment) && $has_consignment)
+                        <div class="c-checkout-pack js-checkout-pack " data-parcel="0-1-1">
                           <div class="c-checkout-pack__header">
                             <div class="c-checkout-pack__header-title">
                               <span>مرسوله {{ persianNum($i) }} از {{ persianNum($cons_count) }}</span>
@@ -13177,19 +8190,55 @@
                             </div>
                           </div>
                           <div class="c-checkout-pack__shipping-type-row">
-                            @if ($weight->deliveryMethods()->exists())
-                              @foreach($weight->deliveryMethods()->where('status', 'active')->get() as $key => $method)
-                                <label class="c-checkout-pack__shipping-type-item">
-                                  <input type="radio" value="{{ $method->id }}" class="js-shipping-type-selector" name="shipping-type-normal-0-1-1" {{ ($key == 0)? 'checked' : '' }}>
-                                  <div class="c-checkout-pack__shipping-type">
-                                    <div class="c-checkout-time-table__shipping-type">
-                                      <span style="background-image: url({{ $site_url . '/' .  $method->media()->first()->path . '/' . $method->media()->first()->name }});     width: 25px !important;height: 19px !important; float: right; background-repeat: no-repeat; background-size: 20px; background-position: right bottom; margin-left: 0px;"></span>
-                                      {{ $method->name }}
-                                    </div>
-                                  </div>
-                                </label>
-                              @endforeach
-                            @endif
+                            <?php $sum_weight = 0; ?>
+                            @foreach ($first_carts as $key => $cart)
+                              @if ($cart->product_variant()->first()->product->weight()->id == $weight->id)
+                                <?php $sum_weight += $cart->product_variant()->first()->product->weight; ?>
+                                @if ($first_carts->count()-1 == $key)
+                                    @if ($weight->deliveryMethods()->exists())
+                                      @foreach($weight->deliveryMethods()->where('status', 'active')->get() as $key => $method)
+                                        @if($sum_weight > 5000 && $method->id == 1)
+                                          @continue
+                                        @endif
+                                        <?php $availible_methods[] = $method->id; ?>
+
+                                        <?php
+                                          if(in_array(1, $availible_methods)){
+                                            $default_method = 1;
+                                          }
+                                          elseif (in_array(2, $availible_methods)) {
+                                            $default_method = 2;
+                                          }
+                                          elseif (in_array(3, $availible_methods)) {
+                                            $default_method = 3;
+                                          }
+                                          else {
+                                           $default_method = 4;
+                                          }
+
+                                        ?>
+
+                                          <label class="c-checkout-pack__shipping-type-item">
+                                          <input type="radio" value="{{ $method->id }}" class="js-shipping-type-selector" data-weight="{{ $weight->id }}" name="shipping-type-normal-0-0-{{ $i }}"
+                                            {{ ($default_method == $method->id)? 'checked="checked"' : '' }}
+                                          >
+                                          <div class="c-checkout-pack__shipping-type">
+                                            <div class="c-checkout-time-table__shipping-type">
+                                              <span style="background-image: url({{ $site_url . '/' .  $method->media()->first()->path . '/' . $method->media()->first()->name }}); width: 25px !important;height: 19px !important; float: right; background-repeat: no-repeat; background-size: 20px; background-position: right bottom; margin-left: 0px;"></span>
+                                              {{ $method->name }}
+                                            </div>
+                                          </div>
+                                        </label>
+                                      @endforeach
+                                    @endif
+                                @endif
+                              @endif
+                            @endforeach
+
+
+
+
+
                           </div>
                           <div class="c-checkout-pack__row">
                             <script>
@@ -13258,984 +8307,15 @@
                               </div>
                             </section>
                           </div>
-                          <div class="c-checkout-pack__row js-shipment-submit-type "
-                               data-alt-shipping-id="shipping-type-normal-0-1-1"><input
-                              id="additional-shipping-type-normal-0-1-1" type="radio"
-                              name="shipping[additional-option][normal][0-1-1]" value="3"
-                              data-cost-id="js-0-1-1-package-row-normal" class="js-checkout-additional-option"
-                              style="opacity: 0;">
-                          </div>
+
+
+
+
                         </div>
                         <?php $i++; ?>
                       @endif
 
                     @endforeach
-                  </div>
-                </div>
-
-                <div class="js-fast-delivery js-delivery-packages-hidden" style="display: none;">
-                  <div>
-                    <div class="c-checkout-pack js-checkout-pack " data-parcel="0-1-29">
-                      <div class="c-checkout-pack__header">
-                        <div class="c-checkout-pack__header-title"><span>مرسوله ۱ از ۳</span></div>
-                        <div class="c-checkout-pack__header-dsc"><span>
-                                             ۱
-                                             کالا
-                                             </span><span class="c-checkout-time-table__shipping-lead-time">
-                                             موجود در انبار دیجی نوا
-                                             </span>
-                        </div>
-                      </div>
-                      <div class="c-checkout-pack__sub-header ">
-                        <div class="c-checkout-time-table__shipping-type c-checkout-time-table__shipping-type--fresh">
-                          ارسال
-                          سریع
-                        </div>
-                      </div>
-                      <div class="c-checkout-pack__row">
-                        <script>
-                          var carouselDataTracker = null;
-                          if (carouselDataTracker) {
-                            if (!window.carouselData)
-                              window.carouselData = [carouselDataTracker];
-                            else
-                              window.carouselData.push(carouselDataTracker);
-                          }
-                        </script>
-                        <section class="c-swiper c-swiper--products-compact js-swiper-box-container">
-                          <div class="c-box">
-                            <div
-                              class="swiper-container swiper-container-horizontal js-swiper-container js-swiper-cart-parcel swiper-container-rtl">
-                              <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                <div class="swiper-slide js-product-box-container swiper-slide-active"
-                                     data-item-id="1130176984" style="width: 154.167px;">
-                                  <div class="c-product-box c-product-box--compact js-product-box"><a
-                                      class="c-product-box__img js-url"><img
-                                        alt="روغن کنجد، کانولا و آفتابگردان سرخ کردنی داتیس - 1.8 لیتر"
-                                        class="swiper-lazy swiper-lazy-loaded"
-                                        data-src="https://dkstatics-public.digikala.com/digikala-products/113104125.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                        src="https://dkstatics-public.digikala.com/digikala-products/113104125.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                        loading="lazy"></a></div>
-                                </div>
-                              </div>
-                              <div class="swiper-button-prev js-swiper-button-prev swiper-button-disabled"></div>
-                              <div class="swiper-button-next js-swiper-button-next swiper-button-disabled"></div>
-                            </div>
-                          </div>
-                        </section>
-                      </div>
-                      <div class="c-checkout-pack__row js-shipment-submit-type active" data-shipping-id="shipping-type-fast-0-1-29">
-                        <div class="c-checkout-time-table js-time-table">
-                          <div class="c-checkout-time-table__table-title">
-                            انتخاب زمان ارسال
-                          </div>
-                          <span class="js-package-shipping-cost u-hidden" data-price="180000" data-cost-id="js-0-1-29-package-row-fast" data-post-payed="">
-                            هزینه ارسال : ۱۸,۰۰۰ تومان
-                          </span>
-                          <div class="c-time-table js-time-table-container ">
-                            <div class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
-                              <div class="c-time-table__navigation c-time-table__navigation--prev js-swiper-button-prev swiper-button-disabled">
-                                <div class="c-time-table__navigation-button" data-icon="Icon-Navigation-Chevron-Right"></div>
-                              </div>
-                              <div class="c-time-table__navigation c-time-table__navigation--next js-swiper-button-next swiper-button-disabled">
-                                <div class="c-time-table__navigation-button" data-icon="Icon-Navigation-Chevron-Left"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="c-checkout-pack js-checkout-pack " data-parcel="1-1-1">
-                      <div class="c-checkout-pack__header">
-                        <div class="c-checkout-pack__header-title"><span>مرسوله ۲ از ۳</span></div>
-                        <div class="c-checkout-pack__header-dsc"><span>
-                                             ۲
-                                             کالا
-                                             </span><span class="c-checkout-time-table__shipping-lead-time">
-                                             تامین کالا از
-                                             ۱
-                                             روز کاری آینده
-                                             </span>
-                        </div>
-                      </div>
-                      <div class="c-checkout-pack__sub-header ">
-                        <div class="c-checkout-time-table__shipping-type c-checkout-time-table__shipping-type--express">
-                          ارسال
-                          عادی
-                        </div>
-                      </div>
-                      <div class="c-checkout-pack__row">
-                        <script>
-                          var carouselDataTracker = null;
-                          if (carouselDataTracker) {
-                            if (!window.carouselData)
-                              window.carouselData = [carouselDataTracker];
-                            else
-                              window.carouselData.push(carouselDataTracker);
-                          }
-                        </script>
-                        <section class="c-swiper c-swiper--products-compact js-swiper-box-container">
-                          <div class="c-box">
-                            <div
-                              class="swiper-container swiper-container-horizontal js-swiper-container js-swiper-cart-parcel swiper-container-rtl">
-                              <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                <div class="swiper-slide js-product-box-container swiper-slide-active"
-                                     data-item-id="1130270410" style="width: 154.167px;">
-                                  <div class="c-product-box c-product-box--compact js-product-box">
-                                    <a class="c-product-box__img js-url"><img
-                                        alt="لپ تاپ 16 اینچی اپل مدل MacBook Pro MVVM2 2019 همراه با تاچ بار"
-                                        class="swiper-lazy swiper-lazy-loaded"
-                                        data-src="https://dkstatics-public.digikala.com/digikala-products/114391682.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                        src="https://dkstatics-public.digikala.com/digikala-products/114391682.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                        loading="lazy"></a>
-                                    <div class="c-product-box__variant c-product-box__variant--color"><span
-                                        style="background-color: #dedede;"></span>
-                                      نقره ای
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="swiper-slide js-product-box-container swiper-slide-next"
-                                     data-item-id="1130489950" style="width: 154.167px;">
-                                  <div class="c-product-box c-product-box--compact js-product-box"><a
-                                      class="c-product-box__img js-url"><img
-                                        alt="ماسک تنفسی دکتر کرست مدل Dr-G40 بسته 40 عددی"
-                                        class="swiper-lazy swiper-lazy-loaded"
-                                        data-src="https://dkstatics-public.digikala.com/digikala-products/b98c526cde5163111c2236e94ece33d2bf827ca5_1609580174.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                        src="https://dkstatics-public.digikala.com/digikala-products/b98c526cde5163111c2236e94ece33d2bf827ca5_1609580174.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                        loading="lazy"></a></div>
-                                </div>
-                              </div>
-                              <div class="swiper-button-prev js-swiper-button-prev swiper-button-disabled"></div>
-                              <div class="swiper-button-next js-swiper-button-next swiper-button-disabled"></div>
-                            </div>
-                          </div>
-                        </section>
-                      </div>
-                      <div class="c-checkout-pack__row js-shipment-submit-type active"
-                           data-shipping-id="shipping-type-fast-1-1-1">
-                        <div class="c-checkout-time-table js-time-table">
-                          <div class="c-checkout-time-table__table-title">
-                            انتخاب زمان ارسال
-                          </div>
-                          <span class="js-package-shipping-cost u-hidden" data-price="0"
-                                data-cost-id="js-1-1-1-package-row-fast" data-post-payed="">
-                                             هزینه ارسال : <span class="">رایگان</span></span>
-                          <div class="c-time-table js-time-table-container js-dynamic-time-table-container">
-                            <div class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
-                              <ul class=" swiper-wrapper">
-                                <li class="swiper-slide c-time-table__day-details swiper-slide-active"
-                                    id="day-fast-1-1-1-1">
-                                                         <span class="c-time-table__day-name ">
-                                                         چهار‌شنبه
-                                                         </span><span class="c-time-table__date">
-                                                         ۲۲ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4088773"
-                                             id="hour-radio-1-1-1-4088773-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4088773-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4088873"
-                                             id="hour-radio-1-1-1-4088873-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4088873-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4088973"
-                                             id="hour-radio-1-1-1-4088973-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4088973-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089073"
-                                             id="hour-radio-1-1-1-4089073-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089073-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li class="swiper-slide c-time-table__day-details swiper-slide-next"
-                                    id="day-fast-1-1-1-2">
-                                                         <span
-                                                           class="c-time-table__day-name c-time-table__day-name--holiday">
-                                                         پنج‌شنبه
-                                                         </span><span class="c-time-table__date">
-                                                         ۲۳ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089166"
-                                             id="hour-radio-1-1-1-4089166-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089166-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089239"
-                                             id="hour-radio-1-1-1-4089239-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089239-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089312"
-                                             id="hour-radio-1-1-1-4089312-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089312-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089385"
-                                             id="hour-radio-1-1-1-4089385-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089385-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li class="swiper-slide c-time-table__day-details" id="day-fast-1-1-1-3">
-                                                         <span
-                                                           class="c-time-table__day-name c-time-table__day-name--holiday">
-                                                         جمعه
-                                                         </span><span class="c-time-table__date">
-                                                         ۲۴ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089167"
-                                             id="hour-radio-1-1-1-4089167-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089167-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089240"
-                                             id="hour-radio-1-1-1-4089240-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089240-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089313"
-                                             id="hour-radio-1-1-1-4089313-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089313-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089386"
-                                             id="hour-radio-1-1-1-4089386-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089386-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li class="swiper-slide c-time-table__day-details" id="day-fast-1-1-1-4">
-                                                         <span class="c-time-table__day-name ">
-                                                         شنبه
-                                                         </span><span class="c-time-table__date">
-                                                         ۲۵ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089168"
-                                             id="hour-radio-1-1-1-4089168-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089168-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089241"
-                                             id="hour-radio-1-1-1-4089241-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089241-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089314"
-                                             id="hour-radio-1-1-1-4089314-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089314-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089387"
-                                             id="hour-radio-1-1-1-4089387-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089387-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li class="swiper-slide c-time-table__day-details" id="day-fast-1-1-1-5">
-                                                         <span class="c-time-table__day-name ">
-                                                         یکشنبه
-                                                         </span><span class="c-time-table__date">
-                                                         ۲۶ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4088774"
-                                             id="hour-radio-1-1-1-4088774-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4088774-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4088874"
-                                             id="hour-radio-1-1-1-4088874-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4088874-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4088974"
-                                             id="hour-radio-1-1-1-4088974-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4088974-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][1-1-1]" value="4089074"
-                                             id="hour-radio-1-1-1-4089074-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-1-1-1-4089074-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-1-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="0">
-                                                               رایگان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                              </ul>
-                              <div
-                                class="c-time-table__navigation c-time-table__navigation--prev js-swiper-button-prev swiper-button-disabled">
-                                <div class="c-time-table__navigation-button"
-                                     data-icon="Icon-Navigation-Chevron-Right"></div>
-                              </div>
-                              <div
-                                class="c-time-table__navigation c-time-table__navigation--next js-swiper-button-next">
-                                <div class="c-time-table__navigation-button"
-                                     data-icon="Icon-Navigation-Chevron-Left"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="c-checkout-pack js-checkout-pack " data-parcel="4-1-1">
-                      <div class="c-checkout-pack__header">
-                        <div class="c-checkout-pack__header-title"><span>مرسوله ۳ از ۳</span></div>
-                        <div class="c-checkout-pack__header-dsc"><span>
-                                             ۱
-                                             کالا
-                                             </span><span class="c-checkout-time-table__shipping-lead-time">
-                                             تامین کالا از
-                                             ۴
-                                             روز کاری آینده
-                                             </span>
-                        </div>
-                      </div>
-                      <div class="c-checkout-pack__sub-header ">
-                        <div class="c-checkout-time-table__shipping-type c-checkout-time-table__shipping-type--express">
-                          ارسال
-                          عادی
-                        </div>
-                      </div>
-                      <div class="c-checkout-pack__row">
-                        <script>
-                          var carouselDataTracker = null;
-                          if (carouselDataTracker) {
-                            if (!window.carouselData)
-                              window.carouselData = [carouselDataTracker];
-                            else
-                              window.carouselData.push(carouselDataTracker);
-                          }
-                        </script>
-                        <section class="c-swiper c-swiper--products-compact js-swiper-box-container">
-                          <div class="c-box">
-                            <div
-                              class="swiper-container swiper-container-horizontal js-swiper-container js-swiper-cart-parcel swiper-container-rtl">
-                              <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                <div class="swiper-slide js-product-box-container swiper-slide-active"
-                                     data-item-id="1130270411" style="width: 154.167px;">
-                                  <div class="c-product-box c-product-box--compact js-product-box"><a
-                                      class="c-product-box__img js-url"><img
-                                        alt="درزگیر ترک سطوح نیپون مدل S100 وزن 1 کیلوگرم"
-                                        class="swiper-lazy swiper-lazy-loaded"
-                                        data-src="https://dkstatics-public.digikala.com/digikala-products/6cae8819a71e3d41e56612c0de87cd2c5ad293ff_1617526029.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                        src="https://dkstatics-public.digikala.com/digikala-products/6cae8819a71e3d41e56612c0de87cd2c5ad293ff_1617526029.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                        loading="lazy"></a></div>
-                                </div>
-                              </div>
-                              <div class="swiper-button-prev js-swiper-button-prev swiper-button-disabled"></div>
-                              <div class="swiper-button-next js-swiper-button-next swiper-button-disabled"></div>
-                            </div>
-                          </div>
-                        </section>
-                      </div>
-                      <div class="c-checkout-pack__row js-shipment-submit-type active"
-                           data-shipping-id="shipping-type-fast-4-1-1">
-                        <div class="c-checkout-time-table js-time-table">
-                          <div class="c-checkout-time-table__table-title">
-                            انتخاب زمان ارسال
-                          </div>
-                          <span class="js-package-shipping-cost u-hidden" data-price="0"
-                                data-cost-id="js-4-1-1-package-row-fast" data-post-payed="">
-                                             هزینه ارسال : <span class="">رایگان</span></span>
-                          <div class="c-time-table js-time-table-container js-dynamic-time-table-container">
-                            <div
-                              class="c-time-table__table swiper-container js-time-table-swiper swiper-container-horizontal swiper-container-rtl">
-                              <ul class=" swiper-wrapper">
-                                <li class="swiper-slide c-time-table__day-details swiper-slide-active"
-                                    id="day-fast-4-1-1-1">
-                                                         <span class="c-time-table__day-name ">
-                                                         دو‌شنبه
-                                                         </span><span class="c-time-table__date">
-                                                         ۲۷ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088775"
-                                             id="hour-radio-4-1-1-4088775-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088775-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088875"
-                                             id="hour-radio-4-1-1-4088875-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088875-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088975"
-                                             id="hour-radio-4-1-1-4088975-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088975-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089075"
-                                             id="hour-radio-4-1-1-4089075-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089075-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li class="swiper-slide c-time-table__day-details swiper-slide-next"
-                                    id="day-fast-4-1-1-2">
-                                                         <span class="c-time-table__day-name ">
-                                                         سه‌شنبه
-                                                         </span><span class="c-time-table__date">
-                                                         ۲۸ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088776"
-                                             id="hour-radio-4-1-1-4088776-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088776-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088876"
-                                             id="hour-radio-4-1-1-4088876-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088876-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088976"
-                                             id="hour-radio-4-1-1-4088976-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088976-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089076"
-                                             id="hour-radio-4-1-1-4089076-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089076-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li class="swiper-slide c-time-table__day-details" id="day-fast-4-1-1-3">
-                                                         <span class="c-time-table__day-name ">
-                                                         چهار‌شنبه
-                                                         </span><span class="c-time-table__date">
-                                                         ۲۹ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088777"
-                                             id="hour-radio-4-1-1-4088777-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088777-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088877"
-                                             id="hour-radio-4-1-1-4088877-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088877-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4088977"
-                                             id="hour-radio-4-1-1-4088977-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4088977-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089077"
-                                             id="hour-radio-4-1-1-4089077-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089077-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li class="swiper-slide c-time-table__day-details" id="day-fast-4-1-1-4">
-                                                         <span class="c-time-table__day-name ">
-                                                         پنج‌شنبه
-                                                         </span><span class="c-time-table__date">
-                                                         ۳۰ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089169"
-                                             id="hour-radio-4-1-1-4089169-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089169-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089242"
-                                             id="hour-radio-4-1-1-4089242-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089242-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089315"
-                                             id="hour-radio-4-1-1-4089315-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089315-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089388"
-                                             id="hour-radio-4-1-1-4089388-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089388-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                                <li class="swiper-slide c-time-table__day-details" id="day-fast-4-1-1-5">
-                                                         <span
-                                                           class="c-time-table__day-name c-time-table__day-name--holiday">
-                                                         جمعه
-                                                         </span><span class="c-time-table__date">
-                                                         ۳۱ اردیبهشت
-                                                         </span>
-                                  <ul class="c-time-table__hour-container">
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089170"
-                                             id="hour-radio-4-1-1-4089170-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089170-fast"><span>
-                                                               بازه
-                                                               ۹
-                                                               -
-                                                               ۱۲
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089243"
-                                             id="hour-radio-4-1-1-4089243-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089243-fast"><span>
-                                                               بازه
-                                                               ۱۲
-                                                               -
-                                                               ۱۵
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089316"
-                                             id="hour-radio-4-1-1-4089316-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089316-fast"><span>
-                                                               بازه
-                                                               ۱۵
-                                                               -
-                                                               ۱۸
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                    <li class="c-outline-radio c-time-table__hour-item js-handle-dynamic-shipping-hour">
-                                      <input type="radio" name="shipping[time_scopes][4-1-1]" value="4089389"
-                                             id="hour-radio-4-1-1-4089389-fast"><label class="c-time-table__radio-label
-                                                               " for="hour-radio-4-1-1-4089389-fast"><span>
-                                                               بازه
-                                                               ۱۸
-                                                               -
-                                                               ۲۱
-                                                               </span><span
-                                          class="c-time-table__hour-shipping-cost js-dynamic-shipping-cost"
-                                          data-history-row-id=".js-4-1-1-package-row-fast"
-                                          data-dynamic-shipping-cost="250000">
-                                                               ۲۵,۰۰۰
-                                                               تومان
-                                                               </span></label>
-                                    </li>
-                                  </ul>
-                                </li>
-                              </ul>
-                              <div
-                                class="c-time-table__navigation c-time-table__navigation--prev js-swiper-button-prev swiper-button-disabled">
-                                <div class="c-time-table__navigation-button"
-                                     data-icon="Icon-Navigation-Chevron-Right"></div>
-                              </div>
-                              <div
-                                class="c-time-table__navigation c-time-table__navigation--next js-swiper-button-next">
-                                <div class="c-time-table__navigation-button"
-                                     data-icon="Icon-Navigation-Chevron-Left"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
 
@@ -14248,14 +8328,13 @@
               </form>
             </div>
             <div class="c-checkout__actions">
-              <a href="/cart/" class="c-checkout__actions--back"
-                  data-snt-event='dkShippingPageClick' data-snt-params='{"item":"back_to_cart","item_option":null}'
-                  data-event="back_to_cart_link" data-event-category="funnel" data-event-label="items: 4, addresses: 2">
+              <a href="/cart/" class="c-checkout__actions--back" data-snt-event='dkShippingPageClick' data-snt-params='{"item":"back_to_cart","item_option":null}' data-event="back_to_cart_link" data-event-category="funnel" data-event-label="items: 4, addresses: 2">
                   بازگشت به سبد خرید
               </a>
             </div>
           </section>
           <aside class="o-page__aside  js-sticky-cart">
+
             <div class="c-checkout-aside js-checkout-aside">
               <div class="c-checkout-bill">
                 <ul class="c-checkout-bill__summary">
@@ -14264,154 +8343,122 @@
                     <?php $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count); ?>
                   @endforeach
                   <li>
-                    <span class="c-checkout-bill__item-title">
-                      قیمت کالاها
-                      ({{ persianNum($first_carts->count()) }})
-                    </span>
+        <span class="c-checkout-bill__item-title">
+          قیمت کالاها
+          ({{ persianNum($first_carts->count()) }})
+        </span>
                     <span class="c-checkout-bill__price">
-                      {{ persianNum(number_format(toman($sum_sale_price))) }}
-                      <span class="c-checkout-bill__currency">
-                          تومان
-                      </span>
-                    </span>
-                  </li>
+          {{ persianNum(number_format(toman($sum_sale_price))) }}
+          <span class="c-checkout-bill__currency">
+              تومان
+          </span>
+        </span>
+        </li>
 
-                  @if($first_carts->sum('new_promotion_price') > 0)
+        @if($first_carts->sum('new_promotion_price') > 0)
 
-                    <?php $sum_promotion_price = 0; ?>
-                    @foreach($first_carts as $priceItem)
-                      @if ($priceItem->new_sale_price > $priceItem->new_promotion_price)
-                        <?php $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count); ?>
-                      @endif
-                    @endforeach
-                    <li>
-                      <span class="c-checkout-bill__item-title">
-                          تخفیف کالاها
-                      </span>
-                      <span class="c-checkout-bill__price c-checkout-bill__price--discount">
-                        <span>
-                          ({{ persianNum(number_format(($sum_promotion_price / $sum_sale_price) * 100)) }}٪)
-                        </span>
-                          {{ persianNum(number_format(toman($sum_promotion_price))) }}
-                        <span class="c-checkout-bill__currency"> تومان </span>
-                      </span>
+          <?php $sum_promotion_price = 0; ?>
+          @foreach($first_carts as $priceItem)
+            @if ($priceItem->new_sale_price > $priceItem->new_promotion_price)
+              <?php $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count); ?>
+            @endif
+          @endforeach
+
+          <li>
+          <span class="c-checkout-bill__item-title">
+              تخفیف کالاها
+          </span>
+              <span class="c-checkout-bill__price c-checkout-bill__price--discount">
+            <span>
+              ({{ persianNum(number_format(($sum_promotion_price / $sum_sale_price) * 100)) }}٪)
+            </span>
+              {{ persianNum(number_format(toman($sum_promotion_price))) }}
+            <span class="c-checkout-bill__currency"> تومان </span>
+          </span>
                     </li>
                   @endif
 
                   <li class="c-checkout-bill__sum-price">
-                    <span class="c-checkout-bill__item-title">
-                        جمع
-                    </span>
+        <span class="c-checkout-bill__item-title">
+            جمع
+        </span>
                     <span class="c-checkout-bill__price">
-                      {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
-                      <span class="c-checkout-bill__currency">
-                          تومان
-                      </span>
-                    </span>
+          {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
+          <span class="c-checkout-bill__currency">
+              تومان
+          </span>
+        </span>
                   </li>
                   <li>
                     <div class="c-checkout-bill__item-title">
-                      <span>
-                        هزینه ارسال
-                      </span>
+          <span>
+            هزینه ارسال
+          </span>
+
                       <div class="c-checkout-bill__shipping-history js-normal-delivery ">
                         {{ persianNum($cons_count) }} مرسوله
                         <div class="c-checkout-bill__shipping-history-container">
-                          <div class="c-checkout-bill__shipping-history-row js-0-1-1-package-row-normal js-package-row" data-cost="0" data-alt-cost="0" data-default-cost="0" data-post-payed="0" data-plus-shipping="0" data-dynamic-shipping="1">
-                            <span class="c-checkout-bill__shipping-history-title js-package-row-title">
-                              مرسوله ۱
-                              <span class="c-checkout-bill__shipping-history-title--expressShipping">
-                                  ارسال عادی
+                          <?php
+                          $m = 1;
+                          $sum_shipping_cost = 0;
+                          ?>
+                          @foreach($consignment_shipping_cost as $key => $item)
+                            <?php
+                            $delivery_method = \Modules\Staff\Shiping\Models\DeliveryMethod::find($method_ids[$m-1]);
+                            $sum_shipping_cost =+ $item;
+                            ?>
+                            <div class="c-checkout-bill__shipping-history-row ">
+                              <span style="float: right;">مرسوله {{ persianNum($m) }} </span>
+                              {{--                  <span class="c-checkout-bill__shipping-history-title js-package-row-title">--}}
+                              {{--                    <span style="background-image: url({{ $site_url . '/' .  $delivery_method->media()->first()->path . '/' . $delivery_method->media()->first()->name }});width: 25px !important;height: 19px !important;float: right;background-repeat: no-repeat;background-size: 18px;margin-left: 0px;margin-top: 2px;"></span>--}}
+                              {{--                  </span>--}}
+                              <span>{{ $delivery_method->name }}</span>
                               </span>
-                            </span>
-                            <span class="c-checkout-bill__shipping-history-title js-package-row-alt-title u-hidden">
-                              مرسوله ۱
-                              <span class="c-checkout-bill__shipping-history-title--altShipping">
-                                  ارسال پستی
-                              </span>
-                            </span>
-                            <span class="c-checkout-bill__shipping-history-price c-checkout-bill__shipping-history-price--free-plus c-digiplus-sign--after js-package-row-plus-free-amount u-hidden"><span class="c-checkout__plus-delivery-counter">
-                              از ۰
-                            </span>
-                            رایگان پلاس
-                        </span>
-                            <span class="c-checkout-bill__shipping-history-price js-package-row-non-free-amount u-hidden">
-                              <span
-                                class="c-checkout-bill__shipping-history-price--amount js-package-row-amount">
-                                ۰
-                            </span><span class="c-checkout-bill__shipping-history-price--currency">
-                                تومان
-                            </span></span>
-                            <span class="c-checkout-bill__shipping-history-price--free js-package-row-free-amount u-hidden">
-                            رایگان
-                        </span>
-                            <span class="c-checkout-bill__shipping-history-price js-select-time-message">
-                                زمان ارسال را انتخاب کنید
-                            </span>
-                          </div>
-                          <div class="c-checkout-bill__shipping-history-row js-0-3-50-package-row-normal js-package-row"
-                               data-cost="250000" data-alt-cost="0" data-default-cost="250000" data-post-payed="0"
-                               data-plus-shipping="0" data-dynamic-shipping="0"><span
-                              class="c-checkout-bill__shipping-history-title js-package-row-title">
-                        مرسوله
-                        ۲
-                        <span class="c-checkout-bill__shipping-history-title--middleSizeShipping">
-                            ارسال کالاهای بزرگ و سنگین
-                        </span></span><span
-                              class="c-checkout-bill__shipping-history-title js-package-row-alt-title u-hidden">
-                            مرسوله
-                            ۲
-                            <span class="c-checkout-bill__shipping-history-title--altShipping">
-                                ارسال پستی
-                            </span></span><span
-                              class="c-checkout-bill__shipping-history-price c-checkout-bill__shipping-history-price--free-plus c-digiplus-sign--after js-package-row-plus-free-amount u-hidden"><span
-                                class="c-checkout__plus-delivery-counter">
-                                 از ۰
-                            </span>
-                            رایگان پلاس
-                        </span><span class="c-checkout-bill__shipping-history-price js-package-row-non-free-amount
-                                     "><span
-                                class="c-checkout-bill__shipping-history-price--amount js-package-row-amount">
-                                ۲۵,۰۰۰
-                            </span><span class="c-checkout-bill__shipping-history-price--currency">
-                                تومان
-                            </span></span><span
-                              class="c-checkout-bill__shipping-history-price--free js-package-row-free-amount u-hidden">
-                            رایگان
-                        </span></div>
-                          <div class="c-checkout-bill__shipping-history-row js-1-2-50-package-row-normal js-package-row"
-                               data-cost="0" data-alt-cost="" data-default-cost="0" data-post-payed="1"
-                               data-plus-shipping="0" data-dynamic-shipping="0"><span
-                              class="c-checkout-bill__shipping-history-title js-package-row-title">
-                        مرسوله
-                        ۳
-                        <span class="c-checkout-bill__shipping-history-title--heavyShipping">
-                            ارسال کالاهای فوق سنگین
-                        </span></span><span class="c-checkout-bill__shipping-history-price--changeable">
-                            متغیر (پس‌کرایه)
-                        </span></div>
-                        </div>
-                      </div>
-                    </div>
-                    <span class="c-checkout-bill__item-title c-checkout-bill__item-title--plus c-digiplus-sign--after js-plus-free-shipping hidden">
-                      رایگان پلاس
+                              <span class="c-checkout-bill__shipping-history-title js-package-row-alt-title u-hidden">
+                     {{ persianNum($m) }}
+                    <span class="c-checkout-bill__shipping-history-title--altShipping">
+                       {{ $delivery_method->name }}
                     </span>
-                    <span class="c-checkout-bill__item-title js-not-free-shipping">
-                      <span class="js-shipping-cost">۲۵,۰۰۰ </span>
+                  </span>
+                              <span class="c-checkout-bill__shipping-history-price c-checkout-bill__shipping-history-price--free-plus c-digiplus-sign--after js-package-row-plus-free-amount u-hidden"><span class="c-checkout__plus-delivery-counter">
+                                   از ۰
+                              </span>
+                    رایگان پلاس
+                  </span>
+                              <span class="c-checkout-bill__shipping-history-price js-package-row-non-free-amount">
+                    <span class="c-checkout-bill__shipping-history-price--amount js-package-row-amount">
+                      {{ persianNum(number_format(toman($item))) }}
+                    </span>
+                    <span class="c-checkout-bill__shipping-history-price--currency">
                       تومان
                     </span>
-                    <span class="c-checkout-bill__item-title js-free-shipping hidden">
-                      رایگان
-                    </span>
-                    <span class="c-checkout-bill__item-title js-dynamic-shipping-msg hidden">
-                      وابسته به زمان ارسال
-                    </span>
-                    <span class="c-checkout-bill__item-title js-shipping-divider">
-                      +
-                    </span>
-                    <span class="c-checkout-bill__item-title js-shipping-post-paid">
-                     پس کرایه
-                    </span>
+                  </span>
+                              <span class="c-checkout-bill__shipping-history-price--free js-package-row-free-amount u-hidden">
+                    رایگان
+                  </span>
+                            </div>
+                            <?php $m++; ?>
+                          @endforeach
+                        </div>
+                      </div>
+
+                    </div>
+                    @if ($sum_shipping_cost == 0)
+                      <span class="c-checkout-bill__item-title js-free-shipping">
+            رایگان
+          </span>
+                    @elseif($sum_shipping_cost !== -1)
+                      <span class="c-checkout-bill__item-title js-not-free-shipping">
+                        <span class="js-shipping-cost"> {{ persianNum(number_format(toman($sum_shipping_cost))) }} </span>
+                        &nbsp;تومان
+                      </span>
+                    @endif
+                    @if (in_array(-1, $consignment_shipping_cost) && $sum_shipping_cost !== 0 && $sum_shipping_cost !== -1)
+                      <span class="c-checkout-bill__item-title js-shipping-divider"> + </span>
+                    @endif
+                    @if(in_array(-1, $consignment_shipping_cost))
+                      <span class="c-checkout-bill__item-title js-shipping-post-paid">پس کرایه</span>
+                    @endif
                   </li>
                   <li class="c-checkout-bill__shipping-cost-notice js-dynamic-shipping-cost-notice">
                     هزینه بر اساس وزن و حجم مرسوله تعیین شده است.
@@ -14421,23 +8468,24 @@
                       مبلغ قابل پرداخت
                     </span>
                     <span class="c-checkout-bill__total-price--amount" id="cartPayablePrice">
-                      <span class="js-price" data-price="277265000">۲۷,۷۵۱,۵۰۰ </span>
+                      <?php
+                        $final_sum_price = toman($sum_sale_price - $sum_promotion_price + $sum_shipping_cost);
+                      ?>
+                      <span class="js-price" data-price="{{ $final_sum_price }}"> {{ persianNum(number_format($final_sum_price)) }} </span>
                       <span class="c-checkout-bill__total-price--currency">
                         تومان
                       </span>
                     </span>
                   </li>
                   <li class="c-checkout-bill__to-forward-button">
-                    <a href="" class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="display: none; pointer-events: all; cursor: pointer;">
+                    <a href="{{ route('front.peyment') }}" class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="pointer-events: all; cursor: pointer;">
                       ادامه فرآیند خرید
                     </a>
-                    <button type="button" class="o-btn o-btn--full-width o-btn--outlined-red-lg js-inform-package-section">
-                      برای ادامه، زمان ارسال را تعیین کنید
-                    </button>
                   </li>
                 </ul>
               </div>
             </div>
+
           </aside>
         </div>
       </section>
@@ -14603,8 +8651,7 @@
         </div>
       </form>
     </div>
-    <div class="remodal c-remodal-delivery-limit" data-remodal-id="separate-products" role="dialog"
-         aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+    <div class="remodal c-remodal-delivery-limit" data-remodal-id="separate-products" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
       <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
       <div class="c-remodal-delivery-limit__headline">محدودیت ارسال</div>
       <div class="c-remodal-delivery-limit__content">
@@ -14721,8 +8768,7 @@
         </div>
       </div>
     </div>
-    <div class="remodal c-modal c-modal--sm c-remodal-delivery-limit" data-remodal-id="delivery-limit" role="dialog"
-         aria-labelledby="modalTitle" tabindex="-1z" aria-describedby="modalDesc" data-remodal-options="">
+    <div class="remodal c-modal c-modal--sm c-remodal-delivery-limit" data-remodal-id="delivery-limit" role="dialog" aria-labelledby="modalTitle" tabindex="-1z" aria-describedby="modalDesc" data-remodal-options="">
       <div class="c-modal__top-bar  c-modal__top-bar--has-line">
         <div class="c-modal__title ">محدودیت ارسال کالا</div>
       </div>
@@ -14750,8 +8796,7 @@
     <aside></aside>
   </div>
 </main>
-<div class="remodal c-remodal-account" data-remodal-id="login" role="dialog" aria-labelledby="modal1Title"
-     aria-describedby="modal1Desc">
+<div class="remodal c-remodal-account" data-remodal-id="login" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
   <div class="c-remodal-account__headline">ورود به {{ $fa_store_name }}</div>
   <div class="c-remodal-account__content">
@@ -14802,9 +8847,7 @@
        href="{{ route('customer.regLoginPage') }}" class="btn-link-spoiler">ثبت‌نام در {{ $fa_store_name }}</a>
   </div>
 </div>
-<div class="remodal c-remodal-loader" data-remodal-id="loader"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog" aria-labelledby="modal1Title"
-     aria-describedby="modal1Desc">
+<div class="remodal c-remodal-loader" data-remodal-id="loader" data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <div class="c-remodal-loader__icon">
     <svg xmlns="http://www.w3.org/2000/svg" width="115" height="30" viewBox="0 0 115 30">
       <path fill="#EE384E" fill-rule="evenodd"
@@ -14818,8 +8861,7 @@
     <i class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></i>
   </div>
 </div>
-<div class="remodal c-remodal-general-alert" data-remodal-id="alert" role="dialog" aria-labelledby="modal1Title"
-     aria-describedby="modal1Desc">
+<div class="remodal c-remodal-general-alert" data-remodal-id="alert" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <div class="c-remodal-general-alert__main">
     <div class="c-remodal-general-alert__content">
       <p class="js-remodal-general-alert__text"></p>
@@ -14833,8 +8875,7 @@
     </div>
   </div>
 </div>
-<div class="remodal c-remodal-general-information" data-remodal-id="information" role="dialog"
-     aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<div class="remodal c-remodal-general-information" data-remodal-id="information" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <div class="c-remodal-general-information__main">
     <div class="c-remodal-general-information__content">
       <p class="js-remodal-general-information__text"></p>
@@ -14845,13 +8886,11 @@
     </div>
   </div>
 </div>
-<div class="remodal c-remodal c-remodal-quick-view" data-remodal-id="quick-view" role="dialog"
-     aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<div class="remodal c-remodal c-remodal-quick-view" data-remodal-id="quick-view" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <button data-remodal-action="close" class="remodal-close c-remodal__close" aria-label="Close"></button>
   <div class="c-quick-view__content js-quick-view-section"></div>
 </div>
-<div class="remodal c-remodal-fmcg" data-remodal-id="fmcg-modal"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog">
+<div class="remodal c-remodal-fmcg" data-remodal-id="fmcg-modal" data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog">
   <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
   <div class="c-remodal-fmcg__container">
     <img src="https://www.digikala.com/static/files/cbaed462.png" class="c-remodal-fmcg__logo"/>
@@ -14877,8 +8916,7 @@
     </div>
   </div>
 </div>
-<div class="remodal c-remodal-location js-general-location" data-remodal-id="general-location" role="dialog"
-     aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<div class="remodal c-remodal-location js-general-location" data-remodal-id="general-location" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <div class="c-remodal-location__header">
     <span class="js-general-location-title">انتخاب استان</span>
     <div class="c-remodal-location__close js-close-modal"></div>
@@ -14894,8 +8932,7 @@
     </div>
   </div>
 </div>
-<div class="remodal c-remodal-location c-remodal-location--addresses js-general-location-addresses"
-     data-remodal-id="general-location" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+<div class="remodal c-remodal-location c-remodal-location--addresses js-general-location-addresses" data-remodal-id="general-location" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <div class="c-remodal-location__header">
     <span class="js-general-location-title">انتخاب آدرس</span>
     <div class="c-remodal-location__close js-close-modal"></div>
@@ -14966,6 +9003,29 @@
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
+
+  $(document).on('click', '.js-shipping-type-selector', function (){
+
+    var weight_ids = $('input[class=js-shipping-type-selector]:checked').map(function(){return $(this).data('weight');}).get();
+    var method_ids = $('input[class=js-shipping-type-selector]:checked').map(function(){return $(this).val();}).get();
+
+    $.ajax({
+      type: 'post',
+      url: '{{ route('front.ajax.shippingCost') }}',
+      data:{
+        weight_ids: weight_ids,
+        method_ids: method_ids,
+      },
+      success: function($respose) {
+        $(".c-checkout-aside").replaceWith($respose.data.data)
+      }
+    });
+  });
+
+
+
+  {{--<input type="radio" value="{{ $method->id }}" class="js-shipping-type-selector" data-weight="{{ $weight->id }}" name="shipping-type-normal-0-0-{{ $i }}"--}}
+
 </script>
 
 </body>
