@@ -250,3 +250,4 @@ function defualtCartNewPrice($cart){
     return $cart->new_sale_price;
   }
 }
+

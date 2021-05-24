@@ -51,6 +51,10 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
 
   Route::post('shipping-cost', [FrontController::class, 'shippingCost'])->name('shippingCost');
 
+  Route::post('save-shipping-cookie', [FrontController::class, 'saveShippingToCookie'])->name('saveShippingToCookie');
+
+  Route::post('voucher/set', [FrontController::class, 'peymentVoucher'])->name('peymentVoucher');
+
 });
 
 Route::get('cart/remove/{variant_code}', [FrontController::class, 'removeFromCart'])->name('removeFromCart');
@@ -65,7 +69,7 @@ Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::get('shipping', [FrontController::class, 'shipping'])->name('shipping');
   Route::get('peyment', [FrontController::class, 'peyment'])->name('peyment');
 
-  Route::get('test', [FrontController::class, 'test'])->name('test');
+  Route::get('test', [FrontController::class, 'peymentVoucher'])->name('test');
 
 });
 

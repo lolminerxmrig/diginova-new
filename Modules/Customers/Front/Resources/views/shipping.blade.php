@@ -8177,7 +8177,7 @@
                         <div class="c-checkout-pack js-checkout-pack " data-parcel="0-1-1">
                           <div class="c-checkout-pack__header">
                             <div class="c-checkout-pack__header-title">
-                              <span>مرسوله {{ persianNum($i) }} از {{ persianNum($cons_count) }}</span>
+                              <span>مرسوله{{ persianNum($i) }} از {{ persianNum($cons_count) }}</span>
                             </div>
                             <div class="c-checkout-pack__header-dsc">
                               <span>
@@ -8365,24 +8365,25 @@
           @endforeach
 
           <li>
-          <span class="c-checkout-bill__item-title">
-              تخفیف کالاها
-          </span>
-              <span class="c-checkout-bill__price c-checkout-bill__price--discount">
-            <span>
-              ({{ persianNum(number_format(($sum_promotion_price / $sum_sale_price) * 100)) }}٪)
+            <span class="c-checkout-bill__item-title">
+                تخفیف کالاها
             </span>
-              {{ persianNum(number_format(toman($sum_promotion_price))) }}
-            <span class="c-checkout-bill__currency"> تومان </span>
-          </span>
-                    </li>
-                  @endif
+            <span class="c-checkout-bill__price c-checkout-bill__price--discount">
+              <span>
+                ({{ persianNum(number_format(($sum_promotion_price / $sum_sale_price) * 100)) }}٪)
+              </span>
+                {{ persianNum(number_format(toman($sum_promotion_price))) }}
+              <span class="c-checkout-bill__currency"> تومان </span>
+            </span>
+          </li>
 
-                  <li class="c-checkout-bill__sum-price">
+        @endif
+
+      <li class="c-checkout-bill__sum-price">
         <span class="c-checkout-bill__item-title">
             جمع
         </span>
-                    <span class="c-checkout-bill__price">
+        <span class="c-checkout-bill__price">
           {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
           <span class="c-checkout-bill__currency">
               تومان
@@ -8478,7 +8479,7 @@
                     </span>
                   </li>
                   <li class="c-checkout-bill__to-forward-button">
-                    <a href="{{ route('front.peyment') }}" class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="pointer-events: all; cursor: pointer;">
+                    <a class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="pointer-events: all; cursor: pointer;">
                       ادامه فرآیند خرید
                     </a>
                   </li>
@@ -8951,6 +8952,7 @@
   </div>
 </div>
 <div id="footer-data-ux"></div>
+
 <footer class="c-footer-checkout">
   <div class="c-footer-checkout__content">
     <div class="c-footer-checkout__content-info">
@@ -8972,7 +8974,7 @@
           </div>
         </div>
         <div class="c-footer-checkout__subtitle">
-          استفاده از کارت هدیه یا کد تخفیف، درصفحه ی پرداخت امکان پذیر است.
+          استفاده از کد تخفیف، درصفحه ی پرداخت امکان پذیر است.
         </div>
         <div class="c-footer-checkout__copyright">
           Copyright © 2006 - 2021 DigiNova
@@ -8981,6 +8983,7 @@
     </div>
   </div>
 </footer>
+
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -9020,6 +9023,26 @@
         $(".c-checkout-aside").replaceWith($respose.data.data)
       }
     });
+  });
+
+
+  $(document).on('click', '.js-save-shipping-data', function (){
+
+    var weight_ids = $('input[class=js-shipping-type-selector]:checked').map(function(){return $(this).data('weight');}).get();
+    var method_ids = $('input[class=js-shipping-type-selector]:checked').map(function(){return $(this).val();}).get();
+
+    $.ajax({
+      type: 'post',
+      url: '{{ route('front.ajax.saveShippingToCookie') }}',
+      data:{
+        weight_ids: weight_ids,
+        method_ids: method_ids,
+      },
+      success: function() {
+        window.location.href= "{{ route('front.peyment') }}";
+      }
+    });
+
   });
 
 

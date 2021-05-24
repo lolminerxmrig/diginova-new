@@ -5,6 +5,7 @@ namespace Modules\Customers\Front\Http\Controllers;
 use App\Models\State;
 use App\Models\StoreAddress;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 use Cookie;
@@ -27,6 +28,9 @@ use Modules\Customers\Auth\Models\Customer;
 use Modules\Staff\Shiping\Http\postPishtaz;
 use Modules\Staff\Shiping\Http\postSefareshi;
 use Modules\Staff\Shiping\Models\DeliveryMethod;
+use Illuminate\Http\Response;
+use Modules\Staff\Voucher\Models\Voucher;
+use function Illuminate\Support\Facades\Cookie;
 
 
 class FrontController extends Controller
@@ -498,7 +502,7 @@ class FrontController extends Controller
 
     return response()->json([
       'status' => true,
-      'data' => isset($districtArray)? $districtArray : '',
+      'data' => isset($districtArray) ? $districtArray : '',
     ]);
 
   }
@@ -515,8 +519,7 @@ class FrontController extends Controller
 
     if (State::where('name', $response['city'])->where('type', 'city')->exists()) {
       $city_id = State::where('name', $response['city'])->where('type', 'city')->first()->id;
-    }
-    else {
+    } else {
       $city_id = State::where('name', $response['district'])->where('type', 'city')->first()->id;
     }
     $state_id = State::where('name', $response['province'])->where('type', 'state')->first()->id;
@@ -541,7 +544,7 @@ class FrontController extends Controller
     $response = json_decode($response->getBody(), true);
 
     foreach ($response['value'] as $key => $item) {
-      $responseItems[$key] = ['title' => $item['title'], 'address' => $item['address'], 'longitude' => $item['geom']['coordinates'][0], 'latitude' => $item['geom']['coordinates'][1], ];
+      $responseItems[$key] = ['title' => $item['title'], 'address' => $item['address'], 'longitude' => $item['geom']['coordinates'][0], 'latitude' => $item['geom']['coordinates'][1],];
     }
 
 
@@ -596,14 +599,14 @@ class FrontController extends Controller
       'plaque' => $request->address['bld_num'],
       'unit' => $request->address['apt_id'],
       'postal_code' => $request->address['post_code'],
-      'is_recipient_self' => (isset($request->address['recipient_is_self']) && ($request->address['recipient_is_self'] == "true"))? true : false,
-      'recipient_firstname' => (isset($request->address['first_name']) && !is_null($request->address['first_name']))? $request->address['first_name'] : null,
-      'recipient_lastname' => (isset($request->address['last_name']) && !is_null($request->address['last_name']))? $request->address['last_name'] : null,
-      'recipient_national_code' => (isset($request->address['national_id']) && !is_null($request->address['national_id']))? $request->address['national_id'] : null,
-      'recipient_mobile' => (isset($request->address['mobile_phone']) && !is_null($request->address['mobile_phone']))? ltrim($request->address['mobile_phone'], 0) : null,
+      'is_recipient_self' => (isset($request->address['recipient_is_self']) && ($request->address['recipient_is_self'] == "true")) ? true : false,
+      'recipient_firstname' => (isset($request->address['first_name']) && !is_null($request->address['first_name'])) ? $request->address['first_name'] : null,
+      'recipient_lastname' => (isset($request->address['last_name']) && !is_null($request->address['last_name'])) ? $request->address['last_name'] : null,
+      'recipient_national_code' => (isset($request->address['national_id']) && !is_null($request->address['national_id'])) ? $request->address['national_id'] : null,
+      'recipient_mobile' => (isset($request->address['mobile_phone']) && !is_null($request->address['mobile_phone'])) ? ltrim($request->address['mobile_phone'], 0) : null,
 //      'is_main' => $request->address[''],
       'customer_id' => $customer_id,
-      'state_id' => (isset($request->address['district_id']) && !is_null($request->address['district_id']))? $request->address['district_id'] : $request->address['city_id'],
+      'state_id' => (isset($request->address['district_id']) && !is_null($request->address['district_id'])) ? $request->address['district_id'] : $request->address['city_id'],
     ]);
 
     if (!$customer->delivery_address()->exists()) {
@@ -631,8 +634,7 @@ class FrontController extends Controller
     $customer = Auth::guard('customer')->user();
     if ($customer->where('address_type', 'CustomerAddress')->exists()) {
       $delivery_type = 'customer';
-    }
-    else {
+    } else {
       $delivery_type = 'store';
     }
 
@@ -667,7 +669,7 @@ class FrontController extends Controller
     $store_addresses = StoreAddress::all();
     $weights = ProductWeight::all();
 
-    foreach($weights as $i => $weight) {
+    foreach ($weights as $i => $weight) {
       foreach ($first_carts as $item) {
         if ($item->product_variant()->first()->product->weight()->id == $weight->id) {
           $has_consignment = true;
@@ -678,10 +680,10 @@ class FrontController extends Controller
           foreach ($first_carts as $key => $cart) {
             if ($cart->product_variant()->first()->product->weight()->id == $weight->id) {
               $sum_weight += $cart->product_variant()->first()->product->weight;
-              if ($first_carts->count()-1 == $key) {
+              if ($first_carts->count() - 1 == $key) {
                 if ($weight->deliveryMethods()->exists()) {
-                  foreach($weight->deliveryMethods()->where('status', 'active')->get() as $key => $method) {
-                    if($sum_weight > 5000 && $method->id == 1) {
+                  foreach ($weight->deliveryMethods()->where('status', 'active')->get() as $key => $method) {
+                    if ($sum_weight > 5000 && $method->id == 1) {
                       continue;
                     }
                     $method_ids[] = $method->id;
@@ -719,14 +721,11 @@ class FrontController extends Controller
   public function shippingCostLogic($customer, $weights, $method_ids)
   {
 
-//    $method_ids = [2,2];
-
     $store_addresses = StoreAddress::all();
 
     if ($customer->where('address_type', 'CustomerAddress')->exists()) {
       $delivery_type = 'customer';
-    }
-    else {
+    } else {
       $delivery_type = 'store';
     }
 
@@ -735,7 +734,7 @@ class FrontController extends Controller
     $weights = ProductWeight::all();
 
     $settings = Setting::all();
-    $store_state_id = ($settings->where('name', 'store_city')->count() && $settings->where('name', 'store_city')->first()->states()->exists())? $settings->where('name', 'store_city')->first()->states()->first()->id : 1;
+    $store_state_id = ($settings->where('name', 'store_city')->count() && $settings->where('name', 'store_city')->first()->states()->exists()) ? $settings->where('name', 'store_city')->first()->states()->first()->id : 1;
 
     if ($customer->where('address_type', 'CustomerAddress')->exists()) {
       $customer_state_id = $customer->delivery_address->id;
@@ -743,7 +742,7 @@ class FrontController extends Controller
       $customer_state_id = 0;
     }
 
-    foreach($weights as $i => $weight) {
+    foreach ($weights as $i => $weight) {
       foreach ($cart as $key => $item) {
         if (($item->product_variant()->first()->product->weight()->id == $weight->id)) {
           $fillable_weight_ids[] = $weight->id;
@@ -765,34 +764,31 @@ class FrontController extends Controller
       }
 
       if ($method_ids[$j] == 2 && $customer_state_id !== 0) {
-        $consignment_shipping_cost[$f_weight_id] = postPishtaz::pishtaz($store_state_id , $customer_state_id , $consignment_weight[$f_weight_id])->getPrice();
-        if (($consignment_shipping_cost[$f_weight_id] % 10000) > 5000 ) {
-          $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id]+ (10000 - $consignment_shipping_cost[$f_weight_id] % 10000);
+        $consignment_shipping_cost[$f_weight_id] = postPishtaz::pishtaz($store_state_id, $customer_state_id, $consignment_weight[$f_weight_id])->getPrice();
+        if (($consignment_shipping_cost[$f_weight_id] % 10000) > 5000) {
+          $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id] + (10000 - $consignment_shipping_cost[$f_weight_id] % 10000);
         } else {
           $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id] - ($consignment_shipping_cost[$f_weight_id] % 10000);
         }
       }
 
       if ($method_ids[$j] == 1 && $customer_state_id !== 0) {
-        $consignment_shipping_cost[$f_weight_id] = postSefareshi::sefarshi($store_state_id , $customer_state_id , $consignment_weight[$f_weight_id])->getPrice();
-        if (($consignment_shipping_cost[$f_weight_id] % 10000) > 5000 ) {
-          $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id]+ (10000 - $consignment_shipping_cost[$f_weight_id] % 10000);
+        $consignment_shipping_cost[$f_weight_id] = postSefareshi::sefarshi($store_state_id, $customer_state_id, $consignment_weight[$f_weight_id])->getPrice();
+        if (($consignment_shipping_cost[$f_weight_id] % 10000) > 5000) {
+          $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id] + (10000 - $consignment_shipping_cost[$f_weight_id] % 10000);
         } else {
           $consignment_shipping_cost[$f_weight_id] = $consignment_shipping_cost[$f_weight_id] - ($consignment_shipping_cost[$f_weight_id] % 10000);
         }
-      }
-      elseif ($method_ids[$j] == 3) {
+      } elseif ($method_ids[$j] == 3) {
         $consignment_shipping_cost[$f_weight_id] = -1;
+      } elseif ($method_ids[$j] == 4) {
+        $consignment_shipping_cost[$f_weight_id] = !is_null(DeliveryMethod::find(4)->delivery_cost) ? DeliveryMethod::find(4)->delivery_cost : 0;
       }
-      elseif ($method_ids[$j] == 4) {
-        $consignment_shipping_cost[$f_weight_id] = !is_null(DeliveryMethod::find(4)->delivery_cost)? DeliveryMethod::find(4)->delivery_cost : 0;
-      }
-      if (($method_ids[$j] == 1 || $method_ids[$j] == 2) &&  $customer_state_id == 0) {
+      if (($method_ids[$j] == 1 || $method_ids[$j] == 2) && $customer_state_id == 0) {
         $consignment_shipping_cost[$f_weight_id] = 0;
       }
 
     }
-
 
     return $consignment_shipping_cost;
 
@@ -871,17 +867,16 @@ class FrontController extends Controller
 
     if ($customer->where('address_type', 'CustomerAddress')->exists()) {
       $delivery_type = 'customer';
-    }
-    else {
+    } else {
       $delivery_type = 'store';
     }
 
     if (!$customer->delivery_address()->exists() && $customer->addresses()->exists()) {
-        $defualt_address_id = $customer->addresses()->latest()->first()->id;
-        $customer->update([
-          'address  _type' => 'CustomerAddress',
-          'address_id' => $defualt_address_id,
-        ]);
+      $defualt_address_id = $customer->addresses()->latest()->first()->id;
+      $customer->update([
+        'address  _type' => 'CustomerAddress',
+        'address_id' => $defualt_address_id,
+      ]);
     }
 
     return response()->json([
@@ -901,14 +896,110 @@ class FrontController extends Controller
 
   }
 
-  public function peyment()
+  public function saveShippingToCookie(Request $request)
   {
-    $customer = Auth::guard('customer')->user();
-    return view('front::peyment', compact('customer'));
+    $method_ids = json_encode($request->method_ids);
+
+    setcookie('method_ids', $method_ids, time() + (10 * 365 * 24 * 60 * 60), "/");
+    return $_COOKIE["method_ids"];
+
   }
 
+  public function returnError($errorMessage)
+  {
+    return response()->json([
+      'status' => false,
+      'data' => [
+        'errors' => $errorMessage,
+      ]
+    ]);
+  }
+
+  public function peyment()
+  {
+    if (!isset($_COOKIE['method_ids'])) {
+      return abort(404);
+    }
+
+    $customer = Auth::guard('customer')->user();
+    $weights = ProductWeight::all();
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $method_ids = json_decode($_COOKIE['method_ids'], true);
+    $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+
+    return view('front::peyment', compact('customer', 'weights', 'first_carts', 'consignment_shipping_cost', 'method_ids'));
+  }
+
+  public function peymentVoucher(Request $request)
+  {
+
+    $customer = Auth::guard('customer')->user();
+    $method_ids = $_COOKIE["method_ids"];
+    $code = $request->code;
+    $code = 'PZOD2';
+
+    if (!Voucher::where('code', $code)->where('status', 'active')->exists()) {
+      return $this->returnError('این کد تخفیف قابل استفاده نیست.');
+    }
+
+    $voucher = Voucher::where('code', $code)->where('status', 'active')->first();
+
+    if (!is_null($voucher->start_at) && $voucher->where('start_at', '>=', Carbon::now())->exists()) {
+      return $this->returnError('زمان استفاده از کد تخفیف هنوز شروع نشده است.');
+    }
+
+    if (!is_null($voucher->end_at) && $voucher->where('end_at', '<=', Carbon::now())->exists()) {
+      return $this->returnError('زمان استفاده از این کد تخفیف پایان یافته است.');
+    }
+
+    if (!is_null($voucher->max_usable) && $voucher->max_usable == 0) {
+      return $this->returnError('تعداد قابل استفاده از این کد تخفیف پایان یافته است.');
+    }
+
+    if ($voucher->type == 'first_purchase' && $customer->orders()->exists()) {
+      return $this->returnError('این کد تخفیف فقط برای مشتریان خرید اولی قابل استفاده می باشد.');
+    }
+
+    $voucher_varints_cost =  $this->voucherCostLogic($customer, $voucher, $method_ids);
+    return $voucher_varints_cost;
+
+  }
+
+  public function voucherCostLogic($customer, $voucher, $method_ids)
+  {
+
+    $cart = $customer->carts()->where('type', 'first')->get();
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $weights = ProductWeight::all();
+
+
+    foreach ($weights as $i => $weight) {
+      foreach ($cart as $key => $item) {
+        if (($item->product_variant()->first()->product->weight()->id == $weight->id)) {
+          // چک میکنه که تنوع کالایی پروموشن داره یا نه
+          $product_variant = $item->product_variant()->first();
+          if ($product_variant->promotions()->exists()) {
+            if ($product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
+              $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+            }
+            else {
+              $promotion_price = $product_variant->sale_price;+
+            }
+          }
+          // اگه پروموشن داشت رد میکنه
+          if ($product_variant->sale_price !== $promotion_price) {
+            continue;
+          }
+
+          $voucher_varints_cost[$product_variant->id] = ($product_variant->sale_price / 100) * $voucher->percent;
+        }
+      }
+
+    }
+
+
+    return $voucher_varints_cost;
+
+  }
 
 }
-
-
-

@@ -149,7 +149,7 @@
         </span>
       </li>
       <li class="c-checkout-bill__to-forward-button">
-        <a href="{{ route('front.peyment') }}" class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="pointer-events: all; cursor: pointer;">
+        <a class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="pointer-events: all; cursor: pointer;">
           ادامه فرآیند خرید
         </a>
       </li>

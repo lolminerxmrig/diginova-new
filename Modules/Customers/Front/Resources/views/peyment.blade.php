@@ -656,7 +656,8 @@
 <meta name="theme-color" content="#fb3449">
 <meta name="msapplication-navbutton-color" content="#fb3449">
 <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
-<script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+  <script>
   try {
     var _ajax = $.ajax;
     if (_ajax) {
@@ -6774,155 +6775,90 @@ var activateUrl = "\/digiclub\/activate\/";
                 </div>
                 <div class="c-payment__summary">
                   <div class="c-payment__header">
-                    <span>
-                      خلاصه سفارش
-                    </span>
+                    <span> خلاصه سفارش </span>
                   </div>
-                  <section class="c-payment__summary__item">
-                    <header data-snt-event='dkPaymentPageClick' data-snt-params='{"item":"consignment","item_option":null}' class="c-payment__summary__row-header is-active js-checkout-order-summary__header">
-                      <div class="c-payment__summary__col c-payment__summary__col--package">
-                        مرسوله ۱
-                        <span>
-                        ۶
-                        کالا
-                        </span>
-                      </div>
-                      <div class="c-payment__summary__col c-payment__summary__col--shipment-type">
-                        ارسال عادی
-                        <span>
-                                          پنج‌شنبه ۳۰ اردیبهشت
-                                          -
-                                          بازه ۱۸ - ۲۱
-                                          </span>
-                      </div>
-                      <div class="c-payment__summary__col c-payment__summary__col--package-amount">
-                        <span>مبلغ مرسوله : </span>
-                        <div class="c-payment__summary__price">
-                          ۷۹,۸۱۶,۵۰۰
-                          <span>تومان</span>
-                        </div>
-                      </div>
-                    </header>
-                    <section class="c-swiper c-payment__summary__swiper c-swiper--order-summary">
-                      <div class="swiper-container swiper-container-horizontal js-package-swiper">
-                        <div class="swiper-wrapper">
-                          <div class="swiper-slide">
-                            <div class="c-product-box c-product-box--compact">
-                              <a class="c-product-box__img"><img src="https://dkstatics-public.digikala.com/digikala-products/4209444.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="لپ تاپ 15 اینچی لنوو مدل Ideapad 330 - E"></a>
-                              <div class="c-product-box__swiper-title">
-                                لپ تاپ 15 اینچی لنوو مدل Ideapad 330 - E
-                              </div>
-                              <div class="c-product-box__variant c-product-box__variant--color"><span style="background-color: #212121;"></span>
-                                مشکی
-                              </div>
+
+                  <?php $current_real_weight_index = 0; ?>
+
+                  @foreach($weights as $i => $weight)
+
+                    <?php
+                      $has_consignment = false;
+                      $i = 1;
+                      $count = 0;
+                      $consignment_product_count = 0;
+                    ?>
+
+                    @foreach ($first_carts as $item)
+                      @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
+                        <?php
+                          $has_consignment = true;
+                          $consignment_product_count += 1;
+                        ?>
+                      @endif
+                    @endforeach
+
+                    @if (isset($has_consignment) && $has_consignment)
+                      <section class="c-payment__summary__item">
+
+                          <header data-snt-event='dkPaymentPageClick' data-snt-params='{"item":"consignment","item_option":null}' class="c-payment__summary__row-header is-active js-checkout-order-summary__header">
+                            <div class="c-payment__summary__col c-payment__summary__col--package">
+                              مرسوله {{ persianNum($i) }}
+                              <span>
+                                 {{ persianNum($consignment_product_count) }} کالا
+                              </span>
                             </div>
-                          </div>
-                          <div class="swiper-slide">
-                            <div class="c-product-box c-product-box--compact">
-                              <a class="c-product-box__img"><img src="https://dkstatics-public.digikala.com/digikala-products/054e9141e62cb5e052a64991df2aecfa651f5a04_1606049057.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="ظرف پودر رختشویی طرح ماشین لباس شویی مدل W23"></a>
-                              <div class="c-product-box__swiper-title">
-                                ظرف پودر رختشویی طرح ماشین لباس شویی مدل W23
-                              </div>
-                              <div class="c-product-box__variant c-product-box__variant--color"><span style="background-color: #FF80AB;"></span>
-                                صورتی
-                              </div>
+                            <div class="c-payment__summary__col c-payment__summary__col--shipment-type">
+                              @if (\Modules\Staff\Shiping\Models\DeliveryMethod::where('id', $method_ids[$current_real_weight_index])->exists())
+                                {{ \Modules\Staff\Shiping\Models\DeliveryMethod::find($method_ids[$current_real_weight_index])->name }}
+                              @endif
                             </div>
-                          </div>
-                          <div class="swiper-slide">
-                            <div class="c-product-box c-product-box--compact">
-                              <a class="c-product-box__img"><img src="https://dkstatics-public.digikala.com/digikala-products/2d8b2a93deff77b2689b9dd011571aa37a6b0d00_1597481724.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="گوشی موبایل اپل مدل  iPhone SE 2020 A2275 ظرفیت 64 گیگابایت "></a>
-                              <div class="c-product-box__swiper-title">
-                                گوشی موبایل اپل مدل  iPhone SE 2020 A2275 ظرفیت 64...
+{{--                            <div class="c-payment__summary__col c-payment__summary__col--package-amount">--}}
+{{--                              <span>مبلغ مرسوله : </span>--}}
+{{--                              <div class="c-payment__summary__price">--}}
+{{--                                {{ persianNum(number_format(toman()))) }}--}}
+{{--                                <span>تومان</span>--}}
+{{--                              </div>--}}
+{{--                            </div>--}}
+                          </header>
+
+                          <section class="c-swiper c-payment__summary__swiper c-swiper--order-summary">
+                            <div class="swiper-container swiper-container-horizontal js-package-swiper">
+                              <div class="swiper-wrapper">
+                                @foreach ($first_carts as $cart)
+                                  @if ($cart->product_variant()->first()->product->weight()->id == $weight->id)
+                                   <div class="swiper-slide">
+                                    <div class="c-product-box c-product-box--compact">
+                                      <a class="c-product-box__img">
+                                        <img alt="{{ $cart->product_variant()->first()->product->title_fa }}" src="{{ $site_url . '/' .  $cart->product_variant()->first()->product->media()->first()->path . '/' . $cart->product_variant()->first()->product->media()->first()->name }}?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $cart->product_variant()->first()->product->title_fa }}">
+                                      </a>
+                                      <div class="c-product-box__swiper-title">
+                                        {{ $cart->product_variant()->first()->product->title_fa }}
+                                      </div>
+                                      <div class="c-product-box__variant c-product-box__variant--color">
+                                        @if (!is_null($cart->product_variant()->first()->variant->value))
+                                          <span style="background-color: {{ $cart->product_variant()->first()->variant->value }};"></span>
+                                        @endif
+                                        {{ $cart->product_variant()->first()->variant->name }}
+                                      </div>
+                                  </div>
+                                  </div>
+                                  @endif
+                                @endforeach
                               </div>
-                              <div class="c-product-box__variant c-product-box__variant--color"><span style="background-color: #212121;"></span>
-                                مشکی
-                              </div>
+                              <div class="swiper-button-prev js-swiper-button-prev"></div>
+                              <div class="swiper-button-next js-swiper-button-next"></div>
                             </div>
-                          </div>
-                          <div class="swiper-slide">
-                            <div class="c-product-box c-product-box--compact">
-                              <a class="c-product-box__img"><img src="https://dkstatics-public.digikala.com/digikala-products/121614556.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="گوشی موبایل سامسونگ مدل  Galaxy S20 Ultra 5G SM-G988B/DS دو سیم کارت ظرفیت 128 گیگابایت "></a>
-                              <div class="c-product-box__swiper-title">
-                                گوشی موبایل سامسونگ مدل  Galaxy S20 Ultra 5G SM-G9...
-                              </div>
-                              <div class="c-product-box__variant c-product-box__variant--color"><span style="background-color: #9E9E9E;"></span>
-                                خاکستری
-                              </div>
-                            </div>
-                          </div>
-                          <div class="swiper-slide">
-                            <div class="c-product-box c-product-box--compact">
-                              <a class="c-product-box__img"><img src="https://dkstatics-public.digikala.com/digikala-products/9f5d8f6583a7289a096a9180ac88708856f4bd8f_1607433653.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="گوشی موبایل اپل مدل iPhone 12 A2404 دو سیم‌ کارت ظرفیت 128 گیگابایت "></a>
-                              <div class="c-product-box__swiper-title">
-                                گوشی موبایل اپل مدل iPhone 12 A2404 دو سیم‌ کارت ظ...
-                              </div>
-                              <div class="c-product-box__variant c-product-box__variant--color"><span style="background-color: #00e676;"></span>
-                                سبز
-                              </div>
-                            </div>
-                          </div>
-                          <div class="swiper-slide">
-                            <div class="c-product-box c-product-box--compact">
-                              <a class="c-product-box__img"><img src="https://dkstatics-public.digikala.com/digikala-products/2e16bad7f6ea176ae6502406d7342afe9982fbf7_1608030120.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="گوشی موبایل سامسونگ مدل Galaxy S20 FE SM-G780F/DS دو سیم کارت ظرفیت 128 گیگابایت"></a>
-                              <div class="c-product-box__swiper-title">
-                                گوشی موبایل سامسونگ مدل Galaxy S20 FE SM-G780F/DS ...
-                              </div>
-                              <div class="c-product-box__variant c-product-box__variant--color"><span style="background-color: #f44336;"></span>
-                                قرمز
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-button-prev js-swiper-button-prev"></div>
-                        <div class="swiper-button-next js-swiper-button-next"></div>
-                      </div>
-                    </section>
-                  </section>
-                  <section class="c-payment__summary__item">
-                    <header data-snt-event='dkPaymentPageClick' data-snt-params='{"item":"consignment","item_option":null}' class="c-payment__summary__row-header is-active js-checkout-order-summary__header">
-                      <div class="c-payment__summary__col c-payment__summary__col--package">
-                        مرسوله ۲
-                        <span>
-                                          ۱
-                                          کالا
-                                          </span>
-                      </div>
-                      <div class="c-payment__summary__col c-payment__summary__col--shipment-type">
-                        فروشنده
-                        <span>
-                                          چهار‌شنبه ۲۹ اردیبهشت
-                                          -
-                                          بازه ۱۵ - ۲۱
-                                          </span>
-                      </div>
-                      <div class="c-payment__summary__col c-payment__summary__col--package-amount">
-                        <span>مبلغ مرسوله : </span>
-                        <div class="c-payment__summary__price">
-                          ۳۳,۴۵۰,۰۰۰
-                          <span>تومان</span>
-                        </div>
-                      </div>
-                    </header>
-                    <section class="c-swiper c-payment__summary__swiper c-swiper--order-summary">
-                      <div class="swiper-container swiper-container-horizontal js-package-swiper">
-                        <div class="swiper-wrapper">
-                          <div class="swiper-slide">
-                            <div class="c-product-box c-product-box--compact">
-                              <a class="c-product-box__img"><img src="https://dkstatics-public.digikala.com/digikala-products/16f8d89af18f561a57cfe33324b7d80b8cf56234_1602048340.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt=" یخچال فریزر ساید بای ساید دوو مدل D2S-3133SS"></a>
-                              <div class="c-product-box__swiper-title">
-                                یخچال فریزر ساید بای ساید دوو مدل D2S-3133SS
-                              </div>
-                              <div class="c-product-box__variant c-product-box__variant--color"><span style="background-color: #ebebeb;"></span>
-                                استیل
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-button-prev js-swiper-button-prev"></div>
-                        <div class="swiper-button-next js-swiper-button-next"></div>
-                      </div>
-                    </section>
-                  </section>
+                          </section>
+
+                      </section>
+                      <?php $current_real_weight_index += 1; ?>
+                    @endif
+
+                  @endforeach
+
+
+
                 </div>
               </div>
 
@@ -6931,99 +6867,166 @@ var activateUrl = "\/digiclub\/activate\/";
               </div>
             </section>
             <aside class="o-page__aside js-checkout-aside-container">
+
+              <?php $cons_count = 0; ?>
+              @foreach($weights as $weight)
+                @foreach ($first_carts as $item)
+                  @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
+                    <?php $cons_count++; ?>
+                    @break;
+                  @endif
+                @endforeach
+              @endforeach
               <div class="c-checkout-aside js-checkout-aside">
                 <div class="c-checkout-bill">
                   <ul class="c-checkout-bill__summary">
+                    <?php $sum_sale_price = 0; ?>
+                    @foreach($first_carts as $priceItem)
+                      <?php $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count); ?>
+                    @endforeach
                     <li>
-                      <span class="c-checkout-bill__item-title">
-                         قیمت کالاها (۷)
-                      </span>
+        <span class="c-checkout-bill__item-title">
+          قیمت کالاها
+          ({{ persianNum($first_carts->count()) }})
+        </span>
                       <span class="c-checkout-bill__price">
-                         ۱۱۳,۴۶۷,۵۰۰
-                         <span class="c-checkout-bill__currency">
-                         تومان
-                         </span>
-                      </span>
+          {{ persianNum(number_format(toman($sum_sale_price))) }}
+          <span class="c-checkout-bill__currency">
+              تومان
+          </span>
+        </span>
                     </li>
-                    <li>
-                      <span class="c-checkout-bill__item-title">
-                        تخفیف کالاها
-                       </span>
-                      <span class="c-checkout-bill__price c-checkout-bill__price--discount">
-                         ۲۰۱,۰۰۰
-                         <span class="c-checkout-bill__currency">
-                         تومان
-                         </span>
-                      </span>
-                    </li>
+
+                    @if($first_carts->sum('new_promotion_price') > 0)
+
+                      <?php $sum_promotion_price = 0; ?>
+                      @foreach($first_carts as $priceItem)
+                        @if ($priceItem->new_sale_price > $priceItem->new_promotion_price)
+                          <?php $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count); ?>
+                        @endif
+                      @endforeach
+                      <li>
+          <span class="c-checkout-bill__item-title">
+              تخفیف کالاها
+          </span>
+                        <span class="c-checkout-bill__price c-checkout-bill__price--discount">
+            <span>
+              ({{ persianNum(number_format(($sum_promotion_price / $sum_sale_price) * 100)) }}٪)
+            </span>
+              {{ persianNum(number_format(toman($sum_promotion_price))) }}
+            <span class="c-checkout-bill__currency"> تومان </span>
+          </span>
+                      </li>
+                    @endif
+
                     <li class="c-checkout-bill__sum-price">
-                      <span class="c-checkout-bill__item-title">
-                        جمع
-                      </span>
+        <span class="c-checkout-bill__item-title">
+            جمع
+        </span>
                       <span class="c-checkout-bill__price">
-                         ۱۱۳,۲۶۶,۵۰۰
-                         <span class="c-checkout-bill__currency">
-                         تومان
-                         </span>
-                      </span>
+          {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
+          <span class="c-checkout-bill__currency">
+              تومان
+          </span>
+        </span>
                     </li>
                     <li>
                       <div class="c-checkout-bill__item-title">
-                        هزینه ارسال
-                      </div>
-                      <span class="c-checkout-bill__item-title js-shipping-cost" data-shipping-cost="0">
-                         رایگان
-                      </span>
-                    </li>
+                        <span>
+                          هزینه ارسال
+                        </span>
 
-                    <li class="hidden js-voucher-code-discount">
-                      <span class="c-checkout-bill__item-title c-checkout-bill__item-title--voucher">
-                        کد تخفیف
-                      </span>
-                      <span class="c-checkout-bill__price c-checkout-bill__price--discount">
-                        <span class="js-voucher-code-discount-value" data-amount="0">
-                          ۰-
-                        </span>
-                        <span class="c-checkout-bill__currency">
-                            تومان
-                        </span>
-                      </span>
+                        <div class="c-checkout-bill__shipping-history js-normal-delivery u-hidden">
+                          {{ persianNum($cons_count) }} مرسوله
+                          <div class="c-checkout-bill__shipping-history-container">
+                            <?php
+                            $m = 1;
+                            $sum_shipping_cost = 0;
+                            ?>
+                            @foreach($consignment_shipping_cost as $key => $item)
+                              <?php
+                              $delivery_method = \Modules\Staff\Shiping\Models\DeliveryMethod::find($method_ids[$m-1]);
+                              $sum_shipping_cost =+ $item;
+                              ?>
+                              <div class="c-checkout-bill__shipping-history-row ">
+                                <span style="float: right;">مرسوله {{ persianNum($m) }} </span>
+                                {{--                  <span class="c-checkout-bill__shipping-history-title js-package-row-title">--}}
+                                {{--                    <span style="background-image: url({{ $site_url . '/' .  $delivery_method->media()->first()->path . '/' . $delivery_method->media()->first()->name }});width: 25px !important;height: 19px !important;float: right;background-repeat: no-repeat;background-size: 18px;margin-left: 0px;margin-top: 2px;"></span>--}}
+                                {{--                  </span>--}}
+                                <span>{{ $delivery_method->name }}</span>
+                                </span>
+                                <span class="c-checkout-bill__shipping-history-title js-package-row-alt-title u-hidden">
+                     {{ persianNum($m) }}
+                    <span class="c-checkout-bill__shipping-history-title--altShipping">
+                       {{ $delivery_method->name }}
+                    </span>
+                  </span>
+                                <span class="c-checkout-bill__shipping-history-price c-checkout-bill__shipping-history-price--free-plus c-digiplus-sign--after js-package-row-plus-free-amount u-hidden"><span class="c-checkout__plus-delivery-counter">
+                                   از ۰
+                              </span>
+                    رایگان پلاس
+                  </span>
+                                <span class="c-checkout-bill__shipping-history-price js-package-row-non-free-amount">
+                    <span class="c-checkout-bill__shipping-history-price--amount js-package-row-amount">
+                      {{ persianNum(number_format(toman($item))) }}
+                    </span>
+                    <span class="c-checkout-bill__shipping-history-price--currency">
+                      تومان
+                    </span>
+                  </span>
+                                <span class="c-checkout-bill__shipping-history-price--free js-package-row-free-amount u-hidden">
+                    رایگان
+                  </span>
+                              </div>
+                              <?php $m++; ?>
+                            @endforeach
+                          </div>
+                        </div>
+
+                      </div>
+                      @if ($sum_shipping_cost == 0)
+                        <span class="c-checkout-bill__item-title js-free-shipping">
+            رایگان
+          </span>
+                      @elseif($sum_shipping_cost !== -1)
+                        <span class="c-checkout-bill__item-title js-not-free-shipping">
+            <span class="js-shipping-cost"> {{ persianNum(number_format(toman($sum_shipping_cost))) }} </span>
+            &nbsp;تومان
+          </span>
+                      @endif
+                      @if (in_array(-1, $consignment_shipping_cost) && $sum_shipping_cost !== 0 && $sum_shipping_cost !== -1)
+                        <span class="c-checkout-bill__item-title js-shipping-divider"> + </span>
+                      @endif
+                      @if(in_array(-1, $consignment_shipping_cost))
+                        <span class="c-checkout-bill__item-title js-shipping-post-paid">پس کرایه</span>
+                      @endif
                     </li>
-                    <li class="js-gift-card-code-discount hidden">
-                      <span class="c-checkout-bill__item-title c-checkout-bill__item-title--gift">
-                        کارت هدیه
-                       </span>
-                      <span  class="c-checkout-bill__price c-checkout-bill__price--discount">
-                        <span class="js-gift-card-code-discount-value" data-amount="0"></span>
-                        <span class="c-checkout-bill__currency">
-                          تومان
-                        </span>
-                      </span>
+                    <li class="c-checkout-bill__shipping-cost-notice js-dynamic-shipping-cost-notice u-hidden">
+                      هزینه بر اساس وزن و حجم مرسوله تعیین شده است.
                     </li>
                     <li class="c-checkout-bill__total-price">
                       <span class="c-checkout-bill__total-price--title">
                         مبلغ قابل پرداخت
                       </span>
                       <span class="c-checkout-bill__total-price--amount" id="cartPayablePrice">
-                        <span class="js-price" data-amount="1132665000" data-current-amount="1132665000">
-                          ۱۱۳,۲۶۶,۵۰۰
-                        </span>
+                        <?php
+                          $final_sum_price = toman($sum_sale_price - $sum_promotion_price + $sum_shipping_cost);
+                        ?>
+                        <span class="js-price" data-price="{{ $final_sum_price }}"> {{ persianNum(number_format($final_sum_price)) }} </span>
                         <span class="c-checkout-bill__total-price--currency">
                           تومان
                         </span>
                       </span>
                     </li>
                     <li class="c-checkout-bill__to-forward-button">
-                      <button type="submit" class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-payment-data selenium-next-step-shipping">
-                        پرداخت و ثبت نهایی سفارش
-                      </button>
+                      <a class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="pointer-events: all; cursor: pointer;">
+                        ادامه فرآیند خرید
+                      </a>
                     </li>
                   </ul>
                 </div>
-                <p class="c-checkout-bill__reserve-note">
-                  در صورت تمایل برای خرید حقوقی، لطفا در قسمت اطلاعات شخصی، اطلاعات حقوقی خود را وارد کنید.
-                </p>
               </div>
+
             </aside>
           </div>
         </section>
@@ -7155,6 +7158,7 @@ var activateUrl = "\/digiclub\/activate\/";
   </div>
 </div>
 <div id="footer-data-ux"></div>
+
 <footer class="c-footer-checkout">
   <div class="c-footer-checkout__content">
     <div class="c-footer-checkout__content-info">
@@ -7162,140 +7166,42 @@ var activateUrl = "\/digiclub\/activate\/";
         <div class="c-footer-checkout__col">
           <div class="c-footer-checkout__col-phone">
             شماره تماس :
-            <a href="tel: +982161930000">
-              ۶۱۹۳۰۰۰۰
-              - ۰۲۱
+            <a href="tel: {{ $store_phone }}">
+              {{ persianNum($store_phone) }}
             </a>
           </div>
         </div>
         <div class="c-footer-checkout__col">
           <div class="c-footer-checkout__col-email">
             آدرس ایمیل :
-            <a href="mailto:info@digikala.com">
-              info@digikala.com
+            <a href="mailto:{{ $store_email }}">
+              {{ $store_email }}
             </a>
           </div>
         </div>
         <div class="c-footer-checkout__subtitle">
-          استفاده از کارت هدیه یا کد تخفیف، درصفحه ی پرداخت امکان پذیر است.
+          استفاده از کد تخفیف، درصفحه ی پرداخت امکان پذیر است.
         </div>
         <div class="c-footer-checkout__copyright">
-          Copyright © 2006 - 2020 Digikala.com
+          Copyright © 2006 - 2021 DigiNova
         </div>
       </div>
     </div>
   </div>
 </footer>
-<div class="js-chat-box u-hidden">
-  <div class="c-cro--faq-access js-chat-box-container-btn">
-    <div class="c-cro__inside"></div>
-  </div>
-  <div class="c-cro--faq-questions-container js-chat-box-container u-hidden">
-    <div class="c-cro--questions-container">
-      <div class="js-chat-box-faq">
-        <div class="c-cro--questions-container__welecomming">
-          <div class="js-chat-box-welcoming"><span class="c-cro--questions-container__welecomming--hi">سلام</span><br>
-            جواب سوال&zwnj;هاتون رو می&zwnj;تونید در زیر پیدا کنید.
-            در غیر اینصورت از ما بپرسید، ما همیشه به سوالاتتون جواب می&zwnj;دهیم.
-          </div>
-        </div>
-        <div class="c-cro--questions js-chat-box-questions"></div>
-      </div>
-      <div class="c-cro__bot-wrapper js-chat-box-user-data u-hidden">
-        <div class="c-cro__bot-header">
-          پشتیبانی آنلاین
-        </div>
-        <form id="chatbotForm" class="c-cro__bot-form">
-          <p>
-            برای راهنمایی بهتر لطفا اطلاعات زیر را وارد کنید:
-          </p>
-          <label class="o-form__field-container">
-            <div class="o-form__field-label">نام*</div>
-            <div class="o-form__field-frame"><input name="chatbot[name]" type="" placeholder=""
-                                                    value="" class="o-form__field js-input-field " /></div>
-          </label>
-          <label class="o-form__field-container">
-            <div class="o-form__field-label">شماره موبایل*</div>
-            <div class="o-form__field-frame"><input name="chatbot[phone]" type="" placeholder=""
-                                                    value="" class="o-form__field js-input-field " /></div>
-          </label>
-          <label class="o-form__field-container">
-            <div class="o-form__field-label">ایمیل*</div>
-            <div class="o-form__field-frame"><input name="chatbot[email]" type="" placeholder=""
-                                                    value="" class="o-form__field js-input-field " /></div>
-          </label>
-          <button type="submit" class="o-btn o-btn--full-width o-btn--outlined-red-lg">
-            شروع گفتگو
-          </button>
-        </form>
-      </div>
-      <div class="c-cro__bot-wrapper c-cro__bot-wrapper--with-pattern js-chat-bot u-hidden">
-        <div class="c-cro__bot-header">
-          پشتیبانی آنلاین
-        </div>
-        <div class="c-cro__support-status-bar">
-          <p>
-            پیشتیبان هوش مصنوعی دیجی‌کالا
-          </p>
-          <a class="c-wiki__trigger c-wiki c-wiki__holder js-dk-wiki-trigger">
-            <div class="c-wiki__container js-dk-wiki is-right ">
-              <div class="c-wiki__arrow"></div>
-              <p class="c-wiki__text">
-                من ربات هوشمند گفت و گوی آنلاین دیجی‌کالا هستم و در حال حاضر در حال آموزش دیدن برای پاسخگویی بهتر و انتقال پیام شما به پاسخگوی مرتبط با مشکلتان هستم.
-              </p>
-            </div>
-          </a>
-        </div>
-        <div class="c-cro__chat-body">
-          <div class="js-chatbot-body">
-            <div class="c-cro__chat-message c-cro__chat-message--dk">
-              <p>
-                به پشتیبانی هوشمند دیجی‌کالا خوش آمدید. لطفا سوال خود را بپرسید.
-              </p>
-              <span>
-                           پشتیبان هوش مصنوعی
-                           </span>
-            </div>
-          </div>
-          <div class="c-cro__feedback-section js-chatbot-feedback u-hidden">
-            <p data-icon="Icon-Action-Question">آیا پاسخی که گرفتید مناسب بود؟</p>
-            <button type="button" class="js-chatbot-feedback-button" data-rate="1">بله</button><button type="button" class="js-chatbot-feedback-button" data-rate="-1">خیر</button>
-          </div>
-        </div>
-        <div class="c-cro__send-message"><textarea rows="2" class="js-chat-bot-text-area" placeholder="متن پیام خود را بنویسید ..."></textarea><button type="button" class="js-chat-bot-send-msg disabled">
-            ارسال
-          </button>
-        </div>
-      </div>
-      <div class="js-chat-center-iframe u-w-full u-hidden"></div>
-      <div class="c-cro__loader-container js-chat-box-loader">
-        <div class="c-remodal-loader__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="115" height="30" viewBox="0 0 115 30">
-            <path fill="#EE384E" fill-rule="evenodd" d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z"/>
-          </svg>
-        </div>
-        <div class="c-remodal-loader__bullets">
-          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--1"></div>
-          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--2"></div>
-          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--3"></div>
-          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <script type="application/ld+json">
-         {
-         "@context": "https://schema.org",
-         "@type": "WebSite",
-         "url": "https://www.digikala.com",
-         "potentialAction": {
-         "@type": "SearchAction",
-         "target": "https://www.digikala.com/search/?q={search_term_string}",
-         "query-input": "required name=search_term_string"
-         }
-         }
-      </script>
+     {
+     "@context": "https://schema.org",
+     "@type": "WebSite",
+     "url": "https://www.digikala.com",
+     "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.digikala.com/search/?q={search_term_string}",
+     "query-input": "required name=search_term_string"
+     }
+     }
+</script>
 <noscript>
   <img src="https://certify.alexametrics.com/atrk.gif?account=qfWte1awQa00Uf"
        style="display:none"
@@ -7303,5 +7209,15 @@ var activateUrl = "\/digiclub\/activate\/";
        width="1"
        alt=""/>
 </noscript>
+
+<script>
+  // اضافه کردن توکن به درخواست های ایجکس
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+</script>
+
 </body>
 </html>

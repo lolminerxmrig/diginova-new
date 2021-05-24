@@ -162,7 +162,7 @@ var IndexAction = {
                 $voucherCodeForm.find('.js-voucher-msg-error,.js-voucher-msg-success').addClass("hidden");
 
                 Services.ajaxPOSTRequestJSON(
-                    '/ajax/voucher/set/',
+                    '/ajax/voucher/set',
                     {'code': $voucherSerialInput.val()},
                     function (data) {
                         var currentPayablePrice = $('#cartPayablePrice .js-price').data('current-amount'),
@@ -219,7 +219,7 @@ var IndexAction = {
                 $voucherCodeForm.find('.js-voucher-msg-error,.js-voucher-msg-success').addClass("hidden");
 
                 Services.ajaxPOSTRequestJSON(
-                    '/ajax/voucher/set/',
+                    '/ajax/voucher/set',
                     {'code': $voucherCodeForm.find('input').val()},
                     function (data) {
                         var discount = Services.convertToFaDigit(Services.formatCurrency(data.voucherDiscount, true, ''));
@@ -778,7 +778,7 @@ var IndexAction = {
             false
         );
     },
-    
+
     initVoucherAndGiftCardEvent: function () {
         var $voucherHeader = $('.js-voucher-header'),
             $voucherList = $('.js-voucher-list');
