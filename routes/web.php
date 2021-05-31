@@ -53,7 +53,11 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
 
   Route::post('save-shipping-cookie', [FrontController::class, 'saveShippingToCookie'])->name('saveShippingToCookie');
 
-  Route::post('voucher/set', [FrontController::class, 'peymentVoucher'])->name('peymentVoucher');
+  Route::post('voucher/set', [FrontController::class, 'paymentVoucher'])->name('paymentVoucher');
+
+  Route::get('voucher/remove', [FrontController::class, 'removeVoucher'])->name('removeVoucher');
+
+  Route::post('submit-order-voucher-check', [FrontController::class, 'submitOrderVoucherCheck'])->name('submitOrder');
 
 });
 
@@ -67,12 +71,15 @@ Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::post('addresses/search-address-reverse', [FrontController::class, 'searchAddressReverse'])->name('searchAddressReverse');
   Route::post('addresses/search-address', [FrontController::class, 'searchAddress'])->name('searchAddress');
   Route::get('shipping', [FrontController::class, 'shipping'])->name('shipping');
-  Route::get('peyment', [FrontController::class, 'peyment'])->name('peyment');
+  Route::get('payment', [FrontController::class, 'payment'])->name('payment');
+  Route::post('payment', [FrontController::class, 'submitOrder'])->name('submitOrder');
 
-  Route::get('test', [FrontController::class, 'peymentVoucher'])->name('test');
+  Route::get('test', [FrontController::class, 'paymentVoucher'])->name('test');
 
 });
 
 Route::get('tracker/events', function (){
+});
 
+Route::get('ajax/profile/wallet', function () {
 });

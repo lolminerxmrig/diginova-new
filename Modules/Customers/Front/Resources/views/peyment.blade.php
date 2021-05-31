@@ -1,6 +1,8 @@
 @php
   $store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
   $store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value;
+
+dd($customer->delivery_address);
 @endphp
 
 {{--<?php $cons_count = 0; ?>--}}
@@ -657,7 +659,7 @@
 <meta name="msapplication-navbutton-color" content="#fb3449">
 <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-  <script>
+<script>
   try {
     var _ajax = $.ajax;
     if (_ajax) {
@@ -6654,6 +6656,7 @@ var activateUrl = "\/digiclub\/activate\/";
         </li>
       </ul>
       <form method="post" id="paymentForm">
+        @csrf
         <section class="o-page">
           <div class="o-page__row">
             <section class="o-page__content">
@@ -6708,16 +6711,24 @@ var activateUrl = "\/digiclub\/activate\/";
                       </div>
                     </li>
 
+                    @if (!is_null($peyment_methods))
+                    @foreach($peyment_methods as $key => $peyment_method)
+                      @if ($peyment_method->en_name == 'cod')
+                        <div class="c-payment__more-paymethod js-more-paymethod c-payment__more-paymethod--border-bottom">
+                          پرداخت در محل
+                        </div>
+                      @endif
                     <li data-event="change_payment_method" data-event-category="funnel" data-event-label="addresses: default: , province: تهران, shipping: normal, cart_payable: 1132665000">
-                      <div class="c-payment__paymethod-item ">
+                      <div class="c-payment__paymethod-item {{ ($peyment_method->en_name == 'cod')? 'js-credit-paymethod-container' : '' }}">
                         <label class="c-outline-radio js-online-option c-payment__paymethod-item-radio selenium-payment-pos">
-                          <input type="radio" data-bank-id="304" name="payment_method" value="online" id="payment-option-online" checked="checked">
+                          <input type="radio" data-bank-id="{{ $peyment_method->id }}" name="payment_method" value="{{ ($peyment_method->en_name == 'cod')? 'cod' : 'online' }}" id="payment-option-online" {{ ($key == 0)? 'checked' : '' }}>
                           <span class="c-outline-radio__check"></span>
-                          <span class="c-payment__paymethod-icon c-payment__paymethod-icon--online"></span>
+                          <span class="c-payment__paymethod-icon {{ ($peyment_method->en_name !== 'cod')? 'c-payment__paymethod-icon--online' : 'c-payment__paymethod-icon--credit'  }}"></span>
                         </label>
                         <label class="c-payment__paymethod-title-row" for="payment-option-online">
                           <div class="c-payment__paymethod-title">
-                            <span class="js-paymethod-title">پرداخت اینترنتی</span>
+                            <span class="js-paymethod-title">{{ $peyment_method->name }}</span>
+                            @if ($peyment_method->en_name !== 'cod')
                             <div class="c-wiki c-wiki__holder">
                               <div class="c-wiki__info-sign"></div>
                               <div class="c-wiki__container js-dk-wiki ">
@@ -6727,33 +6738,22 @@ var activateUrl = "\/digiclub\/activate\/";
                                 </p>
                               </div>
                             </div>
+                            @endif
                           </div>
-                          <div class="c-payment__paymethod-dsc" data-amount="">
-                            آنلاین با تمامی کارت‌های بانکی
-                          </div>
+                          @if ($peyment_method->description !== null || $peyment_method->description !== '')
+                            <div class="c-payment__paymethod-dsc" data-amount="">
+                              {{ persianNum($peyment_method->description) }}
+                            </div>
+                          @endif
                         </label>
                       </div>
                     </li>
+                    @endforeach
+                    @endif
 
-                    <div class="c-payment__more-paymethod js-more-paymethod c-payment__more-paymethod--border-bottom">
-                      پرداخت در محل
-                    </div>
 
-                    <li data-event="change_payment_method" data-event-category="funnel" data-event-label="addresses: default: , province: تهران, shipping: normal, cart_payable: 1132665000">
-                      <div class="c-payment__paymethod-item js-credit-paymethod-container">
-                        <label class="c-outline-radio js-credit-option c-payment__paymethod-item-radio selenium-payment-pos">
-                          <input type="radio" data-bank-id="315" name="payment_method" value="cod" id="payment-option-credit">
-                          <span class="c-outline-radio__check"></span>
-                          <span class="c-payment__paymethod-icon c-payment__paymethod-icon--credit"></span>
-                        </label>
-                        <label class="c-payment__paymethod-title-row" for="payment-option-credit">
-                          <div class="c-payment__paymethod-title">
-                            <span class="js-paymethod-title">پرداخت در محل</span>
-                          </div>
-                          <div class="c-payment__paymethod-dsc" data-amount=""></div>
-                        </label>
-                      </div>
-                    </li>
+
+
 
                   </ul>
                 </div>
@@ -6856,9 +6856,6 @@ var activateUrl = "\/digiclub\/activate\/";
                     @endif
 
                   @endforeach
-
-
-
                 </div>
               </div>
 
@@ -6885,16 +6882,16 @@ var activateUrl = "\/digiclub\/activate\/";
                       <?php $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count); ?>
                     @endforeach
                     <li>
-        <span class="c-checkout-bill__item-title">
-          قیمت کالاها
-          ({{ persianNum($first_carts->count()) }})
-        </span>
+                      <span class="c-checkout-bill__item-title">
+                        قیمت کالاها
+                        ({{ persianNum($first_carts->count()) }})
+                      </span>
                       <span class="c-checkout-bill__price">
-          {{ persianNum(number_format(toman($sum_sale_price))) }}
-          <span class="c-checkout-bill__currency">
-              تومان
-          </span>
-        </span>
+                        {{ persianNum(number_format(toman($sum_sale_price))) }}
+                        <span class="c-checkout-bill__currency">
+                            تومان
+                        </span>
+                      </span>
                     </li>
 
                     @if($first_carts->sum('new_promotion_price') > 0)
@@ -6906,29 +6903,45 @@ var activateUrl = "\/digiclub\/activate\/";
                         @endif
                       @endforeach
                       <li>
-          <span class="c-checkout-bill__item-title">
-              تخفیف کالاها
-          </span>
+                        <span class="c-checkout-bill__item-title">
+                            تخفیف کالاها
+                        </span>
                         <span class="c-checkout-bill__price c-checkout-bill__price--discount">
-            <span>
-              ({{ persianNum(number_format(($sum_promotion_price / $sum_sale_price) * 100)) }}٪)
-            </span>
-              {{ persianNum(number_format(toman($sum_promotion_price))) }}
-            <span class="c-checkout-bill__currency"> تومان </span>
-          </span>
+                          <span>
+                            ({{ persianNum(number_format(($sum_promotion_price / $sum_sale_price) * 100)) }}٪)
+                          </span>
+                            {{ persianNum(number_format(toman($sum_promotion_price))) }}
+                          <span class="c-checkout-bill__currency"> تومان </span>
+                        </span>
                       </li>
                     @endif
 
-                    <li class="c-checkout-bill__sum-price">
-        <span class="c-checkout-bill__item-title">
-            جمع
-        </span>
-                      <span class="c-checkout-bill__price">
-          {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
-          <span class="c-checkout-bill__currency">
-              تومان
-          </span>
-        </span>
+                    <li class="hidden js-voucher-code-discount">
+                      <span class="c-checkout-bill__item-title c-checkout-bill__item-title--voucher">
+                        کد تخفیف
+                      </span>
+                      <span class="c-checkout-bill__price c-checkout-bill__price--discount">
+                        <span class="js-voucher-code-discount-value" data-amount="0">
+                            ۰-
+                        </span>
+                        <span class="c-checkout-bill__currency">
+                           تومان
+                        </span>
+                      </span>
+                    </li>
+
+                    <li class="c-checkout-bill__sum-price" data-voucher-code="">
+                      <span class="c-checkout-bill__item-title">
+                          جمع
+                      </span>
+                      <span class="c-checkout-bill__price first_sum_cost" data-cost="{{ $sum_sale_price - $sum_promotion_price }}">
+                        <span class="first_sum_cost_text">
+                            {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
+                        </span>
+                        <span class="c-checkout-bill__currency">
+                            تومان
+                        </span>
+                      </span>
                     </li>
                     <li>
                       <div class="c-checkout-bill__item-title">
@@ -6956,43 +6969,43 @@ var activateUrl = "\/digiclub\/activate\/";
                                 <span>{{ $delivery_method->name }}</span>
                                 </span>
                                 <span class="c-checkout-bill__shipping-history-title js-package-row-alt-title u-hidden">
-                     {{ persianNum($m) }}
-                    <span class="c-checkout-bill__shipping-history-title--altShipping">
-                       {{ $delivery_method->name }}
-                    </span>
-                  </span>
+                                   {{ persianNum($m) }}
+                                  <span class="c-checkout-bill__shipping-history-title--altShipping">
+                                     {{ $delivery_method->name }}
+                                  </span>
+                                </span>
                                 <span class="c-checkout-bill__shipping-history-price c-checkout-bill__shipping-history-price--free-plus c-digiplus-sign--after js-package-row-plus-free-amount u-hidden"><span class="c-checkout__plus-delivery-counter">
                                    از ۰
                               </span>
-                    رایگان پلاس
-                  </span>
+                                رایگان پلاس
+                              </span>
                                 <span class="c-checkout-bill__shipping-history-price js-package-row-non-free-amount">
-                    <span class="c-checkout-bill__shipping-history-price--amount js-package-row-amount">
-                      {{ persianNum(number_format(toman($item))) }}
-                    </span>
-                    <span class="c-checkout-bill__shipping-history-price--currency">
-                      تومان
-                    </span>
-                  </span>
+                                  <span class="c-checkout-bill__shipping-history-price--amount js-package-row-amount">
+                                    {{ persianNum(number_format(toman($item))) }}
+                                  </span>
+                                  <span class="c-checkout-bill__shipping-history-price--currency">
+                                    تومان
+                                  </span>
+                                </span>
                                 <span class="c-checkout-bill__shipping-history-price--free js-package-row-free-amount u-hidden">
-                    رایگان
-                  </span>
+                                  رایگان
+                                </span>
                               </div>
                               <?php $m++; ?>
                             @endforeach
                           </div>
                         </div>
-
                       </div>
+
                       @if ($sum_shipping_cost == 0)
                         <span class="c-checkout-bill__item-title js-free-shipping">
-            رایگان
-          </span>
+                          رایگان
+                        </span>
                       @elseif($sum_shipping_cost !== -1)
                         <span class="c-checkout-bill__item-title js-not-free-shipping">
-            <span class="js-shipping-cost"> {{ persianNum(number_format(toman($sum_shipping_cost))) }} </span>
-            &nbsp;تومان
-          </span>
+                          <span class="js-shipping-cost"> {{ persianNum(number_format(toman($sum_shipping_cost))) }} </span>
+                          &nbsp;تومان
+                        </span>
                       @endif
                       @if (in_array(-1, $consignment_shipping_cost) && $sum_shipping_cost !== 0 && $sum_shipping_cost !== -1)
                         <span class="c-checkout-bill__item-title js-shipping-divider"> + </span>
@@ -7008,21 +7021,29 @@ var activateUrl = "\/digiclub\/activate\/";
                       <span class="c-checkout-bill__total-price--title">
                         مبلغ قابل پرداخت
                       </span>
-                      <span class="c-checkout-bill__total-price--amount" id="cartPayablePrice">
-                        <?php
-                          $final_sum_price = toman($sum_sale_price - $sum_promotion_price + $sum_shipping_cost);
-                        ?>
-                        <span class="js-price" data-price="{{ $final_sum_price }}"> {{ persianNum(number_format($final_sum_price)) }} </span>
+                      <?php
+                      $final_sum_price = $sum_sale_price - $sum_promotion_price + $sum_shipping_cost;
+                      ?>
+                      <span class="c-checkout-bill__total-price--amount" id="cartPayablePrice" data-before-price="{{ $final_sum_price }}" data-final-price="{{ $final_sum_price }}" data-amount="{{ $final_sum_price }}" data-current-amount="{{ $final_sum_price }}">
+                        <span class="js-price" data-price="{{ $final_sum_price }}" data-amount="{{ $final_sum_price }}" data-current-amount="{{ $final_sum_price }}"> {{ persianNum(number_format(toman($final_sum_price))) }} </span>
                         <span class="c-checkout-bill__total-price--currency">
                           تومان
                         </span>
                       </span>
                     </li>
-                    <li class="c-checkout-bill__to-forward-button">
-                      <a class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-shipping-data" style="pointer-events: all; cursor: pointer;">
-                        ادامه فرآیند خرید
-                      </a>
-                    </li>
+
+                      <li class="c-checkout-bill__to-forward-button">
+                        <button type="submit" class="o-btn o-btn--full-width o-btn--contained-red-lg js-save-payment-data selenium-next-step-shipping">
+                          پرداخت و ثبت نهایی سفارش
+                        </button>
+                      </li>
+
+{{--                    <li class="c-checkout-bill__to-forward-button">--}}
+{{--                      <a class="o-btn o-btn--full-width o-btn--contained-red-lg selenium-next-step-shipping submit-order">--}}
+{{--                        پرداخت و ثبت نهایی سفارش--}}
+{{--                      </a>--}}
+{{--                    </li>--}}
+
                   </ul>
                 </div>
               </div>
@@ -7043,6 +7064,7 @@ var activateUrl = "\/digiclub\/activate\/";
   <div class="c-remodal-account__headline">ورود به دیجی‌کالا</div>
   <div class="c-remodal-account__content">
     <form class="c-form-account" id="loginFormModal">
+      @csrf
       <div class="c-message-light c-message-light--info" id="login-form-msg"></div>
       <div class="c-form-account__title">پست الکترونیک یا شماره موبایل</div>
       <div class="c-form-account__row">
@@ -7066,9 +7088,10 @@ var activateUrl = "\/digiclub\/activate\/";
       </div>
     </form>
   </div>
-  <div class="c-remodal-account__footer is-highlighted"><span>کاربر جدید هستید؟</span><a data-snt-event="dkLoginClick"
-                                                                                         data-snt-params='{"type":"signup","site":"login-modal"}'
-                                                                                         href="/users/login-register/?_back=https://www.digikala.com/payment/" class="btn-link-spoiler">ثبت‌نام در دیجی‌کالا</a></div>
+  <div class="c-remodal-account__footer is-highlighted">
+    <span>کاربر جدید هستید؟</span>
+    <a data-snt-event="dkLoginClick" data-snt-params='{"type":"signup","site":"login-modal"}' href="/users/login-register/?_back=https://www.digikala.com/payment/" class="btn-link-spoiler">ثبت‌نام در دیجی‌کالا</a>
+  </div>
 </div>
 <div class="remodal c-remodal-loader"  data-remodal-id="loader"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog" aria-labelledby="modal1Title"
@@ -7211,12 +7234,26 @@ var activateUrl = "\/digiclub\/activate\/";
 </noscript>
 
 <script>
-  // اضافه کردن توکن به درخواست های ایجکس
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+// اضافه کردن توکن به درخواست های ایجکس
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+
+$(document).on('click', '.submit-order', function(){
+  $.ajax({
+    method: "post",
+    url: '{{route('front.ajax.submitOrder')}}',
+    data: {
+      peyment_method_id: $('input[name=payment_method]:checked').data('bank-id'),
+      code: $('.c-checkout-bill__sum-price').data('voucher-code'),
+      peyment_amount: $('#cartPayablePrice').data('final-price'),
+    },
+    success: function (result) {
+    },
   });
+});
 </script>
 
 </body>

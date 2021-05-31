@@ -132,14 +132,23 @@ var IndexAction = {
                 if(thiz.isVoucherActive) {
                     thiz.isVoucherActive = false;
                     Services.ajaxGETRequestJSON(
-                        '/ajax/voucher/remove/',
+                        '/ajax/voucher/remove',
                         {},
                         function () {
-                            thiz.clearSerial('voucher');
+                          var current_first_sum_cost = $(".first_sum_cost").data('cost');
+                          $('.first_sum_cost_text').text(Services.convertToFaDigit(Services.formatCurrency(current_first_sum_cost, true, '')));
+                          $(".c-checkout-bill__sum-price").data('voucher-code', '');
+
+                          thiz.clearSerial('voucher');
                             $('.js-voucher-code-discount-value').text('');
                             $('.js-voucher-code-discount').addClass('hidden');
                             $('.js-voucher-discount-value').data('amount', '0');
                             thiz.updatePayablePrice();
+
+                          var final_price = $('#cartPayablePrice').data('before-price');
+                          $('#cartPayablePrice').data('final-price', final_price);
+
+
                         },
                         function (data) {
                             DKAlert(data.errors);
@@ -165,12 +174,15 @@ var IndexAction = {
                     '/ajax/voucher/set',
                     {'code': $voucherSerialInput.val()},
                     function (data) {
-                        var currentPayablePrice = $('#cartPayablePrice .js-price').data('current-amount'),
-                            discount = currentPayablePrice - data.voucherDiscount > 0 ? data.voucherDiscount : currentPayablePrice,
-                            tanslateDiscount = Services.convertToFaDigit(Services.formatCurrency(discount, true, '')),
-                            voucherMessage = 'مبلغ ' + tanslateDiscount + 'تومان تخفیف برای شما محاسبه شد.';
+                      // $(".js-checkout-aside").replaceWith(data.data);
+                      $(".c-checkout-bill__sum-price").data('voucher-code', data.voucher_code);
 
-                        $('.js-voucher').data('amount', discount);
+                      var currentPayablePrice = $('#cartPayablePrice .js-price').data('current-amount'),
+                          discount = currentPayablePrice - data.voucherDiscount > 0 ? data.voucherDiscount : currentPayablePrice,
+                          tanslateDiscount = Services.convertToFaDigit(Services.formatCurrency(discount, true, '')),
+                          voucherMessage = 'مبلغ ' + tanslateDiscount + 'تومان تخفیف برای شما محاسبه شد.';
+
+                      $('.js-voucher').data('amount', discount);
                         $('.js-voucher-code-discount-value').text(tanslateDiscount).data('amount', discount);
                         $inputContainer.find('input').attr('readonly', true);
 
@@ -181,6 +193,14 @@ var IndexAction = {
                         $('.js-voucher-code-discount').removeClass('hidden');
                         $('.js-clear-voucher').show();
                         $('.js-apply-voucher').hide();
+
+                        var first_sum_cost = $('.first_sum_cost').data('cost');
+                        var final_first_sum_cost = first_sum_cost - discount;
+                        $('.first_sum_cost_text').text(Services.convertToFaDigit(Services.formatCurrency(final_first_sum_cost, true, '')));
+
+                        var final_price = $('#cartPayablePrice').data('final-price');
+                        $('#cartPayablePrice').data('final-price', final_price - discount);
+
                     },
                     function (data) {
                         $inputContainer.find('input').addClass('c-payment__serial-input--error');
@@ -222,7 +242,10 @@ var IndexAction = {
                     '/ajax/voucher/set',
                     {'code': $voucherCodeForm.find('input').val()},
                     function (data) {
+                      // $(".js-checkout-aside").replaceWith(data.data);
                         var discount = Services.convertToFaDigit(Services.formatCurrency(data.voucherDiscount, true, ''));
+
+                        $(".c-checkout-bill__sum-price").data('voucher-code', data.voucher_code);
 
                         $voucherCodeForm.find('.js-voucher-discount-value').text(discount).data('amount', data.voucherDiscount);
                         $('.js-voucher-code-discount-value').text(discount).data('amount', data.voucherDiscount);
@@ -266,16 +289,25 @@ var IndexAction = {
                 var $voucherCodeForm = $('#voucherCodeForm');
 
                 Services.ajaxGETRequestJSON(
-                    '/ajax/voucher/remove/',
+                    '/ajax/voucher/remove',
                     {},
                     function () {
-                        $voucherCodeForm.find('.js-voucher-discount-value').text('').data('amount', 0);
+                      var current_first_sum_cost = $(".first_sum_cost").data('cost');
+                      $('.first_sum_cost_text').text(Services.convertToFaDigit(Services.formatCurrency(current_first_sum_cost, true, '')));
+                      $(".c-checkout-bill__sum-price").data('voucher-code', '');
+
+                      $voucherCodeForm.find('.js-voucher-discount-value').text('').data('amount', 0);
                         $('.js-voucher-code-discount-value').text('').data('amount', 0);
                         $voucherCodeForm.find('.js-voucher-msg-success').addClass("hidden");
                         $this.removeClass('is-important').text('ثبت کد تخفیف');
                         $voucherCodeForm.find('input').val('').attr('readonly', false);
                         $('.js-voucher-code-discount').addClass('hidden');
                         $('.js-gift-card-selector').change();
+
+                      var final_price = $('#cartPayablePrice').data('before-price');
+                      $('#cartPayablePrice').data('final-price', final_price);
+
+
                     },
                     function (data) {
                         DKAlert(data.errors);

@@ -17,6 +17,13 @@ use Modules\Customers\Front\Models\CustomerFavorite;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Comment\Models\CommentFeedback;
 use Modules\Staff\Customer\Models\CustomerAddress;
+use Modules\Staff\Order\Models\ConsignmentHasProductVariants;
+use Modules\Staff\Order\Models\Order;
+use Modules\Staff\Order\Models\OrderAddress;
+use Modules\Staff\Order\Models\OrderHasConsignment;
+use Modules\Staff\Order\Models\OrderStaticDetail;
+use Modules\Staff\Peyment\Models\PeymentMethod;
+use Modules\Staff\Peyment\Models\PeymentRecord;
 use Modules\Staff\Product\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -29,6 +36,7 @@ use Modules\Staff\Shiping\Http\postPishtaz;
 use Modules\Staff\Shiping\Http\postSefareshi;
 use Modules\Staff\Shiping\Models\DeliveryMethod;
 use Illuminate\Http\Response;
+use Modules\Staff\Shiping\Models\OrderStatus;
 use Modules\Staff\Voucher\Models\Voucher;
 use function Illuminate\Support\Facades\Cookie;
 
@@ -915,7 +923,7 @@ class FrontController extends Controller
     ]);
   }
 
-  public function peyment()
+  public function payment()
   {
     if (!isset($_COOKIE['method_ids'])) {
       return abort(404);
@@ -926,17 +934,23 @@ class FrontController extends Controller
     $first_carts = $customer->carts()->where('type', 'first')->get();
     $method_ids = json_decode($_COOKIE['method_ids'], true);
     $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+    $peyment_methods = PeymentMethod::where('status', 'active')->get();
 
-    return view('front::peyment', compact('customer', 'weights', 'first_carts', 'consignment_shipping_cost', 'method_ids'));
+    return view('front::peyment', compact('customer', 'weights', 'first_carts', 'consignment_shipping_cost', 'method_ids', 'peyment_methods'));
   }
 
-  public function peymentVoucher(Request $request)
+  public function paymentVoucher(Request $request)
   {
 
     $customer = Auth::guard('customer')->user();
-    $method_ids = $_COOKIE["method_ids"];
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $weights = ProductWeight::all();
+    $method_ids = json_decode($_COOKIE['method_ids'], true);
+    $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+
     $code = $request->code;
     $code = 'PZOD2';
+
 
     if (!Voucher::where('code', $code)->where('status', 'active')->exists()) {
       return $this->returnError('این کد تخفیف قابل استفاده نیست.');
@@ -961,7 +975,26 @@ class FrontController extends Controller
     }
 
     $voucher_varints_cost =  $this->voucherCostLogic($customer, $voucher, $method_ids);
-    return $voucher_varints_cost;
+
+    if (PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->exists()) {
+      PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->delete();
+    }
+
+    PeymentRecord::create([
+      'status' => 'unsuccessful',
+      'price' => $voucher_varints_cost,
+      'method_type' => 'Voucher',
+      'method_id' => $voucher->id,
+      'customer_id' => $customer->id,
+    ]);
+
+    return response()->json([
+      "status" => true,
+      "data" => [
+        "voucherDiscount" => $voucher_varints_cost,
+        "voucher_code" => $code,
+      ],
+    ]);
 
   }
 
@@ -971,7 +1004,16 @@ class FrontController extends Controller
     $cart = $customer->carts()->where('type', 'first')->get();
     $first_carts = $customer->carts()->where('type', 'first')->get();
     $weights = ProductWeight::all();
+    $voucher_varints_cost = 0;
+    $voucher_categories_id = [];
 
+    if ($voucher->categories()->exists()) {
+      $category = $voucher->categories()->first();
+      do {
+        $voucher_categories_id[] = $category->id;
+        $category = $category->parent;
+      } while (isset($category));
+    }
 
     foreach ($weights as $i => $weight) {
       foreach ($cart as $key => $item) {
@@ -983,23 +1025,294 @@ class FrontController extends Controller
               $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
             }
             else {
-              $promotion_price = $product_variant->sale_price;+
+              $promotion_price = $product_variant->sale_price;
             }
           }
+
           // اگه پروموشن داشت رد میکنه
           if ($product_variant->sale_price !== $promotion_price) {
             continue;
           }
 
-          $voucher_varints_cost[$product_variant->id] = ($product_variant->sale_price / 100) * $voucher->percent;
+          // اگه مبلغ کل سبد خرید کمتر از حداقل مبلغ مورد نیاز برای اعمال کد تخفیف بود رد کنه
+          $sum_cart_cost = $this->sumCartCost($first_carts);
+          if ($voucher->min_product_price !== null && $sum_cart_cost <= $voucher->min_product_price) {
+            continue;
+          }
+
+          // اگه کد تخفیف محدود به دسته بندی خاصی بود چک کنه سبد رو و هرکدوم که تو اون دسته و زیر مجموعه هاش نبود رو رد کنه
+          if ($voucher->categories()->exists()) {
+            $variant_category_id = $item->product_variant()->first()->product->category()->first()->id;
+            if (count($voucher_categories_id) && !in_array($variant_category_id, $voucher_categories_id)) {
+              continue;
+            }
+          }
+
+          $voucher_varints_cost += (($product_variant->sale_price / 100) * $voucher->percent);
+
         }
       }
-
     }
 
+    if (!is_null($voucher->up_to) && $voucher_varints_cost > $voucher->up_to) {
+      $voucher_varints_cost = $voucher->up_to;
+    }
+
+    $sum_cart_cost = $this->sumCartCost($first_carts);
+    if (!is_null($voucher->up_to) && $voucher_varints_cost > $voucher->up_to && $sum_cart_cost < $voucher_varints_cost) {
+      $voucher_varints_cost = $sum_cart_cost;
+    }
 
     return $voucher_varints_cost;
 
   }
+
+  public function sumCartCost($first_carts)
+  {
+      $sum_sale_price = 0;
+      $sum_promotion_price = 0;
+
+      foreach($first_carts as $priceItem)
+      {
+        $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count);
+        if ($priceItem->new_sale_price > $priceItem->new_promotion_price) {
+          $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count);
+        }
+      }
+
+      return $sum_sale_price - $sum_promotion_price;
+  }
+
+  public function removeVoucher()
+  {
+
+    $customer = Auth::guard('customer')->user();
+
+    if (PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->exists()) {
+      PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->delete();
+    }
+
+    return response()->json([
+      'status' => true,
+      'data' => null,
+    ], 200);
+
+  }
+
+  public function finalGetOrderCartAmount()
+  {
+    // اگه کوکی سیو نشده بود یا یوزر دیلیت زده بود ریدایررکت بشه به صفحه shipping
+    if (!isset($_COOKIE['method_ids'])) {
+      return redirect()->route('front.shipping');
+    }
+
+    $customer = Auth::guard('customer')->user();
+    $weights = ProductWeight::all();
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $method_ids = json_decode($_COOKIE['method_ids'], true);
+    $peyment_methods = PeymentMethod::where('status', 'active')->get();
+    $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+
+    // مجموع قیمت اصلی فروش محصول بدون پروموشن
+    $sum_sale_price = 0;
+    foreach($first_carts as $priceItem){
+      $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count);
+    }
+
+    // مجموع قیمت پروموشن
+    $sum_promotion_price = 0;
+    foreach($first_carts as $priceItem) {
+      if ($priceItem->new_sale_price > $priceItem->new_promotion_price) {
+        $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count);
+      }
+    }
+
+    // هزینه حمل
+    $m = 1;
+    $sum_shipping_cost = 0;
+    foreach($consignment_shipping_cost as $key => $item) {
+      $delivery_method = \Modules\Staff\Shiping\Models\DeliveryMethod::find($method_ids[$m-1]);
+      $sum_shipping_cost =+ $item;
+      $m++;
+    }
+
+    // مبلغ نهایی بدون کد تخفیف
+    return $final_sum_price = $sum_sale_price - $sum_promotion_price + $sum_shipping_cost;
+
+  }
+
+  public function finalGetOrderVoucherAmount()
+  {
+
+    $customer = Auth::guard('customer')->user();
+
+    if (!PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->exists()) {
+      return null;
+    }
+
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $weights = ProductWeight::all();
+    $method_ids = json_decode($_COOKIE['method_ids'], true);
+    $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+
+    $voucher_id = PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->first();
+    $voucher = Voucher::find($voucher_id);
+    $code = Voucher::find($voucher_id)->code;
+
+    if (!Voucher::where('code', $code)->where('status', 'active')->exists()) {
+      return null;
+    }
+
+    if (!is_null($voucher->start_at) && $voucher->where('start_at', '>=', Carbon::now())->exists()) {
+      return null;
+    }
+
+    if (!is_null($voucher->end_at) && $voucher->where('end_at', '<=', Carbon::now())->exists()) {
+      return null;
+    }
+
+    if (!is_null($voucher->max_usable) && $voucher->max_usable == 0) {
+      return null;
+    }
+
+    if ($voucher->type == 'first_purchase' && $customer->orders()->exists()) {
+      return null;
+    }
+
+    $voucher_varints_cost =  $this->voucherCostLogic($customer, $voucher, $method_ids);
+
+    return $voucher_varints_cost;
+
+  }
+
+  public function submitOrder(Request $request)
+  {
+
+    $customer = Auth::guard('customer')->user();
+    $final_sum_price = $this->finalGetOrderCartAmount();
+    $final_sum_voucher = $this->finalGetOrderVoucherAmount();
+    $first_carts = $customer->carts()->where('type', 'first')->get();
+    $method_ids = json_decode($_COOKIE['method_ids'], true);
+
+    // مجموع قیمت پروموشن
+    $sum_promotion_price = 0;
+    foreach($first_carts as $priceItem) {
+      if ($priceItem->new_sale_price > $priceItem->new_promotion_price) {
+        $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count);
+      }
+    }
+
+    if (!is_null($voucher_varints_cost) && $final_sum_price > $final_sum_voucher) {
+      $final_sum_price = $final_sum_price - $final_sum_voucher;
+    }
+
+
+    if (Order::count()) {
+      $order_code = Order::max('order_code')+1;
+    }
+    else {
+      $order_code = 3000000;
+    }
+
+    $order_status_id = OrderStatus::where('en_name', 'awaiting_peyment')->first()->id;
+
+    //ایجاد سفارش
+    Order::create()([
+      'order_code' => $order_code,
+      'order_status_id' => $order_status_id,
+      'customer_id' => $customer->id,
+      'cost' => $final_sum_price,
+      'discount' => $sum_promotion_price + $final_sum_voucher,
+    ]);
+
+    $order_id = Order::where('order_code', $order_code)->first()->id;
+
+    if (OrderHasConsignment::count()) {
+      $delivery_code = OrderHasConsignment::max('delivery_code')+1;
+      $consignment_code = OrderHasConsignment::max('consignment_code')+1;
+    }
+    else {
+      $delivery_code = 10000;
+      $consignment_code = 4000000;
+    }
+
+
+    $i = 0;
+    foreach ($consignment_shipping_cost as $key => $shipping_cost)
+    {
+
+      // ایجاد مرسوله
+      OrderHasConsignment::create([
+        'consignment_code' => $consignment_code,
+        'shiping_cost' => $shipping_cost,
+        'delivery_code' => $delivery_code,
+        'tracking_code' => null,
+        'delivery_at' => null,
+        'order_status_id' => $order_status_id,
+        'delivery_method_id' => $method_ids[$i],
+        'order_id' => $order_id,
+      ]);
+
+      $consignment_id = OrderHasConsignment::where('consignment_code', $consignment_code)->first()->id;
+
+      // اضافه کردن تنوع به مرسوله
+      foreach ($first_carts as $item)
+      {
+
+        // ایدی حجم: key
+        if ($item->product_variant()->first()->product->weight()->id == $key)
+        {
+          ConsignmentHasProductVariants::create([
+            'count' => $item->count,
+            'variant_price' => $item->new_sale_price,
+            'promotion_price' => $item->new_promotion_price,
+            'product_id' => $item->product_variant()->first()->product->id,
+            'product_variant_id' => $item->product_variant_id,
+            'consignment_id' => $consignment_id,
+            'order_id' => $order_id,
+            'order_status_id' => $order_status_id,
+//            'promotion_type' => ,
+//            'promotion_percent' => ,
+          ]);
+
+          $consignment_product_variant_id = ConsignmentHasProductVariants::where('product_variant_id', $item->product_variant_id)->first()->id;
+
+          OrderStaticDetail::create([
+            'product_title_fa' => $item->product_variant()->first()->product->title_fa,
+//            'variant_name' => $item->product_variant()->first()->product->,
+            'warranty_name' => $item->product_variant()->first()->product()->warranty->name,
+            'seller' => 'site',
+            'consignment_product_variant_id' => $consignment_product_variant_id,
+          ]);
+
+        }
+
+      }
+
+      $i++;
+    }
+
+    $default_address = $customer->delivery_address;
+
+
+    OrderAddress::create([
+      'lan' => $default_address->lan,
+      'len' => $default_address->len,
+      'address' => $default_address->address,
+      'plaque' => $default_address->plaque,
+      'unit' => $default_address->unit,
+      'postal_code' => $default_address->postal_code,
+      'recipient_firstname' => !is_null($default_address->recipient_firstname)? $default_address->recipient_firstname : $customer->first_name,
+      'recipient_lastname' => !is_null($default_address->recipient_lastname)? $default_address->recipient_lastname : $customer->last_name,
+      'recipient_national_code' => !is_null($default_address->recipient_national_code)? $default_address->recipient_national_code : $customer->national_code,
+      'recipient_mobile' => !is_null($default_address->recipient_mobile)? $default_address->recipient_mobile : $customer->mobile,
+      'customer_id' => $default_address->customer_id,
+      'state_id' => $default_address->state_id,
+      'order_id' => $order_id,
+    ]);
+
+  }
+
+
 
 }

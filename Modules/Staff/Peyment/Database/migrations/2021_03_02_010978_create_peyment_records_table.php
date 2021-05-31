@@ -19,10 +19,12 @@ class CreatePeymentRecordsTable extends Migration
             $table->string('status')->nullable();
             $table->bigInteger('price')->nullable();
             $table->foreignId('order_id')->nullable();
+            $table->foreignId('customer_id')->nullable();
             $table->nullableMorphs('method');
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
 

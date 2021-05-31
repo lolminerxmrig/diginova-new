@@ -182,7 +182,7 @@
                                                 </div>
 
 
-                                                <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr" style="margin-right: 15px; margin-top: 45px !important;">
+                                                <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr uk-hidden" style="margin-right: 15px; margin-top: 45px !important;">
                                                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-5 c-grid__col--xs-gap">
                                                         <label for="productIsFake" class="uk-form-label">هزینه ارسال:</label>
                                                         <div class="field-wrapper field-wrapper--justify field-wrapper--background">

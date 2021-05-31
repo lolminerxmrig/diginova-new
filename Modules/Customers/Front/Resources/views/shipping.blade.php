@@ -9039,7 +9039,7 @@
         method_ids: method_ids,
       },
       success: function() {
-        window.location.href= "{{ route('front.peyment') }}";
+        window.location.href= "{{ route('front.payment') }}";
       }
     });
 
