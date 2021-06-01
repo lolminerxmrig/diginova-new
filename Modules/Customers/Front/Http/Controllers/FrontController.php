@@ -1155,7 +1155,7 @@ class FrontController extends Controller
     $method_ids = json_decode($_COOKIE['method_ids'], true);
     $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
 
-    $voucher_id = PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->first();
+    $voucher_id = PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->first()->id;
     $voucher = Voucher::find($voucher_id);
     $code = Voucher::find($voucher_id)->code;
 
@@ -1187,12 +1187,15 @@ class FrontController extends Controller
 
   public function submitOrder(Request $request)
   {
-
+//    dd($request->all());
     $customer = Auth::guard('customer')->user();
     $final_sum_price = $this->finalGetOrderCartAmount();
     $final_sum_voucher = $this->finalGetOrderVoucherAmount();
     $first_carts = $customer->carts()->where('type', 'first')->get();
     $method_ids = json_decode($_COOKIE['method_ids'], true);
+    $weights = ProductWeight::all();
+    $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+
 
     // مجموع قیمت پروموشن
     $sum_promotion_price = 0;
@@ -1202,7 +1205,8 @@ class FrontController extends Controller
       }
     }
 
-    if (!is_null($voucher_varints_cost) && $final_sum_price > $final_sum_voucher) {
+
+    if (!is_null($final_sum_voucher) && $final_sum_price > $final_sum_voucher) {
       $final_sum_price = $final_sum_price - $final_sum_voucher;
     }
 
@@ -1217,7 +1221,7 @@ class FrontController extends Controller
     $order_status_id = OrderStatus::where('en_name', 'awaiting_peyment')->first()->id;
 
     //ایجاد سفارش
-    Order::create()([
+    Order::create([
       'order_code' => $order_code,
       'order_status_id' => $order_status_id,
       'customer_id' => $customer->id,
@@ -1262,29 +1266,36 @@ class FrontController extends Controller
         // ایدی حجم: key
         if ($item->product_variant()->first()->product->weight()->id == $key)
         {
-          ConsignmentHasProductVariants::create([
+          $consignment_p_v_id = ConsignmentHasProductVariants::insertGetId([
             'count' => $item->count,
             'variant_price' => $item->new_sale_price,
             'promotion_price' => $item->new_promotion_price,
             'product_id' => $item->product_variant()->first()->product->id,
-            'product_variant_id' => $item->product_variant_id,
             'consignment_id' => $consignment_id,
             'order_id' => $order_id,
             'order_status_id' => $order_status_id,
+            'product_variant_id' => $item->product_variant_id,
 //            'promotion_type' => ,
 //            'promotion_percent' => ,
           ]);
+
+//          $product_variant = ProductHasVariant::find($item->product_variant_id);
+//          $consignment_p_v = ConsignmentHasProductVariants::find($consignment_p_v_id);
+//
+//          $consignment_p_v->product_variant()->attach($product_variant);
+
+
+
 
           $consignment_product_variant_id = ConsignmentHasProductVariants::where('product_variant_id', $item->product_variant_id)->first()->id;
 
           OrderStaticDetail::create([
             'product_title_fa' => $item->product_variant()->first()->product->title_fa,
-//            'variant_name' => $item->product_variant()->first()->product->,
-            'warranty_name' => $item->product_variant()->first()->product()->warranty->name,
+            'variant_name' => $item->product_variant()->first()->variant->name,
+            'warranty_name' => $item->product_variant()->first()->warranty->name,
             'seller' => 'site',
             'consignment_product_variant_id' => $consignment_product_variant_id,
           ]);
-
         }
 
       }
@@ -1294,7 +1305,6 @@ class FrontController extends Controller
 
     $default_address = $customer->delivery_address;
 
-
     OrderAddress::create([
       'lan' => $default_address->lan,
       'len' => $default_address->len,
@@ -1302,10 +1312,10 @@ class FrontController extends Controller
       'plaque' => $default_address->plaque,
       'unit' => $default_address->unit,
       'postal_code' => $default_address->postal_code,
-      'recipient_firstname' => !is_null($default_address->recipient_firstname)? $default_address->recipient_firstname : $customer->first_name,
-      'recipient_lastname' => !is_null($default_address->recipient_lastname)? $default_address->recipient_lastname : $customer->last_name,
-      'recipient_national_code' => !is_null($default_address->recipient_national_code)? $default_address->recipient_national_code : $customer->national_code,
-      'recipient_mobile' => !is_null($default_address->recipient_mobile)? $default_address->recipient_mobile : $customer->mobile,
+      'firstname' => !is_null($default_address->recipient_firstname)? $default_address->recipient_firstname : $customer->first_name,
+      'lastname' => !is_null($default_address->recipient_lastname)? $default_address->recipient_lastname : $customer->last_name,
+      'national_code' => !is_null($default_address->recipient_national_code)? $default_address->recipient_national_code : $customer->national_code,
+      'mobile' => !is_null($default_address->recipient_mobile)? $default_address->recipient_mobile : $customer->mobile,
       'customer_id' => $default_address->customer_id,
       'state_id' => $default_address->state_id,
       'order_id' => $order_id,

@@ -2,7 +2,6 @@
   $store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
   $store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value;
 
-dd($customer->delivery_address);
 @endphp
 
 {{--<?php $cons_count = 0; ?>--}}

@@ -20,18 +20,20 @@ class CreateOrderAddressesTable extends Migration
             $table->text('address')->nullable();
             $table->integer('plaque')->nullable();
             $table->integer('unit')->nullable();
-            $table->integer('postal_code')->nullable();
+            $table->bigInteger('postal_code')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->bigInteger('national_code')->nullable();
             $table->bigInteger('mobile')->nullable();
 //            $table->boolean('is_recipient_self')->nullable();
             $table->foreignId('customer_id')->nullable();
+            $table->foreignId('state_id')->nullable();
 
             $table->foreignId('order_id')->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('state_id')->references('id')->on('states');
             $table->foreign('order_id')->references('id')->on('orders');
         });
     }

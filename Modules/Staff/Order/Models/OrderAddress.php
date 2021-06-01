@@ -17,9 +17,9 @@ class OrderAddress extends Model
       return $this->belongsTo(Customer::class);
     }
 
-    public function zone()
-    {
-      return $this->morphToMany(State::class, 'zonable', 'zonables', 'zonable_id', 'zone_id');
-    }
+//    public function zone()
+//    {
+//      return $this->morphToMany(State::class, 'zonable', 'zonables', 'zonable_id', 'zone_id');
+//    }
 
 }

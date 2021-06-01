@@ -23,12 +23,14 @@ class CreateConsignmentHasProductVariantsTable extends Migration
             $table->foreignId('product_id')->nullable();
             $table->foreignId('order_id')->nullable();
             $table->foreignId('consignment_id')->nullable();
+            $table->foreignId('product_variant_id')->nullable();
             $table->foreignId('order_status_id')->nullable();
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('consignment_id')->references('id')->on('order_has_consignments');
             $table->foreign('order_status_id')->references('id')->on('order_status');
+            $table->foreign('product_variant_id')->references('id')->on('product_has_variants');
             $table->foreign('product_id')->references('id')->on('products');
         });
     }

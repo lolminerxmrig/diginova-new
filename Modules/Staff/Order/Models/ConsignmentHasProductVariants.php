@@ -20,10 +20,10 @@ class ConsignmentHasProductVariants extends Model
       return $this->belongsTo(OrderHasConsignment::class, 'consignment_id');
     }
 
-    public function product_variant()
-    {
-      return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', 'variantable_id', 'product_variant_id');
-    }
+//    public function product_variant()
+//    {
+//      return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', 'variantable_id', 'product_variant_id');
+//    }
 
     public function status()
     {
