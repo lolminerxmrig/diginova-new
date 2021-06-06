@@ -18,6 +18,7 @@ class CreatePeymentRecordsTable extends Migration
             $table->bigInteger('tracking_code')->nullable();
             $table->string('status')->nullable();
             $table->bigInteger('price')->nullable();
+            $table->bigInteger('invoiceـnumber')->nullable();
             $table->foreignId('order_id')->nullable();
             $table->foreignId('customer_id')->nullable();
             $table->nullableMorphs('method');

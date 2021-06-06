@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
+use Modules\Staff\Peyment\Models\PeymentMethod;
 use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Support\ServiceProvider;
 use Modules\Staff\Shiping\Models\DeliveryMethodValue;
@@ -113,6 +114,94 @@ class AppServiceProvider extends ServiceProvider
       Relation::morphMap([
         'StoreAddress' => 'App\Models\StoreAddress',
       ]);
+
+      if (\Schema::hasTable('peyment_methods') && count(PeymentMethod::all())) {
+        config()->set([
+          // asanpardakht
+          'payment.drivers.asanpardakht.key' => PeymentMethod::where('en_name', 'asanpardakht')->first()->key,
+          'payment.drivers.asanpardakht.iv' => PeymentMethod::where('en_name', 'asanpardakht')->first()->iv,
+          'payment.drivers.asanpardakht.username' => PeymentMethod::where('en_name', 'asanpardakht')->first()->username,
+          'payment.drivers.asanpardakht.password' => PeymentMethod::where('en_name', 'asanpardakht')->first()->password,
+          'payment.drivers.asanpardakht.merchantId' => PeymentMethod::where('en_name', 'asanpardakht')->first()->merchantId,
+          'payment.drivers.asanpardakht.description' => PeymentMethod::where('en_name', 'asanpardakht')->first()->description,
+
+          // behpardakht
+          'payment.drivers.behpardakht.terminalId' => PeymentMethod::where('en_name', 'behpardakht')->first()->terminalId,
+          'payment.drivers.behpardakht.username' => PeymentMethod::where('en_name', 'behpardakht')->first()->username,
+          'payment.drivers.behpardakht.password' => PeymentMethod::where('en_name', 'behpardakht')->first()->password,
+          'payment.drivers.behpardakht.description' => PeymentMethod::where('en_name', 'behpardakht')->first()->description,
+
+          // idpay
+          'payment.drivers.idpay.merchantId' => PeymentMethod::where('en_name', 'idpay')->first()->merchantId,
+          'payment.drivers.idpay.description' => PeymentMethod::where('en_name', 'idpay')->first()->description,
+
+          // irankish
+          'payment.drivers.irankish.merchantId' => PeymentMethod::where('en_name', 'irankish')->first()->merchantId,
+          'payment.drivers.irankish.sha1Key' => PeymentMethod::where('en_name', 'irankish')->first()->key,
+          'payment.drivers.irankish.description' => PeymentMethod::where('en_name', 'irankish')->first()->description,
+
+          // nextpay
+          'payment.drivers.nextpay.merchantId' => PeymentMethod::where('en_name', 'nextpay')->first()->merchantId,
+          'payment.drivers.nextpay.description' => PeymentMethod::where('en_name', 'nextpay')->first()->description,
+
+          // parsian
+          'payment.drivers.parsian.merchantId' => PeymentMethod::where('en_name', 'parsian')->first()->merchantId,
+          'payment.drivers.parsian.description' => PeymentMethod::where('en_name', 'parsian')->first()->description,
+
+          // pasargad
+          'payment.drivers.pasargad.merchantId' => PeymentMethod::where('en_name', 'pasargad')->first()->merchantId,
+          'payment.drivers.pasargad.terminalCode' => PeymentMethod::where('en_name', 'pasargad')->first()->terminalId,
+
+          // payir
+//          'payment.drivers.payir.merchantId' => PeymentMethod::where('en_name', 'payir')->first()->merchantId,
+          'payment.drivers.payir.description' => PeymentMethod::where('en_name', 'payir')->first()->description,
+
+          // payping
+          'payment.drivers.payping.merchantId' => PeymentMethod::where('en_name', 'payping')->first()->merchantId,
+          'payment.drivers.payping.description' => PeymentMethod::where('en_name', 'payping')->first()->description,
+
+          // paystar
+          'payment.drivers.paystar.merchantId' => PeymentMethod::where('en_name', 'paystar')->first()->merchantId,
+          'payment.drivers.paystar.description' => PeymentMethod::where('en_name', 'paystar')->first()->description,
+
+          // poolam
+          'payment.drivers.poolam.merchantId' => PeymentMethod::where('en_name', 'poolam')->first()->merchantId,
+          'payment.drivers.poolam.description' => PeymentMethod::where('en_name', 'poolam')->first()->description,
+
+          // sadad
+          'payment.drivers.sadad.terminalId' => PeymentMethod::where('en_name', 'sadad')->first()->terminalId,
+          'payment.drivers.sadad.merchantId' => PeymentMethod::where('en_name', 'sadad')->first()->merchantId,
+          'payment.drivers.sadad.key' => PeymentMethod::where('en_name', 'sadad')->first()->key,
+          'payment.drivers.sadad.description' => PeymentMethod::where('en_name', 'sadad')->first()->description,
+
+          // saman
+          'payment.drivers.saman.merchantId' => PeymentMethod::where('en_name', 'saman')->first()->merchantId,
+          'payment.drivers.saman.description' => PeymentMethod::where('en_name', 'saman')->first()->description,
+
+          // sepehr
+          'payment.drivers.sepehr.terminalId' => PeymentMethod::where('en_name', 'sepehr')->first()->terminalId,
+          'payment.drivers.sepehr.description' => PeymentMethod::where('en_name', 'sepehr')->first()->description,
+
+          // yekpay
+          'payment.drivers.yekpay.merchantId' => PeymentMethod::where('en_name', 'yekpay')->first()->merchantId,
+          'payment.drivers.yekpay.description' => PeymentMethod::where('en_name', 'yekpay')->first()->description,
+
+          // zarinpal
+          'payment.drivers.zarinpal.mode' => (PeymentMethod::where('en_name', 'zarinpal')->first()->options == 'zarin_gate')? 'zaringate' : 'normal',
+//          'payment.drivers.zarinpal.merchantId' => PeymentMethod::where('en_name', 'zarinpal')->first()->merchantId,
+          'payment.drivers.zarinpal.description' => PeymentMethod::where('en_name', 'zarinpal')->first()->description,
+
+          // zibal
+//          'payment.drivers.zibal.merchantId' => PeymentMethod::where('en_name', 'zibal')->first()->merchantId,
+          'payment.drivers.zibal.description' => PeymentMethod::where('en_name', 'zibal')->first()->description,
+
+
+        ]);
+
+        Schema::defaultStringLength(191);
+
+      }
+
 
     }
 }

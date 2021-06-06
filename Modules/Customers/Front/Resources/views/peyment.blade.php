@@ -1,7 +1,6 @@
 @php
   $store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
   $store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value;
-
 @endphp
 
 {{--<?php $cons_count = 0; ?>--}}
@@ -7021,7 +7020,7 @@ var activateUrl = "\/digiclub\/activate\/";
                         مبلغ قابل پرداخت
                       </span>
                       <?php
-                      $final_sum_price = $sum_sale_price - $sum_promotion_price + $sum_shipping_cost;
+                        $final_sum_price = $sum_sale_price - $sum_promotion_price + $sum_shipping_cost;
                       ?>
                       <span class="c-checkout-bill__total-price--amount" id="cartPayablePrice" data-before-price="{{ $final_sum_price }}" data-final-price="{{ $final_sum_price }}" data-amount="{{ $final_sum_price }}" data-current-amount="{{ $final_sum_price }}">
                         <span class="js-price" data-price="{{ $final_sum_price }}" data-amount="{{ $final_sum_price }}" data-current-amount="{{ $final_sum_price }}"> {{ persianNum(number_format(toman($final_sum_price))) }} </span>

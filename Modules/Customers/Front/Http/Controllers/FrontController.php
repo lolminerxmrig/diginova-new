@@ -38,7 +38,9 @@ use Modules\Staff\Shiping\Models\DeliveryMethod;
 use Illuminate\Http\Response;
 use Modules\Staff\Shiping\Models\OrderStatus;
 use Modules\Staff\Voucher\Models\Voucher;
-use function Illuminate\Support\Facades\Cookie;
+use Shetabit\Multipay\Invoice;
+use Shetabit\Payment\Facade\Payment;
+use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 
 
 class FrontController extends Controller
@@ -89,6 +91,11 @@ class FrontController extends Controller
   }
 
   public function categoryPage()
+  {
+
+  }
+
+  public function profileOrders($order_code)
   {
 
   }
@@ -759,7 +766,6 @@ class FrontController extends Controller
           } else {
             $consignment_weight[$weight->id] = $item->product_variant()->first()->product->weight;
           }
-          Log::info("consignment_weight {$weight->id}: " . $item->product_variant()->first()->product->weight);
         }
       }
     }
@@ -1069,18 +1075,18 @@ class FrontController extends Controller
 
   public function sumCartCost($first_carts)
   {
-      $sum_sale_price = 0;
-      $sum_promotion_price = 0;
+    $sum_sale_price = 0;
+    $sum_promotion_price = 0;
 
-      foreach($first_carts as $priceItem)
-      {
-        $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count);
-        if ($priceItem->new_sale_price > $priceItem->new_promotion_price) {
-          $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count);
-        }
+    foreach($first_carts as $priceItem)
+    {
+      $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count);
+      if ($priceItem->new_sale_price > $priceItem->new_promotion_price) {
+        $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count);
       }
+    }
 
-      return $sum_sale_price - $sum_promotion_price;
+    return $sum_sale_price - $sum_promotion_price;
   }
 
   public function removeVoucher()
@@ -1195,6 +1201,8 @@ class FrontController extends Controller
     $method_ids = json_decode($_COOKIE['method_ids'], true);
     $weights = ProductWeight::all();
     $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+    $gateway_name = PeymentMethod::findOrFail($request->bank_id)->en_name;
+    $gateway = PeymentMethod::findOrFail($request->bank_id);
 
 
     // مجموع قیمت پروموشن
@@ -1321,8 +1329,106 @@ class FrontController extends Controller
       'order_id' => $order_id,
     ]);
 
+
+    config()->set([
+      'payment.default' => $gateway_name,
+    ]);
+
+    $order = Order::find($order_id);
+
+    invoiceـnumber:
+    $invoiceـnumber = rand(1000000000, 9999999999);
+    if (PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->exists()) {
+      goto invoiceـnumber;
+    }
+
+
+    if ($gateway_name !== 'cod') {
+      $invoice = new Invoice;
+      $invoice->amount($order->cost/10);
+      $invoice->via($gateway_name);
+
+      return Payment::purchase(
+        $invoice,
+        function($driver, $transactionId) use ($order, $gateway, $invoiceـnumber, $customer) {
+//          dd($order->cost);
+          PeymentRecord::create([
+            'invoiceـnumber' => $invoiceـnumber,
+            'status' => 'awaitingـayment',
+            'price' => $order->cost,
+            'order_id' => $order->id,
+            'method_type' => 'PeymentMethod',
+            'method_id' => $gateway->id,
+            'customer_id' => $customer->id,
+          ]);
+
+          setcookie('invoiceـnumber', $invoiceـnumber, time() + (10 * 365 * 24 * 60 * 60), "/");
+
+        }
+      )->pay()->render();
+
+    }
+
   }
 
+  public function paymentTest(Request $request)
+  {
 
+    $transaction_id = $request->token;
+    $invoiceـnumber = $_COOKIE["invoiceـnumber"];
+
+    try {
+
+      $receipt = Payment::transactionId($transaction_id)->verify();
+      PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->update([
+        'tracking_code' => $receipt->getReferenceId(),
+        'status' => 'successful',
+      ]);
+
+
+    } catch (InvalidPaymentException $exception) {
+      /**
+      when payment is not verified, it will throw an exception.
+      We can catch the exception to handle invalid payments.
+      getMessage method, returns a suitable message that can be used in user interface.
+       **/
+      echo $exception->getMessage();
+
+    }
+  }
+
+  public function orderStatus($order_code)
+  {
+
+    if (!Order::where('order_code', $order_code)->exists()) {
+      abort(404);
+    }
+
+    $order = Order::where('order_code', $order_code)->first();
+
+    if ($order->status->en_name !== 'accepted' && $order->status->en_name !== 'unsuccessfulـpayment') {
+      abort(404);
+    }
+
+    return view('front::order-status', compact('order'));
+
+  }
+
+  public function repaymentOrder($order_code)
+  {
+
+    $order = Order::where('order_code', [$order_code])->first();
+    $gateway = $order->peyment_records()->where('method_type', 'PeymentMethod')->first()->peymentMethod;
+    $gateway_name = $order->peyment_records()->where('method_type', 'PeymentMethod')->first()->peymentMethod->name;
+
+    if ($gateway_name !== 'cod') {
+      $invoice = new Invoice;
+      $invoice->amount($order->cost/10);
+      $invoice->via($gateway_name);
+
+      return Payment::purchase($invoice)->pay()->render();
+    }
+
+  }
 
 }

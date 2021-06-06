@@ -11,7 +11,7 @@ class PeymentRecord extends Model
 
     use HasFactory;
 
-    protected $fillable = ['tracking_code', 'status', 'price', 'order_id', 'method_type', 'method_id', 'customer_id'];
+    protected $fillable = ['tracking_code', 'status', 'price', 'order_id', 'method_type', 'method_id', 'customer_id', 'invoiceـnumber'];
 
     public function peymentMethod()
     {

@@ -73,9 +73,11 @@ Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::get('shipping', [FrontController::class, 'shipping'])->name('shipping');
   Route::get('payment', [FrontController::class, 'payment'])->name('payment');
   Route::post('payment', [FrontController::class, 'submitOrder'])->name('submitOrder');
+  Route::get('order/status/{order_code}', [FrontController::class, 'orderStatus'])->name('orderStatus');
+  Route::get('reselect/{order_code}', [FrontController::class, 'repaymentOrder'])->name('repaymentOrder');
+  Route::get('profile/orders/{order_code}', [FrontController::class, 'profileOrders'])->name('profileOrders');
 
   Route::get('test', [FrontController::class, 'paymentVoucher'])->name('test');
-
 });
 
 Route::get('tracker/events', function (){
@@ -83,3 +85,5 @@ Route::get('tracker/events', function (){
 
 Route::get('ajax/profile/wallet', function () {
 });
+
+Route::get('payment-test', [FrontController::class, 'paymentTest'])->name('paymentTest');

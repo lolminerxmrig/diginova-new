@@ -97,7 +97,7 @@ return [
             'apiPaymentUrl' => 'https://pay.ir/pg/',
             'apiVerificationUrl' => 'https://pay.ir/pg/verify/',
             'merchantId' => 'test', // set it to `test` for test environments
-            'callbackUrl' => 'http://yoursite.com/path/to',
+            'callbackUrl' => 'http://diginova.test/payment-test',
             'description' => 'payment using payir',
         ],
         'paypal' => [
@@ -193,9 +193,9 @@ return [
             'zaringateApiPaymentUrl' => 'https://www.zarinpal.com/pg/StartPay/:authority/ZarinGate',
             'zaringateApiVerificationUrl' => 'https://ir.zarinpal.com/pg/services/WebGate/wsdl',
 
-            'mode' => 'normal', // can be normal, sandbox, zaringate
-            'merchantId' => '',
-            'callbackUrl' => 'http://yoursite.com/path/to',
+            'mode' => 'sandbox', // can be normal, sandbox, zaringate
+            'merchantId' => '5668301d-fe6d-4003-a6cb-aed0684c7a41',
+            'callbackUrl' => 'http://diginova.test/payment-test',
             'description' => 'payment using zarinpal',
         ],
         'zibal' => [
