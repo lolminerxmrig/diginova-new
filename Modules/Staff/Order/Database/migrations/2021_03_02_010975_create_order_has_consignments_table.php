@@ -25,7 +25,7 @@ class CreateOrderHasConsignmentsTable extends Migration
             $table->foreignId('order_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('delivery_method_id')->references('id')->on('delivery_methods');
             $table->foreign('order_status_id')->references('id')->on('order_status');
         });

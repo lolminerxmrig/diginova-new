@@ -46,17 +46,27 @@ use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 class FrontController extends Controller
 {
 
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function test()
   {
     return view('front::shipping');
   }
 
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function index()
   {
     $customer = Auth::guard('customer')->user();
     return view('front::index', compact('customer'));
   }
 
+  /**
+   * @param $product_code
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function productPage($product_code)
   {
     $product = Product::where('product_code', $product_code)->with('variants')->firstOrFail();
@@ -73,6 +83,10 @@ class FrontController extends Controller
     return view('front::product', compact('product', 'variant_defualt', 'variant_ids'));
   }
 
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function mainSearch(Request $request)
   {
 
@@ -85,21 +99,35 @@ class FrontController extends Controller
 
   }
 
+  /**
+   *
+   */
   public function mainSearchFilters()
   {
 
   }
 
+  /**
+   *
+   */
   public function categoryPage()
   {
 
   }
 
+  /**
+   * @param $order_code
+   */
   public function profileOrders($order_code)
   {
 
   }
 
+  /**
+   * @param Request $request
+   * @param $product_id
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function productComments(Request $request, $product_id)
   {
     $product = Product::where('product_code', $product_id)->first();
@@ -121,6 +149,11 @@ class FrontController extends Controller
     return view('front::ajax.product.comments', compact('comments', 'product', 'customer_id', 'mode'));
   }
 
+  /**
+   * @param Request $request
+   * @param $product_id
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function productCommentList(Request $request, $product_id)
   {
 
@@ -143,12 +176,21 @@ class FrontController extends Controller
     return view('front::ajax.product.commentList', compact('comments', 'product', 'customer_id', 'mode'));
   }
 
+  /**
+   * @param $product_id
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function createComment($product_id)
   {
     $product = Product::where('product_code', $product_id)->first();
     return view('front::create-comment', compact('product'));
   }
 
+  /**
+   * @param Request $request
+   * @param $product_code
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function createComments(Request $request, $product_code)
   {
 
@@ -190,6 +232,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $product_id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function addToFavorites($product_id)
   {
     $customer_id = Auth::guard('customer')->user()->id;
@@ -215,6 +261,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $product_id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function removeFromFavorites($product_id)
   {
     $customer_id = Auth::guard('customer')->user()->id;
@@ -227,6 +277,10 @@ class FrontController extends Controller
     ]);
   }
 
+  /**
+   * @param $comment_id
+   * @return \Illuminate\Http\JsonResponse|null
+   */
   public function likeComment($comment_id)
   {
 
@@ -273,6 +327,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $comment_id
+   * @return \Illuminate\Http\JsonResponse|null
+   */
   public function dislikeComment($comment_id)
   {
 
@@ -319,6 +377,9 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function cart()
   {
 
@@ -349,6 +410,11 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $variant_id
+   * @param $count
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function cartChange($variant_id, $count)
   {
     $customer = Auth::guard('customer')->user();
@@ -383,6 +449,10 @@ class FrontController extends Controller
     ]);
   }
 
+  /**
+   * @param $variant_code
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function addToCart($variant_code)
   {
 
@@ -406,6 +476,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $variant_id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function saveForLater($variant_id)
   {
 
@@ -424,6 +498,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $variant_id
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function removeFromCart($variant_id)
   {
     $customer = Auth::guard('customer')->user();
@@ -433,6 +511,10 @@ class FrontController extends Controller
     return redirect()->route('front.cart');
   }
 
+  /**
+   * @param $variant_id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function removeFromSaveForLater($variant_id)
   {
     $customer = Auth::guard('customer')->user();
@@ -448,6 +530,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $variant_id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function moveToFirstCart($variant_id)
   {
     $customer = Auth::guard('customer')->user();
@@ -465,6 +551,9 @@ class FrontController extends Controller
     ]);
   }
 
+  /**
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function moveAllToFirstCart()
   {
     $customer = Auth::guard('customer')->user();
@@ -481,6 +570,9 @@ class FrontController extends Controller
     ]);
   }
 
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function addAddress()
   {
     $states = State::all();
@@ -488,6 +580,10 @@ class FrontController extends Controller
     return view('front::add-address', compact('states', 'customer'));
   }
 
+  /**
+   * @param $state_id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function cityLoader($state_id)
   {
 
@@ -505,6 +601,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $district_id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function districtLoader($district_id)
   {
 
@@ -522,6 +622,11 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
   public function searchAddressReverse(Request $request)
   {
 
@@ -550,6 +655,11 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   * @throws \GuzzleHttp\Exception\GuzzleException
+   */
   public function searchAddress(Request $request)
   {
 
@@ -578,6 +688,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $request
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function saveAddressLogic($request)
   {
     $customer_id = Auth::guard('customer')->user()->id;
@@ -634,12 +748,20 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\RedirectResponse
+   */
   public function saveAddress(Request $request)
   {
     $this->saveAddressLogic($request);
     return redirect()->route('front.shipping');
   }
 
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function saveAddressFromShipping(Request $request)
   {
 
@@ -670,6 +792,9 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+   */
   public function shipping()
   {
     $customer = Auth::guard('customer')->user();
@@ -717,6 +842,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function shippingCost(Request $request)
   {
     $customer = Auth::guard('customer')->user();
@@ -733,6 +862,12 @@ class FrontController extends Controller
     ]);
   }
 
+  /**
+   * @param $customer
+   * @param $weights
+   * @param $method_ids
+   * @return array
+   */
   public function shippingCostLogic($customer, $weights, $method_ids)
   {
 
@@ -747,6 +882,8 @@ class FrontController extends Controller
     $cart = $customer->carts()->where('type', 'first')->get();
     $first_carts = $customer->carts()->where('type', 'first')->get();
     $weights = ProductWeight::all();
+    $fillable_weight_ids = [];
+    $consignment_shipping_cost = [];
 
     $settings = Setting::all();
     $store_state_id = ($settings->where('name', 'store_city')->count() && $settings->where('name', 'store_city')->first()->states()->exists()) ? $settings->where('name', 'store_city')->first()->states()->first()->id : 1;
@@ -808,6 +945,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function changeSharedDeliveryAddress($id)
   {
 
@@ -839,6 +980,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function changeCustomerDeliveryAddress($id)
   {
     $store_addresses = StoreAddress::all();
@@ -868,6 +1013,10 @@ class FrontController extends Controller
     ]);
   }
 
+  /**
+   * @param $id
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function removeCustomerDeliveryAddress($id)
   {
 
@@ -910,6 +1059,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param Request $request
+   * @return mixed
+   */
   public function saveShippingToCookie(Request $request)
   {
     $method_ids = json_encode($request->method_ids);
@@ -919,6 +1072,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $errorMessage
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function returnError($errorMessage)
   {
     return response()->json([
@@ -929,6 +1086,9 @@ class FrontController extends Controller
     ]);
   }
 
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
+   */
   public function payment()
   {
     if (!isset($_COOKIE['method_ids'])) {
@@ -945,6 +1105,10 @@ class FrontController extends Controller
     return view('front::peyment', compact('customer', 'weights', 'first_carts', 'consignment_shipping_cost', 'method_ids', 'peyment_methods'));
   }
 
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function paymentVoucher(Request $request)
   {
 
@@ -1004,6 +1168,12 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $customer
+   * @param $voucher
+   * @param $method_ids
+   * @return float|int
+   */
   public function voucherCostLogic($customer, $voucher, $method_ids)
   {
 
@@ -1073,6 +1243,10 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @param $first_carts
+   * @return float|int
+   */
   public function sumCartCost($first_carts)
   {
     $sum_sale_price = 0;
@@ -1089,6 +1263,9 @@ class FrontController extends Controller
     return $sum_sale_price - $sum_promotion_price;
   }
 
+  /**
+   * @return \Illuminate\Http\JsonResponse
+   */
   public function removeVoucher()
   {
 
@@ -1105,6 +1282,9 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @return float|\Illuminate\Http\RedirectResponse|int
+   */
   public function finalGetOrderCartAmount()
   {
     // اگه کوکی سیو نشده بود یا یوزر دیلیت زده بود ریدایررکت بشه به صفحه shipping
@@ -1147,6 +1327,9 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * @return float|int|null
+   */
   public function finalGetOrderVoucherAmount()
   {
 
@@ -1191,9 +1374,19 @@ class FrontController extends Controller
 
   }
 
+
+
+
+  /**
+   * submit order logic and view
+   *
+   * @param Request $request
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   * @throws \Exception
+   */
   public function submitOrder(Request $request)
   {
-//    dd($request->all());
+
     $customer = Auth::guard('customer')->user();
     $final_sum_price = $this->finalGetOrderCartAmount();
     $final_sum_voucher = $this->finalGetOrderVoucherAmount();
@@ -1201,9 +1394,10 @@ class FrontController extends Controller
     $method_ids = json_decode($_COOKIE['method_ids'], true);
     $weights = ProductWeight::all();
     $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
+
+    //customizable
     $gateway_name = PeymentMethod::findOrFail($request->bank_id)->en_name;
     $gateway = PeymentMethod::findOrFail($request->bank_id);
-
 
     // مجموع قیمت پروموشن
     $sum_promotion_price = 0;
@@ -1213,11 +1407,9 @@ class FrontController extends Controller
       }
     }
 
-
     if (!is_null($final_sum_voucher) && $final_sum_price > $final_sum_voucher) {
       $final_sum_price = $final_sum_price - $final_sum_voucher;
     }
-
 
     if (Order::count()) {
       $order_code = Order::max('order_code')+1;
@@ -1226,7 +1418,7 @@ class FrontController extends Controller
       $order_code = 3000000;
     }
 
-    $order_status_id = OrderStatus::where('en_name', 'awaiting_peyment')->first()->id;
+    $order_status_id = OrderStatus::where('en_name', 'awaiting_payment')->first()->id;
 
     //ایجاد سفارش
     Order::create([
@@ -1237,6 +1429,7 @@ class FrontController extends Controller
       'discount' => $sum_promotion_price + $final_sum_voucher,
     ]);
 
+    $order = Order::where('order_code', $order_code)->first();
     $order_id = Order::where('order_code', $order_code)->first()->id;
 
     if (OrderHasConsignment::count()) {
@@ -1247,7 +1440,6 @@ class FrontController extends Controller
       $delivery_code = 10000;
       $consignment_code = 4000000;
     }
-
 
     $i = 0;
     foreach ($consignment_shipping_cost as $key => $shipping_cost)
@@ -1267,13 +1459,14 @@ class FrontController extends Controller
 
       $consignment_id = OrderHasConsignment::where('consignment_code', $consignment_code)->first()->id;
 
-      // اضافه کردن تنوع به مرسوله
+      // اضافه کردن تنوع ها به مرسوله
       foreach ($first_carts as $item)
       {
 
         // ایدی حجم: key
         if ($item->product_variant()->first()->product->weight()->id == $key)
         {
+
           $consignment_p_v_id = ConsignmentHasProductVariants::insertGetId([
             'count' => $item->count,
             'variant_price' => $item->new_sale_price,
@@ -1283,17 +1476,9 @@ class FrontController extends Controller
             'order_id' => $order_id,
             'order_status_id' => $order_status_id,
             'product_variant_id' => $item->product_variant_id,
-//            'promotion_type' => ,
-//            'promotion_percent' => ,
+            'promotion_type' => null,
+            'promotion_percent' => null,
           ]);
-
-//          $product_variant = ProductHasVariant::find($item->product_variant_id);
-//          $consignment_p_v = ConsignmentHasProductVariants::find($consignment_p_v_id);
-//
-//          $consignment_p_v->product_variant()->attach($product_variant);
-
-
-
 
           $consignment_product_variant_id = ConsignmentHasProductVariants::where('product_variant_id', $item->product_variant_id)->first()->id;
 
@@ -1304,11 +1489,13 @@ class FrontController extends Controller
             'seller' => 'site',
             'consignment_product_variant_id' => $consignment_product_variant_id,
           ]);
+
         }
 
       }
 
       $i++;
+
     }
 
     $default_address = $customer->delivery_address;
@@ -1329,84 +1516,82 @@ class FrontController extends Controller
       'order_id' => $order_id,
     ]);
 
+    $customer->carts()->where('type', 'first')->delete();
+
+    $customer->carts()->where('type', 'second')->update([
+      'type' => 'first',
+    ]);
 
     config()->set([
       'payment.default' => $gateway_name,
     ]);
 
-    $order = Order::find($order_id);
+    $this->PaymentLogic($gateway_name, $order, $gateway, $customer);
 
-    invoiceـnumber:
-    $invoiceـnumber = rand(1000000000, 9999999999);
-    if (PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->exists()) {
-      goto invoiceـnumber;
-    }
-
-
-    if ($gateway_name !== 'cod') {
-      $invoice = new Invoice;
-      $invoice->amount($order->cost/10);
-      $invoice->via($gateway_name);
-
-      return Payment::purchase(
-        $invoice,
-        function($driver, $transactionId) use ($order, $gateway, $invoiceـnumber, $customer) {
-//          dd($order->cost);
-          PeymentRecord::create([
-            'invoiceـnumber' => $invoiceـnumber,
-            'status' => 'awaitingـayment',
-            'price' => $order->cost,
-            'order_id' => $order->id,
-            'method_type' => 'PeymentMethod',
-            'method_id' => $gateway->id,
-            'customer_id' => $customer->id,
-          ]);
-
-          setcookie('invoiceـnumber', $invoiceـnumber, time() + (10 * 365 * 24 * 60 * 60), "/");
-
-        }
-      )->pay()->render();
-
-    }
 
   }
 
-  public function paymentTest(Request $request)
+  /**
+   * payment logic for gateways after receive response from selected gateway
+   *
+   * @param Request $request
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function paymentOrder(Request $request)
   {
 
+    $customer = Auth::guard('customer')->user();
     $transaction_id = $request->token;
     $invoiceـnumber = $_COOKIE["invoiceـnumber"];
 
     try {
 
       $receipt = Payment::transactionId($transaction_id)->verify();
+
+      // بروز رسانی رکورد پرداخت موفق سفارش
       PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->update([
         'tracking_code' => $receipt->getReferenceId(),
         'status' => 'successful',
       ]);
 
+      $order = PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->first()->order();
+
+      // تغییر وضعیت ها بعد از پرداخت موفق
+      $this->updateStatusAfterSuccessfulPayment($order);
+
+
+
 
     } catch (InvalidPaymentException $exception) {
-      /**
-      when payment is not verified, it will throw an exception.
-      We can catch the exception to handle invalid payments.
-      getMessage method, returns a suitable message that can be used in user interface.
-       **/
-      echo $exception->getMessage();
+
+      // تغییر وضعیت رکورد پرداخت به ناموفق وقتی از سمت درگاه ریسپانس ناموفق برمیگردد
+      PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->update([
+        'status' => 'unsuccessful',
+      ]);
+
+      // نمایش صفحه وضعیت سفارش
+      $order_code = PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->first()->order->order_code;
+      return $this->orderStatus($order_code);
 
     }
   }
 
+  /**
+   * order status page
+   *
+   * @param $order_code
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
   public function orderStatus($order_code)
   {
 
-    if (!Order::where('order_code', $order_code)->exists()) {
+    if (Order::where('order_code', $order_code)->doesntExist()) {
       abort(404);
     }
 
     $order = Order::where('order_code', $order_code)->first();
 
-    if ($order->status->en_name !== 'accepted' && $order->status->en_name !== 'unsuccessfulـpayment') {
+    if ($order->status->en_name !== 'accepted' && $order->status->en_name !== 'awaiting_payment') {
       abort(404);
     }
 
@@ -1414,12 +1599,19 @@ class FrontController extends Controller
 
   }
 
+  /**
+   * repayment order without reselect gateway logic
+   *
+   * @param $order_code
+   * @return mixed
+   * @throws \Exception
+   */
   public function repaymentOrder($order_code)
   {
 
-    $order = Order::where('order_code', [$order_code])->first();
+    $order = Order::where('order_code', $order_code)->first();
     $gateway = $order->peyment_records()->where('method_type', 'PeymentMethod')->first()->peymentMethod;
-    $gateway_name = $order->peyment_records()->where('method_type', 'PeymentMethod')->first()->peymentMethod->name;
+    $gateway_name = $order->peyment_records()->where('method_type', 'PeymentMethod')->first()->peymentMethod->en_name;
 
     if ($gateway_name !== 'cod') {
       $invoice = new Invoice;
@@ -1429,6 +1621,199 @@ class FrontController extends Controller
       return Payment::purchase($invoice)->pay()->render();
     }
 
+  }
+
+  /**
+   * reselect payment page
+   *
+   * @param $order_code
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
+   */
+  public function reselectGateway($order_code)
+  {
+
+    // اگه سفارش با این کد سفارش موجود نبود
+    if (!Order::where('order_code', $order_code)->exists()) {
+      return abort(404);
+    }
+
+    $order = Order::where('order_code', $order_code)->first();
+
+    // اگه دارای پرداخت موفق از طریق درگاه بود
+    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('method_id', PeymentMethod::where('en_name', '!==', 'cod')->first()->id)->where('price', $order->cost)->exists())
+    {
+      return abort(404);
+    }
+
+    $peyment_methods = PeymentMethod::where('status', 'active')->get();
+
+    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('method_id', PeymentMethod::where('en_name', 'cod')->first()->id)->where('price', $order->cost)->exists())
+    {
+      $peyment_methods = PeymentMethod::where('status', 'active')->where('en_name', '!==', 'cod')->get();
+    }
+
+    return view('front::reselect-gateway', compact('order', 'peyment_methods'));
+
+  }
+
+  /**
+   * reselect payment logic
+   *
+   * @param Request $request
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+   * @throws \Exception
+   */
+  public function reselectPaymant(Request $request)
+  {
+
+    $customer = Auth::guard('customer')->user();
+    $order = Order::where('order_code', $request->order_code)->first();
+
+    // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
+    if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist())
+    {
+      // تغییر وضعیت بعد از پرداخت ناموفق
+      $this->updateStatusAfterUnsuccessfulPayment($order);
+
+      // تغییر خواهد کرد
+      return redirect()->route('front.cart');
+    }
+
+    if (isset($request->bank_id) && !is_null($request->bank_id)) {
+      $gateway_name = PeymentMethod::findOrFail($request->bank_id)->en_name;
+      $gateway = PeymentMethod::findOrFail($request->bank_id);
+    } else {
+      $gateway_name = Order::where('order_code', $request);
+    }
+
+    $this->PaymentLogic($gateway_name, $order, $gateway, $customer);
+
+  }
+
+  /**
+   * update order, consignment, consignent variants "status" after successful payment.
+   *
+   * @param $order
+   */
+  public function updateStatusAfterSuccessfulPayment($order): void
+  {
+
+    // تغییر وضعیت سفارش به تایید شده
+    $order->update([
+      'order_status_id' => OrderStatus::where('en_name', 'accepted')->first()->id,
+    ]);
+
+    // تغییر وضعیت مرسوله های سفارش به در انتظار بررسی awaiting_review
+    OrderHasConsignment::where('order_id', $order->id)->update([
+      'order_status_id' => OrderStatus::where('en_name', 'awaiting_review')->first()->id,
+    ]);
+
+    // تغییر وضعیت تنوع های مرسولات سفارش به بفروش رفته sold
+    ConsignmentHasProductVariants::where('order_id', $order->id)->update([
+      'order_status_id' => OrderStatus::where('en_name', 'sold')->first()->id,
+    ]);
+
+    // کم کردن موجودی تنوع اگه قبلا با cod پرداخت نشده بود
+    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('price', $order->cost)->count() < 2)
+    {
+      foreach (ConsignmentHasProductVariants::where('order_id', $order->id)->get() as $consignment_product_variant) {
+        $consignment_product_variant->product_variant()->update([
+          'stock_count' => $consignment_product_variant->product_variant->stock_count - $consignment_product_variant->count,
+        ]);
+      }
+    }
+
+  }
+
+  /**
+   * update order, consignment, consignent variants "status" after unsuccessful payment.
+   *
+   * @param $order
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function updateStatusAfterUnsuccessfulPayment($order): \Illuminate\Http\RedirectResponse
+  {
+
+    // تغییر وضعیت سفارش به لغو شده
+    $order->update([
+      'order_status_id' => OrderStatus::where('en_name', 'canceled')->first()->id,
+    ]);
+
+    // تغییر وضعیت مرسوله های سفارش به لغو شده
+    OrderHasConsignment::where('order_id', $order->id)->update([
+      'order_status_id' => OrderStatus::where('en_name', 'canceled')->first()->id,
+    ]);
+
+    // تغییر وضعیت تنوع های مرسولات سفارش به لغو شده
+    ConsignmentHasProductVariants::where('order_id', $order->id)->update([
+      'order_status_id' => OrderStatus::where('en_name', 'canceled')->first()->id,
+    ]);
+
+  }
+
+  /**
+   * payment logic for COD or Gateways
+   *
+   * @param $gateway_name
+   * @param $order
+   * @param $gateway
+   * @param \Illuminate\Contracts\Auth\Authenticatable|null $customer
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   * @throws \Exception
+   */
+  public function PaymentLogic($gateway_name, $order, $gateway, ?\Illuminate\Contracts\Auth\Authenticatable $customer)
+  {
+    if ($gateway_name == 'cod') {
+
+      // ایجاد رکورد پرداخت موفق سفارش
+      PeymentRecord::create([
+        'invoiceـnumber' => null,
+        'status' => 'successful',
+        'price' => $order->cost,
+        'order_id' => $order->id,
+        'method_type' => 'PeymentMethod',
+        'method_id' => $gateway->id,
+        'customer_id' => $customer->id,
+      ]);
+
+      // تغییر وضعیت ها بعد از پرداخت موفق
+      $this->updateStatusAfterSuccessfulPayment($order);
+
+      $this->orderStatus($order->order_code);
+
+    }
+
+    if ($gateway_name !== 'cod') {
+
+      // ایجاد شماره سفارش تصادفی
+      invoiceـnumber:
+      $invoiceـnumber = rand(1000000000, 9999999999);
+      if (PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->exists()) {
+        goto invoiceـnumber;
+      }
+
+      $invoice = new Invoice;
+      $invoice->amount($order->cost / 10);
+      $invoice->via($gateway_name);
+
+      // ایجاد صورتحساب و انتقال به درگاه
+      return Payment::purchase($invoice, function ($driver, $transactionId) use ($order, $gateway, $invoiceـnumber, $customer) {
+        // ایجاد رکورد در انتظار پرداخت سفارش
+        PeymentRecord::create([
+          'invoiceـnumber' => $invoiceـnumber,
+          'status' => 'awaiting_payment',
+          'price' => $order->cost,
+          'order_id' => $order->id,
+          'method_type' => 'PeymentMethod',
+          'method_id' => $gateway->id,
+          'customer_id' => $customer->id,
+        ]);
+
+        // ایجاد کوکی شماره سفارش
+        setcookie('invoiceـnumber', $invoiceـnumber, time() + (10 * 365 * 24 * 60 * 60), "/");
+      })->pay()->render();
+
+    }
   }
 
 }

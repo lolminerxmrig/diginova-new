@@ -30,4 +30,9 @@ class ConsignmentHasProductVariants extends Model
       return $this->belongsTo(OrderStatus::class, 'order_status_id');
     }
 
+    public function product_variant()
+    {
+      return $this->belongsTo(ProductHasVariant::class, 'product_variant_id');
+    }
+
 }

@@ -6749,10 +6749,6 @@ var activateUrl = "\/digiclub\/activate\/";
                     @endforeach
                     @endif
 
-
-
-
-
                   </ul>
                 </div>
                 <div class="c-payment__voucher">

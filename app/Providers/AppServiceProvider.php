@@ -116,6 +116,19 @@ class AppServiceProvider extends ServiceProvider
       ]);
 
       if (\Schema::hasTable('peyment_methods') && count(PeymentMethod::all())) {
+
+        if (\Schema::hasTable('settings') && count(Setting::all()))
+        {
+          $settings = Setting::all();
+
+          if ($settings->where('name', 'site_url')->count() && !is_null($settings->where('name', 'site_url')->first()->value)) {
+            $site_url = $settings->where('name', 'site_url')->first()->value;
+          } else {
+            $site_url = env('APP_URL');
+          }
+
+        }
+
         config()->set([
           // asanpardakht
           'payment.drivers.asanpardakht.key' => PeymentMethod::where('en_name', 'asanpardakht')->first()->key,
@@ -124,76 +137,95 @@ class AppServiceProvider extends ServiceProvider
           'payment.drivers.asanpardakht.password' => PeymentMethod::where('en_name', 'asanpardakht')->first()->password,
           'payment.drivers.asanpardakht.merchantId' => PeymentMethod::where('en_name', 'asanpardakht')->first()->merchantId,
           'payment.drivers.asanpardakht.description' => PeymentMethod::where('en_name', 'asanpardakht')->first()->description,
+          'payment.drivers.asanpardakht.callbackUrl' => $site_url . '/payment-order',
 
           // behpardakht
           'payment.drivers.behpardakht.terminalId' => PeymentMethod::where('en_name', 'behpardakht')->first()->terminalId,
           'payment.drivers.behpardakht.username' => PeymentMethod::where('en_name', 'behpardakht')->first()->username,
           'payment.drivers.behpardakht.password' => PeymentMethod::where('en_name', 'behpardakht')->first()->password,
           'payment.drivers.behpardakht.description' => PeymentMethod::where('en_name', 'behpardakht')->first()->description,
+          'payment.drivers.behpardakht.callbackUrl' => $site_url . '/payment-order',
+
 
           // idpay
           'payment.drivers.idpay.merchantId' => PeymentMethod::where('en_name', 'idpay')->first()->merchantId,
           'payment.drivers.idpay.description' => PeymentMethod::where('en_name', 'idpay')->first()->description,
+          'payment.drivers.idpay.callbackUrl' => $site_url . '/payment-order',
 
           // irankish
           'payment.drivers.irankish.merchantId' => PeymentMethod::where('en_name', 'irankish')->first()->merchantId,
           'payment.drivers.irankish.sha1Key' => PeymentMethod::where('en_name', 'irankish')->first()->key,
           'payment.drivers.irankish.description' => PeymentMethod::where('en_name', 'irankish')->first()->description,
+          'payment.drivers.irankish.callbackUrl' => $site_url . '/payment-order',
 
           // nextpay
           'payment.drivers.nextpay.merchantId' => PeymentMethod::where('en_name', 'nextpay')->first()->merchantId,
           'payment.drivers.nextpay.description' => PeymentMethod::where('en_name', 'nextpay')->first()->description,
+          'payment.drivers.nextpay.callbackUrl' => $site_url . '/payment-order',
 
           // parsian
           'payment.drivers.parsian.merchantId' => PeymentMethod::where('en_name', 'parsian')->first()->merchantId,
           'payment.drivers.parsian.description' => PeymentMethod::where('en_name', 'parsian')->first()->description,
+          'payment.drivers.parsian.callbackUrl' => $site_url . '/payment-order',
 
           // pasargad
           'payment.drivers.pasargad.merchantId' => PeymentMethod::where('en_name', 'pasargad')->first()->merchantId,
           'payment.drivers.pasargad.terminalCode' => PeymentMethod::where('en_name', 'pasargad')->first()->terminalId,
+          'payment.drivers.pasargad.callbackUrl' => $site_url . '/payment-order',
 
           // payir
-//          'payment.drivers.payir.merchantId' => PeymentMethod::where('en_name', 'payir')->first()->merchantId,
+          'payment.drivers.payir.merchantId' => PeymentMethod::where('en_name', 'payir')->first()->merchantId,
           'payment.drivers.payir.description' => PeymentMethod::where('en_name', 'payir')->first()->description,
+          'payment.drivers.payir.callbackUrl' => $site_url . '/payment-order',
 
           // payping
           'payment.drivers.payping.merchantId' => PeymentMethod::where('en_name', 'payping')->first()->merchantId,
           'payment.drivers.payping.description' => PeymentMethod::where('en_name', 'payping')->first()->description,
+          'payment.drivers.payping.callbackUrl' => $site_url . '/payment-order',
 
           // paystar
           'payment.drivers.paystar.merchantId' => PeymentMethod::where('en_name', 'paystar')->first()->merchantId,
           'payment.drivers.paystar.description' => PeymentMethod::where('en_name', 'paystar')->first()->description,
+          'payment.drivers.paystar.callbackUrl' => $site_url . '/payment-order',
 
           // poolam
           'payment.drivers.poolam.merchantId' => PeymentMethod::where('en_name', 'poolam')->first()->merchantId,
           'payment.drivers.poolam.description' => PeymentMethod::where('en_name', 'poolam')->first()->description,
+          'payment.drivers.poolam.callbackUrl' => $site_url . '/payment-order',
 
           // sadad
           'payment.drivers.sadad.terminalId' => PeymentMethod::where('en_name', 'sadad')->first()->terminalId,
           'payment.drivers.sadad.merchantId' => PeymentMethod::where('en_name', 'sadad')->first()->merchantId,
           'payment.drivers.sadad.key' => PeymentMethod::where('en_name', 'sadad')->first()->key,
           'payment.drivers.sadad.description' => PeymentMethod::where('en_name', 'sadad')->first()->description,
+          'payment.drivers.sadad.callbackUrl' => $site_url . '/payment-order',
 
           // saman
           'payment.drivers.saman.merchantId' => PeymentMethod::where('en_name', 'saman')->first()->merchantId,
           'payment.drivers.saman.description' => PeymentMethod::where('en_name', 'saman')->first()->description,
+          'payment.drivers.saman.callbackUrl' => $site_url . '/payment-order',
 
           // sepehr
           'payment.drivers.sepehr.terminalId' => PeymentMethod::where('en_name', 'sepehr')->first()->terminalId,
           'payment.drivers.sepehr.description' => PeymentMethod::where('en_name', 'sepehr')->first()->description,
+          'payment.drivers.sepehr.callbackUrl' => $site_url . '/payment-order',
 
           // yekpay
           'payment.drivers.yekpay.merchantId' => PeymentMethod::where('en_name', 'yekpay')->first()->merchantId,
           'payment.drivers.yekpay.description' => PeymentMethod::where('en_name', 'yekpay')->first()->description,
+          'payment.drivers.yekpay.callbackUrl' => $site_url . '/payment-order',
 
           // zarinpal
           'payment.drivers.zarinpal.mode' => (PeymentMethod::where('en_name', 'zarinpal')->first()->options == 'zarin_gate')? 'zaringate' : 'normal',
 //          'payment.drivers.zarinpal.merchantId' => PeymentMethod::where('en_name', 'zarinpal')->first()->merchantId,
           'payment.drivers.zarinpal.description' => PeymentMethod::where('en_name', 'zarinpal')->first()->description,
+          'payment.drivers.zarinpal.callbackUrl' => $site_url . '/payment-order',
+
 
           // zibal
 //          'payment.drivers.zibal.merchantId' => PeymentMethod::where('en_name', 'zibal')->first()->merchantId,
           'payment.drivers.zibal.description' => PeymentMethod::where('en_name', 'zibal')->first()->description,
+          'payment.drivers.zibal.callbackUrl' => $site_url . '/payment-order',
 
 
         ]);
