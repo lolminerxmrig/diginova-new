@@ -797,6 +797,11 @@ class FrontController extends Controller
    */
   public function shipping()
   {
+
+    if (Cart::where('type', 'first')->doesntExist()) {
+      return abort(404);
+    }
+
     $customer = Auth::guard('customer')->user();
 
     if (!$customer->addresses()->exists()) {
@@ -1091,7 +1096,8 @@ class FrontController extends Controller
    */
   public function payment()
   {
-    if (!isset($_COOKIE['method_ids'])) {
+
+    if (!isset($_COOKIE['method_ids']) || Cart::where('type', 'first')->doesntExist()) {
       return abort(404);
     }
 
@@ -1375,8 +1381,6 @@ class FrontController extends Controller
   }
 
 
-
-
   /**
    * submit order logic and view
    *
@@ -1526,8 +1530,7 @@ class FrontController extends Controller
       'payment.default' => $gateway_name,
     ]);
 
-    $this->PaymentLogic($gateway_name, $order, $gateway, $customer);
-
+    return $this->PaymentLogic($gateway_name, $order, $gateway, $customer);
 
   }
 
@@ -1609,17 +1612,31 @@ class FrontController extends Controller
   public function repaymentOrder($order_code)
   {
 
+    if (PeymentMethod::where('en_name', '!=', 'cod')->where('status', 'active')->doesntExist()) {
+      abort(404);
+    }
+
     $order = Order::where('order_code', $order_code)->first();
-    $gateway = $order->peyment_records()->where('method_type', 'PeymentMethod')->first()->peymentMethod;
     $gateway_name = $order->peyment_records()->where('method_type', 'PeymentMethod')->first()->peymentMethod->en_name;
 
     if ($gateway_name !== 'cod') {
-      $invoice = new Invoice;
-      $invoice->amount($order->cost/10);
-      $invoice->via($gateway_name);
-
-      return Payment::purchase($invoice)->pay()->render();
+      $gateway = $order->peyment_records()->where('method_type', 'PeymentMethod')->first()->peymentMethod;
+      config()->set([
+        'payment.default' => $gateway->name,
+      ]);
     }
+    else {
+      $gateway = PeymentMethod::where('en_name', '!=', 'cod')->where('status', 'active')->first();
+      config()->set([
+        'payment.default' => $gateway->en_name,
+      ]);
+    }
+
+    $invoice = new Invoice;
+    $invoice->amount($order->cost/10);
+    $invoice->via($gateway->en_name);
+
+    return Payment::purchase($invoice)->pay()->render();
 
   }
 
@@ -1779,7 +1796,7 @@ class FrontController extends Controller
       // تغییر وضعیت ها بعد از پرداخت موفق
       $this->updateStatusAfterSuccessfulPayment($order);
 
-      $this->orderStatus($order->order_code);
+      return $this->orderStatus($order->order_code);
 
     }
 
@@ -1816,4 +1833,5 @@ class FrontController extends Controller
     }
   }
 
+  
 }

@@ -1,31 +1,6 @@
-<?php
-$banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
-$footer_desc_title = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->first()->value;
-$footer_description = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->first()->value;
-$footer_slogan = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->first()->value;
-$custom_footer_code = \Modules\Staff\Setting\Models\Setting::where('name', 'custom_footer_code')->first()->value;
-$copyright_text = \Modules\Staff\Setting\Models\Setting::where('name', 'copyright_text')->first()->value;
-$store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value;
-$store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
-$ecunion_link = \Modules\Staff\Setting\Models\Setting::where('name', 'ecunion_link')->first()->value;
-$enamad_link = \Modules\Staff\Setting\Models\Setting::where('name', 'enamad_link')->first()->value;
-$samandehi_link = \Modules\Staff\Setting\Models\Setting::where('name', 'samandehi_link')->first()->value;
-$instagram_link = \Modules\Staff\Setting\Models\Setting::where('name', 'instagram_link')->first()->value;
-$twitter_link = \Modules\Staff\Setting\Models\Setting::where('name', 'twitter_link')->first()->value;
-$aparat_link = \Modules\Staff\Setting\Models\Setting::where('name', 'aparat_link')->first()->value;
-$linkedin_link = \Modules\Staff\Setting\Models\Setting::where('name', 'linkedin_link')->first()->value;
-$whatsapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'whatsapp_link')->first()->value;
-$telegram_link = \Modules\Staff\Setting\Models\Setting::where('name', 'telegram_link')->first()->value;
-$googleplay_link = \Modules\Staff\Setting\Models\Setting::where('name', 'googleplay_link')->first()->value;
-$cafebazaar_link = \Modules\Staff\Setting\Models\Setting::where('name', 'cafebazaar_link')->first()->value;
-$myket_link = \Modules\Staff\Setting\Models\Setting::where('name', 'myket_link')->first()->value;
-$sibapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'sibapp_link')->first()->value;
-
-$header_navs = \Modules\Staff\Nav\Models\NavLocation::find(1)->navs;
-$customer = auth()->guard('customer')->user();
-
-?>
-
+@php
+  $customer = auth()->guard('customer')->user();
+@endphp
 <html class="" style="" dir="rtl">
 <head>
   <title>پروفایل {{ !is_null($customer->first_name)? ' - ' . $customer->first_name . ' ' . $customer->last_name : '' }} | فروشگاه اینترنتی {{ $fa_store_name }}</title>
@@ -7962,69 +7937,752 @@ $customer = auth()->guard('customer')->user();
     </div>
   </div>
 </div>
-@yield('source')
-
 <div id="footer-data-ux"></div>
 <footer class="c-footer">
   <div class="container">
-    <div class="c-footer__jumpup">
-      <span id="js-jump-to-top" class="c-footer__jumpup-container">
-        <span class="c-footer__jumpup-angle"></span>
-            برگشت به بالا
-        </span>
-    </div>
-
+    <div class="c-footer__jumpup"><span id="js-jump-to-top" class="c-footer__jumpup-container"><span
+          data-snt-event="dkFooterClick"
+          data-snt-params="{&quot;item&quot;:&quot;jump-to-top&quot;,&quot;item_option&quot;:null}"
+          class="c-footer__jumpup-angle"></span>
+                    برگشت به بالا
+                </span></div>
+    <nav class="c-footer__feature-innerbox"><a data-snt-event="dkFooterClick"
+                                               data-snt-params="{&quot;item&quot;:&quot;slogan-image&quot;,&quot;item_option&quot;:&quot;تحویل اکسپرس&quot;}"
+                                               class="c-footer__badge" href="/faq/question/79/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--1">تحویل اکسپرس</div>
+      </a><a data-snt-event="dkFooterClick"
+             data-snt-params="{&quot;item&quot;:&quot;slogan-image&quot;,&quot;item_option&quot;:&quot;پشتیبانی ۲۴ ساعته&quot;}"
+             class="c-footer__badge" href="/page/contact-us/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--3">پشتیبانی ۲۴ ساعته</div>
+      </a><a data-snt-event="dkFooterClick"
+             data-snt-params="{&quot;item&quot;:&quot;slogan-image&quot;,&quot;item_option&quot;:&quot;پرداخت در محل&quot;}"
+             class="c-footer__badge" href="/faq/question/81/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--4">پرداخت در محل</div>
+      </a><a data-snt-event="dkFooterClick"
+             data-snt-params="{&quot;item&quot;:&quot;slogan-image&quot;,&quot;item_option&quot;:&quot;۷ روز ضمانت بازگشت&quot;}"
+             class="c-footer__badge" href="/faq/question/83/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--5">۷ روز ضمانت بازگشت</div>
+      </a><a data-snt-event="dkFooterClick"
+             data-snt-params="{&quot;item&quot;:&quot;slogan-image&quot;,&quot;item_option&quot;:&quot;ضمانت اصل‌بودن کالا&quot;}"
+             class="c-footer__badge" href="/faq/question/82/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--6">ضمانت اصل‌بودن کالا</div>
+      </a></nav>
+    <hr>
     <div class="c-footer__middlebar">
       <div class="c-footer__links">
-        @foreach(\Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null) as $nav)
-          <nav class="c-footer__links--col">
-            <div class="o-headline-links">
-              <div>
-                <a href="{{ $nav->link }}">{{ persianNum($nav->name) }}</a>
-              </div>
-            </div>
-            <ul class="c-footer__links-ul">
-              @foreach($nav->children as $item)
-                <li>
-                  <a href="{{ $item->link }}">{{ $item->name }}</a>
-                </li>
-              @endforeach
-            </ul>
-          </nav>
-        @endforeach
+        <nav class="c-footer__links--col">
+          <div class="o-headline-links">
+            <div><a data-snt-event="dkFooterClick"
+                    data-snt-params="{&quot;item&quot;:&quot;index-title&quot;,&quot;item_option&quot;:&quot;راهنمای خرید از {{ $fa_store_name }}&quot;}"
+                    href="/faq/question/6/">راهنمای خرید از {{ $fa_store_name }}</a></div>
+          </div>
+          <ul class="c-footer__links-ul">
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;نحوه ثبت سفارش&quot;}"
+                   href="/faq/question/649/">نحوه ثبت سفارش</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;رویه ارسال سفارش&quot;}"
+                   href="/faq/question/79/">رویه ارسال سفارش</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;شیوه‌های پرداخت&quot;}"
+                   href="/faq/question/81/">شیوه‌های پرداخت</a></li>
+          </ul>
+        </nav>
+        <nav class="c-footer__links--col">
+          <div class="o-headline-links">
+            <div><a data-snt-event="dkFooterClick"
+                    data-snt-params="{&quot;item&quot;:&quot;index-title&quot;,&quot;item_option&quot;:&quot;خدمات مشتریان&quot;}"
+                    href="/faq/">خدمات مشتریان</a></div>
+          </div>
+          <ul class="c-footer__links-ul">
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;پاسخ به پرسش‌های متداول&quot;}"
+                   href="/faq/">پاسخ به پرسش‌های متداول</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;رویه‌های بازگرداندن کالا&quot;}"
+                   href="/faq/question/83/">رویه‌های بازگرداندن کالا</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;شرایط استفاده&quot;}"
+                   href="/page/terms/">شرایط استفاده</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;حریم خصوصی&quot;}"
+                   href="/page/privacy/">حریم خصوصی</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;گزارش باگ&quot;}"
+                   href="/bug-report/">گزارش باگ</a></li>
+          </ul>
+        </nav>
+        <nav class="c-footer__links--col">
+          <div class="o-headline-links">
+            <div><a data-snt-event="dkFooterClick"
+                    data-snt-params="{&quot;item&quot;:&quot;index-title&quot;,&quot;item_option&quot;:&quot;با {{ $fa_store_name }}&quot;}"
+                    href="/page/about/">با {{ $fa_store_name }}</a></div>
+          </div>
+          <ul class="c-footer__links-ul">
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;اتاق خبر&quot;}"
+                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر {{ $fa_store_name }}</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;فروش در {{ $fa_store_name }}&quot;}"
+                   href="https://www.digikala.com/landings/seller-introduction/" target="_blank">فروش در
+                {{ $fa_store_name }}</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;فرصت‌های شغلی&quot;}"
+                   href="http://careers.digikala.com/" target="_blank">فرصت‌های شغلی</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;تماس با {{ $fa_store_name }}&quot;}"
+                   href="/page/contact-us/">تماس با {{ $fa_store_name }}</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;درباره {{ $fa_store_name }}&quot;}"
+                   href="/page/about/">درباره {{ $fa_store_name }}</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params="{&quot;item&quot;:&quot;index-item&quot;,&quot;item_option&quot;:&quot;راهنمای هویت بصری&quot;}"
+                   href="/branding/">راهنمای هویت بصری</a></li>
+          </ul>
+        </nav>
       </div>
       <nav class="c-footer__form">
-        <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/" method="post">
+        <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/" method="post"
+              novalidate="novalidate">
           <fieldset>
             <legend class="c-form-newsletter__title">از تخفیف‌ها و جدیدترین‌های {{ $fa_store_name }} باخبر
               شوید:
             </legend>
-            <div class="c-form-newsletter__row">
-              <input class="c-ui-input__field c-ui-input__field--right-placeholder c-ui-input--disabled" type="text" name="subscribe[email]" placeholder="... به زودی" disabled/>
-              <button type="submit" class="btn-secondary" id="btnSubmitNewsletterSubscription" disabled>
+            <div class="c-form-newsletter__row"><input
+                class="c-ui-input__field c-ui-input__field--right-placeholder" type="text"
+                name="subscribe[email]" placeholder="آدرس ایمیل خود را وارد کنید">
+              <button type="submit" class="btn-secondary" id="btnSubmitNewsletterSubscription"
+                      data-snt-event="dkFooterClick"
+                      data-snt-params="{&quot;item&quot;:&quot;send-email&quot;,&quot;item_option&quot;:null}"
+                      data-event="newsletter_subscription" data-event-category="footer_section"
+                      data-event-label="logged_in: True - current-page: /profile/personal-info/">
                 ارسال
               </button>
             </div>
           </fieldset>
         </form>
         <div class="c-footer__community">
-          <div class="c-footer__social">
-            <span>{{ $fa_store_name }} را در شبکه‌های اجتماعی دنبال کنید:</span>
+          <div class="c-footer__social"><span>{{ $fa_store_name }} را در شبکه‌های اجتماعی دنبال کنید:</span>
             <div class="c-footer__social-images">
-              <div class="c-footer__social-links">
-                @if(!is_null($linkedin_link))
-                  <a href="{{ $linkedin_link }}" class="c-footer__social-link c-footer__social-link--linkedin" target="_blank"></a>
-                @endif
-                @if(!is_null($aparat_link))
-                  <a href="{{ $aparat_link }}" class="c-footer__social-link c-footer__social-link--aparat" target="_blank"></a>
-                @endif
-                @if(!is_null($twitter_link))
-                  <a href="{{ $twitter_link }}" class="c-footer__social-link c-footer__social-link--twitter" target="_blank"></a>
-                @endif
-                @if(!is_null($instagram_link))
-                  <a href="{{ $instagram_link }}" class="c-footer__social-link c-footer__social-link--instagram" target="_blank"></a>
-                @endif
+              <div class="c-footer__social-links"><a href="https://www.linkedin.com/company/digikala/"
+                                                     class="c-footer__social-link c-footer__social-link--linkedin"
+                                                     target="_blank"></a><a
+                  href="https://www.aparat.com/digikala/%D8%AF%DB%8C%D8%AC%DB%8C_%DA%A9%D8%A7%D9%84%D8%A7"
+                  class="c-footer__social-link c-footer__social-link--aparat" target="_blank"></a><a
+                  href="https://twitter.com/digikalacom"
+                  class="c-footer__social-link c-footer__social-link--twitter" target="_blank"></a><a
+                  href="https://www.instagram.com/digikalacom/"
+                  class="c-footer__social-link c-footer__social-link--instagram" target="_blank"></a>
               </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <hr>
+    <nav class="c-footer__address">
+      <ul class="c-footer__contact">
+        <li>
+          هفت روز هفته ، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم
+        </li>
+        <li>
+          شماره تماس :
+          <a data-snt-event="dkFooterClick"
+             data-snt-params="{&quot;item&quot;:&quot;call&quot;,&quot;item_option&quot;:null}"
+             href="/faq/question/80/">۶۱۹۳۰۰۰۰ - ۰۲۱</a></li>
+        <li>
+          آدرس ایمیل :
+          <a data-snt-event="dkFooterClick"
+             data-snt-params="{&quot;item&quot;:&quot;mail&quot;,&quot;item_option&quot;:null}"
+             href="mailto:info@digikala.com">info@digikala.com</a></li>
+      </ul>
+      <div class="c-footer__address-images"><a
+          href="https://app.adjust.com/3upyles?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.digikala.diagon"
+          target="_blank" class="c-footer__address-appstore" data-snt-event="dkFooterClick"
+          data-snt-params="{&quot;item&quot;:&quot;download-app&quot;,&quot;item_option&quot;:&quot;android&quot;}"
+          data-event-category="footer_section"
+          data-event-label="link: https://app.adjust.com/3upyles?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.digikala.diagon - current_page: /profile/personal-info/"><img
+            data-src="https://www.digikala.com/static/files/dd753f51.png" alt="playstore" width="150px"
+            loading="lazy" src="https://www.digikala.com/static/files/dd753f51.png"></a><a
+          href="https://app.adjust.com/417jjc0?redirect=https%3A%2F%2Fcafebazaar.ir%2Fapp%2Fcom.digikala"
+          target="_blank" data-event="footer_links" data-snt-event="dkFooterClick"
+          data-snt-params="{&quot;item&quot;:&quot;download-app&quot;,&quot;item_option&quot;:&quot;android&quot;}"
+          data-event-category="footer_section"
+          data-event-label="link: https://app.adjust.com/417jjc0?redirect=https%3A%2F%2Fcafebazaar.ir%2Fapp%2Fcom.digikala - current_page: /profile/personal-info/"><img
+            data-src="https://www.digikala.com/static/files/f822b108.svg" alt="دریافت از بازار" width="150px"
+            loading="lazy" src="https://www.digikala.com/static/files/f822b108.svg"></a><a
+          href="https://app.adjust.com/nzm11b9?redirect=https%3A%2F%2Fmyket.ir%2Fapp%2Fcom.digikala%3Futm_source%3Ddigikala-web%26refId%3DRGlnaVNpdGU%3D"
+          target="_blank" data-event="footer_links" data-snt-event="dkFooterClick"
+          data-snt-params="{&quot;item&quot;:&quot;download-app&quot;,&quot;item_option&quot;:&quot;android&quot;}"
+          data-event-category="footer_section"
+          data-event-label="link: https://app.adjust.com/nzm11b9?redirect=https%3A%2F%2Fmyket.ir%2Fapp%2Fcom.digikala%3Futm_source%3Ddigikala-web%26refId%3DRGlnaVNpdGU%3D - current_page: /profile/personal-info/"><img
+            data-src="https://www.digikala.com/static/files/692fd5db.svg" alt="دریافت از مایکت" width="150px"
+            loading="lazy" src="https://www.digikala.com/static/files/692fd5db.svg"></a><a
+          href="https://app.adjust.com/b8e5n6f?redirect=https%3A%2F%2Fsibapp.com%2Fapplications%2Fdigikala"
+          target="_blank" class="c-footer__address-appstore" data-snt-event="dkFooterClick"
+          data-snt-params="{&quot;item&quot;:&quot;download-app&quot;,&quot;item_option&quot;:&quot;ios&quot;}"
+          data-event-category="footer_section"
+          data-event-label="link: https://app.adjust.com/b8e5n6f?redirect=https%3A%2F%2Fsibapp.com%2Fapplications%2Fdigikala - current_page: /profile/personal-info/"><img
+            data-src="https://www.digikala.com/static/files/c4abfc14.png" alt="" width="150px" loading="lazy"
+            src="https://www.digikala.com/static/files/c4abfc14.png"></a></div>
+    </nav>
+  </div>
+  <div class="c-footer__more-info">
+    <div class="container">
+      <div class="c-footer__description-content">
+        <div class="c-footer__content"></div>
+        <aside>
+          <ul class="c-footer__safety-partner">
+            <li><img src="https://www.digikala.com/static/files/1e5dab5a.png"
+                     class="c-footer__safety-partner-3" width="90" alt=""
+                     onclick="window.open('https://www.ecunion.ir/verify/digikala.com?token=35858775acf0232a8063', 'Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')"
+                     data-snt-event="dkFooterClick" loading="lazy"
+                     data-snt-params="{&quot;item&quot;:&quot;varification&quot;,&quot;item_option&quot;:&quot;samandehi&quot;}"
+                     style="cursor:pointer"></li>
+            <li class="c-footer__safety-partner-2"><img
+                src="https://trustseal.enamad.ir/logo.aspx?id=19077&amp;p=fFt0HzOPfbIzeRkW" alt=""
+                onclick="window.open(&quot;https://trustseal.enamad.ir/?id=19077&amp;Code=sScdOJOzhFxtcEqkjP7P&quot;)"
+                data-snt-event="dkFooterClick" loading="lazy"
+                data-snt-params="{&quot;item&quot;:&quot;varification&quot;,&quot;item_option&quot;:&quot;enamad&quot;}"
+                style="cursor:pointer" id="sScdOJOzhFxtcEqkjP7P"></li>
+            <li class="c-footer__safety-partner-3"><img id="nbqeoeukjxlzjzpejzpe" style="cursor:pointer"
+                                                        onclick="window.open(&quot;https://logo.samandehi.ir/Verify.aspx?id=28177&amp;p=uiwkmcsirfthjyoejyoe&quot;, &quot;Popup&quot;,&quot;toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30&quot;)"
+                                                        alt="logo-samandehi" loading="lazy"
+                                                        src="https://logo.samandehi.ir/logo.aspx?id=28177&amp;p=odrfaqgwnbpdyndtyndt">
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <nav class="c-footer__partners-container">
+        <ul class="c-footer__partners">
+          <li><a href="https://www.digikala.com/mag/" target="_blank" title="مجله اینترنتی {{ $fa_store_name }} مگ"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params="{&quot;item&quot;:&quot;partners&quot;,&quot;item_option&quot;:&quot;digikalamag&quot;}"
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://www.digikala.com/mag/ - current_page: /profile/personal-info/"><img
+                data-src="https://www.digikala.com/static/files/0ef4e56b.svg" loading="lazy"
+                alt="مجله اینترنتی {{ $fa_store_name }} مگ"
+                src="https://www.digikala.com/static/files/0ef4e56b.svg"></a></li>
+          <li><a href="https://www.mydigipay.com/" target="_blank" title="بهترین راهکارهای پرداخت آنلاین"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params="{&quot;item&quot;:&quot;partners&quot;,&quot;item_option&quot;:&quot;digipay&quot;}"
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://www.mydigipay.com/ - current_page: /profile/personal-info/"><img
+                width="131px" height="35px" loading="lazy"
+                data-src="https://www.digikala.com/static/files/a2f19563.svg"
+                alt="بهترین راهکارهای پرداخت آنلاین"
+                src="https://www.digikala.com/static/files/a2f19563.svg"></a></li>
+          <li><a href="https://www.digistyle.com/" target="_blank"
+                 title="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $fa_store_name }}"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params="{&quot;item&quot;:&quot;partners&quot;,&quot;item_option&quot;:&quot;digistyle&quot;}"
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://www.digistyle.com/ - current_page: /profile/personal-info/"><img
+                width="131px" height="21px" loading="lazy"
+                data-src="https://www.digikala.com/static/files/6b24b899.svg"
+                alt="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $fa_store_name }}"
+                src="https://www.digikala.com/static/files/6b24b899.svg"></a></li>
+          <li><a href="https://www.digikala.com/digiclub/" target="_blank"
+                 title="دیجی کلاب باشگاه مشتریان دیجیکالا" data-snt-event="dkFooterClick"
+                 data-snt-params="{&quot;item&quot;:&quot;partners&quot;,&quot;item_option&quot;:&quot;digiclub&quot;}"
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://digiclub.digikala.com/ - current_page: /profile/personal-info/"><img
+                width="150px" height="31px" loading="lazy"
+                data-src="https://www.digikala.com/static/files/c8cfebe7.svg"
+                alt="دیجی کلاب باشگاه مشتریان دیجیکالا"
+                src="https://www.digikala.com/static/files/c8cfebe7.svg"></a></li>
+          <li><a href="https://affiliate.digikala.com/" target="_blank" title="سیستم کسب درآمد دیجی کالا"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params="{&quot;item&quot;:&quot;partners&quot;,&quot;item_option&quot;:&quot;affiliate&quot;}"
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://affiliate.digikala.com/ - current_page: /profile/personal-info/"><img
+                width="205px" height="31px" loading="lazy"
+                data-src="https://www.digikala.com/static/files/9ea6b446.svg"
+                alt="سیستم کسب درآمد دیجی کالا"
+                src="https://www.digikala.com/static/files/9ea6b446.svg"></a></li>
+          <li><a href="https://fidibo.com/" target="_blank" title="دانلود کتاب الکترونیک"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params="{&quot;item&quot;:&quot;partners&quot;,&quot;item_option&quot;:&quot;fidibo&quot;}"
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://www.digistyle.com/ - current_page: /profile/personal-info/"><img
+                data-src="https://www.digikala.com/static/files/0feb6326.svg" loading="lazy"
+                alt="دانلود کتاب الکترونیک" src="https://www.digikala.com/static/files/0feb6326.svg"></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="c-footer__copyright">
+        <div class="c-footer__copyright--text">
+          استفاده از مطالب فروشگاه اینترنتی {{ $fa_store_name }} فقط برای مقاصد غیرتجاری و با ذکر منبع
+          بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $fa_store_name }}) می‌باشد.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="js-chat-box">
+  <div class="c-cro--faq-access js-chat-box-container-btn">
+    <div class="c-cro__inside"></div>
+  </div>
+  <div class="c-cro--faq-questions-container js-chat-box-container u-hidden">
+    <div class="c-cro--questions-container">
+      <div class="js-chat-box-faq">
+        <div class="c-cro--questions-container__welecomming">
+          <div class="js-chat-box-welcoming"><span
+              class="c-cro--questions-container__welecomming--hi">سلام</span><br>
+            جواب سوال‌هاتون رو می‌تونید در زیر پیدا کنید.
+            در غیر اینصورت از ما بپرسید، ما همیشه به سوالاتتون جواب می‌دهیم.
+          </div>
+        </div>
+        <div class="c-cro--questions js-chat-box-questions"></div>
+      </div>
+      <div class="c-cro__bot-wrapper js-chat-box-user-data u-hidden">
+        <div class="c-cro__bot-header">
+          پشتیبانی آنلاین
+        </div>
+        <form id="chatbotForm" class="c-cro__bot-form"><p>
+            برای راهنمایی بهتر لطفا اطلاعات زیر را وارد کنید:
+          </p><label class="o-form__field-container">
+            <div class="o-form__field-label">نام*</div>
+            <div class="o-form__field-frame"><input name="chatbot[name]" type="" placeholder="" value=""
+                                                    class="o-form__field js-input-field "></div>
+          </label><label class="o-form__field-container">
+            <div class="o-form__field-label">شماره موبایل*</div>
+            <div class="o-form__field-frame"><input name="chatbot[phone]" type="" placeholder="" value=""
+                                                    class="o-form__field js-input-field "></div>
+          </label><label class="o-form__field-container">
+            <div class="o-form__field-label">ایمیل*</div>
+            <div class="o-form__field-frame"><input name="chatbot[email]" type="" placeholder="" value=""
+                                                    class="o-form__field js-input-field "></div>
+          </label>
+          <button type="submit" class="o-btn o-btn--full-width o-btn--outlined-red-lg">
+            شروع گفتگو
+          </button>
+        </form>
+      </div>
+      <div class="c-cro__bot-wrapper c-cro__bot-wrapper--with-pattern js-chat-bot u-hidden">
+        <div class="c-cro__bot-header">
+          پشتیبانی آنلاین
+        </div>
+        <div class="c-cro__support-status-bar"><p>
+            پیشتیبان هوش مصنوعی {{ $fa_store_name }}
+          </p><a class="c-wiki__trigger c-wiki c-wiki__holder js-dk-wiki-trigger">
+            <div class="c-wiki__container js-dk-wiki is-right">
+              <div class="c-wiki__arrow"></div>
+              <p class="c-wiki__text">
+                من ربات هوشمند گفت و گوی آنلاین {{ $fa_store_name }} هستم و در حال حاضر در حال آموزش دیدن برای پاسخگویی
+                بهتر و انتقال پیام شما به پاسخگوی مرتبط با مشکلتان هستم.
+              </p></div>
+          </a></div>
+        <div class="c-cro__chat-body">
+          <div class="js-chatbot-body">
+            <div class="c-cro__chat-message c-cro__chat-message--dk"><p>
+                به پشتیبانی هوشمند {{ $fa_store_name }} خوش آمدید. لطفا سوال خود را بپرسید.
+              </p><span>
+                                    پشتیبان هوش مصنوعی
+                                </span></div>
+          </div>
+          <div class="c-cro__feedback-section js-chatbot-feedback u-hidden"><p
+              data-icon="Icon-Action-Question">آیا پاسخی که گرفتید مناسب بود؟</p>
+            <button type="button" class="js-chatbot-feedback-button" data-rate="1">بله</button>
+            <button type="button" class="js-chatbot-feedback-button" data-rate="-1">خیر</button>
+          </div>
+        </div>
+        <div class="c-cro__send-message"><textarea rows="2" class="js-chat-bot-text-area"
+                                                   placeholder="متن پیام خود را بنویسید ..."></textarea>
+          <button type="button" class="js-chat-bot-send-msg disabled">
+            ارسال
+          </button>
+        </div>
+      </div>
+      <div class="js-chat-center-iframe u-w-full u-hidden"></div>
+      <div class="c-cro__loader-container js-chat-box-loader">
+        <div class="c-remodal-loader__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="115" height="30" viewBox="0 0 115 30">
+            <path fill="#EE384E" fill-rule="evenodd"
+                  d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z"></path>
+          </svg>
+        </div>
+        <div class="c-remodal-loader__bullets">
+          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--1"></div>
+          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--2"></div>
+          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--3"></div>
+          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/ld+json" class="">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://www.digikala.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.digikala.com/search/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+
+
+
+
+
+</script>
+
+@yield('page-content')
+
+<div class="c-notice u-hidden js-notice"><span class="js-notice-text"></span>
+  <button class="c-notice__dismiss-button js-notice-button"></button>
+  <div class="c-notice__progress-bar js-notice-progress"></div>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div class="remodal c-remodal-avatar" data-remodal-id="avatar-modal" role="dialog" aria-labelledby="modal1Title"
+     aria-describedby="modal1Desc">
+  <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+  <div class="c-remodal-avatar__main">
+    <div class="c-remodal-avatar__content">
+      <div class="c-remodal-avatar__title">تغییر نمایه کاربری شما</div>
+      <ul class="c-profile-avatars">
+        <li data-avatar-id="default" class="js-change-user-avatar is-active"><span class="c-profile-avatars__item"
+                                                                                   style="background-image: url(https://www.digikala.com/static/files/fd4840b2.svg)"></span>
+        </li>
+        <li data-avatar-id="avatar_01" class="js-change-user-avatar"><span class="c-profile-avatars__item"
+                                                                           style="background-image: url(https://www.digikala.com/static/files/df110dcf.svg)"></span>
+        </li>
+        <li data-avatar-id="avatar_02" class="js-change-user-avatar"><span class="c-profile-avatars__item"
+                                                                           style="background-image: url(https://www.digikala.com/static/files/b5f7d7b8.svg)"></span>
+        </li>
+        <li data-avatar-id="avatar_03" class="js-change-user-avatar"><span class="c-profile-avatars__item"
+                                                                           style="background-image: url(https://www.digikala.com/static/files/e8e1a8b5.svg)"></span>
+        </li>
+        <li data-avatar-id="avatar_04" class="js-change-user-avatar"><span class="c-profile-avatars__item"
+                                                                           style="background-image: url(https://www.digikala.com/static/files/a5a6ccef.svg)"></span>
+        </li>
+        <li data-avatar-id="avatar_05" class="js-change-user-avatar"><span class="c-profile-avatars__item"
+                                                                           style="background-image: url(https://www.digikala.com/static/files/6cdbab30.svg)"></span>
+        </li>
+        <li data-avatar-id="avatar_06" class="js-change-user-avatar"><span class="c-profile-avatars__item"
+                                                                           style="background-image: url(https://www.digikala.com/static/files/2a5b1e32.svg)"></span>
+        </li>
+        <li data-avatar-id="avatar_07" class="js-change-user-avatar"><span class="c-profile-avatars__item"
+                                                                           style="background-image: url(https://www.digikala.com/static/files/61f2d6e4.svg)"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="remodal c-remodal-invite-friends" data-remodal-id="invite-friends-modal" role="dialog"
+     aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+  <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+  <div class="c-remodal-invite-friends__content">
+    <div class="c-remodal-invite-friends__img"><img src="https://www.digikala.com/static/files/0fcf7a77.svg"/></div>
+    <div class="c-remodal-invite-friends__desc">
+      لینک زیر را برای دوستانتان ارسال کنید. بعد از اولین خریدشان <span class="c-remodal-invite-friends__point">۵۰ امتیاز</span>
+      هدیه بگیرید و یک کد تخفیف نیز به دوستتان هدیه دهید.
+    </div>
+    <div class="c-remodal-invite-friends__btn js-share-invite ">
+      <div class="c-remodal-invite-friends__btn-text js-url-invite"></div>
+    </div>
+  </div>
+</div>
+</div>
+</main>
+<div class="remodal c-remodal-account" data-remodal-id="login" role="dialog" aria-labelledby="modal1Title"
+     aria-describedby="modal1Desc">
+  <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+  <div class="c-remodal-account__headline">ورود به {{ $fa_store_name }}</div>
+  <div class="c-remodal-account__content">
+    <form class="c-form-account" id="loginFormModal">
+      <div class="c-message-light c-message-light--info" id="login-form-msg"></div>
+      <div class="c-form-account__title">پست الکترونیک یا شماره موبایل</div>
+      <div class="c-form-account__row">
+        <div class="c-form-account__col"><label class="c-ui-input c-ui-input--account-login"><input
+              class="c-ui-input__field" type="text" name="login[email_phone]"
+              autocomplete="current-email" placeholder="info@digikala.com"></label></div>
+      </div>
+      <div class="c-form-account__title">کلمه عبور</div>
+      <div class="c-form-account__row">
+        <div class="c-form-account__col"><label class="c-ui-input c-ui-input--account-password"><input
+              class="c-ui-input__field" name="login[password]" type="password"
+              autocomplete="current-password" placeholder=""></label></div>
+      </div>
+      <div class="c-form-account__agree"><label class="c-ui-checkbox c-ui-checkbox--primary"><input type="checkbox"
+                                                                                                    value="1"
+                                                                                                    name="login[remember]"
+                                                                                                    id="accountAutoLogin"><span
+            class="c-ui-checkbox__check"></span></label><label for="accountAutoLogin">مرا به خاطر داشته باش</label>
+      </div>
+      <div class="c-form-account__row c-form-account__row--submit">
+        <div class="c-form-account__col">
+          <button class="btn-login login-button-js">ورود به {{ $fa_store_name }}</button>
+        </div>
+      </div>
+      <div class="c-form-account__link"><a data-snt-event="dkLoginClick"
+                                           data-snt-params='{"type":"forgetPassword","site":"login-modal"}'
+                                           href="/users/password/forgot/" class="btn-link-spoiler">رمز عبور خود را
+          فراموش کرده ام</a></div>
+      <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
+        یا کلمه عبور اشتباه است.
+      </div>
+    </form>
+  </div>
+  <div class="c-remodal-account__footer is-highlighted"><span>کاربر جدید هستید؟</span><a data-snt-event="dkLoginClick"
+                                                                                         data-snt-params='{"type":"signup","site":"login-modal"}'
+                                                                                         href="/users/login-register/?_back=https://www.digikala.com/profile/personal-info/"
+                                                                                         class="btn-link-spoiler">ثبت‌نام
+      در {{ $fa_store_name }}</a></div>
+</div>
+<div class="remodal c-remodal-loader" data-remodal-id="loader"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog" aria-labelledby="modal1Title"
+     aria-describedby="modal1Desc">
+  <div class="c-remodal-loader__icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="115" height="30" viewBox="0 0 115 30">
+      <path fill="#EE384E" fill-rule="evenodd"
+            d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z"/>
+    </svg>
+  </div>
+  <div class="c-remodal-loader__bullets"><i class="c-remodal-loader__bullet c-remodal-loader__bullet--1"></i><i
+      class="c-remodal-loader__bullet c-remodal-loader__bullet--2"></i><i
+      class="c-remodal-loader__bullet c-remodal-loader__bullet--3"></i><i
+      class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></i></div>
+</div>
+<div class="remodal c-remodal-general-alert" data-remodal-id="alert" role="dialog" aria-labelledby="modal1Title"
+     aria-describedby="modal1Desc">
+  <div class="c-remodal-general-alert__main">
+    <div class="c-remodal-general-alert__content"><p class="js-remodal-general-alert__text"></p>
+      <p class="c-remodal-general-alert__description js-remodal-general-alert__description"></p></div>
+    <div class="c-remodal-general-alert__actions">
+      <button
+        class="c-remodal-general-alert__button c-remodal-general-alert__button--approve js-remodal-general-alert__button--approve"></button>
+      <button
+        class="c-remodal-general-alert__button c-remodal-general-alert__button--cancel js-remodal-general-alert__button--cancel"></button>
+    </div>
+  </div>
+</div>
+<div class="remodal c-remodal-general-information" data-remodal-id="information" role="dialog"
+     aria-labelledby="modal1Title"
+     aria-describedby="modal1Desc">
+  <div class="c-remodal-general-information__main">
+    <div class="c-remodal-general-information__content"><p class="js-remodal-general-information__text"></p></div>
+    <div class="c-remodal-general-information__actions">
+      <button
+        class="c-remodal-general-information__button c-remodal-general-information__button--approve js-remodal-general-information__button--approve"></button>
+    </div>
+  </div>
+</div>
+<div class="remodal c-remodal c-remodal-quick-view" data-remodal-id="quick-view" role="dialog"
+     aria-labelledby="modal1Title"
+     aria-describedby="modal1Desc">
+  <button data-remodal-action="close" class="remodal-close c-remodal__close" aria-label="Close"></button>
+  <div class="c-quick-view__content js-quick-view-section"></div>
+</div>
+<div class="remodal c-remodal-fmcg" data-remodal-id="fmcg-modal"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false" role="dialog">
+  <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+  <div class="c-remodal-fmcg__container"><img src="https://www.digikala.com/static/files/cbaed462.png"
+                                              class="c-remodal-fmcg__logo"/>
+    <div class="c-remodal-fmcg__content"><p class="c-remodal-fmcg__head-text">ارسال سریع کالای
+        <span> سوپر مارکتی </span> فقط در تهران و کرج امکان پذیر است.</p>
+      <p class="c-remodal-fmcg__question">با توجه به محدودیت ارسال، آیا مایل هستید این کالا به سبد خرید شما افزوده
+        شود؟</p>
+      <div class="c-remodal-fmcg__actions">
+        <button class="c-remodal-fmcg__button c-remodal-fmcg__button--reject js-fmcg-modal-reject">خیر</button>
+        <button class="c-remodal-fmcg__button c-remodal-fmcg__button--approve js-fmcg-modal-approve">بله</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="c-toast__container js-toast-container">
+  <div class="c-toast js-toast" style="display: none">
+    <div class="c-toast__text js-toast-text"></div>
+    <div class="c-toast__btn-container">
+      <button type="button" class="js-toast-btn o-link o-link--sm o-link--no-border o-btn">
+        متوجه شدم
+      </button>
+    </div>
+  </div>
+</div>
+<div class="remodal c-remodal-location js-general-location" data-remodal-id="general-location" role="dialog"
+     aria-labelledby="modal1Title"
+     aria-describedby="modal1Desc">
+  <div class="c-remodal-location__header"><span class="js-general-location-title">انتخاب استان</span>
+    <div class="c-remodal-location__close js-close-modal"></div>
+  </div>
+  <div class="c-remodal-location__content js-states-container">
+    <div class="c-general-location__row c-general-location__row--your-location js-your-location">
+      مکان‌یابی خودکار
+    </div>
+  </div>
+  <div class="c-remodal-location__content js-cities-container">
+    <div class="c-general-location__row c-general-location__row--back js-back-to-states">
+      بازگشت به لیست استان‌ها
+    </div>
+  </div>
+</div>
+<div class="remodal c-remodal-location c-remodal-location--addresses js-general-location-addresses"
+     data-remodal-id="general-location" role="dialog" aria-labelledby="modal1Title"
+     aria-describedby="modal1Desc">
+  <div class="c-remodal-location__header"><span class="js-general-location-title">انتخاب آدرس</span>
+    <div class="c-remodal-location__close js-close-modal"></div>
+  </div>
+  <div class="c-remodal-location__content js-addresses-container">
+    <div class="c-ui-radio-wrapper c-ui-radio--general-location js-sample-address u-hidden"><label
+        class="c-filter__label " for="generalLocationAddress"></label><label class="c-ui-radio"><input type="radio"
+                                                                                                       value=""
+                                                                                                       name="generalLocationAddress"
+                                                                                                       class=""
+                                                                                                       id="generalLocationAddress"
+                                                                                                       data-title=""><span
+          class="c-ui-radio__check"></span></label></div>
+    <a href="/addresses/add/" class="c-general-location__add-address js-general-location-add-address">
+      افزودن آدرس جدید
+    </a></div>
+</div>
+<div id="footer-data-ux"></div>
+<footer class="c-footer">
+  <div class="container">
+    <div class="c-footer__jumpup"><span id="js-jump-to-top" class="c-footer__jumpup-container"><span
+          data-snt-event="dkFooterClick"
+          data-snt-params='{"item":"jump-to-top","item_option":null}'
+          class="c-footer__jumpup-angle"></span>
+                    برگشت به بالا
+                </span></div>
+    <nav class="c-footer__feature-innerbox"><a data-snt-event="dkFooterClick"
+                                               data-snt-params='{"item":"slogan-image","item_option":"تحویل اکسپرس"}'
+                                               class="c-footer__badge" href="/faq/question/79/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--1">تحویل اکسپرس</div>
+      </a><a data-snt-event="dkFooterClick"
+             data-snt-params='{"item":"slogan-image","item_option":"پشتیبانی ۲۴ ساعته"}'
+             class="c-footer__badge" href="/page/contact-us/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--3">پشتیبانی ۲۴ ساعته</div>
+      </a><a data-snt-event="dkFooterClick"
+             data-snt-params='{"item":"slogan-image","item_option":"پرداخت در محل"}'
+             class="c-footer__badge" href="/faq/question/81/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--4">پرداخت در محل</div>
+      </a><a data-snt-event="dkFooterClick"
+             data-snt-params='{"item":"slogan-image","item_option":"۷ روز ضمانت بازگشت"}'
+             class="c-footer__badge" href="/faq/question/83/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--5">۷ روز ضمانت بازگشت</div>
+      </a><a data-snt-event="dkFooterClick"
+             data-snt-params='{"item":"slogan-image","item_option":"ضمانت اصل‌بودن کالا"}'
+             class="c-footer__badge" href="/faq/question/82/" target="_blank">
+        <div class="c-footer__feature-item c-footer__feature-item--6">ضمانت اصل‌بودن کالا</div>
+      </a></nav>
+    <hr/>
+    <div class="c-footer__middlebar">
+      <div class="c-footer__links">
+        <nav class="c-footer__links--col">
+          <div class="o-headline-links">
+            <div><a data-snt-event="dkFooterClick"
+                    data-snt-params='{"item":"index-title","item_option":"راهنمای خرید از {{ $fa_store_name }}"}'
+                    href="/faq/question/6/">راهنمای خرید از {{ $fa_store_name }}</a></div>
+          </div>
+          <ul class="c-footer__links-ul">
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"نحوه ثبت سفارش"}'
+                   href="/faq/question/649/">نحوه ثبت سفارش</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"رویه ارسال سفارش"}'
+                   href="/faq/question/79/">رویه ارسال سفارش</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"شیوه‌های پرداخت"}'
+                   href="/faq/question/81/">شیوه‌های پرداخت</a></li>
+          </ul>
+        </nav>
+        <nav class="c-footer__links--col">
+          <div class="o-headline-links">
+            <div><a data-snt-event="dkFooterClick"
+                    data-snt-params='{"item":"index-title","item_option":"خدمات مشتریان"}'
+                    href="/faq/">خدمات مشتریان</a></div>
+          </div>
+          <ul class="c-footer__links-ul">
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"پاسخ به پرسش‌های متداول"}'
+                   href="/faq/">پاسخ به پرسش‌های متداول</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"رویه‌های بازگرداندن کالا"}'
+                   href="/faq/question/83/">رویه‌های بازگرداندن کالا</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"شرایط استفاده"}'
+                   href="/page/terms/">شرایط استفاده</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"حریم خصوصی"}'
+                   href="/page/privacy/">حریم خصوصی</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"گزارش باگ"}'
+                   href="/bug-report/">گزارش باگ</a></li>
+          </ul>
+        </nav>
+        <nav class="c-footer__links--col">
+          <div class="o-headline-links">
+            <div><a data-snt-event="dkFooterClick"
+                    data-snt-params='{"item":"index-title","item_option":"با {{ $fa_store_name }}"}'
+                    href="/page/about/">با {{ $fa_store_name }}</a></div>
+          </div>
+          <ul class="c-footer__links-ul">
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"اتاق خبر"}'
+                   href="https://www.digikala.com/mag/newsroom/" target="_blank">اتاق خبر {{ $fa_store_name }}</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"فروش در {{ $fa_store_name }}"}'
+                   href="https://www.digikala.com/landings/seller-introduction/" target="_blank">فروش
+                در {{ $fa_store_name }}</a>
+            </li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"فرصت‌های شغلی"}'
+                   href="http://careers.digikala.com/" target="_blank">فرصت‌های شغلی</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"تماس با {{ $fa_store_name }}"}'
+                   href="/page/contact-us/">تماس با {{ $fa_store_name }}</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"درباره {{ $fa_store_name }}"}'
+                   href="/page/about/">درباره {{ $fa_store_name }}</a></li>
+            <li><a data-snt-event="dkFooterClick"
+                   data-snt-params='{"item":"index-item","item_option":"راهنمای هویت بصری"}'
+                   href="/branding/">راهنمای هویت بصری</a></li>
+          </ul>
+        </nav>
+      </div>
+      <nav class="c-footer__form">
+        <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/"
+              method="post">
+          <fieldset>
+            <legend class="c-form-newsletter__title">از تخفیف‌ها و جدیدترین‌های {{ $fa_store_name }} باخبر
+              شوید:
+            </legend>
+            <div class="c-form-newsletter__row"><input class="c-ui-input__field c-ui-input__field--right-placeholder"
+                                                       type="text"
+                                                       name="subscribe[email]"
+                                                       placeholder="آدرس ایمیل خود را وارد کنید"/>
+              <button type="submit" class="btn-secondary"
+                      id="btnSubmitNewsletterSubscription"
+                      data-snt-event="dkFooterClick"
+                      data-snt-params='{"item":"send-email","item_option":null}'
+                      data-event="newsletter_subscription"
+                      data-event-category="footer_section"
+                      data-event-label="logged_in: True - current-page: /profile/personal-info/">
+                ارسال
+              </button>
+            </div>
+          </fieldset>
+        </form>
+        <div class="c-footer__community">
+          <div class="c-footer__social"><span>{{ $fa_store_name }} را در شبکه‌های اجتماعی دنبال کنید:</span>
+            <div class="c-footer__social-images">
+              <div class="c-footer__social-links"><a href="https://www.linkedin.com/company/digikala/"
+                                                     class="c-footer__social-link c-footer__social-link--linkedin"
+                                                     target="_blank"></a><a
+                  href="https://www.aparat.com/digikala/%D8%AF%DB%8C%D8%AC%DB%8C_%DA%A9%D8%A7%D9%84%D8%A7"
+                  class="c-footer__social-link c-footer__social-link--aparat"
+                  target="_blank"></a><a href="https://twitter.com/digikalacom"
+                                         class="c-footer__social-link c-footer__social-link--twitter"
+                                         target="_blank"></a><a href="https://www.instagram.com/digikalacom/"
+                                                                class="c-footer__social-link c-footer__social-link--instagram"
+                                                                target="_blank"></a></div>
             </div>
           </div>
         </div>
@@ -8034,114 +8692,239 @@ $customer = auth()->guard('customer')->user();
     <nav class="c-footer__address">
       <ul class="c-footer__contact">
         <li>
-          {{ persianNum($footer_slogan) }}
+          هفت روز هفته ، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم
         </li>
-        @if(!is_null($store_phone))
-          <li>
-            شماره تماس :
-            <a>{{ persianNum(0 . $store_phone) }}</a>
-          </li>
-        @endif
-        @if(!is_null($store_email))
-          <li>
-            آدرس ایمیل :
-            <a href="mailto:{{ $store_email }}">{{ $store_email }}</a>
-          </li>
-        @endif
+        <li>
+          شماره تماس :
+          <a data-snt-event="dkFooterClick"
+             data-snt-params='{"item":"call","item_option":null}'
+             href="/faq/question/80/">۶۱۹۳۰۰۰۰ - ۰۲۱</a></li>
+        <li>
+          آدرس ایمیل :
+          <a data-snt-event="dkFooterClick"
+             data-snt-params='{"item":"mail","item_option":null}'
+             href="mailto:info@digikala.com">info@digikala.com</a></li>
       </ul>
+      <div class="c-footer__address-images"><a
+          href="https://app.adjust.com/3upyles?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.digikala.diagon"
+          target="_blank" class="c-footer__address-appstore"
+          data-snt-event="dkFooterClick"
+          data-snt-params='{"item":"download-app","item_option":"android"}'
+          data-event-category="footer_section"
+          data-event-label="link: https://app.adjust.com/3upyles?redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.digikala.diagon - current_page: /profile/personal-info/"><img
+            data-src="https://www.digikala.com/static/files/dd753f51.png"
+            alt="playstore" width="150px" loading="lazy"></a><a
+          href="https://app.adjust.com/417jjc0?redirect=https%3A%2F%2Fcafebazaar.ir%2Fapp%2Fcom.digikala"
+          target="_blank" data-event="footer_links"
+          data-snt-event="dkFooterClick"
+          data-snt-params='{"item":"download-app","item_option":"android"}'
+          data-event-category="footer_section"
+          data-event-label="link: https://app.adjust.com/417jjc0?redirect=https%3A%2F%2Fcafebazaar.ir%2Fapp%2Fcom.digikala - current_page: /profile/personal-info/"><img
+            data-src="https://www.digikala.com/static/files/f822b108.svg"
+            alt="دریافت از بازار" width="150px" loading="lazy"></a><a
+          href="https://app.adjust.com/nzm11b9?redirect=https%3A%2F%2Fmyket.ir%2Fapp%2Fcom.digikala%3Futm_source%3Ddigikala-web%26refId%3DRGlnaVNpdGU%3D"
+          target="_blank" data-event="footer_links"
+          data-snt-event="dkFooterClick"
+          data-snt-params='{"item":"download-app","item_option":"android"}'
+          data-event-category="footer_section"
+          data-event-label="link: https://app.adjust.com/nzm11b9?redirect=https%3A%2F%2Fmyket.ir%2Fapp%2Fcom.digikala%3Futm_source%3Ddigikala-web%26refId%3DRGlnaVNpdGU%3D - current_page: /profile/personal-info/"><img
+            data-src="https://www.digikala.com/static/files/692fd5db.svg"
+            alt="دریافت از مایکت" width="150px" loading="lazy"></a><a
+          href="https://app.adjust.com/b8e5n6f?redirect=https%3A%2F%2Fsibapp.com%2Fapplications%2Fdigikala"
+          target="_blank" class="c-footer__address-appstore"
+          data-snt-event="dkFooterClick"
+          data-snt-params='{"item":"download-app","item_option":"ios"}'
+          data-event-category="footer_section"
+          data-event-label="link: https://app.adjust.com/b8e5n6f?redirect=https%3A%2F%2Fsibapp.com%2Fapplications%2Fdigikala - current_page: /profile/personal-info/"><img
+            data-src="https://www.digikala.com/static/files/c4abfc14.png"
+            alt="" width="150px" loading="lazy"></a></div>
     </nav>
   </div>
   <div class="c-footer__more-info">
     <div class="container">
       <div class="c-footer__description-content">
-        <div class="c-footer__content">
-          <article class="c-footer__seo">
-            <h1>{{ persianNum($footer_desc_title) }}</h1>
-            <p>
-              <span class="c-footer__seo--content" id="seo-main-content">
-                {{ persianNum($footer_description) }}
-              </span>
-              {{--              <span class="c-footer__seo-readmore" id="js-footer-readmore-content" style="font-weight: 400;">--}}
-              {{--              <span style="font-weight: 400;"> می توانید کلیه نیازهای خود را تنها با چند کلیک سفارش داده و در کمترین زمان ممکن درب منزل تحویل بگیرید. مناسب&zwnj;ترین جمله درباره دیجی&zwnj;کالا ،بازار بزرگ اینترنتی، است؛ چرا که با قدم گذاشتن در آن می&zwnj;توانید، یک خرید اینترنتی لذت بخش، با قیمت مناسب و ارزان به همراه تخفیف ویژه در حراج ها را تجربه کنید.</span></span>--}}
-              {{--              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"read-more","item_option":null}' href="#" id="js-footer-readmore">مشاهده بیشتر</a><br/>--}}
-            </p>
-          </article>
-        </div>
-
+        <div class="c-footer__content"></div>
         <aside>
           <ul class="c-footer__safety-partner">
-            <li>
-              <img src="https://www.digikala.com/static/files/1e5dab5a.png" class="c-footer__safety-partner-3" width="90" alt="" onclick="window.open('https://www.ecunion.ir/verify/digikala.com?token=35858775acf0232a8063', 'Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')" data-snt-event="dkFooterClick" loading="lazy" data-snt-params='{"item":"varification","item_option":"samandehi"}' style="cursor:pointer">
-            </li>
-
-            <li class="c-footer__safety-partner-2">
-              <img src="https://trustseal.enamad.ir/logo.aspx?id=19077&amp;p=fFt0HzOPfbIzeRkW" alt="" onclick="window.open(&quot;https://trustseal.enamad.ir/?id=19077&amp;Code=sScdOJOzhFxtcEqkjP7P&quot;)" data-snt-event="dkFooterClick" loading="lazy" data-snt-params='{"item":"varification","item_option":"enamad"}' style="cursor:pointer" id="sScdOJOzhFxtcEqkjP7P">
-            </li>
-
-            <li class="c-footer__safety-partner-3">
-              {{--              <img id='nbqeoeukjxlzjzpejzpe' style='cursor:pointer' onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=28177&p=uiwkmcsirfthjyoejyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt='logo-samandehi' loading="lazy" src='https://logo.samandehi.ir/logo.aspx?id=28177&p=odrfaqgwnbpdyndtyndt'/>--}}
+            <li><img src="https://www.digikala.com/static/files/1e5dab5a.png"
+                     class="c-footer__safety-partner-3" width="90" alt=""
+                     onclick="window.open('https://www.ecunion.ir/verify/digikala.com?token=35858775acf0232a8063', 'Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')"
+                     data-snt-event="dkFooterClick"
+                     loading="lazy"
+                     data-snt-params='{"item":"varification","item_option":"samandehi"}'
+                     style="cursor:pointer"></li>
+            <li class="c-footer__safety-partner-2"><img
+                src="https://trustseal.enamad.ir/logo.aspx?id=19077&amp;p=fFt0HzOPfbIzeRkW" alt=""
+                onclick="window.open(&quot;https://trustseal.enamad.ir/?id=19077&amp;Code=sScdOJOzhFxtcEqkjP7P&quot;)"
+                data-snt-event="dkFooterClick"
+                loading="lazy"
+                data-snt-params='{"item":"varification","item_option":"enamad"}'
+                style="cursor:pointer" id="sScdOJOzhFxtcEqkjP7P"></li>
+            <li class="c-footer__safety-partner-3"><img id='nbqeoeukjxlzjzpejzpe' style='cursor:pointer'
+                                                        onclick='window.open("https://logo.samandehi.ir/Verify.aspx?id=28177&p=uiwkmcsirfthjyoejyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")'
+                                                        alt='logo-samandehi'
+                                                        loading="lazy"
+                                                        src='https://logo.samandehi.ir/logo.aspx?id=28177&p=odrfaqgwnbpdyndtyndt'/>
             </li>
           </ul>
         </aside>
-
       </div>
-
+      <nav class="c-footer__partners-container">
+        <ul class="c-footer__partners">
+          <li><a href="https://www.digikala.com/mag/" target="_blank" title="مجله اینترنتی {{ $fa_store_name }} مگ"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params='{"item":"partners","item_option":"digikalamag"}'
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://www.digikala.com/mag/ - current_page: /profile/personal-info/"><img
+                data-src="https://www.digikala.com/static/files/0ef4e56b.svg"
+                loading="lazy" alt="مجله اینترنتی {{ $fa_store_name }} مگ"></a></li>
+          <li><a href="https://www.mydigipay.com/" target="_blank"
+                 title="بهترین راهکارهای پرداخت آنلاین"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params='{"item":"partners","item_option":"digipay"}'
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://www.mydigipay.com/ - current_page: /profile/personal-info/"><img
+                width="131px" height="35px" loading="lazy"
+                data-src="https://www.digikala.com/static/files/a2f19563.svg"
+                alt="بهترین راهکارهای پرداخت آنلاین"></a></li>
+          <li><a href="https://www.digistyle.com/" target="_blank"
+                 title="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $fa_store_name }}"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params='{"item":"partners","item_option":"digistyle"}'
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://www.digistyle.com/ - current_page: /profile/personal-info/"><img
+                width="131px" height="21px" loading="lazy"
+                data-src="https://www.digikala.com/static/files/6b24b899.svg"
+                alt="خرید آنلاین مد و لباس از فروشگاه اینترنتی دیجی‌استایل با همان تجربه از {{ $fa_store_name }}"></a></li>
+          <li><a href="https://www.digikala.com/digiclub/" target="_blank"
+                 title="دیجی کلاب باشگاه مشتریان دیجیکالا"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params='{"item":"partners","item_option":"digiclub"}'
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://digiclub.digikala.com/ - current_page: /profile/personal-info/"><img
+                width="150px" height="31px" loading="lazy"
+                data-src="https://www.digikala.com/static/files/c8cfebe7.svg"
+                alt="دیجی کلاب باشگاه مشتریان دیجیکالا"></a></li>
+          <li><a href="https://affiliate.digikala.com/" target="_blank"
+                 title="سیستم کسب درآمد دیجی کالا"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params='{"item":"partners","item_option":"affiliate"}'
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://affiliate.digikala.com/ - current_page: /profile/personal-info/"><img
+                width="205px" height="31px" loading="lazy"
+                data-src="https://www.digikala.com/static/files/9ea6b446.svg"
+                alt="سیستم کسب درآمد دیجی کالا"></a></li>
+          <li><a href="https://fidibo.com/" target="_blank" title="دانلود کتاب الکترونیک"
+                 data-snt-event="dkFooterClick"
+                 data-snt-params='{"item":"partners","item_option":"fidibo"}'
+                 data-event="footer_links" data-event-category="footer_section"
+                 data-event-label="link: https://www.digistyle.com/ - current_page: /profile/personal-info/"><img
+                data-src="https://www.digikala.com/static/files/0feb6326.svg"
+                loading="lazy" alt="دانلود کتاب الکترونیک"></a></li>
+        </ul>
+      </nav>
       <div class="c-footer__copyright">
         <div class="c-footer__copyright--text">
-          {{ persianNum($copyright_text) }}
+          استفاده از مطالب فروشگاه اینترنتی {{ $fa_store_name }} فقط برای مقاصد غیرتجاری و با ذکر منبع
+          بلامانع است. کلیه حقوق این سایت متعلق به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $fa_store_name }}) می‌باشد.
         </div>
       </div>
     </div>
   </div>
 </footer>
-
-<script type="application/ld+json">
-                {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Digikala - دیجی کالا",
-    "image": "https://template.digi-kala.com/digikala/Image/Public/vtwo/pixel-perfect-final-v02-01.png",
-    "@id": "https://www.digikala.com",
-    "url": "https://www.digikala.com",
-    "telephone": "+982161930000",
-    "priceRange": "IRR",
-    "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "خیابان ولی عصر – بالاتر از میدان ونک – خیابان عطار – میدان عطار – شماره ۴۲ - ساختمان ديجی کالا",
-        "addressLocality": "تهران",
-        "postalCode": "346915875",
-        "addressCountry": "IR"
-    },
-    "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 35.7642064,
-        "longitude": 51.4040483
-    },
-    "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Saturday",
-            "Sunday"
-        ],
-        "opens": "09:00",
-        "closes": "17:00"
-    },
-    "sameAs": [
-        "https://www.facebook.com/digikalacom",
-        "https://www.twitter.com/digikalacom",
-        "https://plus.google.com/+digikala",
-        "https://www.instagram.com/digikalacom",
-        "https://www.youtube.com/channel/UCNShnUIuxoofpmhlwl7OVTg",
-        "https://www.linkedin.com/company/digikala"
-    ]
-}
-
-</script>
-
+<div class="js-chat-box u-hidden">
+  <div class="c-cro--faq-access js-chat-box-container-btn">
+    <div class="c-cro__inside"></div>
+  </div>
+  <div class="c-cro--faq-questions-container js-chat-box-container u-hidden">
+    <div class="c-cro--questions-container">
+      <div class="js-chat-box-faq">
+        <div class="c-cro--questions-container__welecomming">
+          <div class="js-chat-box-welcoming"><span class="c-cro--questions-container__welecomming--hi">سلام</span><br>
+            جواب سوال&zwnj;هاتون رو می&zwnj;تونید در زیر پیدا کنید.
+            در غیر اینصورت از ما بپرسید، ما همیشه به سوالاتتون جواب می&zwnj;دهیم.
+          </div>
+        </div>
+        <div class="c-cro--questions js-chat-box-questions"></div>
+      </div>
+      <div class="c-cro__bot-wrapper js-chat-box-user-data u-hidden">
+        <div class="c-cro__bot-header">
+          پشتیبانی آنلاین
+        </div>
+        <form id="chatbotForm" class="c-cro__bot-form"><p>
+            برای راهنمایی بهتر لطفا اطلاعات زیر را وارد کنید:
+          </p><label class="o-form__field-container">
+            <div class="o-form__field-label">نام*</div>
+            <div class="o-form__field-frame"><input name="chatbot[name]" type="" placeholder=""
+                                                    value="" class="o-form__field js-input-field "/></div>
+          </label><label class="o-form__field-container">
+            <div class="o-form__field-label">شماره موبایل*</div>
+            <div class="o-form__field-frame"><input name="chatbot[phone]" type="" placeholder=""
+                                                    value="" class="o-form__field js-input-field "/></div>
+          </label><label class="o-form__field-container">
+            <div class="o-form__field-label">ایمیل*</div>
+            <div class="o-form__field-frame"><input name="chatbot[email]" type="" placeholder=""
+                                                    value="" class="o-form__field js-input-field "/></div>
+          </label>
+          <button type="submit" class="o-btn o-btn--full-width o-btn--outlined-red-lg">
+            شروع گفتگو
+          </button>
+        </form>
+      </div>
+      <div class="c-cro__bot-wrapper c-cro__bot-wrapper--with-pattern js-chat-bot u-hidden">
+        <div class="c-cro__bot-header">
+          پشتیبانی آنلاین
+        </div>
+        <div class="c-cro__support-status-bar"><p>
+            پیشتیبان هوش مصنوعی {{ $fa_store_name }}
+          </p><a class="c-wiki__trigger c-wiki c-wiki__holder js-dk-wiki-trigger">
+            <div class="c-wiki__container js-dk-wiki is-right">
+              <div class="c-wiki__arrow"></div>
+              <p class="c-wiki__text">
+                من ربات هوشمند گفت و گوی آنلاین {{ $fa_store_name }} هستم و در حال حاضر در حال آموزش دیدن برای پاسخگویی بهتر
+                و
+                انتقال پیام شما به پاسخگوی مرتبط با مشکلتان هستم.
+              </p></div>
+          </a></div>
+        <div class="c-cro__chat-body">
+          <div class="js-chatbot-body">
+            <div class="c-cro__chat-message c-cro__chat-message--dk"><p>
+                به پشتیبانی هوشمند {{ $fa_store_name }} خوش آمدید. لطفا سوال خود را بپرسید.
+              </p><span>
+                                    پشتیبان هوش مصنوعی
+                                </span></div>
+          </div>
+          <div class="c-cro__feedback-section js-chatbot-feedback u-hidden"><p data-icon="Icon-Action-Question">آیا
+              پاسخی که گرفتید مناسب بود؟</p>
+            <button type="button" class="js-chatbot-feedback-button" data-rate="1">بله</button>
+            <button type="button" class="js-chatbot-feedback-button" data-rate="-1">خیر</button>
+          </div>
+        </div>
+        <div class="c-cro__send-message"><textarea rows="2" class="js-chat-bot-text-area"
+                                                   placeholder="متن پیام خود را بنویسید ..."></textarea>
+          <button type="button" class="js-chat-bot-send-msg disabled">
+            ارسال
+          </button>
+        </div>
+      </div>
+      <div class="js-chat-center-iframe u-w-full u-hidden"></div>
+      <div class="c-cro__loader-container js-chat-box-loader">
+        <div class="c-remodal-loader__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="115" height="30" viewBox="0 0 115 30">
+            <path fill="#EE384E" fill-rule="evenodd"
+                  d="M76.916 19.024h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zm26.883 0h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195zM88.117 6.951v15.366c0 .484-.625 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm26.883 0v15.366c0 .484-.624 1.098-1.12 1.098l-2.24.023c-.496 0-1.12-.637-1.12-1.12v-.733l-1.017 1.196c-.31.413-1.074.634-1.597.634h-4.107c-3.604 0-6.721-3.063-6.721-6.586v-4.39c0-3.523 3.117-6.585 6.72-6.585h10.082c.495 0 1.12.613 1.12 1.097zm-74.675 3.293h-6.721c-1.16 0-2.24 1.061-2.24 2.195v4.39c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78zm4.48-3.293V23.78c0 3.523-3.117 6.22-6.72 6.22H34.62c-.515 0-1-.236-1.311-.638l-1.972-2.55c-.327-.424-.144-1.202.399-1.202h6.347c1.16 0 2.24-.696 2.24-1.83v-.365h-6.72c-3.604 0-6.72-3.063-6.72-6.586v-4.39c0-3.523 3.116-6.585 6.72-6.585h4.107c.514 0 1.074.405 1.437.731l1.177 1.098V6.95c0-.483.625-1.097 1.12-1.097h2.24c.496 0 1.12.613 1.12 1.097zM4.481 16.83c0 1.134 1.08 2.195 2.24 2.195h6.72v-8.78h-6.72c-1.16 0-2.24 1.061-2.24 2.195v4.39zM16.8 0c.497 0 1.121.613 1.121 1.098v21.22c0 .483-.624 1.097-1.12 1.097h-2.24c-.496 0-1.12-.613-1.12-1.098v-.732l-1.175 1.232c-.318.346-.932.598-1.44.598H6.722C3.117 23.415 0 20.352 0 16.829v-4.356c0-3.523 3.117-6.62 6.72-6.62h6.722V1.099c0-.485.624-1.098 1.12-1.098h2.24zm46.3 14.634L69.336 6.9c.347-.421.04-1.048-.513-1.048h-3.566c-.27 0-.525.119-.696.323l-6.314 7.727V1.098c0-.485-.625-1.098-1.12-1.098h-2.24c-.496 0-1.12.613-1.12 1.098v21.22c0 .483.624 1.097 1.12 1.097h2.24c.495 0 1.12-.614 1.12-1.098v-6.951l6.317 7.744c.17.207.428.328.7.328h3.562c.554 0 .86-.627.514-1.048l-6.24-7.756zM48.166 0c-.496 0-1.12.613-1.12 1.098v2.195c0 .484.624 1.097 1.12 1.097h2.24c.495 0 1.12-.613 1.12-1.097V1.098c0-.485-.625-1.098-1.12-1.098h-2.24zm0 5.854c-.496 0-1.12.613-1.12 1.097v15.366c0 .484.8 1.12 1.295 1.12l2.065-.022c.495 0 1.12-.614 1.12-1.098V6.951c0-.484-.625-1.097-1.12-1.097h-2.24zM21.282 0c-.495 0-1.12.613-1.12 1.098v2.195c0 .484.625 1.097 1.12 1.097h2.24c.496 0 1.12-.613 1.12-1.097V1.098c0-.485-.624-1.098-1.12-1.098h-2.24zm0 5.854c-.495 0-1.12.613-1.12 1.097v15.366c0 .484.625 1.098 1.12 1.098h2.24c.496 0 1.12-.614 1.12-1.098V6.951c0-.484-.624-1.097-1.12-1.097h-2.24zm73.556-4.756v21.22c0 .483-.625 1.097-1.12 1.097h-2.24c-.496 0-1.12-.614-1.12-1.098V1.097c0-.484.624-1.097 1.12-1.097h2.24c.495 0 1.12.613 1.12 1.098z"/>
+          </svg>
+        </div>
+        <div class="c-remodal-loader__bullets">
+          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--1"></div>
+          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--2"></div>
+          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--3"></div>
+          <div class="c-remodal-loader__bullet c-remodal-loader__bullet--4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="application/ld+json">
                 {
     "@context": "https://schema.org",
@@ -8153,8 +8936,20 @@ $customer = auth()->guard('customer')->user();
         "query-input": "required name=search_term_string"
     }
 }
+
+
+
+
+
 </script>
 
-</body>
+<noscript>
+  <img src="https://certify.alexametrics.com/atrk.gif?account=qfWte1awQa00Uf"
+       style="display:none"
+       height="1"
+       width="1"
+       alt=""/>
+</noscript>
 
+</body>
 </html>

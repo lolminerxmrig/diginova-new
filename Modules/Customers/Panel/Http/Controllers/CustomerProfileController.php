@@ -11,16 +11,25 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Modules\Customers\Panel\Models\Customer;
 use Modules\Customers\Panel\Models\CustomerLegal;
+use Modules\Staff\Order\Models\Order;
+use Modules\Staff\Shiping\Models\OrderStatus;
+
 
 class CustomerProfileController extends Controller
 {
-    public function index()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function index()
     {
         $customer = Auth::guard('customer')->user();
         return view('customerpanel::profile.index', compact('customer'));
     }
 
-    public function personalInfo()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function personalInfo()
     {
       $customer = Auth::guard('customer')->user();
       $states = State::all();
@@ -36,12 +45,19 @@ class CustomerProfileController extends Controller
       return view('customerpanel::profile.personalInfo', compact('customer', 'date', 'states'));
     }
 
-    public function orders()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function orders()
     {
         return view('customerpanel::profile.favorites');
     }
 
-    public function personalInfoUpdate(Request $request)
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function personalInfoUpdate(Request $request)
     {
         $customer = Auth::guard('customer')->user();
 
@@ -179,7 +195,11 @@ class CustomerProfileController extends Controller
 
     }
 
-    public function ChangePassword(Request $request)
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function ChangePassword(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -224,7 +244,11 @@ class CustomerProfileController extends Controller
         }
     }
 
-    public function confirmPhone(Request $request)
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function confirmPhone(Request $request)
     {
         $mobile = VerifyAccount::where('mobile', $request->rc)->first();
         $token = VerifyAccount::where('mobile', $request->rc)->first()->token;
@@ -266,7 +290,10 @@ class CustomerProfileController extends Controller
 
     }
 
-    public function sendConfirmCode(Request $request)
+  /**
+   * @param Request $request
+   */
+  public function sendConfirmCode(Request $request)
     {
         $mobile_phone = ltrim($request->rc, 0);
 
@@ -276,7 +303,10 @@ class CustomerProfileController extends Controller
           ]);
     }
 
-    public function wallet()
+  /**
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function wallet()
     {
         return response()->json([
           'status' => true,
@@ -287,7 +317,11 @@ class CustomerProfileController extends Controller
         ]);
     }
 
-    public function cardToIban(Request $request)
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function cardToIban(Request $request)
     {
 
       $customer = Auth::guard('customer')->user();
@@ -303,7 +337,11 @@ class CustomerProfileController extends Controller
 
     }
 
-    public function cityLoader($id)
+  /**
+   * @param $id
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function cityLoader($id)
     {
 
         $cities = State::where('parent_id', $id)->get();
@@ -319,7 +357,11 @@ class CustomerProfileController extends Controller
         ]);
     }
 
-    public function districtLoader($id)
+  /**
+   * @param $id
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function districtLoader($id)
     {
         $districts = State::where('parent_id', $id)->get();
 
@@ -334,7 +376,10 @@ class CustomerProfileController extends Controller
         ]);
     }
 
-    public function test($id)
+  /**
+   * @param $id
+   */
+  public function test($id)
     {
       $cities = State::where('parent_id', $id)->get();
 
@@ -353,47 +398,99 @@ class CustomerProfileController extends Controller
 
     }
 
-    public function userHistory()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function userHistory()
     {
       $customer = Auth::guard('customer')->user();
       return view('customerpanel::profile.userHistory', compact('customer'));
     }
 
-    public function notification()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function notification()
     {
       $customer = Auth::guard('customer')->user();
       return view('customerpanel::profile.notification', compact('customer'));
     }
 
-    public function giftcards()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function giftcards()
     {
       $customer = Auth::guard('customer')->user();
       return view('customerpanel::profile.notification', compact('customer'));
     }
 
-    public function addresses()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function addresses()
     {
       $customer = Auth::guard('customer')->user();
       return view('customerpanel::profile.addresses', compact('customer'));
     }
 
-    public function comments()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function comments()
     {
       $customer = Auth::guard('customer')->user();
       return view('customerpanel::profile.comments', compact('customer'));
     }
 
-    public function favorites()
+  /**
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function favorites()
     {
       $customer = Auth::guard('customer')->user();
       return view('customerpanel::profile.favorites', compact('customer'));
     }
 
-    public function myOrders()
-    {
-      $customer = Auth::guard('customer')->user();
-      return view('customerpanel::profile.myOrders', compact('customer'));
+
+  /**
+   * customer orders page
+   *
+   * @param null $activeTab
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function myOrders($activeTab = null)
+  {
+
+    $customer = Auth::guard('customer')->user();
+
+    switch ($activeTab) {
+      case "wait-for-payment":
+        $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get();
+        break;
+      case "paid-in-progress":
+        $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'processing')->first()->id)->get();
+        break;
+      case "delivered":
+        $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'deliverd')->first()->id)->get();
+        break;
+      case "returned":
+        $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'returned')->first()->id)->get();
+        break;
+      case "canceled":
+        $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'canceled')->first()->id)->get();
+        break;
+      default:
+        $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get();
     }
 
+    return view('customerpanel::profile.myOrders', compact('customer', 'orders'));
+
+  }
+
+  public function orderDetails($order_code)
+  {
+
+  }
 
 }

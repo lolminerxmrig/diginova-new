@@ -71,8 +71,11 @@ Route::prefix('profile')->middleware('web', 'customer')->name('customer.panel.')
     Route::get('favorites', [CustomerProfileController::class, 'favorites'])
       ->name('favorites');
 
-    Route::get('my-orders', [CustomerProfileController::class, 'myOrders'])
+    Route::get('my-orders/{activeTab?}', [CustomerProfileController::class, 'myOrders'])
       ->name('myOrders');
+
+    Route::get('my-orders/{order_code}', [CustomerProfileController::class, 'orderDetails'])
+      ->name('orderDetails');
 
     Route::get('test/{id}', [CustomerProfileController::class, 'test']);
 
