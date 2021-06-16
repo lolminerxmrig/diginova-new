@@ -1748,7 +1748,7 @@ class FrontController extends Controller
    * @param $order
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function updateStatusAfterUnsuccessfulPayment($order): \Illuminate\Http\RedirectResponse
+  public function updateStatusAfterUnsuccessfulPayment($order)
   {
 
     // تغییر وضعیت سفارش به لغو شده
@@ -1833,5 +1833,5 @@ class FrontController extends Controller
     }
   }
 
-  
+
 }

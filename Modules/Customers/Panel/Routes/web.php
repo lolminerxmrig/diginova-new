@@ -77,9 +77,13 @@ Route::prefix('profile')->middleware('web', 'customer')->name('customer.panel.')
     Route::get('my-orders/{order_code}', [CustomerProfileController::class, 'orderDetails'])
       ->name('orderDetails');
 
+    Route::get('orders/{order_code}/invoice', [CustomerProfileController::class, 'orderInvoice'])
+      ->name('orderInvoice');
+
     Route::get('test/{id}', [CustomerProfileController::class, 'test']);
 
 });
 
 
-
+Route::get('payment/checkout/order{order_code}', [CustomerProfileController::class, 'orderCheckout'])
+  ->name('orderCheckout');

@@ -1,3 +1,10 @@
+@php
+  $count_wait_for_payment = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->count();
+  $count_paid_in_progress = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'processing')->first()->id)->count();
+    $count_delivered = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'delivered')->first()->id)->count();
+  $count_returned = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'returned')->first()->id)->count();
+  $count_canceled = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'canceled')->first()->id)->count();
+@endphp
 @extends('layouts.customer.master')
 @section('o-page__content')
   <section class="o-page__content">
@@ -6,34 +13,34 @@
         <span class="o-box__title">تاریخچه سفارشات</span>
       </div>
       <div class="o-box__tabs  js-order-search-container">
-        <div class="o-box__tab  is-active " data-tab-pill-id="0">
-          <a href="/profile/my-orders/?activeTab=wait-for-payment">
+        <div class="o-box__tab {{ ($activeTab == 'wait-for-payment')? 'is-active' : '' }}" data-tab-pill-id="0">
+          <a href="{{ route('customer.panel.myOrders', ['activeTab' => 'wait-for-payment']) }}">
             در انتظار پرداخت
-            <span class="o-box__tab-counter">۰</span>
+            <span class="o-box__tab-counter">{{ persianNum($count_wait_for_payment) }}</span>
           </a>
         </div>
-        <div class="o-box__tab  " data-tab-pill-id="1">
-          <a href="/profile/my-orders/?activeTab=paid-in-progress">
+        <div class="o-box__tab {{ ($activeTab == 'paid-in-progress')? 'is-active' : '' }}" data-tab-pill-id="1">
+          <a href="{{ route('customer.panel.myOrders', ['activeTab' => 'paid-in-progress']) }}">
             در حال پردازش
-            <span class="o-box__tab-counter">۰</span>
+            <span class="o-box__tab-counter">{{ persianNum($count_paid_in_progress) }}</span>
           </a>
         </div>
-        <div class="o-box__tab " data-tab-pill-id="2">
-          <a href="/profile/my-orders/?activeTab=delivered">
+        <div class="o-box__tab {{ ($activeTab == 'delivered')? 'is-active' : '' }}" data-tab-pill-id="2">
+          <a href="{{ route('customer.panel.myOrders', ['activeTab' => 'delivered']) }}">
             تحویل شده
-            <span class="o-box__tab-counter">۱</span>
+            <span class="o-box__tab-counter">{{ persianNum($count_delivered) }}</span>
           </a>
         </div>
-        <div class="o-box__tab " data-tab-pill-id="3">
-          <a href="/profile/my-orders/?activeTab=returned">
+        <div class="o-box__tab {{ ($activeTab == 'returned')? 'is-active' : '' }}" data-tab-pill-id="3">
+          <a href="{{ route('customer.panel.myOrders', ['activeTab' => 'returned']) }}">
             مرجوعی
-            <span class="o-box__tab-counter">۰</span>
+            <span class="o-box__tab-counter">{{ persianNum($count_returned) }}</span>
           </a>
         </div>
-        <div class="o-box__tab " data-tab-pill-id="4">
-          <a href="/profile/my-orders/?activeTab=canceled">
+        <div class="o-box__tab {{ ($activeTab == 'canceled')? 'is-active' : '' }}" data-tab-pill-id="4">
+          <a href="{{ route('customer.panel.myOrders', ['activeTab' => 'canceled']) }}">
             لغو شده
-            <span class="o-box__tab-counter">۱</span>
+            <span class="o-box__tab-counter">{{ persianNum($count_canceled) }}</span>
           </a>
         </div>
 {{--        <div class="o-box__tab " data-tab-pill-id="5">--}}
@@ -74,18 +81,35 @@
                     <div class="c-profile-order__list-item-parcel-date-time"></div>
                   </div>
                 </div>
+
                 <div class="c-profile-order__list-item-parcel-products">
-                  <a href="{{ route('front.productPage', ['product_code' => 'xx']) }} product/dkp-2748575/" class="c-profile-order__list-item-parcel-product">
-                    <img src="https://dkstatics-public.digikala.com/digikala-products/120762321.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="کامپیوتر دسکتاپ گرین مدل Z6 Artemis">
-                  </a>
+                  @foreach ($consignment->consignment_variants as $item)
+                    <a href="{{ route('front.productPage', ['product_code' => $item->product_variant->product->product_code]) }}" class="c-profile-order__list-item-parcel-product">
+                      @if ($item->product_variant->product->media()->exists())
+                        @foreach($item->product_variant->product->media as $image)
+                          @if($item->product_variant->product->media && ($image->pivot->is_main == 1))
+                            <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $item->product_variant->product->title_fa }}">
+                          @endif
+                        @endforeach
+                      @endif
+                    </a>
+                  @endforeach
                 </div>
               </div>
               @endforeach
             </div>
-            <div class="c-profile-order__list-item-actions c-profile-order__list-item-actions--between">
-              <a href="/payment/checkout/order/110603527/?from_profile=1" class="o-btn o-btn--contained-red-md">پرداخت</a>
-              <div class="c-profile-order__warning">در صورت عدم پرداخت تا ۵۹ دقیقه دیگر، این سفارش به‌صورت خودکار لغو خواهد شد.</div>
-            </div>
+
+            @if ($order->order_status_id == \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'awaiting_payment')->first()->id)
+              <div class="c-profile-order__list-item-actions c-profile-order__list-item-actions--between">
+                <a href="{{ route('orderCheckout', ['order_code' => $order->order_code]) }}" class="o-btn o-btn--contained-red-md">پرداخت</a>
+                <div class="c-profile-order__warning">در صورت عدم پرداخت تا ۱ ساعت پس از ایجاد سفارش، این سفارش به‌ صورت خودکار لغو خواهد شد.</div>
+              </div>
+            @else
+              <div class="c-profile-order__list-item-actions c-profile-order__list-item-actions--has-separator">
+                <a href="{{ route('customer.panel.orderInvoice', ['order_code' => $order->order_code]) }}" class="o-btn o-btn--link-blue-md">مشاهده فاکتور</a>
+              </div>
+            @endif
+
           </div>
           @endforeach
         </div>

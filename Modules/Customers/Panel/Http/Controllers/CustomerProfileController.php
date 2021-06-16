@@ -6,44 +6,54 @@ use App\Models\State;
 use App\Models\VerifyAccount;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Modules\Customers\Front\Http\Controllers\FrontController;
 use Modules\Customers\Panel\Models\Customer;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Order\Models\Order;
+use Modules\Staff\Peyment\Models\PeymentRecord;
 use Modules\Staff\Shiping\Models\OrderStatus;
 
 
 class CustomerProfileController extends Controller
 {
+
+  protected $frontController;
+  public function __construct(FrontController $frontController)
+  {
+    $this->frontController = $frontController;
+  }
+
   /**
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
    */
   public function index()
-    {
-        $customer = Auth::guard('customer')->user();
-        return view('customerpanel::profile.index', compact('customer'));
-    }
+  {
+      $customer = Auth::guard('customer')->user();
+      return view('customerpanel::profile.index', compact('customer'));
+  }
 
   /**
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
    */
   public function personalInfo()
-    {
-      $customer = Auth::guard('customer')->user();
-      $states = State::all();
+  {
+    $customer = Auth::guard('customer')->user();
+    $states = State::all();
 
-      is_null($states)? $states = [] : '';
+    is_null($states)? $states = [] : '';
 
-      if (!is_null($customer->birthdate)) {
-        $date = date_create($customer->birthdate);
-        $date = gregorian_to_jalali($date->format('Y'),$date->format('m'),$date->format('d'));
-      } else {
-          $date = [];
-      }
-      return view('customerpanel::profile.personalInfo', compact('customer', 'date', 'states'));
+    if (!is_null($customer->birthdate)) {
+      $date = date_create($customer->birthdate);
+      $date = gregorian_to_jalali($date->format('Y'),$date->format('m'),$date->format('d'));
+    } else {
+        $date = [];
     }
+    return view('customerpanel::profile.personalInfo', compact('customer', 'date', 'states'));
+  }
 
   /**
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -464,31 +474,59 @@ class CustomerProfileController extends Controller
 
     $customer = Auth::guard('customer')->user();
 
+    //
+    if ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->exists()) {
+      foreach ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get() as $order) {
+        // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
+        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist())
+        {
+          // تغییر وضعیت بعد از پرداخت ناموفق
+          $this->frontController->updateStatusAfterUnsuccessfulPayment($order);
+        }
+      }
+    }
+
     switch ($activeTab) {
       case "wait-for-payment":
         $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get();
+        $activeTab = "wait-for-payment";
         break;
       case "paid-in-progress":
         $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'processing')->first()->id)->get();
+        $activeTab = "paid-in-progress";
         break;
       case "delivered":
-        $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'deliverd')->first()->id)->get();
+        $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'delivered')->first()->id)->get();
+        $activeTab = "delivered";
         break;
       case "returned":
         $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'returned')->first()->id)->get();
+        $activeTab = "returned";
         break;
       case "canceled":
         $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'canceled')->first()->id)->get();
+        $activeTab = "canceled";
         break;
       default:
         $orders = Order::where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get();
+        $activeTab = "wait-for-payment";
     }
 
-    return view('customerpanel::profile.myOrders', compact('customer', 'orders'));
+    return view('customerpanel::profile.myOrders', compact('customer', 'orders', 'activeTab'));
 
   }
 
   public function orderDetails($order_code)
+  {
+
+  }
+
+  public function orderInvoice($order_code)
+  {
+
+  }
+
+  public function orderCheckout($order_code)
   {
 
   }

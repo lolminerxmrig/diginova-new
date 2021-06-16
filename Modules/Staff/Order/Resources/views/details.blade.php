@@ -927,7 +927,7 @@
                                 <option class="option-control" value="preparation" {{ ($consignment->order_status->en_name == 'preparation')? 'selected' : '' }}>آماده سازی مرسوله</option>
                                 <option class="option-control" value="sending" {{ ($consignment->order_status->en_name == 'sending')? 'selected' : '' }}>در حال ارسال</option>
                                 <option class="option-control" value="bounced" {{ ($consignment->order_status->en_name == 'bounced')? 'selected' : '' }}>برگشت خورده</option>
-                                <option class="option-control" value="deliverd" {{ ($consignment->order_status->en_name == 'deliverd')? 'selected' : '' }}>تحویل داده شده</option>
+                                <option class="option-control" value="delivered" {{ ($consignment->order_status->en_name == 'delivered')? 'selected' : '' }}>تحویل داده شده</option>
                               </select>
                             </div>
 

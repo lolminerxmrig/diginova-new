@@ -79,7 +79,7 @@ class StaffOrderController extends Controller
         $orders->where('order_status_id', 3);
       }
 
-      if ($request->search_order_status == 'deliverd') {
+      if ($request->search_order_status == 'delivered') {
         $orders->where('order_status_id', 4);
       }
 //    }
@@ -128,7 +128,7 @@ class StaffOrderController extends Controller
       }
 
       if ($order->consignments()->where('order_status_id', 4)->count() == $order->consignments->count()) {
-        $order_status_id = OrderStatus::where('en_name', 'deliverd')->first()->id;
+        $order_status_id = OrderStatus::where('en_name', 'delivered')->first()->id;
       }
 
       $order->update([

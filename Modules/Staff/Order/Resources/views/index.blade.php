@@ -685,7 +685,7 @@
                         </label>
 
                         <label class="c-ui-switch " id="orders-step-4">
-                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search_order_status" value="deliverd">
+                          <input type="checkbox" class="c-ui-switch__origin js-order-switch-off has-warehouse-inventory js-search-item" name="search_order_status" value="delivered">
                           <span class="c-ui-switch__label">
                           <span class="c-ui-switch__desc ">تحویل داده شده</span>
                           <span class="c-ui-switch__value ">{{ persianNum(\Modules\Staff\Order\Models\Order::where('order_status_id', 4)->count()) }}</span>
@@ -797,7 +797,7 @@
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                            <div class="c-wallet__body-card-status-no-circle uk-text-nowrap {{ ($order->status->en_name == 'deliverd')? 'c-wallet__body-card-status-no-circle--active' : 'c-wallet__body-card-status-no-circle--alert' }}">
+                            <div class="c-wallet__body-card-status-no-circle uk-text-nowrap {{ ($order->status->en_name == 'delivered')? 'c-wallet__body-card-status-no-circle--active' : 'c-wallet__body-card-status-no-circle--alert' }}">
                               {{ $order->status->name }}
                             </div>
                           </td>

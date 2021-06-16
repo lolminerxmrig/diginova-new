@@ -94,7 +94,7 @@
                   </td>
 
                   <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                    <div class="c-wallet__body-card-status-no-circle uk-text-nowrap {{ ($order->status->en_name == 'deliverd')? 'c-wallet__body-card-status-no-circle--active' : 'c-wallet__body-card-status-no-circle--alert' }}">
+                    <div class="c-wallet__body-card-status-no-circle uk-text-nowrap {{ ($order->status->en_name == 'delivered')? 'c-wallet__body-card-status-no-circle--active' : 'c-wallet__body-card-status-no-circle--alert' }}">
                       {{ $order->status->name }}
                     </div>
                   </td>
