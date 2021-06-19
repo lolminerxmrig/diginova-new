@@ -330,22 +330,22 @@
             <tbody>
             <tr>
               <td style="width: 6.7cm">
-                <span class="label">خریدار:</span> {{ ($order->customer->legal->exists && !is_null($order->customer->legal->company_name))? $order->customer->legal->company_name : $order->customer->first_name . ' ' . $order->customer->last_name }}
+                <span class="label">خریدار:</span> {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->company_name))? $order->customer->legal->company_name : $order->customer->first_name . ' ' . $order->customer->last_name }}
               </td>
               <td style="width: 6.7cm">
-                <span class="label">شماره‌اقتصادی / شماره‌ملی:</span>  {{ ($order->customer->legal->exists && !is_null($order->customer->legal->economic_number))? persianNum($order->customer->legal->economic_number) : persianNum($order->customer->national_code) }}
+                <span class="label">شماره‌اقتصادی / شماره‌ملی:</span>  {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->economic_number))? persianNum($order->customer->legal->economic_number) : persianNum($order->customer->national_code) }}
               </td>
               <td>
-                <span class="label">شناسه ملی:</span>   {{ ($order->customer->legal->exists && !is_null($order->customer->legal->nationalـidentity))? persianNum($order->customer->legal->nationalـidentity) : persianNum($order->customer->national_code) }}
+                <span class="label">شناسه ملی:</span>   {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->nationalـidentity))? persianNum($order->customer->legal->nationalـidentity) : persianNum($order->customer->national_code) }}
               </td>
               <td>
-                <span class="label">شماره ثبت:</span> {{ ($order->customer->legal->exists && !is_null($order->customer->legal->registration_number))? persianNum($order->customer->legal->registration_number) : '-' }}
+                <span class="label">شماره ثبت:</span> {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->registration_number))? persianNum($order->customer->legal->registration_number) : '-' }}
               </td>
             </tr>
             <tr>
               <td colspan="4">
                 <span class="label">نشانی:</span>
-                {{ fullZone($order->address->zone->first()->id) .  ' - ' }}
+                {{ ($order->address->zone()->exists())? fullZone($order->address->zone->first()->id) .  ' - ' : '' }}
                 {{ persianNum($order->address->address)  . ' - پلاک ' . persianNum($order->address->plaque) }} {{ !is_null($order->address->unit)? ' - واحد ' . persianNum($order->address->unit) : '' }}
               </td>
             </tr>
@@ -365,14 +365,15 @@
         <div class="grow bordered" style="padding: 2mm 5mm;">
           <div class="flex">
             <div>تاریخ:</div>
-            <div class="flex-grow span-date" style="text-align: left" data-value="{{ $order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->first()->created_at }}"></div>
+            <div class="flex-grow span-date" style="text-align: left" data-value="{{ ($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->exists())? $order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->first()->created_at : '' }}"></div>
+{{--            <div class="flex-grow span-date" style="text-align: left" data-value="{{ $order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->first()->created_at }}"></div>--}}
           </div>
           <div class="flex">
             <div>پیگیری:</div>
-            <div class="flex-grow font-medium" style="text-align: left">{{ persianNum($order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->tracking_code) }}</div>
+            <div class="flex-grow font-medium" style="text-align: left">{{ ($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->exists() && !is_null($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->first()->tracking_code))? persianNum($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->first()->tracking_code) : '' }}</div>
           </div>
           <div class="barcode">
-            <span>{{ $order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->tracking_code }}</span>
+            <span>{{ ($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->exists() && !is_null($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->first()->tracking_code))? $order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->tracking_code : '' }}</span>
           </div>
         </div>
       </td>
@@ -407,12 +408,12 @@
           <td>
             <div class="title">
               {{ persianNum($variant->product_variant->first()->product->title_fa) }} |
-              {{ !is_null($variant->product_variant->first->variant->variant->name)? $variant->product_variant->first->variant->variant->name . ' | ' : '' }}
+              {{ !is_null($variant->product_variant->first()->variant->name)? $variant->product_variant->first()->variant->name . ' | ' : '' }}
 
-            @if(!is_null($variant->product_variant->first->warranty->warranty->month))
-                گارانتی {{ persianNum($variant->product_variant->first->warranty->warranty->month) }} ماهه {{ $variant->product_variant->first->warranty->warranty->name }}
+            @if(!is_null($variant->product_variant->first()->warranty->month))
+                گارانتی {{ persianNum($variant->product_variant->first()->warranty->month) }} ماهه {{ $variant->product_variant->first()->warranty->name }}
               @else
-                گارانتی {{ $variant->product_variant->first->warranty->warranty->name }}
+                گارانتی {{ $variant->product_variant->first()->warranty->name }}
               @endif
             </div>
             <div class="serials"></div>
@@ -556,22 +557,22 @@
             <tbody>
             <tr>
               <td style="width: 6.7cm">
-                <span class="label">خریدار:</span> {{ ($order->customer->legal->exists && !is_null($order->customer->legal->company_name))? $order->customer->legal->company_name : $order->customer->first_name . ' ' . $order->customer->last_name }}
+                <span class="label">خریدار:</span> {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->company_name))? $order->customer->legal->company_name : $order->customer->first_name . ' ' . $order->customer->last_name }}
               </td>
               <td style="width: 6.7cm">
-                <span class="label">شماره‌اقتصادی / شماره‌ملی:</span>  {{ ($order->customer->legal->exists && !is_null($order->customer->legal->economic_number))? persianNum($order->customer->legal->economic_number) : persianNum($order->customer->national_code) }}
+                <span class="label">شماره‌اقتصادی / شماره‌ملی:</span>  {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->economic_number))? persianNum($order->customer->legal->economic_number) : persianNum($order->customer->national_code) }}
               </td>
               <td>
-                <span class="label">شناسه ملی:</span>   {{ ($order->customer->legal->exists && !is_null($order->customer->legal->nationalـidentity))? persianNum($order->customer->legal->nationalـidentity) : persianNum($order->customer->national_code) }}
+                <span class="label">شناسه ملی:</span>   {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->nationalـidentity))? persianNum($order->customer->legal->nationalـidentity) : persianNum($order->customer->national_code) }}
               </td>
               <td>
-                <span class="label">شماره ثبت:</span> {{ ($order->customer->legal->exists && !is_null($order->customer->legal->registration_number))? persianNum($order->customer->legal->registration_number) : '-' }}
+                <span class="label">شماره ثبت:</span> {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->registration_number))? persianNum($order->customer->legal->registration_number) : '-' }}
               </td>
             </tr>
             <tr>
               <td colspan="4">
                 <span class="label">نشانی:</span>
-                {{ fullZone($order->address->zone->first()->id) .  ' - ' }}
+                {{ ($order->address->zone()->exists())? fullZone($order->address->zone->first()->id) .  ' - ' : '' }}
                 {{ persianNum($order->address->address)  . ' - پلاک ' . persianNum($order->address->plaque) }} {{ !is_null($order->address->unit)? ' - واحد ' . persianNum($order->address->unit) : '' }}
               </td>
             </tr>
@@ -591,14 +592,14 @@
         <div class="grow bordered" style="padding: 2mm 5mm;">
           <div class="flex">
             <div>تاریخ:</div>
-            <div class="flex-grow span-date" style="text-align: left" data-value="{{ $order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->first()->created_at }}"></div>
+            <div class="flex-grow span-date" style="text-align: left" data-value="{{ ($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->exists())? $order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->first()->created_at : '' }}"></div>
           </div>
           <div class="flex">
             <div>پیگیری:</div>
-            <div class="flex-grow font-medium" style="text-align: left">{{ persianNum($order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->tracking_code) }}</div>
+            <div class="flex-grow font-medium" style="text-align: left">{{ ($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->exists())? persianNum($order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->tracking_code) : '' }}</div>
           </div>
           <div class="barcode">
-            <span>{{ $order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->tracking_code }}</span>
+            <span>{{ ($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->exists())? $order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->tracking_code : '' }}</span>
           </div>
         </div>
       </td>
@@ -769,22 +770,22 @@
             <tbody>
             <tr>
               <td style="width: 6.7cm">
-                <span class="label">خریدار:</span> {{ ($order->customer->legal->exists && !is_null($order->customer->legal->company_name))? $order->customer->legal->company_name : $order->customer->first_name . ' ' . $order->customer->last_name }}
+                <span class="label">خریدار:</span> {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->company_name))? $order->customer->legal->company_name : $order->customer->first_name . ' ' . $order->customer->last_name }}
               </td>
               <td style="width: 6.7cm">
-                <span class="label">شماره‌اقتصادی / شماره‌ملی:</span>  {{ ($order->customer->legal->exists && !is_null($order->customer->legal->economic_number))? persianNum($order->customer->legal->economic_number) : persianNum($order->customer->national_code) }}
+                <span class="label">شماره‌اقتصادی / شماره‌ملی:</span>  {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->economic_number))? persianNum($order->customer->legal->economic_number) : persianNum($order->customer->national_code) }}
               </td>
               <td>
-                <span class="label">شناسه ملی:</span>   {{ ($order->customer->legal->exists && !is_null($order->customer->legal->nationalـidentity))? persianNum($order->customer->legal->nationalـidentity) : persianNum($order->customer->national_code) }}
+                <span class="label">شناسه ملی:</span>   {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->nationalـidentity))? persianNum($order->customer->legal->nationalـidentity) : persianNum($order->customer->national_code) }}
               </td>
               <td>
-                <span class="label">شماره ثبت:</span> {{ ($order->customer->legal->exists && !is_null($order->customer->legal->registration_number))? persianNum($order->customer->legal->registration_number) : '-' }}
+                <span class="label">شماره ثبت:</span> {{ ($order->customer->legal()->exists() && !is_null($order->customer->legal->registration_number))? persianNum($order->customer->legal->registration_number) : '-' }}
               </td>
             </tr>
             <tr>
               <td colspan="4">
                 <span class="label">نشانی:</span>
-                {{ fullZone($order->address->zone->first()->id) .  ' - ' }}
+                {{ ($order->address->zone()->exists())? fullZone($order->address->zone->first()->id) .  ' - ' : '' }}
                 {{ persianNum($order->address->address)  . ' - پلاک ' . persianNum($order->address->plaque) }} {{ !is_null($order->address->unit)? ' - واحد ' . persianNum($order->address->unit) : '' }}
               </td>
             </tr>
@@ -839,7 +840,7 @@
         جمع کل (ریال):
       </td>
       <td>
-        <span class="ltr">{{ persianNum($voucherSum) }}</span>
+        <span class="ltr">{{ (isset($voucherSum) && !is_null($voucherSum))? persianNum($voucherSum) : '' }}</span>
       </td>
     </tr>
     <tr style="background: #fff">

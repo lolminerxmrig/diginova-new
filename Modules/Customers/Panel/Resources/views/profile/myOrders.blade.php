@@ -43,14 +43,6 @@
             <span class="o-box__tab-counter">{{ persianNum($count_canceled) }}</span>
           </a>
         </div>
-{{--        <div class="o-box__tab " data-tab-pill-id="5">--}}
-{{--          <a href="/profile/my-orders/?activeTab=top-up"> شارژ و اینترنت</a>--}}
-{{--        </div>--}}
-{{--        <div class="c-profile-order__search-input-container">--}}
-{{--          <div class="o-btn c-profile-order__search-close js-order-search-close"></div>--}}
-{{--          <input class="c-profile-order__search-input js-order-search-input" placeholder="عنوان کالا یا شماره سفارش موردنظرتان را وارد کنید">--}}
-{{--        </div>--}}
-{{--        <div class="o-btn c-profile-order__search-btn js-order-search-btn"></div>--}}
       </div>
       @if ($orders->count())
         <div class="c-profile-order__content js-ui-tab-content">
@@ -59,7 +51,8 @@
             <div class="c-profile-order__list-item-details">
               <div class="c-profile-order__list-item-details-top ">
                 <div class="c-profile-order__list-item-details-row">
-                  <div class="c-profile-order__list-item-detail" data-order-date="{{ $order->created_at }}">۲۵ خرداد ۱۴۰۰</div>
+
+                  <div class="c-profile-order__list-item-detail span-date" data-value="{{ $order->created_at }}"></div>
                   <div class="c-profile-order__list-item-detail">DKC-{{ persianNum($order->order_code) }}</div>
                   <div class="c-profile-order__list-item-detail">{{ $order->status->name }}</div>
                 </div>
@@ -134,5 +127,34 @@
 {{--@section('page-content')--}}
 {{--@endsection--}}
 
-{{--@section('script')--}}
-{{--@endsection--}}
+@section('source')
+
+<script src="{{ asset('staff/js/jalali-moment.browser.js') }}"></script>
+
+<script>
+  function persianNum() {
+    String.prototype.toPersianDigits = function () {
+      var id = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+      return this.replace(/[0-9]/g, function (w) {
+        return id[+w]
+      });
+    }
+  }
+
+  function convertDate() {
+    $(".span-date").each(function (){
+      var output="";
+      var input = $(this).data('value');
+      var m = moment(input);
+      if(m.isValid()){
+        m.locale('fa');
+        output = m.format("YYYY/M/D");
+      }
+      $(this).text(output.toPersianDigits());
+    });
+  }
+  persianNum();
+  convertDate();
+</script>
+
+@endsection
