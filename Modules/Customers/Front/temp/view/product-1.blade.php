@@ -1,4 +1,4 @@
-@php
+`@php
   $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
 
   $category = $product->category->first();

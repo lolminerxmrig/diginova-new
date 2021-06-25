@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Modules\Customers\Front\Http\Controllers\FrontController;
 use Modules\Customers\Panel\Models\Customer;
 use Modules\Customers\Panel\Models\CustomerLegal;
+use Modules\Staff\Order\Http\Controllers\StaffOrderController;
 use Modules\Staff\Order\Models\Order;
 use Modules\Staff\Peyment\Models\PeymentRecord;
 use Modules\Staff\Shiping\Models\OrderStatus;
@@ -22,9 +23,10 @@ class CustomerProfileController extends Controller
 {
 
   protected $frontController;
-  public function __construct(FrontController $frontController)
+  public function __construct(FrontController $frontController, StaffOrderController $staffOrderController)
   {
     $this->frontController = $frontController;
+    $this->staffOrderController = $staffOrderController;
   }
 
   /**
@@ -462,7 +464,6 @@ class CustomerProfileController extends Controller
       return view('customerpanel::profile.favorites', compact('customer'));
     }
 
-
   /**
    * customer orders page
    *
@@ -516,13 +517,33 @@ class CustomerProfileController extends Controller
 
   }
 
+  /**
+   * order invoice
+   *
+   * @param $order_code
+   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   */
+  public function orderInvoice($order_code)
+  {
+    if (Order::where('order_code', $order_code)->doesntExist()) {
+        abort(404);
+    }
+
+    $order_id = Order::where('order_code', $order_code)->first()->id;
+    return $this->staffOrderController->invoice($order_id);
+  }
+
   public function orderDetails($order_code)
   {
 
-  }
+    if (Order::where('order_code', $order_code)->doesntExist()) {
+      abort(404);
+    }
 
-  public function orderInvoice($order_code)
-  {
+    $order = Order::where('order_code', $order_code)->first();
+    $customer = Auth::guard('customer')->user();
+
+    return view('customerpanel::profile.orderDetails', compact('order', 'customer'));
 
   }
 
@@ -530,5 +551,7 @@ class CustomerProfileController extends Controller
   {
 
   }
+
+
 
 }

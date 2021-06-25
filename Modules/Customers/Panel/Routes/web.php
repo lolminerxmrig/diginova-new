@@ -74,7 +74,7 @@ Route::prefix('profile')->middleware('web', 'customer')->name('customer.panel.')
     Route::get('my-orders/{activeTab?}', [CustomerProfileController::class, 'myOrders'])
       ->name('myOrders');
 
-    Route::get('my-orders/{order_code}', [CustomerProfileController::class, 'orderDetails'])
+    Route::get('order/{order_code}', [CustomerProfileController::class, 'orderDetails'])
       ->name('orderDetails');
 
     Route::get('orders/{order_code}/invoice', [CustomerProfileController::class, 'orderInvoice'])

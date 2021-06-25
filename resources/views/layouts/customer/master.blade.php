@@ -182,10 +182,10 @@ $customer = auth()->guard('customer')->user();
     var module_voucher_fraud_prevention = 1;
     var module_marketplace_package_wh_capacity = 1;
     var module_address_landline = 1;
-    var module_dk_wallet = 1;
+    var module_dk_wallet = 0;
     var module_product_box_cpc_redesign = 1;
     var module_ab_desktop_touchpoint_filters = 1;
-    var module_dk_wallet_cash_back = 1;
+    var module_dk_wallet_cash_back = 0;
     var module_admin_marketplace_seller_edit_address = 1;
     var module_marketplace_seller_sort_warehouses = 1;
     var module_marketplace_seller_registration_address = 1;
@@ -445,9 +445,9 @@ $customer = auth()->guard('customer')->user();
     var module_search_banner_ga = 1;
     var module_seo_search_pages = 1;
     var module_app_specific_incredible = 1;
-    var module_marketplace_finance_wallet = 1;
+    var module_marketplace_finance_wallet = 0;
     var module_ds_impression_click_install_app = 1;
-    var module_marketplace_wallet = 1;
+    var module_marketplace_wallet = 0;
     var module_long_time_declare = 1;
     var module_edit_product_price_amazing = 1;
     var module_marketplace_lazy_load_images_cmp = 1;
@@ -601,29 +601,6 @@ $customer = auth()->guard('customer')->user();
     window.sntrackerActivation = true;
   </script>
 
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    window.emarsysCategoryBreadcrumb = window.emarsysCategoryBreadcrumb || "";
-    var GTMurl = document.location.href, dataGTM = "";
-    "/" === document.location.pathname ? dataGTM = "HOME" : 1 < GTMurl.indexOf("/users") ? dataGTM = 1 < GTMurl.indexOf("/login") ? "LOGIN" : 1 < GTMurl.indexOf("/register") ? "REGISTER" : "USERS" : 1 < GTMurl.indexOf("/product-list") ? dataGTM = "PRODUCT-LIST" : 1 < GTMurl.indexOf("/profile/") ? dataGTM = "PROFILE" : 1 < GTMurl.indexOf("/page/") ? dataGTM = "STATIC-PAGE" : 1 < GTMurl.indexOf("/brand") ? dataGTM = "BRAND" : 1 < GTMurl.indexOf("/seller") ? dataGTM = "SELLER" : 1 < GTMurl.indexOf("/product") ? dataGTM = "PDP" : 1 < GTMurl.indexOf("/cart") ? dataGTM = "CART" : 1 < GTMurl.indexOf("/shipping") ? dataGTM = "CHECKOUT - Shipping" : 1 < GTMurl.indexOf("/checkout") || 1 < GTMurl.lastIndexOf("/cash-on-delivery") ? dataGTM = "THANKYOUPAGE" : 1 < GTMurl.indexOf("/payment/") ? dataGTM = "CHECKOUT - Payment" : 1 < GTMurl.indexOf("/landing-page") ? dataGTM = "LANDING PAGES" : 1 < GTMurl.indexOf("/compare") ? dataGTM = "COMPARE" : 1 < GTMurl.indexOf("/search") ? dataGTM = 1 < GTMurl.indexOf("q=") ? 1 < GTMurl.indexOf("entry=mm") ? "megamenu" : "SEARCH" : "PLP" : 1 < GTMurl.indexOf("main") ? dataGTM = "CMP" : 1 < GTMurl.indexOf("/incredible-offers") ? dataGTM = "INCREDIBLE OFFER" : 1 < GTMurl.indexOf("/my-digikala") ? dataGTM = "MYDIGIKAL" : 1 < GTMurl.indexOf("/promotion-page/") && (dataGTM = "PROMOTION");
-    dataLayer.push({
-      "pageCategory": [dataGTM]
-    });
-
-    gtag('js', new Date());
-    if (!window.module_GTM_demo) {
-      gtag('config', 'UA-13212406-1', {'send_page_view': false});
-    }
-  </script>
-  <!-- Start Insider Javascript -->
-  <script async="" src="//digikala.api.useinsider.com/ins.js?id=10004485"></script>
-  <!-- End Insider Javascript -->
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="shortcut icon" href="https://www.digikala.com/static/files/283b32ca.ico" type="image/icon">
@@ -691,8 +668,9 @@ $customer = auth()->guard('customer')->user();
 
   <script src="{{ asset('assets/js/sentry.js') }} "></script>
   <script src="{{ asset('assets/js/map.js') }} "></script>
-  <script src="{{ asset('assets/js/address.js') }} "></script>
-  <script src="{{ asset('assets/js/adroRetargeting.js') }} "></script>
+{{--  <script src="{{ asset('assets/js/address.js') }} "></script>--}}
+  @yield('head')
+{{--  <script src="{{ asset('assets/js/adroRetargeting.js') }} "></script>--}}
 
   <link rel="stylesheet" href="https://www.parsimap.com/js/v3.1.0/parsimap.css">
   <script src="https://www.parsimap.com/js/v3.1.0/parsimap.js?key=public"></script>

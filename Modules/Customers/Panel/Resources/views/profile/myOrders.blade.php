@@ -1,10 +1,17 @@
-@php
+<?php
+  $awaiting_id = \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'awaiting_payment')->first()->id;
+  $accepted_id = \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'accepted')->first()->id;
+  $processing_id = \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'processing')->first()->id;
+  $delivered_id = \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'delivered')->first()->id;
+  $preparation_id = \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'preparation')->first()->id;
+  $sending_id = \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'sending')->first()->id;
+
   $count_wait_for_payment = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->count();
   $count_paid_in_progress = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'processing')->first()->id)->count();
-    $count_delivered = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'delivered')->first()->id)->count();
+  $count_delivered = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'delivered')->first()->id)->count();
   $count_returned = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'returned')->first()->id)->count();
   $count_canceled = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'canceled')->first()->id)->count();
-@endphp
+?>
 @extends('layouts.customer.master')
 @section('o-page__content')
   <section class="o-page__content">
@@ -92,12 +99,12 @@
               @endforeach
             </div>
 
-            @if ($order->order_status_id == \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'awaiting_payment')->first()->id)
+            @if ($order->order_status_id == $awaiting_id)
               <div class="c-profile-order__list-item-actions c-profile-order__list-item-actions--between">
                 <a href="{{ route('orderCheckout', ['order_code' => $order->order_code]) }}" class="o-btn o-btn--contained-red-md">پرداخت</a>
                 <div class="c-profile-order__warning">در صورت عدم پرداخت تا ۱ ساعت پس از ایجاد سفارش، این سفارش به‌ صورت خودکار لغو خواهد شد.</div>
               </div>
-            @else
+            @elseif($order->order_status_id == $accepted_id || $order->order_status_id == $processing_id || $order->order_status_id == $delivered_id || $order->order_status_id == $preparation_id || $order->order_status_id == $sending_id)
               <div class="c-profile-order__list-item-actions c-profile-order__list-item-actions--has-separator">
                 <a href="{{ route('customer.panel.orderInvoice', ['order_code' => $order->order_code]) }}" class="o-btn o-btn--link-blue-md">مشاهده فاکتور</a>
               </div>

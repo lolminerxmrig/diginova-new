@@ -460,7 +460,7 @@ class FrontController extends Controller
     $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
 
     if (auth()->guard('customer')->check() && !Cart::where('product_variant_id', $product_variant->id)->exists()) {
-      Cart::create([
+        Cart::create([
         'customer_id' => Auth::guard('customer')->user()->id,
         'type' => 'first',
         'count' => 1,
