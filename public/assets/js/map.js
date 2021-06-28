@@ -1550,7 +1550,7 @@ var CommentAction = {
                 'آیا این نظر حذف شود؟',
                 function () {
                     Services.ajaxPOSTRequestJSON(
-                        '/ajax/comment/remove/' + $this.data('id') + '/',
+                        '/ajax/comment/remove/' + $this.data('id'),
                         {token: csrf},
                         function (response) {
 

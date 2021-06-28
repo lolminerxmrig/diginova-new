@@ -28,6 +28,8 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::get('product/comments/{product_id}', [FrontController::class, 'productComments'])->name('productComments');
   Route::get('product/comments/list/{product_id}/', [FrontController::class, 'productCommentList'])->name('productCommentList');
   Route::post('product/comments/add/{product_id}', [FrontController::class, 'createComments'])->name('createComments');
+  Route::post('comment/remove/{id}', [FrontController::class, 'removeComment'])->name('removeComment');
+
 
   Route::get('product/comments/like/{product_id}', [FrontController::class, 'likeComment'])->name('likeComment');
   Route::get('product/comments/dislike/{product_id}', [FrontController::class, 'dislikeComment'])->name('dislikeComment');

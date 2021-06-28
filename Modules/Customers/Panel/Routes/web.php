@@ -38,8 +38,8 @@ Route::prefix('profile')->middleware('web', 'customer')->name('customer.panel.')
     Route::get('favorites', [CustomerProfileController::class, 'favorites'])
           ->name('favorites');
 
-    Route::get('orders', [CustomerProfileController::class, 'orders'])
-        ->name('orders');
+//    Route::get('orders', [CustomerProfileController::class, 'orders'])
+//        ->name('orders');
 
     Route::post('convert-card-to-iban', [CustomerProfileController::class, 'cardToIban'])
       ->name('cardToIban');

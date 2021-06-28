@@ -277,6 +277,17 @@ class FrontController extends Controller
     ]);
   }
 
+  public function removeComment($id)
+  {
+    if (Comment::where('id', $id)->exists()) {
+      Comment::find($id)->delete();
+    }
+    return response()->json([
+      'status' => true,
+      'data' => null,
+    ]);
+  }
+
   /**
    * @param $comment_id
    * @return \Illuminate\Http\JsonResponse|null
@@ -1482,6 +1493,7 @@ class FrontController extends Controller
             'product_variant_id' => $item->product_variant_id,
             'promotion_type' => null,
             'promotion_percent' => null,
+            'customer_id' => $customer->id,
           ]);
 
           $consignment_product_variant_id = ConsignmentHasProductVariants::where('product_variant_id', $item->product_variant_id)->first()->id;
@@ -1832,6 +1844,5 @@ class FrontController extends Controller
 
     }
   }
-
 
 }

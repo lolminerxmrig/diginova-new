@@ -1,142 +1,211 @@
+<?php
+  $wating_count = 0;
+  if ($customer->order_variants()->where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'sold')->first()->id)->orWhere('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'returned')->first()->id)->exists()) {
+    foreach($customer->order_variants()->where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'sold')->first()->id)->orWhere('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'returned')->first()->id)->select('product_id')->groupBy('product_id')->get() as $item) {
+      if($customer->comments()->where('product_id', $item->product_id)->exists()) {
+        continue;
+      }
+      $wating_count++;
+    }
+  }
+?>
 @extends('layouts.customer.master')
+@section('head')
+<script>
+  var supernova_mode = "production";
+  var supernova_tracker_url = "https:\/\/etrackerd.digikala.com\/tracker\/events\/";
+  var activeMenu = "comments";
+  var faqPageTitle = "profile_section";
+  var skipWalletRequest = true;
+  var userId = 9735394;
+  var adroRCActivation = true;
+  var loginRegisterUrlWithBack = "\/users\/login-register\/?_back=https:\/\/www.digikala.com\/profile\/comments\/";
+  var isNewCustomer = false;
+  var digiclubLuckyDrawEndTime = "2021-06-27 15:30:28";
+  var activateUrl = "\/digiclub\/activate\/";
+</script>
+@endsection
+
 @section('o-page__content')
-  <section class="o-page__content">
-    <div class="o-box c-profile-comments">
-      <div class="o-box__header"><span class="o-box__title">نظرات</span></div>
-      <div class="o-box__tabs">
-        <div class="o-box__tab js-ui-tab-pill is-active" data-tab-pill-id="products" data-current-page="1">
-          در انتظار ثبت نظر
-        </div>
-        <div class="o-box__tab js-ui-tab-pill " data-tab-pill-id="comments" data-current-page="1">
-          نظرات من
-        </div>
+<section class="o-page__content">
+  <div class="o-box c-profile-comments">
+    <div class="o-box__header"><span class="o-box__title">نظرات</span></div>
+    <div class="o-box__tabs">
+      <div class="o-box__tab js-ui-tab-pill {{ ($wating_count || $customer->comments()->doesntExist())? 'is-active' : '' }}" data-tab-pill-id="products" data-current-page="1">
+        در انتظار ثبت نظر
       </div>
-      <div class="c-profile-comments__wait-for-comment js-ui-tab-content " data-tab-content-id="products"><p
-          class="c-profile-comments__wait-for-comment-title">
+      <div class="o-box__tab js-ui-tab-pill {{ (!$wating_count && $customer->comments()->exists())? 'is-active' : '' }}" data-tab-pill-id="comments" data-current-page="1">
+        نظرات من
+      </div>
+    </div>
+    <div class="c-profile-comments__wait-for-comment js-ui-tab-content {{ ($wating_count)? '' : 'u-hidden' }}" data-tab-content-id="products">
+      @if ($wating_count)
+        <p class="c-profile-comments__wait-for-comment-title">
           نظرتان درباره کالاهایی که خریده‌اید چیست؟
         </p>
         <p class="c-profile-comments__wait-for-comment-dsc">
-          با ثبت نظر در مورد کالاهای خریداری شده خود، ۵ امتیاز دیجی‌کلاب دریافت می‌کنید.
+          با ثبت نظر در مورد کالاهای خریداری شده خود، به دیگران کمک کنید خرید بهتری داشته باشند.
         </p>
-        <div class="c-profile-comments__product-container">
-          <div class="c-profile-comments__product-thumb"><img
-              src="https://dkstatics-public.digikala.com/digikala-products/772786.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
-              alt="test"></div>
+         @foreach($customer->order_variants()->where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'sold')->first()->id)->orWhere('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'returned')->first()->id)->select('product_id')->groupBy('product_id')->get() as $item)
+          @if($customer->comments()->where('product_id', $item->product_id)->exists())
+            @continue
+          @endif
+          <div class="c-profile-comments__product-container">
+          <div class="c-profile-comments__product-thumb">
+            @foreach($item->product->media as $image)
+              @if($item->product->media && ($image->pivot->is_main == 1))
+                <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $item->product->title_fa }}">
+              @endif
+            @endforeach
+          </div>
           <div class="c-profile-comments__product-content">
             <div class="c-profile-comments__product-row">
               <div class="c-profile-comments__product-title">
-                کابل برق سه پین آداپتور لپ تاپ 1.5 متری
+                {{ $item->product->title_fa }}
               </div>
             </div>
-            <div class="c-profile-comments__product-row c-profile-comments__product-row--reverse"><a
-                href="/product/comment/dkp-415999" class="c-profile-comments__to-comment-link">
+            <div class="c-profile-comments__product-row c-profile-comments__product-row--reverse">
+              <a href="{{ route('front.productPage', $item->product->product_code) }}" class="c-profile-comments__to-comment-link">
                 ثبت دیدگاه
-              </a></div>
-          </div>
-        </div>
-        <div class="c-profile-comments__product-container">
-          <div class="c-profile-comments__product-thumb"><img
-              src="https://dkstatics-public.digikala.com/digikala-products/697655.jpg?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80"
-              alt="test"></div>
-          <div class="c-profile-comments__product-content">
-            <div class="c-profile-comments__product-row">
-              <div class="c-profile-comments__product-title">
-                شارژر لپ تاپ 20 ولت 3.25 آمپر مدل ADLX65NLC2A
-              </div>
+              </a>
             </div>
-            <div class="c-profile-comments__product-row c-profile-comments__product-row--reverse"><a
-                href="/product/comment/dkp-118046" class="c-profile-comments__to-comment-link">
-                ثبت دیدگاه
-              </a></div>
           </div>
         </div>
+        @endforeach
         <section class="c-pager"></section>
-      </div>
-      <div class="c-profile-comments__comment-history js-ui-tab-content  u-hidden" data-tab-content-id="comments">
-        <div class="c-profile-comments__product-container">
-          <div class="c-profile-comments__product-thumb"><a
-              href="/product/dkp-3784517/%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE-13-%D8%A7%DB%8C%D9%86%DA%86%DB%8C-%D8%A7%D9%BE%D9%84-%D9%85%D8%AF%D9%84-macbook-pro-myd82-2020-%D9%87%D9%85%D8%B1%D8%A7%D9%87-%D8%A8%D8%A7-%D8%AA%D8%A7%DA%86-%D8%A8%D8%A7%D8%B1"><img
-                src="https://dkstatics-public.digikala.com/digikala-products/fb5ac01262f2b1988fa8eeb29f966e81583b3969_1605620114.jpg?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60"
-                alt=" لپ تاپ 13 اینچی اپل مدل MacBook Pro MYD82 2020 همراه با تاچ بار "></a></div>
-          <div class="c-profile-comments__product-content">
-            <div class="c-profile-comments__product-row">
-              <div class="c-profile-comments__product-title">
-                تست
-              </div>
-              <div class="c-profile-comments__actions">
-                <div class="c-profile-comments__status c-profile-comments__status--rejected">
-                  تایید نشده
-                </div>
-                <div class="c-ui-more">
-                  <div class="o-btn o-btn--icon-gray-md o-btn--l-more js-ui-see-more"></div>
-                  <div class="c-ui-more__options js-ui-more-options" style="display: none;">
-                    <div class="c-ui-more__option c-ui-more__option--red js-remove-comment-btn"
-                         data-edit-url="/product/comment/dkp-3784517" data-id="18500536" data-token="">حذف نظر
-                    </div>
-                    <a class="c-ui-more__option c-ui-more__option js-ga-edit-comment-btn"
-                       href="/product/comment/dkp-3784517" data-edit-url="/product/comment/dkp-3784517">ویرایش نظر</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start">
-              <div class="c-rate-box c-rate-box--normal">
-                ۲.۴
-              </div>
-              <span class="c-profile-comments__spacer-dot"></span></div>
-            <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start"><p
-                class="c-profile-comments__text">
-                تست.......
-              </p></div>
-            <div
-              class="c-profile-comments__product-row c-profile-comments__product-row--align-start c-profile-comments__product-row--no-margin"></div>
-          </div>
+      @else
+        <div class="c-profile-list__empty-container">
+          <img src="https://www.digikala.com/static/files/d4fa2ec1.svg" alt="هیچ کالایی برای ثبت نظر وجود ندارد.">
+          <p>
+            هیچ کالایی برای ثبت نظر وجود ندارد.
+          </p>
         </div>
-        <div class="c-profile-comments__product-container">
-          <div class="c-profile-comments__product-thumb"><a
-              href="/product/dkp-222934/%D8%AF%D9%88%D8%B1%D8%A8%DB%8C%D9%86-%D8%AF%DB%8C%D8%AC%DB%8C%D8%AA%D8%A7%D9%84-%DA%A9%D8%A7%D9%86%D9%86-%D9%85%D8%AF%D9%84-eos-5d-mark-iv-%D8%A8%D9%87-%D9%87%D9%85%D8%B1%D8%A7%D9%87-%D9%84%D9%86%D8%B2-24-105-%D9%85%DB%8C%D9%84%DB%8C-%D9%85%D8%AA%D8%B1-f4-l-is-ii"><img
-                src="https://dkstatics-public.digikala.com/digikala-products/638044.jpg?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60"
-                alt="دوربین دیجیتال کانن مدل EOS 5D Mark IV به همراه لنز 24-105 میلی متر F4 L IS II"></a></div>
-          <div class="c-profile-comments__product-content">
-            <div class="c-profile-comments__product-row">
-              <div class="c-profile-comments__product-title">
-                عالیع
-              </div>
-              <div class="c-profile-comments__actions">
-                <div class="c-profile-comments__status c-profile-comments__status--rejected">
-                  تایید نشده
-                </div>
-                <div class="c-ui-more">
-                  <div class="o-btn o-btn--icon-gray-md o-btn--l-more js-ui-see-more"></div>
-                  <div class="c-ui-more__options js-ui-more-options" style="display: none;">
-                    <div class="c-ui-more__option c-ui-more__option--red js-remove-comment-btn"
-                         data-edit-url="/product/comment/dkp-222934" data-id="18008589" data-token="">حذف نظر
-                    </div>
-                    <a class="c-ui-more__option c-ui-more__option js-ga-edit-comment-btn"
-                       href="/product/comment/dkp-222934" data-edit-url="/product/comment/dkp-222934">ویرایش نظر</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start">
-              <div class="c-rate-box c-rate-box--ok">
-                ۴
-              </div>
-              <span class="c-profile-comments__spacer-dot"></span></div>
-            <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start"><p
-                class="c-profile-comments__text">
-                عالیه
-              </p></div>
-            <div
-              class="c-profile-comments__product-row c-profile-comments__product-row--align-start c-profile-comments__product-row--no-margin"></div>
-          </div>
-        </div>
-        <section class="c-pager"></section>
-      </div>
+      @endif
     </div>
-  </section>
-@endsection
+    <div class="c-profile-comments__comment-history js-ui-tab-content {{ ($wating_count)? 'u-hidden' : '' }}" data-tab-content-id="comments">
 
+    @if ($customer->comments()->exists())
+      @foreach($customer->comments as $comment)
+
+      <?php
+        $product = \Modules\Staff\Product\Models\Product::find($comment->product->id);
+
+        $advantages = json_decode($comment->advantages, true);
+        $disadvantages = json_decode($comment->disadvantages, true);
+
+        if ($comment->customer->order_variants()->exists()) {
+          $customerOrders = $comment->customer->order_variants()->where('product_id', $product->id)->where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'sold')->first()->id)->orWhere('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'returned')->first()->id)->get();
+        }
+        else {
+          $customerOrders = null;
+        }
+      ?>
+
+      <div class="c-profile-comments__product-container">
+        <div class="c-profile-comments__product-thumb">
+          <a href="{{ route('front.productPage', $comment->product->product_code) }}">
+            @foreach($comment->product->media as $image)
+              @if($comment->product->media && ($image->pivot->is_main == 1))
+                <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60" alt="{{ $comment->product->title_fa }}">
+              @endif
+            @endforeach
+          </a>
+        </div>
+        <div class="c-profile-comments__product-content">
+          <div class="c-profile-comments__product-row">
+            <div class="c-profile-comments__product-title">
+              {{ $comment->title }}
+            </div>
+            <div class="c-profile-comments__actions">
+              @if ($comment->publish_status == 'accepted')
+                <div class="c-profile-comments__status c-profile-comments__status--approved">
+                  تایید شده
+                </div>
+              @elseif($comment->publish_status == 'rejected')
+                <div class="c-profile-comments__status c-profile-comments__status--rejected">
+                  تایید نشده
+                </div>
+              @elseif($comment->publish_status == 'not_checked')
+                <div class="c-profile-comments__status c-profile-comments__status--review">
+                  در انتظار بررسی
+                </div>
+              @endif
+
+                <div class="c-ui-more">
+                <div class="o-btn o-btn--icon-gray-md o-btn--l-more js-ui-see-more"></div>
+                <div class="c-ui-more__options js-ui-more-options" style="display: none;">
+                  <div class="c-ui-more__option c-ui-more__option--red js-remove-comment-btn" data-edit-url="{{ route('front.createComment', $product->product_code) }}" data-id="{{ $comment->id }}" data-token="">
+                    حذف نظر
+                  </div>
+                  <a class="c-ui-more__option c-ui-more__option js-ga-edit-comment-btn" href="{{ route('front.createComment', $product->product_code) }}" data-edit-url="{{ route('front.createComment', $product->product_code) }}">ویرایش نظر</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start">
+            @if (round($comment->ratings->avg('score')))
+            <div class="c-rate-box c-rate-box--normal">
+              {{ persianNum(number_format((float)$comment->ratings->avg('score'), 1, '.', '')) }}
+            </div>
+            @endif
+            <span class="c-profile-comments__spacer-dot"></span>
+
+            @if((!is_null($comment->recommend_status)) || ($comment->recommend_status !== " "))
+              @if ($comment->recommend_status == 'recommended')
+                <div class="c-comment-advice c-comment-advice--recommend">خرید این محصول را توصیه می‌کنم</div>
+              @elseif($comment->recommend_status == 'not_recommended')
+                <div class="c-comment-advice c-comment-advice--not-recommend">خرید این محصول را توصیه نمی‌کنم</div>
+              @elseif($comment->recommend_status == 'not_idea')
+                <div class="c-comment-advice c-comment-advice--no-idea">در مورد خرید این محصول مطمئن نیستم</div>
+              @endif
+            @endif
+
+          </div>
+          <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start">
+            <p class="c-profile-comments__text">
+              {{ $comment->text }}
+            </p>
+          </div>
+          <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start c-profile-comments__product-row--no-margin"></div>
+
+
+          @if (!is_null($customerOrders))
+
+          <div class="c-profile-comments__product-row c-profile-comments__product-row--border-top"></div>
+            @foreach($customerOrders->groupBy('product_variant_id') as $customerOrder)
+            <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start c-profile-comments__product-row--no-margin">
+              <div class="c-profile-comments__product-variant c-profile-comments__product-variant--color">
+                @if (!is_null($customerOrder->first()->product_variant()->first()->variant->value))
+                <span style="background-color: {{ $customerOrder->first()->product_variant()->first()->variant->value }}"></span>
+                @endif
+                {{ $customerOrder->first()->product_variant()->first()->variant->name }}
+              </div>
+            </div>
+
+            <div class="c-profile-comments__product-row c-profile-comments__product-row--align-start c-profile-comments__product-row--no-margin">
+              <div class="c-profile-comments__product-variant c-profile-comments__product-variant--seller">
+                {{ $fa_store_name }}
+              </div>
+            </div>
+            @endforeach
+          @endif
+
+        </div>
+      </div>
+      @endforeach
+      <section class="c-pager"></section>
+    @else
+      <div class="c-profile-list__empty-container">
+        <img src="https://www.digikala.com/static/files/d4fa2ec1.svg" alt="هیچ نظری ثبت نشده است.">
+        <p>
+          هیچ نظری ثبت نشده است.
+        </p>
+      </div>
+    @endif
+    </div>
+  </div>
+</section>
+@endsection
 
 @section('page-content')
 @endsection

@@ -588,13 +588,13 @@
       <div class="uk-container uk-container-large">
         <div class="uk-flex uk-flex-between">
           <div>
-            کليه حقوق اين
+            قدرت گرفته از فروشگاه ساز قدرتمند
             <span style="color: rgba(243, 187, 97, 1)">
-            سايت به شرکت نوآوران فن آوازه (فروشگاه آنلاین {{ $fa_store_name }})
+            دیجی نوا
             </span>
-            تعلق دارد.
+
           </div>
-          <div>Copyright © 2006 - 2020 Digikala.com</div>
+          <div>Copyright © 2021 - Diginova-script.ir</div>
         </div>
       </div>
     </div>

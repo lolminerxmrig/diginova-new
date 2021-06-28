@@ -652,6 +652,19 @@ $customer = auth()->guard('customer')->user();
   <link rel="stylesheet" href="{{ asset('assets/css/min-width1366px.css') }} " media="screen and (min-width: 1366px)">
   <link rel="stylesheet" href="{{ asset('assets/css/min-width1680px.css') }} " media="screen and (min-width: 1680px)">
 
+  <script>
+    var supernova_mode = "production";
+    var supernova_tracker_url = "https:\/\/etrackerd.digikala.com\/tracker\/events\/";
+    var activeMenu = "personalInfo";
+    var faqPageTitle = "profile_section";
+    var skipWalletRequest = true;
+    var userId = 9735394;
+    var adroRCActivation = true;
+    var loginRegisterUrlWithBack = "\/users\/login-register\/?_back=https:\/\/www.digikala.com\/profile\/personal-info\/";
+    var isNewCustomer = false;
+    var digiclubLuckyDrawEndTime = "2021-03-15 15:00:54";
+    var activateUrl = "\/digiclub\/activate\/";
+  </script>
 
   <script src="{{ asset('assets/js/sentry.js') }} "></script>
   <script src="{{ asset('assets/js/map.js') }} "></script>
@@ -674,11 +687,11 @@ $customer = auth()->guard('customer')->user();
     }
   </script>
 
-  {{--  <script src="https://www.digikala.com/static/merged/7716bc34.js"></script>--}}
-  {{--  <script src="https://www.digikala.com/static/merged/ce580d67.js"></script>--}}
-  {{--  <script src="{{ asset('assets/js/address.js') }} "></script>--}}
+{{--  <script src="https://www.digikala.com/static/merged/7716bc34.js"></script>--}}
+{{--  <script src="https://www.digikala.com/static/merged/ce580d67.js"></script>--}}
+{{--  <script src="{{ asset('assets/js/address.js') }} "></script>--}}
   @yield('head')
-  {{--  <script src="{{ asset('assets/js/adroRetargeting.js') }} "></script>--}}
+{{--  <script src="{{ asset('assets/js/adroRetargeting.js') }} "></script>--}}
 
   <link rel="stylesheet" href="https://www.parsimap.com/js/v3.1.0/parsimap.css">
   <script src="https://www.parsimap.com/js/v3.1.0/parsimap.js?key=public"></script>
@@ -755,11 +768,11 @@ $customer = auth()->guard('customer')->user();
 <header class="c-header js-header" style="transform: translate(0px, 0px);">
   <aside class="c-adplacement c-adplacement__placeholder c-adplacement__container-row c-adplacement__container-row--top">
     <a href="https://www.digikala.com/users/referral/?&amp;promo_name=%D8%AF%D8%B9%D9%88%D8%AA+%D9%BE%D8%B1+%D8%AC%D8%A7%DB%8C%D8%B2%D9%87&amp;promo_position=all_mega_menu_top&amp;promo_creative=64883&amp;bCode=64883"
-       class="c-adplacement__item" target="_blank"
-       style="background-image: url(https://dkstatics-public.digikala.com/digikala-adservice-banners/2ca1efb6916bb41adcd72ff00919b82b9d64aa10_1615011629.gif)"
-       data-id="64883" title="دعوت پر جایزه" data-gtm-vis-recent-on-screen-9070001_346="3454"
-       data-gtm-vis-first-on-screen-9070001_346="3454" data-gtm-vis-total-visible-time-9070001_346="100"
-       data-gtm-vis-has-fired-9070001_346="1"></a></aside>
+      class="c-adplacement__item" target="_blank"
+      style="background-image: url(https://dkstatics-public.digikala.com/digikala-adservice-banners/2ca1efb6916bb41adcd72ff00919b82b9d64aa10_1615011629.gif)"
+      data-id="64883" title="دعوت پر جایزه" data-gtm-vis-recent-on-screen-9070001_346="3454"
+      data-gtm-vis-first-on-screen-9070001_346="3454" data-gtm-vis-total-visible-time-9070001_346="100"
+      data-gtm-vis-has-fired-9070001_346="1"></a></aside>
   <div class="container">
     <div class="c-header__row js-header-sticky">
       <div class="c-header__right-side">
@@ -7854,8 +7867,8 @@ $customer = auth()->guard('customer')->user();
         <div class="o-page__row">
           <section class="o-page__aside">
             <div class="c-profile-aside">
-              {{--              <a class="c-profile-box__dc-banner" href="/users/referral/">--}}
-              {{--                <img src="https://www.digikala.com/static/files/a6cda4ab.jpg"></a>--}}
+{{--              <a class="c-profile-box__dc-banner" href="/users/referral/">--}}
+{{--                <img src="https://www.digikala.com/static/files/a6cda4ab.jpg"></a>--}}
               <div class="c-profile-box">
                 <div class="c-profile-box__section" style="padding-bottom: 10px;">
                   <div class="c-profile-box__header">
@@ -7866,27 +7879,27 @@ $customer = auth()->guard('customer')->user();
                       <div class="c-profile-box__phone">{{ $mobile }}</div>
                     </div>
                   </div>
-                  {{--                  <a class="c-profile-box__row c-profile-box__row--has-next u-hidden js-wallet-container-active" href="/profile/wallet/cash-in/">--}}
-                  {{--                    <div class="c-profile-box__title">کیف پول</div>--}}
-                  {{--                    <div>--}}
-                  {{--                      <div class="c-profile-box__amount c-profile-box__amount--toman js-wallet-amount"></div>--}}
-                  {{--                      <p class="o-link o-link--sm o-link--has-arrow">افزایش موجودی</p></div>--}}
-                  {{--                  </a>--}}
-                  {{--                  <a class="c-profile-box__row js-wallet-container-not-active" href="https://web.mydigipay.com/web-pay/activation/d7337c497a424c7db25c1e34d40d0688">--}}
-                  {{--                    <p class="c-profile-box__title">فعال سازی کیف پول</p>--}}
-                  {{--                  </a>--}}
-                  {{--                  <a class="c-profile-box__row" href="/digiclub/">--}}
-                  {{--                    <div class="c-profile-box__title">--}}
-                  {{--                      دیجی‌کلاب--}}
-                  {{--                    </div>--}}
-                  {{--                    <span class="c-profile-box__amount ">--}}
-                  {{--                                                    ۰--}}
-                  {{--                                                    <span class="c-profile-box__point">امتیاز</span>--}}
-                  {{--                    </span>--}}
-                  {{--                    <div class="c-message-hint c-message-hint--right c-message-hint--digiclub js-digiclub-animation">--}}
-                  {{--                      با هر خرید، ثبت نظر و دعوت از دوستان امتیاز دیجی‌کلاب بگیرید.--}}
-                  {{--                    </div>--}}
-                  {{--                  </a>--}}
+{{--                  <a class="c-profile-box__row c-profile-box__row--has-next u-hidden js-wallet-container-active" href="/profile/wallet/cash-in/">--}}
+{{--                    <div class="c-profile-box__title">کیف پول</div>--}}
+{{--                    <div>--}}
+{{--                      <div class="c-profile-box__amount c-profile-box__amount--toman js-wallet-amount"></div>--}}
+{{--                      <p class="o-link o-link--sm o-link--has-arrow">افزایش موجودی</p></div>--}}
+{{--                  </a>--}}
+{{--                  <a class="c-profile-box__row js-wallet-container-not-active" href="https://web.mydigipay.com/web-pay/activation/d7337c497a424c7db25c1e34d40d0688">--}}
+{{--                    <p class="c-profile-box__title">فعال سازی کیف پول</p>--}}
+{{--                  </a>--}}
+{{--                  <a class="c-profile-box__row" href="/digiclub/">--}}
+{{--                    <div class="c-profile-box__title">--}}
+{{--                      دیجی‌کلاب--}}
+{{--                    </div>--}}
+{{--                    <span class="c-profile-box__amount ">--}}
+{{--                                                    ۰--}}
+{{--                                                    <span class="c-profile-box__point">امتیاز</span>--}}
+{{--                    </span>--}}
+{{--                    <div class="c-message-hint c-message-hint--right c-message-hint--digiclub js-digiclub-animation">--}}
+{{--                      با هر خرید، ثبت نظر و دعوت از دوستان امتیاز دیجی‌کلاب بگیرید.--}}
+{{--                    </div>--}}
+{{--                  </a>--}}
                 </div>
                 <div class="c-profile-box__section">
                   <ul class="c-profile-menu">

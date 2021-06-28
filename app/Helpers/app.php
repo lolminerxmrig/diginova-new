@@ -228,6 +228,15 @@ function product_price($product, $type = 'model')
 
 }
 
+//test
+function variantPromotionPrice($product_variant)
+{
+  if ($product_variant->promotions()->exists() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
+    return $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+  }
+  return null;
+}
+
 function toman($price) {
   if (is_numeric($price)) {
     return $price/10;
@@ -251,3 +260,25 @@ function defualtCartNewPrice($cart){
   }
 }
 
+function substrwords($text, $maxchar, $end='...') {
+  if (strlen($text) > $maxchar || $text == '') {
+    $words = preg_split('/\s/', $text);
+    $output = '';
+    $i      = 0;
+    while (1) {
+      $length = strlen($output)+strlen($words[$i]);
+      if ($length > $maxchar) {
+        break;
+      }
+      else {
+        $output .= " " . $words[$i];
+        ++$i;
+      }
+    }
+    $output .= $end;
+  }
+  else {
+    $output = $text;
+  }
+  return $output;
+}

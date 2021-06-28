@@ -37,7 +37,6 @@
           } else {
             $promotion_timer = null;
           }
-
         }
         if ($promotion_price == null) {
           $promotion_price = $item->sale_price;

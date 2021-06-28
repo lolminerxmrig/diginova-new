@@ -60,10 +60,11 @@ class CustomerProfileController extends Controller
   /**
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
    */
-  public function orders()
-    {
-        return view('customerpanel::profile.favorites');
-    }
+//  public function orders()
+//  {
+//    $customer = Auth::guard('customer')->user();
+//    return view('customerpanel::profile.favorites', compact('customer'));
+//  }
 
   /**
    * @param Request $request
@@ -452,6 +453,7 @@ class CustomerProfileController extends Controller
   public function comments()
     {
       $customer = Auth::guard('customer')->user();
+
       return view('customerpanel::profile.comments', compact('customer'));
     }
 
@@ -459,10 +461,10 @@ class CustomerProfileController extends Controller
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
    */
   public function favorites()
-    {
-      $customer = Auth::guard('customer')->user();
-      return view('customerpanel::profile.favorites', compact('customer'));
-    }
+  {
+    $customer = Auth::guard('customer')->user();
+    return view('customerpanel::profile.favorites', compact('customer'));
+  }
 
   /**
    * customer orders page
@@ -475,7 +477,6 @@ class CustomerProfileController extends Controller
 
     $customer = Auth::guard('customer')->user();
 
-    //
     if ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->exists()) {
       foreach ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get() as $order) {
         // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت

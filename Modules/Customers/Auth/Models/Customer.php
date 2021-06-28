@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Customers\Front\Models\Cart;
+use Modules\Customers\Front\Models\CustomerFavorite;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Customer\Models\CustomerAddress;
+use Modules\Staff\Order\Models\ConsignmentHasProductVariants;
 use Modules\Staff\Order\Models\Order;
 
 
@@ -69,5 +71,15 @@ class Customer extends Authenticatable
     public function delivery_address()
     {
       return $this->morphTo('address', 'address_type', 'address_id');
+    }
+
+    public function favorites()
+    {
+      return $this->hasMany(CustomerFavorite::class);
+    }
+
+    public function order_variants()
+    {
+      return $this->hasMany(ConsignmentHasProductVariants::class, 'customer_id');
     }
 }
