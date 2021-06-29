@@ -442,10 +442,11 @@ class CustomerProfileController extends Controller
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
    */
   public function addresses()
-    {
-      $customer = Auth::guard('customer')->user();
-      return view('customerpanel::profile.addresses', compact('customer'));
-    }
+  {
+    $customer = Auth::guard('customer')->user();
+    $states = State::all();
+    return view('customerpanel::profile.addresses', compact('customer', 'states'));
+  }
 
   /**
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

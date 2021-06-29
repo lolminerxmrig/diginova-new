@@ -1845,4 +1845,52 @@ class FrontController extends Controller
     }
   }
 
+  /**
+   * @param Request $request
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function saveAddressFromPanel(Request $request)
+  {
+    $customer = Auth::guard('customer')->user();
+    $this->saveAddressLogic($request);
+    return response()->json([
+      'status' => true,
+      'data' => [
+        'addresses' => View::make('customerpanel::profile.ajax.panelAddressSection', compact('customer'))->render(),
+      ],
+    ], 200);
+  }
+
+  public function removeCustomerAddressFromPanel(int $id)
+  {
+
+    $customer = Auth::guard('customer')->user();
+
+    if (CustomerAddress::where('customer_id', $customer->id)->where('id', $id)->exists()) {
+      CustomerAddress::where('customer_id', $customer->id)->where('id', $id)->first()->delete();
+    }
+
+    $store_addresses = StoreAddress::all();
+
+    if ($customer->where('address_type', 'CustomerAddress')->exists()) {
+      $delivery_type = 'customer';
+    } else {
+      $delivery_type = 'store';
+    }
+
+    if (!$customer->delivery_address()->exists() && $customer->addresses()->exists()) {
+      $defualt_address_id = $customer->addresses()->latest()->first()->id;
+      $customer->update([
+        'address_type' => 'CustomerAddress',
+        'address_id' => $defualt_address_id,
+      ]);
+    }
+
+    return response()->json([
+      "status" => true,
+      "data" => null,
+    ]);
+
+  }
+
 }

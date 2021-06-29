@@ -12015,6 +12015,7 @@ var Sentry = function (n) {
   });
 
 
+
   /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/libs/nouislider.min.js]*/
   /*! nouislider - 10.0.0 - 2017-05-28 14:52:49 */
 
@@ -17644,6 +17645,7 @@ var Sentry = function (n) {
         UIkit.modal($modal).show();
       }
     };
+
   };
 
   window.UserClass.prototype.isLogged = function () {

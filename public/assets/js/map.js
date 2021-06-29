@@ -216,7 +216,7 @@ var MapActions = {
 
                 if (lat > 0 && lng > 0) {
                     Services.ajaxPOSTRequestJSON(
-                        '/addresses/search-address-reverse/',
+                        '/addresses/search-address-reverse',
                         {'latitude': lat, 'longitude': lng},
                         function (data) {
                             upperThis.selectedCityId = data.city_id;
@@ -483,7 +483,7 @@ var MapActions = {
         function updateAddressOnChange(e) {
             $(document).trigger('changeReverseAddressInProgress');
             Services.ajaxPOSTRequestJSON(
-                '/addresses/search-address-reverse/',
+                '/addresses/search-address-reverse',
                 {'latitude': map.getCenter().lat, 'longitude': map.getCenter().lng},
                 function (data) {
                     $(document).trigger('changeReverseAddress', data);
@@ -552,7 +552,7 @@ var IndexAction = {
         function updateSearch(pageNumber, successCallback) {
             searchResults.html('<div class="c-loading__container"><div class="c-loading"></div></div>');
             Services.ajaxGETRequestHTML(
-                ('/ajax/profile/orders/search/?query=' + searchQuery + '&page=' + pageNumber),
+                ('/profile/ajax/orders/search/?query=' + searchQuery + '&page=' + pageNumber),
                 {},
                 function (res) {
                     searchResults.html(res);
@@ -658,7 +658,7 @@ var IndexAction = {
 
         $('.js-share-invite').on('click', function () {
             Services.ajaxGETRequestJSON(
-                '/ajax/profile/activate-dc-user/',
+                '/profile/ajax/activate-dc-user/',
                 {},
                 function (response) {
 
@@ -673,7 +673,7 @@ var IndexAction = {
             var textComponent = $(this).children('.js-url-invite');
             if ($(this).hasClass('not-active')) {
                 Services.ajaxGETRequestJSON(
-                    '/ajax/profile/activate-dc-user/',
+                    '/profile/ajax/activate-dc-user/',
                     {},
                     function (response) {
 
@@ -830,7 +830,7 @@ var IndexAction = {
             var $orderItemId = $('.js-giftcard-order-item-id').val();
 
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/send-gift-card-email/',
+                '/profile/ajax/send-gift-card-email/',
                 {
                     'email': $email,
                     'text': $text,
@@ -1065,7 +1065,7 @@ var OrderDetailsAction = {
             e.preventDefault();
 
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/request-seller-invoice/' + $(this).data('order') + '/' + $('.js-invoice-seller-select').val() + '/',
+                '/profile/ajax/request-seller-invoice/' + $(this).data('order') + '/' + $('.js-invoice-seller-select').val() + '/',
                 {},
                 function (response) {
                     $('.js-invoice-request-btn').addClass('is-inactive');
@@ -1138,7 +1138,7 @@ var OrderDetailsAction = {
             var shipmentId = $shipmentCancellationForm.find('[name*=shipment_id]').val();
 
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/cancel-shipment/',
+                '/profile/ajax/cancel-shipment/',
                 $shipmentCancellationForm.serialize(),
                 function (response) {
                     var shipmentStatus = $shipmentCancellationForm.data('shipment-status'),
@@ -1291,7 +1291,7 @@ var OrderReturnAction = {
             var formData = new FormData(this);
 
             $.ajax({
-                url: '/ajax/profile/order-items-return-form/',
+                url: '/profile/ajax/order-items-return-form/',
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -1675,7 +1675,7 @@ var GiftCardAction = {
             e.preventDefault();
             var $this = $(this);
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/send-gift-card-email/',
+                '/profile/ajax/send-gift-card-email/',
                 {
                     emailOrPhone: form.find('.js-phone-email-input').val(),
                     eGiftCardId: $this.data('e-gift-card-id')
@@ -1715,7 +1715,7 @@ var GiftCardAction = {
             addCardInput.closest('.o-form__field-container').removeClass('has-error');
             addCardInput.siblings('.o-form__error').remove();
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/giftcard/add/',
+                '/profile/ajax/giftcard/add/',
                 {
                     card_serial: addCardInput.val()
                 },
@@ -1738,7 +1738,7 @@ var GiftCardAction = {
         $('.js-gift-card-history').on('click', function () {
             var id = $(this).data('id');
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/giftcard/gift-card-detail/' + id + '/',
+                '/profile/ajax/giftcard/gift-card-detail/' + id + '/',
                 {},
                 function (response) {
                     historyContainer.html(response.data);
@@ -1775,7 +1775,7 @@ var GiftCardAction = {
         $('.js-activate-gift-card').on('click', function () {
 
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/activate-e-gift-card/',
+                '/profile/ajax/activate-e-gift-card/',
                 {
                     'eGiftCardId': eGiftCardId,
                 },
@@ -2122,7 +2122,7 @@ var AddressAction = {
             var addAddressModel = $('[data-remodal-id=add-address]').remodal();
 
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/addresses/add/',
+                '/profile/ajax/addresses/add',
                 $addAddressForm.serialize(),
                 function (response) {
                     $('#address-section').html(response.addresses);
@@ -2310,7 +2310,7 @@ var AddressAction = {
             var editAddressModel = $('[data-remodal-id=edit-address]').remodal();
 
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/addresses/edit/' + thiz.recipient.id + '/',
+                '/profile/ajax/addresses/edit/' + thiz.recipient.id + '/',
                 $editAddressForm.serialize(),
                 function (response) {
                     $('#address-section').html(response.addresses);
@@ -2352,9 +2352,9 @@ var AddressAction = {
             }
 
             if ($addressForm.data('mode') === 'add') {
-                url = '/ajax/profile/addresses/add/';
+                url = '/profile/ajax/addresses/add';
             } else if ($addressForm.data('mode') === 'edit') {
-                url = '/ajax/profile/addresses/edit/' + addressActions.recipient.id + '/';
+                url = '/profile/ajax/addresses/edit/' + addressActions.recipient.id + '/';
             } else {
                 return;
             }
@@ -2408,7 +2408,7 @@ var AddressAction = {
                 'آیا مطمئنید که این آدرس حذف شود؟',
                 function () {
                     Services.ajaxPOSTRequestJSON(
-                        '/ajax/addresses/remove/' + $this.data('id') + '/',
+                        '/ajax/addresses/remove/' + $this.data('id'),
                         {token: csrf},
                         function (response) {
                             $this.closest('.js-user-address-container').remove();
@@ -2447,7 +2447,7 @@ var NotificationsAction = {
                     function () {},
                     function () {
                         Services.ajaxPOSTRequestJSON(
-                            '/ajax/profile/notification/remove/all/',
+                            '/profile/ajax/notification/remove/all/',
                             {},
                             function (response) {
                                 window.location.reload();
@@ -2475,7 +2475,7 @@ var NotificationsAction = {
                     'پیام حذف شود؟',
                     function () {
                         Services.ajaxPOSTRequestJSON(
-                            '/ajax/profile/notification/remove/' + $this.data('notification-id') + '/',
+                            '/profile/ajax/notification/remove/' + $this.data('notification-id') + '/',
                             null,
                             function (response) {
                                 $this.closest('.js-notification-container').remove();
@@ -3178,7 +3178,7 @@ var personalInfo = {
                 );
             } else {
                 Services.ajaxPOSTRequestJSON(
-                    '/ajax/profile/bank-card-number/',
+                    '/profile/ajax/bank-card-number/',
                     {
                         'card_number': bankCardNumber
                     },
@@ -3222,7 +3222,7 @@ var personalInfo = {
                 );
             } else {
                 Services.ajaxPOSTRequestJSON(
-                    '/ajax/profile/bank-card-number/verify/',
+                    '/profile/ajax/bank-card-number/verify/',
                     null,
                     function (response) {
                         $('.js-card-info').removeClass('u-hidden');
@@ -3267,7 +3267,7 @@ var personalInfo = {
 
         $ibanButton.click(function() {
             Services.ajaxPOSTRequestJSON(
-                '/ajax/profile/match-card-to-iban/',
+                '/profile/ajax/match-card-to-iban/',
                 {
                     'card_number': submitedCardNumber,
                     'iban': Services.convertToEnDigit($ibanInput.val()),
@@ -3854,7 +3854,7 @@ var AdditionalInfoAction = {
         var $bankCardNumber = $('.js-bank-card-num');
         var cardNumber = Services.convertToEnDigit($bankCardNumber.val().replace(/-/g, ''));
         Services.ajaxPOSTRequestJSON(
-            '/ajax/profile/bank-card-number/',
+            '/profile/ajax/bank-card-number/',
             {
                 'card_number': cardNumber
             },
@@ -3867,7 +3867,7 @@ var AdditionalInfoAction = {
                 cardInfoModal.open();
                 $('.js-confirm-card').unbind('click').on('click', function () {
                     Services.ajaxPOSTRequestJSON(
-                        '/ajax/profile/bank-card-number/verify/',
+                        '/profile/ajax/bank-card-number/verify/',
                         null,
                         function (response) {
                             $('.js-card-info').removeClass('u-hidden');

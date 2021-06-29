@@ -200,10 +200,11 @@ return [
         /*
          * Packages Service Providers...
          */
-//        Barryvdh\Debugbar\ServiceProvider::class,
 //        Maatwebsite\Excel\ExcelServiceProvider::class,
         GhaniniaIR\Shipping\ShippingServiceProvider::class,
         Shetabit\Payment\Provider\PaymentServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
 
 
 
@@ -273,6 +274,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Payment' => Shetabit\Payment\Facade\Payment::class,
         'Shipping' =>GhaniniaIR\Shipping\Shipping::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

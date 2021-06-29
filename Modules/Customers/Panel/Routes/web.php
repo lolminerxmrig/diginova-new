@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Customers\Panel\Http\Controllers\CustomerProfileController;
+use Modules\Customers\Front\Http\Controllers\FrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,21 @@ Route::prefix('profile')->middleware('web', 'customer')->name('customer.panel.')
 
 });
 
+
+Route::prefix('profile/ajax')->middleware('web', 'customer')->name('customer.panel.')->group(function(){
+
+  Route::get('state/cities/{id}', [FrontController::class, 'cityLoader'])
+    ->name('cityLoader');
+
+  Route::get('city/districts/{id}', [FrontController::class, 'districtLoader'])
+    ->name('districtLoader');
+
+  Route::post('addresses/add', [FrontController::class, 'saveAddressFromPanel'])->name('saveAddressFromPanel');
+
+
+});
+
+Route::post('ajax/addresses/remove/{id}', [FrontController::class, 'removeCustomerAddressFromPanel'])->middleware('web', 'customer')->name('removeCustomerAddressFromPanel');
 
 Route::get('payment/checkout/order{order_code}', [CustomerProfileController::class, 'orderCheckout'])
   ->name('orderCheckout');
