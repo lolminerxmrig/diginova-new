@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Customers\Front\Models\Cart;
 use Modules\Customers\Front\Models\CustomerFavorite;
+use Modules\Customers\Front\Models\CustomerHistory;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Customer\Models\CustomerAddress;
@@ -81,5 +82,10 @@ class Customer extends Authenticatable
     public function order_variants()
     {
       return $this->hasMany(ConsignmentHasProductVariants::class, 'customer_id');
+    }
+
+    public function histories()
+    {
+      return $this->hasMany(CustomerHistory::class);
     }
 }

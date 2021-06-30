@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerHistoryTable extends Migration
+class CreateCustomerHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCustomerHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_history', function (Blueprint $table) {
+        Schema::create('customer_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id');
             $table->foreignId('product_id');

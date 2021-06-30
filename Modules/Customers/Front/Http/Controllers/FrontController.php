@@ -1893,6 +1893,18 @@ class FrontController extends Controller
 
   }
 
+  public function removeFromHistory($product_code)
+  {
+    $customer = Auth::guard('customer')->user();
+    if (Product::where('product_code', $product_code)->exists()) {
+      $product_id = Product::where('product_code', $product_code)->first()->id;
+      $customer->histories()->where('product_id', $product_id)->first()->delete();
+    }
 
+    return response()->json([
+      "status" => true,
+      "data" => null,
+    ]);
+  }
 
 }

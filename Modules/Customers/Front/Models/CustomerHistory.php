@@ -13,17 +13,17 @@ use Modules\Staff\Customer\Models\CustomerAddress;
 use Modules\Staff\Product\Models\Product;
 
 
-class CustomerFavorite extends Authenticatable
+class CustomerHistory extends Authenticatable
 {
 
-  use HasFactory;
+    use HasFactory;
 
-  protected $fillable = [
-    'customer_id',
-    'product_id',
-  ];
+    protected $fillable = [
+      'customer_id',
+      'product_id',
+    ];
 
-  public function customer()
+    public function customer()
     {
       return $this->belongsTo(Customer::class);
     }

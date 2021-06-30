@@ -61,6 +61,8 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
 
   Route::post('submit-order-voucher-check', [FrontController::class, 'submitOrderVoucherCheck'])->name('submitOrder');
 
+  Route::get('browsing-history/product/remove/{product_code}', [FrontController::class, 'removeFromHistory'])->name('removeFromHistory');
+
 });
 
 Route::get('cart/remove/{variant_code}', [FrontController::class, 'removeFromCart'])->name('removeFromCart');
