@@ -435,7 +435,7 @@ class CustomerProfileController extends Controller
   public function giftcards()
     {
       $customer = Auth::guard('customer')->user();
-      return view('customerpanel::profile.notification', compact('customer'));
+      return view('customerpanel::profile.giftcards', compact('customer'));
     }
 
   /**
