@@ -54,15 +54,19 @@
                   </div>
                   <div class="c-profile-list__item-cart-price">
                     <div class="c-new-price">
+                      @if ($item->product->variants()->exists() && variant_defualt($item->product)->sale_price > product_price($item->product))
                       <div class="c-new-price__old-value">
-                        <del>{{ persianNum(number_format(toman(variant_defualt($item->product)->sale_price))) }}</del>
+                        <del>{{ ($item->product->variants()->exists())? persianNum(number_format(toman(variant_defualt($item->product)->sale_price))) : '' }}</del>
                         <span class="c-new-price__discount">
-                          {{ persianNum(round(100 - (product_price($item->product)/(variant_defualt($item->product)->sale_price/100)))) }}٪
+                          {{ ($item->product->variants()->exists())? persianNum(round(100 - (product_price($item->product)/(variant_defualt($item->product)->sale_price/100)))) : '' }}٪
                         </span>
                       </div>
+                      @endif
                       <div class="c-new-price__value">
-                        {{ persianNum(number_format(toman(product_price($item->product)))) }}
-                        <span class="c-new-price__currency">تومان</span>
+                        {{ ($item->product->variants()->exists())? persianNum(number_format(toman(product_price($item->product)))) : '' }}
+                        @if ($item->product->variants()->exists())
+                          <span class="c-new-price__currency">تومان</span>
+                        @endif
                       </div>
                     </div>
                   </div>
