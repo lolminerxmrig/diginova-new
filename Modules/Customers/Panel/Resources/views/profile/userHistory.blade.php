@@ -54,9 +54,6 @@
                 <div class="c-new-price__old-value">
                   @if (!is_null($variant_defualt) && $variant_defualt->promotions()->exists() && $variant_defualt->promotions()->min('promotion_price') < $variant_defualt->sale_price)
                   <del>{{ persianNum(number_format(toman($variant_defualt->sale_price))) }}</del>
-{{--                  {{ dd($variant_defualt->promotions()->min('promotion_price')) }}--}}
-{{--                  {{ dd($variant_defualt->promotions()->where('promotion_price', )) }}--}}
-{{--                  <span class="c-new-price__discount">{{ $variant_defualt->sale_price / 100 }}٪</span>--}}
                   <span class="c-new-price__discount">{{ persianNum(round(100 - (product_price($history->product)/(variant_defualt($history->product)->sale_price/100)))) }}٪</span>
                   @endif
                 </div>

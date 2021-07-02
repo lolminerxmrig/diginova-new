@@ -866,19 +866,14 @@ $customer = auth()->guard('customer')->user();
                         </span>
                   </div>
                 </div>
-                <a href="/profile/" data-snt-event="dkHeaderClick"
-                   data-snt-params="{&quot;item&quot;:&quot;account&quot;,&quot;item_option&quot;:&quot;profile&quot;}"
-                   data-event="profile_click" data-event-category="header_section"
-                   data-event-label="logged_in: True - digiclub_score: 87000"
-                   class="c-header__profile-dropdown-user-profile-full-link"></a>
+                <a href="/profile/" class="c-header__profile-dropdown-user-profile-full-link"></a>
               </div>
 
               <div class="c-header__profile-dropdown-actions">
                 <div class="c-header__profile-dropdown-action-container">
-                  <a href="/profile/my-orders/" data-snt-event="dkHeaderClick"
-                     data-snt-params="{&quot;item&quot;:&quot;account&quot;,&quot;item_option&quot;:&quot;orders&quot;}"
-                     class="c-header__profile-dropdown-action c-header__profile-dropdown-action--orders ">سفارش‌های
-                    من</a>
+                  <a href="{{ route('customer.panel.myOrders') }}" class="c-header__profile-dropdown-action c-header__profile-dropdown-action--orders ">
+                    سفارش‌های من
+                  </a>
                 </div>
                 <div class="c-header__profile-dropdown-action-container u-hidden">
                   <a href="/profile/favorites/?convert=true"
@@ -893,10 +888,7 @@ $customer = auth()->guard('customer')->user();
                   </a>
                 </div>
                 <div class="c-header__profile-dropdown-action-container">
-                  <a href="/users/logout/" data-snt-event="dkHeaderClick"
-                     data-snt-params="{&quot;item&quot;:&quot;account&quot;,&quot;item_option&quot;:&quot;sign-out&quot;}"
-                     class="c-header__profile-dropdown-action c-header__profile-dropdown-action--logout js-logout-button">خروج
-                    از حساب کاربری</a>
+                  <a href="{{ route('customer.logout') }}" class="c-header__profile-dropdown-action c-header__profile-dropdown-action--logout js-logout-button">خروج از حساب کاربری</a>
                 </div>
               </div>
             </div>
@@ -7823,45 +7815,49 @@ $customer = auth()->guard('customer')->user();
                 </div>
                 <div class="c-profile-box__section">
                   <ul class="c-profile-menu">
-                    <li>
-                      <a href="/profile/my-orders/"
-                         class="c-profile-menu__item c-profile-menu__item--orders  ">سفارش‌های
-                        من</a>
+                      <a href="{{ route('customer.panel.myOrders') }}" class="c-profile-menu__item c-profile-menu__item--orders {{ (request()->routeIs('customer.panel.myOrders'))? 'is-active' : '' }}">
+                        سفارش‌های من
+                      </a>
                     </li>
                     <li>
-                      <a href="/profile/favorites/"
-                         class="c-profile-menu__item c-profile-menu__item--wishlist ">
-                        لیست‌ها </a></li>
-                    <li>
-                      <a href="/profile/comments/"
-                         class="c-profile-menu__item c-profile-menu__item--comments ">نظرات</a>
+                      <a href="{{ route('customer.panel.favorites') }}" class="c-profile-menu__item c-profile-menu__item--wishlist {{ (request()->routeIs('customer.panel.favorites'))? 'is-active' : '' }}">
+                        لیست‌ها
+                      </a>
                     </li>
                     <li>
-                      <a href="/profile/addresses/"
-                         class="c-profile-menu__item c-profile-menu__item--address ">نشانی‌ها</a>
+                      <a href="{{ route('customer.panel.comments') }}" class="c-profile-menu__item c-profile-menu__item--comments  {{ (request()->routeIs('customer.panel.comments'))? 'is-active' : '' }}">
+                        نظرات
+                      </a>
                     </li>
                     <li>
-                      <a href="/profile/giftcards/"
-                         class="c-profile-menu__item c-profile-menu__item--gifts ">کارت‌های
-                        هدیه</a></li>
-                    <li>
-                      <a href="/profile/notification/"
-                         class="c-profile-menu__item c-profile-menu__item--message ">پیغام‌ها</a>
+                      <a href="{{ route('customer.panel.addresses') }}" class="c-profile-menu__item c-profile-menu__item--address  {{ (request()->routeIs('customer.panel.addresses'))? 'is-active' : '' }}">
+                        نشانی‌ها
+                      </a>
                     </li>
                     <li>
-                      <a href="/profile/user-history/"
-                         class="c-profile-menu__item c-profile-menu__item--user-history ">
+                      <a href="{{ route('customer.panel.giftcards') }}" class="c-profile-menu__item c-profile-menu__item--gifts  {{ (request()->routeIs('customer.panel.giftcards'))? 'is-active' : '' }}">
+                        کارت‌های هدیه
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('customer.panel.notification') }}" class="c-profile-menu__item c-profile-menu__item--message  {{ (request()->routeIs('customer.panel.notification'))? 'is-active' : '' }}">
+                        پیغام‌ها
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{ route('customer.panel.userHistory') }}" class="c-profile-menu__item c-profile-menu__item--user-history  {{ (request()->routeIs('customer.panel.userHistory'))? 'is-active' : '' }}">
                         بازدیدهای اخیر
-                      </a></li>
+                      </a>
+                    </li>
                     <li>
-                      <a href="/profile/personal-info/"
-                         class="c-profile-menu__item c-profile-menu__item--user-info is-active">اطلاعات
-                        حساب</a>
+                      <a href="{{ route('customer.panel.personalInfo') }}" class="c-profile-menu__item c-profile-menu__item--user-info  {{ (request()->routeIs('customer.panel.personalInfo'))? 'is-active' : '' }}">
+                        اطلاعات حساب
+                      </a>
                     </li>
                   </ul>
                 </div>
                 <div class="c-profile-box__section">
-                  <a href="/users/logout/" class="js-logout-button c-profile-menu__item c-profile-menu__item--sign-out">خروج</a>
+                  <a href="{{ route('customer.logout') }}" class="js-logout-button c-profile-menu__item c-profile-menu__item--sign-out">خروج</a>
                 </div>
               </div>
             </div>
@@ -8532,6 +8528,440 @@ $customer = auth()->guard('customer')->user();
   </div>
 </div>
 
+{{--personal info--}}
+<div class="remodal-overlay remodal-is-closed" style="display: none;"></div>
+<div class="remodal-wrapper remodal-is-closed" style="display: none;">
+  <div class="remodal c-modal c-u-minicart__modal u-hidden js-minicart-modal remodal-is-initialized remodal-is-closed"
+       data-remodal-id="universal-mini-cart" role="dialog" aria-labelledby="modalTitle" tabindex="-1"
+       aria-describedby="modalDesc" data-remodal-options="">
+    <div class="c-modal__top-bar  ">
+      <div>
+        <div class="c-u-minicart__quantity">
+          سبد خرید
+          <span>۰ کالا</span>
+        </div>
+        <a href="/cart/" class="o-link o-link--has-arrow o-link--no-border o-link--sm">مشاهده سبد خرید</a>
+      </div>
+      <div class="c-modal__close" data-remodal-action="close"></div>
+    </div>
+    <div class="c-u-minicart">
+    </div>
+    <div class="c-modal__footer">
+      <div class="c-header__cart-info-total">
+        <span class="c-header__cart-info-total-text">مبلغ قابل پرداخت</span>
+        <p class="c-header__cart-info-total-amount">
+          <span class="c-header__cart-info-total-amount-number"> ۰</span>
+          <span> تومان</span>
+        </p>
+      </div>
+
+      <div>
+        <a data-snt-event="dkHeaderClick"
+           data-snt-params="{&quot;item&quot;:&quot;mini-cart&quot;,&quot;item_option&quot;:&quot;confirm-cart&quot;}"
+           href="/shipping/" class="o-btn o-btn--contained-red-md">ثبت سفارش</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="remodal-wrapper remodal-is-closed" style="display: none;">
+  <div class="remodal c-modal c-modal--sm js-personal-info-modal remodal-is-initialized remodal-is-closed"
+       data-remodal-id="personal-info-mobile_phone-modal" role="dialog" aria-labelledby="modalTitle" tabindex="-1"
+       aria-describedby="modalDesc" data-remodal-options="closeOnOutsideClick: false">
+    <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+      <div class="c-modal__title ">شماره موبایل</div>
+      <div class="c-modal__close" data-remodal-action="close"></div>
+    </div>
+    <form class="c-modal__content js-not-empty-parent js-personal-info-form js-phone-modal"
+          id="personal-info-phone-form" novalidate="novalidate"><label class="o-form__field-container">
+        <div class="o-form__field-frame">
+          <input name="additionalinfo[mobile_phone]" type="" placeholder=""
+                 value="{{ $customer->mobile }}"
+                 class="o-form__field js-input-field js-not-empty-input"></div>
+      </label>
+      <div class="c-modal__btn-container">
+        <button class="o-btn o-btn--contained-blue-md disabled js-not-empty-btn disabled">ارسال کد تایید
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="remodal-wrapper remodal-is-closed" style="display: none;">
+  <div
+    class="remodal c-modal c-modal--sm js-personal-info-modal js-phone-verification-modal remodal-is-initialized remodal-is-closed"
+    data-remodal-id="personal-info-phone-verification-modal" role="dialog" aria-labelledby="modalTitle"
+    tabindex="-1" aria-describedby="modalDesc" data-remodal-options="closeOnOutsideClick: false">
+    <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+      <div class="c-modal__title ">تایید شماره موبایل</div>
+      <div class="c-modal__close" data-remodal-action="close"></div>
+    </div>
+    <form class="c-modal__content js-confirm-phone-form">
+      <div class="o-form__row">
+        <div class="c-profile-personal__info">کد تایید برای شماره موبایل <span
+            class="js-changed-phone-number"></span> ارسال گردید.
+        </div>
+      </div>
+      <div class="o-form__row">
+        <div class="o-form__field-container"><label
+            class="c-profile-personal__verify-phone-container o-form__field-frame"><input
+              name="confirm[code]"
+              class="c-profile-personal__verify-phone-input js-verify-phone-input js-persian-digit-input"
+              type="text" maxlength="5">
+            <div class="c-profile-personal__verify-phone-input-hider"></div>
+          </label></div>
+      </div>
+      <div class="c-form__row">
+        <div class="js-phone-code-container">
+          <div class="c-profile-personal__verify-phone-text">ارسال مجدد تا <span class="js-phone-code-counter"
+                                                                                 data-countdownseconds=""></span>
+            ثانیه دیگر
+          </div>
+        </div>
+        <a href="#" class="c-profile-personal__verify-phone-text u-hidden js-send-confirm-code">دریافت مجدد کد
+          تایید</a></div>
+    </form>
+  </div>
+</div>
+<div class="remodal-wrapper remodal-is-closed" style="display: none;">
+  <div class="remodal c-modal c-modal--sm js-personal-info-modal remodal-is-initialized remodal-is-closed"
+       data-remodal-id="personal-info-reset_password-modal" role="dialog" aria-labelledby="modalTitle" tabindex="-1"
+       aria-describedby="modalDesc" data-remodal-options="closeOnOutsideClick: false">
+    <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+      <div class="c-modal__title ">ویرایش رمز عبور</div>
+      <div class="c-modal__close" data-remodal-action="close"></div>
+    </div>
+    <form class="c-modal__content js-not-empty-parent js-change-password-form" id="change-password-form"
+          novalidate="novalidate">
+      <div class="o-form__row">
+        <div class="c-profile-personal__info">رمز عبور باید حداقل ۶ حرف باشد.</div>
+      </div>
+      <input class="u-hidden-visually">
+      <div class="o-form__row"><label class="o-form__field-container">
+          <div class="o-form__field-label">رمز عبور فعلی</div>
+          <div class="o-form__field-frame"><input name="changepassword[password_old]" type="password"
+                                                  placeholder="" value=""
+                                                  class="o-form__field js-input-field js-not-empty-input"></div>
+        </label></div>
+      <div class="o-form__row"><label class="o-form__field-container">
+          <div class="o-form__field-label">رمز عبور جدید</div>
+          <div class="o-form__field-frame">
+            <input name="changepassword[password]" type="password" placeholder=""
+                   value=""
+                   class="o-form__field js-input-field js-not-empty-input txtPassword">
+          </div>
+        </label></div>
+      <div class="o-form__row"><label class="o-form__field-container">
+          <div class="o-form__field-label">تکرار رمز عبور جدید</div>
+          <div class="o-form__field-frame"><input name="changepassword[password2]" type="password" placeholder=""
+                                                  value=""
+                                                  class="o-form__field js-input-field js-not-empty-input"></div>
+        </label></div>
+      <div class="c-modal__btn-container">
+        <button type="submit" class="o-btn o-btn--contained-blue-md js-not-empty-btn disabled">ثبت</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="remodal-wrapper remodal-is-closed" style="display: none;">
+  <div
+    class="remodal c-modal c-modal--xs c-profile-iban js-personal-info-modal remodal-is-initialized remodal-is-closed"
+    data-remodal-id="personal-info-bank_card_number-modal" role="dialog" aria-labelledby="modalTitle" tabindex="-1"
+    aria-describedby="modalDesc" data-remodal-options="closeOnOutsideClick: false">
+    <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+      <div class="c-modal__title ">اطلاعات حساب بانکی برای بازگرداندن وجه</div>
+      <div class="c-modal__close" data-remodal-action="close"></div>
+    </div>
+    <div class="c-modal__content js-destination-state"><p class="c-profile-iban__dsc">
+        لطفا روش بازگرداندن وجوه خود را انتخاب نمایید.
+      </p>
+      <div>
+{{--        <div class="c-profile-iban__dest-row">--}}
+{{--          <label class="c-outline-radio">--}}
+{{--            <input type="radio" class="js-destination-selector-input" id="wallet-destinations" name="refund-destination-selector"--}}
+{{--                   value="wallets">--}}
+{{--            <span--}}
+{{--              class="c-outline-radio__check"></span></label><label class="c-profile-iban__credit-card-title"--}}
+{{--                                                                   for="wallet-destination"><span--}}
+{{--              class="c-profile-iban__dest-title">--}}
+{{--                          واریز به کیف پول {{ $fa_store_name }}--}}
+{{--                      </span>--}}
+{{--            <span class="c-profile-iban__dest-dsc u-hidden js-refund-wallet-disable">--}}
+{{--                          شما می‌توانید با انتخاب کیف پول به عنوان روش بازگشت وجه،--}}
+{{--                          از مزایای انتقال سریع تر وجوه درخواستی بهره‌مند شوید.--}}
+
+
+{{--                                         شما ابتدا باید کیف پول خود را فعال کنید سپس با انتخاب آن به عنوان--}}
+{{--              --}}{{--                            روش بازگشت وجه،از مزایای انتقال سریع تر وجوه درخواستی بهره‌مند شوید.--}}
+{{--                          <br>--}}
+
+{{--              <a class="o-btn o-btn--left-icon o-btn--link-blue-sm js-refund-wallet-activate-link c-profile-iban__edit-iban"--}}
+{{--              --}}{{--                data-after-icon="Icon-Navigation-Chevron-Left" href="">--}}
+{{--              --}}{{--                                فعال‌سازی و انتخاب--}}
+{{--              --}}{{--                            </a>--}}
+
+{{--          </span>--}}
+{{--            <span class="c-profile-iban__dest-dsc js-refund-wallet-available">--}}
+{{--                          شما می‌توانید با انتخاب کیف پول به عنوان روش بازگشت وجه،--}}
+{{--                          از مزایای انتقال سریع تر وجوه درخواستی بهره‌مند شوید.--}}
+{{--                      </span><span class="c-profile-iban__dest-dsc u-hidden js-refund-wallet-unavailable">--}}
+{{--                          متاسفانه کیف پول بصورت موقت از دسترس خارج می‌باشد. لطفا کمی دیگر تلاش کنید.--}}
+{{--                      </span></label></div>--}}
+{{--        <div class="c-profile-iban__dest-wallet-border">--}}
+{{--          <img--}}
+{{--            src="https://www.digikala.com/static/files/058f648c.svg" alt="کیف پول">--}}
+{{--        </div>--}}
+        <div class="c-profile-iban__dest-row">
+          <label class="c-outline-radio"><input type="radio"
+                                                                                    class="js-destination-selector-input"
+                                                                                    id="iban-destination"
+                                                                                    data-has-iban="0"
+                                                                                    data-iban=""
+                                                                                    name="refund-destination-selector"
+                                                                                    value="iban"><span
+              class="c-outline-radio__check"></span></label>
+          <label class="c-profile-iban__credit-card-title"
+                                                                   for="iban-destination"><span
+              class="c-profile-iban__dest-title">
+                          واریز به حساب بانکی
+                      </span><span class="c-profile-iban__dest-dsc js-iban-dest-row-text u-hidden">
+                          شماره شبا:
+
+                      </span>
+            <button type="button"
+                    class="o-btn o-btn--left-icon js-edit-iban o-btn--link-blue-sm c-profile-iban__edit-iban u-hidden"
+                    data-after-icon="Icon-Navigation-Chevron-Left">
+              ویرایش شماره شبا
+            </button>
+            <span class="c-profile-iban__dest-dsc js-iban-dest-row-dsc ">
+                          در این روش، {{ $fa_store_name }} به شماره شبا حساب بانکی شما
+                          نیاز دارد.
+{{--              در صورتی که شماره شبا خود را نمیدانید شما می‌توانید در مرحله بعد--}}
+              {{--                            با شماره حساب و یا شماره کارت بانکی خود نسبت به محاسبه شبا اقدام نمایید.--}}
+                      </span>
+          </label></div>
+      </div>
+    </div>
+    <div class="c-modal__content js-card-number-state u-hidden"><p class="c-profile-iban__dsc">
+        {{--        برای محاسبه شبا،--}}
+        شماره کارت متصل به حسابی که می‌خواهید واریز وجه به آن انجام شود را وارد کنید
+      </p>
+      <div class="o-form__row js-credit-card-input"><label class="c-profile-personal__card-container"><input
+            class="c-profile-personal__card-input js-card-complete-input" maxlength="4"><span
+            class="c-profile-personal__card-separator">-</span><input
+            class="c-profile-personal__card-input js-card-complete-input" maxlength="4"><span
+            class="c-profile-personal__card-separator">-</span><input
+            class="c-profile-personal__card-input js-card-complete-input" maxlength="4"><span
+            class="c-profile-personal__card-separator">-</span><input
+            class="c-profile-personal__card-input js-card-complete-input" maxlength="4"></label></div>
+      <div class="c-modal__btn-container">
+        {{--        <button type="button" class="o-btn o-btn--contained-red-md disabled js-card-complete-btn">--}}
+        {{--          محاسبه شماره شبا--}}
+        {{--        </button>--}}
+        <button type="button" class="o-btn o-btn--contained-red-md disabled js-card-complete-btn">
+          ثبت کارت بانکی
+        </button>
+      </div>
+    </div>
+    <div class="c-modal__content o-text-right u-hidden js-iban-state"><p class="c-profile-iban__dsc">
+        تبدیل شماره شبای کارت شما با خطا مواجه شد. لطفا شماره شبای خود را به صورت دستی وارد نمایید
+      </p>
+      <div>
+        <div class="c-profile-iban__credit-data-row"><span
+            class="c-profile-iban__credit-card-number js-iban-credit-card-number"></span><span
+            class="c-profile-iban__bank-logo"><img class="js-iban-bank-image" alt="" src=""></span></div>
+        <div class="c-profile-iban__bank-title js-iban-bank-title"></div>
+      </div>
+      <a href="/faq/question/719/" data-after-icon="Icon-Navigation-Chevron-Left" target="_blank"
+         class="o-btn o-btn--link-blue-md o-btn--remove-padding">روش‌های محاسبه شبا</a>
+      <form id="iban-input-form">
+        <div class="c-profile-iban__input-row"><label class="o-form__field-container">
+            <div class="o-form__field-frame"><input name="ibanCodeInput" type="" placeholder="" value=""
+                                                    class="o-form__field js-input-field js-iban-input"></div>
+          </label></div>
+      </form>
+      <div class="o-hint o-hint--small o-hint--text o-hint--neutral">
+        شماره شبا را به همراه IR و بدون فاصله وارد نمایید.
+      </div>
+      <div class="c-modal__btn-container">
+        <button type="button" class="o-btn o-btn--contained-red-md disabled js-check-iban-button">
+          بررسی اطلاعات
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="remodal c-modal c-modal--sm c-modal--not-scroll js-personal-info-modal" data-remodal-id="personal-info-birth-modal"
+     role="dialog" aria-labelledby="modalTitle" tabindex="-1z" aria-describedby="modalDesc" data-remodal-options="closeOnOutsideClick: false">
+  <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+    <div class="c-modal__title ">تاریخ تولد</div>
+    <div class="c-modal__close" data-remodal-action="close"></div>
+  </div>
+  <form class="c-modal__content js-not-empty-parent js-personal-info-form">
+    <div class="o-form__row o-form__row--flex">
+      <div class="o-form__field-container">
+        <div class="o-form__field-label">سال</div>
+        <select class="c-ui-select js-ui-select-search js-dropdown-universal js-not-empty-input" name="additionalinfo[birth_year]" value="1375">
+          <option value="">سال</option>
+          @for($i=1382; $i >= 1310; $i--)
+            <option value="{{ $i }}" {{ (isset($date[0]) && ($date[0] == $i))? 'selected' : ''  }}>{{ persianNum($i) }}</option>
+          @endfor
+        </select>
+      </div>
+      <div class="o-form__field-container">
+        <div class="o-form__field-label">ماه</div>
+        <select class="c-ui-select js-ui-select-search js-dropdown-universal js-not-empty-input"
+                name="additionalinfo[birth_month]">
+          <option value="">ماه</option>
+          @php
+            $persianMonth = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
+          @endphp
+          @for($i=1; $i <= 12; $i++)
+            <option value="{{ $i }}" {{ (isset($date[1]) && ($date[1] == $i))? 'selected' : ''  }}>{{ $persianMonth[$i-1] }}</option>
+          @endfor
+        </select>
+      </div>
+      <div class="o-form__field-container">
+        <div class="o-form__field-label">روز</div>
+        <select class="c-ui-select js-ui-select-search js-dropdown-universal js-not-empty-input"
+                name="additionalinfo[birth_day]" value="6">
+          <option value="">روز</option>
+          @for($i=1; $i <= 31; $i++)
+            <option value="{{ $i }}" {{ (isset($date[2]) && ($date[2] == $i))? 'selected' : ''  }}>{{ persianNum($i) }}</option>
+          @endfor
+        </select>
+      </div>
+    </div>
+    <div class="c-modal__btn-container">
+      <button type="submit" class="o-btn o-btn--contained-blue-md js-not-empty-btn disabled">ثبت تاریخ تولد</button>
+    </div>
+  </form>
+</div>
+<div class="remodal c-modal c-modal--sm js-personal-info-modal"
+     data-remodal-id="personal-info-email-modal"
+     role="dialog"
+     aria-labelledby="modalTitle"
+     tabindex="-1z"
+     aria-describedby="modalDesc"
+     data-remodal-options="closeOnOutsideClick: false"
+>
+  <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+    <div class="c-modal__title ">ایمیل</div>
+    <div class="c-modal__close" data-remodal-action="close"></div>
+  </div>
+
+  <form class="c-modal__content js-not-empty-parent js-personal-info-form js-email-modal" id="personal-info-email-form">
+    <label class="o-form__field-container">
+      <div class="o-form__field-frame"><input name="additionalinfo[email]" type="" placeholder=""
+                                              value="mehdi.jalaliii03@gmail.com"
+                                              class="o-form__field js-input-field js-not-empty-input"/></div>
+    </label>
+    <div class="c-modal__btn-container">
+      <button type="submit"
+              class="o-btn o-btn--contained-blue-md js-not-empty-btn disabled js-personal-info-email-submit">تایید
+      </button>
+    </div>
+  </form>'
+
+</div>
+<div class="remodal c-modal c-modal--sm js-verification-email-modal"
+     data-remodal-id="personal-info-email-verification-modal"
+     role="dialog"
+     aria-labelledby="modalTitle"
+     tabindex="-1z"
+     aria-describedby="modalDesc"
+     data-remodal-options="closeOnOutsideClick: false"
+>
+  <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+    <div class="c-modal__title ">ایمیل تایید ارسال شد</div>
+    <div class="c-modal__close" data-remodal-action="close"></div>
+  </div>
+  <div class="c-modal__content">
+    <div class=""><img src="https://www.digikala.com/static/files/ba53f9b1.svg"/></div>
+    <div class="c-modal__desc">لطفا به ایمیل خود مراجعه نموده و بر روی لینک ارسال‌شده کلیک کنید.</div>
+    <div class="c-modal__btn-container">
+      <button type="button" class="o-btn o-btn--outlined-blue-md" data-remodal-action="close">متوجه شدم</button>
+    </div>
+  </div>
+</div>
+<div class="remodal c-modal c-modal--sm js-personal-info-modal"
+     data-remodal-id="personal-info-fullname-modal"
+     role="dialog"
+     aria-labelledby="modalTitle"
+     tabindex="-1z"
+     aria-describedby="modalDesc"
+     data-remodal-options="closeOnOutsideClick: false"
+>
+  <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+    <div class="c-modal__title ">نام و نام خانوادگی</div>
+    <div class="c-modal__close" data-remodal-action="close"></div>
+  </div>
+  <form class="c-modal__content js-not-empty-parent js-personal-info-form" id="personal-info-name-form" method="post">
+    <div class="o-form__row"><label class="o-form__field-container">
+        <div class="o-form__field-label">نام</div>
+        <div class="o-form__field-frame">
+          <input name="additionalinfo[first_name]" type="" placeholder=""
+                 value="{{ $customer->first_name }}" class="o-form__field js-input-field js-not-empty-input"/>
+        </div>
+      </label></div>
+    <div class="o-form__row"><label class="o-form__field-container">
+        <div class="o-form__field-label">نام خانوادگی</div>
+        <div class="o-form__field-frame">
+          <input name="additionalinfo[last_name]" type="" placeholder="" value="{{ $customer->last_name }}"
+                 class="o-form__field js-input-field js-not-empty-input"/>
+        </div>
+      </label></div>
+    <div class="c-modal__btn-container">
+      <button class="o-btn o-btn--contained-blue-md js-not-empty-btn disabled">ثبت اطلاعات</button>
+    </div>
+  </form>
+</div>
+<div class="remodal c-modal c-modal--sm js-personal-info-modal"
+     data-remodal-id="personal-info-national_identity_number-modal"
+     role="dialog"
+     aria-labelledby="modalTitle"
+     tabindex="-1z"
+     aria-describedby="modalDesc"
+     data-remodal-options="closeOnOutsideClick: false"
+>
+  <div class="c-modal__top-bar  c-modal__top-bar--has-line">
+    <div class="c-modal__title ">کد ملی</div>
+    <div class="c-modal__close" data-remodal-action="close"></div>
+  </div>
+  <form class="c-modal__content js-national-code-form" method="post" id="personal-info-national-id-form">
+    <div class="o-form__row"><label class="o-form__field-container">
+        <div class="o-form__field-frame"><input name="additionalinfo[national_identity_number]" type="text"
+                                                placeholder=""
+                                                value="4900508349" class="o-form__field js-input-field "/></div>
+      </label></div>
+    {{--    <div class="o-form__row"><label class="o-form__check-box">--}}
+    {{--        --}}
+    {{--        <input class="o-form__check-box-input js-foreign-checkbox"--}}
+    {{--                                                                     name="additionalinfo[foreigner]" value="1"--}}
+    {{--                                                                     type="checkbox"><span--}}
+    {{--          class="o-form__check-box-sign"></span><span class="js-ui-checkbox-label">--}}
+    {{--            تبعه غیر‌ایرانی فاقد کد ملی هستم.--}}
+    {{--        </span></label></div>--}}
+
+    <div class="u-hidden js-foreigner-content">
+      <div class="c-form__row">
+        <div class="c-profile-personal__info">جهت تایید هویت خود، باید عکس صفحه اول گذرنامه یا گواهی اقامت را ارسال
+          کنید.
+        </div>
+      </div>
+      <div class="o-form__uploader js-uploader-container"><label class="o-btn o-btn--outlined-blue-sm"><input
+            type="file" class="u-hidden js-ui-simple-uploader" accept="image/png, image/jpeg"
+            name="additionalinfo[foreigner_document]" data-url="">
+          ارسال مدرک
+        </label>
+        <div class="o-form__uploader-progress">
+          <div class="o-form__uploader-progress-title js-ui-uploader-title"></div>
+        </div>
+      </div>
+    </div>
+    <div class="c-modal__btn-container">
+      <button type="submit" class="o-btn o-btn--contained-blue-md">ثبت اطلاعات</button>
+    </div>
+  </form>
+</div>
 
 
 </body>

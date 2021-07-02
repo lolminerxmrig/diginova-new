@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Modules\Customers\Front\Http\Controllers\FrontController;
-use Modules\Customers\Panel\Models\Customer;
+//use Modules\Customers\Panel\Models\Customer;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Order\Http\Controllers\StaffOrderController;
 use Modules\Staff\Order\Models\Order;
 use Modules\Staff\Peyment\Models\PeymentRecord;
 use Modules\Staff\Shiping\Models\OrderStatus;
+use Modules\Customers\Auth\Models\Customer;
 
 
 class CustomerProfileController extends Controller
