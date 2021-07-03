@@ -5,7 +5,7 @@
 @extends('layouts.front.master')
 
 @section('head')
-<title>تعیین مجدد وضعیت ارسال و پرداخت | {{ $fa_store_name }}</title>
+<title>خطا | {{ $fa_store_name }}</title>
 <meta name="robots" content="noindex, nofollow">
 <script>
   var supernova_mode = "production";

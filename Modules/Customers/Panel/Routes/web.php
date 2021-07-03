@@ -101,5 +101,5 @@ Route::prefix('profile/ajax')->middleware('web', 'customer')->name('customer.pan
 
 Route::post('ajax/addresses/remove/{id}', [FrontController::class, 'removeCustomerAddressFromPanel'])->middleware('web', 'customer')->name('removeCustomerAddressFromPanel');
 
-Route::get('payment/checkout/order{order_code}', [CustomerProfileController::class, 'orderCheckout'])
+Route::get('payment/checkout/order/{order_code}', [CustomerProfileController::class, 'orderCheckout'])
   ->name('orderCheckout');

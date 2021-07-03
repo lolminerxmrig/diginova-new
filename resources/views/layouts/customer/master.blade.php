@@ -8963,6 +8963,10 @@ $customer = auth()->guard('customer')->user();
   </form>
 </div>
 
+{{--profile index--}}
+<div class="remodal-wrapper remodal-is-closed" style="display: none;">
+  <div class="remodal c-remodal-general-alert remodal-is-initialized remodal-is-closed" data-remodal-id="alert" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1"><div class="c-remodal-general-alert__main"><div class="c-remodal-general-alert__content"><p class="js-remodal-general-alert__text">آیا مطمئنید که این محصول از لیست مورد علاقه شما حذف شود؟</p><p class="c-remodal-general-alert__description js-remodal-general-alert__description" style="display: none;"></p></div><div class="c-remodal-general-alert__actions"><button class="c-remodal-general-alert__button c-remodal-general-alert__button--approve js-remodal-general-alert__button--approve">بله</button><button class="c-remodal-general-alert__button c-remodal-general-alert__button--cancel js-remodal-general-alert__button--cancel">خیر</button></div></div></div>
+</div>
 
 </body>
 

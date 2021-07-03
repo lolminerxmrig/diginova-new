@@ -35,8 +35,24 @@ class CustomerProfileController extends Controller
    */
   public function index()
   {
-      $customer = Auth::guard('customer')->user();
-      return view('customerpanel::profile.index', compact('customer'));
+    $customer = Auth::guard('customer')->user();
+    $this->updateAwaitingPaymentStatus($customer);
+
+    return view('customerpanel::profile.index', compact('customer'));
+  }
+
+  public function updateAwaitingPaymentStatus($customer)
+  {
+    if (Auth::guard('customer')->check() && $customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->exists()) {
+      foreach ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get() as $order) {
+        // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
+        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist())
+        {
+          // تغییر وضعیت بعد از پرداخت ناموفق
+          $this->frontController->updateStatusAfterUnsuccessfulPayment($order);
+        }
+      }
+    }
   }
 
   /**
@@ -479,16 +495,19 @@ class CustomerProfileController extends Controller
 
     $customer = Auth::guard('customer')->user();
 
-    if ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->exists()) {
-      foreach ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get() as $order) {
-        // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
-        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist())
-        {
-          // تغییر وضعیت بعد از پرداخت ناموفق
-          $this->frontController->updateStatusAfterUnsuccessfulPayment($order);
-        }
-      }
-    }
+
+    $this->updateAwaitingPaymentStatus($customer);
+
+//    if ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->exists()) {
+//      foreach ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get() as $order) {
+//        // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
+//        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist())
+//        {
+//          // تغییر وضعیت بعد از پرداخت ناموفق
+//          $this->frontController->updateStatusAfterUnsuccessfulPayment($order);
+//        }
+//      }
+//    }
 
     switch ($activeTab) {
       case "wait-for-payment":
@@ -552,7 +571,7 @@ class CustomerProfileController extends Controller
 
   public function orderCheckout($order_code)
   {
-
+    return $this->frontController->orderStatus($order_code);
   }
 
 

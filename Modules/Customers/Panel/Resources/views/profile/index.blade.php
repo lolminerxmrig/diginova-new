@@ -1,10 +1,25 @@
 @extends('layouts.customer.master')
+@section('head')
+<script>
+  var supernova_mode = "production";
+  var supernova_tracker_url = "https:\/\/etrackerd.digikala.com\/tracker\/events\/";
+  var activeMenu = "profile";
+  var faqPageTitle = "profile_section";
+  var skipWalletRequest = true;
+  var userId = 9735394;
+  var adroRCActivation = true;
+  var loginRegisterUrlWithBack = "\/users\/login-register\/?_back=https:\/\/www.digikala.com\/profile\/";
+  var isNewCustomer = false;
+  var digiclubLuckyDrawEndTime = "2021-06-27 15:30:28";
+  var activateUrl = "\/digiclub\/activate\/";
+</script>
+@endsection
 @section('o-page__content')
   <section class="o-page__content">
     <div class="u-hidden js-ml-profile-ab-test"></div>
     <div class="o-grid">
       <div class="row">
-        <div class="col-6">
+        <div class="{{ ($customer->favorites()->exists())? 'col-6' : 'col-12' }}">
           <div class="o-headline o-headline--profile">
             <span>اطلاعات شخصی</span>
           </div>
@@ -27,7 +42,7 @@
               <div class="c-profile-stats__col">
                 <p>
                   <span>شماره تلفن همراه:</span>
-                  {{ persianNum(0 . $customer->mobile) }}
+                  {{ !is_null($customer->mobile)? persianNum(0 . $customer->mobile) : '' }}
                 </p>
               </div>
               <div class="c-profile-stats__col">
@@ -59,73 +74,44 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
-          <div class="o-headline o-headline--profile">
-            <span>لیست آخرین علاقه‌مندی‌ها</span>
-          </div>
-          <div class="c-profile-recent-fav">
-            <div class="c-profile-recent-fav__content">
-              <div class="c-profile-recent-fav__row js-favorite-product">
-                <a href="https://www.digikala.com/product/dkp-769647/"
-                   class="c-profile-recent-fav__col c-profile-recent-fav__col--thumb">
-                  <img
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/3490996.jpg?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60"
-                    alt="هندزفری سلبریت مدل D1">
-                </a>
-                <div class="c-profile-recent-fav__col c-profile-recent-fav__col--title">
-                  <a href="https://www.digikala.com/product/dkp-769647/">
-                    <h4 class="c-profile-recent-fav__name">هندزفری سلبریت مدل D1</h4>
-                  </a>
-                  <div class="c-profile-recent-fav__price">۴۱,۰۰۰ تومان</div>
-                </div>
-                <div class="c-profile-recent-fav__col c-profile-recent-fav__col--actions">
-                  <button class="btn-action btn-action--remove js-remove-favorite-product"
-                          data-product-id="769647"></button>
-                </div>
+        @if ($customer->favorites()->exists())
+          <div class="col-6">
+            <div class="o-headline o-headline--profile">
+              <span>لیست آخرین علاقه‌مندی‌ها</span>
+            </div>
+            <div class="c-profile-recent-fav">
+              <div class="c-profile-recent-fav__content">
+                @foreach ($customer->favorites()->orderBy('created_at', 'desc')->get() as $key => $item)
+                  <div class="c-profile-recent-fav__row js-favorite-product">
+                    <a href="{{ route('front.productPage', $item->product->product_code) }}" class="c-profile-recent-fav__col c-profile-recent-fav__col--thumb">
+                      @foreach($item->product->media as $image)
+                        @if($item->product->media && ($image->pivot->is_main == 1))
+                          <img data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60" alt="{{ $item->product->title_fa }}">
+                        @endif
+                      @endforeach
+                    </a>
+                    <div class="c-profile-recent-fav__col c-profile-recent-fav__col--title">
+                      <a href="{{ route('front.productPage', $item->product->product_code) }}">
+                        <h4 class="c-profile-recent-fav__name">{{ $item->product->title_fa }}</h4>
+                      </a>
+                      <div class="c-profile-recent-fav__price"> {{ ($item->product->variants()->exists())? persianNum(number_format(toman(product_price($item->product)))) . ' تومان' : '' }} &nbsp;</div>
+                    </div>
+                    <div class="c-profile-recent-fav__col c-profile-recent-fav__col--actions">
+                      <button class="btn-action btn-action--remove js-remove-favorite-product" data-product-id="{{ $item->product->product_code }}"></button>
+                    </div>
+                  </div>
+                  @if ($key == 2)
+                    @break
+                  @endif
+                @endforeach
               </div>
-              <div class="c-profile-recent-fav__row js-favorite-product">
-                <a href="https://www.digikala.com/product/dkp-1492772/"
-                   class="c-profile-recent-fav__col c-profile-recent-fav__col--thumb">
-                  <img
-                    data-src="https://dkstatics-public-2.digikala.com/digikala-products/110490415.jpg?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60"
-                    alt="هندزفری بلوتوث مدل SP01">
-                </a>
-                <div class="c-profile-recent-fav__col c-profile-recent-fav__col--title">
-                  <a href="https://www.digikala.com/product/dkp-1492772/">
-                    <h4 class="c-profile-recent-fav__name">هندزفری بلوتوث مدل SP01</h4>
-                  </a>
-                  <div class="c-profile-recent-fav__price">۳۶,۵۰۰ تومان</div>
-                </div>
-                <div class="c-profile-recent-fav__col c-profile-recent-fav__col--actions">
-                  <button class="btn-action btn-action--remove js-remove-favorite-product"
-                          data-product-id="1492772"></button>
-                </div>
-              </div>
-              <div class="c-profile-recent-fav__row js-favorite-product">
-                <a href="https://www.digikala.com/product/dkp-310914/"
-                   class="c-profile-recent-fav__col c-profile-recent-fav__col--thumb">
-                  <img
-                    data-src="https://dkstatics-public.digikala.com/digikala-products/3092427.jpg?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60"
-                    alt="هندزفری مدل EO-IG955">
-                </a>
-                <div class="c-profile-recent-fav__col c-profile-recent-fav__col--title">
-                  <a href="https://www.digikala.com/product/dkp-310914/">
-                    <h4 class="c-profile-recent-fav__name">هندزفری مدل EO-IG955</h4>
-                  </a>
-                  <div class="c-profile-recent-fav__price">۱۹,۵۰۰ تومان</div>
-                </div>
-                <div class="c-profile-recent-fav__col c-profile-recent-fav__col--actions">
-                  <button class="btn-action btn-action--remove js-remove-favorite-product"
-                          data-product-id="310914"></button>
-                </div>
+              <div class="c-profile-recent-fav__action">
+                <a href="{{ route('customer.panel.favorites') }}" class="btn-link-spoiler btn-link-spoiler--edit">مشاهده و
+                  ویرایش لیست مورد علاقه</a>
               </div>
             </div>
-            <div class="c-profile-recent-fav__action">
-              <a href="{{ route('customer.panel.favorites') }}" class="btn-link-spoiler btn-link-spoiler--edit">مشاهده و
-                ویرایش لیست مورد علاقه</a>
-            </div>
           </div>
-        </div>
+        @endif
       </div>
     </div>
     <div class="o-headline o-headline--profile">
@@ -144,45 +130,78 @@
         </div>
       </div>
       <div class="c-table-orders__body">
-        <div class="c-table-orders__row">
-          <div class="c-table-orders__cell c-table-orders__cell--hash">۱</div>
-          <div class="c-table-orders__cell c-table-orders__cell--id">DKC-87085641</div>
-          <div class="c-table-orders__cell c-table-orders__cell--date">۳۰ آذر ۱۳۹۹</div>
-          <div class="c-table-orders__cell c-table-orders__cell--price">
-            <div>۰</div>
+
+        @foreach ($customer->orders()->orderBy('created_at', 'desc')->get() as $key => $order)
+          <div class="c-table-orders__row">
+            <div class="c-table-orders__cell c-table-orders__cell--hash">{{ persianNum($key+1) }}</div>
+            <div class="c-table-orders__cell c-table-orders__cell--id">DKC-{{ $order->order_code }}</div>
+            <div class="c-table-orders__cell c-table-orders__cell--date span-date" data-value="{{ $order->created_at }}"></div>
+            <div class="c-table-orders__cell c-table-orders__cell--price">
+              <div>
+                  @if ($order->status->en_name !== 'awaiting_payment' || $order->status->en_name !== 'canceled' || $order->status->en_name !== 'returned' && $order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'successful')->where('method_id', '!==',\Modules\Staff\Peyment\Models\PeymentMethod::where('en_name', 'cod')->first()->id)->exists())
+                    {{ persianNum(0) }}
+                  @elseif($order->status->en_name == 'canceled')
+                    {{ persianNum(0) }}
+                  @elseif($order->status->en_name == 'returned')
+                    {{ persianNum(0) }}
+                  @else
+                    {{ persianNum(number_format(toman($order->cost))) }}
+                  @endif
+              </div>
+            </div>
+            <div class="c-table-orders__cell c-table-orders__cell--price">{{ persianNum(number_format(toman($order->cost))) }} تومان</div>
+            <div class="c-table-orders__cell c-table-orders__cell--payment">
+              @if ($order->status->en_name !== 'awaiting_payment' || $order->status->en_name !== 'canceled' || $order->status->en_name !== 'returned' && $order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'successful')->where('method_id', '!==',\Modules\Staff\Peyment\Models\PeymentMethod::where('en_name', 'cod')->first()->id)->exists())
+                <span class="c-table-orders__payment-status c-table-orders__payment-status--ok">پرداخت شده</span>
+              @elseif($order->status->en_name == 'canceled')
+                <span class="c-table-orders__payment-status c-table-orders__payment-status--error">لغو شده</span>
+              @elseif($order->status->en_name == 'returned')
+                <span class="c-table-orders__payment-status c-table-orders__payment-status--error">مرجوعی</span>
+              @else
+                <a href="{{ route('orderCheckout', $order->order_code) }}" class="btn-primary">پرداخت</a>
+              @endif
+            </div>
+            <div class="c-table-orders__cell c-table-orders__cell--detail">
+              <a href="{{ route('customer.panel.orderDetails', $order->order_code) }}" class="btn-order-more"></a>
+            </div>
           </div>
-          <div class="c-table-orders__cell c-table-orders__cell--price">۷۶,۰۰۵,۰۰۰ تومان</div>
-          <div class="c-table-orders__cell c-table-orders__cell--payment">
-            <span class="c-table-orders__payment-status c-table-orders__payment-status--error">لغو شده</span>
-          </div>
-          <div class="c-table-orders__cell c-table-orders__cell--detail">
-            <a href="/profile/orders/84987432/" class="btn-order-more"></a>
-          </div>
-        </div>
-        <div class="c-table-orders__row">
-          <div class="c-table-orders__cell c-table-orders__cell--hash">۲</div>
-          <div class="c-table-orders__cell c-table-orders__cell--id">DKC-46149463</div>
-          <div class="c-table-orders__cell c-table-orders__cell--date">۱۶ دی ۱۳۹۸</div>
-          <div class="c-table-orders__cell c-table-orders__cell--price">
-            <div>۰</div>
-          </div>
-          <div class="c-table-orders__cell c-table-orders__cell--price">۱۱۵,۷۰۰ تومان</div>
-          <div class="c-table-orders__cell c-table-orders__cell--payment">
-            <span class="c-table-orders__payment-status c-table-orders__payment-status--ok">پرداخت موفق</span>
-          </div>
-          <div class="c-table-orders__cell c-table-orders__cell--detail">
-            <a href="/profile/orders/49417487/" class="btn-order-more"></a>
-          </div>
-        </div>
-        <a href="{{ route('customer.panel.orders') }}" class="c-table-orders__show-more">مشاهده لیست سفارش‌ها</a>
+          @if ($key == 9)
+            @break
+          @endif
+        @endforeach
+
+
+        <a href="{{ route('customer.panel.myOrders') }}" class="c-table-orders__show-more">مشاهده لیست سفارش‌ها</a>
       </div>
     </div>
   </section>
 @endsection
+@section('source')
+<script src="{{ asset('staff/js/jalali-moment.browser.js') }}"></script>
 
-@section('page-content')
-  <div class="remodal-wrapper remodal-is-closed" style="display: none;"><div class="remodal c-remodal-general-alert remodal-is-initialized remodal-is-closed" data-remodal-id="alert" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc" tabindex="-1"><div class="c-remodal-general-alert__main"><div class="c-remodal-general-alert__content"><p class="js-remodal-general-alert__text">آیا مطمئنید که این محصول از لیست مورد علاقه شما حذف شود؟</p><p class="c-remodal-general-alert__description js-remodal-general-alert__description" style="display: none;"></p></div><div class="c-remodal-general-alert__actions"><button class="c-remodal-general-alert__button c-remodal-general-alert__button--approve js-remodal-general-alert__button--approve">بله</button><button class="c-remodal-general-alert__button c-remodal-general-alert__button--cancel js-remodal-general-alert__button--cancel">خیر</button></div></div></div></div>
-@endsection
+<script>
+  function persianNum() {
+    String.prototype.toPersianDigits = function () {
+      var id = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+      return this.replace(/[0-9]/g, function (w) {
+        return id[+w]
+      });
+    }
+  }
 
-@section('script')
+  function convertDate() {
+    $(".span-date").each(function (){
+      var output="";
+      var input = $(this).data('value');
+      var m = moment(input);
+      if(m.isValid()){
+        m.locale('fa');
+        output = m.format("YYYY/M/D");
+      }
+      $(this).text(output.toPersianDigits());
+    });
+  }
+  persianNum();
+  convertDate();
+</script>
 @endsection
