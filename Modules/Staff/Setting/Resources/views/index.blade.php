@@ -1071,10 +1071,6 @@
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                       </div>
-                      @foreach($states->where('type', 'state') as $state)
-                        {{ dd($settings->where('name', 'store_city')->first()) }}
-                        {{--                              {{ dd($settings->where('name', 'store_city')->first()->states()->first()->id) }}--}}
-                      @endforeach
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
@@ -1084,9 +1080,9 @@
                               <div class="c-ui-input ">
                                 <select name="store_city" class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile js-profile-contact-city-select select2-hidden-accessible" aria-hidden="true">
                                   <option value=""> انتخاب کنید </option>
-{{--                                  @foreach($states->where('type', 'state') as $state)--}}
-{{--                                    <option value="{{ $state->id }}" {{ ($settings->where('name', 'store_city')->first()->states()->first()->id == $state->id)? 'selected' : '' }}> {{ $state->name }} </option>--}}
-{{--                                  @endforeach--}}
+                                  @foreach($states->where('type', 'state') as $state)
+                                    <option value="{{ $state->id }}" {{ ($settings->where('name', 'store_city')->first()->states()->exists() && $settings->where('name', 'store_city')->first()->states()->first()->id == $state->id)? 'selected' : '' }}> {{ $state->name }} </option>
+                                  @endforeach
                                 </select>
                               </div>
                           </div>
