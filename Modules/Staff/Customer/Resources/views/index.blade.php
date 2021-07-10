@@ -683,16 +683,16 @@
                                                         </td>
                                                         <td class="c-ui-table__cell" style="">
                                                           <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                            {{ persianNum(0 . $customer->mobile) }}
+                                                            {{ !is_null($customer->mobile)? persianNum(0 . $customer->mobile) : '' }}
                                                           </span>
                                                         </td>
                                                         <td class="c-ui-table__cell c-ui-table__cell--text-blue">
-                                                            {{ $customer->email }}
+                                                            {{ !is_null($customer->email)? $customer->email : '' }}
                                                         </td>
 
-                                                        <td class="c-ui-table__cell c-ui-table__cell--small-text">
+                                                          {{ ($customer->orders()->exists())? persianNum($customer->orders()->count()) : persianNum(0) }}                    <td class="c-ui-table__cell c-ui-tطable__cell--small-text">
                                                           <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                            {{ persianNum(0) }}
+
                                                           </span>
                                                         </td>
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Modules\Customers\Front\Models\Cart;
 use Modules\Customers\Front\Models\CustomerFavorite;
+use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Comment\Models\CommentFeedback;
 use Modules\Staff\Customer\Models\CustomerAddress;
@@ -45,14 +46,6 @@ use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 
 class FrontController extends Controller
 {
-
-  /**
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-   */
-  public function test()
-  {
-    return view('front::shipping');
-  }
 
   /**
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -110,8 +103,47 @@ class FrontController extends Controller
   /**
    *
    */
-  public function categoryPage()
+  public function categoryPage($slug)
   {
+    dd('aaaa');
+//
+//    if (Category::where('slug', $slug)->doesntExist()) {
+//      abort(404);
+//    }
+//
+//    $category = Category::where('slug', $slug)->first();
+//    $categories = Category::all();
+
+
+
+
+
+//    $main_cat = $category;
+//    $list[] = $category->id;
+//    while (isset($category->parent)) {
+//      $main_cat = $category->parent;
+//      $category = $category->parent;
+//      $list[] = $category->id;
+//    }
+//
+//    $list = array_reverse($list, true);
+//    $end_index = end($list);
+//    array_pop($list);
+//    $new_end = end($list);
+//
+//    if (count(Category::find(end($list))->children)) {
+//      foreach (Category::find($new_end)->children as $child)
+//      {
+//        $lists2[] = $child->id;
+//      }
+//    }
+//
+//    $list = $this->nestArray($list);
+
+
+
+
+//    return view('front::category', compact('category', 'categories', 'list', 'lists2'));
 
   }
 
@@ -471,7 +503,7 @@ class FrontController extends Controller
     $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
 
     if (auth()->guard('customer')->check() && !Cart::where('product_variant_id', $product_variant->id)->exists()) {
-        Cart::create([
+      Cart::create([
         'customer_id' => Auth::guard('customer')->user()->id,
         'type' => 'first',
         'count' => 1,
@@ -1161,7 +1193,7 @@ class FrontController extends Controller
       return $this->returnError('این کد تخفیف فقط برای مشتریان خرید اولی قابل استفاده می باشد.');
     }
 
-    $voucher_varints_cost =  $this->voucherCostLogic($customer, $voucher, $method_ids);
+    $voucher_varints_cost = $this->voucherCostLogic($customer, $voucher, $method_ids);
 
     if (PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->exists()) {
       PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->delete();
@@ -1216,8 +1248,7 @@ class FrontController extends Controller
           if ($product_variant->promotions()->exists()) {
             if ($product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
               $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
-            }
-            else {
+            } else {
               $promotion_price = $product_variant->sale_price;
             }
           }
@@ -1269,8 +1300,7 @@ class FrontController extends Controller
     $sum_sale_price = 0;
     $sum_promotion_price = 0;
 
-    foreach($first_carts as $priceItem)
-    {
+    foreach ($first_carts as $priceItem) {
       $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count);
       if ($priceItem->new_sale_price > $priceItem->new_promotion_price) {
         $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count);
@@ -1318,13 +1348,13 @@ class FrontController extends Controller
 
     // مجموع قیمت اصلی فروش محصول بدون پروموشن
     $sum_sale_price = 0;
-    foreach($first_carts as $priceItem){
+    foreach ($first_carts as $priceItem) {
       $sum_sale_price += ($priceItem->new_sale_price * $priceItem->count);
     }
 
     // مجموع قیمت پروموشن
     $sum_promotion_price = 0;
-    foreach($first_carts as $priceItem) {
+    foreach ($first_carts as $priceItem) {
       if ($priceItem->new_sale_price > $priceItem->new_promotion_price) {
         $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count);
       }
@@ -1333,9 +1363,9 @@ class FrontController extends Controller
     // هزینه حمل
     $m = 1;
     $sum_shipping_cost = 0;
-    foreach($consignment_shipping_cost as $key => $item) {
-      $delivery_method = \Modules\Staff\Shiping\Models\DeliveryMethod::find($method_ids[$m-1]);
-      $sum_shipping_cost =+ $item;
+    foreach ($consignment_shipping_cost as $key => $item) {
+      $delivery_method = \Modules\Staff\Shiping\Models\DeliveryMethod::find($method_ids[$m - 1]);
+      $sum_shipping_cost = +$item;
       $m++;
     }
 
@@ -1385,7 +1415,7 @@ class FrontController extends Controller
       return null;
     }
 
-    $voucher_varints_cost =  $this->voucherCostLogic($customer, $voucher, $method_ids);
+    $voucher_varints_cost = $this->voucherCostLogic($customer, $voucher, $method_ids);
 
     return $voucher_varints_cost;
 
@@ -1416,7 +1446,7 @@ class FrontController extends Controller
 
     // مجموع قیمت پروموشن
     $sum_promotion_price = 0;
-    foreach($first_carts as $priceItem) {
+    foreach ($first_carts as $priceItem) {
       if ($priceItem->new_sale_price > $priceItem->new_promotion_price) {
         $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count);
       }
@@ -1427,9 +1457,8 @@ class FrontController extends Controller
     }
 
     if (Order::count()) {
-      $order_code = Order::max('order_code')+1;
-    }
-    else {
+      $order_code = Order::max('order_code') + 1;
+    } else {
       $order_code = 3000000;
     }
 
@@ -1448,17 +1477,15 @@ class FrontController extends Controller
     $order_id = Order::where('order_code', $order_code)->first()->id;
 
     if (OrderHasConsignment::count()) {
-      $delivery_code = OrderHasConsignment::max('delivery_code')+1;
-      $consignment_code = OrderHasConsignment::max('consignment_code')+1;
-    }
-    else {
+      $delivery_code = OrderHasConsignment::max('delivery_code') + 1;
+      $consignment_code = OrderHasConsignment::max('consignment_code') + 1;
+    } else {
       $delivery_code = 10000;
       $consignment_code = 4000000;
     }
 
     $i = 0;
-    foreach ($consignment_shipping_cost as $key => $shipping_cost)
-    {
+    foreach ($consignment_shipping_cost as $key => $shipping_cost) {
 
       // ایجاد مرسوله
       OrderHasConsignment::create([
@@ -1475,12 +1502,10 @@ class FrontController extends Controller
       $consignment_id = OrderHasConsignment::where('consignment_code', $consignment_code)->first()->id;
 
       // اضافه کردن تنوع ها به مرسوله
-      foreach ($first_carts as $item)
-      {
+      foreach ($first_carts as $item) {
 
         // ایدی حجم: key
-        if ($item->product_variant()->first()->product->weight()->id == $key)
-        {
+        if ($item->product_variant()->first()->product->weight()->id == $key) {
 
           $consignment_p_v_id = ConsignmentHasProductVariants::insertGetId([
             'count' => $item->count,
@@ -1523,10 +1548,10 @@ class FrontController extends Controller
       'plaque' => $default_address->plaque,
       'unit' => $default_address->unit,
       'postal_code' => $default_address->postal_code,
-      'firstname' => !is_null($default_address->recipient_firstname)? $default_address->recipient_firstname : $customer->first_name,
-      'lastname' => !is_null($default_address->recipient_lastname)? $default_address->recipient_lastname : $customer->last_name,
-      'national_code' => !is_null($default_address->recipient_national_code)? $default_address->recipient_national_code : $customer->national_code,
-      'mobile' => !is_null($default_address->recipient_mobile)? $default_address->recipient_mobile : $customer->mobile,
+      'firstname' => !is_null($default_address->recipient_firstname) ? $default_address->recipient_firstname : $customer->first_name,
+      'lastname' => !is_null($default_address->recipient_lastname) ? $default_address->recipient_lastname : $customer->last_name,
+      'national_code' => !is_null($default_address->recipient_national_code) ? $default_address->recipient_national_code : $customer->national_code,
+      'mobile' => !is_null($default_address->recipient_mobile) ? $default_address->recipient_mobile : $customer->mobile,
       'customer_id' => $default_address->customer_id,
       'state_id' => $default_address->state_id,
       'order_id' => $order_id,
@@ -1573,8 +1598,6 @@ class FrontController extends Controller
 
       // تغییر وضعیت ها بعد از پرداخت موفق
       $this->updateStatusAfterSuccessfulPayment($order);
-
-
 
 
     } catch (InvalidPaymentException $exception) {
@@ -1636,8 +1659,7 @@ class FrontController extends Controller
       config()->set([
         'payment.default' => $gateway->name,
       ]);
-    }
-    else {
+    } else {
       $gateway = PeymentMethod::where('en_name', '!=', 'cod')->where('status', 'active')->first();
       config()->set([
         'payment.default' => $gateway->en_name,
@@ -1645,7 +1667,7 @@ class FrontController extends Controller
     }
 
     $invoice = new Invoice;
-    $invoice->amount($order->cost/10);
+    $invoice->amount($order->cost / 10);
     $invoice->via($gateway->en_name);
 
     return Payment::purchase($invoice)->pay()->render();
@@ -1669,15 +1691,13 @@ class FrontController extends Controller
     $order = Order::where('order_code', $order_code)->first();
 
     // اگه دارای پرداخت موفق از طریق درگاه بود
-    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('method_id', PeymentMethod::where('en_name', '!==', 'cod')->first()->id)->where('price', $order->cost)->exists())
-    {
+    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('method_id', PeymentMethod::where('en_name', '!==', 'cod')->first()->id)->where('price', $order->cost)->exists()) {
       return abort(404);
     }
 
     $peyment_methods = PeymentMethod::where('status', 'active')->get();
 
-    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('method_id', PeymentMethod::where('en_name', 'cod')->first()->id)->where('price', $order->cost)->exists())
-    {
+    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('method_id', PeymentMethod::where('en_name', 'cod')->first()->id)->where('price', $order->cost)->exists()) {
       $peyment_methods = PeymentMethod::where('status', 'active')->where('en_name', '!==', 'cod')->get();
     }
 
@@ -1699,8 +1719,7 @@ class FrontController extends Controller
     $order = Order::where('order_code', $request->order_code)->first();
 
     // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
-    if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist())
-    {
+    if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist()) {
       // تغییر وضعیت بعد از پرداخت ناموفق
       $this->updateStatusAfterUnsuccessfulPayment($order);
 
@@ -1743,8 +1762,7 @@ class FrontController extends Controller
     ]);
 
     // کم کردن موجودی تنوع اگه قبلا با cod پرداخت نشده بود
-    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('price', $order->cost)->count() < 2)
-    {
+    if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('price', $order->cost)->count() < 2) {
       foreach (ConsignmentHasProductVariants::where('order_id', $order->id)->get() as $consignment_product_variant) {
         $consignment_product_variant->product_variant()->update([
           'stock_count' => $consignment_product_variant->product_variant->stock_count - $consignment_product_variant->count,
@@ -1905,6 +1923,50 @@ class FrontController extends Controller
       "status" => true,
       "data" => null,
     ]);
+  }
+
+  public function search($query)
+  {
+    return view('front::search', compact('query'));
+  }
+
+
+  public function test()
+  {
+    $category = Category::find(25);
+
+    $main_cat = $category;
+    $lists[] = $category->id;
+    while (isset($category->parent)) {
+      $main_cat = $category->parent;
+      $category = $category->parent;
+      $lists[] = $category->id;
+    }
+
+    $lists = array_reverse($lists, true);
+    $end_index = end($lists);
+    array_pop($lists);
+    $new_end = end($lists);
+
+    if (count(Category::find(end($lists))->children)) {
+      foreach (Category::find($new_end)->children as $child)
+      {
+        $lists2[] = $child->id;
+      }
+    }
+
+    $lists = $this->nestArray($lists);
+
+  }
+
+  public function nestArray($myArray)
+  {
+    if (empty($myArray)) {
+      return array();
+    }
+
+    $firstValue = array_shift($myArray);
+    return array($firstValue => $this->nestArray($myArray));
   }
 
 }

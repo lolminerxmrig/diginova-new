@@ -1,0 +1,78 @@
+{{--                            @foreach($categories->where('parent_id', $category->id) as $cat)--}}
+@foreach($lists as $key => $list)
+<?php $category = \Modules\Staff\Category\Models\Category::find($list); ?>
+<li class="c-catalog__cat-item ">
+
+  @if (count($lists) - 2 !== $key)
+  <span class="c-catalog__cat-item c-catalog__cat-item--arrow-left">
+                                    <a class="c-catalog__link  is-active" href="{{ route('front.categoryPage', $category->slug) }}">{{ $category->name }}</a>
+                                  </span>
+  @else
+  @foreach($category->children as $child)
+  {{--                                    <ul class="c-catalog__list--depth">--}}
+  {{--                                      <li class="c-catalog__cat-item">--}}
+    {{--                                        <a class="c-catalog__link  " href="{{ route('front.categoryPage', $cat->slug) }}">{{ $child->name }}</a>--}}
+    {{--                                      </li>--}}
+  {{--                                    </ul>--}}
+  @endforeach
+  @endif
+
+</li>
+@endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="c-catalog__cat-item ">
+  <span class="c-catalog__cat-item c-catalog__cat-item--arrow-left">
+    <a class="c-catalog__link " href="/search/category-electronic-devices/">کالای دیجیتال</a>
+  </span>
+  <div class=" show-more  ">
+    <ul class="c-catalog__list--depth ">
+      <li class="c-catalog__cat-item ">
+        <span class="c-catalog__cat-item c-catalog__cat-item--arrow-down">
+          <a class="c-catalog__link " href="/search/category-computer-parts/">کامپیوتر و تجهیزات جانبی</a>
+        </span>
+        <div class=" show-more  ">
+          <ul class="c-catalog__list--depth ">
+            <li class="c-catalog__cat-item ">
+              <span class="c-catalog__cat-item c-catalog__cat-item--arrow-down">
+                <a class="c-catalog__link  is-active" href="/search/category-data-storage/">تجهیزات ذخیره‌سازی اطلاعات</a>
+              </span>
+              <ul class="c-catalog__list--depth">
+                <li class="c-catalog__cat-item">
+                  <a class="c-catalog__link  " href="/search/category-external-hard-disk/">
+                    هارد دیسک اکسترنال
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</li>

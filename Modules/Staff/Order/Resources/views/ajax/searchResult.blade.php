@@ -42,9 +42,6 @@
               <th class="c-ui-table__header c-ui-table__header--nowrap ">
                 <span class="js-search-table-column">تعداد کالا</span>
               </th>
-              <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                <span class="js-search-table-column">زمان ارسال</span>
-              </th>
               <th class="c-ui-table__header c-ui-table__header--nowrap " style="width: 12% !important;" >
                 <span class="js-search-table-column">روش ارسال</span>
               </th>
@@ -80,13 +77,12 @@
                     <span class="c-wallet__body-card-row-item span-time" data-value="{{ $order->created_at }}"></span>
                   </td>
 
-                  <td class="c-ui-table__cell" colspan="4" style="padding-top: 10px; min_width: 100px !important; width: 100px !important;">
+                  <td class="c-ui-table__cell" colspan="3" style="padding-top: 10px; min_width: 100px !important; width: 100px !important;">
                     <?php $i = 1; ?>
                     @foreach($order->consignments as $consignment)
                       <div class="uk-flex uk-grid-medium c-commission-table__row c-commission-table__row--dashed-border">
                         <span class="c-wallet__body-card-row-item" style="width: 10% !important;"> {{ persianNum($i) }} از {{ persianNum($order->consignments()->count()) }} </span>
                         <span class="c-wallet__body-card-row-item" style="width: 15% !important;"> {{ persianNum(count($consignment->consignment_variants)) }} </span>
-                        <span class="c-commission-table__col c-commission-table__col--60 green span-date" data-value="{{ $consignment->delivery_at }}" style="width: 25% !important;"></span>
                         <span class="c-commission-table__col c-commission-table__col--40" style="padding-left: 0px !important; width: auto !important;">{{ $consignment->delivery_method->name }}</span>
                       </div>
                       <?php $i++; ?>

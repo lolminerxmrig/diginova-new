@@ -17,12 +17,16 @@ use Modules\Staff\Setting\Models\Setting;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.indexPage');
 
+Route::get('test', [FrontController::class, 'test'])->name('test');
+
+
 $product_code_prefix = mb_strtolower(Setting::where('name', 'product_code_prefix')->first()->value);
 
 Route::get("product/$product_code_prefix-{product_code}", [FrontController::class, 'productPage'])->name('front.productPage');
 Route::get("cart/add/{variant_code}/1/", [FrontController::class, 'addToCart'])->name('front.addToCart');
 Route::get("product/comment/$product_code_prefix-{product_code}", [FrontController::class, 'createComment'])->name('front.createComment');
-Route::get('search/category-{slug}', [FrontController::class, 'categoryPage'])->name('category');
+Route::get('search/category-{slug}', [FrontController::class, 'categoryPage'])->name('front.categoryPage');
+Route::get('search/q={keywoard}', [FrontController::class, 'search'])->name('search');
 
 Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::get('product/comments/{product_id}', [FrontController::class, 'productComments'])->name('productComments');
