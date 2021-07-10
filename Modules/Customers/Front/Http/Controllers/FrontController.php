@@ -105,45 +105,44 @@ class FrontController extends Controller
    */
   public function categoryPage($slug)
   {
-    dd('aaaa');
-//
-//    if (Category::where('slug', $slug)->doesntExist()) {
-//      abort(404);
-//    }
-//
-//    $category = Category::where('slug', $slug)->first();
-//    $categories = Category::all();
+
+    if (Category::where('slug', $slug)->doesntExist()) {
+      abort(404);
+    }
+
+    $category = Category::where('slug', $slug)->first();
+    $categories = Category::all();
 
 
 
 
 
-//    $main_cat = $category;
-//    $list[] = $category->id;
-//    while (isset($category->parent)) {
-//      $main_cat = $category->parent;
-//      $category = $category->parent;
-//      $list[] = $category->id;
-//    }
-//
-//    $list = array_reverse($list, true);
-//    $end_index = end($list);
-//    array_pop($list);
-//    $new_end = end($list);
-//
-//    if (count(Category::find(end($list))->children)) {
-//      foreach (Category::find($new_end)->children as $child)
-//      {
-//        $lists2[] = $child->id;
-//      }
-//    }
-//
-//    $list = $this->nestArray($list);
+    $main_cat = $category;
+    $list[] = $category->id;
+    while (isset($category->parent)) {
+      $main_cat = $category->parent;
+      $category = $category->parent;
+      $list[] = $category->id;
+    }
+
+    $list = array_reverse($list, true);
+    $end_index = end($list);
+    array_pop($list);
+    $new_end = end($list);
+
+    if (count(Category::find(end($list))->children)) {
+      foreach (Category::find($new_end)->children as $child)
+      {
+        $lists2[] = $child->id;
+      }
+    }
+
+    $list = $this->nestArray($list);
 
 
 
 
-//    return view('front::category', compact('category', 'categories', 'list', 'lists2'));
+    return view('front::category', compact('category', 'categories', 'list', 'lists2'));
 
   }
 
