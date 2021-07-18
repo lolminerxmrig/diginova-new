@@ -362,7 +362,10 @@
                 </li>
                 @foreach($product_categories as $key => $item)
                   <li property="itemListElement" typeof="ListItem">
-                    <a property="item" typeof="WebPage" href="{{ route('category', ['slug' => $item->slug]) }}">
+                    <a property="item" typeof="WebPage" href="">
+                      <span property="name">{{ $item->name }}</span>
+                    </a>
+{{--                    <a property="item" typeof="WebPage" href="{{ route('category', ['slug' => $item->slug]) }}">--}}
                       <span property="name">{{ $item->name }}</span>
                     </a>
                     <meta property="position" content="{{ $key+1 }}">
@@ -383,12 +386,15 @@
                 <div>
                   <div class="u-flex u-items-center">
                     <div class="c-product__title-container--brand">
-                      <a class="c-product__title-container--brand-link"
-                         href="{{ route('category', ['slug' => $product->category->first()->slug]) . '/' }} {{ ($product->brand()->exists())? $product->brand->slug : 'miscellaneous' }}">{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}</a>
+                      <a class="c-product__title-container--brand-link" href="">{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}</a>
+{{--                      <a class="c-product__title-container--brand-link" href="{{ route('category', ['slug' => $product->category->first()->slug]) . '/' }} {{ ($product->brand()->exists())? $product->brand->slug : 'miscellaneous' }}">{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}</a>--}}
                       <span> / </span>
                       <a class="c-product__title-container--brand-link"
-                         href="{{ route('category', ['slug' => $product->category->first()->slug]) . '/' }} {{ ($product->brand()->exists())? $product->brand->slug : 'miscellaneous' }}">{{  $product->category->first()->name . ' ' }} {{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}
+                         href="">{{  $product->category->first()->name . ' ' }} {{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}
                       </a>
+{{--                      <a class="c-product__title-container--brand-link"--}}
+{{--                         href="{{ route('category', ['slug' => $product->category->first()->slug]) . '/' }} {{ ($product->brand()->exists())? $product->brand->slug : 'miscellaneous' }}">{{  $product->category->first()->name . ' ' }} {{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}--}}
+{{--                      </a>--}}
                     </div>
                   </div>
                   <h1 class="c-product__title">
@@ -1822,7 +1828,6 @@
       <aside></aside>
     </div>
   </main>
-
 
 @endsection
 

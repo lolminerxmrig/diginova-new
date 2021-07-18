@@ -188,6 +188,7 @@ class TestController
       foreach (ConsignmentHasProductVariants::where('order_id', $order->id)->get() as $consignment_product_variant) {
         $consignment_product_variant->product_variant()->update([
           'stock_count' =>  $consignment_product_variant->product_variant->stock_count - $consignment_product_variant->count,
+          'sale_count' => $consignment_product_variant->product_variant->sale_count + $consignment_product_variant->count,
         ]);
       }
 

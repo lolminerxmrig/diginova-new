@@ -111,6 +111,8 @@ class FrontController extends Controller
     }
 
     $category = Category::where('slug', $slug)->first();
+    $cat = Category::where('slug', $slug)->first();
+
     $categories = Category::all();
 
 
@@ -130,7 +132,7 @@ class FrontController extends Controller
     array_pop($list);
     $new_end = end($list);
 
-    if (count(Category::find(end($list))->children)) {
+    if (Category::find(end($list))->children()->exists() && count(Category::find(end($list))->children)) {
       foreach (Category::find($new_end)->children as $child)
       {
         $lists2[] = $child->id;
@@ -139,10 +141,7 @@ class FrontController extends Controller
 
     $list = $this->nestArray($list);
 
-
-
-
-    return view('front::category', compact('category', 'categories', 'list', 'lists2'));
+    return view('front::category', compact('cat', 'category', 'categories', 'list', 'lists2'));
 
   }
 
@@ -1765,6 +1764,7 @@ class FrontController extends Controller
       foreach (ConsignmentHasProductVariants::where('order_id', $order->id)->get() as $consignment_product_variant) {
         $consignment_product_variant->product_variant()->update([
           'stock_count' => $consignment_product_variant->product_variant->stock_count - $consignment_product_variant->count,
+          'sale_count' => $consignment_product_variant->product_variant->sale_count + $consignment_product_variant->count,
         ]);
       }
     }
@@ -1967,5 +1967,7 @@ class FrontController extends Controller
     $firstValue = array_shift($myArray);
     return array($firstValue => $this->nestArray($myArray));
   }
+
+
 
 }

@@ -35,6 +35,7 @@ class ProductHasVariant extends Model
       'post_time',
       'buy_price',
       'sale_price',
+      'sale_count',
       'max_order_count',
       'stock_count',
       'variantable_type',
