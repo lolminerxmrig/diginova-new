@@ -65,10 +65,18 @@ class StaffRegLoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('staff')->attempt($credentials, true)) {
+        if (isset($request->remember) && $request->remember == "true") {
+          if (Auth::guard('staff')->attempt($credentials, true)) {
             $request->session()->regenerate();
             return redirect()->route('staff.dashboardPage');
+          }
+        } else {
+          if (Auth::guard('staff')->attempt($credentials, false)) {
+            $request->session()->regenerate();
+            return redirect()->route('staff.dashboardPage');
+          }
         }
+
 
         return back()->withErrors([
             'wrongEmailPass' => 'نام کاربری یا رمز عبور اشتباه است لطفا دوباره تلاش نمایید',

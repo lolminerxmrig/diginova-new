@@ -13,7 +13,7 @@
   <main class="c-new-login__main">
     <div class="c-new-login__logo">
       <a href="/">
-      <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
+      <img src="{{ asset('seller/svg/seller-center-logo.svg') }}" alt="Digikala marketplace seller center logo">
       </a>
     </div>
 

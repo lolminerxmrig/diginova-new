@@ -20,8 +20,13 @@ Route::get('/', [FrontController::class, 'index'])->name('front.indexPage');
 
 Route::get('test', [FrontController::class, 'test'])->name('test');
 
-
-$product_code_prefix = mb_strtolower(Setting::where('name', 'product_code_prefix')->first()->value);
+if (Setting::where('name', 'product_code_prefix')->count()) {
+  $product_code_prefix = mb_strtolower(Setting::where('name', 'product_code_prefix')->first()->value);
+}
+else
+{
+  $product_code_prefix = 'dnp';
+}
 
 Route::get("product/$product_code_prefix-{product_code}", [FrontController::class, 'productPage'])->name('front.productPage');
 Route::get("cart/add/{variant_code}/1/", [FrontController::class, 'addToCart'])->name('front.addToCart');

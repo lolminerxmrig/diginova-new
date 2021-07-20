@@ -1,6 +1,6 @@
 @extends('staffauth::layouts.auth')
 
-@section('title') {{ $site_title }} @endsection
+@section('title') {{ $site_title }} | ورود به پنل مدیریت @endsection
 
 @section('head')
 <script src="{{ asset('seller/js/loginAction.js') }}"></script>
@@ -11,25 +11,30 @@
     <div class="c-new-login__sidebar-content">
       <header class="c-new-login__sidebar-header">
         <a href="#" class="c-new-login__logo">
-        <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
+        @if (!is_null($header_logo))
+          <img src="{{ asset("$site_url . '/' . $header_logo->path . '/'. $header_logo->name") }}" alt="{{ $fa_store_name }}" class="c-new-login__sidebar-img">
+        @endif
+{{--        <img src="{{ asset('seller/svg/seller-center-logo.svg') }}" alt="Digikala marketplace seller center logo">--}}
         </a>
-        <h1 class="c-new-login__header">به پنل کارمندان {{ $site_title }} <br> خوش آمدید!</h1>
+        <h1 class="c-new-login__header">به پنل مدیریت {{ $site_title }} <br> خوش آمدید!</h1>
       </header>
       <div class="c-new-login__sidebar-center">
-        <img src="{{ asset('seller/svg/ccb24d55.svg') }}" alt="" class="c-new-login__sidebar-img">
+        <img src="{{ asset('seller/svg/seller-center-svg.svg') }}" alt="" class="c-new-login__sidebar-img">
       </div>
       <footer class="c-new-login__footer">
-        <p>Copyright © Digi Nova</p>
+        <p>Copyright © 2021 DigiNova</p>
       </footer>
     </div>
   </aside>
 <aside class="c-new-login__sidebar c-new-login__sidebar--xs-visible">
 <div class="c-new-login__sidebar-content">
   <header class="c-new-login__sidebar-header">
-    <a href="#" class="c-new-login__logo">
-    <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
+    <a href="{{ route('staff.loginPage') }}" class="c-new-login__logo">
+      @if (!is_null($header_logo))
+        <img src="{{ asset("$site_url . '/' . $header_logo->path . '/'. $header_logo->name") }}" alt="{{ $fa_store_name }}">
+      @endif
     </a>
-    <h1 class="c-new-login__header">به پنل کارمندان {{ $site_title }} <br> خوش آمدید!</h1>
+    <h1 class="c-new-login__header">به پنل مدیریت {{ $site_title }} <br> خوش آمدید!</h1>
   </header>
 </div>
 </aside>
@@ -81,8 +86,8 @@
     </div>
     <div class="c-reg-form__row c-reg-form__row--align-center c-reg-form__row--gap-40">
       <div class="c-reg-form__col">
-        <p class="c-reg-form__text"><a href="{{ route('staff.forgotPage') }}" class="c-reg-form__link">رمز عبورم را
-          فراموش کرده ام.</a>
+        <p class="c-reg-form__text">
+          <a href="{{ route('staff.forgotPage') }}" class="c-reg-form__link">رمز عبورم را فراموش کرده ام.</a>
         </p>
       </div>
     </div>

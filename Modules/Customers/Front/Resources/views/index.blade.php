@@ -88,7 +88,7 @@
           <div class="o-page__row o-page__row--main-top">
 
             <aside class="c-adplacement c-adplacement__margin-bottom">
-              @if($banner2->images()->exists() && $banner2->images()->first()->media()->exists())
+              @if(!is_null($banner2) && $banner2->images()->exists() && $banner2->images()->first()->media()->exists())
                 <a href="{{ $banner2->images()->first()->link }}" class="c-adplacement__item" target="_blank" title="{{ $banner2->images()->first()->alt }}">
                   <img src="{{ ($banner2->images()->first()->media()->exists())?  $site_url . '/' . $banner2->images()->first()->media->first()->path . '/'. $banner2->images()->first()->media->first()->name : '' }}" alt="{{ ($banner2->images()->first()->media()->exists())?  $banner2->images()->first()->alt : '' }}" loading="lazy"/>
                 </a>
@@ -100,7 +100,7 @@
                 <div class="c-swiper c-swiper--promo-box c-main-slider-container ">
                   <div class="swiper-container swiper-container-horizontal js-main-page-slider swiper-container-fade swiper-container-rtl">
                     <div class="swiper-wrapper dkms-placement-slider c-adplacement" style="transition-duration: 0ms;">
-                      @if($slider1->images()->exists() && $slider1->images()->first()->media()->exists())
+                      @if(!is_null($slider1) && $slider1->images()->exists() && $slider1->images()->first()->media()->exists())
                         @foreach($slider1->images as $image)
                           <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="c-main-slider__slide swiper-slide js-main-page-slider-image" title="{{ ($image->media()->exists())? $image->alt : '' }}" data-is-trackable="" target="_blank" style="background-image: url({{ $site_url . '/' . $image->media->first()->path . '/'. $image->media->first()->name }}); width: 875px; transition-duration: 0ms; opacity: 1; transform: translate3d(1750px, 0px, 0px);"></a>
                         @endforeach
@@ -117,14 +117,14 @@
 
             <div class="o-page__one-thirds o-page__one-thirds--left">
               <aside class="c-adplacement c-adplacement__container-column">
-                @if($banner3->images()->exists() && $banner3->images()->first()->media()->exists())
+                @if(!is_null($banner3) && $banner3->images()->exists() && $banner3->images()->first()->media()->exists())
                   <a href="{{ $banner3->images()->first()->link }}" class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column" target="_blank" data-is-trackable="" title="{{ $banner3->images()->first()->alt }}">
                     <div class="c-adplacement__sponsored_box">
                       <img src="{{ ($banner3->images()->first()->media()->exists())?  $site_url . '/' . $banner3->images()->first()->media->first()->path . '/'. $banner3->images()->first()->media->first()->name : '' }}" alt="{{ ($banner3->images()->first()->media()->exists())?  $banner3->images()->first()->alt : '' }}" loading="lazy"/>
                     </div>
                   </a>
                 @endif
-                @if($banner4->images()->exists() && $banner4->images()->first()->media()->exists())
+                @if(!is_null($banner4) && $banner4->images()->exists() && $banner4->images()->first()->media()->exists())
                   <a href="{{ $banner4->images()->first()->link }}" class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column" target="_blank" data-is-trackable="" title="{{ $banner4->images()->first()->alt }}">
                     <div class="c-adplacement__sponsored_box">
                       <img src="{{ ($banner4->images()->first()->media()->exists())?  $site_url . '/' . $banner4->images()->first()->media->first()->path . '/'. $banner4->images()->first()->media->first()->name : '' }}" alt="{{ ($banner4->images()->first()->media()->exists())?  $banner4->images()->first()->alt : '' }}" loading="lazy"/>
@@ -945,7 +945,7 @@
         <div class="o-page">
           <div class="o-page__row"></div>
           <aside class="c-adplacement c-adplacement__container-row">
-            @if($bannerGroup1->images()->exists())
+            @if(!is_null($bannerGroup1) && $bannerGroup1->images()->exists())
               @foreach($bannerGroup1->images as $image)
                 <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank" data-is-trackable="" title="{{ ($image->media()->exists())? $image->alt : '' }}">
                   <div class="c-adplacement__sponsored_box">
@@ -1483,7 +1483,7 @@
       <article class="container container--home">
         <div class="o-page">
           <aside class="c-adplacement">
-            @if($bannerGroup2->images()->exists())
+            @if(!is_null($bannerGroup2) && $bannerGroup2->images()->exists())
               @foreach($bannerGroup2->images as $image)
                 <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b" data-observed="0" target="_blank" title="{{ ($image->media()->exists())? $image->alt : '' }}" data-is-trackable="">
                   <div class="c-adplacement__sponsored_box">
@@ -1556,7 +1556,7 @@
         </section>
         <aside class="c-about-digikala-items">
           <aside class="c-adplacement c-adplacement__container-row">
-            @if($bannerGroup3->images()->exists())
+            @if(!is_null($bannerGroup3) && $bannerGroup3->images()->exists())
               @foreach($bannerGroup3->images as $image)
                 <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank" data-is-trackable="" title="{{ ($image->media()->exists())? $image->alt : '' }}">
                   <div class="c-adplacement__sponsored_box">
@@ -4053,7 +4053,7 @@
 
 
         <aside class="c-adplacement">
-          @if($bannerGroup4->images()->exists())
+          @if(!is_null($bannerGroup4) && $bannerGroup4->images()->exists())
             @foreach($bannerGroup4->images as $image)
               <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b" data-observed="0" target="_blank" title="{{ ($image->media()->exists())? $image->alt : '' }}" data-is-trackable="">
                 <div class="c-adplacement__sponsored_box">
@@ -4709,7 +4709,7 @@
           });
         </script>
 
-        @if($banner5->images()->exists() && $banner5->images()->first()->media()->exists())
+        @if(!is_null($banner5) && $banner5->images()->exists() && $banner5->images()->first()->media()->exists())
         <aside class="c-adplacement c-adplacement--main-page-inner c-adplacement__container-row">
           <a href="{{ $banner5->images()->first()->link }}" class="c-adplacement__item js-banner-impression-adro" data-observed="0" target="_blank" data-is-trackable="" title="{{ $banner5->images()->first()->alt }}">
             <div class="c-adplacement__sponsored_box">

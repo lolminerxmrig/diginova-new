@@ -11,7 +11,7 @@
     <div class="c-new-login__sidebar-content">
       <header class="c-new-login__sidebar-header">
         <a href="{{ route('seller.regStepOne') }}" class="c-new-login__logo">
-        <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
+        <img src="{{ asset('seller/svg/seller-center-logo.svg') }}" alt="Digikala marketplace seller center logo">
         </a>
         <h1 class="c-new-login__header">ثبت‌نام در مرکز فروشندگان</h1>
       </header>
@@ -41,7 +41,7 @@
     <div class="c-new-login__sidebar-content">
       <header class="c-new-login__sidebar-header">
         <a href="{{ route('seller.regStepOne') }}" class="c-new-login__logo">
-        <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
+        <img src="{{ asset('seller/svg/seller-center-logo.svg') }}" alt="Digikala marketplace seller center logo">
         </a>
         <h1 class="c-new-login__header">ثبت‌نام در مرکز فروشندگان</h1>
       </header>

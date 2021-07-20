@@ -12,13 +12,13 @@
 
       <header class="c-new-login__sidebar-header">
         <a href="#" class="c-new-login__logo">
-        <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
+        <img src="{{ asset('seller/svg/seller-center-logo.svg') }}" alt="Digikala marketplace seller center logo">
         </a>
         <h1 class="c-new-login__header">به مرکز فروشندگان {{ $fa_store_name }} <br> خوش آمدید!</h1>
       </header>
 
       <div class="c-new-login__sidebar-center">
-        <img src="{{ asset('seller/svg/ccb24d55.svg') }}" alt="" class="c-new-login__sidebar-img">
+        <img src="{{ asset('seller/svg/seller-center-svg') }}" alt="" class="c-new-login__sidebar-img">
       </div>
 
       <footer class="c-new-login__footer">
@@ -32,7 +32,7 @@
     <div class="c-new-login__sidebar-content">
       <header class="c-new-login__sidebar-header">
         <a href="#" class="c-new-login__logo">
-        <img src="{{ asset('seller/svg/9eb66c4d.svg') }}" alt="Digikala marketplace seller center logo">
+        <img src="{{ asset('seller/svg/seller-center-logo.svg') }}" alt="Digikala marketplace seller center logo">
         </a>
         <h1 class="c-new-login__header">به مرکز فروشندگان {{ $fa_store_name }} <br> خوش آمدید!</h1>
       </header>

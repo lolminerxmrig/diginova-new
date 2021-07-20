@@ -1,27 +1,27 @@
 <?php
   $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
-  $footer_desc_title = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->first()->value;
-  $footer_description = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->first()->value;
-  $footer_slogan = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->first()->value;
-  $custom_footer_code = \Modules\Staff\Setting\Models\Setting::where('name', 'custom_footer_code')->first()->value;
-  $copyright_text = \Modules\Staff\Setting\Models\Setting::where('name', 'copyright_text')->first()->value;
-  $store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value;
-  $store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
-  $ecunion_link = \Modules\Staff\Setting\Models\Setting::where('name', 'ecunion_link')->first()->value;
-  $enamad_link = \Modules\Staff\Setting\Models\Setting::where('name', 'enamad_link')->first()->value;
-  $samandehi_link = \Modules\Staff\Setting\Models\Setting::where('name', 'samandehi_link')->first()->value;
-  $instagram_link = \Modules\Staff\Setting\Models\Setting::where('name', 'instagram_link')->first()->value;
-  $twitter_link = \Modules\Staff\Setting\Models\Setting::where('name', 'twitter_link')->first()->value;
-  $aparat_link = \Modules\Staff\Setting\Models\Setting::where('name', 'aparat_link')->first()->value;
-  $linkedin_link = \Modules\Staff\Setting\Models\Setting::where('name', 'linkedin_link')->first()->value;
-  $whatsapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'whatsapp_link')->first()->value;
-  $telegram_link = \Modules\Staff\Setting\Models\Setting::where('name', 'telegram_link')->first()->value;
-  $googleplay_link = \Modules\Staff\Setting\Models\Setting::where('name', 'googleplay_link')->first()->value;
-  $cafebazaar_link = \Modules\Staff\Setting\Models\Setting::where('name', 'cafebazaar_link')->first()->value;
-  $myket_link = \Modules\Staff\Setting\Models\Setting::where('name', 'myket_link')->first()->value;
-  $sibapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'sibapp_link')->first()->value;
+  $footer_desc_title = (\Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->first()->value : null;
+  $footer_description = (\Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->first()->value : null;
+  $footer_slogan = (\Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->first()->value : null;
+  $custom_footer_code = (\Modules\Staff\Setting\Models\Setting::where('name', 'custom_footer_code')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'custom_footer_code')->first()->value : null;
+  $copyright_text = (\Modules\Staff\Setting\Models\Setting::where('name', 'copyright_text')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'copyright_text')->first()->value : null;
+  $store_phone = (\Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value : null;
+  $store_email = (\Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value : null;
+  $ecunion_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'ecunion_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'ecunion_link')->first()->value : null;
+  $enamad_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'enamad_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'enamad_link')->first()->value : null;
+  $samandehi_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'samandehi_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'samandehi_link')->first()->value : null;
+  $instagram_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'instagram_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'instagram_link')->first()->value : null;
+  $twitter_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'twitter_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'twitter_link')->first()->value : null;
+  $aparat_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'aparat_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'aparat_link')->first()->value : null;
+  $linkedin_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'linkedin_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'linkedin_link')->first()->value : null;
+  $whatsapp_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'whatsapp_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'whatsapp_link')->first()->value : null;
+  $telegram_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'telegram_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'telegram_link')->first()->value : null;
+  $googleplay_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'googleplay_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'googleplay_link')->first()->value : null;
+  $cafebazaar_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'cafebazaar_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'cafebazaar_link')->first()->value : null;
+  $myket_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'myket_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'myket_link')->first()->value : null;
+  $sibapp_link = (\Modules\Staff\Setting\Models\Setting::where('name', 'sibapp_link')->exists())? \Modules\Staff\Setting\Models\Setting::where('name', 'sibapp_link')->first()->value : null;
 
-  $header_navs = \Modules\Staff\Nav\Models\NavLocation::find(1)->navs;
+  $header_navs = (\Modules\Staff\Nav\Models\NavLocation::where('id',1)->exists() && \Modules\Staff\Nav\Models\NavLocation::find(1)->navs()->exists())? \Modules\Staff\Nav\Models\NavLocation::find(1)->navs : null;
 ?>
 <!DOCTYPE html>
 <html dir="rtl">
@@ -75,7 +75,7 @@
 
 <header class="c-header js-header">
 
-  @if($banner1->images()->exists() && $banner1->images()->first()->media()->exists())
+  @if(!is_null($banner1) && $banner1->images()->exists() && $banner1->images()->first()->media()->exists())
   <aside class="c-adplacement c-adplacement__placeholder c-adplacement__container-row c-adplacement__container-row--top">
     <a href="#" class="c-adplacement__item" target="_blank" style="background-image: url({{ ($banner1->images()->first()->media()->exists())?  $site_url . '/' . $banner1->images()->first()->media->first()->path . '/'. $banner1->images()->first()->media->first()->name : '' }})" title="{{ ($banner2->images()->first()->media()->exists())?  $banner2->images()->first()->alt : '' }}"></a>
   </aside>
@@ -85,7 +85,7 @@
     <div class="c-header__row js-header-sticky">
       <div class="c-header__right-side">
         <div class="c-header__logo ">
-          <a href="{{ route('front.indexPage') }}" class="c-header__logo-img" style="background: url({{ !is_null($header_logo)? $site_url . '/' . $header_logo->path . '/'. $header_logo->name : '' }}) {{ is_null($header_logo)? 'unset !important;' : 'no-repeat 50%;' }} !important; background-size: contain !important;">Diginova</a>
+          <a href="{{ route('front.indexPage') }}" class="c-header__logo-img" style="background: {{ !is_null($header_logo)? 'url('  . $site_url . '/' . $header_logo->path . '/'. $header_logo->name . ')' : '' }} {{ is_null($header_logo)? 'unset !important;' : 'no-repeat 50%;' }} !important; background-size: contain !important;">Diginova</a>
         </div>
         <div class="c-header__search">
           <div class="c-search js-search" data-event="using_search_box" data-event-category="header_section">
@@ -246,96 +246,90 @@
           <li class="c-navi-new-list__categories">
             <ul class="c-navi-new-list__category-item">
 
-              @foreach($header_navs->where('parent_id', null) as $nav)
-                @if($nav->type == 'megamenu')
-                  <li class="js-categories-bar-item js-mega-menu-main-item js-categories-item c-navi-new-list__category-container-main">
-                  <div class="c-navi-new-list__category c-navi-new-list__category--main">
-                    <span class="menu-icons" style="background: url({{ ($nav->media()->exists())? $site_url . '/' . $nav->media()->first()->path . '/' . $nav->media()->first()->name : '' }}) no-repeat !important; background-size: 20px !important;"></span>
-                    {{ persianNum($nav->name) }}
-                  </div>
-                    <div class="c-navi-new-list__sublist js-mega-menu-categories-options c-navi-new__ads-holder">
-                      <div class="c-navi-new-list__inner-categories">
-                        @if($nav->children()->exists())
-                          @foreach($nav->children as $key => $megamenu)
-                            <a href="{{ $megamenu->link }}" class="c-navi-new-list__inner-category js-mega-menu-category {{ ($key == 0)? 'c-navi-new-list__inner-category--hovered ' : '' }}" data-index="{{ $key }}">
-                              @if($megamenu->media()->exists())
-                                <span class="menu-icons" style="background: url({{ ($megamenu->media()->exists())? $site_url . '/' . $megamenu->media()->first()->path . '/' . $megamenu->media()->first()->name : '' }}) no-repeat !important; background-size: 20px !important;"></span>
-                              @endif
-                              {{ persianNum($megamenu->name) }}
-                            </a>
-                          @endforeach
-                        @endif
+              @if (!is_null($header_navs) && $header_navs->where('parent_id', null)->exists())
+                @foreach($header_navs->where('parent_id', null) as $nav)
+                  @if($nav->type == 'megamenu')
+                    <li class="js-categories-bar-item js-mega-menu-main-item js-categories-item c-navi-new-list__category-container-main">
+                      <div class="c-navi-new-list__category c-navi-new-list__category--main">
+                        <span class="menu-icons" style="background: url({{ ($nav->media()->exists())? $site_url . '/' . $nav->media()->first()->path . '/' . $nav->media()->first()->name : '' }}) no-repeat !important; background-size: 20px !important;"></span>
+                        {{ persianNum($nav->name) }}
                       </div>
-                      <div class="c-navi-new-list__options-container">
-                        @if($nav->children()->exists())
-                          @foreach($nav->children as $i => $menu)
-                            <div class="c-navi-new-list__options-list js-mega-menu-category-options {{ ($i == 0)? 'is-active' : '' }}" id="categories-{{ $i }}">
-                              <div class="c-navi-new-list__sublist-top-bar">
-                                <a href="{{ $menu->link }}" class="c-navi-new-list__sublist-see-all-cats">
-                                  همه دسته‌بندی‌های {{ persianNum($menu->name) }}
-                                </a>
+                      <div class="c-navi-new-list__sublist js-mega-menu-categories-options c-navi-new__ads-holder">
+                        <div class="c-navi-new-list__inner-categories">
+                          @if($nav->children()->exists())
+                            @foreach($nav->children as $key => $megamenu)
+                              <a href="{{ $megamenu->link }}" class="c-navi-new-list__inner-category js-mega-menu-category {{ ($key == 0)? 'c-navi-new-list__inner-category--hovered ' : '' }}" data-index="{{ $key }}">
+                                @if($megamenu->media()->exists())
+                                  <span class="menu-icons" style="background: url({{ ($megamenu->media()->exists())? $site_url . '/' . $megamenu->media()->first()->path . '/' . $megamenu->media()->first()->name : '' }}) no-repeat !important; background-size: 20px !important;"></span>
+                                @endif
+                                {{ persianNum($megamenu->name) }}
+                              </a>
+                            @endforeach
+                          @endif
+                        </div>
+                        <div class="c-navi-new-list__options-container">
+                          @if($nav->children()->exists())
+                            @foreach($nav->children as $i => $menu)
+                              <div class="c-navi-new-list__options-list js-mega-menu-category-options {{ ($i == 0)? 'is-active' : '' }}" id="categories-{{ $i }}">
+                                <div class="c-navi-new-list__sublist-top-bar">
+                                  <a href="{{ $menu->link }}" class="c-navi-new-list__sublist-see-all-cats">
+                                    همه دسته‌بندی‌های {{ persianNum($menu->name) }}
+                                  </a>
+                                </div>
+                                <ul>
+                                  @foreach($menu->children as $menu)
+                                    <li class="{{ ($menu->style == 'bold')? 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title' : 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item' }}" data-event="megamenu_click" data-event-category="header_section">
+                                      <a href="{{ $menu->link }}" class="c-navi-new__big-display-title">
+                                        {{ persianNum($menu->name) }}
+                                      </a>
+                                      <a href="{{ $menu->link }}" class="c-navi-new__medium-display-title">
+                                        {{ persianNum($menu->name) }}
+                                      </a>
+                                    </li>
+                                  @endforeach
+
+
+
+                                </ul>
                               </div>
-                              <ul>
-                                @foreach($menu->children as $menu)
-                                  <li class="{{ ($menu->style == 'bold')? 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title' : 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item' }}" data-event="megamenu_click" data-event-category="header_section">
-                                    <a href="{{ $menu->link }}" class="c-navi-new__big-display-title">
-                                      {{ persianNum($menu->name) }}
-                                    </a>
-                                    <a href="{{ $menu->link }}" class="c-navi-new__medium-display-title">
-                                      {{ persianNum($menu->name) }}
-                                    </a>
-                                  </li>
-                                @endforeach
-
-
-
-                              </ul>
-                            </div>
-                          @endforeach
-                        @endif
-                      </div>
-                    </div>
-                  </li>
-                @elseif($nav->children()->exists())
-
-                  <li class="js-categories-bar-item js-mega-menu-main-item js-promotion-mega-menu">
-                    <a href="{{ $nav->link }}" class="c-navi-new-list__category-link c-navi-new-list__category-link--amazing c-navi-new-list__category-link--bold">{{ persianNum($nav->name) }}</a>
-                    <div class="c-navi-new-list__sublist c-navi-new-list__sublist--promotion js-mega-menu-categories-options" style="display: none;">
-                      <div class="c-navi-new-list__options-container">
-                        <div class="c-navi-new-list__options-list is-active">
-                          <div class="c-navi-new-list__sublist-top-bar">
-                            <a href="{{ $nav->link }}" class="c-navi-new-list__sublist-see-all-cats">
-                              مشاهده همه {{ persianNum($nav->name) }}
-                            </a>
-                          </div>
-                          <ul>
-                            @if($nav->children()->exists())
-                              @foreach($nav->children as $key => $item)
-                                <li class="{{ ($item->style == 'bold')? 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title' : 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item' }}">
-                                  <a href="{{ $item->link }}" class="c-navi-new__big-display-title"><span>{{ persianNum($item->name) }}</span></a>
-                                </li>
-                              @endforeach
-                            @endif
-                          </ul>
+                            @endforeach
+                          @endif
                         </div>
                       </div>
-                    </div>
-                  </li>
+                    </li>
+                  @elseif($nav->children()->exists())
 
-                @else
-                  <li class="js-categories-bar-item">
-                    <a href="{{ $megamenu->link }}" class="c-navi-new-list__category-link c-navi-new-list__category-link--fresh c-navi-new-list__category-link--bold">{{ persianNum($megamenu->name) }}</a>
-                  </li>
-                @endif
-              @endforeach
+                    <li class="js-categories-bar-item js-mega-menu-main-item js-promotion-mega-menu">
+                      <a href="{{ $nav->link }}" class="c-navi-new-list__category-link c-navi-new-list__category-link--amazing c-navi-new-list__category-link--bold">{{ persianNum($nav->name) }}</a>
+                      <div class="c-navi-new-list__sublist c-navi-new-list__sublist--promotion js-mega-menu-categories-options" style="display: none;">
+                        <div class="c-navi-new-list__options-container">
+                          <div class="c-navi-new-list__options-list is-active">
+                            <div class="c-navi-new-list__sublist-top-bar">
+                              <a href="{{ $nav->link }}" class="c-navi-new-list__sublist-see-all-cats">
+                                مشاهده همه {{ persianNum($nav->name) }}
+                              </a>
+                            </div>
+                            <ul>
+                              @if($nav->children()->exists())
+                                @foreach($nav->children as $key => $item)
+                                  <li class="{{ ($item->style == 'bold')? 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title' : 'c-navi-new-list__sublist-option c-navi-new-list__sublist-option--item' }}">
+                                    <a href="{{ $item->link }}" class="c-navi-new__big-display-title"><span>{{ persianNum($item->name) }}</span></a>
+                                  </li>
+                                @endforeach
+                              @endif
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
 
-
-
-
-
-
-
-
+                  @else
+                    <li class="js-categories-bar-item">
+                      <a href="{{ $megamenu->link }}" class="c-navi-new-list__category-link c-navi-new-list__category-link--fresh c-navi-new-list__category-link--bold">{{ persianNum($megamenu->name) }}</a>
+                    </li>
+                  @endif
+                @endforeach
+              @endif
 
             </ul>
           </li>
@@ -387,22 +381,24 @@
 
     <div class="c-footer__middlebar">
       <div class="c-footer__links">
-        @foreach(\Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null) as $nav)
-          <nav class="c-footer__links--col">
-            <div class="o-headline-links">
-              <div>
-                <a href="{{ $nav->link }}">{{ persianNum($nav->name) }}</a>
+        @if (\Modules\Staff\Nav\Models\NavLocation::where('id', 2)->exists() && \Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null)->exists())
+          @foreach(\Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null) as $nav)
+            <nav class="c-footer__links--col">
+              <div class="o-headline-links">
+                <div>
+                  <a href="{{ $nav->link }}">{{ persianNum($nav->name) }}</a>
+                </div>
               </div>
-            </div>
-            <ul class="c-footer__links-ul">
-              @foreach($nav->children as $item)
-                <li>
-                  <a href="{{ $item->link }}">{{ $item->name }}</a>
-                </li>
-              @endforeach
-            </ul>
-          </nav>
-        @endforeach
+              <ul class="c-footer__links-ul">
+                @foreach($nav->children as $item)
+                  <li>
+                    <a href="{{ $item->link }}">{{ $item->name }}</a>
+                  </li>
+                @endforeach
+              </ul>
+            </nav>
+          @endforeach
+        @endif
       </div>
       <nav class="c-footer__form">
         <form id="SubscribeNewsletter" class="c-form-newsletter" action="/newsletter/" method="post">

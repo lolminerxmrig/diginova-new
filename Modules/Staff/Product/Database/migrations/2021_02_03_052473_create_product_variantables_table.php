@@ -14,8 +14,9 @@ class CreateProductVariantablesTable extends Migration
     public function up()
     {
         Schema::create('product_variantables', function (Blueprint $table) {
-            $table->integer('product_variant_id');
-            $table->morphs('variantable');
+          $table->id();
+          $table->integer('product_variant_id');
+          $table->morphs('variantable');
         });
     }
 
