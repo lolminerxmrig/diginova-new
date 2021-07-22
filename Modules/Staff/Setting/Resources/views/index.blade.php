@@ -2245,7 +2245,7 @@ function initLogoUpload() {
   let $previewImg = $('#logoUploadPreview');
   let $errorsSection = $('#logoUploadErrors');
   window.UIkit.upload($logoUpload, {
-    url: "{{ route('staff.settings.UploadImage') }}",
+    url: "{{ route('staff.settings.UploadLogoImage') }}",
     beforeSend: function () {
       $errorsSection.html('');
     },

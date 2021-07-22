@@ -41,9 +41,9 @@ class AppServiceProvider extends ServiceProvider
             view()->share('index_meta_keywords', $settings->where('name', 'index_meta_keywords')->first()->value);
             view()->share('site_index_status', $settings->where('name', 'site_index_status')->first()->value);
 
-            view()->share('header_logo', count($settings->where('name', 'header_logo')->first()->media) ? $settings->where('name', 'header_logo')->first()->media()->first() : null);
-            view()->share('favicon_image', count($settings->where('name', 'favicon_image')->first()->media) ? $settings->where('name', 'favicon_image')->first()->media()->first() : null);
-            view()->share('symbol_image', count($settings->where('name', 'symbol_image')->first()->media) ? $settings->where('name', 'symbol_image')->first()->media()->first() : null);
+            view()->share('header_logo', ($settings->where('name', 'header_logo')->exists() && $settings->where('name', 'header_logo')->first()->media()->exists())? $settings->where('name', 'header_logo')->first()->media()->first() : collect(['path' => 'assets/images/svg', 'name' => 'default-logo.svg']));
+            view()->share('favicon_image', ($settings->where('name', 'favicon_image')->exists() && $settings->where('name', 'favicon_image')->first()->media()->exists())? $settings->where('name', 'favicon_image')->first()->media()->first() : null);
+            view()->share('symbol_image', ($settings->where('name', 'symbol_image')->exists() && $settings->where('name', 'symbol_image')->first()->media()->exists())? $settings->where('name', 'symbol_image')->first()->media()->first() : null);
         } else {
             view()->share('fa_store_name', 'دیجی نوا');
             view()->share('site_url', 'localhost');
@@ -53,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
             view()->share('index_meta_keywords', 'فروشگاه اینترنتی, دیجی نوا');
             view()->share('site_index_status', 'false');
 
+//            view()->share('header_logo', collect(['path' => 'assets/images/svg', 'name' => 'default-logo.svg']));
             view()->share('header_logo', null);
             view()->share('favicon_image', null);
             view()->share('symbol_image', null);

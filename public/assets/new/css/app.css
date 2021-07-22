@@ -17639,7 +17639,7 @@ input[type=checkbox]:checked + .c-ui-new-switch__slider span {
   left: 50%;
   -webkit-transform: translate(-50%);
   transform: translate(-50%);
-  background: url(../../images/svg/bc60cf05.svg) no-repeat 50% 50%;
+  background: url(../../images/svg/default-logo.svg) no-repeat 50% 50%;
   background-size: contain
 }
 
@@ -17969,7 +17969,7 @@ input[type=checkbox]:checked + .c-ui-new-switch__slider span {
   display: block;
   text-align: right;
   text-indent: -1000em;
-  background: url(../../images/svg/bc60cf05.svg) no-repeat 50%;
+  background: url(../../images/svg/default-logo.svg) no-repeat 50%;
   background-size: contain;
   -webkit-transition: background-position .3s cubic-bezier(.17, .67, .49, .93);
   transition: background-position .3s cubic-bezier(.17, .67, .49, .93)
@@ -21825,7 +21825,7 @@ li:last-child .c-navi-list__tracking-a {
   margin-bottom: 18px;
   -webkit-transform: translate(-50%);
   transform: translate(-50%);
-  background: url(../../images/svg/bc60cf05.svg) no-repeat 50% 50%;
+  background: url(../../images/svg/default-logo.svg) no-repeat 50% 50%;
   background-size: auto 100%;
   text-indent: -1000em
 }
@@ -29522,7 +29522,7 @@ li:last-child .c-navi-list__tracking-a {
 .c-remodal-checkout__header--logo {
   width: 156px;
   height: 60px;
-  background: url(../../images/svg/bc60cf05.svg) no-repeat 50% 50%;
+  background: url(../../images/svg/default-logo.svg) no-repeat 50% 50%;
   text-indent: -1000em;
   display: block;
   margin: auto
@@ -40283,7 +40283,7 @@ input[type=radio]:checked + .c-am-chart-time-span__check {
   left: 50%;
   -webkit-transform: translate(-50%);
   transform: translate(-50%);
-  background: url(../../images/svg/bc60cf05.svg) no-repeat 50% 50%;
+  background: url(../../images/svg/default-logo.svg) no-repeat 50% 50%;
   background-size: contain
 }
 
@@ -59560,7 +59560,7 @@ p + .c-message-light__points {
   margin-bottom: 18px;
   -webkit-transform: translate(-50%);
   transform: translate(-50%);
-  background: url(../../images/svg/bc60cf05.svg) no-repeat 50% 50%;
+  background: url(../../images/svg/default-logo.svg) no-repeat 50% 50%;
   background-size: contain;
   text-indent: -1000em
 }
@@ -73574,7 +73574,7 @@ body.t-header-light .c-checkout-aside {
 .c-gift__logo {
   width: 109px;
   height: 38px;
-  background: #fff url(../../images/svg/bc60cf05.svg) no-repeat 50% 50%;
+  background: #fff url(../../images/svg/default-logo.svg) no-repeat 50% 50%;
   position: absolute;
   top: 15px;
   right: 20px;
@@ -84580,7 +84580,7 @@ label.erlabel {
 }
 
 .logo {
-  background: url(../../images/svg/bc60cf05.svg) no-repeat;
+  background: url(../../images/svg/default-logo.svg) no-repeat;
   background-size: 100% 100%;
   display: block;
   width: 156px;
@@ -95173,7 +95173,7 @@ body.has-top-banner .c-digiplus-landing-user-navbar {
   height: 56px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background: url(../../images/svg/bc60cf05.svg) no-repeat 50% 50%
+  background: url(../../images/svg/default-logo.svg) no-repeat 50% 50%
 }
 
 .c-modal__title {

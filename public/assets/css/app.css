@@ -18879,7 +18879,7 @@ input[type=checkbox]:checked+.c-ui-new-switch__slider span {
   left: 50%;
   -webkit-transform: translate(-50%);
   transform: translate(-50%);
-  /*background: url(../svg/bc60cf05.svg) no-repeat 50% 50%;*/
+  /*background: url(../svg/default-logo.svg) no-repeat 50% 50%;*/
   background-size: contain !important;
 }
 
@@ -19199,7 +19199,7 @@ input[type=checkbox]:checked+.c-ui-new-switch__slider span {
   display: block;
   text-align: right;
   text-indent: -1000em;
-  /*background: url(../svg/bc60cf05.svg) no-repeat 50%;*/
+  /*background: url(../svg/default-logo.svg) no-repeat 50%;*/
   background-size: contain;
   -webkit-transition: background-position .3s cubic-bezier(.17, .67, .49, .93);
   transition: background-position .3s cubic-bezier(.17, .67, .49, .93)

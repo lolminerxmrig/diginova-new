@@ -85,6 +85,7 @@
     <div class="c-header__row js-header-sticky">
       <div class="c-header__right-side">
         <div class="c-header__logo ">
+          {{ dd($header_logo) }}
           <a href="{{ route('front.indexPage') }}" class="c-header__logo-img" style="background: {{ !is_null($header_logo)? 'url('  . $site_url . '/' . $header_logo->path . '/'. $header_logo->name . ')' : '' }} {{ is_null($header_logo)? 'unset !important;' : 'no-repeat 50%;' }} !important; background-size: contain !important;">Diginova</a>
         </div>
         <div class="c-header__search">

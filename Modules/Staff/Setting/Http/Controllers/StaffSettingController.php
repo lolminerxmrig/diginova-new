@@ -15,19 +15,20 @@ use Illuminate\Http\Request;
 class StaffSettingController extends Controller
 {
 
-    public function index() {
-        $settings = Setting::all();
-        $states = State::all();
-        $store_addresses = StoreAddress::all();
+    public function index()
+    {
+      $settings = Setting::all();
+      $states = State::all();
+      $store_addresses = StoreAddress::all();
 
-        if(!is_null($settings->where('name', 'invoice_stamp')->first()->media) && count($settings->where('name', 'invoice_stamp')->first()->media)){
-          $stamp_image = $settings->where('name', 'invoice_stamp')->first()->media()->first();
-        }
-        else {
-          $stamp_image = null;
-        }
+      if(!is_null($settings->where('name', 'invoice_stamp')->first()->media) && count($settings->where('name', 'invoice_stamp')->first()->media)){
+        $stamp_image = $settings->where('name', 'invoice_stamp')->first()->media()->first();
+      }
+      else {
+        $stamp_image = null;
+      }
 
-        return view('staffsetting::index', compact('settings', 'states', 'store_addresses', 'stamp_image'));
+      return view('staffsetting::index', compact('settings', 'states', 'store_addresses', 'stamp_image'));
     }
 
     public function update(Request $request)
