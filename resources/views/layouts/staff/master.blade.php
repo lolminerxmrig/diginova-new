@@ -749,19 +749,12 @@
                 <div class="uk-navbar-dropdown uk-navbar-dropdown--has-rating uk-navbar-dropdown-bottom-left" style="left: 90.0001px; top: 50px;">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li>
-                      <a href="/" class="has-icon ">
+                      <a href="{{ route('staff.dashboardPage') }}" class="has-icon ">
                         <span uk-icon="icon: clock;" class="uk-icon">
                         </span>
                         داشبورد
                       </a>
                     </li>
-{{--                    <li>--}}
-{{--                      <a href="/profile/new/display/" class="has-icon ">--}}
-{{--                        <span uk-icon="icon: user;" class="uk-icon">--}}
-{{--                        </span>--}}
-{{--                        پروفایل شما--}}
-{{--                      </a>--}}
-{{--                    </li>--}}
                     <li>
                       <a href="/account/changepassword/" class="has-icon ">
                         <span uk-icon="icon: lock;" class="uk-icon">
@@ -770,7 +763,7 @@
                       </a>
                     </li>
                     <li>
-                      <a href="/account/logout/" class="has-icon ">
+                      <a href="{{ route('staff.logout') }}" class="has-icon ">
                         <span uk-icon="icon: ban;" class="uk-icon">
                         </span>
                         خروج
@@ -788,8 +781,7 @@
     </div>
     <div class="new-mobile-view-menu--invisible">
       <div class="new-mobile-view-menu__header">
-        <button class="uk-navbar__control uk-navbar__control--collapse js-navbar-control" type="button"
-          aria-label="show menu">
+        <button class="uk-navbar__control uk-navbar__control--collapse js-navbar-control" type="button" aria-label="show menu">
         <span class="uk-navbar__control-box">
         <span class="uk-navbar__control-inner"></span>
         </span>
@@ -804,7 +796,7 @@
           {{ $fa_store_name }}
         </a>
         <div>
-          <a href="" class="c-profile-nav__menu-item c-profile-nav__menu-item--logout">خروج</a>
+          <a href="{{ route('staff.logout') }}" class="c-profile-nav__menu-item c-profile-nav__menu-item--logout">خروج</a>
         </div>
       </div>
       <div class="uk-navbar-container__bottom">
