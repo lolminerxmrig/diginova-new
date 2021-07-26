@@ -10,5 +10,5 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Staff extends Authenticatable
 {
     use HasFactory;
-    protected $fillable = ['first_name', 'last_name', 'email', 'password'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'remember_token'];
 }
