@@ -16,7 +16,7 @@
   <div class="c-reg-form c-reg-form--forgot">
     <form method="post" action="{{ route('staff.updatePassword') }}" id="changePasswordForm" data-name="changepassword" novalidate="novalidate">
       @csrf
-      <input type="hidden" name="token" value="{{ $token }}">
+      <input type="hidden" name="rc" value="{{ $token }}">
       <div class="c-reg-form__row c-reg-form__row--align-center">
         <div class="c-reg-form__col c-reg-form__col--12">
           <h2 class="c-reg-form__header c-reg-form__header--bold">تغییر کلمه عبور</h2>
@@ -28,7 +28,7 @@
 
           <div class="c-ui-input">
 
-            <input type="text" name="" class="c-ui-input__field c-ui-input__field--ltr c-ui-input__field--has-icon" value="{{ $email }}" disabled="">
+            <input type="text" name="email" class="c-ui-input__field c-ui-input__field--ltr c-ui-input__field--has-icon" value="{{ $email }}" disabled="" id="email">
 
             <div class="c-ui-input__icon c-ui-input__icon--email"></div>
 

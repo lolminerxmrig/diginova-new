@@ -90,8 +90,8 @@ class StaffRegLoginController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('staff')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+//        $request->session()->invalidate();
+//        $request->session()->regenerateToken();
         return redirect()->route('staff.indexPage');
     }
 
@@ -142,12 +142,12 @@ class StaffRegLoginController extends Controller
       return view('staffauth::successful-sent');
     }
 
-    public function resetPassword($token)
+    public function resetPassword($token = null)
     {
-      if ($token !== '' && !is_null($token) && Staff::where('remember_token', $token)->exists()){
+      if ($token !== '' && !is_null($token) && Staff::where('remember_token', $token)->count()){
         $email = Staff::where('remember_token', $token)->first()->email;
       } else {
-//        abort(404);
+        return view('staffauth::token-failed');
       }
       return view('staffauth::reset', compact('email', 'token'));
     }
@@ -156,8 +156,7 @@ class StaffRegLoginController extends Controller
     {
 
       $validator = Validator::make($request->all(), [
-        'email' => 'required|email|exists:staff',
-        'password' => 'required|string|min:6|confirmed',
+        'password' => 'required|min:6|confirmed',
         'password_confirmation' => 'required',
       ]);
 
@@ -167,10 +166,11 @@ class StaffRegLoginController extends Controller
         ]);
       }
 
-      if ($request->token !== '' && !is_null($request->token) && Staff::where('remember_token', $request->token)->where('email', $request->email)->exists() && $request->password == $request->password_confirmation)
+      if ($request->rc !== '' && !is_null($request->rc) && Staff::where('remember_token', $request->rc)->exists() && $request->password == $request->password_confirmation)
       {
-        Staff::where('email', $request->email)->update([
+        Staff::where('remember_token', $request->rc)->update([
           'password' => Hash::make($request->password),
+          'remember_token' => null,
         ]);
       }
       else {

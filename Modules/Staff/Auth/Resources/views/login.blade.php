@@ -2,7 +2,7 @@
 <html dir="rtl">
 <head>
   <meta charset="utf-8">
-  <title> {{ $site_title }} | ورود به پنل مدیریت </title>
+  <title> {{ $fa_store_name }} | ورود به پنل مدیریت </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="{{ !is_null($favicon_image)? $site_url . '/' . $favicon_image->path . '/'. $favicon_image->name : '' }}" type="image/icon">
   <link rel="stylesheet" href="{{ asset('seller/css/select2.css') }}">
@@ -20,7 +20,7 @@
           @endif
           {{--        <img src="{{ asset('seller/svg/seller-center-logo.svg') }}" alt="Digikala marketplace seller center logo">--}}
         </a>
-        <h1 class="c-new-login__header">به پنل مدیریت {{ $site_title }} <br> خوش آمدید!</h1>
+        <h1 class="c-new-login__header">به پنل مدیریت {{ $fa_store_name }} <br> خوش آمدید!</h1>
       </header>
       <div class="c-new-login__sidebar-center">
         <img src="{{ asset('seller/svg/seller-center-svg.svg') }}" alt="" class="c-new-login__sidebar-img">
