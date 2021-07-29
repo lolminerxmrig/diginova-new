@@ -24,23 +24,31 @@ class StaffCategoryRequest extends FormRequest
     public function rules()
     {
         $data = $this->all();
-        if($data['image'] !== 'not_required'){
-            return [
-                'name' => 'required',
-                'slug' => 'required',
-                'en_name' => 'required',
-                'image' => 'required',
+
+        return [
+          'name' => 'required',
+          'slug' => 'required',
+          'en_name' => 'required',
+          'image' => 'required',
+        ];
+
+//        if($data['image'] !== 'not_required'){
+//            return [
+//                'name' => 'required',
+//                'slug' => 'required',
+//                'en_name' => 'required',
+//                'image' => 'required',
+////                'parent_id' => 'required',
+//            ];
+//        }
+//        else{
+//            return [
+//                'name' => 'required',
+//                'slug' => 'required',
+//                'en_name' => 'required',
 //                'parent_id' => 'required',
-            ];
-        }
-        else{
-            return [
-                'name' => 'required',
-                'slug' => 'required',
-                'en_name' => 'required',
-                'parent_id' => 'required',
-            ];
-        }
+//            ];
+//        }
     }
 
     /**

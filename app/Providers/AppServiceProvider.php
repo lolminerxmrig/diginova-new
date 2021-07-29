@@ -30,13 +30,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
+      Schema::defaultStringLength(191);
+
       if (\Schema::hasTable('settings') && count(Setting::all())) {
             $settings = Setting::all();
-//            $settings = Setting::select('name', 'value')->get();
             view()->share('fa_store_name', $settings->where('name', 'fa_store_name')->first()->value);
             view()->share('site_url', $settings->where('name', 'site_url')->first()->value);
             view()->share('product_code_prefix', $settings->where('name', 'product_code_prefix')->first()->value);
-            view()->share('site_title', $settings->where('name', 'site_title')->first()->value);
+            view()->share('site_title',
+              $settings->where('name', 'site_title')->first()->value);
             view()->share('description', $settings->where('name', 'index_meta_description')->first()->value);
             view()->share('index_meta_keywords', $settings->where('name', 'index_meta_keywords')->first()->value);
             view()->share('site_index_status', $settings->where('name', 'site_index_status')->first()->value);
@@ -53,7 +55,6 @@ class AppServiceProvider extends ServiceProvider
             view()->share('index_meta_keywords', 'فروشگاه اینترنتی, دیجی نوا');
             view()->share('site_index_status', 'false');
 
-//            view()->share('header_logo', collect(['path' => 'assets/images/svg', 'name' => 'default-logo.svg']));
             view()->share('header_logo', null);
             view()->share('favicon_image', null);
             view()->share('symbol_image', null);
@@ -118,11 +119,8 @@ class AppServiceProvider extends ServiceProvider
             'postSefareshi.sefareshi.tariff.higher.outsidePart' => DeliveryMethodValue::find(22)->extra_province,
           ]);
 
-          Schema::defaultStringLength(191);
 
         }
-
-      Schema::defaultStringLength(191);
 
       Relation::morphMap([
         'StoreAddress' => 'App\Models\StoreAddress',

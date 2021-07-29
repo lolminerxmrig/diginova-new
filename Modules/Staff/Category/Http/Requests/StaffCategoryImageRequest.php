@@ -24,8 +24,9 @@ class StaffCategoryImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|image|mimes:jpg|max:2048|dimensions:min_width=115,min_height=115,ratio=1/1',
-//            'old_img' => 'required',
+//            'image' => 'required|dimensions:min_width=115,min_height=115',
+//            'image' => 'required|image|mimes:jpg|max:2048|dimensions:min_width=115,min_height=115,ratio=1/1',
+//            'old_img' => 'nullable',
         ];
     }
 

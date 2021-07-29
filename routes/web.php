@@ -18,7 +18,6 @@ use Modules\Staff\Setting\Models\Setting;
 
 Route::get('/', [FrontController::class, 'index'])->name('front.indexPage');
 
-Route::get('test', [FrontController::class, 'test'])->name('test');
 
 if (\Schema::hasTable('settings') && Setting::where('name', 'product_code_prefix')->count()) {
   $product_code_prefix = Setting::where('name', 'product_code_prefix')->first()->value;

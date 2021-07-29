@@ -1,5 +1,6 @@
 @extends('layouts.staff.master')
 
+@section('title') مدیریت دسته ها | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('seller/js/create-category-validation.js') }}"></script>
 <script src="{{ asset('seller/js/tags3.js') }}"></script>
@@ -244,12 +245,6 @@
                                                                                 یک در یک داشته باشد
                                                                             </li>
                                                                             <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                                                                فرمت تصاویر بایستی JPG باشد
-                                                                            </li>
-                                                                            <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                                                                حداکثر حجم فایل 2 مگابایت باشد
-                                                                            </li>
-                                                                            <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                                                                 حداقل ابعاد عکس 125 * 125 پیکسل باشد
                                                                             </li>
                                                                         </ul>
@@ -437,6 +432,69 @@ $.ajaxSetup({
     }
 });
 
+$(document).on('click', '#delete-btn', function () {
+
+  $('.c-header__nav').hide();
+  $(".uk-modal-container").addClass('uk-open');
+  $(".uk-modal-container").css('display', 'block');
+
+  $(document).on('click', '.uk-close', function () {
+    $('.c-header__nav').show();
+  });
+
+  $(document).on('click', '.no', function () {
+    $('.c-header__nav').show();
+  });
+
+});
+
+
+$(document).on('click', '.yes', function () {
+
+  var cat_id = $("input[name='selected-cat']").val();
+
+  $('.c-header__nav').show();
+
+  $.ajax({
+    method: 'post',
+    url: "{{route('staff.categories.destroy')}}",
+    data: {
+      'id': cat_id,
+    },
+    success: function () {
+      $(".edit-form-section").hide();
+
+      $.toast({
+        heading: 'موفق!',
+        text: "دسته با موفقیت حذف شد",
+        bgColor: '#3DC3A1',
+        textColor: '#fff',
+      });
+
+      $.ajax({
+        type: 'post',
+        url: '{{route('staff.categories.mainCatLoader')}}',
+        success: function (response) {
+          $('.c-content-categories__wrapper').replaceWith(response);
+          $('.edit-form-section').each(function () {
+            $(this).hide();
+          });
+        }
+      });
+
+      $(".category-box").show();
+      $(".appended-box").each(function () {
+        $(this).remove();
+      });
+
+      $(".category-box").show();
+
+
+    },
+  });
+
+});
+
 // ایجکس فرم اصلی
 $('#category_form').on('submit', function (e) {
     e.preventDefault();
@@ -449,8 +507,8 @@ $('#category_form').on('submit', function (e) {
 
     var selectedCat = $("input[name='selected-cat']").val();
 
-    if ($("#stepImagesAccordion").is(":hidden")) {
-        var image = 'not_required';
+    if ($("#imagesSection").is(":hidden")) {
+      var image = null;
     } else {
         var image = $("img[name='uploaded']").attr('data-id');
     }
@@ -463,7 +521,7 @@ $('#category_form').on('submit', function (e) {
                 name: name,
                 slug: slug,
                 en_name: en_name,
-                image: image,
+                image_id: image,
                 id: selectedCat,
                 description: description,
             },
@@ -535,8 +593,11 @@ $(document).on("change", "#uploadImage", function () {
 
     var form_data = new FormData();
     var input_image = $("#uploadImage").prop("files")[0];
+    var selectedCat = $("input[name='selected-cat']").val();
 
-    form_data.append("image", input_image);
+
+
+  form_data.append("image", input_image);
 
     var old_img = $("img[name='uploaded']").attr('data-id');
 
@@ -544,8 +605,11 @@ $(document).on("change", "#uploadImage", function () {
         form_data.append("old_img", old_img);
     }
 
-    $.ajax({
-        url: '{{route('staff.categories.uploadUpdate')}}',
+    form_data.append("category_id", selectedCat);
+
+
+  $.ajax({
+        url: '{{route('staff.categories.ajaxupload')}}',
         cache: false,
         contentType: false,
         processData: false,
@@ -555,7 +619,7 @@ $(document).on("change", "#uploadImage", function () {
             $("#imagesSection").replaceWith(data);
             $(".c-content-upload__title").find('.error-text').remove();
         },
-        error: function (data) {5
+        error: function (data) {
             $(".li-error").addClass('has-error');
             $(".error-image").html('تصویری که انتخاب کرید شرایط لازم را ندارد');
         }
@@ -568,7 +632,7 @@ $(document).on("click", ".js-remove-upload", function () {
     $("#imagesSection").hide();
 });
 
-// ای8جکس دسته ها
+// ایجکس دسته ها
 $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();
@@ -722,75 +786,6 @@ $(document).on('click', "#categoryStepNext", function (e) {
     }, 600);
 });
 
-$(document).on('click', '#delete-btn', function () {
-    $('.c-header__nav').hide();
-    $(".uk-modal-container").addClass('uk-open');
-    $(".uk-modal-container").css('display', 'block');
-
-    $(document).on('click', '.uk-close', function () {
-        $('.c-header__nav').show();
-    });
-
-    $(document).on('click', '.no', function () {
-        $('.c-header__nav').show();
-    });
-
-    $(document).on('click', '.yes', function () {
-        var cat_id = $("input[name='selected-cat']").val();
-
-        $('.c-header__nav').show();
-
-        $.ajax({
-            method: 'post',
-            url: "{{route('staff.categories.destroy')}}",
-            data: {
-                'id': cat_id,
-            },
-            success: function () {
-                $(".edit-form-section").hide();
-
-                $.toast({
-                    heading: 'موفق!',
-                    text: "دسته با موفقیت حذف شد",
-                    bgColor: '#3DC3A1',
-                    textColor: '#fff',
-                });
-
-                {{--$('#category_form').trigger("reset");--}}
-
-                {{--$(".appended-box").each(function () {--}}
-                {{--    $(this).remove();--}}
-                {{--});--}}
-
-                {{--$("#imagesSection").hide();--}}
-                {{--$('#preview_uploading').attr('data-id', 0);--}}
-                {{--$("img[name='uploaded']").attr('data-id', 0);--}}
-                {{--$.ajax({--}}
-                {{--    type: 'post',--}}
-                {{--    url: '{{route('staff.categories.mainCatLoader')}}',--}}
-                {{--    success: function (response) {--}}
-                {{--        $('#categoriesContainer').replaceWith(response);--}}
-                {{--    }--}}
-                {{--});--}}
-                $.ajax({
-                    type: 'post',
-                    url: '{{route('staff.categories.mainCatLoader')}}',
-                    success: function (response) {
-                        $('.c-content-categories__wrapper').replaceWith(response);
-                        $('.edit-form-section').each(function () {
-                            $(this).hide();
-                        });
-                    }
-                });
-                $(".category-box").show();
-                $(".appended-box").each(function () {
-                    $(this).remove();
-                });
-                $(".category-box").show();
-            },
-        });
-    });
-});
 
 </script>
 @endsection

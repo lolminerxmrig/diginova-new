@@ -27,7 +27,6 @@ class Media extends Model
         return $this->morphedByMany(Brand::class, 'mediable');
     }
 
-
     public function products()
     {
         return $this->morphedByMany(Product::class);
