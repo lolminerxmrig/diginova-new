@@ -5,6 +5,7 @@ namespace Modules\Staff\Brand\Http\Controllers;
 use App\Models\Mediable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 
 use Modules\Staff\Brand\Http\Requests\StaffBrandImageRequest;
@@ -16,11 +17,10 @@ use App\Models\Media;
 
 class StaffBrandController extends Controller
 {
-
     public function index()
     {
         $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate(1);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
         $media = Media:: all();
         $categories = Category:: all();
         return view('staffbrand::index', compact('brands', 'media', 'categories', 'trashed_brands'));
@@ -32,11 +32,11 @@ class StaffBrandController extends Controller
             $paginatorNum = $request->paginatorNum;
         }
         else {
-            $paginatorNum = 10;
+            $paginatorNum = 1;
         }
 
         $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate($paginatorNum);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
 
         $media = Media::all();
         $categories = Category::all();
@@ -52,17 +52,14 @@ class StaffBrandController extends Controller
         if ($request->search_type == 'all')
         {
             return $this->ajaxPagination($request);
-
         }
-        else {
-            $brands = Brand::where('type', 1)->distinct('name')->orderBy('created_at', 'desc')->paginate(10);
-            $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
-            $pageType = 'only_special';
 
-            if ($brands){
-                return View::make('staffbrand::ajax-content', compact('brands', 'pageType', 'trashed_brands'));
-            }
+        $brands = Brand::where('type', 1)->distinct('name')->orderBy('created_at', 'desc')->paginate(1);
+        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
+        $pageType = 'only_special';
 
+        if ($brands){
+          return View::make('staffbrand::ajax-content', compact('brands', 'pageType', 'trashed_brands'));
         }
     }
 
@@ -75,61 +72,11 @@ class StaffBrandController extends Controller
     public function edit($brand)
     {
         $brand = Brand::where('en_name', $brand)->first();
+//        dd($brand);
         $brands = Brand::all();
         $categories = Category::get()->unique('name');
         $media = Media:: all();
         return view('staffbrand::edit', compact('categories', 'brand', 'brands', 'media'));
-    }
-
-    public function update(StaffBrandRequest $request)
-    {
-        // تبدیل آرایه ای از اعداد با فرمت رشته به آرایه عددی
-        $categories = array_map(function($value) {
-            return intval($value);
-        }, $request->categories);
-
-        $brand = Brand::find($request->id);
-
-        Brand::find($request->id)->update([
-            'name' => $request->name,
-            'en_name' => $request->en_name,
-            'description' => $request->description,
-            'slug' => $request->slug,
-        ]);
-
-        $media = Brand::find($request->id)->media()->first();
-        $user_id = auth()->guard('staff')->user()->id;
-
-        if ($request->image)
-        {
-            $old_img = Mediable::where('media_id', $request->image)->first();
-            if($old_img == null)
-            {
-                if (Brand::find($request->id)->media()->first() !== null && Brand::find($request->id)->media()->first()->id !== $request->image){
-                    Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
-                    if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
-                        unlink(public_path("$media->path/") . $media->name);
-                    }
-                    $media->delete();
-
-                    Media::find($request->image)->update([
-                        'status' => 1,
-                    ]);
-
-                    $this_brand = Brand::find($request->id)->id;
-                    Media::find($request->image)->brands()->attach($this_brand);
-                }
-            }
-        }
-
-        Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();
-
-        foreach ($categories as $category)
-        {
-            $this_cat = Category::find($category);
-            $brand->categories()->attach($this_cat);
-        }
-
     }
 
     public function store(StaffBrandRequest $request)
@@ -152,7 +99,7 @@ class StaffBrandController extends Controller
             $brand->categories()->attach($this_cat);
         }
 
-        if ($request->image !== 'not_required')
+        if ($request->image !== 'not_required' && $request->image !== "0")
         {
             Media::find($request->image)->brands()->attach($brand);
             Media::find($request->image)->update([
@@ -225,12 +172,12 @@ class StaffBrandController extends Controller
 
     public function trash()
     {
-        $brands = Brand::onlyTrashed()->paginate(10);
+        $brands = Brand::onlyTrashed()->paginate(1);
         return view('staffbrand::trash', compact('brands'));
     }
 
     public function trashPagination(){
-        $brands = Brand::onlyTrashed()->paginate(10);
+        $brands = Brand::onlyTrashed()->paginate(1);
         return View::make('staffbrand::ajax-trash-content', compact('brands'));
     }
 
@@ -242,8 +189,8 @@ class StaffBrandController extends Controller
 
     public function restoreFromTrash(Request $request)
     {
-        Brand::withTrashed()->find($request->id)->restore();
-        $brands = Brand::onlyTrashed()->paginate(10);
+        Brand::onlyTrashed()->find($request->id)->restore();
+        $brands = Brand::onlyTrashed()->paginate(1);
         return View::make('staffbrand::ajax-trash-content', compact('brands'));
     }
 
@@ -269,7 +216,7 @@ class StaffBrandController extends Controller
                 ]);
             }
         }
-        $brands = Brand::onlyTrashed()->paginate(10);
+        $brands = Brand::onlyTrashed()->paginate(1);
         return View::make('staffbrand::ajax-trash-content', compact('brands'));
 
     }
@@ -278,8 +225,8 @@ class StaffBrandController extends Controller
     {
         $search_keyword = $request->search_keyword;
 
-        $brands = Brand::query()->where('name', 'LIKE', "%{$search_keyword}%")->paginate(10);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $brands = Brand::query()->where('name', 'LIKE', "%{$search_keyword}%")->paginate(1);
+        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
 
         if ($brands) {
             $pageType = 'brandSearch';
@@ -294,13 +241,82 @@ class StaffBrandController extends Controller
 
         $brands = $brands->whereHas('categories', function ($query) use ($search_keyword) {
             $query->where('name', 'LIKE', '%' . $search_keyword . '%');
-        })->paginate(5);
+        })->paginate(1);
 
         if ($brands) {
             $pageType = 'brandCatSearch';
-            $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+            $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
             return View::make("staffbrand::ajax-content", compact('brands', 'pageType', 'trashed_brands'));
         }
     }
+
+
+
+
+  public function update(StaffBrandRequest $request)
+  {
+    $categories = string_to_int_array($request->categories);
+    $brand = Brand::findOrFail($request->id);
+    $user_id = auth()->guard('staff')->user()->id;
+    $media = $brand->media()->first();
+
+    $brand->update([
+      'name' => $request->name,
+      'en_name' => $request->en_name,
+      'description' => $request->description,
+      'slug' => $request->slug,
+    ]);
+
+    // برند عکس داشته و عکسش تغییر کرده
+    if ($brand->media()->exists() && $request->image && intval($request->image) !== $brand->media()->first()->id) {
+      // حذف عکس قبلی
+      if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id))
+      {
+        unlink(public_path("$media->path/") . $media->name);
+        $media->delete();
+        $brand->media()->detach();
+      }
+
+      // عکس جدید
+      $new_image = Media::findOrFail($request->image);
+      $brand->media()->attach($new_image);
+      $brand->media()->update([
+        'status' => 1,
+      ]);
+    }
+
+    // برند عکس داشته و عکسش پاک شده
+    if ($brand->media()->exists() && $request->image == 0) {
+      if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id))
+      {
+        unlink(public_path("$media->path/") . $media->name);
+        $media->delete();
+        $brand->media()->detach();
+      }
+    }
+
+    // برند عکس نداشته و عکس براش آپلود شده
+    if ($brand->media()->doesntExist() && $request->image) {
+      // عکس جدید
+      $new_image = Media::findOrFail($request->image);
+      $brand->media()->attach($new_image);
+      $brand->media()->update([
+        'status' => 1,
+      ]);
+    }
+
+    // حدف ریلیشن دسته بندی ها و ایجاد دوباره ریلیشن ها
+    $brand->categories()->detach();
+    foreach ($categories as $category)
+    {
+      $this_cat = Category::find($category);
+      $brand->categories()->attach($this_cat);
+    }
+
+  }
+
+
+
+
 
 }

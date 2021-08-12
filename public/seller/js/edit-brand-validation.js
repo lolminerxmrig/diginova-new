@@ -30,9 +30,9 @@ var CategoryFormAction = {
                     required: true,
                 },
 
-                // 'image': {
-                //     required: true,
-                // }
+                'image': {
+                    required: false,
+                }
             },
             messages: {
                 'name': {

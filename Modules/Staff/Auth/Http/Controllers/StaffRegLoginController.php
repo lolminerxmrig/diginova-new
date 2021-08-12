@@ -2,6 +2,7 @@
 
 namespace Modules\Staff\Auth\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -27,9 +28,7 @@ class StaffRegLoginController extends Controller
       if (Auth::guard('staff')->check()) {
         return redirect()->route('staff.dashboardPage');
       }
-      else {
-        return redirect()->route('staff.loginPage');
-      }
+      return redirect()->route('staff.loginPage');
     }
 
     public function loginPage()
@@ -37,9 +36,7 @@ class StaffRegLoginController extends Controller
       if (Auth::guard('staff')->check()) {
         return redirect()->route('staff.dashboardPage');
       }
-      else {
-        return view('staffauth::login');
-      }
+      return view('staffauth::login');
     }
 
     public function dashboardPage()

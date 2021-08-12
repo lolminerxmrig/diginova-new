@@ -261,8 +261,10 @@ function defualtCartNewPrice($cart){
   }
 }
 
-function substrwords($text, $maxchar, $end='...') {
-  if (strlen($text) > $maxchar || $text == '') {
+function substrwords($text, $maxchar, $end='...')
+{
+  if (strlen($text) > $maxchar || $text == '')
+  {
     $words = preg_split('/\s/', $text);
     $output = '';
     $i      = 0;
@@ -278,8 +280,17 @@ function substrwords($text, $maxchar, $end='...') {
     }
     $output .= $end;
   }
-  else {
+  else
+  {
     $output = $text;
   }
   return $output;
+}
+
+
+function string_to_int_array($categories)
+{
+  return array_map(function($value) {
+    return intval($value);
+  }, $categories);
 }

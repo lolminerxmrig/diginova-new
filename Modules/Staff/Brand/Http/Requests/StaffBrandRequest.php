@@ -23,28 +23,16 @@ class StaffBrandRequest extends FormRequest
      */
     public function rules()
     {
-        $data = $this->all();
-        if($data['image'] !== 'not_required'){
-            return [
-                'name' => 'required',
-                'en_name' => 'required',
-                'description' => 'nullable',
-                'categories' => 'required',
-                'slug' => 'required',
-                'type' => 'nullable',
-                'image' => 'required',
-            ];
-        }
-        else{
-            return [
-                'name' => 'required',
-                'en_name' => 'required',
-                'description' => 'nullable',
-                'categories' => 'required',
-                'slug' => 'required',
-                'type' => 'nullable',
-            ];
-        }
+        return [
+            'name' => 'required',
+            'en_name' => 'required',
+//            'en_name' => 'required|unique:brands,en_name',
+            'description' => 'nullable',
+            'categories' => 'required',
+            'slug' => 'required',
+            'type' => 'nullable',
+            'image' => 'nullable',
+        ];
     }
 
     /**
@@ -55,7 +43,10 @@ class StaffBrandRequest extends FormRequest
     public function messages()
     {
         return [
-//
+          'name.required' => 'وارد کردن نام برند اجباری است',
+          'en_name.required' => 'وارد کردن نام لاتین برند اجباری است',
+          'en_name.unique' => 'نام لاتین برند تکراری است',
+          'slug.required' => 'وارد کردن نامک برند اجباری است',
         ];
     }
 

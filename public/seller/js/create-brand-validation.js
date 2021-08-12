@@ -31,7 +31,7 @@ var CategoryFormAction = {
                 },
 
                 'image': {
-                    required: true,
+                    required: false,
                 }
             },
             messages: {

@@ -9,7 +9,7 @@
 @section('content')
 <main class="c-content-layout">
         <div class="uk-container uk-container-large">
-            <div class="c-grid" data-select2-id="137">
+            <div class="c-grid">
                 <div class="c-content-page c-content-page--plain c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-content-page__header">
@@ -590,14 +590,11 @@ $(document).on("change", "#uploadImage", function () {
     $(".li-error").removeClass('has-error');
     $(".error-image").html('');
 
-
     var form_data = new FormData();
     var input_image = $("#uploadImage").prop("files")[0];
     var selectedCat = $("input[name='selected-cat']").val();
 
-
-
-  form_data.append("image", input_image);
+    form_data.append("image", input_image);
 
     var old_img = $("img[name='uploaded']").attr('data-id');
 
@@ -606,7 +603,6 @@ $(document).on("change", "#uploadImage", function () {
     }
 
     form_data.append("category_id", selectedCat);
-
 
   $.ajax({
         url: '{{route('staff.categories.ajaxupload')}}',

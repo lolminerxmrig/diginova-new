@@ -2,9 +2,11 @@
 
 namespace Modules\Staff\Auth\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 
 class StaffLoginController extends Controller
