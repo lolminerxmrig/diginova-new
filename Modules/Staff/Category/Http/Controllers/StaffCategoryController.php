@@ -18,7 +18,7 @@ class StaffCategoryController extends Controller
 
   public function index()
   {
-    $categories = Category::all();
+    $categories = Category::orderBy('created_at', 'asc')->get();
     $media = Media::all();
 
     return view('staffcategory::index', compact('categories', 'media'));
@@ -26,7 +26,7 @@ class StaffCategoryController extends Controller
 
   public function create()
   {
-    $categories = Category::all();
+    $categories = Category::orderBy('created_at', 'asc')->get();
     return view('staffcategory::create', compact('categories'));
   }
 
@@ -106,7 +106,7 @@ class StaffCategoryController extends Controller
 
   public function childCatsLoader(Request $request)
   {
-    $categories = Category::get()->unique('name');
+    $categories = Category::orderBy('created_at', 'asc')->get()->unique('name');
     $id = $request->id;
     // حل مشکل ستون های خالی
     if (Category::where('parent_id', $id)->exists()) {
@@ -122,14 +122,13 @@ class StaffCategoryController extends Controller
 
   public function mainCatReloader(Request $request)
   {
-    $categories = Category::get()->unique('name');
+    $categories = Category::orderBy('created_at', 'asc')->get()->unique('name');
     return View::make("staffcategory::layouts.ajax.category-box.main", compact('categories'));
   }
 
   public function ajaxSearch(Request $request)
   {
     $categories = Category::query()->where('name', 'LIKE', "%{$request->search}%")->get();
-
     return View::make("staffcategory::layouts.ajax.category-box.search", compact('categories'));
   }
 

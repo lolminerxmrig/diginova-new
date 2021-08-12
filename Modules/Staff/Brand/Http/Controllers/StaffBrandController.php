@@ -19,8 +19,8 @@ class StaffBrandController extends Controller
 {
     public function index()
     {
-        $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate(1);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
+        $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate(10);
+        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
         $media = Media:: all();
         $categories = Category:: all();
         return view('staffbrand::index', compact('brands', 'media', 'categories', 'trashed_brands'));
@@ -36,7 +36,7 @@ class StaffBrandController extends Controller
         }
 
         $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate($paginatorNum);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
+        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
 
         $media = Media::all();
         $categories = Category::all();
@@ -54,8 +54,8 @@ class StaffBrandController extends Controller
             return $this->ajaxPagination($request);
         }
 
-        $brands = Brand::where('type', 1)->distinct('name')->orderBy('created_at', 'desc')->paginate(1);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
+        $brands = Brand::where('type', 1)->distinct('name')->orderBy('created_at', 'desc')->paginate(10);
+        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
         $pageType = 'only_special';
 
         if ($brands){
@@ -65,16 +65,16 @@ class StaffBrandController extends Controller
 
     public function create()
     {
-        $categories = Category::get()->unique('name');
+        $categories = Category::orderBy('created_at', 'asc')->get()->unique('name');
         return view('staffbrand::create', compact('categories'));
     }
 
     public function edit($brand)
     {
-        $brand = Brand::where('en_name', $brand)->first();
+        $brand = Brand::where('en_name', $brand)->firstOrFail();
 //        dd($brand);
         $brands = Brand::all();
-        $categories = Category::get()->unique('name');
+        $categories = Category::orderBy('created_at', 'asc')->get()->unique('name');
         $media = Media:: all();
         return view('staffbrand::edit', compact('categories', 'brand', 'brands', 'media'));
     }
@@ -172,12 +172,12 @@ class StaffBrandController extends Controller
 
     public function trash()
     {
-        $brands = Brand::onlyTrashed()->paginate(1);
+        $brands = Brand::onlyTrashed()->paginate(10);
         return view('staffbrand::trash', compact('brands'));
     }
 
     public function trashPagination(){
-        $brands = Brand::onlyTrashed()->paginate(1);
+        $brands = Brand::onlyTrashed()->paginate(10);
         return View::make('staffbrand::ajax-trash-content', compact('brands'));
     }
 
@@ -190,7 +190,7 @@ class StaffBrandController extends Controller
     public function restoreFromTrash(Request $request)
     {
         Brand::onlyTrashed()->find($request->id)->restore();
-        $brands = Brand::onlyTrashed()->paginate(1);
+        $brands = Brand::onlyTrashed()->paginate(10);
         return View::make('staffbrand::ajax-trash-content', compact('brands'));
     }
 
@@ -206,17 +206,17 @@ class StaffBrandController extends Controller
         }
 
         Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();
-        $brand->forceDelete();
         if($brand->products)
         {
             foreach ($brand->products as $product)
             {
                 $product->update([
-                   'brand_id' => 0,
+                   'brand_id' => 1,
                 ]);
             }
         }
-        $brands = Brand::onlyTrashed()->paginate(1);
+        $brand->forceDelete();
+        $brands = Brand::onlyTrashed()->paginate(10);
         return View::make('staffbrand::ajax-trash-content', compact('brands'));
 
     }
@@ -225,8 +225,8 @@ class StaffBrandController extends Controller
     {
         $search_keyword = $request->search_keyword;
 
-        $brands = Brand::query()->where('name', 'LIKE', "%{$search_keyword}%")->paginate(1);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
+        $brands = Brand::query()->where('name', 'LIKE', "%{$search_keyword}%")->paginate(10);
+        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
 
         if ($brands) {
             $pageType = 'brandSearch';
@@ -241,11 +241,11 @@ class StaffBrandController extends Controller
 
         $brands = $brands->whereHas('categories', function ($query) use ($search_keyword) {
             $query->where('name', 'LIKE', '%' . $search_keyword . '%');
-        })->paginate(1);
+        })->paginate(10);
 
         if ($brands) {
             $pageType = 'brandCatSearch';
-            $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(1);
+            $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
             return View::make("staffbrand::ajax-content", compact('brands', 'pageType', 'trashed_brands'));
         }
     }

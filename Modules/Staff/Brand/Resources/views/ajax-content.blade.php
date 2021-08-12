@@ -57,7 +57,7 @@
                         @if(count($brand->media))
                           <img src="{{ $site_url . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}" width="60" height="60">
                         @else
-                          <img src="{{ asset('staff/images/default_picture.jpg') }}" width="65" height="65">
+                          <img src="{{ asset('staff/images/default_picture.png') }}" width="65" height="65">
                         @endif
                       </td>
                       <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">

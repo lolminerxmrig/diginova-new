@@ -83,7 +83,7 @@
                             </label>
                             <div class="field-wrapper">
                               <input type="text" class="c-content-input__origin js-attribute-old-value url-inputs" name="slug" dir="ltr" value="{{ old('slug')?? $brand->slug }}">
-                              <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="/{{ config('app.url') }}/brand" disabled>
+                              <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="/{{ $site_url }}/brand" disabled>
                             </div>
                             <div></div>
                           </div>
@@ -368,7 +368,7 @@
 
       },
       success: function () {
-        {{--window.location.href = "{{ route('staff.brands.index') }}";--}}
+        window.location.href = "{{ route('staff.brands.index') }}";
       },
       error: function () {
         //

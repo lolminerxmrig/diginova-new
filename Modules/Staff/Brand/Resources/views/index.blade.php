@@ -119,7 +119,7 @@
                                 @if(count($brand->media))
                                   <img src="{{ $site_url . '/' . $brand->media()->first()->path . '/'.$brand->media()->first()->name }}" width="65" height="65">
                                 @else
-                                  <img src="{{ asset('staff/images/default_picture.jpg') }}" width="65" height="65">
+                                  <img src="{{ asset('staff/images/default_picture.png') }}" width="65" height="65">
                                 @endif
                               </td>
                               <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
@@ -155,7 +155,9 @@
                                 <td class="c-ui-table__cell">
                                   <div class="c-promo__actions">
                                     <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.brands.edit', $brand->en_name) }}">ویرایش</a>
+                                    @if($brand->id !== 1)
                                     <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn" value="{{ $brand->id }}">حذف</button>
+                                    @endif
                                   </div>
                                 </td>
                               </tr>

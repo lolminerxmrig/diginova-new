@@ -97,7 +97,7 @@
                                                       </label>
                                                       <div class="field-wrapper">
                                                           <input type="text" class="c-content-input__origin js-attribute-old-value url-inputs" name="slug" dir="ltr">
-                                                          <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="-{{ config('app.url') }}/search/category" disabled>
+                                                          <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="-{{ $site_url }}/search/category" disabled>
                                                       </div>
                                                       <div></div>
                                                   </div>
@@ -380,9 +380,9 @@ function valueChanged() {
 // تغییر آدرس دسته بندی در راهنمای فیلد نامک
 $(document).on('click', "#is_main", function (e) {
     if ($("#is_main").is(":checked")) {
-        $(".button-urls").val('/{{ config('app.url') }}' + '/main');
+        $(".button-urls").val('/{{ $site_url }}' + '/main');
     } else {
-        $(".button-urls").val('-{{ config('app.url') }}' + '/search/category');
+        $(".button-urls").val('-{{ $site_url }}' + '/search/category');
     }
     var buttonWidth = $('#button-urls').width() + 20;
     $(".url-inputs").css({

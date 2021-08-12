@@ -202,7 +202,7 @@
                                                                    name="slug" dir="ltr">
                                                             <input type="button" id="button-urls" style="width: auto;"
                                                                    class="c-ui-tag__submit js-tag-submit-btn button-urls"
-                                                                   value="-{{ config('app.url') }}/search/category"
+                                                                   value="-{{ $site_url }}/search/category"
                                                                    disabled>
                                                         </div>
                                                         <div>
@@ -415,9 +415,9 @@ $(function () {
 // تغییر آدرس دسته بندی در راهنمای فیلد نامک
 $(document).on('click', "#categoryStepNext", function (e) {
     if ($("input[type='radio']:checked").attr('data-status') == 'ziro_parent') {
-        $(".button-urls").val('/{{ config('app.url') }}' + '/main');
+        $(".button-urls").val('/{{ $site_url }}' + '/main');
     } else {
-        $(".button-urls").val('-{{ config('app.url') }}' + '/search/category');
+        $(".button-urls").val('-{{ $site_url }}' + '/search/category');
     }
     var buttonWidth = $('#button-urls').width() + 20;
     $(".url-inputs").css({
