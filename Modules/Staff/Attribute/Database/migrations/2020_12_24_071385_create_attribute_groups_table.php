@@ -16,7 +16,7 @@ class CreateAttributeGroupsTable extends Migration
         Schema::create('attribute_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('status')->default(1);
             $table->integer('position')->nullable();
             $table->timestamps();

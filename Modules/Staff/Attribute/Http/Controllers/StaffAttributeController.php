@@ -51,15 +51,11 @@ class StaffAttributeController extends Controller
 
     public function storeGroup(Request $request)
     {
-        $messages = [
-            'unique' => 'نام وارد شده تکراری است',
-        ];
-
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:attribute_groups',
+            'name' => 'required',
             'description' => 'nullable|string',
             'category_id' => 'required|integer',
-        ], $messages);
+        ]);
 
 
         if ($validator->fails()) {
