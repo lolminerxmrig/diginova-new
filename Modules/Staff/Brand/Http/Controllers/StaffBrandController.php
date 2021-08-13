@@ -72,7 +72,6 @@ class StaffBrandController extends Controller
     public function edit($brand)
     {
         $brand = Brand::where('en_name', $brand)->firstOrFail();
-//        dd($brand);
         $brands = Brand::all();
         $categories = Category::orderBy('created_at', 'asc')->get()->unique('name');
         $media = Media:: all();

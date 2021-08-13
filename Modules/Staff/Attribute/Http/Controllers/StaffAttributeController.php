@@ -13,7 +13,7 @@ use Modules\Staff\Category\Models\Category;
 use Illuminate\Support\Facades\Validator;
 use Modules\Staff\Attribute\Models\AttributeGroup;
 use Modules\Staff\Unit\Models\Unit;
-
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\F;
 
 class StaffAttributeController extends Controller
 {
@@ -137,34 +137,44 @@ class StaffAttributeController extends Controller
         return view::make('staffattribute::layouts.ajax.unit-selector', compact('units'));
     }
 
-    public function store(Request $request)
+    public function AttrGroupUpdate($request)
     {
-
-        // update attribute group
         if (!is_null($request->group_name)) {
-            AttributeGroup::where('id', $request->category_id)->update([
-                'name' => $request->group_name,
-                'description' => $request->group_desc,
-            ]);
-        }
+          AttributeGroup::where('id', $request->category_id)->update([
+              'name' => $request->group_name,
+              'description' => $request->group_desc,
+          ]);
+      }
+    }
 
-        // delete attribute
-        if (isset($request->deleted_rows) && (!is_null($request->deleted_rows))) {
+    public function deleteAttributes($request)
+    {
+        if (isset($request->deleted_rows) && (!is_null($request->deleted_rows)))
+         {
             foreach ($request->deleted_rows as $deleted_row) {
-                Attribute::find($deleted_row)->values()->delete();
+                // Attribute::find($deleted_row)->values()->delete();
                 Attribute::find($deleted_row)->delete();
             }
         }
+    }
 
-        // delete value
-        if (isset($request->deleted_values)) {
-            foreach ($request->deleted_values as $deleted_value) {
-                $this_attr_id = AttributeValue::find($deleted_value)->attribute_id;
-                if (AttributeValue::where('attribute_id', $this_attr_id)->count() > 2){
-                    AttributeValue::find($deleted_value)->delete();
-                }
-            }
+    public function deleteAttrValues($request)
+    {
+        if (!isset($request->deleted_values)) return false;
+
+        foreach ($request->deleted_values as $deleted_value)
+        {
+          AttributeValue::find($deleted_value)->delete();
         }
+    }
+
+    public function store(Request $request)
+    {
+
+        $this->AttrGroupUpdate($request);
+        $this->deleteAttributes($request);
+        $this->deleteAttrValues($request);
+
 
         // output: array clean position
         $positions = str_replace('item[]=', '', $request->positions);
