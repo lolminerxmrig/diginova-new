@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') ویرایش گروه ویژگی | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
 
@@ -47,12 +48,7 @@
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card">
-                        <h2 style="
-                          font-size: 18px;
-                          margin-right: 33px;
-                          margin-top: 28px;
-                          margin-bottom: -30px;
-                          ">
+                        <h2 style="font-size: 18px;margin-right: 33px;margin-top: 28px;margin-bottom: -30px;">
                             <div style="color: #606265;">اطلاعات گروه ویژگی</div>
                         </h2>
                         <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;display: none;"></div>
@@ -61,21 +57,14 @@
                             <div class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-8 ">
                                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
-
                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap">
-
-                                            <label for="" class="uk-form-label" style="
-color: #606265;
-margin-bottom: 7px;
-">نام گروه ویژگی
+                                            <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px;">نام گروه ویژگی
                                                 <span class="uk-form-label__required"></span>
                                             </label>
-
                                             <div class="field-wrapper">
                                                 <label class="c-content-input">
                                                     <input name="group_id" class="group_id" value="{{ $attributeGroup->id }}" hidden>
-                                                    <input type="text" class="c-content-input__origin c-content-input__origin attr_group_name"
-                                                           name="attr_group_name" value="{{ $attributeGroup->name }}" dir="rtl" style="text-align: right;">
+                                                    <input type="text" class="c-content-input__origin c-content-input__origin attr_group_name" name="attr_group_name" value="{{ $attributeGroup->name }}" dir="rtl" style="text-align: right;">
                                                 </label>
                                             </div>
                                         </div>
@@ -84,19 +73,10 @@ margin-bottom: 7px;
                             </div>
                             <div class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
-                                    <label for="" class="uk-form-label" style="
-color: #606265;
-margin-bottom: 8px;
-">توضیحات (اختیاری)
-                                    </label>
+                                    <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 8px;">توضیحات (اختیاری)</label>
                                     <div class="field-wrapper field-wrapper--textarea">
-                                        <textarea name="attr_group_desc"
-                                                  class="c-content-input__origin c-content-input__origin--textarea js-textarea-words attr_group_desc"
-                                                  rows="2" maxlength="1000"
-                                                  @if(!$attributeGroup->description)
-                                                  placeholder="در صورت تمایل اطلاعات گروه ویژگی را وارد کنید ..."
-                                                  @endif
-                                        >{{ ($attributeGroup->description)? $attributeGroup->description : '' }}</textarea>
+                                        <textarea name="attr_group_desc"class="c-content-input__origin c-content-input__origin--textarea js-textarea-words attr_group_desc"
+                                            rows="2" maxlength="1000" @if(!$attributeGroup->description) placeholder="در صورت تمایل اطلاعات گروه ویژگی را وارد کنید ..." @endif >{{ ($attributeGroup->description)? $attributeGroup->description : '' }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -112,42 +92,37 @@ margin-bottom: 8px;
                         <div class="c-card">
                             <div class="c-card__wrapper">
                                 <div class="c-card__header c-card__header--table">
-                                  <a target="_blank">
-                                        <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد ویژگی
-                                            جدید
-                                        </div>
-                                    </a>
-                                    <div class="c-ui-paginator js-paginator" data-select2-id="36">
-
-                                    </div>
+                                    <a target="_blank"><div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد ویژگی جدید</div></a>
+                                    <div class="c-ui-paginator js-paginator" data-select2-id="36"></div>
                                 </div>
                                 <div class="c-card__body c-ui-table__wrapper">
                                     <table class="c-ui-table  js-search-table js-table-fixed-header c-join__table">
                                         <thead>
-                                        <tr class="c-ui-table__row">
-                                            <th class="c-ui-table__header"><span
-                                                    class="table-header-searchable uk-text-nowrap "></span></th>
-                                            <th class="c-ui-table__header"><span
-                                                    class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان ویژگی</span>
-                                            </th>
-                                            <th class="c-ui-table__header"><span
-                                                    class="table-header-searchable uk-text-nowrap ">نوع نمایش</span>
-                                            </th>
-                                            <th class="c-ui-table__header"><span
-                                                    class="table-header-searchable uk-text-nowrap ">ضروری</span>
-                                            </th>
-                                            <th class="c-ui-table__header"><span
-                                                    class="table-header-searchable uk-text-nowrap ">قابل فیلتر</span>
-                                            </th>
-                                            <th class="c-ui-table__header"><span
-                                                    class="table-header-searchable uk-text-nowrap ">برگزیده</span>
-                                            </th>
-                                            <th class="c-ui-table__header"><span
-                                                    class="table-header-searchable uk-text-nowrap ">مقادیر ورودی</span>
-                                            </th>
-                                            <th class="c-ui-table__header"><span
-                                                    class="table-header-searchable uk-text-nowrap ">حذف</span></th>
-                                        </tr>
+                                          <tr class="c-ui-table__row">
+                                              <th class="c-ui-table__header">
+                                                <span class="table-header-searchable uk-text-nowrap "></span></th>
+                                              <th class="c-ui-table__header">
+                                                <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان ویژگی</span>
+                                              </th>
+                                              <th class="c-ui-table__header">
+                                                <span class="table-header-searchable uk-text-nowrap ">نوع نمایش</span>
+                                              </th>
+                                              <th class="c-ui-table__header">
+                                                <span class="table-header-searchable uk-text-nowrap ">ضروری</span>
+                                              </th>
+                                              <th class="c-ui-table__header">
+                                                <span class="table-header-searchable uk-text-nowrap ">قابل فیلتر</span>
+                                              </th>
+                                              <th class="c-ui-table__header">
+                                                <span class="table-header-searchable uk-text-nowrap ">برگزیده</span>
+                                              </th>
+                                              <th class="c-ui-table__header">
+                                                <span class="table-header-searchable uk-text-nowrap ">مقادیر ورودی</span>
+                                              </th>
+                                              <th class="c-ui-table__header">
+                                                <span class="table-header-searchable uk-text-nowrap ">حذف</span>
+                                              </th>
+                                          </tr>
                                         </thead>
 
                                         <tbody id="tbody">
@@ -166,8 +141,7 @@ margin-bottom: 8px;
                                                     <input type="text" name="attr_name" value="{{ ($attribute->name)? $attribute->name : '' }}" class="c-content-input__origin js-attribute-old-value attr_name">
                                                 </td>
                                                 <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: right; min-width: 200px;">
-                                                    <select name="attr_type" class="uk-input uk-input--select attr_type js-select-origin select2-hidden-accessible"
-                                                            tabindex="-1" aria-hidden="true" aria-invalid="false" disabled>
+                                                    <select name="attr_type" class="uk-input uk-input--select attr_type js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false" disabled>
                                                         <option value="1" {{ ($attribute->type == 1)? 'selected' : '' }}>عبارت کوتاه (text)</option>
                                                         <option value="2" {{ ($attribute->type == 2)? 'selected' : '' }}>متن بلند (textarea)</option>
                                                         <option value="3" {{ ($attribute->type == 3)? 'selected' : '' }}>تک انتخابی (select box)</option>
@@ -179,8 +153,7 @@ margin-bottom: 8px;
                                                     <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                             <label class="c-ui-toggle">
-                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_required"
-                                                                    type="checkbox" name="attr_required" {{ ($attribute->is_required)? 'checked' : '' }}>
+                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox" name="attr_required" {{ ($attribute->is_required)? 'checked' : '' }}>
                                                                 <span class="c-ui-toggle__check"></span>
                                                             </label>
                                                         </div>
@@ -190,8 +163,7 @@ margin-bottom: 8px;
                                                     <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                             <label class="c-ui-toggle">
-                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_filterable"
-                                                                    type="checkbox" name="attr_filterable"  {{ ($attribute->is_filterable)? 'checked' : '' }}>
+                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_filterable" type="checkbox" name="attr_filterable"  {{ ($attribute->is_filterable)? 'checked' : '' }}>
                                                                 <span class="c-ui-toggle__check"></span>
                                                             </label>
                                                         </div>
@@ -201,8 +173,7 @@ margin-bottom: 8px;
                                                     <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                             <label class="c-ui-toggle">
-                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_favorite"
-                                                                    type="checkbox" name="attr_favorite"  {{ ($attribute->is_favorite)? 'checked' : '' }}>
+                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_favorite" type="checkbox" name="attr_favorite"  {{ ($attribute->is_favorite)? 'checked' : '' }}>
                                                                 <span class="c-ui-toggle__check"></span>
                                                             </label>
                                                         </div>
@@ -214,8 +185,6 @@ margin-bottom: 8px;
                                                             <input type="text" class="c-content-input__origin attr_input_tag c-ui-input--deactive val_field" value="" disabled>
                                                         @elseif(($attribute->type == 3) || ($attribute->type == 4))
                                                             <input name='drag-sort' class="attr_input_tag" value='{{ $attribute->values }}'>
-{{--                                                            <input name='drag-sort' value='{{ $attribute->values }}' class="drag-sort attr_input_tag value_field val_field">--}}
-{{--                                                            <input name='drag-sort' class="unit_input_tag" value='{{ $unit->values }}'>--}}
                                                         @elseif($attribute->type == 5)
                                                             <select name="attr_unit" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
                                                                 @if(isset($units) && count($units))
@@ -260,8 +229,7 @@ margin-bottom: 8px;
             <div class="c-grid__col">
                 <div class="c-card">
                     <div class="edit-form-section c-card__footer c-card__footer--products">
-                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap"
-                             style="width: 40%; float: left; display: contents;">
+                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap" style="width: 40%; float: left; display: contents;">
                         <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-left: 68px;max-width: 100px;" id="submit-form">ذخیره
                         </a>
                     </div>
@@ -278,25 +246,20 @@ margin-bottom: 8px;
     </div>
 </main>
 
-<div uk-modal="esc-close: true; bg-close: true;"
-     class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal"
-     style="display: none;">
+<div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal" style="display: none;">
     <div class="uk-modal-dialog uk-modal-dialog--flex">
         <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
-
         <div class="uk-modal-body">
             <div class="c-modal-notification">
                 <div class="c-modal-notification__content c-modal-notification__content--limited">
                     <h2 class="c-modal-notification__header">هشدار</h2>
 
-                    <p class="c-modal-notification__text">با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته
-                        انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
+                    <p class="c-modal-notification__text">
+                      با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟
+                    </p>
                     <div class="c-modal-notification__actions">
                         <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
-                        <button
-                            class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">
-                            بله
-                        </button>
+                        <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close"> بله </button>
                     </div>
                 </div>
             </div>
@@ -305,11 +268,11 @@ margin-bottom: 8px;
 </div>
 <div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
 
-<select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
+<select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible">
     @if(isset($units) && count($units))
-    @foreach($units as $unit)
-    <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-    @endforeach
+      @foreach($units as $unit)
+       <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+      @endforeach
     @endif
 </select>
 </div>
@@ -713,88 +676,9 @@ $(document).on('change', '.attr_type', function (){
         $(this).closest('.row').find(".select2-container").remove();
         $(this).closest('.row').find(".select-unit").show();
 
-        $('.js-select-origin').each(function () {
-            const $this = $(this);
-            const isMultiSelect = $this.attr('multiple');
-            const $placeholder = $this.attr('data-placeholder') || '';
-            const inProductStep = $this.hasClass('js-in-product');
+  
 
-            $this.select2({
-                placeholder: $placeholder,
-                closeOnSelect: !isMultiSelect,
-                allowClear: (isMultiSelect && inProductStep),
-                sorter: function (data) {
-                    return data.sort(function (a, b) {
-                        a = $(a).prop('selected');
-                        b = $(b).prop('selected');
-                        return b - a;
-                    });
-                }
-            }).on('select2:opening', function () {
-                $('body').addClass('ui-select');
-            }).on('select2:select', function () {
-                let $sortedOptions = $('li.select2-results__option').sort(function (a, b) {
-                    return ($(b).attr('aria-selected') === 'true') - ($(a).attr('aria-selected') === 'true');
-                });
-                $('.select2-results__options').prepend($sortedOptions);
-            }).on('select2:unselect', function () {
-                let $sortedOptions = $('li.select2-results__option').sort(function (a, b) {
-                    return ($(b).attr('aria-selected') === 'true') - ($(a).attr('aria-selected') === 'true');
-                });
-                $('.select2-results__options').prepend($sortedOptions);
-            }).on('change', function () {
-                if (isMultiSelect && inProductStep) {
-                    let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
-                    const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
-
-                    $selections.removeClass('hidden');
-                    $selections.each(function () {
-                        $selectionsContainerWidth -= $(this).outerWidth(true);
-                        if ($selectionsContainerWidth < 0) {
-                            $(this).addClass('hidden');
-                        }
-                    });
-
-                    let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
-                    let $counter = $this.siblings('.select-counter');
-
-                    if ($selectionsCount > 0) {
-                        $counter.css('display', 'flex');
-                    } else {
-                        $counter.css('display', 'none');
-                    }
-                    $counter.text($selectionsCount.toLocaleString('fa-IR'));
-                }
-                $(this).trigger('blur');
-            }).on('select2:close', function () {
-                $(this).valid();
-                $('body').removeClass('ui-select');
-            });
-
-            if (isMultiSelect && inProductStep) {
-                let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
-                const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
-
-                $selections.removeClass('hidden');
-                $selections.each(function () {
-                    $selectionsContainerWidth -= $(this).outerWidth(true);
-                    if ($selectionsContainerWidth < 0) {
-                        $(this).addClass('hidden');
-                    }
-                });
-
-                let $counter = $this.siblings('.select-counter');
-                let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
-
-                if ($selectionsCount > 0) {
-                    $counter.text($selectionsCount.toLocaleString('fa-IR'));
-                    $counter.css('display', 'flex');
-                }
-            }
-
-        });
         generateSelectUi();
-
 
         $("tags").each(function (){
             $(this).removeClass('attr_input_tag');

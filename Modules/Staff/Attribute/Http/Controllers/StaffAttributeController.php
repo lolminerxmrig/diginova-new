@@ -20,7 +20,7 @@ class StaffAttributeController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('created_at', 'asc')->get();
         return view('staffattribute::index', compact('categories'));
     }
 

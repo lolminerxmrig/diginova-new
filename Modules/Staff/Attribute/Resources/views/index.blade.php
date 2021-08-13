@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت ویژگی ها | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('seller/js/tags3.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
@@ -11,8 +12,7 @@
                     <div class="c-grid__col">
                         <div class="c-content-page__header">
                             <span class="c-content-page__header-action">مدیریت ویژگی های کالا</span>
-                            <span
-                                class="c-content-page__header-desc">برای مدیریت ویژگی های کالا ابتدا گروه های کالای خود را انتخاب کنید</span>
+                            <span class="c-content-page__header-desc">برای مدیریت ویژگی های کالا ابتدا گروه های کالای خود را انتخاب کنید</span>
                         </div>
                     </div>
                 </div>

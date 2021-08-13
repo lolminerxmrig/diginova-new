@@ -640,20 +640,20 @@
                 </a>
                 <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <li>
-                        <a href="{{ route('staff.brands.index') }}">برند ها</a>
-                      </li>
-
-                      <li>
-                        <a href="{{ route('staff.categories.index') }}">دسته بندی ها</a>
-                      </li>
+                    <li>
+                      <a href="{{ route('staff.categories.index') }}">دسته بندی ها</a>
+                    </li>
 
                     <li>
-                      <a href="{{ route('staff.products.index') }}">محصولات</a>
+                      <a href="{{ route('staff.brands.index') }}">برند ها</a>
                     </li>
 
                     <li>
                       <a href="{{ route('staff.attributes.index') }}">ویژگی ها</a>
+                    </li>
+
+                    <li>
+                      <a href="{{ route('staff.products.index') }}">محصولات</a>
                     </li>
 
                     <li>
