@@ -653,7 +653,7 @@
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.products.index') }}">محصولات</a>
+                      <a href="{{ route('staff.units.index') }}">واحد ها</a>
                     </li>
 
                     <li>
@@ -661,11 +661,11 @@
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.ratings.index') }}">گزینه های امتیازدهی</a>
+                      <a href="{{ route('staff.products.index') }}">محصولات</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.units.index') }}">واحد ها</a>
+                      <a href="{{ route('staff.ratings.index') }}">گزینه های امتیازدهی</a>
                     </li>
 
                     <li>

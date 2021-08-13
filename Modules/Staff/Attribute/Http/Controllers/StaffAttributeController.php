@@ -179,7 +179,7 @@ class StaffAttributeController extends Controller
         }, $positions);
 
 
-        if (count($request->attr_names)) {
+        if (isset($request->attr_names) && !is_null($request->attr_names) && count($request->attr_names)) {
             $i = 0;
             foreach ($request->attr_names as $attr_name) {
                 if ($attr_name == null) {
