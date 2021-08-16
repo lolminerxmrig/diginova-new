@@ -280,10 +280,13 @@
 @section('script')
 <script>
 
+//!!!!!!!!
 $(document).ready(function (){
-    $(".tagify").each(function (){
-        $(this).removeClass('attr_input_tag');
-    });
+  $(".tagify").each(function (){
+      $(this).removeClass('attr_input_tag');
+  });
+  generateSelectUi();
+
 });
 
 $(".attr_type").each(function () {
@@ -417,7 +420,7 @@ $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
         '<span class="c-ui-toggle__check"></span></label></div></div></td>' +
         '<td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product attr_filterable" type="checkbox" name="attr_favorite"><span class="c-ui-toggle__check"></span></label></div></div></td>' +
         '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">' +
-        '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin c-ui-input--deactive val_field" disabled=""></div></td><td class="c-ui-table__cell"><div class="c-promo__actions" style="width:50%;margin:auto">' +
+        '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin attr_input_tag c-ui-input--deactive val_field" disabled=""></div></td><td class="c-ui-table__cell"><div class="c-promo__actions" style="width:50%;margin:auto">' +
         '<button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button></div></td></tr>';
 
     $("#tbody").append(tr);
@@ -593,16 +596,16 @@ $("input[name=drag-sort]").each(function () {
         var input = document.querySelector('input[name=drag-sort]'),
             tagify = new Tagify(this);
 
-        var dragsort = new DragSort(tagify.DOM.scope, {
-            selector: '.' + tagify.settings.classNames.tag,
-            callbacks: {
-                dragEnd: onDragEnd
-            }
-        })
-
-        function onDragEnd(elm) {
-            tagify.updateValueByDOMTags()
-        }
+        // var dragsort = new DragSort(tagify.DOM.scope, {
+        //     selector: '.' + tagify.settings.classNames.tag,
+        //     callbacks: {
+        //         dragEnd: onDragEnd
+        //     }
+        // })
+        //
+        // function onDragEnd(elm) {
+        //     tagify.updateValueByDOMTags()
+        // }
 });
 
 $('tbody').sortable({
@@ -614,9 +617,10 @@ $(document).on('change', '.attr_type', function (){
     {
         $(this).closest('.row').find("input[name='attr_filterable']").attr('disabled', 'true');
         var attr = $(this).closest('.row').find("input[name='attr_filterable']:checked");
-        if(typeof attr !== typeof undefined && attr !== false){
+        if(typeof attr !== typeof undefined && attr !== false) {
             attr.prop('checked', false);
         }
+
         $(this).closest('.row').find(".tagify").remove();
         var disabled_field = '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin attr_input_tag c-ui-input--deactive val_field" disabled=""></td>';
         $(this).closest('.row').find(".values-td").replaceWith(disabled_field);
@@ -641,23 +645,22 @@ $(document).on('change', '.attr_type', function (){
         $(this).closest('.row').find("input[name='attr_filterable']").removeAttr('disabled');
         $(this).closest('.row').find("input[name='attr_favorite']").removeAttr('disabled');
 
-
         $(this).closest('.row').find(".tagify").remove();
         var tag_field = '<div class="uk-flex uk-flex-column values-td"><input name="drag-sort" class="drag-sort new-tag-input attr_input_tag val_field"></td>';
         $(this).closest('.row').find(".values-td").replaceWith(tag_field);
         var input = document.querySelector('.new-tag-input');
         tagify = new Tagify(input);
 
-        var dragsort = new DragSort(tagify.DOM.scope, {
-            selector: '.' + tagify.settings.classNames.tag,
-            callbacks: {
-                dragEnd: onDragEnd
-            }
-        });
-
-        function onDragEnd(elm) {
-            tagify.updateValueByDOMTags()
-        }
+        // var dragsort = new DragSort(tagify.DOM.scope, {
+        //     selector: '.' + tagify.settings.classNames.tag,
+        //     callbacks: {
+        //         dragEnd: onDragEnd
+        //     }
+        // });
+        //
+        // function onDragEnd(elm) {
+        //     tagify.updateValueByDOMTags()
+        // }
 
         $(".drag-sort").removeClass("new-tag-input");
         $(".tagify").each(function (){
@@ -676,14 +679,11 @@ $(document).on('change', '.attr_type', function (){
         $(this).closest('.row').find(".select2-container").remove();
         $(this).closest('.row').find(".select-unit").show();
 
-  
-
         generateSelectUi();
 
         $("tags").each(function (){
             $(this).removeClass('attr_input_tag');
         });
-
     }
 });
 

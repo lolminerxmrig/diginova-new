@@ -2,7 +2,7 @@
 </div>
 <div id="newAttributeRequestModal" class="marketplace-redesign uk-modal c-variant" uk-modal="" style="display: none;">
     <div class="uk-modal-dialog uk-modal-dialog--confirm uk-modal-body c-content-modal" id="newBrandRequestModalContent">
-        <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"><line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line><line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line></svg></button>
+        <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button" uk-close=""></button>
         <form id="newBrandRequestForm" novalidate="novalidate">
             <input type="hidden" name="brand[product_id]" value="">
             <input type="hidden" name="brand[category_id]" id="newBrandRequestCategoryIdContainer">
@@ -22,16 +22,17 @@
                     <form id="attr-group">
                         <div class="c-grid__row c-grid__row--gap-lg mt-30">
                             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12">
-                                <label for="" class="uk-form-label">نام گروه ویژگی<span class="uk-form-label__required"></span>
+                                <label for="" class="uk-form-label">نام گروه ویژگی
+                                  <span class="uk-form-label__required"></span>
                                 </label>
                                 <div class="field-wrapper c-autosuggest">
                                     <div class="search-form__autocomplete js-autosuggest-box">
-
-                                        <input id="searchKeywordInput" class="uk-input js-prevent-submit" type="text" name="attr_name" placeholder="نام گروه ویژگی را وارد کنید ..."><ul class="c-autosuggest__list-container" style="display: none;"></ul></div>
-                                        <div id="name-error"></div>
+                                        <input id="searchKeywordInput" class="uk-input js-prevent-submit" type="text" name="attr_name" placeholder="نام گروه ویژگی را وارد کنید ...">
+                                      <ul class="c-autosuggest__list-container" style="display: none;"></ul>
+                                    </div>
+                                    <div id="name-error"></div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="c-grid__row c-grid__row--gap-lg">
                             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
@@ -42,20 +43,14 @@
                             </div>
                         </div>
                     </form>
-
-
                 </div>
             </div>
 
             <div class="c-content-modal__footer c-content-modal__footer--overflow">
                 <button class="modal-footer__btn modal-footer__btn--confirm modal-footer__btn--wide js-modal-uploads-confirm js-accept save-btn" type="button" id="saveBrandRequestButton">
-
                     <span id="brandRequestBtnLabel">ایجاد گروه ویژگی</span>
                 </button>
-
-                <button class="modal-footer__btn modal-footer__btn--wide uk-close uk-modal-close js-decline" type="button"
-                        id="cancelBrandRequestButton">انصراف
-                </button>
+                <button class="modal-footer__btn modal-footer__btn--wide uk-close uk-modal-close js-decline" type="button" id="cancelBrandRequestButton">انصراف</button>
             </div>
         </form>
         <div class="c-content-loader">
@@ -68,13 +63,10 @@
 <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal" style="display: none;">
     <div class="uk-modal-dialog uk-modal-dialog--flex">
         <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
-
-        <div class="uk-modal-body" data-gtm-vis-recent-on-screen-9662696_13="79003" data-gtm-vis-first-on-screen-9662696_13="79004"
-             data-gtm-vis-total-visible-time-9662696_13="100" data-gtm-vis-has-fired-9662696_13="1">
+        <div class="uk-modal-body">
             <div class="c-modal-notification">
                 <div class="c-modal-notification__content c-modal-notification__content--limited">
                     <h2 class="c-modal-notification__header">هشدار</h2>
-
                     <p class="c-modal-notification__text">با حذف این گروه، تمامی گزینه ها و اطلاعات موجود در آن که در محصولات دسته مرتبط درج شده اند به صورت کامل حذف خواهند شد. آیا از حذف کامل آن اطمینان دارید؟</p>
                     <div class="c-modal-notification__actions">
                         <button class="c-modal-notification__btn no uk-modal-close">خیر</button>

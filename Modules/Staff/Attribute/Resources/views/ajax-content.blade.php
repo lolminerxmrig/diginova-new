@@ -19,39 +19,36 @@
 
                     <div class="c-ui-paginator js-paginator" data-select2-id="16">
                         <div class="c-ui-paginator__total" data-rows="۶">
-                    تعداد نتایج: <span name="total" data-id="{{ $category->attributeGroups()->count() }}">{{ persianNum($category->attributeGroups()->count()) }} مورد</span>
+                    تعداد نتایج:       <span name="total" data-id="{{ $category->attributeGroups()->count() }}">{{ persianNum($category->attributeGroups()->count()) }} مورد</span>
                         </div>
                     </div>
                 </div>
                 <div class="c-card__body c-ui-table__wrapper">
                     <table class="c-ui-table js-search-table js-table-fixed-header c-join__table" >
                         <thead>
-                        <tr class="c-ui-table__row">
-                            <th class="c-ui-table__header">
-                                <span class="table-header-searchable uk-text-nowrap "></span>
-                            </th>
-                            <th class="c-ui-table__header"><span
-                                    class="table-header-searchable uk-text-nowrap "> عنوان گروه ویژگی </span>
-                            </th>
-                            <th class="c-ui-table__header"><span
-                                    class="table-header-searchable uk-text-nowrap table-header-searchable--desc"> تعداد ویژگی ها </span>
-                            </th>
-                            <th class="c-ui-table__header"><span
-                                    class="table-header-searchable uk-text-nowrap "> توضیحات گروه ویژگی</span>
-                            </th>
-                            {{--                                                <th class="c-ui-table__header"><span--}}
-                            {{--                                                        class="table-header-searchable uk-text-nowrap "> وضعيت </span>--}}
-                            {{--                                                </th>--}}
-                            <th class="c-ui-table__header"><span
-                                    class="table-header-searchable uk-text-nowrap "> فعال/غیر فعال </span>
-                            </th>
-                            <th class="c-ui-table__header"><span
-                                    class="table-header-searchable uk-text-nowrap ">عملیات</span>
-                            </th>
-                        </tr>
+                          <tr class="c-ui-table__row">
+                              <th class="c-ui-table__header">
+                                  <span class="table-header-searchable uk-text-nowrap "></span>
+                              </th>
+                              <th class="c-ui-table__header">
+                                <span class="table-header-searchable uk-text-nowrap "> عنوان گروه ویژگی </span>
+                              </th>
+                              <th class="c-ui-table__header">
+                                <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc"> تعداد ویژگی ها </span>
+                              </th>
+                              <th class="c-ui-table__header">
+                                <span class="table-header-searchable uk-text-nowrap "> توضیحات گروه ویژگی</span>
+                              </th>
+                              <th class="c-ui-table__header">
+                                <span class="table-header-searchable uk-text-nowrap "> فعال/غیر فعال </span>
+                              </th>
+                              <th class="c-ui-table__header">
+                                <span class="table-header-searchable uk-text-nowrap ">عملیات</span>
+                              </th>
+                          </tr>
                         </thead>
                         <tbody id="tbody">
-                        @foreach($category->attributeGroups as $attrGroup)
+                        @foreach($category->attributeGroups()->orderBy('position', 'asc')->get() as $attrGroup)
                         <tr name="row" id="item-{{$attrGroup->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                             <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
                                 <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
@@ -63,9 +60,8 @@
                             <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 90px">
                                 <div class="uk-flex uk-flex-column">
                                     <a href="#" target="_blank">
-                                        <span
-                                            class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                        {{ $attrGroup->name }}
+                                        <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                                          {{ $attrGroup->name }}
                                         </span>
                                         <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                     </a>
@@ -85,19 +81,14 @@
                                             <span class="c-ui-toggle__check"></span>
                                         </label>
                                     </div>
-
                                     <input type="hidden" value="0" class="js-active-input">
                                 </div>
                             </td>
 
                             <td class="c-ui-table__cell">
                                 <div class="c-promo__actions">
-                                    <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit
-                          c-join__btn--secondary-greenish" href="{{ route('staff.attributes.edit', $attrGroup->id) }}">ویرایش</a>
-                                    <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
-                                      c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                        value="{{ $attrGroup->id }}">حذف</button>
-                                    </button>
+                                    <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.attributes.edit', $attrGroup->id) }}">ویرایش</a>
+                                    <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"  value="{{ $attrGroup->id }}">حذف</button></button>
                                 </div>
                             </td>
                         </tr>

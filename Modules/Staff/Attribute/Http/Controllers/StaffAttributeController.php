@@ -53,14 +53,15 @@ class StaffAttributeController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'description' => 'nullable|string',
+            'description' => 'nullable',
             'category_id' => 'required|integer',
         ]);
 
-
         if ($validator->fails()) {
             return response()->json($validator->messages(), 400);
-        } else {
+        }
+        else
+        {
             if ((AttributeGroup::max('position')) || (AttributeGroup::max('position') == 0)) {
                 $position = AttributeGroup::max('position') + 1;
             } else {
@@ -121,7 +122,13 @@ class StaffAttributeController extends Controller
 
     public function deleteGroup(Request $request)
     {
-        AttributeGroup::find($request->id)->delete();
+        $attr_group = AttributeGroup::findOrFail($request->id);
+        foreach ($attr_group->attributes as $attribute)
+        {
+          $attribute->values()->delete();
+        }
+        $attr_group->attributes()->delete();
+        $attr_group->delete();
     }
 
     public function statusGroup(Request $request)
@@ -139,12 +146,16 @@ class StaffAttributeController extends Controller
 
     public function AttrGroupUpdate($request)
     {
-        if (!is_null($request->group_name)) {
+        if (!is_null($request->group_name))
+        {
           AttributeGroup::where('id', $request->category_id)->update([
               'name' => $request->group_name,
-              'description' => $request->group_desc,
           ]);
-      }
+        }
+
+        AttributeGroup::where('id', $request->category_id)->update([
+          'description' => $request->group_desc,
+        ]);
     }
 
     public function deleteAttributes($request)
@@ -152,7 +163,7 @@ class StaffAttributeController extends Controller
         if (isset($request->deleted_rows) && (!is_null($request->deleted_rows)))
          {
             foreach ($request->deleted_rows as $deleted_row) {
-                // Attribute::find($deleted_row)->values()->delete();
+                 Attribute::find($deleted_row)->values()->delete();
                 Attribute::find($deleted_row)->delete();
             }
         }
@@ -185,117 +196,178 @@ class StaffAttributeController extends Controller
         }, $positions);
 
 
-        if (isset($request->attr_names) && !is_null($request->attr_names) && count($request->attr_names)) {
-            $i = 0;
-            foreach ($request->attr_names as $attr_name) {
-                if ($attr_name == null) {
+        if (!isset($request->attr_names) || is_null($request->attr_names) || !count($request->attr_names)) {
+          return null;
+        }
+
+
+        $i = 0;
+        foreach ($request->attr_names as $attr_name) {
+            if ($attr_name == null) {
+              $i++;
+              continue;
+            }
+
+            $type = $request->attr_types[$i];
+
+            if (($type == 3 || $type == 4 || $type == 5) && is_null($request->attr_values[$i])) {
+              $i++;
+              continue;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            if ($positions[$i] == 0)
+            {
+                // اگه جدید بود
+                $created_attr_id = Attribute::insertGetId([
+                    'name' => $attr_name,
+                    'type' => $request->attr_types[$i],
+                    'position' => $i,
+                    'is_required' => $request->attr_requireds[$i],
+                    'is_filterable' => $request->attr_filterables[$i],
+                    'is_favorite' => $request->attr_favorites[$i],
+                    'group_id' => $request->category_id,
+                ]);
+
+                $created_attr = Attribute::findOrFail($created_attr_id);
+
+                if (($request->attr_types[$i] == 1) || ($request->attr_types[$i] == 2))
+                {
                     $i++;
                     continue;
                 }
 
-                $type = $request->attr_types[$i];
 
-                if (($type == 3 || $type == 4 || $type == 5) && is_null($request->attr_values[$i])) {
-                    $i++;
-                    continue;
-                }
-
-
-                if ($positions[$i] == 0) {
-                    // اگه جدید بود
-                    $created_attr = Attribute::create([
-                        'name' => $attr_name,
-                        'type' => $request->attr_types[$i],
-                        'position' => $i,
-                        'is_required' => $request->attr_requireds[$i],
-                        'is_filterable' => $request->attr_filterables[$i],
-                        'is_favorite' => $request->attr_favorites[$i],
-                        'group_id' => $request->category_id,
-                    ]);
-                    if (($request->attr_types[$i] == 1) || ($request->attr_types[$i] == 2)) {
-                        $i++;
-                        continue;
-                    }
-                    elseif (($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4)) {
-                        foreach (json_decode($request->attr_values[$i]) as $attr_value) {
-                            $attr_value = (array)$attr_value;
-                            $val = [];
-                            $val_position = 0;
-                            foreach ($attr_value as $attr_val) {
-                                $val[] = $attr_val;
-                                if (isset($val[0]) && !is_null($attr_val)) {
-                                    AttributeValue::create([
-                                        'value' => $attr_val,
-                                        'attribute_id' => $created_attr->id,
-                                        'position' => $val_position,
-                                    ]);
-                                    $val_position++;
-                                }
-                            }
-                        }
-                    }
-                    elseif ($request->attr_types[$i] == 5) {
-                        Attribute::find($created_attr->id)->update([
-                            'unit_id' => $request->attr_values[$i],
-                        ]);
-                    }
-
-                }
-                else {  // اگه سطر جدید نبود
-                    if (!Attribute::find($positions[$i])) {
-                        $i++;
-                        continue;
-                    }
-
-                    Attribute::find($positions[$i])->update([
-                        'name' => $attr_name,
-                        'type' => $request->attr_types[$i],
-                        'position' => $i,
-                        'is_required' => $request->attr_requireds[$i],
-                        'is_filterable' => $request->attr_filterables[$i],
-                        'is_favorite' => $request->attr_favorites[$i],
-                        'group_id' => $request->category_id,
-                    ]);
-
-                    $attr = Attribute::find($positions[$i]);
-
-                    if ($request->attr_types[$i] == 1 || $request->attr_types[$i] == 2) {
-                        $i++;
-                        continue;
-                    }
-
-                    if ($request->attr_types[$i] == 5) {
-                        Attribute::find($positions[$i])->update([
-                            'unit_id' => $request->attr_values[$i],
-                        ]);
-                    }
-
-                    if ($request->attr_types[$i] == 3 || $request->attr_types[$i] == 4) {
+                if (($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4))
+                {
+                    foreach (json_decode($request->attr_values[$i], true) as $attr_value)
+                    {
+                        $attr_value = (array)$attr_value;
+                        $val = [];
                         $val_position = 0;
 
-                        foreach (json_decode($request->attr_values[$i]) as $attr_value) {
-                            $attr_value = (array)$attr_value;
-                            if (isset($attr_value['id'])) { // جدید نیست
-                                AttributeValue::find($attr_value['id'])->update([
-                                    'attribute_id' => $attr->id,
-                                    'value' => $attr_value['value'],
-                                    'position' => $val_position,
-                                ]);
-                            } else {  // جدیده
+                        foreach ($attr_value as $attr_val)
+                        {
+                            $val[] = $attr_val;
+                            if (isset($val[0]) && !is_null($attr_val))
+                            {
                                 AttributeValue::create([
-                                    'attribute_id' => $attr->id,
-                                    'value' => $attr_value['value'],
+                                    'value' => $attr_val,
+                                    'attribute_id' => $created_attr->id,
                                     'position' => $val_position,
                                 ]);
+                                $val_position++;
                             }
-                            $val_position++;
                         }
+
                     }
                 }
 
-                $i++;
+                if ($request->attr_types[$i] == 5) {
+                    Attribute::find($created_attr->id)->update([
+                        'unit_id' => $request->attr_values[$i],
+                    ]);
+                }
+
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            else {  // اگه سطر جدید نبود
+                if (!Attribute::find($positions[$i])) {
+                    $i++;
+                    continue;
+                }
+
+                Attribute::find($positions[$i])->update([
+                    'name' => $attr_name,
+                    'type' => $request->attr_types[$i],
+                    'position' => $i,
+                    'is_required' => $request->attr_requireds[$i],
+                    'is_filterable' => $request->attr_filterables[$i],
+                    'is_favorite' => $request->attr_favorites[$i],
+                    'group_id' => $request->category_id,
+                ]);
+
+                $attr = Attribute::find($positions[$i]);
+
+                if ($request->attr_types[$i] == 1 || $request->attr_types[$i] == 2) {
+                    $i++;
+                    continue;
+                }
+
+                if ($request->attr_types[$i] == 5) {
+                    Attribute::find($positions[$i])->update([
+                        'unit_id' => $request->attr_values[$i],
+                    ]);
+                }
+
+                if ($request->attr_types[$i] == 3 || $request->attr_types[$i] == 4) {
+                    $val_position = 0;
+
+                    foreach (json_decode($request->attr_values[$i]) as $attr_value) {
+                        $attr_value = (array)$attr_value;
+                        if (isset($attr_value['id'])) { // جدید نیست
+                            AttributeValue::find($attr_value['id'])->update([
+                                'attribute_id' => $attr->id,
+                                'value' => $attr_value['value'],
+                                'position' => $val_position,
+                            ]);
+                        } else {  // جدیده
+                            AttributeValue::create([
+                                'attribute_id' => $attr->id,
+                                'value' => $attr_value['value'],
+                                'position' => $val_position,
+                            ]);
+                        }
+                        $val_position++;
+                    }
+                }
+            }
+
+            $i++;
         }
+
+
+
+
     }
 
 }
