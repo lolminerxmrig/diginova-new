@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت گارانتی‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('seller/js/indexAction.js') }}"></script>
 <script src="{{ asset('seller/js/tableView.js') }}"></script>
@@ -65,24 +66,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-{{--                                    <div class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">--}}
-{{--                                        <div class="c-join__filter">--}}
-{{--                                            <p class="c-ui-form__label">نمایش گارانتی:</p>--}}
-{{--                                            <div class="c-join__filter-container">--}}
-{{--                                                <label class="c-join__radio-label">--}}
-{{--                                                    <input class="c-join__radio search_type" type="radio"--}}
-{{--                                                           name="search_type" value="all" checked>--}}
-{{--                                                    <span class="c-join__radio-option">همه گارانتیها</span>--}}
-{{--                                                </label>--}}
-{{--                                                <label class="c-join__radio-label">--}}
-{{--                                                    <input class="c-join__radio search_type" type="radio" name="search_type" value="only_special">--}}
-{{--                                                    <span class="c-join__radio-option">فقط ویژه ها</span>--}}
-{{--                                                </label>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-
                                 </div>
                             </div>
                         </div>
@@ -106,31 +89,10 @@
                                             <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی های حذف شده</a>
                                         </div>
                                         @endif
-
-{{--                                        {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}--}}
-
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                                             </div>
-{{--                                            <div class="c-ui-paginator__select" data-select2-id="15">--}}
-{{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-{{--                                                <div class="c-ui-paginator__select-pages">--}}
-{{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-{{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-{{--                                                        select2-hidden-accessible paginator-selected"--}}
-{{--                                                            name="paginator-select-pages" tabindex="-1" id="paginator-top" aria-hidden="true">--}}
-{{--                                                            <option value="10">۱۰</option>--}}
-{{--                                                            <option value="20">۲۰</option>--}}
-{{--                                                            <option value="50">۵۰</option>--}}
-{{--                                                            <option value="100">۱۰۰</option>--}}
-{{--                                                        </select>--}}
-
-{{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
                                         </div>
                                     </div>
                                     <div class="c-card__body c-ui-table__wrapper">
@@ -147,9 +109,6 @@
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>
                                                 </th>
-{{--                                                <th class="c-ui-table__header"><span--}}
-{{--                                                        class="table-header-searchable uk-text-nowrap "> وضعيت </span>--}}
-{{--                                                </th>--}}
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap ">تعداد کالا</span>
                                                 </th>
@@ -171,7 +130,11 @@
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#" target="_blank">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                                {{ $warranty->name }}
+                                                                  @if($warranty->month !== null)
+                                                                    {{ 'گارانتی ' . persianNum($warranty->month) . ' ' . ' ماهه ' . $warranty->name  }}
+                                                                  @else
+                                                                    {{ 'گارانتی ' . $warranty->name  }}
+                                                                  @endif
                                                                 </span>
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                             </a>

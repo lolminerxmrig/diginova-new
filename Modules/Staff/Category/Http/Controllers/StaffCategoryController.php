@@ -11,6 +11,8 @@ use Modules\Staff\Category\Http\Requests\StaffCategoryImageRequest;
 use Modules\Staff\Category\Http\Requests\StaffCategoryRequest;
 use Modules\Staff\Category\Models\Category;
 use App\Models\Media;
+use phpDocumentor\Reflection\Php\Factory\Type;
+use Modules\Staff\Variant\Models\VariantGroup;
 
 
 class StaffCategoryController extends Controller
@@ -41,13 +43,21 @@ class StaffCategoryController extends Controller
       'description' => $request->description,
     ]);
 
+    $category = Category::where('en_name', $request->en_name)->first();
+
     if (Media::where('id', $request->image)->exists()) {
-      $category = Category::where('en_name', $request->en_name)->first();
       Media::find($request->image)->categories()->attach($category);
       Media::find($request->image)->update([
         'status' => 1,
       ]);
     }
+
+    if (VariantGroup::whereId(1)->exists())
+    {
+      $variantGroup = VariantGroup::find(1);
+      $category->variantGroup()->attach($variantGroup);
+    }
+
 
   }
 

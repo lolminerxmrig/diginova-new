@@ -1,5 +1,6 @@
 @extends('layouts.staff.master')
 
+@section('title') مدیریت نوع‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('seller/js/tags3.js') }}"></script>
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>

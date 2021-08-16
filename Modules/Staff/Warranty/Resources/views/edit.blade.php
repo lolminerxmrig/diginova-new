@@ -1,6 +1,8 @@
 
 @extends('layouts.staff.master')
 
+@section('title') ویرایش گارانتی‌ | {{ $fa_store_name }}  @endsection
+
 @section('head')
 <script src="{{ asset('seller/js/create-warranty-validation.js') }}"></script>
 <script src="{{ asset('seller/js/tags.js') }}"></script>
@@ -40,6 +42,9 @@ $warranty->name = persianNum($warranty->name);
 
                               <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr" style="margin: 0 0 0 0;
                                 width: 100%;">
+                                <div class="c-join__warning-box uk-margin-remove-top" style="margin-bottom: 40px; margin-right: 15px;margin-left: 15px; width: 100%">
+                                  <p class="c-join__warning-row c-join__warning-row--has-icon">کلمه "گارانتی" به صورت خودکار به اول نام گارانتی‌ها اضافه می‌گردد، لطفا نام تامین‌کننده گارانتی را وارد کنید.</p>
+                                </div>
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
                                   c-grid__col--sm-6">
                                   <label class="uk-form-label uk-flex uk-flex-between">
