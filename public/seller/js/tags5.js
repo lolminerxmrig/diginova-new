@@ -1900,9 +1900,9 @@ let IndexAction = {
                 maxlength: 150
             },
             'product[description]': {
-                minlength: 150,
-                maxlength: 2000,
-                not_same_as_old_value: true
+                // minlength: 150,
+                // maxlength: 2000,
+                // not_same_as_old_value: true
             }
         };
 
@@ -2481,13 +2481,15 @@ let IndexAction = {
 
             $mainImageErrorContainer.addClass('hidden');
 
-            if (($that.imagesRequired() || $imagesCount > 0) && $imagesCount < 1) {
-                hasImageErrors = true;
-                let $div = $('<div/>');
-                $div.html('حداقل دو تصویر آپلود کنید');
-                $imagesErrorsContainer.append($div);
-                $ajaxErrorImages.removeClass('hidden');
-            }
+          // if you want save pictures with roles use this:
+
+          // if (($that.imagesRequired() || $imagesCount > 0) && $imagesCount < 1) {
+            //     hasImageErrors = true;
+            //     let $div = $('<div/>');
+            //     $div.html('حداقل دو تصویر آپلود کنید');
+            //     $imagesErrorsContainer.append($div);
+            //     $ajaxErrorImages.removeClass('hidden');
+            // }
 
             let $mainImageId = $('#mainImageContainer').val();
             if (!hasImageErrors && !$mainImageId && $imagesCount > 0) {

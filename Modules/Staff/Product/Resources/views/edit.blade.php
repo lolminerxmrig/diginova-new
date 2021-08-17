@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-
+@section('title') ویرایش محصول | {{ $fa_store_name }}  @endsection
 @section('head')
 <style>
     .o-spacing-m-t-4 {

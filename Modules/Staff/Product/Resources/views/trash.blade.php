@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') محصولات حذف شده | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('seller/js/indexAction.js') }}"></script>
 <script src="{{ asset('seller/js/tableView.js') }}"></script>
@@ -106,24 +107,6 @@
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
                                             </div>
-{{--                                            <div class="c-ui-paginator__select" data-select2-id="15">--}}
-{{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-{{--                                                <div class="c-ui-paginator__select-pages">--}}
-{{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-{{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-{{--                                                        select2-hidden-accessible paginator-selected"--}}
-{{--                                                            name="paginator-select-pages" tabindex="-1" id="paginator-top" aria-hidden="true">--}}
-{{--                                                            <option value="10">۱۰</option>--}}
-{{--                                                            <option value="20">۲۰</option>--}}
-{{--                                                            <option value="50">۵۰</option>--}}
-{{--                                                            <option value="100">۱۰۰</option>--}}
-{{--                                                        </select>--}}
-
-{{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
                                         </div>
                                     </div>
                                     <div class="c-card__body c-ui-table__wrapper">
@@ -162,12 +145,15 @@
                                                         <span class="c-wallet__body-card-row-item"> {{ persianNum($products->firstItem() + $key) }} </span>
                                                     </td>
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
+1                                                    @if(count($product->media))
                                                         @foreach($product->media as $image)
-                                                            @if($product->media && ($image->pivot->is_main == 1))
-                                                                <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
-                                                            @endif
+                                                          @if($product->media && ($image->pivot->is_main == 1))
+                                                            <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
+                                                          @endif
                                                         @endforeach
-                                                    </td>
+                                                      @else
+                                                        <img src="{{ asset('staff/images/default_picture.png') }}" width="65" height="65">
+                                                      @endif                                                    </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#" target="_blank">

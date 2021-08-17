@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت محصولات | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('seller/js/indexAction.js') }}"></script>
     <script src="{{ asset('seller/js/tableView.js') }}"></script>
@@ -190,11 +191,15 @@
                                                         </td>
 
                                                         <td class="c-ui-table__cell" style="min-width: 90px">
+                                                          @if(count($product->media))
                                                             @foreach($product->media as $image)
                                                                 @if($product->media && ($image->pivot->is_main == 1))
                                                                     <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
                                                                 @endif
                                                             @endforeach
+                                                          @else
+                                                            <img src="{{ asset('staff/images/default_picture.png') }}" width="65" height="65">
+                                                          @endif
                                                         </td>
 
                                                         <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
@@ -417,39 +422,7 @@
                         <div class="c-grid__row">
                             <div class="c-grid__col">
                                 <div class="c-card">
-                                    {{--
-                                    <div class="c-card__header">
-                                      --}}
-                                    {{--
-                                    <div class="c-grid__col">
-                                      --}}
-                                    {{--
-                                    <h2 class="c-card__title c-join__tab-card-title">مدیریت محصول ها</h2>
-                                    --}}
-                                    {{--
-                                    <ul class="uk-tab c-promo__tabs">
-                                      --}}
-                                    {{--
-                                    <li class="c-promo__tab-item c-promo__tab-item--promotions uk-active" data-tab="1">--}}
-                                    {{--                                            <a href="/promotion-management/">همه محصول ها</a>--}}
-                                    {{--
-                                  </li>
-                                  --}}
-                                    {{--
-                                    <li class="c-promo__tab-item c-promo__tab-item--products" data-tab="2">--}}
-                                    {{--                                            <a href="/promotion-management/products/">محصول های حذف شده</a>--}}
-                                    {{--
-                                  </li>
-                                  --}}
-                                    {{--
-                                  </ul>
-                                  --}}
-                                    {{--
-                                  </div>
-                                  --}}
-                                    {{--
-                                  </div>
-                                  --}}
+
                                     <div class="c-card__body">
                                         <div class="c-grid__col">
                                             <div
@@ -472,6 +445,9 @@
                                                         <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
                                                            href="{{ route('staff.products.trash') }}">ورود به صفحه
                                                             Trash</a>
+                                                    <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
+                                                       href="{{ route('staff.products.create') }}">ایجاد محصول
+                                                      جدید</a>
                                                     @else
                                                         <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
                                                             شما تا به حال هیچ محصولی ایجاد نکرده‌اید</p>

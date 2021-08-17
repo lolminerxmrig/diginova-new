@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-
+@section('title') ایجاد محصول | {{ $fa_store_name }}  @endsection
 @section('head')
 <style>
   .o-spacing-m-t-4 {
@@ -1197,7 +1197,7 @@
                             <div class="c-grid__col c-grid__col--gap-lg">
                                 <label class="uk-form-label uk-flex uk-flex-between">نامک پیشنهادی:</label>
                                 <div class="field-wrapper" style="margin-bottom: 15px;">
-                                    <input type="text" class="c-content-input__origin c-ui-input--deactive url-inputs suggest_slug" name="suggest_slug" dir="ltr" disabled>
+                                    <input type="text" class="c-content-input__origin c-ui-input--deactive url-inputs suggest_slug" name="suggest_slug" dir="ltr"  disabled>
                                     <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
                                 </div>
                             </div>
@@ -1359,26 +1359,26 @@
                                         <ul class="c-content-upload__list c-content-upload__list--tooltips">
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             ابعاد
-                                            تصویر بایستی در بازه ۶۰۰x۶۰۰ تا ۲۵۰۰x۲۵۰۰ و حجم آن باید کمتر از ۶ مگابایت
+                                            تصویر بهتر است در بازه ۶۰۰x۶۰۰ تا ۲۵۰۰x۲۵۰۰ و حجم آن باید کمتر از ۶ مگابایت
                                             باشد.
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             کالا
-                                            باید
+                                            بهتر است
                                             ۸۵٪ کل تصویر را در برگیرد و پس زمینه تصویر اصلی باید کاملاً سفید باشد.
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             تصویر
-                                            باید
+                                            بهتر است
                                             فقط کالایی که قصد فروش آن را دارید نمایش دهد و بدون هیچ لوگو، نوشته و یا
                                             واترمارکی
                                             باشد..
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                            تصویر شما باید مربعی باشد یا ابعاد یک در یک داشته باشد
+                                            تصویر شما بهتر است مربعی باشد یا ابعاد یک در یک داشته باشد
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                            فرمت تصاویر بایستی JPG باشد
+                                            فرمت تصاویر بهتر است JPG باشد
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             امکان آپلود چندین تصویر به صورت همزمان وجود دارد

@@ -20,7 +20,7 @@ class CreateAttributeProductTable extends Migration
             $table->foreignId('value_id')->nullable();
             $table->foreignId('unit_id')->nullable();
             $table->foreignId('unit_value_id')->nullable();
-            $table->string('value')->nullable();
+            $table->longText('value')->nullable();
             $table->timestamps();
 
             $table->foreign('attribute_id')->references('id')->on('attributes')

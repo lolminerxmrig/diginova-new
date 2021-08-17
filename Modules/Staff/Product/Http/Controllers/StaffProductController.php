@@ -21,6 +21,7 @@ use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Product\Models\ProductType;
+use Modules\Staff\Variant\Models\VariantGroup;
 
 
 class StaffProductController extends Controller
@@ -71,7 +72,8 @@ class StaffProductController extends Controller
     {
         $categories = Category::all();
         $settings = Setting::select('name', 'value')->get();
-        return view('staffproduct::create', compact('categories', 'settings'));
+
+      return view('staffproduct::create', compact('categories', 'settings'));
     }
 
     /**
@@ -121,7 +123,7 @@ class StaffProductController extends Controller
         }
 
         $defualt_brand = array("value" => "", "text" => 'برند کالا را انتخاب کنید');
-        $miscellaneous_brand = array("value" => 0, "text" => 'متفرقه Miscellaneous');
+        $miscellaneous_brand = array("value" => 1, "text" => 'متفرقه Miscellaneous');
 
         if (!isset($brands)) {
             $brands = [];
@@ -145,17 +147,18 @@ class StaffProductController extends Controller
             array_unshift($types, $defualt_types);
         }
 
-        if ($category->variantGroup()->first()){
-            $variant_group = $category->variantGroup()->first();
-        } else {
-            $variant_group = '';
-        }
 
+      $category = $find_category;
+      if ($category->variantGroup()->exists()){
+          $variant_group = $category->variantGroup()->first();
+      } else {
+          $variant_group = '';
+      }
 
-        if ($category->variantGroup()->first() && !is_null($category->variantGroup()->first()->description)) {
+      if ($category->variantGroup()->exists() && !is_null($category->variantGroup()->first()->description)) {
             $categoryThemeDescription = "<strong>تنوع $variant_group->name: </strong>$variant_group->description";
         } else {
-            $categoryThemeDescription = '';
+            $categoryThemeDescription = "<strong>تعیین نشده: </strong>برای تعیین تنوع مجاز برای دسته بندی انتخابی از بخش تنوع روی دکمه تعیین تنوع مجاز کلیک کنید";
         }
 
 
@@ -205,19 +208,21 @@ class StaffProductController extends Controller
 
         if (!is_null($request->slug)) {
             $slug = $request->slug;
-        } else {
-            if ($request->product['brand_id'] == 0) {
-                $slug = $request->product['product_nature'] . ' مدل ' . $request->product['model'];
-            } else {
-                $brand = Brand::find($request->product['brand_id'])->name;
-                $slug = $request->product['product_nature'] . ' ' . $brand . ' مدل ' . $request->product['model'];
-                $slug = str_replace(' ', '-', $slug);
-            }
+        }
+
+        if ($request->product['brand_id'] == 1) {
+          $slug = $request->product['product_nature'] . ' مدل ' . $request->product['model'];
+        }
+        else {
+          $brand = Brand::find($request->product['brand_id'])->name;
+          $slug = $request->product['product_nature'] . ' ' . $brand . ' مدل ' . $request->product['model'];
+          $slug = str_replace(' ', '-', $slug);
         }
 
         if (!is_null($request->seo_title)) {
             $seo_title = $request->seo_title;
-        } else {
+        }
+        else {
             $predix = Setting::where('name','product_title_prefix')->first()->value;
             if ($request->product['brand_id'] == 0) {
                 $seo_title = $predix . ' ' . $request->product['product_nature'] . ' مدل ' . $request->product['model'];
@@ -274,7 +279,7 @@ class StaffProductController extends Controller
 
         // product code
         if(count(Product::all())){
-            $product_code = Product::max('product_code')+1;
+            $product_code = Product::withTrashed()->max('product_code')+1;
         } else {
             $product_code = 1000000;
         }
@@ -890,7 +895,6 @@ class StaffProductController extends Controller
     public function stepUploadImages(Request $request)
     {
 
-      Log::info($request->all());
 
       $messages = [
         'files.*.mimes' => 'فرمت تصویر غیر مجاز است',
