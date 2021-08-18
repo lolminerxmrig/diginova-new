@@ -1608,9 +1608,13 @@
                                                                                         را انتخاب کنید
                                                                                     </option>
 
-                                                                                    @php
+                                                                                    <?php
+                                                                                      if ($product->attributes->whereId($attribute->id)->exists()) {
                                                                                         $product_attr_val_id = $product->attributes->find($attribute->id)->pivot->value_id;
-                                                                                    @endphp
+                                                                                      } else {
+                                                                                        $product_attr_val_id = 0;
+                                                                                      }
+                                                                                    ?>
 
                                                                                     @foreach($attribute->values as $value)
                                                                                         <option value="{{ $value->id }}" {{ ($product_attr_val_id == $value->id)? 'selected' : ''  }} >{{ $value->value }}</option>
