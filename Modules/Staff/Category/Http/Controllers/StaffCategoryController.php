@@ -6,11 +6,13 @@ use App\Models\Mediable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Modules\Staff\Category\Http\Requests\StaffCategoryImageRequest;
 use Modules\Staff\Category\Http\Requests\StaffCategoryRequest;
 use Modules\Staff\Category\Models\Category;
 use App\Models\Media;
+use Modules\Staff\Rating\Models\Rating;
 use phpDocumentor\Reflection\Php\Factory\Type;
 use Modules\Staff\Variant\Models\VariantGroup;
 
@@ -57,6 +59,15 @@ class StaffCategoryController extends Controller
       $variantGroup = VariantGroup::find(1);
       $category->variantGroup()->attach($variantGroup);
     }
+
+    $rating_ids = [1,2,3,4];
+    foreach ($rating_ids as $id) {
+      if (Rating::whereId($id)->exists()){
+        $rating = Rating::find($id);
+        $category->ratings()->attach($rating);
+      }
+    }
+
 
 
   }
@@ -169,6 +180,11 @@ class StaffCategoryController extends Controller
       $seleted_category->media()->delete();
     }
 
+    $seleted_category->product_variants()->detach();
+    $seleted_category->product_variants()->forceDelete();
+    $seleted_category->products()->detach();
+    $seleted_category->products()->forceDelete();
+
     $seleted_category->delete();
   }
 
@@ -185,6 +201,11 @@ class StaffCategoryController extends Controller
         $sub_category_id->media()->detach();
         $sub_category_id->media()->delete();
       }
+      $sub_category->product_variants()->detach();
+      $sub_category->product_variants()->forceDelete();
+      $sub_category->products()->detach();
+      $sub_category->products()->forceDelete();
+
       $sub_category->delete();
 
       if (Category::where('parent_id', $sub_category_id)->exists()) {

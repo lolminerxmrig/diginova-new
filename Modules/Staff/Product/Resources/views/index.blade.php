@@ -304,7 +304,7 @@
                                                         </td>
 
                                                         <td class="c-ui-table__cell">
-                                                            <span class="c-wallet__body-card-row-item"> ۱ </span>
+                                                            <span class="c-wallet__body-card-row-item"> {{ persianNum(count($product->variants)) }} </span>
                                                         </td>
 
                                                         <td class="c-ui-table__cell">

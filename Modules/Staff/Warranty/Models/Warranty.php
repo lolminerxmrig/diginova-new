@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Media;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\Product;
+use Modules\Staff\Product\Models\ProductHasVariant;
 
 
-class Warranty extends Model
+class  Warranty extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -24,9 +25,11 @@ class Warranty extends Model
         return $this->morphToMany(Category::class, 'categorizable');
     }
 
-//    public function products()
-//    {
-//      return $this->hasMany(Product::class, 'warranty_id');
-//    }
+
+    public function product_variants()
+    {
+      return $this->hasMany(ProductHasVariant::class, 'warranty_id');
+    }
+
 
 }

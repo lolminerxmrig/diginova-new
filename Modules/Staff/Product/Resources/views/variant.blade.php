@@ -637,8 +637,15 @@ var is_yalda = 0;
                                         </div>
                                         <div class="c-variant__header">
                                             <div class="c-variant__img-container">
-                                                <img src="{{ $site_url . '/' .$product->media()->first()->path . '/' . $product->media()->first()->name }}"
-                                                    alt="" class="c-variant__img">
+                                              @if(count($product->media))
+                                                @foreach($product->media as $image)
+                                                  @if($product->media && ($image->pivot->is_main == 1))
+                                                    <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
+                                                  @endif
+                                                @endforeach
+                                              @else
+                                                <img src="{{ asset('staff/images/default_picture.png') }}"  class="c-variant__img">
+                                              @endif
                                             </div>
                                             <div class="c-variant__descr">
                                                 <h2 class="c-variant__title">{{ $product->title_fa }}</h2>
@@ -1032,9 +1039,9 @@ var is_yalda = 0;
 
                                 <select name="" class="uk-input uk-input--select js-variant-warranty" data-placeholder="لطفا گارانتی را انتخاب کنید">
                                     <option></option>
-                                    <option value="1">گارانتی اصالت و سلامت فیزیکی کالا</option>
+                                    <option value="1">{{ \Modules\Staff\Warranty\Models\Warranty::where('id', 1)->first()->name }}</option>
                                     @if(count($warranties))
-                                        @foreach($warranties as $warranty)
+                                        @foreach($warranties->where('id', '!==', 1) as $warranty)
                                             @if(!is_null($warranty->month))
                                                 <option value="{{ $warranty->id }}">گارانتی {{ persianNum($warranty->month) }} ماهه {{ $warranty->name }}</option>
                                             @else

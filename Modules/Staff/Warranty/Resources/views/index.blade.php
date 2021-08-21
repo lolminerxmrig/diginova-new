@@ -110,11 +110,11 @@
                                                         class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap ">تعداد کالا</span>
+                                                        class="table-header-searchable uk-text-nowrap ">تعداد تنوع</span>
                                                 </th>
-                                                <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap ">کالاهای فعال</span>
-                                                </th>
+{{--                                                <th class="c-ui-table__header"><span--}}
+{{--                                                        class="table-header-searchable uk-text-nowrap ">کالاهای فعال</span>--}}
+{{--                                                </th>--}}
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap ">عملیات</span>
                                                 </th>
@@ -144,11 +144,9 @@
                                                         <a href="#">
                                                             <div class="uk-flex uk-flex-column">
                                                                   <span class="c- -card-row-item" style="line-height: 23px;">
-{{--                                                                      {{ $warranty->name }}--}}
-{{--                                                                      {{ count($warranty->categories) }}--}}
                                                                     @foreach($warranty->categories as $category)
                                                                           {{ $category->name }}&nbsp;<br>
-                                                                      @endforeach
+                                                                    @endforeach
                                                                   </span>
                                                             </div>
                                                         </a>
@@ -161,10 +159,10 @@
 {{--                                                            </div>--}}
 {{--                                                        </div>--}}
 {{--                                                    </td>--}}
-                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> ۱ </span>
+                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> {{ persianNum($warranty->product_variants->count()) }} </span>
                                                     </td>
-                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> ۱ </span>
-                                                    </td>
+{{--                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> ۱ </span>--}}
+{{--                                                    </td>--}}
                                                     <td class="c-ui-table__cell">
                                                         <div class="c-promo__actions">
                                                             <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.warranties.edit', $warranty->id) }}">ویرایش</a>

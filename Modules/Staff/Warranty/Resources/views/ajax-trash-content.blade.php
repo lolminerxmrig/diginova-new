@@ -9,30 +9,10 @@
                             <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی ها</a>
                         </div>
 
-                        {{--                                        {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}--}}
-
                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                             </div>
-                            {{--                                            <div class="c-ui-paginator__select" data-select2-id="15">--}}
-                            {{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-                            {{--                                                <div class="c-ui-paginator__select-pages">--}}
-                            {{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-                            {{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-                            {{--                                                        select2-hidden-accessible paginator-selected"--}}
-                            {{--                                                            name="paginator-select-pages" tabindex="-1" id="paginator-top" aria-hidden="true">--}}
-                            {{--                                                            <option value="10">۱۰</option>--}}
-                            {{--                                                            <option value="20">۲۰</option>--}}
-                            {{--                                                            <option value="50">۵۰</option>--}}
-                            {{--                                                            <option value="100">۱۰۰</option>--}}
-                            {{--                                                        </select>--}}
-
-                            {{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-                            {{--                                                    </div>--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
                         </div>
                     </div>
                     <div class="c-card__body c-ui-table__wrapper">
@@ -50,7 +30,7 @@
                                         class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>
                                 </th>
                                 <th class="c-ui-table__header"><span
-                                        class="table-header-searchable uk-text-nowrap ">تعداد کالا</span>
+                                        class="table-header-searchable uk-text-nowrap ">تعداد تنوع</span>
                                 </th>
                                 <th class="c-ui-table__header"><span
                                         class="table-header-searchable uk-text-nowrap ">عملیات</span>
@@ -66,12 +46,16 @@
                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                         <div class="uk-flex uk-flex-column">
                                             <a href="#" target="_blank">
-                                                                <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                                {{ $warranty->name }}
-                                                                    @if($warranty->type == 1)
-                                                                        <span style="color: red; font-size: 11px;"> (ویژه) </span>
-                                                                    @endif
-                                                                </span>
+                                                <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                                                    @if($warranty->month !== null)
+                                                      {{ 'گارانتی ' . persianNum($warranty->month) . ' ' . ' ماهه ' . $warranty->name  }}
+                                                    @else
+                                                      {{ 'گارانتی ' . $warranty->name  }}
+                                                    @endif
+                                                    @if($warranty->type == 1)
+                                                      <span style="color: red; font-size: 11px;"> (ویژه) </span>
+                                                    @endif
+                                                </span>
                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                             </a>
                                         </div>
@@ -79,16 +63,17 @@
                                     <td class="c-ui-table__cell">
                                         <a href="#">
                                             <div class="uk-flex uk-flex-column">
-                                                                  <span class="c- -card-row-item" style="line-height: 23px;">
-                                                                      @foreach($warranty->categories as $category)
-                                                                          {{ $category->name }}&nbsp;<br>
-                                                                      @endforeach
-                                                                  </span>
+                                              <span class="c- -card-row-item" style="line-height: 23px;">
+                                                  @foreach($warranty->categories as $category)
+                                                      {{ $category->name }}&nbsp;<br>
+                                                  @endforeach
+                                              </span>
                                             </div>
                                         </a>
                                     </td>
 
-                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> ۱ </span>
+                                    <td class="c-ui-table__cell">
+                                      <span class="c-wallet__body-card-row-item"> {{ persianNum($warranty->product_variants->count()) }} </span>
                                     </td>
 
                                     <td class="c-ui-table__cell">

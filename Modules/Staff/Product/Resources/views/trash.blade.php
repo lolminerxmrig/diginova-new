@@ -145,7 +145,7 @@
                                                         <span class="c-wallet__body-card-row-item"> {{ persianNum($products->firstItem() + $key) }} </span>
                                                     </td>
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-1                                                    @if(count($product->media))
+                                                     @if(count($product->media))
                                                         @foreach($product->media as $image)
                                                           @if($product->media && ($image->pivot->is_main == 1))
                                                             <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
@@ -197,7 +197,7 @@
                                                     </td>
 
                                                     <td class="c-ui-table__cell">
-                                                        <span class="c-wallet__body-card-row-item"> ۱ </span>
+                                                        <span class="c-wallet__body-card-row-item"> {{ persianNum(count($product->variants)) }} </span>
                                                     </td>
 
                                                     <td class="c-ui-table__cell">

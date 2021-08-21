@@ -706,6 +706,10 @@ class StaffProductController extends Controller
         ProductType::where('product_id', $request->id)->forceDelete();
         SeoContent::where('seoable_type', 'Product')->where('seoable_id', $request->id)->delete();
         AttributeProduct::where('product_id', $request->id)->delete();
+        ProductHasVariant::where('product_id', $request->id)->forceDelete();
+        Product::withTrashed()->find($request->id)->media()->forceDelete();
+        Product::withTrashed()->find($request->id)->categories()->detach();
+        Product::withTrashed()->find($request->id)->seo()->delete();
         Product::withTrashed()->find($request->id)->forceDelete();
         $products = Product::onlyTrashed()->paginate(10);
 
@@ -771,16 +775,17 @@ class StaffProductController extends Controller
     public function variantSave(Request $request)
     {
         // variant code
-        if(count(ProductHasVariant::all())){
+        if(ProductHasVariant::count()){
             $variant_code = ProductHasVariant::max('variant_code')+1;
         } else {
             $variant_code = 2000000;
         }
 
-        $i = 0;
-        foreach($request->product_variants as $product_variant) {
+//        $i = 0;
+        foreach($request->product_variants['variants'] as $i) {
+
             if (!isset($request->product_variants["variant_{$i}_attribute"])) {
-                break;
+                continue;
             }
             ProductHasVariant::create([
                 'product_id' => $request->product_variants['product_id'],

@@ -1609,7 +1609,7 @@
                                                                                     </option>
 
                                                                                     <?php
-                                                                                      if ($product->attributes->whereId($attribute->id)->exists()) {
+                                                                                      if ($product->attributes->where('id', $attribute->id)->count()) {
                                                                                         $product_attr_val_id = $product->attributes->find($attribute->id)->pivot->value_id;
                                                                                       } else {
                                                                                         $product_attr_val_id = 0;

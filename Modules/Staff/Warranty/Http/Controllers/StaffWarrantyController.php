@@ -160,17 +160,19 @@ class StaffWarrantyController extends Controller
         $warranty = Warranty::withTrashed()->find($request->id);
 
         Categorizable::where('categorizable_type', 'Warranty')->where('categorizable_id', $request->id)->delete();
-        $warranty->forceDelete();
-        if($warranty->products)
+        if($warranty->product_variants)
         {
-            foreach ($warranty->products as $product)
+            foreach ($warranty->product_variants as $variant)
             {
-                $product->update([
-                   'warranty_id' => 0,
+                $variant->update([
+                   'warranty_id' => 1,
+                   'status' => 0,
                 ]);
             }
         }
-        $warranties = Warranty::onlyTrashed()->paginate(10);
+      $warranty->forceDelete();
+
+      $warranties = Warranty::onlyTrashed()->paginate(10);
         return View::make('staffwarranty::ajax-trash-content', compact('warranties'));
 
     }
