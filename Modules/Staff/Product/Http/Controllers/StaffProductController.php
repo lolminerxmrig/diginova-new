@@ -599,24 +599,25 @@ class StaffProductController extends Controller
 
         Mediable::where('mediable_type', 'Product')->where('mediable_id', $product->id)->delete();
 
-        foreach ($request->images['images'] as $key => $value)
-        {
+        if (isset($request->images['images'])) {
+          foreach ($request->images['images'] as $key => $value)
+          {
             if($request['images']['main_image'] == $value){
-                $is_main = 1;
+              $is_main = 1;
             } else {
-                $is_main = 0;
+              $is_main = 0;
             }
 
             Mediable::create([
-                'media_id' => $value,
-                'mediable_type' => 'Product',
-                'mediable_id' => $product->id,
-                'position' => $key,
-                'is_main' => $is_main,
+              'media_id' => $value,
+              'mediable_type' => 'Product',
+              'mediable_id' => $product->id,
+              'position' => $key,
+              'is_main' => $is_main,
             ]);
 
             Media::where('id', $value)->update([
-                'status' => 1,
+              'status' => 1,
             ]);
 
             $user_id = auth()->guard('staff')->user()->id;
@@ -628,14 +629,24 @@ class StaffProductController extends Controller
 
             foreach ($only_trashed as $item)
             {
-                $media = Media::find($item);
-                if(($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id))
-                {
-                    unlink(public_path("$media->path/"). $media->name);
-                    $media->delete();
-                }
+              $media = Media::find($item);
+              if(($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id))
+              {
+                unlink(public_path("$media->path/"). $media->name);
+                $media->delete();
+              }
             }
+          }
         }
+
+        return response()->json([
+          'status' => true,
+          'data' => [
+            'forceUrl' => 'testss',
+            'redirectUrl' => 'jjwjwj',
+          ],
+        ], 200);
+
     }
 
     public function ajaxPagination(Request $request)

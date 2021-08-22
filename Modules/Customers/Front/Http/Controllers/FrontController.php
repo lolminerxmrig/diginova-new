@@ -132,7 +132,7 @@ class FrontController extends Controller
     array_pop($list);
     $new_end = end($list);
 
-    if (Category::find(end($list))->children()->exists() && count(Category::find(end($list))->children)) {
+    if (Category::find(end($list))->children->exists() && count(Category::find(end($list))->children)) {
       foreach (Category::find($new_end)->children as $child)
       {
         $lists2[] = $child->id;

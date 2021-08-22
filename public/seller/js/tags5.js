@@ -2353,7 +2353,9 @@ let IndexAction = {
              * @param data.videosForm.errors Backend validation errors
              */
             function (data) {
-                if (data.attributesForm.bind.autoTitleSuggestion) {
+
+              if (data.attributesForm.bind.autoTitleSuggestion)
+              {
                     var $autoTitleField = $('.js-edite-title-suggested');
 
                     $autoTitleField.data('edit-mode', false);
@@ -2393,6 +2395,10 @@ let IndexAction = {
                         }
                     });
                 }
+
+              console.log('start test');
+              console.log(data);
+              window.location.href = '/test';
             },
             function () {
             },
