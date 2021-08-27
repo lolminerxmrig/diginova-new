@@ -85,7 +85,6 @@
     <div class="c-header__row js-header-sticky">
       <div class="c-header__right-side">
         <div class="c-header__logo ">
-          {{ dd($header_logo) }}
           <a href="{{ route('front.indexPage') }}" class="c-header__logo-img" style="background: {{ !is_null($header_logo)? 'url('  . $site_url . '/' . $header_logo->path . '/'. $header_logo->name . ')' : '' }} {{ is_null($header_logo)? 'unset !important;' : 'no-repeat 50%;' }} !important; background-size: contain !important;">Diginova</a>
         </div>
         <div class="c-header__search">
@@ -247,7 +246,7 @@
           <li class="c-navi-new-list__categories">
             <ul class="c-navi-new-list__category-item">
 
-              @if (!is_null($header_navs) && $header_navs->where('parent_id', null)->exists())
+              @if (!is_null($header_navs) && $header_navs->where('parent_id', null)->count())
                 @foreach($header_navs->where('parent_id', null) as $nav)
                   @if($nav->type == 'megamenu')
                     <li class="js-categories-bar-item js-mega-menu-main-item js-categories-item c-navi-new-list__category-container-main">
@@ -382,7 +381,7 @@
 
     <div class="c-footer__middlebar">
       <div class="c-footer__links">
-        @if (\Modules\Staff\Nav\Models\NavLocation::where('id', 2)->exists() && \Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null)->exists())
+        @if (\Modules\Staff\Nav\Models\NavLocation::where('id', 2)->count() && \Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null)->count())
           @foreach(\Modules\Staff\Nav\Models\NavLocation::find(2)->navs->where('parent_id', null) as $nav)
             <nav class="c-footer__links--col">
               <div class="o-headline-links">

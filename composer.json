@@ -55,7 +55,8 @@
         "files": [
             "app/Helpers/app.php",
             "app/Helpers/DateTime.php",
-            "app/Helpers/media.php"
+            "app/Helpers/media.php",
+            "app/Helpers/global.php"
         ]
     },
     "autoload-dev": {

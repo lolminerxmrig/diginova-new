@@ -193,7 +193,6 @@ function variant_defualt($product, $type = 'model')
         }
       }
 
-      \Illuminate\Support\Facades\Log::info('min variant ' . $min_variant_price);
       if (($min_variant_price <= $min_promotion_price) || ($min_promotion_price == 0)) {
         $max_stock_count = $min_variants->max('stock_count');
         return $variant_defualt = $min_variants->where('stock_count', $max_stock_count)->first();
@@ -208,19 +207,21 @@ function variant_defualt($product, $type = 'model')
 
 }
 
-
 function product_price($product, $type = 'model')
 {
 
   $promotion_min_price = 0;
 
   $variant_defualt = variant_defualt($product, $type);
+  if ($variant_defualt == null) {
+      return null;
+  }
 
-  if ($variant_defualt->promotions()->exists()) {
+  if (isset($variant_defualt->promotions) && $variant_defualt->promotions->count()) {
     $promotion_min_price = $variant_defualt->promotions()->min('promotion_price');
   }
 
-  if ($promotion_min_price < $variant_defualt->sale_price) {
+  if (isset($variant_defualt->sale_price) && $promotion_min_price < $variant_defualt->sale_price) {
     return $product_price = $promotion_min_price;
   }
   else {
@@ -229,7 +230,6 @@ function product_price($product, $type = 'model')
 
 }
 
-//test
 function variantPromotionPrice($product_variant)
 {
   if ($product_variant->promotions()->exists() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
@@ -286,7 +286,6 @@ function substrwords($text, $maxchar, $end='...')
   }
   return $output;
 }
-
 
 function string_to_int_array($categories)
 {

@@ -105,41 +105,32 @@ class FrontController extends Controller
    */
   public function categoryPage($slug)
   {
-
     if (Category::where('slug', $slug)->doesntExist()) {
       abort(404);
     }
 
     $category = Category::where('slug', $slug)->first();
-    $cat = Category::where('slug', $slug)->first();
+    $cat = $category;
 
     $categories = Category::all();
 
+    $list = $this->fullCategoryList($category);
 
-
-
-
-    $main_cat = $category;
-    $list[] = $category->id;
-    while (isset($category->parent)) {
-      $main_cat = $category->parent;
-      $category = $category->parent;
-      $list[] = $category->id;
-    }
-
-    $list = array_reverse($list, true);
     $end_index = end($list);
     array_pop($list);
     $new_end = end($list);
 
-    if (Category::find(end($list))->children->exists() && count(Category::find(end($list))->children)) {
+    if (Category::whereId(end($list))->exists() && Category::find(end($list))->children->count() && count(Category::find(end($list))->children)) {
       foreach (Category::find($new_end)->children as $child)
       {
         $lists2[] = $child->id;
       }
+    } else {
+      $lists2 = null;
     }
 
     $list = $this->nestArray($list);
+
 
     return view('front::category', compact('cat', 'category', 'categories', 'list', 'lists2'));
 
@@ -1968,6 +1959,22 @@ class FrontController extends Controller
     return array($firstValue => $this->nestArray($myArray));
   }
 
+  /**
+   * @param $category
+   * @return array
+   */
+  public function fullCategoryList($category)
+  {
+    $main_cat = $category;
+    $list[] = $category->id;
+    while (isset($category->parent)) {
+      $main_cat = $category->parent;
+      $category = $category->parent;
+      $list[] = $category->id;
+    }
+    $list = array_reverse($list, true);
+    return $list;
+  }
 
 
 }

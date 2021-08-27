@@ -1377,168 +1377,78 @@
                     </div>
                     <ul class="c-listing__items js-plp-products-list">
 
-
-                      <li>
-                        <div class="c-product-box c-promotion-box js-product-box has-more is-plp">
-                          <div class="c-product-box__add-to-wish-list js-ab-add-to-wish-list u-hidden"></div>
-                          <a class="c-product__seller-details--item-grid-link js-ab-plp-product-seller-link" href="https://www.digikala.com/seller/A3X3A/"></a>
-                          <div class="c-product__seller-details c-product__seller-details--item-grid">
-                            <span class="c-product__main-seller js-seller-text">
-                              <span class="c-product__seller-details-label">فروشنده: </span>
-                                آرسیسل
-                            </span>
-                            <span class="c-product__seller-details-badge-container"></span>
-                          </div>
-                          <a class="c-product-box__img c-promotion-box__image js-url js-product-item js-product-url" target="_blank" href="/product/dkp-4849334/هندزفری-اچ-اند-ام-مدل-g8">
-                            <div style="" class="c-promotion__badge c-promotion__badge--special-sale ">
-                              فروش ویژه
-                            </div>
-                            <div class="c-promotion__main-img-badges-container"></div>
-                            <img src="https://dkstatics-public.digikala.com/digikala-products/ccd305fd5014899cef6f4dc33524ba24139009fc_1617784086.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90" alt="هندزفری اچ اند ام مدل G8"></a>
-                          <div class="c-product-box__content">
-                            <div class="c-product-box__content--row">
-                              <div class="c-product-box__title">
-                                <a class="js-product-url" href="/product/dkp-4849334/هندزفری-اچ-اند-ام-مدل-g8" target="_blank">هندزفری اچ اند ام مدل G8</a>
+                      @foreach($cat->products as $product)
+                        <li>
+                          <div class="c-product-box c-promotion-box js-product-box has-more is-plp">
+                            <div class="c-product-box__add-to-wish-list js-ab-add-to-wish-list u-hidden"></div>
+                            <a class="c-product__seller-details--item-grid-link js-ab-plp-product-seller-link"
+                               href="https://www.digikala.com/seller/A3X3A/"></a>
+                            <a class="c-product-box__img c-promotion-box__image js-url js-product-item js-product-url"
+                               target="_blank" href="/product/dkp-4849334/هندزفری-اچ-اند-ام-مدل-g8">
+                              <div style="" class="c-promotion__badge c-promotion__badge--special-sale ">
+                                فروش ویژه
                               </div>
-                              <div class="c-product-box__title-en"></div>
-                              <ul class="c-product-box__variants" data-title="رنگ ها:" data-more="+">
-                                <li class="js-variant">
-                                  <span class="c-variant c-variant--color" style="background-color: #FFFFFF;border: 1px solid rgb(233, 233, 233);"></span>
-                                </li>
-                                <li class="js-variant">
-                                  <span class="c-variant c-variant--color" style="background-color: #f3f3f3;border: 1px solid rgb(233, 233, 233);"></span>
-                                </li>
-                                <li class="js-variant">
-                                  <span class="c-variant c-variant--color" style="background-color: #FF80AB;border: 1px solid rgb(233, 233, 233);"></span>
-                                </li>
-                              </ul>
-                            </div>
-                            <div class="c-product-box__rate-status">
-                              <div class="c-product-box__engagement-rating">
+                              <div class="c-promotion__main-img-badges-container"></div>
+                              @if (!is_null(g_product_image_main_src($product)))
+                                <img src="{{ g_product_image_main_src($product) }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90" alt="{{ $product->title_fa }}">
+                              @else
+                                <img src="" alt="{{ $product->title_fa }}">
+                              @endif
+                            </a>
+                            <div class="c-product-box__content">
+                              <div class="c-product-box__content--row">
+                                <div class="c-product-box__title">
+                                  <a class="js-product-url" href="/product/dkp-4849334/هندزفری-اچ-اند-ام-مدل-g8" target="_blank">{{ $product->title_fa }}</a>
+                                </div>
+                                <div class="c-product-box__title-en"></div>
+                                @if (getProductVariantType($product) == 'color')
+                                  <ul class="c-product-box__variants" data-title="رنگ ها:" data-more="+">
+{{--                                    @foreach( as ) --}}
+                                      <li class="js-variant">
+                                        <span class="c-variant c-variant--color" style="background-color: #FFFFFF;border: 1px solid rgb(233, 233, 233);"></span>
+                                      </li>
+{{--                                    @endforeach--}}
+                                  </ul>
+                                @endif
+                              </div>
+                              <div class="c-product-box__rate-status">
+                                <div class="c-product-box__engagement-rating">
                                   ۳.۴
-                                <span class="c-product-box__engagement-rating-num">
+                                  <span class="c-product-box__engagement-rating-num">
                                   (۱۴۵)
                                 </span>
-                              </div>
+                                </div>
 
-                            </div>
-                            <div class="c-product-box__row c-product-box__row--price">
-                              <div class="c-price">
-                                <div class="c-price__value c-price__value--plp ">
-                                  <del>۲۹۹,۰۰۰</del>
-                                  <div class="c-price__discount-oval">
-                                    <span>٪۵۰</span>
-                                  </div>
-                                  <div class="c-price__value-wrapper">
-                                    ۱۴۹,۰۰۰
-                                    <span class="c-price__currency">تومان</span>
+                              </div>
+                              <div class="c-product-box__row c-product-box__row--price">
+                                <div class="c-price">
+                                  <div class="c-price__value c-price__value--plp ">
+                                    <del>۲۹۹,۰۰۰</del>
+                                    <div class="c-price__discount-oval">
+                                      <span>٪۵۰</span>
+                                    </div>
+                                    <div class="c-price__value-wrapper">
+                                      {{ product_price($product) }}
+                                      <span class="c-price__currency">تومان</span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="c-product-box__tags ">
-                              <div class="c-product-box__tags-container"></div>
-                              <ul class="c-product__seller-details c-product__seller-details--item">
-                                <li class="c-product__main-seller js-seller-text">
-                                  آرسیسل
-                                </li>
-                                <li class="c-product__main-guarantee">
-                                  گارانتی اصالت و سلامت فیزیکی کالا
-                                </li>
-                              </ul>
+                              <div class="c-product-box__tags ">
+                                <div class="c-product-box__tags-container"></div>
+                                <ul class="c-product__seller-details c-product__seller-details--item">
+                                  <li class="c-product__main-seller js-seller-text">
+                                    آرسیسل
+                                  </li>
+                                  <li class="c-product__main-guarantee">
+                                    گارانتی اصالت و سلامت فیزیکی کالا
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </li>
-
-
-                      <li>
-                        <div class="c-product-box c-promotion-box js-product-box
-    has-more
-
-     is-plp" data-observed="0" data-index="2" data-id="2361428" data-price="۶,۰۱۰,۰۰۰"
-                             data-title-fa="گوشی موبایل سامسونگ مدل Galaxy A51 SM-A515F/DSN دو سیم کارت ظرفیت 128گیگابایت"
-                             data-title-en="Samsung Galaxy A51 SM-A515F/DSN Dual SIM 128GB With 6GB Ram Mobile Phone"
-                             data-enhanced-ecommerce="{&quot;id&quot;:2361428,&quot;name&quot;:&quot;گوشی موبایل سامسونگ مدل Galaxy A51 SM-A515F\/DSN دو سیم کارت ظرفیت 128گیگابایت&quot;,&quot;category&quot;:&quot;گوشی موبایل&quot;,&quot;brand&quot;:&quot;Samsung&quot;,&quot;variant&quot;:7434579,&quot;price&quot;:60100000,&quot;quantity&quot;:0}">
-                          <div data-csrf-token="" data-id="2361428"
-                               class="c-product-box__add-to-wish-list js-ab-add-to-wish-list u-hidden"></div>
-                          <a class="c-product__seller-details--item-grid-link js-ab-plp-product-seller-link"
-                             href="https://www.digikala.com/seller/5A52N/"></a>
-                          <div class="c-product__seller-details c-product__seller-details--item-grid"><span
-                              class="c-product__main-seller js-seller-text"><span
-                                class="c-product__seller-details-label">فروشنده: </span>
-                        دیجی‌کالا
-                    </span><span class="c-product__seller-details-badge-container"><span
-                                class="c-product__seller-details-dk"><img
-                                  src="https://www.digikala.com/static/files/921c1a32.svg"></span></span></div>
-                          <a class="c-product-box__img c-promotion-box__image js-url js-product-item js-product-url"
-                             target="_blank" data-adro-ad-click-id="2361428" data-snt-event="dkProductClicked"
-                             data-snt-params="{&quot;productId&quot;:2361428,&quot;position&quot;:2,&quot;product_url&quot;:&quot;/product/dkp-2361428/گوشی-موبایل-سامسونگ-مدل-galaxy-a51-sm-a515fdsn-دو-سیم-کارت-ظرفیت-128گیگابایت&quot;}"
-                             href="/product/dkp-2361428/گوشی-موبایل-سامسونگ-مدل-galaxy-a51-sm-a515fdsn-دو-سیم-کارت-ظرفیت-128گیگابایت">
-                            <div class="c-promotion__main-img-badges-container"></div>
-                            <img
-                              src="https://dkstatics-public.digikala.com/digikala-products/115598446.jpg?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_90"
-                              alt="گوشی موبایل سامسونگ مدل Galaxy A51 SM-A515F/DSN دو سیم کارت ظرفیت 128گیگابایت"></a>
-                          <div class="c-product-box__content">
-                            <div class="c-product-box__content--row">
-                              <div class="c-product-box__title"><a class="js-product-url"
-                                                                   href="/product/dkp-2361428/گوشی-موبایل-سامسونگ-مدل-galaxy-a51-sm-a515fdsn-دو-سیم-کارت-ظرفیت-128گیگابایت"
-                                                                   data-adro-ad-click-id="2361428" target="_blank">گوشی
-                                  موبایل سامسونگ مدل Galaxy A51 SM-A515F/DSN دو سیم کارت ظرفیت 128گیگابایت</a></div>
-                              <div class="c-product-box__title-en">Samsung Galaxy A51 SM-A515F/DSN Dual SIM 128GB With
-                                6GB Ram Mobile Phone
-                              </div>
-                              <ul class="c-product-box__variants" data-title="رنگ ها:" data-more="+">
-                                <li class="js-variant"><span class="c-variant c-variant--color"
-                                                             style="background-color: #212121;border: 1px solid rgb(233, 233, 233);"></span>
-                                </li>
-                                <li class="js-variant"><span class="c-variant c-variant--color"
-                                                             style="background-color: #FFFFFF;border: 1px solid rgb(233, 233, 233);"></span>
-                                </li>
-                                <li class="js-variant"><span class="c-variant c-variant--color"
-                                                             style="background-color: #FF80AB;border: 1px solid rgb(233, 233, 233);"></span>
-                                </li>
-                              </ul>
-                            </div>
-                            <div class="c-product-box__rate-status">
-                              <div class="c-product-box__engagement-rating">
-                                ۴.۴
-                                <span class="c-product-box__engagement-rating-num">
-                                (۵۶۳۰)
-                            </span></div>
-                              <div class="c-product-box__status c-product-box__status--jet">
-                                امکان ارسال فوری
-                              </div>
-                            </div>
-                            <div class="c-product-box__row c-product-box__row--price">
-                              <div class="c-price">
-                                <div class="c-price__value c-price__value--plp js-plp-product-card-price">
-                                  <div class="c-price__value-wrapper">
-                                    ۶,۰۱۰,۰۰۰
-                                    <span class="c-price__currency">تومان</span></div>
-                                </div>
-                                <div class="c-price__value c-price__value--plp u-hidden js-ab-plp-product-card-price">
-                                  <div class="c-price__value-wrapper">
-                                    ۶.۰۱
-                                    <span class="c-price__currency">میلیون تومان</span></div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="c-product-box__tags ">
-                              <div class="c-product-box__tags-container"></div>
-                              <ul class="c-product__seller-details c-product__seller-details--item">
-                                <li class="c-product__main-seller js-seller-text">
-                                  دیجی‌کالا
-                                </li>
-                                <li class="c-product__main-guarantee">
-                                  گارانتی 18 ماهه دیجی کالا
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-
+                        </li>
+                      @endforeach
 
                     </ul>
                     <div class="u-hidden">

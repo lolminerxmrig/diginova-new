@@ -102,3 +102,7 @@ Route::get('tracker/events', function (){
 Route::get('ajax/profile/wallet', function () {
 });
 
+Route::get('test', function (){
+  $product = \Modules\Staff\Product\Models\Product::find(3);
+  dd($product->variants);
+});

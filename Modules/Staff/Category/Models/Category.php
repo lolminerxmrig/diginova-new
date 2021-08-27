@@ -25,6 +25,7 @@ class Category extends Model
 
     protected $fillable = ['name', 'en_name', 'parent_id', 'slug', 'description'];
 
+
     public function children()
     {
         return $this->hasMany(self::class, 'parent_id', 'id');
@@ -84,7 +85,6 @@ class Category extends Model
     {
 //        return $this->hasMany(ProductHasVariant::class);
         return $this->hasManyThrough(ProductHasVariant::class, Product::class)->where('categorizable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
-
     }
 }
 
