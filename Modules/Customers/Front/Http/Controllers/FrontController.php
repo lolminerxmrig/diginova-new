@@ -60,7 +60,7 @@ class FrontController extends Controller
    * @param $product_code
    * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
    */
-  public function productPage($product_code)
+  public function productPage(int $product_code)
   {
     $product = Product::where('product_code', $product_code)->with('variants')->firstOrFail();
     $variant_defualt = variant_defualt($product);
@@ -111,6 +111,7 @@ class FrontController extends Controller
 
     $category = Category::where('slug', $slug)->first();
     $cat = $category;
+    $products = $cat->products()->paginate(2);
 
     $categories = Category::all();
 
@@ -128,11 +129,11 @@ class FrontController extends Controller
     } else {
       $lists2 = null;
     }
-
     $list = $this->nestArray($list);
 
 
-    return view('front::category', compact('cat', 'category', 'categories', 'list', 'lists2'));
+
+    return view('front::category', compact('cat', 'category', 'categories', 'products', 'slug', 'list', 'lists2'));
 
   }
 

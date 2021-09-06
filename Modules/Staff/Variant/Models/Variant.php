@@ -5,7 +5,6 @@ namespace Modules\Staff\Variant\Models;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Staff\Product\Models\ProductHasVariant;
 
-
 class Variant extends Model
 {
 

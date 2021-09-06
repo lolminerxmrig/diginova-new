@@ -34,7 +34,7 @@ Route::get('search/q={keywoard}', [FrontController::class, 'search'])->name('sea
 //Route::get('ajax/search/category-phone-data-cable', [CategoryController::class, 'searchFilter'])->name('front.categoryPage');
 
 Route::prefix('ajax')->name('front.ajax.')->group(function () {
-  Route::get('search/category-{slug}', [CategoryController::class, 'searchFilter'])->name('front.categoryPage');
+  Route::get('search/category-{slug}', [CategoryController::class, 'searchFilter'])->name('categoryPage');
 
   Route::get('product/comments/{product_id}', [FrontController::class, 'productComments'])->name('productComments');
   Route::get('product/comments/list/{product_id}/', [FrontController::class, 'productCommentList'])->name('productCommentList');

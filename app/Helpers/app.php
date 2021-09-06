@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
 function persianNum($str){
     $english = array('0','1','2','3','4','5','6','7','8','9');
@@ -171,10 +172,14 @@ function variant_defualt($product, $type = 'model')
 
     if ($type == 'id') {
       $product = \Modules\Staff\Product\Models\Product::find($product);
+      Log::info('p1');
+
     }
 
     if ($product->variants()->exists())
     {
+      Log::info('p2');
+
       $min_variant_price = $product->variants->min('sale_price');
       $min_variants = $product->variants()->where('sale_price', $min_variant_price)->get();
 
@@ -184,8 +189,10 @@ function variant_defualt($product, $type = 'model')
       {
         if ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists() && $variant->promotions()->min('promotion_price') > $min_promotion_price)
         {
+          Log::info('p3');
           $min_promotion_price = ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists())? $variant->promotions()->min('promotion_price') : $min_promotion_price;
           if ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
+            Log::info('p4');
             $min_promotion_variants = $variant->whereHas('promotions', function (Builder $query) use ($min_promotion_price) {
               $query->where('promotion_price', $min_promotion_price);
             })->get();
@@ -194,10 +201,13 @@ function variant_defualt($product, $type = 'model')
       }
 
       if (($min_variant_price <= $min_promotion_price) || ($min_promotion_price == 0)) {
+        Log::info('p5');
         $max_stock_count = $min_variants->max('stock_count');
-        return $variant_defualt = $min_variants->where('stock_count', $max_stock_count)->first();
+        Log::info($max_stock_count);
+        return $min_variants->where('stock_count', $max_stock_count)->first();
       }
       else {
+        Log::info('p6');
         $max_stock_count = $min_promotion_variants->max('stock_count');
         return $variant_defualt = $min_promotion_variants->where('stock_count', $max_stock_count)->first();
       }
@@ -221,7 +231,7 @@ function product_price($product, $type = 'model')
     $promotion_min_price = $variant_defualt->promotions()->min('promotion_price');
   }
 
-  if (isset($variant_defualt->sale_price) && $promotion_min_price < $variant_defualt->sale_price) {
+  if (isset($variant_defualt->sale_price) && $promotion_min_price !== 0 && $promotion_min_price < $variant_defualt->sale_price) {
     return $product_price = $promotion_min_price;
   }
   else {
@@ -236,6 +246,23 @@ function variantPromotionPrice($product_variant)
     return $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
   }
   return null;
+}
+
+function variantPromotionDefault($product_variant)
+{
+  if ($product_variant->promotions() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
+     $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+     return $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->where('promotion_price', $promotion_price)->first();
+  }
+  return null;
+}
+
+function has_promotion($product_variant)
+{
+  if (isset($product_variant->promotions) && $product_variant->promotions() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
+    return true;
+  }
+  return false;
 }
 
 function toman($price) {
@@ -293,3 +320,4 @@ function string_to_int_array($categories)
     return intval($value);
   }, $categories);
 }
+
