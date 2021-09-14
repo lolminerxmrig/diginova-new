@@ -4,80 +4,64 @@ namespace Modules\Customers\Front\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Modules\Staff\Brand\Models\Brand;
+use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Warranty\Models\Warranty;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedSort;
+
+
 
 class CategoryController extends Controller
 {
 
-  public function searchFilterLogic($request, $products)
+  public function searchFilter($slug ,Request $request)
   {
-    $products = $products->newQuery();
-//    $products = $products->first()->newQuery();
+      $category = Category::whereSlug($slug)->firstOrFail();
 
-//    if (isset($request['brand']))
-//    {
-//      foreach ($request['brand'] as $key => $brand_id)
-//      {
-//        if ($key == 0) {
-//          $products->where('brand_id', $brand_id);
-//        } else
-//        {
-//          $products->orWhere('brand_id', $brand_id);
-//        }
-//      }
-//    }
-//
-//
-//    if (isset($request['has_selling_stock'])) {
-//      $products->variants()->where('stock_count', '>', 0);
-//    }
-//
-//    if (isset($request['only_original'])) {
-//      $products->where('brand_id', '!=', Brand::where('en_name', 'miscellaneous')->first()->id);
-//    }
-//
-//    if (isset($request['sortby']))
-//    {
-//      if ($request['sortby'] == 'newest') {
-//
-//      }
-//
-//      if ($request['sortby'] == 'best_selling') {
-//        $products->variants()->where('sale_count', '>', 0);
-//      }
-//
-//      if ($request['sortby'] == 'popular') {
-//        $products->orderBy('variants.sale_count', 'desc');
-//      }
-//
-//      if ($request['sortby'] == 'cheapest') {
-//
-//      }
-//
-//      if ($request['sortby'] == 'most_expensive') {
-//
-//      }
-//    }
-//    else
-//    {
-//
-//    }
-//    return dd($products);
+      $products = QueryBuilder::for(Product::class)
+        ->allowedFilters([
+          AllowedFilter::scope('search'),
+        ])
+        ->allowedSorts([
+          'created_at',
+//          AllowedSort::custom('name-length', new StringLengthSort(), 'name'),
+        ])
+        ->defaultSort('-created_at')
+        ->whereRelation('category', 'category_id', $category->id)
+        ->when($request->has_selling_stock == 1, function ($q) {
+          $q->whereRelation('variants', 'stock_count', '>', 0);
+        })
+        ->when(filled($request->brand), function ($q) use ($request) {
+            $q->whereHas('brand', function ($q) use ($request) {
+                $q->whereIn('id', $request->brand);
+            });
+        })
+        ->when($request->only_original == 1 && Brand::where('en_name', 'miscellaneous')->exists(), function ($q) {
+          $q->whereRelation('brand', 'id', '<>' ,Brand::where('en_name', 'miscellaneous')->first()->id);
+        })
+//        ->when($request->price['min'], function ($q) use($request) {
+//          $q->whereHas('variants', function ($q) use($request) {
+////            variantPromotionPrice($q) >= $request->price['min'];
+//          });
+//        })
+//        ->when($request->price['max'], function ($q) use($request) {
+//          $q->whereHas('variants', function ($q) use($request) {
+////            variantPromotionPrice($q) <= $request->price['max'];
+//          });
+//        })
+        ->paginate(2);
 
-  }
-
-  public function searchFilter(Request $request)
-  {
-
-//    (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
-    $products = Product::all();
-//    $products = Product::join('product_has_variants', 'products.id', '=', 'product_has_variants.product_id')->get();
-//    return dd($products);
-
-    $products = $this->searchFilterLogic($request, $products);
+      return response()->json([
+        'status' => true,
+        'data' => [
+          'products' => view('front::ajax.product_category.products', compact('products'))->render(),
+        ]
+      ]);
 
   }
 

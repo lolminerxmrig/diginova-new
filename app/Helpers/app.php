@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
+use Modules\Staff\Category\Models\Category;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\F;
 
 function persianNum($str){
     $english = array('0','1','2','3','4','5','6','7','8','9');
@@ -321,3 +323,16 @@ function string_to_int_array($categories)
   }, $categories);
 }
 
+function fullCategoryList($category_id, $revers = true) {
+  $list = [];
+  $list[] = $category_id;
+  $category = Category::find($category_id);
+  while($category->parent) {
+    $list[] = $category->parent->id;
+    $category = $category->parent;
+  }
+  if ($revers) {
+    return array_reverse($list);
+  }
+  return $list;
+}

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Modules\Customers\Front\Models\Cart;
 use Modules\Customers\Front\Models\CustomerFavorite;
+use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Comment\Models\Comment;
 use Modules\Staff\Comment\Models\CommentFeedback;
@@ -121,19 +122,16 @@ class FrontController extends Controller
     array_pop($list);
     $new_end = end($list);
 
-    if (Category::whereId(end($list))->exists() && Category::find(end($list))->children->count() && count(Category::find(end($list))->children)) {
-      foreach (Category::find($new_end)->children as $child)
-      {
-        $lists2[] = $child->id;
-      }
-    } else {
-      $lists2 = null;
-    }
-    $list = $this->nestArray($list);
+//    $main_category = getMainCategory($category);
 
+    $brands = Brand::whereHas('products', function ($q) use($category) {
+        $q->whereRelation('category', 'category_id', $category->id);
+    })->get();
 
+    // $fullCategoryList = fullCategoryList($category->id);
+    $fullCategoryList = ['دسته 5', 'دسته 4', 'دسته 3', 'دسته 2', 'دسته 1'];
 
-    return view('front::category', compact('cat', 'category', 'categories', 'products', 'slug', 'list', 'lists2'));
+    return view('front::category', compact('cat', 'category', 'fullCategoryList', 'categories','brands' ,'products', 'slug'));
 
   }
 

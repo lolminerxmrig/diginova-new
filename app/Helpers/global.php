@@ -29,7 +29,10 @@ function g_image_src($media) {
   return null;
 }
 
-
+/**
+ * @param $product
+ * @return string|void
+ */
 function getProductVariantType($product) {
   if(isset($product->category()->first()->variantGroup()->first()->type)){
     if ($product->category()->first()->variantGroup()->first()->type !== 0) {
@@ -37,6 +40,13 @@ function getProductVariantType($product) {
     }
     return 'not-color';
   }
+}
+
+function getMainCategory($category){
+  while (isset($category->parent)) {
+    $category = $category->parent;
+  }
+  return $category;
 }
 
 

@@ -3,6 +3,7 @@
 namespace Modules\Staff\Product\Models;
 
 use App\Models\SeoContent;
+use App\Trait\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,6 +25,7 @@ class Product extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Searchable;
 
     protected $fillable = [
       'status',
@@ -48,6 +50,13 @@ class Product extends Model
         'advantages' => 'array',
         'disadvantages' => 'array',
     ];
+
+    public function scopeSearch($query, string $searchText)
+    {
+      $searchColumns = ['title_fa'];
+  //      $relationColumns = [];
+      return $this->search($query, $searchText, $searchColumns);
+    }
 
     public function getRouteKeyName()
     {

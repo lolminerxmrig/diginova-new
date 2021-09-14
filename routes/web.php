@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Customers\Front\Http\Controllers\FrontController;
 use Modules\Customers\Front\Http\Controllers\CategoryController;
+use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Setting\Models\Setting;
 
 /*
@@ -103,6 +104,8 @@ Route::get('ajax/profile/wallet', function () {
 });
 
 Route::get('test', function (){
-  $product = \Modules\Staff\Product\Models\Product::find(3);
-  dd($product->variants);
+  $category = Category::whereSlug('mobile-phone')->firstOrFail();
+
+  dd(fullCategoryList($category->id));
 });
+
