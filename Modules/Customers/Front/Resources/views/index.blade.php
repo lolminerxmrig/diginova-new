@@ -77,8 +77,9 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
     </style>
 
     <!-- page js variables -->
-    <script src="{{ asset('assets/js/sentry.js') }} "></script>
-    <script src="{{ asset('assets/js/indexAction.js') }} "></script>
+    <script src="{{ asset('sentry-test.js') }}"></script>
+    {{--  <script src="{{ asset('assets/js/sentry.js') }}"></script>  --}}
+    <script src="{{ asset('assets/js/indexAction.js') }}"></script>
 @endsection
 
 @section('content')
@@ -119,8 +120,8 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                         <div class="swiper-wrapper dkms-placement-slider c-adplacement"
                                             style="transition-duration: 0ms;">
                                             @if (!is_null($slider1) &&
-        $slider1->images()->exists() &&
-        $slider1->images()->first()->media()->exists())
+                                              $slider1->images()->exists() &&
+                                              $slider1->images()->first()->media()->exists())
                                                 @foreach ($slider1->images as $image)
                                                     <a href="{{ $image->media()->exists() ? $image->link : '' }}"
                                                         class="c-main-slider__slide swiper-slide js-main-page-slider-image"
@@ -143,30 +144,30 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                         <div class="o-page__one-thirds o-page__one-thirds--left">
                             <aside class="c-adplacement c-adplacement__container-column">
                                 @if (!is_null($banner3) &&
-        $banner3->images()->exists() &&
-        $banner3->images()->first()->media()->exists())
+                                    $banner3->images()->exists() &&
+                                    $banner3->images()->first()->media()->exists())
                                     <a href="{{ $banner3->images()->first()->link }}"
                                         class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column"
                                         target="_blank" data-is-trackable=""
                                         title="{{ $banner3->images()->first()->alt }}">
                                         <div class="c-adplacement__sponsored_box">
                                             <img src="{{ $banner3->images()->first()->media()->exists()
-    ? $site_url .
-        '/' .
-        $banner3->images()->first()->media->first()->path .
-        '/' .
-        $banner3->images()->first()->media->first()->name
-    : '' }}"
+                                                  ? $site_url .
+                                                      '/' .
+                                                      $banner3->images()->first()->media->first()->path .
+                                                      '/' .
+                                                      $banner3->images()->first()->media->first()->name
+                                                  : '' }}"
                                                 alt="{{ $banner3->images()->first()->media()->exists()
-    ? $banner3->images()->first()->alt
-    : '' }}"
+                                                  ? $banner3->images()->first()->alt
+                                                  : '' }}"
                                                 loading="lazy" />
                                         </div>
                                     </a>
                                 @endif
                                 @if (!is_null($banner4) &&
-        $banner4->images()->exists() &&
-        $banner4->images()->first()->media()->exists())
+                                    $banner4->images()->exists() &&
+                                    $banner4->images()->first()->media()->exists())
                                     <a href="{{ $banner4->images()->first()->link }}"
                                         class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column"
                                         target="_blank" data-is-trackable=""
@@ -194,330 +195,6 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
             </article>
 
 
-            <script>
-                var carouselDataTracker = {
-                    "carouselPosition": "INCREDIBLE-OFFER",
-                    "id": "sn-carousels-incredible-offer",
-                    "title": "\u067e\u06cc\u0634\u0646\u0647\u0627\u062f \u0634\u06af\u0641\u062a\u200c\u0627\u0646\u06af\u06cc\u0632",
-                    "title_en": "incredible offer",
-                    "products": [{
-                        "id": 3945007,
-                        "name": "\u0627\u062a\u0648 \u0628\u062e\u0627\u0631 \u06a9\u0648\u067e\u06a9\u0633 \u0645\u062f\u0644 CS-7570",
-                        "price": 9980000,
-                        "category": "\u0627\u062a\u0648",
-                        "brand": "\u06a9\u0648\u067e\u06a9\u0633",
-                        "position": 1,
-                        "status": "marketable"
-                    }, {
-                        "id": 4654078,
-                        "name": "\u06a9\u06cc\u0641 \u0631\u0648\u062f\u0648\u0634\u06cc \u0632\u0646\u0627\u0646\u0647 \u0628\u0631\u062a\u0648\u0646\u06cc\u06a9\u0633 \u0645\u062f\u0644 443",
-                        "price": 2470000,
-                        "category": "Women Bags",
-                        "brand": "\u0628\u0631\u062a\u0648\u0646\u06cc\u06a9\u0633",
-                        "position": 2,
-                        "status": "marketable"
-                    }, {
-                        "id": 3350088,
-                        "name": "\u06a9\u0641\u0634 \u0632\u0646\u0627\u0646\u0647 \u0645\u062f\u0644 \u0628\u06cc\u062a\u0627 \u06a9\u062f 7751",
-                        "price": 990000,
-                        "category": "WOMEN FLAT SHOES",
-                        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-                        "position": 3,
-                        "status": "marketable"
-                    }, {
-                        "id": 4214771,
-                        "name": "\u0634\u0627\u0631\u0698\u0631 \u0647\u0645\u0631\u0627\u0647 \u0627\u06cc\u06a9\u0633 \u0627\u0648 \u0645\u062f\u0644 PR102 \u0638\u0631\u0641\u06cc\u062a 10000 \u0645\u06cc\u0644\u06cc \u0622\u0645\u067e\u0631 \u0633\u0627\u0639\u062a",
-                        "price": 2490000,
-                        "category": "\u067e\u0627\u0648\u0631\u0628\u0627\u0646\u06a9 (\u0634\u0627\u0631\u0698\u0631 \u0647\u0645\u0631\u0627\u0647)",
-                        "brand": "XO",
-                        "position": 4,
-                        "status": "marketable"
-                    }, {
-                        "id": 2540229,
-                        "name": "\u0633\u0627\u0639\u062a \u0647\u0648\u0634\u0645\u0646\u062f \u0645\u062f\u0644 TD28",
-                        "price": 5990000,
-                        "category": "\u0633\u0627\u0639\u062a \u0647\u0648\u0634\u0645\u0646\u062f",
-                        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-                        "position": 5,
-                        "status": "marketable"
-                    }, {
-                        "id": 3124551,
-                        "name": "\u0686\u0631\u0627\u063a \u0645\u0637\u0627\u0644\u0639\u0647 \u0648\u06cc\u0646\u0633\u06cc\u06a9 \u0645\u062f\u0644 STUDY",
-                        "price": 2890000,
-                        "category": "\u0686\u0631\u0627\u063a \u0645\u0637\u0627\u0644\u0639\u0647",
-                        "brand": "Vinsic",
-                        "position": 6,
-                        "status": "marketable"
-                    }, {
-                        "id": 2650819,
-                        "name": "\u0633\u0627\u0639\u062a \u0645\u0686\u06cc \u0639\u0642\u0631\u0628\u0647 \u0627\u06cc \u0633\u0648\u067e\u0631\u062f\u0631\u0627\u06cc \u0645\u062f\u0644 SYG198UO",
-                        "price": 5090000,
-                        "category": "UNI Analouge Watches",
-                        "brand": "Superdry",
-                        "position": 7,
-                        "status": "marketable"
-                    }, {
-                        "id": 3872197,
-                        "name": "\u0633\u062a \u0633\u0648\u06cc\u0634\u0631\u062a \u0648 \u0634\u0644\u0648\u0627\u0631 \u067e\u0633\u0631\u0627\u0646\u0647 \u0645\u062f\u0644 SH-5K",
-                        "price": 1150000,
-                        "category": "BOYS Homewear Sets",
-                        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-                        "position": 8,
-                        "status": "marketable"
-                    }, {
-                        "id": 4583889,
-                        "name": "\u062a\u06cc \u0634\u0631\u062a \u0632\u0646\u0627\u0646\u0647 \u0627\u0633\u067e\u06cc\u0648\u0631 \u0645\u062f\u0644 2W03M-01",
-                        "price": 890000,
-                        "category": "WOMEN TEE-SHIRTS & POLOS",
-                        "brand": "\u0627\u0633\u067e\u06cc\u0648\u0631",
-                        "position": 9,
-                        "status": "marketable"
-                    }, {
-                        "id": 3951143,
-                        "name": " \u0645\u0627\u0634\u06cc\u0646 \u0628\u0627\u0632\u06cc \u0633\u06af\u0647\u0627\u06cc \u0646\u06af\u0647\u0628\u0627\u0646 \u0645\u062f\u0644 99C  \u0645\u062c\u0645\u0648\u0639\u0647 9 \u0639\u062f\u062f\u06cc",
-                        "price": 2993000,
-                        "category": "\u0645\u0627\u0634\u06cc\u0646",
-                        "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-                        "position": 10,
-                        "status": "marketable"
-                    }, {
-                        "id": 3501805,
-                        "name": "\u0647\u0646\u062f\u0632\u0641\u0631\u06cc \u0628\u0644\u0648\u062a\u0648\u062b \u0631\u06cc\u0645\u06a9\u0633 \u0645\u062f\u0644 RB-S28",
-                        "price": 4200000,
-                        "category": "\u0647\u062f\u0641\u0648\u0646\u060c \u0647\u062f\u0633\u062a \u0648 \u0647\u0646\u062f\u0632\u0641\u0631\u06cc",
-                        "brand": "\u0631\u06cc\u0645\u06a9\u0633",
-                        "position": 11,
-                        "status": "marketable"
-                    }, {
-                        "id": 2759019,
-                        "name": "\u062a\u0644\u0648\u06cc\u0632\u06cc\u0648\u0646 \u06a9\u06cc\u0648\u0644\u062f \u0647\u0648\u0634\u0645\u0646\u062f \u067e\u0627\u0646\u0648\u0631\u0627\u0645\u06cc\u06a9 \u0645\u062f\u0644 PA-50SA3657 \u0633\u0627\u06cc\u0632 50 \u0627\u06cc\u0646\u0686",
-                        "price": 99190000,
-                        "category": "\u062a\u0644\u0648\u06cc\u0632\u06cc\u0648\u0646",
-                        "brand": "\u067e\u0627\u0646\u0648\u0631\u0627\u0645\u06cc\u06a9",
-                        "position": 12,
-                        "status": "marketable"
-                    }]
-                };
-                if (carouselDataTracker) {
-                    if (!window.carouselData)
-                        window.carouselData = [carouselDataTracker];
-                    else
-                        window.carouselData.push(carouselDataTracker);
-                }
-            </script>
-            <script>
-                window.dataLayer.push({
-                    "event": "eec.productImpression",
-                    "ecommerce": {
-                        "currencyCode": "EUR",
-                        "impressions": [{
-                            "name": "\u0627\u062a\u0648 \u0628\u062e\u0627\u0631 \u06a9\u0648\u067e\u06a9\u0633 \u0645\u062f\u0644 CS-7570",
-                            "id": 3945007,
-                            "price": 9980000,
-                            "brand": "\u06a9\u0648\u067e\u06a9\u0633",
-                            "category": "\u0627\u062a\u0648",
-                            "list": "category-\u0627\u062a\u0648",
-                            "position": 1,
-                            "dimension6": 1,
-                            "dimension2": 31,
-                            "dimension9": 0,
-                            "metric6": 0,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u06a9\u06cc\u0641 \u0631\u0648\u062f\u0648\u0634\u06cc \u0632\u0646\u0627\u0646\u0647 \u0628\u0631\u062a\u0648\u0646\u06cc\u06a9\u0633 \u0645\u062f\u0644 443",
-                            "id": 4654078,
-                            "price": 2470000,
-                            "brand": "\u0628\u0631\u062a\u0648\u0646\u06cc\u06a9\u0633",
-                            "category": "\u06a9\u06cc\u0641 \u0632\u0646\u0627\u0646\u0647",
-                            "list": "category-\u06a9\u06cc\u0641 \u0632\u0646\u0627\u0646\u0647",
-                            "position": 2,
-                            "dimension6": 1,
-                            "dimension2": 47,
-                            "dimension9": 0,
-                            "metric6": 0,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u06a9\u0641\u0634 \u0632\u0646\u0627\u0646\u0647 \u0645\u062f\u0644 \u0628\u06cc\u062a\u0627 \u06a9\u062f 7751",
-                            "id": 3350088,
-                            "price": 990000,
-                            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-                            "category": "\u06a9\u0641\u0634 \u062a\u062e\u062a \u0632\u0646\u0627\u0646\u0647",
-                            "list": "category-\u06a9\u0641\u0634 \u062a\u062e\u062a \u0632\u0646\u0627\u0646\u0647",
-                            "position": 3,
-                            "dimension6": 1,
-                            "dimension2": 25,
-                            "dimension9": 4,
-                            "metric6": 40,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u0634\u0627\u0631\u0698\u0631 \u0647\u0645\u0631\u0627\u0647 \u0627\u06cc\u06a9\u0633 \u0627\u0648 \u0645\u062f\u0644 PR102 \u0638\u0631\u0641\u06cc\u062a 10000 \u0645\u06cc\u0644\u06cc \u0622\u0645\u067e\u0631 \u0633\u0627\u0639\u062a",
-                            "id": 4214771,
-                            "price": 2490000,
-                            "brand": "\u0627\u06cc\u06a9\u0633 \u0627\u0648",
-                            "category": "\u067e\u0627\u0648\u0631\u0628\u0627\u0646\u06a9 (\u0634\u0627\u0631\u0698\u0631 \u0647\u0645\u0631\u0627\u0647)",
-                            "list": "category-\u067e\u0627\u0648\u0631\u0628\u0627\u0646\u06a9 (\u0634\u0627\u0631\u0698\u0631 \u0647\u0645\u0631\u0627\u0647)",
-                            "position": 4,
-                            "dimension6": 1,
-                            "dimension2": 60,
-                            "dimension9": 0,
-                            "metric6": 0,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u0633\u0627\u0639\u062a \u0647\u0648\u0634\u0645\u0646\u062f \u0645\u062f\u0644 TD28",
-                            "id": 2540229,
-                            "price": 5990000,
-                            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-                            "category": "\u0633\u0627\u0639\u062a \u0647\u0648\u0634\u0645\u0646\u062f",
-                            "list": "category-\u0633\u0627\u0639\u062a \u0647\u0648\u0634\u0645\u0646\u062f",
-                            "position": 5,
-                            "dimension6": 1,
-                            "dimension2": 36,
-                            "dimension9": 3.6,
-                            "metric6": 16,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u0686\u0631\u0627\u063a \u0645\u0637\u0627\u0644\u0639\u0647 \u0648\u06cc\u0646\u0633\u06cc\u06a9 \u0645\u062f\u0644 STUDY",
-                            "id": 3124551,
-                            "price": 2890000,
-                            "brand": "\u0648\u06cc\u0646\u0633\u06cc\u06a9",
-                            "category": "\u0686\u0631\u0627\u063a \u0645\u0637\u0627\u0644\u0639\u0647",
-                            "list": "category-\u0686\u0631\u0627\u063a \u0645\u0637\u0627\u0644\u0639\u0647",
-                            "position": 6,
-                            "dimension6": 1,
-                            "dimension2": 39,
-                            "dimension9": 4.4,
-                            "metric6": 33,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u0633\u0627\u0639\u062a \u0645\u0686\u06cc \u0639\u0642\u0631\u0628\u0647 \u0627\u06cc \u0633\u0648\u067e\u0631\u062f\u0631\u0627\u06cc \u0645\u062f\u0644 SYG198UO",
-                            "id": 2650819,
-                            "price": 5090000,
-                            "brand": "\u0633\u0648\u067e\u0631\u062f\u0631\u0627\u06cc",
-                            "category": "\u0633\u0627\u0639\u062a \u0639\u0642\u0631\u0628\u0647 \u0627\u06cc \u0632\u0646\u0627\u0646\u0647 \u0648 \u0645\u0631\u062f\u0627\u0646\u0647",
-                            "list": "category-\u0633\u0627\u0639\u062a \u0639\u0642\u0631\u0628\u0647 \u0627\u06cc \u0632\u0646\u0627\u0646\u0647 \u0648 \u0645\u0631\u062f\u0627\u0646\u0647",
-                            "position": 7,
-                            "dimension6": 1,
-                            "dimension2": 42,
-                            "dimension9": 0,
-                            "metric6": 0,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u0633\u062a \u0633\u0648\u06cc\u0634\u0631\u062a \u0648 \u0634\u0644\u0648\u0627\u0631 \u067e\u0633\u0631\u0627\u0646\u0647 \u0645\u062f\u0644 SH-5K",
-                            "id": 3872197,
-                            "price": 1150000,
-                            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-                            "category": "\u0633\u062a \u0644\u0628\u0627\u0633 \u0631\u0627\u062d\u062a\u06cc \u067e\u0633\u0631\u0627\u0646\u0647",
-                            "list": "category-\u0633\u062a \u0644\u0628\u0627\u0633 \u0631\u0627\u062d\u062a\u06cc \u067e\u0633\u0631\u0627\u0646\u0647",
-                            "position": 8,
-                            "dimension6": 1,
-                            "dimension2": 32,
-                            "dimension9": 3.5,
-                            "metric6": 4,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u062a\u06cc \u0634\u0631\u062a \u0632\u0646\u0627\u0646\u0647 \u0627\u0633\u067e\u06cc\u0648\u0631 \u0645\u062f\u0644 2W03M-01",
-                            "id": 4583889,
-                            "price": 890000,
-                            "brand": "\u0627\u0633\u067e\u06cc\u0648\u0631",
-                            "category": "\u062a\u06cc \u0634\u0631\u062a \u0648 \u067e\u0648\u0644\u0648\u0634\u0631\u062a \u0632\u0646\u0627\u0646\u0647",
-                            "list": "category-\u062a\u06cc \u0634\u0631\u062a \u0648 \u067e\u0648\u0644\u0648\u0634\u0631\u062a \u0632\u0646\u0627\u0646\u0647",
-                            "position": 9,
-                            "dimension6": 1,
-                            "dimension2": 53,
-                            "dimension9": 0,
-                            "metric6": 0,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": " \u0645\u0627\u0634\u06cc\u0646 \u0628\u0627\u0632\u06cc \u0633\u06af\u0647\u0627\u06cc \u0646\u06af\u0647\u0628\u0627\u0646 \u0645\u062f\u0644 99C  \u0645\u062c\u0645\u0648\u0639\u0647 9 \u0639\u062f\u062f\u06cc",
-                            "id": 3951143,
-                            "price": 2993000,
-                            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-                            "category": "\u0645\u0627\u0634\u06cc\u0646",
-                            "list": "category-\u0645\u0627\u0634\u06cc\u0646",
-                            "position": 10,
-                            "dimension6": 1,
-                            "dimension2": 12,
-                            "dimension9": 0,
-                            "metric6": 0,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u0647\u0646\u062f\u0632\u0641\u0631\u06cc \u0628\u0644\u0648\u062a\u0648\u062b \u0631\u06cc\u0645\u06a9\u0633 \u0645\u062f\u0644 RB-S28",
-                            "id": 3501805,
-                            "price": 4200000,
-                            "brand": "\u0631\u06cc\u0645\u06a9\u0633",
-                            "category": "\u0647\u062f\u0641\u0648\u0646\u060c \u0647\u062f\u0633\u062a \u0648 \u0647\u0646\u062f\u0632\u0641\u0631\u06cc",
-                            "list": "category-\u0647\u062f\u0641\u0648\u0646\u060c \u0647\u062f\u0633\u062a \u0648 \u0647\u0646\u062f\u0632\u0641\u0631\u06cc",
-                            "position": 11,
-                            "dimension6": 1,
-                            "dimension2": 31,
-                            "dimension9": 4,
-                            "metric6": 2,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }, {
-                            "name": "\u062a\u0644\u0648\u06cc\u0632\u06cc\u0648\u0646 \u06a9\u06cc\u0648\u0644\u062f \u0647\u0648\u0634\u0645\u0646\u062f \u067e\u0627\u0646\u0648\u0631\u0627\u0645\u06cc\u06a9 \u0645\u062f\u0644 PA-50SA3657 \u0633\u0627\u06cc\u0632 50 \u0627\u06cc\u0646\u0686",
-                            "id": 2759019,
-                            "price": 99190000,
-                            "brand": "\u067e\u0627\u0646\u0648\u0631\u0627\u0645\u06cc\u06a9",
-                            "category": "\u062a\u0644\u0648\u06cc\u0632\u06cc\u0648\u0646",
-                            "list": "category-\u062a\u0644\u0648\u06cc\u0632\u06cc\u0648\u0646",
-                            "position": 12,
-                            "dimension6": 1,
-                            "dimension2": 7,
-                            "dimension9": 3.9,
-                            "metric6": 44,
-                            "dimension11": 0,
-                            "dimension20": "marketable",
-                            "dimension18": "most-viewed",
-                            "dimension19": "carousel-top-incredible",
-                            "dimension7": "incredible"
-                        }]
-                    }
-                });
-            </script>
             @if(!is_null($amazing_offer_products) && count($amazing_offer_products))
             <div class="c-swiper-specials c-swiper-specials--incredible">
                 <section class="container container--home" id="sn-carousels-incredible-offer">
@@ -629,9 +306,10 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                       @foreach ($special_offer_products as $product)
                         <div class="swiper-slide" data-carousel="sn-carousels-incredible-offer">
                           <li>
-                            <a href="" class="c-product-box__box-link js-product-url js-carousel-ga-product-box"></a>
+                            <a href="{{ route('front.productPage', $product->product_code) }}"
+                               class="c-product-box__box-link js-product-url js-carousel-ga-product-box"></a>
                             <div class="js-product-cart c-product-box c-product-box--product-card c-product-box--has-overflow
-                                               c-product-box--card-macro c-product-box--plus-badge " title="">
+                                               c-product-box--card-macro c-product-box--plus-badge " title="{{ $product->title_fa }}">
                               <div class="c-product-box__img js-url js-snt-carousel_product"
                                    title="{{ $product->title_fa }}">
                                 <img alt="{{ $product->title_fa }}"
@@ -641,11 +319,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                               <div class="c-product-box__title">
                                 {{ $product->title_fa }}
                               </div>
-                              {{--                                                <div class="c-product-box__digiplus c-product-box__digiplus--full u-invisible">--}}
-                              {{--                                                  <span class="c-product-box__digiplus-data c-digiplus-sign--before">--}}
-                              {{--                                                      ۰ تومان هدیه نقدی--}}
-                              {{--                                                  </span>--}}
-                              {{--                                                </div>--}}
+
                               <div class="c-product-box__row c-product-box__row--price">
                                 <div class="c-price">
                                   <div class="c-price__value c-price__value--plp js-price-complete-details">
@@ -692,412 +366,60 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
             @endif
 
             <article class="container container--home">
-                <div class="o-page">
-                    <aside class="c-adplacement">
-                        @if (!is_null($bannerGroup2) && $bannerGroup2->images()->exists())
-                            @foreach ($bannerGroup2->images as $image)
-                                <a href="{{ $image->media()->exists() ? $image->link : '' }}"
-                                    class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b"
-                                    data-observed="0" target="_blank"
-                                    title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
-                                    <div class="c-adplacement__sponsored_box">
-                                        <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
-                                            alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
-                                    </div>
-                                </a>
-                            @endforeach
-                        @endif
-                    </aside>
-                </div>
 
-                <aside class="c-about-digikala-items">
-                    <aside class="c-adplacement c-adplacement__container-row">
-                        @if (!is_null($bannerGroup3) && $bannerGroup3->images()->exists())
-                            @foreach ($bannerGroup3->images as $image)
-                                <a href="{{ $image->media()->exists() ? $image->link : '' }}"
-                                    class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank"
-                                    data-is-trackable="" title="{{ $image->media()->exists() ? $image->alt : '' }}">
-                                    <div class="c-adplacement__sponsored_box">
-                                        <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
-                                            alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy">
-                                    </div>
-                                </a>
-                            @endforeach
-                        @endif
-                    </aside>
-                </aside>
-                <section
-                    class="c-swiper c-swiper--products has-placeholder recommendation-swiper u-hidden js-sntracker-carousel"
-                    id="recommendation-home_3">
-                    <div class="recommendation-swiper__mask js-swiper-mask-recommendation-home_3 u-hidden">
-                        <p>این پیشنهاد به شما
-                            نشان داده نخواهد شد با تشکر از باز‌خورد شما</p>
-                        <button class="js-cancel-swiper-mask" data-id="recommendation-home_3"><i></i>
-                            بازگرداندن
-                        </button>
-                    </div>
-                    <div class="o-headline"><span></span></div>
-                    <div class="c-box">
-                        <div class="swiper-container swiper-container-horizontal">
-                            <div class="swiper-wrapper js-products-container"></div>
-                            <div class="swiper-button-prev js-swiper-button-prev"></div>
-                            <div class="swiper-button-next js-swiper-button-next"></div>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="c-swiper c-swiper--products has-placeholder recommendation-swiper u-hidden js-sntracker-carousel"
-                    id="recommendation-home_4">
-                    <div class="recommendation-swiper__mask js-swiper-mask-recommendation-home_4 u-hidden">
-                        <p>این پیشنهاد به شما
-                            نشان داده نخواهد شد با تشکر از باز‌خورد شما</p>
-                        <button class="js-cancel-swiper-mask" data-id="recommendation-home_4"><i></i>
-                            بازگرداندن
-                        </button>
-                    </div>
-                    <div class="o-headline"><span></span></div>
-                    <div class="c-box">
-                        <div class="swiper-container swiper-container-horizontal">
-                            <div class="swiper-wrapper js-products-container"></div>
-                            <div class="swiper-button-prev js-swiper-button-prev"></div>
-                            <div class="swiper-button-next js-swiper-button-next"></div>
-                        </div>
-                    </div>
-                </section>
-                <aside class="c-adplacement c-adplacement__container-row">
-                    {{-- <a href="" class="c-adplacement__item js-banner-impression-adro" data-observed="0" target="_blank" data-is-trackable="" title=""> --}}
-                    {{-- <div class="c-adplacement__sponsored_box"> --}}
-                    {{-- <img src="https://dkstatics-public.digikala.com/digikala-adservice-banners/9ba8fa23a193e5218d0782580f959e55d1514089_1615015933.jpg?x-oss-process=image/quality,q_80" alt="" loading="lazy"/> --}}
-                    {{-- </div> --}}
-                    {{-- </a> --}}
-                    {{-- @if ($bannerGroup2->images()->exists()) --}}
-                    {{-- @foreach ($bannerGroup2->images as $image) --}}
-                    {{-- <a href="{{ ($image->media()->exists())? $image->link : '' }}" class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank" data-is-trackable="" title="{{ ($image->media()->exists())? $image->alt : '' }}"> --}}
-                    {{-- <div class="c-adplacement__sponsored_box"> --}}
-                    {{-- <img src="{{ $site_url . '/' . $image->media->first()->path . '/'. $image->media->first()->name }}" alt="{{ ($image->media()->exists())? $image->alt : '' }}" loading="lazy"> --}}
-                    {{-- </div> --}}
-                    {{-- </a> --}}
-                    {{-- @endforeach --}}
-                    {{-- @endif --}}
-                </aside>
-                <section
-                    class="c-swiper c-swiper--products has-placeholder recommendation-swiper u-hidden js-sntracker-carousel"
-                    id="recommendation-home_5">
-                    <div class="recommendation-swiper__mask js-swiper-mask-recommendation-home_5 u-hidden">
-                        <p>این پیشنهاد به شما
-                            نشان داده نخواهد شد با تشکر از باز‌خورد شما</p>
-                        <button class="js-cancel-swiper-mask" data-id="recommendation-home_5"><i></i>
-                            بازگرداندن
-                        </button>
-                    </div>
-                    <div class="o-headline"><span></span></div>
-                    <div class="c-box">
-                        <div class="swiper-container swiper-container-horizontal">
-                            <div class="swiper-wrapper js-products-container"></div>
-                            <div class="swiper-button-prev js-swiper-button-prev"></div>
-                            <div class="swiper-button-next js-swiper-button-next"></div>
-                        </div>
-                    </div>
-                </section>
-                <section
-                    class="c-swiper c-swiper--products has-placeholder recommendation-swiper u-hidden js-sntracker-carousel"
-                    id="recommendation-home_6">
-                    <div class="recommendation-swiper__mask js-swiper-mask-recommendation-home_6 u-hidden">
-                        <p>این پیشنهاد به شما
-                            نشان داده نخواهد شد با تشکر از باز‌خورد شما</p>
-                        <button class="js-cancel-swiper-mask" data-id="recommendation-home_6"><i></i>
-                            بازگرداندن
-                        </button>
-                    </div>
-                    <div class="o-headline"><span></span></div>
-                    <div class="c-box">
-                        <div class="swiper-container swiper-container-horizontal">
-                            <div class="swiper-wrapper js-products-container"></div>
-                            <div class="swiper-button-prev js-swiper-button-prev"></div>
-                            <div class="swiper-button-next js-swiper-button-next"></div>
-                        </div>
-                    </div>
-                </section>
-
-                <script>
-                    var carouselDataTracker = {
-                        "carouselPosition": "HOME_6",
-                        "id": "sn-carousels-1",
-                        "title": "\u0645\u062d\u0635\u0648\u0644\u0627\u062a \u067e\u0631\u0628\u0627\u0632\u062f\u06cc\u062f \u0627\u062e\u06cc\u0631",
-                        "title_en": "latest most visited",
-                        "products": [{
-                            "id": 3754319,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0634\u06cc\u0627\u0626\u0648\u0645\u06cc \u0645\u062f\u0644 POCO X3 M2007J20CG \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 68890000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Xiaomi",
-                            "position": 1,
-                            "status": "marketable"
-                        }, {
-                            "id": 2071360,
-                            "name": "\u0631\u0648\u063a\u0646 \u0646\u06cc\u0645\u0647 \u062c\u0627\u0645\u062f \u0632\u06cc\u0631\u0648 \u062a\u0631\u0627\u0646\u0633 \u0637\u0628\u06cc\u0639\u062a - 5  \u06a9\u06cc\u0644\u0648\u06af\u0631\u0645",
-                            "price": 700000,
-                            "category": "\u0631\u0648\u063a\u0646",
-                            "brand": "\u0637\u0628\u06cc\u0639\u062a",
-                            "position": 2,
-                            "status": "marketable"
-                        }, {
-                            "id": 4122136,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy A12 SM-A125F\/DS \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 64 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 41390000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 3,
-                            "status": "marketable"
-                        }, {
-                            "id": 2677898,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy A71 SM-A715F\/DS \u062f\u0648 \u0633\u06cc\u0645\u200c\u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a \u0647\u0645\u0631\u0627\u0647 \u0628\u0627 \u0631\u0645 8 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 92490000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 4,
-                            "status": "marketable"
-                        }, {
-                            "id": 2910269,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy A31 SM-A315F\/DS \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 55390000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 5,
-                            "status": "marketable"
-                        }, {
-                            "id": 3048126,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy A21S SM-A217F\/DS \u062f\u0648 \u0633\u06cc\u0645\u200c\u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 64 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a\t",
-                            "price": 46490000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 6,
-                            "status": "marketable"
-                        }, {
-                            "id": 3105612,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0634\u06cc\u0627\u0626\u0648\u0645\u06cc \u0645\u062f\u0644 Redmi Note 9 Pro M2003J6B2G \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 72990000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Xiaomi",
-                            "position": 7,
-                            "status": "marketable"
-                        }, {
-                            "id": 3151747,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0634\u06cc\u0627\u0626\u0648\u0645\u06cc \u0645\u062f\u0644 Redmi 9 M2004J19G \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 64 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 35990000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Xiaomi",
-                            "position": 8,
-                            "status": "marketable"
-                        }, {
-                            "id": 4149037,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0634\u06cc\u0627\u0626\u0648\u0645\u06cc \u0645\u062f\u0644 POCO M3 M2010J19CG \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 45490000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Xiaomi",
-                            "position": 9,
-                            "status": "marketable"
-                        }, {
-                            "id": 4008192,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy S20 FE SM-G780F\/DS \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 126490000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 10,
-                            "status": "marketable"
-                        }, {
-                            "id": 4175973,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy A51 SM-A515F\/DSN \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 256\u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 87000000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 11,
-                            "status": "marketable"
-                        }, {
-                            "id": 3893718,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u067e\u0644 \u0645\u062f\u0644 iPhone 12 Pro Max A2412 \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 256 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 389000000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Apple",
-                            "position": 12,
-                            "status": "marketable"
-                        }, {
-                            "id": 4330247,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy S21 Ultra 5G SM-G998B\/DS \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 256 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a \u0648 \u0631\u0645 12 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 283990000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 13,
-                            "status": "marketable"
-                        }, {
-                            "id": 3183082,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0634\u06cc\u0627\u0626\u0648\u0645\u06cc \u0645\u062f\u0644 Redmi 9 M2004J19G \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 32 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 32700000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Xiaomi",
-                            "position": 14,
-                            "status": "marketable"
-                        }, {
-                            "id": 4244447,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0634\u06cc\u0627\u0626\u0648\u0645\u06cc \u0645\u062f\u0644 POCO X3 NFC M2007J20CG \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 64 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a \u0648 \u0631\u0645 6 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 59100000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Xiaomi",
-                            "position": 15,
-                            "status": "marketable"
-                        }, {
-                            "id": 3532969,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0647\u0648\u0622\u0648\u06cc \u0645\u062f\u0644 Y8p AQM-LX1 \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 41990000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Huawei",
-                            "position": 16,
-                            "status": "marketable"
-                        }, {
-                            "id": 3246506,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0634\u06cc\u0627\u0626\u0648\u0645\u06cc \u0645\u062f\u0644 Redmi 9A M2006C3LG \u062f\u0648 \u0633\u06cc\u0645\u200c \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 32 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a\t",
-                            "price": 32000000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Xiaomi",
-                            "position": 17,
-                            "status": "marketable"
-                        }, {
-                            "id": 2066213,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy A10s SM-A107F\/DS \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 32 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 31190000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 18,
-                            "status": "marketable"
-                        }, {
-                            "id": 4230579,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy A12 SM-A125F\/DS \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a \u0648 \u0631\u0645 4 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 43490000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 19,
-                            "status": "marketable"
-                        }, {
-                            "id": 3266410,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 Galaxy A01 Core SM-A013G\/DS \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 16 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-                            "price": 20190000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Samsung",
-                            "position": 20,
-                            "status": "marketable"
-                        }, {
-                            "id": 2961837,
-                            "name": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0647\u0648\u0622\u0648\u06cc \u0645\u062f\u0644 Nova 7i JNY-LX1 \u062f\u0648 \u0633\u06cc\u0645 \u06a9\u0627\u0631\u062a \u0638\u0631\u0641\u06cc\u062a 128 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a\t",
-                            "price": 61800000,
-                            "category": "\u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644",
-                            "brand": "Huawei",
-                            "position": 21,
-                            "status": "marketable"
-                        }]
-                    };
-                    if (carouselDataTracker) {
-                        if (!window.carouselData)
-                            window.carouselData = [carouselDataTracker];
-                        else
-                            window.carouselData.push(carouselDataTracker);
-                    }
-
-                    var carouselDataTracker = null;
-                    if (carouselDataTracker) {
-                        if (!window.carouselData)
-                            window.carouselData = [carouselDataTracker];
-                        else
-                            window.carouselData.push(carouselDataTracker);
-                    }
-                </script>
-
-                @foreach ($productSwipers as $productSwiper)
-                  <div class="swiper-products-container" data-type="homepagelatest">
-                    <section class="c-swiper c-swiper--products js-sntracker-carousel " id="sn-carousels-2">
-                        <div class="o-headline">
-                          <span class="o-headline__title-box"><div class="o-headline__title-content"><h3>سلامت بدن</h3><p>فروش ویژه بازگشت به مدرسه</p></div></span>
-                            <a href="/search/?has_selling_stock=1&sortby=1" class="c-swiper__show-more">مشاهده همه</a>
-                        </div>
-                        <div class="c-box" id="sn-carousels-2">
-                            <div class="swiper-container swiper-container-horizontal js-swiper-products">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide js-sntracker-carousel-item" data-carousel="sn-carousels-2"
-                                        data-id="4504481" data-position="2">
-                                        <div class="c-product-box"><a data-id="4504481"
-                                                class="c-product-box__img js-url js-product-url js-carousel-ga-product-box"
-                                                href="/product/dkp-4504481/محافظ-لنز-دوربین-سیحان-مدل-glp-مناسب-برای-گوشی-موبایل-شیائومی-poco-f2-pro"><img
-                                                    data-src-swiper="https://dkstatics-public.digikala.com/digikala-products/3d6d40d79813bf59d85ad9178c5f76a409b2fee9_1613771406.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
-                                                    alt="محافظ لنز دوربین سیحان مدل GLP مناسب برای گوشی موبایل شیائومی POCO F2 Pro"
-                                                    class="swiper-lazy"></a>
-                                            <div class="c-product-box__title"><a data-id="4504481"
-                                                    class="js-product-url js-carousel-ga-product-box"
-                                                    href="/product/dkp-4504481/محافظ-لنز-دوربین-سیحان-مدل-glp-مناسب-برای-گوشی-موبایل-شیائومی-poco-f2-pro">
-                                                    محافظ لنز دوربین سیحان مدل GLP مناسب برای گوشی موب...
-                                                </a></div>
-                                            <div class="c-product-box__price-row">
-                                                <div class="c-product-box__price-item"><a data-id="4504481"
-                                                        class="js-product-url js-carousel-ga-product-box"
-                                                        href="/product/dkp-4504481/محافظ-لنز-دوربین-سیحان-مدل-glp-مناسب-برای-گوشی-موبایل-شیائومی-poco-f2-pro">
-                                                        <div class="c-new-price">
-                                                            <div class="c-new-price__old-value">
-                                                                <del>۲۵,۰۰۰</del>
-                                                                <span class="c-new-price__discount">۳۷٪</span>
-                                                            </div>
-                                                            <div class="c-new-price__value">
-                                                                ۱۵,۷۵۰
-                                                                <span class="c-new-price__currency">تومان</span>
-                                                            </div>
-                                                        </div>
-                                                    </a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- count: 24 -->
-                                </div>
-                                <div class="swiper-button-prev js-swiper-button-prev"></div>
-                                <div class="swiper-button-next js-swiper-button-next"></div>
-                            </div>
-                        </div>
-                    </section>
-                  </div>
-                @endforeach
-
+              <div class="o-page">
                 <aside class="c-adplacement">
-                    @if (!is_null($bannerGroup4) && $bannerGroup4->images()->exists())
-                        @foreach ($bannerGroup4->images as $image)
-                            <a href="{{ $image->media()->exists() ? $image->link : '' }}"
-                                class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b"
-                                data-observed="0" target="_blank"
-                                title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
-                                <div class="c-adplacement__sponsored_box">
-                                    <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
-                                        alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
-                                </div>
-                            </a>
-                        @endforeach
-                    @endif
+                  @if (!is_null($bannerGroup2) && $bannerGroup2->images()->exists())
+                    @foreach ($bannerGroup2->images as $image)
+                      <a href="{{ $image->media()->exists() ? $image->link : '' }}"
+                         class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b"
+                         data-observed="0" target="_blank"
+                         title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
+                        <div class="c-adplacement__sponsored_box">
+                          <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
+                               alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
+                        </div>
+                      </a>
+                    @endforeach
+                  @endif
                 </aside>
+              </div>
 
-                @if (!is_null($banner5) && $banner5->images()->exists() && $banner5->images()->first()->media()->exists())
-                    <aside class="c-adplacement c-adplacement--main-page-inner c-adplacement__container-row">
-                        <a href="{{ $banner5->images()->first()->link }}"
-                            class="c-adplacement__item js-banner-impression-adro" data-observed="0" target="_blank"
-                            data-is-trackable="" title="{{ $banner5->images()->first()->alt }}">
-                            <div class="c-adplacement__sponsored_box">
-                                <img src="{{ $banner5->images()->first()->media()->exists()
-                                  ? $site_url . '/' . $banner5->images()->first()->media->first()->path . '/' . $banner5->images()->first()->media->first()->name
-                                  : ''
-                                 }}"
-                                    alt="{{ $banner5->images()->first()->media()->exists()
-                                      ? $banner5->images()->first()->alt
-                                      : ''
-                                     }}"
-                                    loading="lazy" />
-                            </div>
-                        </a>
-                    </aside>
-                @endif
+                  <?php
+                    $second = 0; // شمارنده ارایه دومی
+                    $default = 0; // شمارنده ارایه اصلی
+                    $avg = count($primary) / (count($secondary)? count($secondary) : 1);
+                    $avg = floor($avg);
+                  ?>
+
+                  @foreach ($primary as $item)
+
+                    @if ($primaryType == 'productSwiper')
+                        @include('front::layouts.productSwiper',['item' => $item])
+                    @else
+                        @include('front::layouts.slider',['item' => $item])
+                    @endif
+
+                    <?php  $default++; ?>
+                    @if ($default >= $avg)
+                      @if (isset($secondary[$second]))
+                          @if ($primaryType == 'productSwiper')
+                            @include('front::layouts.slider',['item' => $secondary[$second]])
+                          @else
+                            @include('front::layouts.productSwiper',['item' => $secondary[$second]])
+                          @endif
+                          <?php
+                            $second++;
+                            $default = 0;
+                          ?>
+                      @endif
+                    @endif
+                  @endforeach
+
+
+
             </article>
+
         </div>
         <div id="sidebar">
             <aside></aside>

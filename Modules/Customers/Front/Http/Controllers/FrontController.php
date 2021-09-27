@@ -38,13 +38,18 @@ use Modules\Staff\Shiping\Http\postPishtaz;
 use Modules\Staff\Shiping\Http\postSefareshi;
 use Modules\Staff\Shiping\Models\DeliveryMethod;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Route;
 use Modules\Staff\ProductSwiper\Models\ProductSwiper;
 use Modules\Staff\Shiping\Models\OrderStatus;
+use Modules\Staff\Slider\Models\Slider;
 use Modules\Staff\Voucher\Models\Voucher;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Modules\Staff\Promotion\Models\Campain;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedSort;
 
 
 class FrontController extends Controller
@@ -77,21 +82,40 @@ class FrontController extends Controller
       });
     })->take(15)->get();
 
-    $productSwipers = ProductSwiper::whereHas('category', function($q){
-        $q->whereHas('products', function ($q){
-            $q->whereHas('variants', function ($q){
-                $q->where('stock_count', '>', 0)->where('status', 1);
-            });
-        });
-    });
+   $productSwipers = ProductSwiper::where('status', 1)->whereHas('category', function($q){
+       $q->whereHas('products', function ($q){
+           $q->whereHas('variants', function ($q){
+               $q->where('stock_count', '>', 0)
+                 ->where('status', 1);
+           })->whereStatus(1);
+       });
+   })->orderBy('position', 'asc')->get();
+
+    $content_sliders = Slider::whereIn('en_name', ['h', 'i', 'j'])
+                          ->where('status', 'active')->get();
+
+    if (count($productSwipers) / (count($content_sliders)? count($content_sliders) : 1)) {
+      $primary = $productSwipers;
+      $secondary = $content_sliders;
+      $primaryType = 'productSwiper';
+    }
+    else {
+      $primary = $content_sliders;
+      $secondary = $productSwipers;
+      $primaryType = 'slider';
+    }
 
     return view('front::index', compact(
             'customer',
             'amazing_offer_products',
             'special_offer_products',
-            'productSwipers'
+            'productSwipers',
+            'primary',
+            'secondary',
+            'primaryType'
         )
     );
+
   }
 
   /**
@@ -120,21 +144,182 @@ class FrontController extends Controller
    */
   public function mainSearch(Request $request)
   {
+    $product_code_prefix = Setting::where('name', 'product_code_prefix')->first();
+      if ($product_code_prefix) {
+        $product_code_prefix = $product_code_prefix->value;
+      } else {
+        $product_code_prefix = null;
+      }
 
-    $this->mainSearchFilters($request);
+    $categories = Category::DigiSearch('name', $request->q)
+      ->select('name', 'id', 'slug')
+      ->take(3)
+      ->get();
+
+    $products = Product::DigiSearch('title_fa', $request->q)
+    ->select('title_fa', 'id', 'slug', 'product_code')
+    ->take(10)->get();
+
+    $categoriesArray = [];
+
+    foreach($categories as $category) {
+      $categoriesArray[] =
+       [
+          "title_prefix" => "همه کالاها دسته‌بندی",
+          "title" => "$category->name",
+          "url" => "/search/category-$category->slug/",
+          "icon_image" => null
+       ];
+    }
+
+    foreach($products as $product) {
+      $product_img = g_product_image_main_src($product);
+      $product_slug = "product/$product_code_prefix-$product->product_code";
+      $productsArray[] =
+       [
+
+        "id" => $product->id,
+        "title" => "$product->title_fa",
+        "image" => "$product_img?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+        "url" => "$product_slug"
+       ];
+    }
+
+
+
 
     return response()->json([
       'status' => true,
-      'data' => View::make('front::ajax.mainSearch')->render(),
+      'data' => [
+        "search_result" => "",
+        "auto_complete" => [
+          [
+            "url" => "search/?q=$request->q",
+            "label" => "$request->q"
+          ],
+        ],
+        "trends_result" => [],
+        "advance_links" => isset($categoriesArray) ? $categoriesArray : '',
+        "suggestion_products" => isset($productsArray) ? $productsArray : '',
+        "query" => "$request->q",
+      ],
     ], 200);
 
-  }
 
-  /**
-   *
-   */
-  public function mainSearchFilters()
-  {
+
+    // return response()->json(
+    //   [
+    //     "status" => true,
+    //     "data" => [
+    //        "search_result" => [
+    //           [
+    //              "url" => "/search/category-cell-phone-pouch-cover/?q=%D9%82%D8%A7%D8%A8%20%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84&key=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85&pos=1",
+    //              "label" => "قاب گوشی موبایل در دسته",
+    //              "category_name" => "کیف و کاور گوشی"
+    //           ],
+    //           [
+    //              "url" => "/search/category-cell-phone-kits/?q=%D8%B1%DB%8C%D9%86%DA%AF%20%D9%84%D8%A7%DB%8C%D8%AA%20%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84&key=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85&pos=2",
+    //              "label" => "رینگ لایت گوشی موبایل در دسته",
+    //              "category_name" => "قطعات جانبی موبایل و تبلت"
+    //           ]
+    //        ],
+    //        "auto_complete" => [
+    //           [
+    //              "url" => "/search/?q=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84&key=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85&pos=1",
+    //              "label" => "گوشی موبایل"
+    //           ],
+    //           [
+    //              "url" => "/search/?q=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84%20%D8%B4%DB%8C%D8%A7%D8%A6%D9%88%D9%85%DB%8C&key=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85&pos=2",
+    //              "label" => "گوشی موبایل شیائومی"
+    //           ],
+    //           [
+    //              "url" => "/search/?q=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84%20%D8%B3%D8%A7%D9%85%D8%B3%D9%88%D9%86%DA%AF&key=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85&pos=3",
+    //              "label" => "گوشی موبایل سامسونگ"
+    //           ],
+    //           [
+    //              "url" => "/search/?q=%D9%82%D8%A7%D8%A8%20%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84&key=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85&pos=4",
+    //              "label" => "قاب گوشی موبایل"
+    //           ],
+    //           [
+    //              "url" => "/search/?q=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85%D9%88%D8%A8%D8%A7%DB%8C%D9%84%20%D9%86%D9%88%DA%A9%DB%8C%D8%A7&key=%DA%AF%D9%88%D8%B4%DB%8C%20%D9%85&pos=5",
+    //              "label" => "گوشی موبایل نوکیا"
+    //           ]
+    //        ],
+    //        "trends_result" => [],
+    //        "advance_links" => [
+    //           [
+    //              "title_prefix" => "همه کالاها دسته‌بندی",
+    //              "title" => "گوشی موبایل",
+    //              "url" => "/search/category-mobile-phone/",
+    //              "icon_image" => null
+    //           ]
+    //        ],
+    //        "suggestion_products" => [
+    //           [
+    //              "id" => 4958276,
+    //              "title" => "گوشی موبایل شیائومی مدل POCO X3 Pro M2102J20SG دو سیم‌ کارت ظرفیت 256 گیگابایت و 8 گیگابایت رم ",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/77f6b5b39b58f0b81c7707e3626f55b74ee348aa_1623857594.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-4958276/"
+    //           ],
+    //           [
+    //              "id" => 3868296,
+    //              "title" => "گوشی موبایل اپل مدل iPhone 12 A2404 دو سیم‌ کارت ظرفیت 128 گیگابایت ",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/9f5d8f6583a7289a096a9180ac88708856f4bd8f_1607433653.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-3868296/"
+    //           ],
+    //           [
+    //              "id" => 4122136,
+    //              "title" => "گوشی موبایل سامسونگ مدل Galaxy A12 SM-A125F/DS دو سیم کارت ظرفیت 64 گیگابایت",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/c5c4a0bb88dc312a4c2f6de0b1567ef0da31a2d9_1624085323.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-4122136/"
+    //           ],
+    //           [
+    //              "id" => 3893718,
+    //              "title" => "گوشی موبایل اپل مدل iPhone 12 Pro Max A2412 دو سیم‌ کارت ظرفیت 256 گیگابایت",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/be7a0e9bf7866759fa3cea7648b149f589a01040_1607433995.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-3893718/"
+    //           ],
+    //           [
+    //              "id" => 5744950,
+    //              "title" => "گوشی موبایل شیائومی مدل POCO F3 5G M2012K11AG دو سیم‌ کارت ظرفیت 256 گیگابایت و 8 گیگابایت رم ",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/d39d1ae019b5c5454f86c9e3754d03bacdf7dba2_1626177843.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-5744950/"
+    //           ],
+    //           [
+    //              "id" => 4834144,
+    //              "title" => "گوشی موبایل سامسونگ مدل Galaxy A32 SM-A325F/DS دو سیم‌کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/1aaa7ff34f7bec773c4baea959b652ed5dff9f30_1619596674.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-4834144/"
+    //           ],
+    //           [
+    //              "id" => 4230579,
+    //              "title" => "گوشی موبایل سامسونگ مدل Galaxy A12 SM-A125F/DS دو سیم کارت ظرفیت 128 گیگابایت و رم 4 گیگابایت",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/c5c4a0bb88dc312a4c2f6de0b1567ef0da31a2d9_1624089067.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-4230579/"
+    //           ],
+    //           [
+    //              "id" => 3007747,
+    //              "title" => "گوشی موبایل اپل مدل  iPhone SE 2020 A2275 ظرفیت 128 گیگابایت",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/122045219.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-3007747/"
+    //           ],
+    //           [
+    //              "id" => 5543971,
+    //              "title" => "گوشی موبایل شیائومی مدل Redmi Note 10 pro M2101K6G دو سیم‌ کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/3049dd8c073305e494f86d2959ac679febba7467_1624253960.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-5543971/"
+    //           ],
+    //           [
+    //              "id" => 4884468,
+    //              "title" => "گوشی موبایل سامسونگ مدل  A52 SM-A525F/DS دو سیم‌کارت ظرفیت 128 گیگابایت و رم 8 گیگابایت",
+    //              "image" => "https =>//dkstatics-public.digikala.com/digikala-products/17b055a0f2eee543f3b25a1bd4ced02032278d23_1626014129.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60",
+    //              "url" => "https =>//www.digikala.com/product/dkp-4884468/"
+    //           ]
+    //        ],
+    //        "query" => "گوشی م"
+    //     ]
+    //  ]
+    //   , 200);
 
   }
 

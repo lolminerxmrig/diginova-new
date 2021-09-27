@@ -14,9 +14,9 @@ class ProductSwiper extends Model
     protected $fillable = [
         'title',
         'description',
-        'category_id', 
-        'sort_by', 
-        'status', 
+        'category_id',
+        'sort_by',
+        'status',
         'position'
     ];
 
@@ -29,5 +29,6 @@ class ProductSwiper extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
 }
 

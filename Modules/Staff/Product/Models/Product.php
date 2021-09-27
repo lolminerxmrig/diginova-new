@@ -58,6 +58,13 @@ class Product extends Model
       return $this->search($query, $searchText, $searchColumns);
     }
 
+    public function scopeDigiSearch($query, $column,  string $searchText)
+    {
+      $query->where($column, 'like', '%' .$searchText. '%');
+
+      return $query;
+    }
+
     public function getRouteKeyName()
     {
         return 'product_code';

@@ -17,13 +17,36 @@ use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 use Modules\Staff\Variant\Models\VariantGroup;
 use Modules\Staff\Warranty\Models\Warranty;
+use App\Trait\Searchable;
 
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = ['name', 'en_name', 'parent_id', 'slug', 'description'];
+
+
+    public function scopeSearch($query, string $searchText)
+    {
+      $searchColumns = ['name'];
+  //      $relationColumns = [];
+      return $this->search($query, $searchText, $searchColumns);
+    }
+
+    public function scopeDigiSearch($query, $column,  string $searchText)
+    {
+      $query->where($column, 'like', '%' .$searchText. '%');
+
+      return $query;
+    }
+
+    public function scopeMain($query)
+    {
+      $query->whereParentId(0);
+
+      return $query;
+    }
 
 
     public function children()
