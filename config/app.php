@@ -194,6 +194,7 @@ return [
         Modules\Staff\Peyment\Providers\StaffPeymentServiceProvider::class,
         Modules\Staff\Customer\Providers\StaffCustomerServiceProvider::class,
         Modules\Staff\Order\Providers\StaffOrderServiceProvider::class,
+        Modules\Staff\ProductSwiper\Providers\StaffProductSwiperServiceProvider::class,
 
 
 

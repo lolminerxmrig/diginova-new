@@ -596,10 +596,10 @@
                 <div class="c-grid__col">
                     <div class="c-card">
                         <div class="">
-                            <div class="c-join-smart-products__header">کالاهای دارای تخفیف هوشمند</div>
+                            <div class="c-join-smart-products__header">کالاهای دارای تخفیف شگفت انگیز</div>
                             <div class="c-mega-campaigns-join-list__options">
-                                <a href="{{ route('staff.periodic-prices.index') }}" class="c-mega-campaigns-join-list__options-item ">تخفیف‌های هوشمند فعال/آغاز نشده</a>
-                                <a href="{{ route('staff.periodic-prices.ended') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">تخفیف‌های هوشمند پایان‌یافته</a>
+                                <a href="{{ route('staff.periodic-prices.index') }}" class="c-mega-campaigns-join-list__options-item ">تخفیف‌های شگفت انگیز فعال/آغاز نشده</a>
+                                <a href="{{ route('staff.periodic-prices.ended') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">تخفیف‌های شگفت انگیز پایان‌یافته</a>
                             </div>
                         </div>
                         <div class="c-mega-campaigns-join-list__container" data-tab="1">

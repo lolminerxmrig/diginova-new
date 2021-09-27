@@ -81,6 +81,7 @@ class ProductHasVariant extends Model
     public function promotions()
     {
         return $this->morphedByMany(Promotion::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id');
+//        return $this->morphedByMany(Promotion::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id');
     }
 
 }

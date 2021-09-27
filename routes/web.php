@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\Customers\Front\Http\Controllers\FrontController;
 use Modules\Customers\Front\Http\Controllers\CategoryController;
 use Modules\Staff\Category\Models\Category;
+use Modules\Staff\Promotion\Models\Campain;
 use Modules\Staff\Setting\Models\Setting;
 
 /*
@@ -104,8 +105,23 @@ Route::get('ajax/profile/wallet', function () {
 });
 
 Route::get('test', function (){
-  $category = Category::whereSlug('mobile-phone')->firstOrFail();
+  $amazing_offer = Campain::whereType('amazing_offer')->firstOrFail();
 
-  dd(fullCategoryList($category->id));
+  $amazing_offer_products = \Modules\Staff\Product\Models\Product::whereHas('variants', function ($q){
+    $q->whereHas('promotions', function ($q) {
+        $q->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())
+          ->where('status', 'active')->orWhere('status', 1)
+          ->whereHas('campain', function ($q) {
+            $q->where('type', 'amazing_offer');
+          });
+    });
+  })->get();
+  dd($amazing_offer_products);
+
+//  if($amazing_offer->promotions->count()) {
+//    foreach($amazing_offer->promotions as $promotion) {
+//      dd($promotion->productVariants);
+//    }
+//  }
 });
 

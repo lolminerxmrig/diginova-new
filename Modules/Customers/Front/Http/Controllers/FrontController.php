@@ -38,23 +38,60 @@ use Modules\Staff\Shiping\Http\postPishtaz;
 use Modules\Staff\Shiping\Http\postSefareshi;
 use Modules\Staff\Shiping\Models\DeliveryMethod;
 use Illuminate\Http\Response;
+use Modules\Staff\ProductSwiper\Models\ProductSwiper;
 use Modules\Staff\Shiping\Models\OrderStatus;
 use Modules\Staff\Voucher\Models\Voucher;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
+use Modules\Staff\Promotion\Models\Campain;
 
 
 class FrontController extends Controller
 {
 
   /**
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   * @return \Illuminate\Contracts\View\View
    */
   public function index()
   {
     $customer = Auth::guard('customer')->user();
-    return view('front::index', compact('customer'));
+
+    $amazing_offer_products = Product::whereHas('variants', function ($q){
+      $q->whereHas('promotions', function ($q) {
+        $q->where('status', 'active')->orWhere('status', 1)
+          ->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())
+          ->whereHas('campain', function ($q) {
+            $q->where('type', 'amazing_offer');
+          });
+      });
+    })->take(15)->get();
+
+    $special_offer_products = Product::whereHas('variants', function ($q){
+      $q->whereHas('promotions', function ($q) {
+        $q->where('status', 'active')->orWhere('status', 1)
+          ->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())
+          ->whereHas('campain', function ($q) {
+            $q->where('type', 'special_offer');
+          });
+      });
+    })->take(15)->get();
+
+    $productSwipers = ProductSwiper::whereHas('category', function($q){
+        $q->whereHas('products', function ($q){
+            $q->whereHas('variants', function ($q){
+                $q->where('stock_count', '>', 0)->where('status', 1);
+            });
+        });
+    });
+
+    return view('front::index', compact(
+            'customer',
+            'amazing_offer_products',
+            'special_offer_products',
+            'productSwipers'
+        )
+    );
   }
 
   /**
@@ -129,7 +166,7 @@ class FrontController extends Controller
     })->get();
 
     // $fullCategoryList = fullCategoryList($category->id);
-    $fullCategoryList = ['دسته 5', 'دسته 4', 'دسته 3', 'دسته 2', 'دسته 1'];
+    $fullCategoryList = ['دسته 3', 'دسته 2', 'دسته 1'];
 
     return view('front::category', compact('cat', 'category', 'fullCategoryList', 'categories','brands' ,'products', 'slug'));
 

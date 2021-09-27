@@ -149,12 +149,7 @@ class StaffPeriodicPricesController extends Controller
 
         $product_variant = ProductHasVariant::find($request->id);
 
-//        if ($product_variant->stock_count < $request->promotion_limit)
-//        {
-//            $errors = 'عددی که برای تعداد در تخفیف در نظر گرفته اید از ';
-//        }
-
-        if (!Campain::where('type', 'amazing_offer')->first())
+        if (Campain::where('type', 'amazing_offer')->doesntExist())
         {
             Campain::create([
                 'name' => 'تخفیف شگفت انگیز',
@@ -163,7 +158,7 @@ class StaffPeriodicPricesController extends Controller
             ]);
         }
 
-        if (!Campain::where('type', 'special_offer')->first())
+        if (Campain::where('type', 'special_offer')->doesntExist())
         {
             Campain::create([
                 'name' => 'تخفیف شگفت انگیز',
@@ -178,12 +173,6 @@ class StaffPeriodicPricesController extends Controller
             $campain_id = Campain::where('type', 'special_offer')->first()->id;
         }
 
-        if ($request->status == 0) {
-            $status = 'inactive';
-        } elseif ($request->status == 1) {
-            $status = 'active';
-        }
-
         $promotion = Promotion::updateOrCreate(['id' => $request->promotion_variant_id], [
             'promotion_price' => $request->promotion_price,
             'start_at' => $start_at,
@@ -191,7 +180,7 @@ class StaffPeriodicPricesController extends Controller
             'percent' => $request->promotion_percent,
             'promotion_limit' => $request->promotion_limit,
             'promotion_order_limit' => $request->promotion_order_limit,
-            'status' => $status,
+            'status' => ($request->status == 1)? 'active' : 'inactive' ,
             'campain_id' => $campain_id,
         ]);
 

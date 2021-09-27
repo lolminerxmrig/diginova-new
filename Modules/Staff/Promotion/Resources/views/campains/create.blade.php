@@ -741,7 +741,6 @@ $.ajaxSetup({
 
 $("#has_landing").on('change', function (){
     if ($(this).val() == 1){
-        console.log('t');
         $(".slug-section").show();
         $(".div-space").hide();
 
@@ -752,7 +751,6 @@ $("#has_landing").on('change', function (){
         });
 
     } else if ($(this).val() == 0){
-        console.log('f');
         $(".slug-section").hide();
         $(".div-space").show();
         $(".url-inputs").val('');

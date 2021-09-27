@@ -685,6 +685,10 @@
                     </li>
 
                     <li>
+                      <a href="{{ route('staff.productSwipers.index') }}">مدیریت صفحه اصلی</a>
+                    </li>
+
+                    <li>
                       <a href="{{ route('staff.navs.index') }}">فهرست ها</a>
                     </li>
 
@@ -707,7 +711,7 @@
                             </li>
 
                             <li>
-                              <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های هوشمند</a>
+                              <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های شگفت انگیز</a>
                             </li>
 
                             <li>
@@ -885,7 +889,7 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های هوشمند</a>
+                  <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های شگفت انگیز</a>
                 </li>
 
                 <li>

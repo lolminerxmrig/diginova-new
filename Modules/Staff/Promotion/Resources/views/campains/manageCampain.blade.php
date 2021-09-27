@@ -733,7 +733,7 @@
                     <div class="c-grid__col">
                         <div class="c-card c-join-smart-emty--p-20">
                             <div class="uk-flex uk-flex-between c-join-smart-emty__guide">
-                                <div class="c-join-smart-emty__guide-title">راهنمای تخفیف‌های هوشمند</div>
+                                <div class="c-join-smart-emty__guide-title">راهنمای تخفیف‌های شگفت انگیز</div>
                                 <div class="c-join-smart-emty__guide-close js-close-guide"></div>
                             </div>
                             <ul class="c-join-smart-emty__guide-item">

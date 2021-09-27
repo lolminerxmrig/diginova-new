@@ -252,7 +252,7 @@ function variantPromotionPrice($product_variant)
 
 function variantPromotionDefault($product_variant)
 {
-  if ($product_variant->promotions() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
+  if ($product_variant->promotions()->exists() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
      $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
      return $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->where('promotion_price', $promotion_price)->first();
   }
@@ -335,4 +335,9 @@ function fullCategoryList($category_id, $revers = true) {
     return array_reverse($list);
   }
   return $list;
+}
+
+function validPromotions($promotions)
+{
+    return $promotions->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->get();
 }

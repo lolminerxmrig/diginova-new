@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Modules\Staff\Promotion\Models\Campain;
 use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Promotion\Models\Promotion;
+use Modules\Staff\Landing\Models\Landing;
 
 class StaffCampainController extends Controller
 {
@@ -140,31 +141,20 @@ class StaffCampainController extends Controller
             'status' => $status,
         ]);
 
-        if (Campain::find($request->campain_id)) {
-            $campain = Campain::find($request->campain_id);
-        }
 
         if (isset($request->has_landing) && ($request->has_landing == '1')) {
-            if (!$campain->landing) {
-                Campain::updateOrCreate(['campain_id' => $campain->id],[
-                    'name' => $request->name,
-                    'slug' => $request->slug,
-                    'start_at' => $start_at,
-                    'end_at' => $end_at,
-                    'type' => 'custom',
-                    'status' => $status,
-                    'campain_id' => $campain->id,
-                ]);
-            }
+          Landing::updateOrCreate(['campain_id' => $campain->id], [
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'start_at' => $request->start_at,
+            'end_at' => $request->end_at,
+            'type' => 'custom',
+            'status' => 'active',
+          ]);
         }
 
         elseif (isset($request->has_landing) && ($request->has_landing !== '1')) {
-            Log::info('gghhhkk');
-            Log::info($campain->id);
-//            campain->landing->slug
             if ($campain->landing) {
-                Log::info('rrrr');
-
                 $campain->landing->delete();
             }
         }
@@ -172,7 +162,7 @@ class StaffCampainController extends Controller
         return response()->json([
             'status' => true,
             'data' => [
-                'redirectUrl' => '',
+                'redirectUrl' => route('staff.campains.index'),
             ],
         ]);
     }
@@ -231,23 +221,12 @@ class StaffCampainController extends Controller
 
         $product_variant = ProductHasVariant::find($request->id);
 
-//        if ($product_variant->stock_count < $request->promotion_limit)
-//        {
-//            $errors = 'عددی که برای تعداد در تخفیف در نظر گرفته اید از ';
-//        }
-
-        if ($request->status == 0) {
-            $status = 'inactive';
-        } elseif ($request->status == 1) {
-            $status = 'active';
-        }
-
         $promotion = Promotion::updateOrCreate(['id' => $request->promotion_variant_id], [
             'promotion_price' => $request->promotion_price,
             'percent' => $request->promotion_percent,
             'promotion_limit' => $request->promotion_limit,
             'promotion_order_limit' => $request->promotion_order_limit,
-            'status' => $status,
+            'status' => ($request->status == 0)? "inactive" : "active",
             'campain_id' => $request->campain_id,
         ]);
 
@@ -265,7 +244,7 @@ class StaffCampainController extends Controller
 
     public function ended()
     {
-        if (count(Campain::where('status', 'ended')->get())) {
+        if (Campain::where('status', 'ended')->count()) {
             $campains = Campain::where('status', 'ended')->paginate(1);
         } else {
             $campains = [];
@@ -273,76 +252,6 @@ class StaffCampainController extends Controller
 
         return view('staffpromotion::campains.ended', compact('campains'));
     }
-
-//
-//    public function search(Request $request)
-//    {
-//        ($request->paginatorNum)? $paginatorNum = $request->paginatorNum : $paginatorNum = 2;
-//        if($request->sort == 'desc') { $sort_type = 'created_at'; $sort_value = 'desc'; }
-//        if($request->sort == 'price_low') { $sort_type = 'sale_price'; $sort_value = 'asc'; }
-//        if($request->sort == 'price_high') { $sort_type = 'sale_price'; $sort_value = 'desc'; }
-//
-//
-//        if(is_null($request['query']))
-//        {
-//            $product_variants = ProductHasVariant::orderBy($sort_type, $sort_value)->paginate($paginatorNum);
-//        }
-//        else
-//        {
-//            $product_variants = ProductHasVariant::orderBy($sort_type, $sort_value)->paginate($paginatorNum);
-//        }
-//
-//        (is_null($product_variants))? $product_variants = [] : '';
-//        return view('staffpromotion::campains.variantsLoader',
-//            compact('product_variants'));
-//
-//    }
-
-//    public function addVariant(Request $request, $id) {
-//        $campain = Campain::find($id);
-//        foreach ($request->variantIds as $variantId) {
-//            $product_variant = ProductHasVariant::find($variantId);
-//            $product_variant->campains()->attach($campain);
-//        }
-//
-//        return response()->json([
-//           'status' => true,
-//            'data' => [],
-//        ]);
-//    }
-//
-//    public function variants(Request $request, $id) {
-//        $product_variants = Campain::find($id)->productVariants;
-//        return view('staffpromotion::campains.addVariants', compact('product_variants'));
-//    }
-//
-//    public function removeVariant(Request $request,$id)
-//    {
-//        $variant_id = $request->promotionVariantId;
-//        Log::info($variant_id);
-//        $campain = Campain::find($id);
-//        Log::info($campain);
-//        $campain->productVariants()->delete(1);
-//        return response()->json([
-//            'status' => true,
-//            'data' => true,
-//        ]);
-//    }
-//
-//    public function removeAll($id)
-//    {
-//        Campain::find($id)->productVariants()->detach();
-//        return response()->json([
-//           'status' => true,
-//           'data' => true,
-//        ]);
-//    }
-
-
-
-
-
-
 
 
 
@@ -409,9 +318,6 @@ class StaffCampainController extends Controller
     }
 
 
-
-
-
     public function done()
     {
         return view('staffpromotion::campains.done', compact('promotions'));
@@ -424,8 +330,6 @@ class StaffCampainController extends Controller
             'data' => true,
         ]);
     }
-
-
 
     public function search(Request $request, Promotion $promotions)
     {

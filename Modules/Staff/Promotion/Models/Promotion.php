@@ -18,7 +18,16 @@ class Promotion extends Model
 
     public function productVariants()
     {
-        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
+        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', 'variantable_id', 'product_variant_id');
     }
+
+    public function campain() {
+      return $this->belongsTo(Campain::class);
+    }
+
+//    public function productVariants()
+//    {
+//      return $this->morphedByMany(ProductHasVariant::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id', 'id', 'id');
+//    }
 
 }
