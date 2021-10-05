@@ -1832,13 +1832,6 @@
 @endsection
 
 @section('source')
-  <div class="c-fmcg-voucher-box c-fmcg-voucher-box--bf u-hidden js-wheel-floating-box">
-    <a href="https://www.digikala.com/search/?q=%20&amp;sortby=7">
-      <img class="c-fmcg-voucher-box__img"
-           src="../../static/files/9252b9fc.png"/>
-    </a>
-    <button class="c-fmcg-voucher-box__close-button js-wheel-floating-box-close" style="top: 10px;"></button>
-  </div>
   <div aria-describedby="modal1Desc" aria-labelledby="modal1Title" class="remodal c-remodal-account"
        data-remodal-id="login"
        role="dialog">

@@ -428,13 +428,6 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
 @endsection
 
 @section('source')
-    <div class="c-fmcg-voucher-box c-fmcg-voucher-box--bf u-hidden js-wheel-floating-box">
-        <a href="/search/?q=%20&sortby=7">
-            <img class="c-fmcg-voucher-box__img" src="https://www.digikala.com/static/files/9252b9fc.png" />
-        </a>
-        <button class="c-fmcg-voucher-box__close-button js-wheel-floating-box-close" style="top: 10px;"></button>
-    </div>
-
     <div class="remodal c-remodal-account" data-remodal-id="login" role="dialog" aria-labelledby="modal1Title"
         aria-describedby="modal1Desc">
         <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
