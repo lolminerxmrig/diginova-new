@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Trait;
+namespace App\Traits;
 
 
 trait Searchable
