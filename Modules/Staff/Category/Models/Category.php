@@ -17,7 +17,7 @@ use Modules\Staff\Type\Models\Type;
 use App\Models\Media;
 use Modules\Staff\Variant\Models\VariantGroup;
 use Modules\Staff\Warranty\Models\Warranty;
-use App\Trait\Searchable;
+use App\Traits\Searchable;
 
 
 class Category extends Model
