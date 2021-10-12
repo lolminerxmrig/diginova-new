@@ -1638,6 +1638,8 @@
                                                                                 @endif
                                                                             </label>
 
+                                                                              <?php $array = []; ?>
+
                                                                             @foreach($product->attributes as $attr)
                                                                                 @if(!is_null($attr->pivot->value_id))
                                                                                     @php $array[] = $attr->pivot->value_id;  @endphp

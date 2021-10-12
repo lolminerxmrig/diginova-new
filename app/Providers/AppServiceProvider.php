@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
             $settings = Setting::all();
             view()->share('fa_store_name', $settings->where('name', 'fa_store_name')->first()->value);
             view()->share('site_url', $settings->where('name', 'site_url')->first()->value);
-            view()->share('product_code_prefix', $settings->where('name', 'product_code_prefix')->first()->value);
+            view()->share('product_code_prefix', strtolower($settings->where('name', 'product_code_prefix')->first()->value));
             view()->share('site_title',
               $settings->where('name', 'site_title')->first()->value);
             view()->share('description', $settings->where('name', 'index_meta_description')->first()->value);

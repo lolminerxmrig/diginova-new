@@ -795,12 +795,15 @@ class StaffProductController extends Controller
 //        $i = 0;
         foreach($request->product_variants['variants'] as $i) {
 
-            if (!isset($request->product_variants["variant_{$i}_attribute"])) {
-                continue;
-            }
+            // if (!isset($request->product_variants["variant_{$i}_attribute"])) {
+            //     continue;
+            // }
+
             ProductHasVariant::create([
                 'product_id' => $request->product_variants['product_id'],
-                'variant_id' => $request->product_variants["variant_{$i}_attribute"],
+                'variant_id' => isset($request->product_variants["variant_{$i}_attribute"])
+                ? $request->product_variants["variant_{$i}_attribute"]
+                : null,
                 'status' => $request->product_variants["variant_{$i}_active"],
                 'post_time' => $request->product_variants["variant_{$i}_post_time"],
                 'max_order_count' => $request->product_variants["variant_{$i}_order_limit"],
@@ -810,8 +813,6 @@ class StaffProductController extends Controller
                 'stock_count' => $request->product_variants["variant_{$i}_marketplace_seller_stock"],
                 'variant_code' => $variant_code,
                 'shipping_type' => 'site',
-//                'variantable_type' => 'staff',
-//                'variantable_id' => auth()->guard('staff')->user()->id,
             ]);
             $i++;
         }

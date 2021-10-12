@@ -16,7 +16,7 @@ class Comment extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'comments';
+    // protected $table = 'comments';
     protected $fillable = ['parent_id', 'text', 'title', 'advantages', 'disadvantages', 'is_anonymous', 'recommend_status', 'publish_status', 'product_id', 'customer_id'];
 
     public function media()

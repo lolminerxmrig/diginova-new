@@ -22,7 +22,7 @@ Route::get('/', [FrontController::class, 'index'])->name('front.indexPage');
 
 
 if (\Schema::hasTable('settings') && Setting::where('name', 'product_code_prefix')->count()) {
-  $product_code_prefix = Setting::where('name', 'product_code_prefix')->first()->value;
+  $product_code_prefix = strtolower(Setting::where('name', 'product_code_prefix')->first()->value);
 } else {
   $product_code_prefix = 'dnp';
 }

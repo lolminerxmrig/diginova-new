@@ -94,19 +94,18 @@
                                         <tbody>
                                         <tr class="c-ui-table__row">
                                             <td class="uk-flex uk-flex-middle" style="width: 26%;float: right;">
-                                                {{ $comment->customer->email }}
-                                                (خریدار) یادم نره درستش کنم
+                                              {{ $comment->customer->first_name . ' ' . $comment->customer->last_name }}
                                             </td>
 
                                             <td class="uk-flex uk-flex-middle" style="width: 15%;float: right;">
                                                 <div class="c-profile-rating__vote c-profile-rating__vote--thumbs-up">
-                                                    {{ persianNum($comment->feedbacks()->where('status', 'like')->count()) }}
+                                                    {{ persianNum($comment->feedbacks ? $comment->feedbacks()->where('status', 'like')->count() : '') }}
                                                 </div>
                                             </td>
 
                                             <td class="uk-flex uk-flex-middle" style="width: 15%;float: right;">
                                                 <div class="c-profile-rating__vote c-profile-rating__vote--thumbs-down" style="margin-top: 0px;">
-                                                    {{ persianNum($comment->feedbacks()->where('status', 'deslike')->count()) }}
+                                                    {{ persianNum($comment->feedbacks ? $comment->feedbacks()->where('status', 'deslike')->count() : '') }}
                                                 </div>
                                             </td>
 

@@ -59,7 +59,9 @@
                                 @if(isset($product_variant->variant->value) && !is_null($product_variant->variant->value))
                                     <span class="c-variant-checkbox__color" style="background-color: {{ $product_variant->variant->value }};"></span>
                                 @endif
-                                <span class="js-variant-attribute-title">{{ $product_variant->variant->name }}</span>
+                                @if(isset($product_variant->variant))
+                                  <span class="js-variant-attribute-title">{{ $product_variant->variant->name }}</span>
+                                @endif
                             </td>
                             @if(!is_null($product_variant->warranty->month))
                                 <td class="c-variation-diversity__warranty"> گارانتی {{ persianNum($product_variant->warranty->month) }} ماهه {{ $product_variant->warranty->name }} </td>

@@ -13,11 +13,9 @@ do {
 $product_categories[] = $category;
 $product_categories = array_reverse($product_categories, true);
 
-
 $customer = auth()->guard('customer')->user();
 
 $is_buyed = is_buyed($product);
-
 
 ?>
 
@@ -115,7 +113,7 @@ $is_buyed = is_buyed($product);
 
               @foreach($product_categories as $key => $item)
                 <li property="itemListElement" typeof="ListItem">
-                  <a property="item" typeof="WebPage" href="{{ route('category', ['slug' => $item->slug]) }}">
+                  <a property="item" typeof="WebPage" href="{{ route('front.categoryPage', ['slug' => $item->slug]) }}">
                     <span property="name">{{ $item->name }}</span>
                   </a>
                   <meta property="position" content="{{ $key+1 }}">

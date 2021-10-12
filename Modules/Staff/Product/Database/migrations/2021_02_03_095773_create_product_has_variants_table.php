@@ -16,12 +16,12 @@ class CreateProductHasVariantsTable extends Migration
         Schema::create('product_has_variants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id');
-            $table->foreignId('variant_id');
+            $table->foreignId('variant_id')->nullable();
             $table->foreignId('warranty_id');
             $table->string('shipping_type')->default('site');
             $table->string('status')->default('1');
             $table->integer('post_time');
-            $table->integer('buy_price');
+            $table->integer('buy_price')->nullable();
             $table->integer('sale_price');
             $table->integer('sale_count')->default(0);
             $table->integer('max_order_count');

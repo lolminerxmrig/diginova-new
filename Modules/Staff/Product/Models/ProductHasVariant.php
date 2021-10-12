@@ -2,29 +2,18 @@
 
 namespace Modules\Staff\Product\Models;
 
-use App\Models\SeoContent;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-use Modules\Staff\Attribute\Models\Attribute;
-use Modules\Staff\Attribute\Models\AttributeGroup;
-use Modules\Staff\Attribute\Models\AttributeProduct;
-use Modules\Staff\Attribute\Models\ProductAttributes;
-use Modules\Staff\Brand\Models\Brand;
-use Modules\Staff\Category\Models\Category;
+use Modules\Staff\Variant\Models\Variant;
 use Modules\Staff\Landing\Models\Landing;
+use Modules\Staff\Warranty\Models\Warranty;
 use Modules\Staff\Promotion\Models\Campain;
 use Modules\Staff\Promotion\Models\Promotion;
-use Modules\Staff\Type\Models\Type;
-use App\Models\Media;
-use Modules\Staff\Variant\Models\Variant;
-use Modules\Staff\Warranty\Models\Warranty;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 
 class ProductHasVariant extends Model
 {
+    protected $table = "product_has_variants";
 
     protected $fillable = [
       'product_id',
@@ -43,10 +32,8 @@ class ProductHasVariant extends Model
       'variant_code',
     ];
 
-    protected $table = "product_has_variants";
-
     public function warranty(){
-      return $this->belongsTo(Warranty::class);
+        return $this->belongsTo(Warranty::class);
     }
 
     public function variant(){
@@ -58,14 +45,10 @@ class ProductHasVariant extends Model
         return $this->belongsTo(Product::class);
     }
 
-//    public function product_variant_category()
-//    {
-//        return $this->hasManyThrough(Category::class, Product::class);
-//    }
-
     public function categories()
     {
-        return $this->hasManyThrough(ProductHasVariant::class, Product::class)->where('categorizable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
+        return $this->hasManyThrough(ProductHasVariant::class, Product::class)
+            ->where('categorizable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
     }
 
     public function campains()
@@ -81,7 +64,5 @@ class ProductHasVariant extends Model
     public function promotions()
     {
         return $this->morphedByMany(Promotion::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id');
-//        return $this->morphedByMany(Promotion::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id');
     }
-
 }
