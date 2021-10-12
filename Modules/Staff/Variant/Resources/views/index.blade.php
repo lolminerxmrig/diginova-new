@@ -35,7 +35,7 @@
                                                     </a>
 
                                                     <a href="{{ route('staff.variants.variantCategory') }}" target="_blank" style="float: right;margin-right: 13px;">
-                                                        <div class="c-mega-campaigns__btns-green uk-margin-remove" style="line-height: 1.771 !important;background-color: #e04747e6;box-shadow: 0 6px 12px 0 rgb(211 0 97 / 20%);color: white;">
+                                                        <div class="c-mega-campaigns__btns-green uk-margin-remove" style="line-height: 1.771 !important;background-color: #4fcce9;box-shadow: 0 6px 12px 0 rgb(79 193 233 / 30%);color: white;">
                                                             تعیین تنوع مجاز
                                                         </div>
                                                     </a>
