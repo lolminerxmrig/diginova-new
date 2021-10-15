@@ -1,5 +1,6 @@
 <?php
 $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
+$banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
 $footer_desc_title = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->first()->value : null;
 $footer_description = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->first()->value : null;
 $footer_slogan = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->first()->value : null;
@@ -44,7 +45,7 @@ $header_navs =
     <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="canonical" href="{{ $site_url }}" />
+    {{--  <link rel="canonical" href="{{ $site_url }}" />  --}}
     <link rel="shortcut icon"
         href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}"
         type="image/icon">
@@ -74,22 +75,16 @@ $header_navs =
 
     <header class="c-header js-header">
 
-        @if (!is_null($banner1) &&
-    $banner1->images()->exists() &&
-    $banner1->images()->first()->media()->exists())
-            <aside
-                class="c-adplacement c-adplacement__placeholder c-adplacement__container-row c-adplacement__container-row--top">
-                <a href="#" class="c-adplacement__item" target="_blank"
-                    style="background-image: url({{ $banner1->images()->first()->media()->exists()
-    ? $site_url .
-        '/' .
-        $banner1->images()->first()->media->first()->path .
-        '/' .
-        $banner1->images()->first()->media->first()->name
-    : '' }})"
+        @if (!is_null($banner1) && $banner1->images()->exists() && $banner1->images()->first()->media()->exists())
+            <aside class="c-adplacement c-adplacement__placeholder c-adplacement__container-row c-adplacement__container-row--top">
+                <a href="#" class="c-adplacement__item" target="_blank" style="background-image: url({{ $banner1->images()->first()->media()->exists()
+                    ? $site_url . '/' . $banner1->images()->first()->media->first()->path . '/' . $banner1->images()->first()->media->first()->name
+                    : ''
+                 }})"
                     title="{{ $banner2->images()->first()->media()->exists()
-    ? $banner2->images()->first()->alt
-    : '' }}"></a>
+                        ? $banner2->images()->first()->alt
+                        : '' }}
+                        "></a>
             </aside>
         @endif
 

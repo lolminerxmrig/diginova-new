@@ -8,8 +8,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-use Cookie;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Modules\Customers\Front\Models\Cart;
@@ -28,17 +26,13 @@ use Modules\Staff\Peyment\Models\PeymentMethod;
 use Modules\Staff\Peyment\Models\PeymentRecord;
 use Modules\Staff\Product\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Product\Models\ProductWeight;
 use Modules\Staff\Setting\Models\Setting;
 use GuzzleHttp\Client;
-use Modules\Customers\Auth\Models\Customer;
 use Modules\Staff\Shiping\Http\postPishtaz;
 use Modules\Staff\Shiping\Http\postSefareshi;
 use Modules\Staff\Shiping\Models\DeliveryMethod;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Route;
 use Modules\Staff\ProductSwiper\Models\ProductSwiper;
 use Modules\Staff\Shiping\Models\OrderStatus;
 use Modules\Staff\Slider\Models\Slider;
@@ -46,18 +40,12 @@ use Modules\Staff\Voucher\Models\Voucher;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use Modules\Staff\Promotion\Models\Campain;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\QueryBuilder;
-use Spatie\QueryBuilder\AllowedSort;
 
 
 class FrontController extends Controller
 {
 
-  /**
-   * @return \Illuminate\Contracts\View\View
-   */
+
   public function index()
   {
     $customer = Auth::guard('customer')->user();
@@ -118,24 +106,44 @@ class FrontController extends Controller
 
   }
 
-  /**
-   * @param $product_code
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-   */
   public function productPage(int $product_code)
   {
-    $product = Product::where('product_code', $product_code)->with('variants')->firstOrFail();
+    $product_title_prefix = Setting::whereName('product_title_prefix')->first()->value;
+    $product = Product::where('product_code', $product_code)
+        ->with('variants')
+        ->firstOrFail();
+
     $variant_defualt = variant_defualt($product);
 
     $variant_ids = [];
-    foreach ($product->variants()->where('status', 1)->where('stock_count', '>', 1)->get() as $item) {
-      if (isset($item->variant->id) && !in_array($item->variant->id, $variant_ids)) {
-        $variant_ids[] = $item->variant->id;
+
+    $variants = $product->variants()
+        ->where('status', 1)
+        ->where('stock_count', '>', 0)
+        ->get();
+
+    foreach ($variants as $p_variant) {
+      if (isset($p_variant->variant->id) && !in_array($p_variant->variant->id, $variant_ids)) {
+        $variant_ids[] = $p_variant->variant->id;
       }
     }
+
     $ratings = $product->ratings;
 
-    return view('front::product', compact('product', 'variant_defualt', 'variant_ids'));
+
+    $category = $product->category->first();
+    do
+    {
+        $product_categories[] = $category;
+        $category = $category->parent;
+    } while (isset($category->parent));
+
+    $product_categories[] = $category;
+    $product_categories = array_reverse($product_categories,true);
+
+    return view('front::product',
+        compact('product', 'variant_defualt', 'variant_ids', 'product_title_prefix', 'product_categories')
+    );
   }
 
   /**
@@ -210,11 +218,9 @@ class FrontController extends Controller
    */
   public function categoryPage($slug)
   {
-    if (Category::where('slug', $slug)->doesntExist()) {
-      abort(404);
-    }
 
-    $category = Category::where('slug', $slug)->first();
+    $category = Category::whereSlug($slug)->firstOrFail();
+
     $cat = $category;
     $products = $cat->products()->paginate(2);
 
@@ -233,7 +239,9 @@ class FrontController extends Controller
 
     $fullCategoryList = ['دسته 3', 'دسته 2', 'دسته 1'];
 
-    return view('front::category', compact('cat', 'category', 'fullCategoryList', 'categories','brands' ,'products', 'slug'));
+    return view('front::category',
+        compact('cat', 'category', 'fullCategoryList', 'categories','brands' ,'products', 'slug')
+    );
 
   }
 
@@ -268,7 +276,9 @@ class FrontController extends Controller
       $customer_id = null;
     }
 
-    return view('front::ajax.product.comments', compact('comments', 'product', 'customer_id', 'mode'));
+    return view('front::ajax.product.comments',
+        compact('comments', 'product', 'customer_id', 'mode')
+    );
   }
 
   /**
@@ -304,7 +314,9 @@ class FrontController extends Controller
    */
   public function createComment($product_id)
   {
-    $product = Product::where('product_code', $product_id)->first();
+    $product = Product::where('product_code', $product_id)
+        ->first();
+
     return view('front::create-comment', compact('product'));
   }
 
@@ -391,7 +403,11 @@ class FrontController extends Controller
   {
     $customer_id = Auth::guard('customer')->user()->id;
     $product_id = Product::where('product_code', $product_id)->first()->id;
-    CustomerFavorite::where('product_id', $product_id)->where('customer_id', $customer_id)->first()->delete();
+
+    CustomerFavorite::where('product_id', $product_id)
+        ->where('customer_id', $customer_id)
+        ->first()
+        ->delete();
 
     return response()->json([
       'status' => true,
@@ -444,8 +460,13 @@ class FrontController extends Controller
       $likeFlag = 1;
     }
 
-    $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'like')->count();
-    $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'dislike')->count();
+    $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)
+        ->where('status', 'like')
+        ->count();
+
+    $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)
+        ->where('status', 'dislike')
+        ->count();
 
     return response()->json([
       'status' => true,
@@ -494,8 +515,13 @@ class FrontController extends Controller
       $dislikeFlag = 1;
     }
 
-    $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'like')->count();
-    $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)->where('status', 'dislike')->count();
+    $comment_likes_count = CommentFeedback::where('comment_id', $comment_id)
+        ->where('status', 'like')
+        ->count();
+
+    $comment_dislikes_count = CommentFeedback::where('comment_id', $comment_id)
+        ->where('status', 'dislike')
+        ->count();
 
     return response()->json([
       'status' => true,
@@ -510,9 +536,7 @@ class FrontController extends Controller
 
   }
 
-  /**
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-   */
+
   public function cart()
   {
 
@@ -531,7 +555,13 @@ class FrontController extends Controller
         'new_sale_price' => $item->product_variant()->first()->sale_price,
 
         'old_promotion_price' => $new_promotion_price,
-        'new_promotion_price' => $item->product_variant()->first()->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price'),
+        'new_promotion_price' => $item->product_variant()->first()
+                ->promotions()
+                ->whereDate('start_at', '<=', now())
+                ->whereDate('end_at', '>=', now())
+                ->where('status', 'active')
+                ->orWhere('status', 1)
+                ->min('promotion_price'),
       ]);
     }
 
@@ -691,9 +721,12 @@ class FrontController extends Controller
   {
     $customer = Auth::guard('customer')->user();
 
-    Cart::where('customer_id', $customer->id)->where('type', 'second')->first()->update([
-      'type' => 'first',
-    ]);
+    Cart::where('customer_id', $customer->id)
+        ->where('type', 'second')
+        ->first()
+        ->update([
+          'type' => 'first',
+        ]);
 
     return response()->json([
       'status' => true,
@@ -704,7 +737,7 @@ class FrontController extends Controller
   }
 
   /**
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+   * @return \Illuminate\Contracts\View\View
    */
   public function addAddress()
   {

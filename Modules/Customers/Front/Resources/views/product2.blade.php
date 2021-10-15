@@ -1,54 +1,313 @@
-<?php
-    // meta keywords
-    if ($product->seo()->exists() &&  $product->seo->keyword) {
-        $keywords_array = json_decode($product->seo->keyword, true);
-        $keywords = [];
-        foreach ($keywords_array as $keyword) {
-            $keywords[] = $keyword['value'];
-        }
-    }
+@php
+  $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
 
-    $product_variants = $product->variants()
-        ->where('stock_count', '>', 0)
-        ->whereStatus(1)
-        ->get();
+  $category = $product->category->first();
+  do
+  {
+  $product_categories[] = $category;
+  $category = $category->parent;
+  } while (isset($category->parent));
+  $product_categories[] = $category;
+  $product_categories = array_reverse($product_categories,true)
+@endphp
 
-    $variantGroup = $product->categories()
-        ->first()
-        ->variantGroup()
-        ->first();
-?>
 @extends('layouts.front.master')
 
 @section('head')
   <title>{{ $product_title_prefix . ' ' . $product->title_fa . '  '  }}</title>
   <!-- SEO -->
-  <meta name="description" content="{{ $product->seo()->exists() ? $product->seo->description : '' }}"/>
-  <meta name="keywords" content="{{ $keywords ? implode(', ', $keywords) : '' }}"/>
-  <link rel="canonical" href="{{ route('front.productPage', ['product_code' => $product->product_code]) }}"/>
+  <meta name="description" content=""/>
+  <meta name="keywords" content=""/>
+  <link rel="canonical" href=""/>
 
-  @include('front::layouts.product.head-script', compact('product','product_variants', 'variantGroup'))
+  <script>
+    var supernova_mode = "production";
+    var supernova_tracker_url = "";
+    @if ($product->variants()->where('stock_count', '>', 0)->exists())
+    var variants = {
+      @foreach ($product->variants()->where('stock_count', '>', 0)->get() as $key => $item)
+        @if($item->variant()->exists() && !is_null($item->variant->value))
+        <?php
+          $promotion_price = null;
+          if ($item->promotions()->exists()) {
+            $promotion_price = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+            if ($item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->exists()) {
+              $promotion_timer = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first()->end_at;
+              $promotion = $item->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('promotion_price', $promotion_price)->where('status', 'active')->orWhere('status', 1)->first();
+            } else {
+              $promotion_timer = null;
+            }
+          }
+          if ($promotion_price == null) {
+            $promotion_price = $item->sale_price;
+            $promotion_timer = 'false';
+            $promotion = null;
+          }
+          ?>
+        "{{ $item->variant_code }}": {
+          "id": {{ $item->variant_code }},
+          "active": {{ ($item->status == 1)? 'true' : 'false' }},
+          "active_digistyle": true,
+          "ovl_selling_active": true,
+          "title": "{{ $product->title_fa }}",
+          @if($item->variant()->exists() && !is_null($item->variant->value))
+          "color": {
+            "id": {{ $item->variant->id }},
+            "title": "{{ $item->variant->name }}",
+            "code": "{{ $item->variant->value }}",
+            "hexCode": "{{ $item->variant->value }}",
+            "hex_code": "{{ $item->variant->value }}"
+          },
+          @else
+          "size": [],
+          @endif
+          "site": "{{ $site_url }}",
+          "warranty": {
+            "id": {{ $item->warranty->id }},
+            "title": "{{ $item->warranty->name }}",
+            "description": null,
+            "phone": null,
+            "address": null,
+            "working_hours": null,
+            "condition": null
+          },
+          "marketplace_seller": {
+            "id": 0,
+            "name": "{{ $fa_store_name }}",
+            "rate": 0,
+            "rateCount": 0,
+            "rating": {
+              "cancel_percentage": 0,
+              "cancel_summarize": "excellent",
+              "return_percentage": 0,
+              "return_summarize": "good",
+              "ship_on_time_percentage": 0,
+              "ship_on_time_summarize": "excellent",
+              "final_score": 0,
+              "final_percentage": 0
+            },
+            "stars": 0,
+            "is_trusted": false,
+            "is_official_seller": false,
+            "is_roosta": false,
+            "url": "",
+            "registerTimeAgo": ""
+          },
+          "leadTime": 0,
+          "shipping_type": "digikala",
+          "gifts": [],
+          "gift_product_ids": [],
+          "seller_lead_time": 0,
+          "market_place_selling_stock": 5,
+          "is_fresh": false,
+          "scheduled_stock": false,
+          "promotion_price_id": null,
+          "is_digikala_owner": {{ (\Modules\Staff\Setting\Models\Setting::where('name', 'symbol_image')->first()->media()->exists())? 'true' : 'false' }},
+          "rank": 0,
+          "sr": null,
+          "has_similar_variants": true,
+          "fast_shopping_badge": false,
+          "fast_shopping_confirm": false,
+          "is_multi_warehouse": false,
+          "is_ship_by_seller": false,
+          "is_eligible_for_jet_delivery": false,
+          "plus_cash_back": null,
+          "stats": null,
+          "available_on_website": {{ ($item->stock_count > 0)? 'true' : 'false' }},
+          "provider": "digikala",
+          "is_heavy": false,
+          "is_electronic": false,
+          "sbs_seller_cities": [0],
+          "price_list": {
+            "id": 0{{ $item->variant_code }},
+            "discount_percent": null,
+            "rrp_price": {{ $item->sale_price }},
+            "selling_price": {{ $promotion_price }},
+            "is_incredible_offer": {{ ($item->promotions()->exists())? 'true' : 'false' }},
+            "is_plus_offer": false,
+            "is_sponsored_offer": false,
+            "is_locked_for_plus": false,
+            "promotion_id": null,
+            @if ($promotion_timer !== 'false')
+            "timer": "{{ $promotion_timer }}",
+            @else
+            "timer": null,
+            @endif
+            "pre_sell": false,
+            "variant_id": {{ $item->variant_code }},
+            "orderLimit": {{ $item->max_order_count }},
+            "initial_limit": null,
+            "tags": null,
+            "cache_key_created_at": "",
+            "cache_update_source": "supernova-digikala-desktop",
+            "discount_amount": 0,
+            "discount": 0,
+            "show_discount_badge": false,
+            "marketable_stock": {{ $item->stock_count }},
+            "plus_variant_cash_back": 0
+          },
+          "addToCartUrl": "{{ route('front.addToCart', $item->variant_code) }}",
+          "addToYaldaCartUrl": "",
+          "dcPoint": 8,
+          "is_free_shipment": false,
+          "providerData": {
+            "description": "{{ $fa_store_name }}",
+            "providers": [{
+              "title": "{{ $fa_store_name }}",
+              "description": "این محصول توسط {{ $fa_store_name }} به فروش می رسد."
+            }],
+            "hasLeadTime": false,
+            "badge_type": "without_lead_time"
+          },
+          "newProviderData": [{
+            "type": "digikala",
+            "has_lead_time": false,
+            "text": "{{ $fa_store_name }}"
+          }],
+          "isExistsInWarehouse": {{ ($item->stock_count !== 0)? 'true' : 'false' }}
+        },
+        @endif
+      @endforeach
+    };
+    @endif
+    var defaultVariantId = {{ !is_null($variant_defualt)? $variant_defualt->variant_code : 'null' }};
+    var maxVisibleVariant = 3;
+    var maxVisibleSupplier = 3;
+    var hasColorOrSize = true;
+    var sellerStatistics = [];
+    var hasQuickView = false;
+    var cart = {"cartId": 0, "variants": [], "products": [], "itemCount": 0, "isPlusUser": false};
+    var productId = {{ $product->product_code }};
+    var videos = [];
+    var enhanced_ecommerce = {
+      "id": {{ $product->product_code }},
+      "name": "{{ $product->title_fa }}",
+      "category": "{{ $product->category()->first()->en_name }}",
+      "category_id": {{ $product->category()->first()->id }},
+      "brand": "{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}",
+      "variant": {{ !is_null($variant_defualt)?  $variant_defualt->variant_code : 'null' }},
+      "price": {{ isset($item)? $item->sale_price : 'null' }},
+      "discount_percent": {{ (isset($promotion) && !is_null($promotion))? $promotion->percent : 0 }},
+      "quantity": 1
+    };
+    var categoryId = {{ $product->category()->first()->id }};
+    var nowTimeInUTC = "{{ now() }}";
+    var emarsysCategoryBreadcrumb = [];
+    var emarsysBrand = "{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}";
+    var ecpd2 = {
+      "id": {{ $product->product_code }},
+      "title": "{{ $product->title_fa }}",
+      "has_gift": false,
+      "is_exclusive": false,
+      "is_incredible": 0,
+      "is_selling_and_sales": 0,
+      "multi_color": true,
+      "multi_size": false,
+      "multi_warranty": true,
+      "multi_seller": true,
+      "site_category": ["", "", ""],
+      "supply_category": ["{{ $product->category->first()->en_name }}", "{{ $product->category->first()->name }}"],
+      "category": {"id": {{ $product->category->first()->id }}, "title": "{{ $product->category->first()->name }}"},
+      "brand": {
+        "id": {{ ($product->brand()->exists())? $product->brand->id : 0 }},
+        "title": "{{ ($product->brand()->exists())? $product->brand->name : 'متفرقه' }}"
+      },
+      "price": {"selling_price": 782000, "discount_percent": 0},
+      "status": "marketable",
+      "variants": [
+        {
+          "id": 1,
+          "seller": 0,
+          "color": 1,
+          "size": 0,
+          "warranty": 3
+        },
+        {
+          "id": 14056069,
+          "seller": 16763,
+          "color": 67,
+          "size": 0,
+          "warranty": 3
+        },
+        {
+          "id": 13416583,
+          "seller": 325102,
+          "color": 1,
+          "size": 0,
+          "warranty": 3
+        },
+        {
+          "id": 11911992,
+          "seller": 16763,
+          "color": 1,
+          "size": 0,
+          "warranty": 3
+        },
+        {
+          "id": 12134031,
+          "seller": 418108,
+          "color": 1,
+          "size": 0,
+          "warranty": 3
+        },
+        {
+          "id": 13520859,
+          "seller": 143851,
+          "color": 1,
+          "size": 0,
+          "warranty": 3
+        },
+        {
+          "id": 15673751,
+          "seller": 289363,
+          "color": 1,
+          "size": 0,
+          "warranty": 3
+        }
+      ],
+      @foreach($product->media as $image)
+        @if($product->media && ($image->pivot->is_main == 1))
+      "image_url": "{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
+      @endif
+        @endforeach
+      "product_url": "{{ route('front.productPage', $product->product_code) }}"
+    };
+    var isbn = null;
+    var min_price_in_last_month = 0;
+    var isPDP = true;
+    var faqPageTitle = "pdp_section";
+    var isAnanasFriendly = true;
+    var userId = {{ (auth()->guard('customer')->check())? auth()->guard('customer')->user()->id : 'null' }};
+    var adroRCActivation = true;
+    var loginRegisterUrlWithBack = "/users/login-register";
+    var isNewCustomer = false;
+    var digiclubLuckyDrawEndTime = "";
+    var activateUrl = "";
+  </script>
 
-  <script src="{{ asset('assets/js/sentry.js') }}"></script>
-  <script src="{{ asset('assets/new/js/jwplayer.js') }} "></script>
-  <script src="{{ asset('assets/new/js/jwpsrv.js') }} "></script>
-  <script src="{{ asset('assets/new/js/jwplayer.core.controls.js') }} "></script>
-  <script src="{{ asset('assets/new/js/jwplayer.core.controls.html5.js') }} "></script>
-  <script src="{{ asset('assets/new/js/provider.hlsjs.js') }} "></script>
-  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>
-  <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>
-  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>
-  <script src="{{ asset('assets/new/js/url.min.js') }}"></script>
+ <script src="{{ asset('assets/js/sentry.js') }}"></script>
+ <script src="{{ asset('assets/new/js/jwplayer.js') }} "></script>
+ <script src="{{ asset('assets/new/js/jwpsrv.js') }} "></script>
+ <script src="{{ asset('assets/new/js/jwplayer.core.controls.js') }} "></script>
+ <script src="{{ asset('assets/new/js/jwplayer.core.controls.html5.js') }} "></script>
+ <script src="{{ asset('assets/new/js/provider.hlsjs.js') }} "></script>
+ <script src="{{ asset('assets/new/js/url.min.js') }}"></script>
+ <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>--}}
+ <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>
+ <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>
+ <script src="{{ asset('assets/new/js/videojs-hls-quality-selector1.min.js') }} "></script>
+
 
   <style>
-      body {
-        background-color: #fff !important;
-      }
+    body {
+      background-color: #fff !important;
+    }
 
-      .dislike-style.is-active {
-        color: #ee434e !important;
-      }
+    .dislike-style.is-active {
+      color: #ee434e !important;
+    }
   </style>
+
 @endsection
 
 @section('content')
@@ -718,7 +977,7 @@
                   class="o-btn o-btn--link-blue-sm o-btn--remove-padding o-btn--l-expand-more is-open js-less-supplier-button"
                   data-is-open="0" data-snt-event="dkProductPageClick"
                   data-snt-params="{&quot;item&quot;:&quot;show-fewer-supplier&quot;,&quot;item_option&quot;:null}">
-                  تنها نمایش ۳ نتوع اول
+                  تنها نمایش ۳ فروشنده اول
                 </button>
               </div>
               <div class="c-table-suppliers-more js-table-suppliers-more">
@@ -728,9 +987,9 @@
                   data-event-label="3186052-category: دسته بازی, sellers: 6 - default_seller: marketplace"
                   data-is-open="0" data-snt-event="dkProductPageClick"
                   data-snt-params="{&quot;item&quot;:&quot;show-more-supplier&quot;,&quot;item_option&quot;:null}">
-                  نمایش همه
-                  {{--  <span class="u-ml-4 u-mr-4 js-more-suppliers-count">۳</span>  --}}
-                  {{--  فروشنده دیگر این کالا  --}}
+                  نمایش
+                  <span class="u-ml-4 u-mr-4 js-more-suppliers-count">۳</span>
+                  فروشنده دیگر این کالا
                 </button>
               </div>
             </div>
@@ -962,16 +1221,13 @@
                         alt="{{ $product->title_fa }}">
                     <div class="c-mini-buy-box__product-info--info">
                       <div class="title">{{ $product->title_fa }}</div>
-                      @if($product_variants && $product_variants->first()->variant()->exists() && !is_null($product_variants->first()->variant->value))
-                        <div class="colors">
-                            <label class="js-variant-color"></label>
-                            <span class="js-color-title"></span>
-                        </div>
-                      @elseif($product_variants && $product_variants->first()->variant()->exists())
-                      <div class="sizes">
-                          <span class="js-size-title"></span>
+                      <div class="colors ">
+                        <label class="js-variant-color"></label>
+                        <span class="js-color-title"></span>
                       </div>
-                      @endif
+                      <div class="sizes u-hidden">
+                        <span class="js-size-title"></span>
+                      </div>
                     </div>
                   </div>
                   <div class="c-mini-buy-box__row c-mini-buy-box__seller-digikala u-hidden js-mini-digikala-seller">

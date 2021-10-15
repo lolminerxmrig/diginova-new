@@ -5,8 +5,8 @@ namespace Modules\Staff\Promotion\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Media;
-use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\Product;
+use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\ProductHasVariant;
 
 
@@ -23,6 +23,13 @@ class Promotion extends Model
 
     public function campain() {
       return $this->belongsTo(Campain::class);
+    }
+
+    public function scopeActive($query) {
+        return $query->whereDate('start_at', '<=', now())
+            ->whereDate('end_at', '>=', now())
+            ->where('status', 'active')
+            ->orWhere('status', 1);
     }
 
 //    public function productVariants()

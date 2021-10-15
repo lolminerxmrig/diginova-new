@@ -17,19 +17,29 @@ use Modules\Staff\Unit\Models\Unit;
 
 class StaffVariantController extends Controller
 {
-
+    /**
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index()
     {
-        $variant_groups = VariantGroup::paginate(10)->sortBy('position');
-        return view('staffvariant::index', compact('variant_groups'));
+        $variant_groups = VariantGroup::paginate(10)
+            ->sortBy('position');
+
+        return view('staffvariant::index',
+            compact('variant_groups')
+        );
     }
 
     public function edit($id)
     {
-        $variantGroup = VariantGroup::where('id', $id)->firstOrFail();
+        $variantGroup = VariantGroup::where('id', $id)
+            ->firstOrFail();
 
-        if (count($variants = Variant::where('group_id', $id)->get())) {
-            $variants = Variant::where('group_id', $id)->orderBy('position')->get();
+        if (Variant::where('group_id', $id)->count()) {
+            $variants = Variant::where('group_id', $id)
+                ->orderBy('position')
+                ->get();
         } else {
             $variants = collect();
         }
@@ -39,8 +49,11 @@ class StaffVariantController extends Controller
 
     public function getData(Request $request)
     {
-        $variant_groups = VariantGroup::paginate(10)->sortBy('position');
-        return view('staffvariant::ajax-content', compact('variant_groups'));
+        $variant_groups = VariantGroup::paginate(10)
+            ->sortBy('position');
+
+        return view('staffvariant::ajax-content',
+            compact('variant_groups'));
     }
 
     public function storeGroup(Request $request)
@@ -74,8 +87,11 @@ class StaffVariantController extends Controller
                 'status' => 1,
             ]);
 
-            $variant_groups = VariantGroup::paginate(10)->sortBy('position');
-            return view('staffvariant::ajax-content', compact('variant_groups'));
+            $variant_groups = VariantGroup::paginate(10)
+                ->sortBy('position');
+
+            return view('staffvariant::ajax-content',
+                compact('variant_groups'));
         }
     }
 
@@ -90,12 +106,13 @@ class StaffVariantController extends Controller
 
     public function deleteGroup(Request $request)
     {
-        VariantGroup::find($request->id)->delete();
+        VariantGroup::whereId($request->id)
+            ->delete();
     }
 
     public function statusGroup(Request $request)
     {
-        VariantGroup::where('id', $request->group_id)->update([
+        VariantGroup::whereId($request->group_id)->update([
             'status' => $request->status,
         ]);
     }
@@ -114,7 +131,7 @@ class StaffVariantController extends Controller
         // delete variant
         if (isset($request->deleted_rows) && (!is_null($request->deleted_rows))) {
             foreach ($request->deleted_rows as $deleted_row) {
-                Variant::find($deleted_row)->delete();
+                Variant::whereId($deleted_row)->delete();
             }
         }
 
@@ -139,7 +156,7 @@ class StaffVariantController extends Controller
                     $value = null;
                 } elseif (VariantGroup::find($request->group_id)->type == 2) {
                     $value = $request->variant_values[$i];
-                    if (!str_starts_with($value, '#')){
+                    if (!str_starts_with($value, '#')) {
                         $value = '#' . $value;
                     }
                 } else {
@@ -154,8 +171,7 @@ class StaffVariantController extends Controller
                         'position' => $i,
                         'group_id' => $request->group_id,
                     ]);
-                }
-                else {  // اگه سطر جدید نبود
+                } else {  // اگه سطر جدید نبود
                     if (!Variant::find($positions[$i])) {
                         $i++;
                         continue;
@@ -177,25 +193,29 @@ class StaffVariantController extends Controller
     public function variantCategory()
     {
         $categories = Category::all();
-        return view('staffvariant::variant-category', compact('categories'));
+
+        return view('staffvariant::variant-category',
+            compact('categories')
+        );
     }
 
     public function loadCategoryVariant(Request $request)
     {
         $category = Category::findOrFail($request->category_id);
         $variantGroups = VariantGroup::all();
-        if (!count($variantGroups)) {
+
+        if (! count($variantGroups)) {
             $variantGroups = [];
         }
 
-        return View::make('staffvariant::ajax-config-content', compact('category', 'variantGroups'));
+        return View::make('staffvariant::ajax-config-content',
+            compact('category', 'variantGroups'));
     }
 
-    public function saveConfig(Request $request) {
+    public function saveConfig(Request $request)
+    {
         $category = Category::find($request->category_id);
         $variantGroup = VariantGroup::find($request->variant_g_id);
-//        $category->variantGroup()->detach();
-//        $category->variantGroup()->attach($variantGroup);
         $category->variantGroup()->sync($variantGroup);
     }
 }
