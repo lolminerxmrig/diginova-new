@@ -253,57 +253,45 @@ class FrontController extends Controller
 
   }
 
-  /**
-   * @param Request $request
-   * @param $product_id
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-   */
   public function productComments(Request $request, $product_id)
   {
-    $product = Product::where('product_code', $product_id)->first();
+    $product = Product::where('product_code', $product_id)
+        ->first();
 
-    if ($request['mode'] == 'buyers') {
-      $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
-      $mode = 'buyers';
-    } else {
-      $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
-      $mode = 'newest_comment';
-    }
+    $comments = $product->comments()
+        ->accepted()
+        ->paginate(2);
 
-    if (Auth::guard('customer')->check()) {
-      $customer_id = Auth::guard('customer')->user()->id;
-    } else {
-      $customer_id = null;
-    }
+    $mode = $request['mode'] == 'buyers'
+        ? 'buyers'
+        : 'newest_comment';
+
+    $customer_id = Auth::guard('customer')->check()
+        ? Auth::guard('customer')->user()->id
+        : null;
 
     return view('front::ajax.product.comments',
         compact('comments', 'product', 'customer_id', 'mode')
     );
   }
-
-  /**
-   * @param Request $request
-   * @param $product_id
-   * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-   */
+     
   public function productCommentList(Request $request, $product_id)
   {
 
-    $product = Product::where('product_code', $product_id)->first();
+    $product = Product::where('product_code', $product_id)
+        ->first();
 
-    if ($request['mode'] == 'buyers') {
-      $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
-      $mode = 'buyers';
-    } else {
-      $comments = $product->comments()->where('publish_status', 'accepted')->paginate(2);
-      $mode = 'newest_comment';
-    }
+    $comments = $product->comments()
+        ->accepted()
+        ->paginate(2);
 
-    if (Auth::guard('customer')->check()) {
-      $customer_id = Auth::guard('customer')->user()->id;
-    } else {
-      $customer_id = null;
-    }
+    $mode = $request['mode'] == 'buyers'
+        ? 'buyers'
+        : 'newest_comment';
+
+    $customer_id = Auth::guard('customer')->check()
+        ? Auth::guard('customer')->user()->id
+        : null;
 
     return view('front::ajax.product.commentList', compact('comments', 'product', 'customer_id', 'mode'));
   }

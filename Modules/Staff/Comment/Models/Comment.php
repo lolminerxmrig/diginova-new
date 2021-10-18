@@ -19,6 +19,11 @@ class Comment extends Model
     // protected $table = 'comments';
     protected $fillable = ['parent_id', 'text', 'title', 'advantages', 'disadvantages', 'is_anonymous', 'recommend_status', 'publish_status', 'product_id', 'customer_id'];
 
+
+    public function scopeAccepted($query) {
+        return $query->where('publish_status', 'accepted');
+    }
+
     public function media()
     {
         return $this->morphToMany(Media::class, 'mediable');

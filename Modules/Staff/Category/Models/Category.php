@@ -5,8 +5,6 @@ namespace Modules\Staff\Category\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 use Modules\Staff\Attribute\Models\AttributeGroup;
 use Modules\Staff\Attribute\Models\Attribute;
 use Modules\Staff\Brand\Models\Brand;
@@ -24,30 +22,30 @@ class Category extends Model
 {
     use HasFactory, Searchable;
 
-    protected $fillable = ['name', 'en_name', 'parent_id', 'slug', 'description'];
-
+    protected $fillable = [
+        'name',
+        'en_name',
+        'parent_id',
+        'slug',
+        'description'
+    ];
 
     public function scopeSearch($query, string $searchText)
     {
-      $searchColumns = ['name'];
-  //      $relationColumns = [];
-      return $this->search($query, $searchText, $searchColumns);
+        $searchColumns = ['name'];
+
+        return $this->search($query, $searchText, $searchColumns);
     }
 
     public function scopeDigiSearch($query, $column,  string $searchText)
     {
-      $query->where($column, 'like', '%' .$searchText. '%');
-
-      return $query;
+        return $query->where($column, 'like', '%' .$searchText. '%');
     }
 
     public function scopeMain($query)
     {
-      $query->whereParentId(0);
-
-      return $query;
+        return $query->whereParentId(0);
     }
-
 
     public function children()
     {
@@ -106,8 +104,7 @@ class Category extends Model
 
     public function product_variants()
     {
-//        return $this->hasMany(ProductHasVariant::class);
-        return $this->hasManyThrough(ProductHasVariant::class, Product::class)->where('categorizable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
+        return $this->hasManyThrough(ProductHasVariant::class, Product::class)
+            ->where('categorizable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
     }
 }
-

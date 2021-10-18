@@ -3,20 +3,26 @@
 namespace Modules\Staff\Comment\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Media;
-use Modules\Customers\Auth\Models\Customer;
-use Modules\Staff\Category\Models\Category;
-use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Rating\Models\Rating;
-
+use Modules\Staff\Product\Models\Product;
+use Modules\Customers\Auth\Models\Customer;
 
 class CommentHasRating extends Model
 {
-
-    protected $table = 'comment_has_ratings';
-    protected $fillable = ['parent_id', 'text', 'title', 'advantages', 'disadvantages', 'is_anonymous', 'is_recommended', 'publish_status', 'product_id', 'customer_id'];
+    protected $fillable = [
+        'parent_id', 
+        'text', 
+        'title', 
+        'advantages', 
+        'disadvantages', 
+        'is_anonymous', 
+        'is_recommended', 
+        'publish_status', 
+        'product_id', 
+        'customer_id'
+    ];
 
     public function media()
     {
