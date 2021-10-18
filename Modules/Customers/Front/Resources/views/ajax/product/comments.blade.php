@@ -19,7 +19,7 @@
             <span class="c-stars__item"></span>
             <span class="c-stars__item"></span>
             <span class="c-stars__item"></span>
-            <div class="c-stars__selected" 
+            <div class="c-stars__selected"
                 style="width: {{  $product->ratings()->exists() ? $product->ratings()->avg('score')*20 : 0 }}%">
               <span class="c-stars__item"></span>
               <span class="c-stars__item"></span>
@@ -47,12 +47,12 @@
             <div class="c-content-expert__rating-title">{{ $item->name }}</div>
             <div class="c-content-expert__rating-value">
               <div class="c-rating c-rating--general js-rating">
-                <div class="c-rating__rate js-rating-value" 
+                <div class="c-rating__rate js-rating-value"
                     data-rate-value="{{ $product->ratings()->where('rating_id', $item->id)->exists()
-                        ? ($product->ratings()->where('rating_id', $item->id)->avg('score'))*20 
+                        ? ($product->ratings()->where('rating_id', $item->id)->avg('score'))*20
                         : 60 }}%"
                     style="width: {{ $product->ratings()->where('rating_id', $item->id)->exists()
-                    ? ($product->ratings()->where('rating_id', $item->id)->avg('score'))*20 
+                    ? ($product->ratings()->where('rating_id', $item->id)->avg('score'))*20
                     : 60 }}%"></div>
               </div>
               <span class="c-rating__overall-word">
@@ -153,11 +153,11 @@
           <div class="c-comments__row">
             <span class="c-comments__detail span-time" data-value="{{ $comment->published_at }}"></span>
             <span class="c-comments__detail">
-              {{ $comment->is_anonymous == 1 
-                ? 'کاربر ' . $fa_store_name 
+              {{ $comment->is_anonymous == 1
+                ? 'کاربر ' . $fa_store_name
                 : ((!is_null($comment->customer->first_name))
-                ? $comment->customer->first_name . ' ' . $comment->customer->last_name 
-                : 'کاربر ' . $fa_store_name) 
+                ? $comment->customer->first_name . ' ' . $comment->customer->last_name
+                : 'کاربر ' . $fa_store_name)
               }}
             </span>
 
@@ -166,7 +166,7 @@
             @endif
           </div>
 
-          @if(($comment->recommend_status && ($comment->recommend_status !== " "))
+          @if($comment->recommend_status && ($comment->recommend_status !== " "))
             <div class="c-comments__separator c-comments__separator--half"></div>
             <div class="c-comments__row">
               @if ($comment->recommend_status == 'recommended')
