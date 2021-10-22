@@ -155,22 +155,32 @@
                                             </div>
                                         </div>
 
+                                        <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select">
+                                            <label class="uk-form-label uk-flex uk-flex-between" style="color: #81858b !important;">
+                                                وضعیت:
+                                                <span class="uk-float-left uk-padding-medium-left"></span>
+                                            </label>
+                                            <select id="status-{{ $comment->id }}" class="js-select2 c-ui-select--with-svg-icon c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="status" tabindex="-1" aria-hidden="true">
+                                                <option value="not_checked" {{ $comment->publish_status == 'not_checked' ? 'selected' : '' }}>در انتظار برررسی</option>
+                                                <option value="accepted" {{ $comment->publish_status == 'accepted' ? 'selected' : '' }}>تایید شده</option>
+                                                <option value="rejected" {{ $comment->publish_status == 'rejected' ? 'selected' : '' }}>رد شده</option>
+                                            </select>
+                                        </div>
+
+
                                         @if(!is_null($comment->recommend_status))
-                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6" style="padding-right: 0px;float: right;">
+                                            <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select">
                                                 <label class="uk-form-label uk-flex uk-flex-between" style="color: #81858b !important;">
                                                     توصیه خرید
                                                     <span class="uk-float-left uk-padding-medium-left"></span>
                                                 </label>
-                                                <div class="field-wrapper">
-                                                    <select name="recommend_status" id="recommend_status" class="js-select2 c-ui-select--with-svg-icon c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" tabindex="-1" aria-hidden="true" >
-                                                        <option value="recommended" {{ ($comment->recommend_status == 'recommended')? 'selected' : '' }}>پیشنهاد می کنم</option>
-                                                        <option value="not_recommended" {{ ($comment->recommend_status == 'not_recommended')? 'selected' : '' }}>پیشنهاد نمی کنم</option>
-                                                        <option value="no_idea" {{ ($comment->recommend_status == 'no_idea')? 'selected' : '' }}>نظری ندارم</option>
-                                                    </select>
-                                                </div>
+                                                <select name="recommend_status" id="recommend_status-{{ $comment->id }}" class="js-select2 c-ui-select--with-svg-icon c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" tabindex="-1" aria-hidden="true" >
+                                                    <option value="recommended" {{ ($comment->recommend_status == 'recommended')? 'selected' : '' }}>پیشنهاد می کنم</option>
+                                                    <option value="not_recommended" {{ ($comment->recommend_status == 'not_recommended')? 'selected' : '' }}>پیشنهاد نمی کنم</option>
+                                                    <option value="no_idea" {{ ($comment->recommend_status == 'no_idea')? 'selected' : '' }}>نظری ندارم</option>
+                                                </select>
                                             </div>
                                         @endif
-                                    </div>
 
 
                                     <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%; margin: auto;">
@@ -266,8 +276,6 @@
                     </div>
 
                 </div>
-
-
 
                 <div class="c-card__loading"></div>
             </div>

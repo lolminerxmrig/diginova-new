@@ -18,7 +18,7 @@ class StaffCommentController extends Controller
 
     public function searchComment(Request $request, Comment $comments)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
+        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
 
         $comments = $this->Commentfilter($request, $comments);
 
@@ -51,7 +51,7 @@ class StaffCommentController extends Controller
     {
         Comment::findOrFail($request->id)->delete();
 
-        (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
+        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
 
         $comments = $this->Commentfilter($request, $comments);
 
@@ -71,6 +71,7 @@ class StaffCommentController extends Controller
             'disadvantages' => 'nullable',
             'title' => 'nullable',
             'recommend_status' => 'nullable',
+            'publish_status' => 'required'
         ], $messages);
 
         if ($validator->fails()) {
@@ -84,18 +85,19 @@ class StaffCommentController extends Controller
         }
 
 
-        Comment::find($request->comment_id)->update([
+        Comment::whereId($request->comment_id)->update([
             'text' => $request->text,
             'advantages' => $request->advantages,
             'disadvantages' => $request->disadvantages,
             'title' => $request->title,
+            'publish_status' => $request->publish_status,
             'recommend_status' => $request->recommend_status,
         ]);
 
 
 
 
-        (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
+        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
 
         $comments = $this->Commentfilter($request, $comments);
 
