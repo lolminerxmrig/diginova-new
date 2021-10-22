@@ -52,9 +52,7 @@ class FrontController extends Controller
 
     $amazing_offer_products = Product::whereHas('variants', function ($q){
       $q->whereHas('promotions', function ($q) {
-        $q->where('status', 'active')->orWhere('status', 1)
-          ->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())
-          ->whereHas('campain', function ($q) {
+        $q->active()->whereHas('campain', function ($q) {
             $q->where('type', 'amazing_offer');
           });
       });
@@ -62,9 +60,7 @@ class FrontController extends Controller
 
     $special_offer_products = Product::whereHas('variants', function ($q){
       $q->whereHas('promotions', function ($q) {
-        $q->where('status', 'active')->orWhere('status', 1)
-          ->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())
-          ->whereHas('campain', function ($q) {
+        $q->active()->whereHas('campain', function ($q) {
             $q->where('type', 'special_offer');
           });
       });
@@ -274,7 +270,7 @@ class FrontController extends Controller
         compact('comments', 'product', 'customer_id', 'mode')
     );
   }
-     
+
   public function productCommentList(Request $request, $product_id)
   {
 
@@ -302,10 +298,15 @@ class FrontController extends Controller
    */
   public function createComment($product_id)
   {
+    $customer = auth()->guard('customer')->user();
+    $store_email = Setting::where('name', 'store_email')->first()->value;
+
     $product = Product::where('product_code', $product_id)
         ->first();
 
-    return view('front::create-comment', compact('product'));
+    $ratings = $product->categories()->first()->ratings()->orderBy('position', 'asc')->get();
+
+    return view('front::create-comment', compact('product', 'store_email', 'customer', 'ratings'));
   }
 
   /**

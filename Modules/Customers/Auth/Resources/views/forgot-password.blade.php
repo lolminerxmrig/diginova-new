@@ -12,7 +12,7 @@
         <div class="c-login__header-logo">
             <a href="{{ route('customer.regLoginPage') }}" class="c-login__back-button"></a>
             <a href="{{ route('front.indexPage') }}">
-                <img alt="DIGIKALA.COM" src="{{ asset('assets/login-logo.svg') }}">
+                <img alt="{{ $site_url }}" src="{{ !is_null($header_logo) ? $site_url . '/' . $header_logo->path . '/' . $header_logo->name : '' }}">
             </a>
         </div>
 

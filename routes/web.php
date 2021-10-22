@@ -29,7 +29,9 @@ if (\Schema::hasTable('settings') && Setting::where('name', 'product_code_prefix
 
 Route::get("product/$product_code_prefix-{product_code}", [FrontController::class, 'productPage'])->name('front.productPage');
 Route::get("cart/add/{variant_code}/1/", [FrontController::class, 'addToCart'])->name('front.addToCart');
-Route::get("product/comment/$product_code_prefix-{product_code}", [FrontController::class, 'createComment'])->name('front.createComment');
+Route::get("product/comment/$product_code_prefix-{product_code}", [FrontController::class, 'createComment'])
+    ->middleware('web', 'customer')
+    ->name('front.createComment');
 Route::get('search/category-{slug}', [FrontController::class, 'categoryPage'])->name('front.categoryPage');
 Route::get('search/q={keywoard}', [FrontController::class, 'search'])->name('search');
 

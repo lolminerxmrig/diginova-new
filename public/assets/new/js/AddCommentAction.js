@@ -341,6 +341,12 @@ var AddCommentAction = {
             if (isModuleActive('comments_file')) {
                 var formData = new FormData(this);
 
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
                 $.ajax({
                     url: '/ajax/product/comments/add/' + productId,
                     type: 'POST',
