@@ -110,7 +110,7 @@ class Product extends Model
     }
 
     public function variants(){
-        return $this->hasMany(ProductHasVariant::class);
+        return $this->hasMany(ProductHasVariant::class)->orderBy('stock_count', 'desc');
     }
 
     public function comments()

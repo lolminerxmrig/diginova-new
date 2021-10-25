@@ -27,11 +27,7 @@ class CategoryController extends Controller
         ->allowedFilters([
           AllowedFilter::scope('search'),
         ])
-        ->allowedSorts([
-          'created_at',
-//          AllowedSort::custom('name-length', new StringLengthSort(), 'name'),
-        ])
-        ->defaultSort('-created_at')
+        ->defaultSort('-has_stock')
         ->whereRelation('category', 'category_id', $category->id)
         ->when($request->has_selling_stock == 1, function ($q) {
           $q->whereRelation('variants', 'stock_count', '>', 0);
@@ -44,22 +40,28 @@ class CategoryController extends Controller
         ->when($request->only_original == 1 && Brand::where('en_name', 'miscellaneous')->exists(), function ($q) {
           $q->whereRelation('brand', 'id', '<>' ,Brand::where('en_name', 'miscellaneous')->first()->id);
         })
-//        ->when($request->price['min'], function ($q) use($request) {
-//          $q->whereHas('variants', function ($q) use($request) {
-////            variantPromotionPrice($q) >= $request->price['min'];
-//          });
-//        })
-//        ->when($request->price['max'], function ($q) use($request) {
-//          $q->whereHas('variants', function ($q) use($request) {
-////            variantPromotionPrice($q) <= $request->price['max'];
-//          });
-//        })
-        ->paginate(2);
+        ->orderBy('has_stock', 'desc')
+        ->when($request->input('sortby') == 'newest', function ($q){
+            $q->orderBy('created_at', 'desc');
+        })
+        ->when($request->input('sortby') == 'cheapest', function ($q){
+            $q->orderBy('min_price', 'asc');
+        })
+        ->when($request->input('sortby') == 'most_expensive', function ($q){
+            $q->orderBy('min_price', 'desc');
+        })
+        ->when($request->input('sortby') == 'best_selling', function ($q){
+            $q->orderBy('sales_count', 'desc');
+        })
+        ->paginate(10);
+
+      $sort_by = $request->input('sortby');
 
       return response()->json([
         'status' => true,
         'data' => [
-          'products' => view('front::ajax.product_category.products', compact('products'))->render(),
+          'products' => view('front::ajax.product_category.products',
+              compact('products', 'sort_by'))->render(),
         ]
       ]);
 

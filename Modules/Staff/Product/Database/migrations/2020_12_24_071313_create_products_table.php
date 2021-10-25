@@ -32,6 +32,9 @@ class CreateProductsTable extends Migration
             $table->json('advantages')->nullable();
             $table->json('disadvantages')->nullable();
             $table->longText('description')->nullable();
+            $table->boolean('has_stock')->default(0);
+            $table->integer('sales_count')->default(0);
+            $table->integer('min_price')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
