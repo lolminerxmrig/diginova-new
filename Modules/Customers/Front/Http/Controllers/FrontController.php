@@ -88,7 +88,9 @@ class FrontController extends Controller
             $primaryType = 'slider';
         }
 
-        return view('front::index', compact(
+        return view(
+            'front::index',
+            compact(
                 'customer',
                 'amazing_offer_products',
                 'special_offer_products',
@@ -98,7 +100,6 @@ class FrontController extends Controller
                 'primaryType'
             )
         );
-
     }
 
     public function productPage(int $product_code)
@@ -135,7 +136,8 @@ class FrontController extends Controller
         $product_categories[] = $category;
         $product_categories = array_reverse($product_categories, true);
 
-        return view('front::product',
+        return view(
+            'front::product',
             compact('product', 'variant_defualt', 'variant_ids', 'product_title_prefix', 'product_categories')
         );
     }
@@ -204,7 +206,6 @@ class FrontController extends Controller
                 "query" => "$request->q",
             ],
         ], 200);
-
     }
 
     /**
@@ -236,10 +237,10 @@ class FrontController extends Controller
 
         $fullCategoryList = ['دسته 3', 'دسته 2', 'دسته 1'];
 
-        return view('front::category',
+        return view(
+            'front::category',
             compact('cat', 'category', 'fullCategoryList', 'categories', 'brands', 'products', 'slug')
         );
-
     }
 
     /**
@@ -247,7 +248,6 @@ class FrontController extends Controller
      */
     public function profileOrders($order_code)
     {
-
     }
 
     public function productComments(Request $request, $product_id)
@@ -267,7 +267,8 @@ class FrontController extends Controller
             ? Auth::guard('customer')->user()->id
             : null;
 
-        return view('front::ajax.product.comments',
+        return view(
+            'front::ajax.product.comments',
             compact('comments', 'product', 'customer_id', 'mode')
         );
     }
@@ -290,7 +291,8 @@ class FrontController extends Controller
             ? Auth::guard('customer')->user()->id
             : null;
 
-        return view('front::ajax.product.commentList', compact('comments', 'product', 'customer_id', 'mode'));
+        return view('front::ajax.product.commentList',
+            compact('comments', 'product', 'customer_id', 'mode'));
     }
 
     /**
@@ -330,7 +332,7 @@ class FrontController extends Controller
         ]);
 
         if ($validator->fails()) {
-//      $errors = $validator->errors();
+            //      $errors = $validator->errors();
             return response()->json([
                 'status' => false,
                 'data' => [
@@ -353,7 +355,6 @@ class FrontController extends Controller
             'status' => true,
             'data' => null,
         ], 200);
-
     }
 
     /**
@@ -374,7 +375,6 @@ class FrontController extends Controller
                 'status' => true,
                 'data' => null,
             ]);
-
         }
 
 
@@ -382,7 +382,6 @@ class FrontController extends Controller
             'status' => true,
             'data' => null,
         ]);
-
     }
 
     /**
@@ -429,19 +428,38 @@ class FrontController extends Controller
             return null;
         }
 
-        if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->exists()) {
-            if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->exists()) {
-                CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'like')->delete();
+        $comment_feedback = CommentFeedback::where('comment_id', $comment_id)
+            ->where('customer_id', $customer_id)
+            ->get();
+
+        $like_comment_feedback = CommentFeedback::where('comment_id', $comment_id)
+            ->where('customer_id', $customer_id)
+            ->like()
+            ->first();
+
+        $dislike_comment_feedback = CommentFeedback::where('comment_id', $comment_id)
+            ->where('customer_id', $customer_id)
+            ->dislike()
+            ->first();
+
+
+
+        if ($comment_feedback) {
+            if ($like_comment_feedback) {
+                $like_comment_feedback->delete();
                 $likeFlag = -1;
-            } else {
-                if (CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->exists()) {
-                    CommentFeedback::where('comment_id', $comment_id)->where('customer_id', $customer_id)->where('status', 'dislike')->update([
+            }
+            else {
+                if ($dislike_comment_feedback) {
+                    $dislike_comment_feedback->update([
                         'status' => 'like',
                     ]);
                 }
                 $likeFlag = 1;
             }
-        } else {
+        }
+
+        if (!$comment_feedback) {
             CommentFeedback::create([
                 'comment_id' => $comment_id,
                 'customer_id' => $customer_id,
@@ -468,7 +486,6 @@ class FrontController extends Controller
                 "DislikeFlag" => 0,
             ],
         ], 200);
-
     }
 
     /**
@@ -523,7 +540,6 @@ class FrontController extends Controller
                 "DislikeFlag" => $dislikeFlag,
             ],
         ], 200);
-
     }
 
 
@@ -560,7 +576,6 @@ class FrontController extends Controller
         $carts = $customer->carts;
 
         return view('front::cart', compact('carts', 'first_carts', 'second_carts'));
-
     }
 
     /**
@@ -597,7 +612,7 @@ class FrontController extends Controller
             "status" => true,
             "data" => [
                 "data" => View::make('front::layouts.cart.changeCartResponseData', compact('first_carts'))->render(),
-//        "miniCartData" => View::make('front::layouts.cart.miniCartData')->render(),
+                //        "miniCartData" => View::make('front::layouts.cart.miniCartData')->render(),
             ]
         ]);
     }
@@ -626,7 +641,6 @@ class FrontController extends Controller
         }
 
         return redirect()->route('front.cart');
-
     }
 
     /**
@@ -648,7 +662,6 @@ class FrontController extends Controller
                 'redirectUrl' => route('front.cart'),
             ],
         ]);
-
     }
 
     /**
@@ -659,7 +672,10 @@ class FrontController extends Controller
     {
         $customer = Auth::guard('customer')->user();
 
-        Cart::where('customer_id', $customer->id)->where('product_variant_id', $variant_id)->first()->delete();
+        Cart::where('customer_id', $customer->id)
+            ->where('product_variant_id', $variant_id)
+            ->first()
+            ->delete();
 
         return redirect()->route('front.cart');
     }
@@ -672,7 +688,9 @@ class FrontController extends Controller
     {
         $customer = Auth::guard('customer')->user();
 
-        Cart::where('product_variant_id', $variant_id)->where('customer_id', $customer->id)->where('type', 'second')->first()->delete();
+        Cart::where('product_variant_id', $variant_id)
+            ->where('customer_id', $customer->id)
+            ->where('type', 'second')->first()->delete();
 
         return response()->json([
             'status' => true,
@@ -680,7 +698,6 @@ class FrontController extends Controller
                 'redirectUrl' => route('front.cart'),
             ],
         ]);
-
     }
 
     /**
@@ -691,10 +708,12 @@ class FrontController extends Controller
     {
         $customer = Auth::guard('customer')->user();
 
-        Cart::where('customer_id', $customer->id)->where('product_variant_id', $variant_id)->where('type', 'second')->first()->update([
-            'type' => 'first',
-            'count' => 1,
-        ]);
+        Cart::where('customer_id', $customer->id)
+            ->where('product_variant_id', $variant_id)
+            ->where('type', 'second')->first()->update([
+                'type' => 'first',
+                'count' => 1,
+            ]);
 
         return response()->json([
             'status' => true,
@@ -754,7 +773,6 @@ class FrontController extends Controller
             'status' => true,
             'data' => $cityArray,
         ]);
-
     }
 
     /**
@@ -775,7 +793,6 @@ class FrontController extends Controller
             'status' => true,
             'data' => isset($districtArray) ? $districtArray : '',
         ]);
-
     }
 
     /**
@@ -791,7 +808,7 @@ class FrontController extends Controller
         $response = $client->get("https://map.ir/reverse?lat=$request->latitude&lon=$request->longitude&x-api-key={$map_apikey}");
         $response = json_decode($response->getBody(), true);
 
-//    return $response;
+        //    return $response;
 
         if (State::where('name', $response['city'])->where('type', 'city')->exists()) {
             $city_id = State::where('name', $response['city'])->where('type', 'city')->first()->id;
@@ -808,7 +825,6 @@ class FrontController extends Controller
                 'state_id' => $state_id,
             ],
         ]);
-
     }
 
     /**
@@ -833,15 +849,14 @@ class FrontController extends Controller
             'status' => true,
             'data' => $responseItems,
 
-//      'data' => [
-//        'title' => $response['value'],
-//        'address' => $response['address_compact'],
-//        'latitude' => $response['address_compact'],
-//        'longitude' => $response['address_compact'],
-//      ],
+            //      'data' => [
+            //        'title' => $response['value'],
+            //        'address' => $response['address_compact'],
+            //        'latitude' => $response['address_compact'],
+            //        'longitude' => $response['address_compact'],
+            //      ],
 
         ]);
-
     }
 
     /**
@@ -889,7 +904,7 @@ class FrontController extends Controller
             'recipient_lastname' => (isset($request->address['last_name']) && !is_null($request->address['last_name'])) ? $request->address['last_name'] : null,
             'recipient_national_code' => (isset($request->address['national_id']) && !is_null($request->address['national_id'])) ? $request->address['national_id'] : null,
             'recipient_mobile' => (isset($request->address['mobile_phone']) && !is_null($request->address['mobile_phone'])) ? ltrim($request->address['mobile_phone'], 0) : null,
-//      'is_main' => $request->address[''],
+            //      'is_main' => $request->address[''],
             'customer_id' => $customer_id,
             'state_id' => (isset($request->address['district_id']) && !is_null($request->address['district_id'])) ? $request->address['district_id'] : $request->address['city_id'],
         ]);
@@ -901,7 +916,6 @@ class FrontController extends Controller
                 'address_id' => $defualt_address_id,
             ]);
         }
-
     }
 
     /**
@@ -945,7 +959,6 @@ class FrontController extends Controller
                 "errorMessage" => null
             ]
         ]);
-
     }
 
     /**
@@ -1000,7 +1013,6 @@ class FrontController extends Controller
         $consignment_shipping_cost = $this->shippingCostLogic($customer, $weights, $method_ids);
 
         return view('front::shipping', compact('states', 'customer', 'first_carts', 'store_addresses', 'weights', 'consignment_shipping_cost', 'method_ids'));
-
     }
 
     /**
@@ -1047,7 +1059,10 @@ class FrontController extends Controller
         $consignment_shipping_cost = [];
 
         $settings = Setting::all();
-        $store_state_id = ($settings->where('name', 'store_city')->count() && $settings->where('name', 'store_city')->first()->states()->exists()) ? $settings->where('name', 'store_city')->first()->states()->first()->id : 1;
+        $store_city = $settings->where('name', 'store_city')->first();
+        $store_state_id = ($store_city && $store_city->states()->exists())
+            ? $store_city->states()->first()->id
+            : 1;
 
         if ($customer->where('address_type', 'CustomerAddress')->exists()) {
             $customer_state_id = $customer->delivery_address->id;
@@ -1099,11 +1114,9 @@ class FrontController extends Controller
             if (($method_ids[$j] == 1 || $method_ids[$j] == 2) && $customer_state_id == 0) {
                 $consignment_shipping_cost[$f_weight_id] = 0;
             }
-
         }
 
         return $consignment_shipping_cost;
-
     }
 
     /**
@@ -1127,7 +1140,8 @@ class FrontController extends Controller
         return response()->json([
             "status" => true,
             "data" => [
-                "data" => View::make('front::ajax.shipping.changeAddress', compact('customer', 'store_addresses', 'delivery_type'))->render(),
+                "data" => View::make('front::ajax.shipping.changeAddress',
+                     compact('customer', 'store_addresses', 'delivery_type'))->render(),
                 "stickyCart" => View::make('front::ajax.shipping.changeAddressUpdatePrice')->render(),
                 "invalidData" => '<div class="swiper-container swiper-container-horizontal js-swiper-delivery-limit"><div class="swiper-wrapper"></div><div class="swiper-button-prev js-swiper-button-prev"></div><div class="swiper-button-next js-swiper-button-next"></div></div>',
                 "hasInvalidItems" => false,
@@ -1138,7 +1152,6 @@ class FrontController extends Controller
                 "errorMessage" => null
             ]
         ]);
-
     }
 
     /**
@@ -1217,7 +1230,6 @@ class FrontController extends Controller
                 "errorMessage" => null
             ]
         ]);
-
     }
 
     /**
@@ -1230,7 +1242,6 @@ class FrontController extends Controller
 
         setcookie('method_ids', $method_ids, time() + (10 * 365 * 24 * 60 * 60), "/");
         return $_COOKIE["method_ids"];
-
     }
 
     /**
@@ -1327,7 +1338,6 @@ class FrontController extends Controller
                 "voucher_code" => $code,
             ],
         ]);
-
     }
 
     /**
@@ -1386,7 +1396,6 @@ class FrontController extends Controller
                     }
 
                     $voucher_varints_cost += (($product_variant->sale_price / 100) * $voucher->percent);
-
                 }
             }
         }
@@ -1401,7 +1410,6 @@ class FrontController extends Controller
         }
 
         return $voucher_varints_cost;
-
     }
 
     /**
@@ -1439,7 +1447,6 @@ class FrontController extends Controller
             'status' => true,
             'data' => null,
         ], 200);
-
     }
 
     /**
@@ -1484,7 +1491,6 @@ class FrontController extends Controller
 
         // مبلغ نهایی بدون کد تخفیف
         return $final_sum_price = $sum_sale_price - $sum_promotion_price + $sum_shipping_cost;
-
     }
 
     /**
@@ -1531,7 +1537,6 @@ class FrontController extends Controller
         $voucher_varints_cost = $this->voucherCostLogic($customer, $voucher, $method_ids);
 
         return $voucher_varints_cost;
-
     }
 
 
@@ -1643,13 +1648,10 @@ class FrontController extends Controller
                         'seller' => 'site',
                         'consignment_product_variant_id' => $consignment_product_variant_id,
                     ]);
-
                 }
-
             }
 
             $i++;
-
         }
 
         $default_address = $customer->delivery_address;
@@ -1681,7 +1683,6 @@ class FrontController extends Controller
         ]);
 
         return $this->PaymentLogic($gateway_name, $order, $gateway, $customer);
-
     }
 
     /**
@@ -1711,8 +1712,6 @@ class FrontController extends Controller
 
             // تغییر وضعیت ها بعد از پرداخت موفق
             $this->updateStatusAfterSuccessfulPayment($order);
-
-
         } catch (InvalidPaymentException $exception) {
 
             // تغییر وضعیت رکورد پرداخت به ناموفق وقتی از سمت درگاه ریسپانس ناموفق برمیگردد
@@ -1723,7 +1722,6 @@ class FrontController extends Controller
             // نمایش صفحه وضعیت سفارش
             $order_code = PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->first()->order->order_code;
             return $this->orderStatus($order_code);
-
         }
     }
 
@@ -1747,7 +1745,6 @@ class FrontController extends Controller
         }
 
         return view('front::order-status', compact('order'));
-
     }
 
     /**
@@ -1784,7 +1781,6 @@ class FrontController extends Controller
         $invoice->via($gateway->en_name);
 
         return Payment::purchase($invoice)->pay()->render();
-
     }
 
     /**
@@ -1815,7 +1811,6 @@ class FrontController extends Controller
         }
 
         return view('front::reselect-gateway', compact('order', 'peyment_methods'));
-
     }
 
     /**
@@ -1848,7 +1843,6 @@ class FrontController extends Controller
         }
 
         $this->PaymentLogic($gateway_name, $order, $gateway, $customer);
-
     }
 
     /**
@@ -1883,7 +1877,6 @@ class FrontController extends Controller
                 ]);
             }
         }
-
     }
 
     /**
@@ -1909,7 +1902,6 @@ class FrontController extends Controller
         ConsignmentHasProductVariants::where('order_id', $order->id)->update([
             'order_status_id' => OrderStatus::where('en_name', 'canceled')->first()->id,
         ]);
-
     }
 
     /**
@@ -1941,7 +1933,6 @@ class FrontController extends Controller
             $this->updateStatusAfterSuccessfulPayment($order);
 
             return $this->orderStatus($order->order_code);
-
         }
 
         if ($gateway_name !== 'cod') {
@@ -1973,7 +1964,6 @@ class FrontController extends Controller
                 // ایجاد کوکی شماره سفارش
                 setcookie('invoiceـnumber', $invoiceـnumber, time() + (10 * 365 * 24 * 60 * 60), "/");
             })->pay()->render();
-
         }
     }
 
@@ -2022,7 +2012,6 @@ class FrontController extends Controller
             "status" => true,
             "data" => null,
         ]);
-
     }
 
     public function removeFromHistory($product_code)
@@ -2069,7 +2058,6 @@ class FrontController extends Controller
         }
 
         $lists = $this->nestArray($lists);
-
     }
 
     public function nestArray($myArray)
@@ -2098,6 +2086,4 @@ class FrontController extends Controller
         $list = array_reverse($list, true);
         return $list;
     }
-
-
 }
