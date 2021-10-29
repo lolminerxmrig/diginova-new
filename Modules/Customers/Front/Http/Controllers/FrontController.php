@@ -212,7 +212,6 @@ class FrontController extends Controller
      */
     public function categoryPage($slug)
     {
-
         $category = Category::whereSlug($slug)->firstOrFail();
 
         $products = $category->products()
@@ -585,7 +584,7 @@ class FrontController extends Controller
                 'new_sale_price' => $item->product_variant()->first()->sale_price,
 
                 'old_promotion_price' => $new_promotion_price,
-                'new_promotion_price' => $item->product_variant()->first()->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price'),
+                'new_promotion_price' => $item->product_variant()->first()->promotions()->active()->min('promotion_price'),
             ]);
         }
 
@@ -610,7 +609,7 @@ class FrontController extends Controller
     {
 
         $product_variant = ProductHasVariant::where('variant_code', $variant_code)->first();
-        $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+        $promotion_price = $product_variant->promotions()->active()->min('promotion_price');
 
         if (auth()->guard('customer')->check() && !Cart::where('product_variant_id', $product_variant->id)->exists()) {
             Cart::create([
@@ -1359,8 +1358,8 @@ class FrontController extends Controller
                     // چک میکنه که تنوع کالایی پروموشن داره یا نه
                     $product_variant = $item->product_variant()->first();
                     if ($product_variant->promotions()->exists()) {
-                        if ($product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
-                            $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+                        if ($product_variant->promotions()->active()->exists()) {
+                            $promotion_price = $product_variant->promotions()->active()->min('promotion_price');
                         } else {
                             $promotion_price = $product_variant->sale_price;
                         }
@@ -1875,12 +1874,20 @@ class FrontController extends Controller
         ]);
 
         // کم کردن موجودی تنوع اگه قبلا با cod پرداخت نشده بود
-        if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('price', $order->cost)->count() < 2) {
+        if ($order->peyment_records()->successfulPeyment()->where('price', $order->cost)->count() < 2) {
             foreach (ConsignmentHasProductVariants::where('order_id', $order->id)->get() as $consignment_product_variant) {
                 $consignment_product_variant->product_variant()->update([
                     'stock_count' => $consignment_product_variant->product_variant->stock_count - $consignment_product_variant->count,
                     'sale_count' => $consignment_product_variant->product_variant->sale_count + $consignment_product_variant->count,
                 ]);
+
+                $consignment_product_variant->product()->increment('sales_count');
+                if ($consignment_product_variant->product()->variants()->active()->exists()) {
+                    $consignment_product_variant->product()->update(['has_stock' => 1]);
+                } else {
+                    $consignment_product_variant->product()->update(['has_stock' => 0]);
+                }
+                $consignment_product_variant->product()->update(['min_price' => product_price($consignment_product_variant->product)]);
             }
         }
 

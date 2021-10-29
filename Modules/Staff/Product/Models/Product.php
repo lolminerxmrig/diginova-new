@@ -44,6 +44,9 @@ class Product extends Model
       'description',
       'product_code',
       'slug',
+      'has_stock',
+      'sales_count',
+      'min_price',
     ];
 
     protected $casts = [

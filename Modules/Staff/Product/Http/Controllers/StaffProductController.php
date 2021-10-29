@@ -758,7 +758,8 @@ class StaffProductController extends Controller
 
     public function statusProduct(Request $request)
     {
-        Product::where('id', $request->product_id)->update([
+        $product = Product::findOrFail($request->product_id);
+        $product->update([
             'status' => $request->status,
         ]);
     }
@@ -824,7 +825,8 @@ class StaffProductController extends Controller
 //        foreach ($product_variants as $pr_variant) {
 //            $product_array_variants[] = array($pr_variant => "1");
 //        }
-
+        $product = Product::findOrFail($request->product_variants['product_id']);
+        $this->updateProductMainDetails($product);
 
         $jsonResponse= [
             "status" => true,
@@ -848,7 +850,7 @@ class StaffProductController extends Controller
 
     public function variantUpdate(Request $request)
     {
-        $status = (isset($request->product_variant['active']))? 1 : 0;
+        $status = isset($request->product_variant['active']) ? 1 : 0;
         ProductHasVariant::where('id', $request->product_variant['product_variant_id'])->update([
             'status' => $status,
             'post_time' => $request->product_variant['lead_time'],
@@ -895,6 +897,8 @@ class StaffProductController extends Controller
             ],
         ];
 
+        $this->updateProductMainDetails($product_variant->product);
+
         return response()->json($jsonResponse, 200);
 
     }
@@ -904,10 +908,9 @@ class StaffProductController extends Controller
         ProductHasVariant::find($request->id)->delete();
         $settings = Setting::select('name', 'value')->get();
         $product = Product::findOrFail($request->product_id);
+        $this->updateProductMainDetails($product);
         return View::make("staffproduct::ajax.variant.ajax-variant-list", compact('product', 'settings'));
     }
-
-
 
     public function stepUploadImages(Request $request)
     {
@@ -977,6 +980,14 @@ class StaffProductController extends Controller
       }
     }
 
-
+    public function updateProductMainDetails($product){
+        $product->increment('sales_count');
+        if ($product->variants()->active()->exists()) {
+            $product->update(['has_stock' => 1]);
+        } else {
+            $product->update(['has_stock' => 0]);
+        }
+        $product->update(['min_price' => product_price($product)]);
+    }
 
 }

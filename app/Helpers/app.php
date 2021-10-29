@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Log;
 use Modules\Staff\Category\Models\Category;
-use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\F;
 
 function persianNum($str){
     $english = array('0','1','2','3','4','5','6','7','8','9');
@@ -174,14 +172,10 @@ function variant_defualt($product, $type = 'model')
 
     if ($type == 'id') {
       $product = \Modules\Staff\Product\Models\Product::find($product);
-      Log::info('p1');
-
     }
 
     if ($product->variants()->exists())
     {
-      Log::info('p2');
-
       $min_variant_price = $product->variants->min('sale_price');
       $min_variants = $product->variants()->where('sale_price', $min_variant_price)->get();
 
@@ -189,12 +183,10 @@ function variant_defualt($product, $type = 'model')
       $min_promotion_variants = null;
       foreach ($product->variants as $variant)
       {
-        if ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists() && $variant->promotions()->min('promotion_price') > $min_promotion_price)
+        if ($variant->promotions()->active()->exists() && $variant->promotions()->min('promotion_price') > $min_promotion_price)
         {
-          Log::info('p3');
-          $min_promotion_price = ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists())? $variant->promotions()->min('promotion_price') : $min_promotion_price;
-          if ($variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
-            Log::info('p4');
+          $min_promotion_price = ($variant->promotions()->active()->exists())? $variant->promotions()->min('promotion_price') : $min_promotion_price;
+          if ($variant->promotions()->active()->exists()) {
             $min_promotion_variants = $variant->whereHas('promotions', function (Builder $query) use ($min_promotion_price) {
               $query->where('promotion_price', $min_promotion_price);
             })->get();
@@ -203,13 +195,10 @@ function variant_defualt($product, $type = 'model')
       }
 
       if (($min_variant_price <= $min_promotion_price) || ($min_promotion_price == 0)) {
-        Log::info('p5');
         $max_stock_count = $min_variants->max('stock_count');
-        Log::info($max_stock_count);
         return $min_variants->where('stock_count', $max_stock_count)->first();
       }
       else {
-        Log::info('p6');
         $max_stock_count = $min_promotion_variants->max('stock_count');
         return $variant_defualt = $min_promotion_variants->where('stock_count', $max_stock_count)->first();
       }
@@ -244,24 +233,24 @@ function product_price($product, $type = 'model')
 
 function variantPromotionPrice($product_variant)
 {
-  if ($product_variant->promotions()->exists() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
-    return $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
+  if ($product_variant->promotions()->exists() && $product_variant->promotions()->active()->exists()) {
+    return $promotion_price = $product_variant->promotions()->active()->min('promotion_price');
   }
   return null;
 }
 
 function variantPromotionDefault($product_variant)
 {
-  if ($product_variant->promotions()->exists() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
-     $promotion_price = $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->min('promotion_price');
-     return $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->where('promotion_price', $promotion_price)->first();
+  if ($product_variant->promotions()->exists() && $product_variant->promotions()->active()->exists()) {
+     $promotion_price = $product_variant->promotions()->active()->min('promotion_price');
+     return $product_variant->promotions()->active()->where('promotion_price', $promotion_price)->first();
   }
   return null;
 }
 
 function has_promotion($product_variant)
 {
-  if (isset($product_variant->promotions) && $product_variant->promotions() && $product_variant->promotions()->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->exists()) {
+  if (isset($product_variant->promotions) && $product_variant->promotions() && $product_variant->promotions()->active()->exists()) {
     return true;
   }
   return false;
@@ -339,5 +328,5 @@ function fullCategoryList($category_id, $revers = true) {
 
 function validPromotions($promotions)
 {
-    return $promotions->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())->where('status', 'active')->orWhere('status', 1)->get();
+    return $promotions->active()->get();
 }

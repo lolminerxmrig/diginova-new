@@ -13,8 +13,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 
 class ProductHasVariant extends Model
 {
-    protected $table = "product_has_variants";
-
     protected $fillable = [
       'product_id',
       'variant_id',
@@ -58,7 +56,7 @@ class ProductHasVariant extends Model
 
     public function landings()
     {
-        return $this->morphedByMany(Landing::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
+        return $this->morphedByMany(Landing::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id');
     }
 
     public function promotions()

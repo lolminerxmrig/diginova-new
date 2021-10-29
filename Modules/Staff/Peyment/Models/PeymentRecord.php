@@ -30,4 +30,9 @@ class PeymentRecord extends Model
       return $this->belongsTo(Customer::class);
     }
 
+    public function scopeSuccessfulPeyment($query)
+    {
+        return $query->where('status', 'successful')->where('method_type', 'PeymentMethod');
+    }
+
 }

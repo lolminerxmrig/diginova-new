@@ -13,15 +13,12 @@ use Modules\Staff\Product\Models\ProductHasVariant;
 
 class Campain extends Model
 {
-
     protected $fillable = ['name', 'min_percent', 'start_at', 'end_at', 'type', 'status'];
-
 
     public function categories()
     {
         return $this->morphToMany(Category::class, 'categorizable');
     }
-
 
     public function product()
     {
@@ -43,7 +40,8 @@ class Campain extends Model
         return $this->hasOne(Landing::class);
     }
 
-    public function promotions() {
+    public function promotions()
+    {
         return $this->hasMany(Promotion::class);
     }
 
