@@ -26,4 +26,13 @@ class CommentFeedback extends Model
         return $this->belongsTo(Comment::class);
     }
 
+    public function scopeLike($query)
+    {
+        return $query->where('status', 'like');
+    }
+
+    public function scopeDislike($query)
+    {
+        return $query->where('status', 'like');
+    }
 }
