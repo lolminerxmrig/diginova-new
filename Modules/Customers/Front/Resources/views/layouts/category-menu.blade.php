@@ -2,59 +2,32 @@
   <div class=" show-more  ">
     <ul class="c-catalog__list--depth ">
       <li class="c-catalog__cat-item ">
-          <div>
             <?php  $counter = $counter-1;  ?>
             @if(isset($fullCategoryList[$j]))
-                <span class="c-catalog__cat-item {{ ($counter !== 1)? 'c-catalog__cat-item--arrow-down' : '' }}">
+            <span class="c-catalog__cat-item {{ ($counter !== 1)? 'c-catalog__cat-item--arrow-down' : '' }}">
                 <a class="c-catalog__link {{ ($counter == 1)? 'is-active' : '' }}"
-                 href="/search/category-mobile/">
-                    {{ $fullCategoryList[$j] }}
-                </a>
+                data-snt-event="dkSearchPageClick"
+                data-snt-params='{"item":"catalog-filter","item_option":"{{ $fullCategoryList[$j]->name }}"}'
+                href="{{  route('front.categoryPage', ['slug' => $fullCategoryList[$j]->slug ]) }}">{{ $fullCategoryList[$j]->name }}</a>
+            </span>
                 @if($counter == 1 && count($other_categories))
                     @foreach ($other_categories as $item)
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
-                        <a class="c-catalog__link" href="/search/category-mobile/">{{ $item->name }}</a>
+                        <div class=" show-more  ">
+                            <ul class="c-catalog__list--depth ">
+                                <li class="c-catalog__cat-item ">
+                                    <a data-snt-event="dkSearchPageClick" data-snt-params='{"item":"catalog-filter","item_option":"{{ $item->name }}"}'
+                                    class="c-catalog__link "
+                                    href="{{  route('front.categoryPage', ['slug' => $item->slug ]) }}">{{ $item->name }}</a></li>
+                            </ul>
+                        </div>
                     @endforeach
                 @endif
-                </span>
             @endif
             <?php $j = $j+1;  ?>
             @include('front::layouts.category-menu', ['fullCategoryList' => $fullCategoryList, 'counter' => $counter, 'j' => $j])
-        </div>
       </li>
     </ul>
   </div>
 @endif
+
+

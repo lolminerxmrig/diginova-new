@@ -230,7 +230,7 @@ class FrontController extends Controller
 
         $fullCategoryList = [];
         foreach($list as $category_id) {
-            $fullCategoryList[] = Category::find($category_id)->name;
+            $fullCategoryList[] = Category::find($category_id);
         }
 
         $other_categories = $category->parent->children->where('id', '<>', $category->id);

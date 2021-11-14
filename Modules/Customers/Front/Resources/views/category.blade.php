@@ -123,8 +123,7 @@
                     <div class="o-page__row o-page__row--listing">
                         <div class="o-page__aside has-pager" id="js-list-aside-wrapper">
                             <div class="o-page__aside--listing js-list-aside-container js-sticky">
-                                <div class="c-listing-sidebar js-list-aside js-sticky-inner" id="js-list-aside"
-                                     style="position: relative;">
+                                <div class="c-listing-sidebar js-list-aside js-sticky-inner" id="js-list-aside">
                                     <script>
                                         if (true)
                                             document.getElementById('js-list-aside-wrapper').classList.add('has-pager');
@@ -132,42 +131,33 @@
                                             document.getElementById('js-list-aside-wrapper').classList.remove('has-pager');
                                     </script>
 
-
-<div class="c-box"><div class="c-box__header">دسته‌بندی نتایج</div><div class="c-filter c-filter--catalog js-box-content"><div class=" js-box-content-items"><div class="c-catalog show-more"><ul class="c-catalog__list--depth js-catalog-list" style="max-height: unset; height: 250px;"><li class="c-catalog__cat-item "><span class="c-catalog__cat-item c-catalog__cat-item--arrow-left"><a class="c-catalog__link " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;خودرو، ابزار و تجهیزات صنعتی&quot;}" href="/search/category-vehicles/">خودرو، ابزار و تجهیزات صنعتی</a></span><div class=" show-more  "><ul class="c-catalog__list--depth "><li class="c-catalog__cat-item "><span class="c-catalog__cat-item c-catalog__cat-item--arrow-down"><a class="c-catalog__link  is-active" data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;لوازم جانبی خودرو&quot;}" href="/search/category-car-accessory-parts/">لوازم جانبی خودرو</a></span><ul class="c-catalog__list--depth"><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;لوازم تزئینی خودرو&quot;}" href="/search/category-in-car-accessorie/">لوازم تزئینی خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;تجهیزات بیرونی خودرو&quot;}" href="/search/category-exterior-car-equipment/">تجهیزات بیرونی خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;سیستم صوتی و تصویری خودرو&quot;}" href="/search/category-car-stereo/">سیستم صوتی و تصویری خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;سایر لوازم خودرو&quot;}" href="/search/category-in-car-accessories/">سایر لوازم خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;امنیت خودرو&quot;}" href="/search/category-car-security-systems/">امنیت خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;ابزار خودرو&quot;}" href="/search/category-car-tools/">ابزار خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;نظافت و نگهداری خودرو&quot;}" href="/search/category-car-cleaning-and-maintenance/">نظافت و نگهداری خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;تیونینگ و تقویت موتور&quot;}" href="/search/category-tuning-motor-boost/">تیونینگ و تقویت موتور</a></li></ul></li></ul></div></li></ul><div data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;show-all&quot;}" class="c-catalog__show-more js-catalog-show-more">
-                مشاهده همه دسته‌بندی‌ها
-            </div></div></div></div></div>
-
-
-                                    {{--  <div class="c-box">
+                                    <div class="c-box">
                                         <div class="c-box__header">دسته‌بندی نتایج</div>
                                         <div class="c-filter c-filter--catalog js-box-content">
                                             <div class=" js-box-content-items">
-                                                <div class="c-catalog show-more">
-                                                    <ul class="c-catalog__list--depth js-catalog-list"
-                                                        style="max-height: unset; height: 250px;">
+                                                <div class="c-catalog">
+                                                    <ul class="c-catalog__list--depth js-catalog-list">
                                                         <li class="c-catalog__cat-item ">
                                                             <span class="c-catalog__cat-item c-catalog__cat-item--arrow-left">
-                                                            <a class="c-catalog__link "
-                                                                href="/search/category-electronic-devices/">{{ $fullCategoryList[0]  }}</a>
+                                                                <a class="c-catalog__link "
+                                                                data-snt-event="dkSearchPageClick"
+                                                                data-snt-params='{"item":"catalog-filter","item_option":"{{ $fullCategoryList[0]->name  }}"}'
+                                                                    href="{{  route('front.categoryPage', ['slug' => $fullCategoryList[0]->slug ]) }}">{{ $fullCategoryList[0]->name  }}</a>
                                                             </span>
-
                                                             <?php
                                                                 $counter = count($fullCategoryList);
                                                                 $j = 1;
                                                             ?>
-                                                            @include('front::layouts.category-menu', compact('fullCategoryList', 'counter', 'j', 'other_categories'))
-
+                                                        @include('front::layouts.category-menu', compact('fullCategoryList', 'counter', 'j', 'other_categories'))
                                                         </li>
                                                     </ul>
-                                                    <div data-snt-event="dkSearchPageClick"
-                                             data-snt-params='{"item":"catalog-filter","item_option":"show-all"}'
-                                             class="c-catalog__show-more js-catalog-show-more">
-                                             مشاهده همه دسته‌بندی‌ها
-                                          </div>
+                                                    <div data-snt-event="dkSearchPageClick" data-snt-params='{"item":"catalog-filter","item_option":"show-all"}' class="c-catalog__show-more js-catalog-show-more">
+                                                        مشاهده همه دسته‌بندی‌ها
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>  --}}
+                                    </div>
 
                                     <div class="c-box c-box--brands-filter js-ab-sidebar-filter">
                                         <div class="">
@@ -217,66 +207,57 @@
                                         </div>
                                     </div>
 
-
-
-
-
-                            @foreach($attribute_groups as $attribute_group)
-                                <?php $attributes = $attribute_group->attributes()->orderBy('position', 'asc')->where('is_filterable', 1)->get(); ?>
-                                @foreach ($attributes as $attribute)
-                                    @if($attribute->products()->where('has_stock', '>', 0)->exists())
-                                        <div class="c-box">
-                                            <div class="c-box__header c-box__header--toggleable js-box-toggle is-hidden">
-                                                {{ $attribute->name }}
-                                            </div>
-                                            <div class="c-filter c-filter--params js-box-content" style="display: none;">
-                                            <div class="c-message c-message-light c-message-light--info js-message-error u-hidden">
-                                                <p>برند یا سازنده‌ای با این نام پیدا نشد!</p>
-                                            </div>
-                                            <div class="c-box__divider c-box__divider--full">
-                                                <div></div>
-                                            </div>
-                                            <div class="c-box__scroll-container">
-                                                <div class="c-box__scroll js-box-content-items">
-                                                    <ul>
-                                                        @foreach($attribute->values as $value)
-                                                            <li>
-                                                                <label class="c-filter__label js-box-content-item" for="{{ $attribute->id }}-param-{{ $value->id }}" data-fa="{{ $value->value }}" data-en="" data-search=" ">
-                                                                    {{ $value->value }}
-                                                                </label>
-                                                                <label class="c-ui-checkbox">
-                                                                    <input type="checkbox" value="{{ $value->id }}" name="attribute[{{ $attribute->id }}][]" data-search-uid="{{ $attribute->id }}" id="{{ $attribute->id }}-param-{{ $value->id }}">
-                                                                    <span class="c-ui-checkbox__check"></span>
-                                                                </label>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
+                                    @foreach($attribute_groups as $attribute_group)
+                                        <?php $attributes = $attribute_group->attributes()->orderBy('position', 'asc')->where('is_filterable', 1)->get(); ?>
+                                        @foreach ($attributes as $attribute)
+                                            @if($attribute->products()->where('has_stock', '>', 0)->exists())
+                                                <div class="c-box">
+                                                    <div class="c-box__header c-box__header--toggleable js-box-toggle is-hidden">
+                                                        {{ $attribute->name }}
+                                                    </div>
+                                                    <div class="c-filter c-filter--params js-box-content" style="display: none;">
+                                                    <div class="c-message c-message-light c-message-light--info js-message-error u-hidden">
+                                                        <p>برند یا سازنده‌ای با این نام پیدا نشد!</p>
+                                                    </div>
+                                                    <div class="c-box__divider c-box__divider--full">
+                                                        <div></div>
+                                                    </div>
+                                                    <div class="c-box__scroll-container">
+                                                        <div class="c-box__scroll js-box-content-items">
+                                                            <ul>
+                                                                @foreach($attribute->values as $value)
+                                                                    <li>
+                                                                        <label class="c-filter__label js-box-content-item" for="{{ $attribute->id }}-param-{{ $value->id }}" data-fa="{{ $value->value }}" data-en="" data-search=" ">
+                                                                            {{ $value->value }}
+                                                                        </label>
+                                                                        <label class="c-ui-checkbox">
+                                                                            <input type="checkbox" value="{{ $value->id }}" name="attribute[{{ $attribute->id }}][]" data-search-uid="{{ $attribute->id }}" id="{{ $attribute->id }}-param-{{ $value->id }}">
+                                                                            <span class="c-ui-checkbox__check"></span>
+                                                                        </label>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            @endforeach
-
-
-
-
-
-
+                                            @endif
+                                        @endforeach
+                                    @endforeach
 
                                     <script>
                                         var sellerConditionsSectionExists = true;
                                     </script>
 
                                     <div class="c-box js-ab-sidebar-filter">
-                                        <div class="c-filter c-filter--switcher js-box-content-items"><label
-                                                class="c-ui-statusswitcher"><input type="checkbox" value="1"
-                                                                                   name="has_selling_stock"
-                                                                                   id="stock_status-param-1"><span
-                                                    class="c-ui-statusswitcher__slider"><span
-                                                        class="c-ui-statusswitcher__slider__toggle"></span></span></label>فقط
-                                            کالاهای موجود
+                                        <div class="c-filter c-filter--switcher js-box-content-items">
+                                            <label class="c-ui-statusswitcher">
+                                                <input type="checkbox" value="1" name="has_selling_stock" id="stock_status-param-1">
+                                                <span class="c-ui-statusswitcher__slider">
+                                                    <span class="c-ui-statusswitcher__slider__toggle"></span>
+                                                    </span>
+                                            </label>
+                                            فقط کالاهای موجود
                                         </div>
                                     </div>
                                     <div class="c-box js-ab-sidebar-filter" id="digikala_fake_section">
@@ -337,8 +318,7 @@
                                     </div>
                                     <div class="c-box c-box--brands-filter js-ab-test-rating u-hidden">
                                         <div class="">
-                                            <div class=" c-box__header c-box__header--toggleable
-                            js-box-toggle ">امتیاز
+                                            <div class=" c-box__header c-box__header--toggleable js-box-toggle ">امتیاز
 
                                             </div>
                                             <div class="  c-filter c-filter--params js-box-content">
