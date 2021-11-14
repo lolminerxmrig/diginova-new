@@ -14,7 +14,7 @@ class Attribute extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'type', 'is_required', 'is_filterable', 'is_favorite', 'group_id', 'unit_id', 'position'];
+    protected $fillable = ['id','name', 'type', 'is_required', 'is_filterable', 'is_favorite', 'group_id', 'unit_id', 'position'];
 
     public function categories()
     {

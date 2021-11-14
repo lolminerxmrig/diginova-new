@@ -22,7 +22,7 @@ class AttributeGroup extends Model
 
     public function attributes()
     {
-        return $this->hasMany(Attribute::class, 'group_id');
+        return $this->hasMany(Attribute::class, 'group_id', 'id');
     }
 
 }

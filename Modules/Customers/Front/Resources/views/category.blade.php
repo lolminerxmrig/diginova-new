@@ -8,1383 +8,25 @@
     <script>
         var supernova_mode = "production";
         var supernova_tracker_url = "https:\/\/etrackerd.digikala.com\/tracker\/events\/";
-        var parameters = {
-            "category_path": "\/category-camera",
-            "query": {
-                "sortby": 4
-            },
-            "list_view": false
-        };
-        var cart = {
-            "cartId": 0,
-            "variants": [],
-            "products": [],
-            "itemCount": 0,
-            "isPlusUser": false
-        };
-        var emarsysCategoryBreadcrumb =
-            "\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 > \u062f\u0648\u0631\u0628\u06cc\u0646";
-        var click_impression = [{
-            "id": 260095,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc \u0686\u0627\u067e \u0633\u0631\u06cc\u0639 \u0641\u0648\u062c\u06cc \u0641\u06cc\u0644\u0645 \u0645\u062f\u0644 Instax Mini 9",
-            "brand": "Fujifilm",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 15900000,
-                "discount_percent": 0
-            },
-            "position": 1,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 408901,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/1031830.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-260095\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u0639\u06a9\u0627\u0633\u06cc-\u0686\u0627\u067e-\u0633\u0631\u06cc\u0639-\u0641\u0648\u062c\u06cc-\u0641\u06cc\u0644\u0645-\u0645\u062f\u0644-instax-mini-9",
-            "rating": {
-                "rate": 84.4,
-                "count": 502
-            },
-            "price": 15900000
-        }, {
-            "id": 777295,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u06a9\u0627\u0646\u0646 \u0645\u062f\u0644 EOS 4000D \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u0644\u0646\u0632 18-55 \u0645\u06cc\u0644\u06cc \u0645\u062a\u0631 DC III",
-            "brand": "Canon",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 92500000,
-                "discount_percent": 0
-            },
-            "position": 2,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 7308762,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3532470.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-777295\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u06a9\u0627\u0646\u0646-\u0645\u062f\u0644-eos-4000d-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u0644\u0646\u0632-18-55-\u0645\u06cc\u0644\u06cc-\u0645\u062a\u0631-dc-iii",
-            "rating": {
-                "rate": 83.4,
-                "count": 105
-            },
-            "price": 92500000
-        }, {
-            "id": 3588110,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u0645\u062f\u0644 DX-260",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 3337000,
-                "discount_percent": 0
-            },
-            "position": 3,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 18456976,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/a0f9d026fd5ad280cecfd8ea97c2216bc58002ca_1603208705.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3588110\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u0645\u062f\u0644-dx-260",
-            "rating": {
-                "rate": 77.4,
-                "count": 273
-            },
-            "price": 3337000
-        }, {
-            "id": 3593269,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc \u0686\u0627\u067e \u0633\u0631\u06cc\u0639 \u0641\u0648\u062c\u06cc \u0641\u06cc\u0644\u0645 \u0645\u062f\u0644 Instax Mini 9 Clear",
-            "brand": "Fujifilm",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 15900000,
-                "discount_percent": 0
-            },
-            "position": 4,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 11791023,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3f9d7c00f7ba8e692c34643cfe8cd17e81f3d286_1603281520.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3593269\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u0639\u06a9\u0627\u0633\u06cc-\u0686\u0627\u067e-\u0633\u0631\u06cc\u0639-\u0641\u0648\u062c\u06cc-\u0641\u06cc\u0644\u0645-\u0645\u062f\u0644-instax-mini-9-clear",
-            "rating": {
-                "rate": 87.2,
-                "count": 22
-            },
-            "price": 15900000
-        }, {
-            "id": 98691,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u0646\u06cc\u06a9\u0648\u0646 \u0645\u062f\u0644 D810 \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u0644\u0646\u0632 24-120 \u0645\u06cc\u0644\u06cc \u0645\u062a\u0631 F\/4G VR",
-            "brand": "Nikon",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 499900000,
-                "discount_percent": 15
-            },
-            "position": 5,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 8277340,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/370064.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-98691\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u0646\u06cc\u06a9\u0648\u0646-\u0645\u062f\u0644-d810-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u0644\u0646\u0632-24-120-\u0645\u06cc\u0644\u06cc-\u0645\u062a\u0631-f4g-vr",
-            "rating": {
-                "rate": 20,
-                "count": 1
-            },
-            "price": 499900000
-        }, {
-            "id": 1856080,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u06a9\u0627\u0646\u0646 \u0645\u062f\u0644 EOS 2000D \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u0644\u0646\u0632 18-55 \u0645\u06cc\u0644\u06cc \u0645\u062a\u0631 DC III",
-            "brand": "Canon",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 98900000,
-                "discount_percent": 0
-            },
-            "position": 6,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 11610763,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/112439699.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-1856080\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u06a9\u0627\u0646\u0646-\u0645\u062f\u0644-eos-2000d-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u0644\u0646\u0632-18-55-\u0645\u06cc\u0644\u06cc-\u0645\u062a\u0631-dc-iii",
-            "rating": {
-                "rate": 87.8,
-                "count": 57
-            },
-            "price": 98900000
-        }, {
-            "id": 3108356,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0641\u0648\u0646 (\u067e\u0631\u062f\u0647)"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0641\u0648\u0646 \u0639\u06a9\u0627\u0633\u06cc \u0645\u062f\u0644 non woven \u06a9\u062f 2.5-1.5",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0641\u0648\u0646 (\u067e\u0631\u062f\u0647)",
-            "category_id": 129,
-            "price_detail": {
-                "selling_price": 900000,
-                "discount_percent": 0
-            },
-            "position": 7,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 10135493,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/f0c72e2bc7b85406689fadf9ee39579b2b9d0581_1595098399.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3108356\/\u0641\u0648\u0646-\u0639\u06a9\u0627\u0633\u06cc-\u0645\u062f\u0644-non-woven-\u06a9\u062f-25-15",
-            "rating": {
-                "rate": 63.6,
-                "count": 328
-            },
-            "price": 900000
-        }, {
-            "id": 3339128,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u06a9\u062f RFL",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 3699900,
-                "discount_percent": 0
-            },
-            "position": 8,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 14274449,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/57c40f9ffdd81580932362a282879e1e9af81706_1599383854.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3339128\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u06a9\u062f-rfl",
-            "rating": {
-                "rate": 77,
-                "count": 303
-            },
-            "price": 3699900
-        }, {
-            "id": 4459464,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u0645\u0648\u0646\u0627\u06a9\u0648 \u0645\u062f\u0644 Brilliant-04",
-            "brand": "\u0645\u0648\u0646\u0627\u06a9\u0648",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 9000000,
-                "discount_percent": 0
-            },
-            "position": 9,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 14377256,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/c915162bf03179abff86e41286d41485073bfb50_1613297148.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-4459464\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u0645\u0648\u0646\u0627\u06a9\u0648-\u0645\u062f\u0644-brilliant-04",
-            "rating": {
-                "rate": 0,
-                "count": 0
-            },
-            "price": 9000000
-        }, {
-            "id": 2520810,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": " \u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u0622\u06a9\u0633\u0648\u0646 \u0645\u062f\u0644 AX6062",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 3400000,
-                "discount_percent": 0
-            },
-            "position": 10,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 16225707,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/119579726.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-2520810\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u0622\u06a9\u0633\u0648\u0646-\u0645\u062f\u0644-ax6062",
-            "rating": {
-                "rate": 70.6,
-                "count": 66
-            },
-            "price": 3400000
-        }, {
-            "id": 3443396,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9 \u067e\u0627\u06cc\u0647"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0646\u06af\u0647\u062f\u0627\u0631\u0646\u062f\u0647 \u062f\u0648\u0631\u0628\u06cc\u0646 \u0645\u062f\u0644 3110",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9 \u067e\u0627\u06cc\u0647",
-            "category_id": 107,
-            "price_detail": {
-                "selling_price": 879800,
-                "discount_percent": 0
-            },
-            "position": 11,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 13962328,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/bc2396a4ec7873605214b5e72f4d1957341fbddf_1600846422.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3443396\/\u0633\u0647-\u067e\u0627\u06cc\u0647-\u0646\u06af\u0647\u062f\u0627\u0631\u0646\u062f\u0647-\u062f\u0648\u0631\u0628\u06cc\u0646-\u0645\u062f\u0644-3110",
-            "rating": {
-                "rate": 68,
-                "count": 211
-            },
-            "price": 879800
-        }, {
-            "id": 3190220,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647"
-            ],
-            "supply_category": ["IT",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0630\u062e\u06cc\u0631\u0647 \u0633\u0627\u0632\u06cc \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
-            ],
-            "name": "\u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647 microSDXC \u0633\u0627\u0645\u0633\u0648\u0646\u06af \u0645\u062f\u0644 EVO Plus \u06a9\u0644\u0627\u0633 10 \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f UHS-I U1 \u0633\u0631\u0639\u062a 100MBps \u0638\u0631\u0641\u06cc\u062a 64 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u0622\u062f\u0627\u067e\u062a\u0648\u0631 SD",
-            "brand": "Samsung",
-            "category": "\u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647",
-            "category_id": 70,
-            "price_detail": {
-                "selling_price": 2097000,
-                "discount_percent": 0
-            },
-            "position": 12,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 10285646,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/97c9bd0b1951cb0ac28439cf40ec5aa3727f2ca4_1596532443.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3190220\/\u06a9\u0627\u0631\u062a-\u062d\u0627\u0641\u0638\u0647-microsdxc-\u0633\u0627\u0645\u0633\u0648\u0646\u06af-\u0645\u062f\u0644-evo-plus-\u06a9\u0644\u0627\u0633-10-\u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f-uhs-i-u1-\u0633\u0631\u0639\u062a-100mbps-\u0638\u0631\u0641\u06cc\u062a-64-\u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u0622\u062f\u0627\u067e\u062a\u0648\u0631-sd",
-            "rating": {
-                "rate": 86.4,
-                "count": 232
-            },
-            "price": 2097000
-        }, {
-            "id": 690710,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646", "\u062a\u0644\u0633\u06a9\u0648\u067e"
-            ],
-            "supply_category": ["AV", "\u0627\u0628\u0632\u0627\u0631 \u0639\u0644\u0645\u06cc"],
-            "name": "\u062a\u0644\u0633\u06a9\u0648\u067e \u0634\u06a9\u0633\u062a\u06cc \u0645\u062f\u0644 Celestial Body Accidence",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u062a\u0644\u0633\u06a9\u0648\u067e",
-            "category_id": 173,
-            "price_detail": {
-                "selling_price": 7470000,
-                "discount_percent": 0
-            },
-            "position": 13,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15400490,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3008907.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-690710\/\u062a\u0644\u0633\u06a9\u0648\u067e-\u0634\u06a9\u0633\u062a\u06cc-\u0645\u062f\u0644-celestial-body-accidence",
-            "rating": {
-                "rate": 54,
-                "count": 23
-            },
-            "price": 7470000
-        }, {
-            "id": 4508458,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647"
-            ],
-            "supply_category": ["IT",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0630\u062e\u06cc\u0631\u0647 \u0633\u0627\u0632\u06cc \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
-            ],
-            "name": "  \u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647 microSDXC \u0633\u0646 \u062f\u06cc\u0633\u06a9 \u0645\u062f\u0644 Ultra A1 \u06a9\u0644\u0627\u0633 10 \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f UHS-I \u0633\u0631\u0639\u062a 120MBps \u0638\u0631\u0641\u06cc\u062a 32 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-            "brand": "\u0633\u0646 \u062f\u06cc\u0633\u06a9",
-            "category": "\u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647",
-            "category_id": 70,
-            "price_detail": {
-                "selling_price": 1095000,
-                "discount_percent": 0
-            },
-            "position": 14,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15802155,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/fac1ac32f35ab75f8e3010a47642af94f2abb6f5_1613821674.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-4508458\/\u06a9\u0627\u0631\u062a-\u062d\u0627\u0641\u0638\u0647-microsdxc-\u0633\u0646-\u062f\u06cc\u0633\u06a9-\u0645\u062f\u0644-ultra-a1-\u06a9\u0644\u0627\u0633-10-\u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f-uhs-i-\u0633\u0631\u0639\u062a-120mbps-\u0638\u0631\u0641\u06cc\u062a-32-\u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-            "rating": {
-                "rate": 84.8,
-                "count": 223
-            },
-            "price": 1095000
-        }, {
-            "id": 138649,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u06a9\u0627\u0646\u0646 \u0645\u062f\u0644  Eos 80D EF S \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u0644\u0646\u0632 18-135 \u0645\u06cc\u0644\u06cc \u0645\u062a\u0631 f\/3.5-5.6 IS USM",
-            "brand": "Canon",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 279900000,
-                "discount_percent": 0
-            },
-            "position": 15,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 11615640,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/656887.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-138649\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u06a9\u0627\u0646\u0646-\u0645\u062f\u0644-eos-80d-ef-s-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u0644\u0646\u0632-18-135-\u0645\u06cc\u0644\u06cc-\u0645\u062a\u0631-f35-56-is-usm",
-            "rating": {
-                "rate": 80,
-                "count": 44
-            },
-            "price": 279900000
-        }, {
-            "id": 3133047,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646", "\u062a\u0644\u0633\u06a9\u0648\u067e"
-            ],
-            "supply_category": ["AV", "\u0627\u0628\u0632\u0627\u0631 \u0639\u0644\u0645\u06cc"],
-            "name": "\u062a\u0644\u0633\u06a9\u0648\u067e \u0645\u062f\u0644 c 2105",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u062a\u0644\u0633\u06a9\u0648\u067e",
-            "category_id": 173,
-            "price_detail": {
-                "selling_price": 3900000,
-                "discount_percent": 0
-            },
-            "position": 16,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15968165,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/2651146238e7f09cc75dad222ec54e119b613449_1595494091.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3133047\/\u062a\u0644\u0633\u06a9\u0648\u067e-\u0645\u062f\u0644-c-2105",
-            "rating": {
-                "rate": 56.6,
-                "count": 23
-            },
-            "price": 3900000
-        }, {
-            "id": 3197248,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u0645\u062f\u0644 M26",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 1770000,
-                "discount_percent": 9
-            },
-            "position": 17,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 12376896,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/d00c207943db9ba418d48559be00aeef6b54e085_1596628029.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3197248\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u0645\u062f\u0644-m26",
-            "rating": {
-                "rate": 78.8,
-                "count": 78
-            },
-            "price": 1770000
-        }, {
-            "id": 949493,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u0646\u06cc\u06a9\u0648\u0646 \u0645\u062f\u0644 D3500 \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u0644\u0646\u0632 18-55 \u0645\u06cc\u0644\u06cc \u0645\u062a\u0631 VR AF-P",
-            "brand": "Nikon",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 129950000,
-                "discount_percent": 0
-            },
-            "position": 18,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 17103005,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4430428.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-949493\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u0646\u06cc\u06a9\u0648\u0646-\u0645\u062f\u0644-d3500-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u0644\u0646\u0632-18-55-\u0645\u06cc\u0644\u06cc-\u0645\u062a\u0631-vr-af-p",
-            "rating": {
-                "rate": 79.4,
-                "count": 32
-            },
-            "price": 129950000
-        }, {
-            "id": 3557656,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9 \u067e\u0627\u06cc\u0647"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u062f\u0648\u0631\u0628\u06cc\u0646 \u0646\u0633\u062a \u0645\u062f\u0644 NT-510 \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u06af\u06cc\u0631\u0647 \u0646\u06af\u0647\u062f\u0627\u0631\u0646\u062f\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644",
-            "brand": "NEST",
-            "category": "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9 \u067e\u0627\u06cc\u0647",
-            "category_id": 107,
-            "price_detail": {
-                "selling_price": 3260000,
-                "discount_percent": 0
-            },
-            "position": 19,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 13855815,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4e93031e8ebffb66de70506d83817925227d8a04_1602683521.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3557656\/\u0633\u0647-\u067e\u0627\u06cc\u0647-\u062f\u0648\u0631\u0628\u06cc\u0646-\u0646\u0633\u062a-\u0645\u062f\u0644-nt-510-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u06af\u06cc\u0631\u0647-\u0646\u06af\u0647\u062f\u0627\u0631\u0646\u062f\u0647-\u0645\u0648\u0628\u0627\u06cc\u0644",
-            "rating": {
-                "rate": 82.6,
-                "count": 115
-            },
-            "price": 3260000
-        }, {
-            "id": 3692356,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u0645\u062f\u0644 FRL-S31",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 6990000,
-                "discount_percent": 36
-            },
-            "position": 20,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 11956757,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3dfdb45db91d8a224abb4dd88a3c448ceb79c094_1605018163.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3692356\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u0645\u062f\u0644-frl-s31",
-            "rating": {
-                "rate": 67,
-                "count": 31
-            },
-            "price": 6990000
-        }, {
-            "id": 4370886,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u0645\u062f\u0644 dimmable",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 8047500,
-                "discount_percent": 13
-            },
-            "position": 21,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15932181,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/d7e663c0f4bd41bb5a81c15693baad947b049660_1612266565.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-4370886\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u0645\u062f\u0644-dimmable",
-            "rating": {
-                "rate": 84,
-                "count": 50
-            },
-            "price": 8047500
-        }, {
-            "id": 1925099,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc \u0648\u0631\u0632\u0634\u06cc \u0645\u062f\u0644 SQ11",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-            "category_id": 49,
-            "price_detail": {
-                "selling_price": 1320000,
-                "discount_percent": 50
-            },
-            "position": 22,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 6554332,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/112813529.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-1925099\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u0641\u06cc\u0644\u0645-\u0628\u0631\u062f\u0627\u0631\u06cc-\u0648\u0631\u0632\u0634\u06cc-\u0645\u062f\u0644-sq11",
-            "rating": {
-                "rate": 53.8,
-                "count": 189
-            },
-            "price": 1320000
-        }, {
-            "id": 3438922,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646", "\u062a\u0644\u0633\u06a9\u0648\u067e"
-            ],
-            "supply_category": ["AV", "\u0627\u0628\u0632\u0627\u0631 \u0639\u0644\u0645\u06cc"],
-            "name": "\u062a\u0644\u0633\u06a9\u0648\u067e \u0627\u06a9\u06cc\u0648\u062a\u0631 \u0645\u062f\u0644 Maksy 60",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u062a\u0644\u0633\u06a9\u0648\u067e",
-            "category_id": 173,
-            "price_detail": {
-                "selling_price": 43000000,
-                "discount_percent": 4
-            },
-            "position": 23,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 11587529,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/38c8e631b91ad8903969c617da6409f1e212f1c0_1600771989.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3438922\/\u062a\u0644\u0633\u06a9\u0648\u067e-\u0627\u06a9\u06cc\u0648\u062a\u0631-\u0645\u062f\u0644-maksy-60",
-            "rating": {
-                "rate": 65,
-                "count": 4
-            },
-            "price": 43000000
-        }, {
-            "id": 191819,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u0628\u0627\u062a\u0631\u06cc\u060c \u0634\u0627\u0631\u0698\u0631 \u0648 \u0645\u062a\u0639\u0644\u0642\u0627\u062a",
-                "\u0628\u0627\u062a\u0631\u06cc \u0648 \u0634\u0627\u0631\u0698\u0631 \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f",
-                "\u0628\u0627\u062a\u0631\u06cc \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f"
-            ],
-            "supply_category": ["AC",
-                "\u0628\u0627\u062a\u0631\u06cc \u0648 \u0634\u0627\u0631\u0698\u0631 \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f"
-            ],
-            "name": "\u0628\u0627\u062a\u0631\u06cc \u0642\u0644\u0645\u06cc \u0648 \u0646\u06cc\u0645 \u0642\u0644\u0645\u06cc \u06a9\u0645\u0644\u06cc\u0648\u0646 \u0645\u062f\u0644 Super Heavy Duty \u0628\u0633\u062a\u0647 8 \u0639\u062f\u062f\u06cc",
-            "brand": "\u06a9\u0645\u0644\u06cc\u0648\u0646",
-            "category": "\u0628\u0627\u062a\u0631\u06cc \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f",
-            "category_id": 5880,
-            "price_detail": {
-                "selling_price": 199800,
-                "discount_percent": 0
-            },
-            "position": 24,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15516049,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/613266.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-191819\/\u0628\u0627\u062a\u0631\u06cc-\u0642\u0644\u0645\u06cc-\u0648-\u0646\u06cc\u0645-\u0642\u0644\u0645\u06cc-\u06a9\u0645\u0644\u06cc\u0648\u0646-\u0645\u062f\u0644-super-heavy-duty-\u0628\u0633\u062a\u0647-8-\u0639\u062f\u062f\u06cc",
-            "rating": {
-                "rate": 83.8,
-                "count": 7337
-            },
-            "price": 199800
-        }, {
-            "id": 222962,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u06a9\u0627\u0646\u0646 \u0645\u062f\u0644 EOS 7D Mark II \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u0644\u0646\u0632 18-135 \u0645\u06cc\u0644\u06cc \u0645\u062a\u0631 IS USM",
-            "brand": "Canon",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 356000000,
-                "discount_percent": 17
-            },
-            "position": 25,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 8299867,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/674360.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-222962\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u06a9\u0627\u0646\u0646-\u0645\u062f\u0644-eos-7d-mark-ii-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u0644\u0646\u0632-18-135-\u0645\u06cc\u0644\u06cc-\u0645\u062a\u0631-is-usm",
-            "rating": {
-                "rate": 55,
-                "count": 4
-            },
-            "price": 356000000
-        }, {
-            "id": 203383,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u06a9\u0627\u0646\u0646 \u0645\u062f\u0644 SX620 HS",
-            "brand": "Canon",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 63000000,
-                "discount_percent": 0
-            },
-            "position": 26,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15595047,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/4852749.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-203383\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u06a9\u0627\u0646\u0646-\u0645\u062f\u0644-sx620-hs",
-            "rating": {
-                "rate": 80.8,
-                "count": 25
-            },
-            "price": 63000000
-        }, {
-            "id": 4565123,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647"
-            ],
-            "supply_category": ["IT",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0630\u062e\u06cc\u0631\u0647 \u0633\u0627\u0632\u06cc \u0627\u0637\u0644\u0627\u0639\u0627\u062a"
-            ],
-            "name": "\u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647 microSDXC \u0633\u0646 \u062f\u06cc\u0633\u06a9 \u0645\u062f\u0644 Ultra A1 \u06a9\u0644\u0627\u0633 10 \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f UHS-I \u0633\u0631\u0639\u062a 120MBps \u0638\u0631\u0641\u06cc\u062a 64 \u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-            "brand": "\u0633\u0646 \u062f\u06cc\u0633\u06a9",
-            "category": "\u06a9\u0627\u0631\u062a \u062d\u0627\u0641\u0638\u0647",
-            "category_id": 70,
-            "price_detail": {
-                "selling_price": 1980000,
-                "discount_percent": 0
-            },
-            "position": 27,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15728701,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/12cd50c1ee626d879b2fa5f259a6133c58bd8fb6_1614417436.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-4565123\/\u06a9\u0627\u0631\u062a-\u062d\u0627\u0641\u0638\u0647-microsdxc-\u0633\u0646-\u062f\u06cc\u0633\u06a9-\u0645\u062f\u0644-ultra-a1-\u06a9\u0644\u0627\u0633-10-\u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f-uhs-i-\u0633\u0631\u0639\u062a-120mbps-\u0638\u0631\u0641\u06cc\u062a-64-\u06af\u06cc\u06af\u0627\u0628\u0627\u06cc\u062a",
-            "rating": {
-                "rate": 85.2,
-                "count": 175
-            },
-            "price": 1980000
-        }, {
-            "id": 587646,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u0628\u062f\u0648\u0646 \u0622\u06cc\u0646\u0647 \u06a9\u0627\u0646\u0646 \u0645\u062f\u0644 EOS M50  \u0628\u0647 \u0647\u0645\u0631\u0627\u0647 \u0644\u0646\u0632 15-45 \u0645\u06cc\u0644\u06cc \u0645\u062a\u0631",
-            "brand": "Canon",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 149950000,
-                "discount_percent": 0
-            },
-            "position": 28,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15685470,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/2182407.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-587646\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u0628\u062f\u0648\u0646-\u0622\u06cc\u0646\u0647-\u06a9\u0627\u0646\u0646-\u0645\u062f\u0644-eos-m50-\u0628\u0647-\u0647\u0645\u0631\u0627\u0647-\u0644\u0646\u0632-15-45-\u0645\u06cc\u0644\u06cc-\u0645\u062a\u0631",
-            "rating": {
-                "rate": 93.8,
-                "count": 13
-            },
-            "price": 149950000
-        }, {
-            "id": 3687426,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u0645\u062f\u0644 FRL-160r",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 1990000,
-                "discount_percent": 79
-            },
-            "position": 29,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 11947342,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/3a3e880695474f1c9fdcff708dc9d47ef2ab2ae2_1604992656.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3687426\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u0645\u062f\u0644-frl-160r",
-            "rating": {
-                "rate": 77.6,
-                "count": 32
-            },
-            "price": 1990000
-        }, {
-            "id": 4411537,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u0645\u062f\u0644 ZT-260",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 3699200,
-                "discount_percent": 0
-            },
-            "position": 30,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 18321361,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/69a671a0c64ec4771769ed36d8925c9cad09a6a9_1612691558.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-4411537\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u0645\u062f\u0644-zt-260",
-            "rating": {
-                "rate": 70.6,
-                "count": 38
-            },
-            "price": 3699200
-        }, {
-            "id": 3375458,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9 \u067e\u0627\u06cc\u0647"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0646\u06af\u0647\u062f\u0627\u0631\u0646\u062f\u0647 \u06af\u0648\u0634\u06cc \u0645\u0648\u0628\u0627\u06cc\u0644 \u0627\u0628\u0631 \u0645\u062f\u0644 ABR-3120",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9 \u067e\u0627\u06cc\u0647",
-            "category_id": 107,
-            "price_detail": {
-                "selling_price": 1610000,
-                "discount_percent": 3
-            },
-            "position": 31,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 17330851,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/80b337c2c7e6893178d20e49e7659029fecac21d_1601878773.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3375458\/\u0633\u0647-\u067e\u0627\u06cc\u0647-\u0646\u06af\u0647\u062f\u0627\u0631\u0646\u062f\u0647-\u06af\u0648\u0634\u06cc-\u0645\u0648\u0628\u0627\u06cc\u0644-\u0627\u0628\u0631-\u0645\u062f\u0644-abr-3120",
-            "rating": {
-                "rate": 63.4,
-                "count": 129
-            },
-            "price": 1610000
-        }, {
-            "id": 3869816,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9 \u067e\u0627\u06cc\u0647"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u062f\u0648\u0631\u0628\u06cc\u0646 \u0645\u062f\u0644 3110",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0633\u0647 \u067e\u0627\u06cc\u0647 \u0648 \u062a\u06a9 \u067e\u0627\u06cc\u0647",
-            "category_id": 107,
-            "price_detail": {
-                "selling_price": 950000,
-                "discount_percent": 12
-            },
-            "position": 32,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15751489,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/fffb6ec266d50a8c8e35e6fae02dd70d8a8f93f0_1606699822.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3869816\/\u0633\u0647-\u067e\u0627\u06cc\u0647-\u062f\u0648\u0631\u0628\u06cc\u0646-\u0648\u0645\u0648\u0628\u0627\u06cc\u0644-\u0645\u062f\u0644-3110",
-            "rating": {
-                "rate": 68.6,
-                "count": 58
-            },
-            "price": 950000
-        }, {
-            "id": 4370591,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0622\u062a\u0644\u06cc\u0647 \u0648 \u0646\u0648\u0631\u067e\u0631\u062f\u0627\u0632\u06cc",
-                "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a"
-            ],
-            "supply_category": ["AV",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062f\u0648\u0631\u0628\u06cc\u0646"
-            ],
-            "name": "\u0631\u06cc\u0646\u06af \u0644\u0627\u06cc\u062a \u0645\u062f\u0644 live s",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u0646\u0648\u0631 \u062b\u0627\u0628\u062a",
-            "category_id": 141,
-            "price_detail": {
-                "selling_price": 1550000,
-                "discount_percent": 0
-            },
-            "position": 33,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 15758701,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/72939d7db990dbd2cda91af2714bc19c006f5acd_1612190828.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-4370591\/\u0631\u06cc\u0646\u06af-\u0644\u0627\u06cc\u062a-\u0645\u062f\u0644-live-s",
-            "rating": {
-                "rate": 82.6,
-                "count": 45
-            },
-            "price": 1550000
-        }, {
-            "id": 3410241,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc \u0648\u0631\u0632\u0634\u06cc \u06af\u0648\u067e\u0631\u0648 \u0645\u062f\u0644 Hero 9 Black",
-            "brand": "\u06af\u0648\u067e\u0631\u0648",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-            "category_id": 49,
-            "price_detail": {
-                "selling_price": 109535000,
-                "discount_percent": 0
-            },
-            "position": 34,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 13637212,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/14ee4d2c1af7563e4fc856f91c6fa5a902401531_1601103882.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3410241\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u0641\u06cc\u0644\u0645-\u0628\u0631\u062f\u0627\u0631\u06cc-\u0648\u0631\u0632\u0634\u06cc-\u06af\u0648\u067e\u0631\u0648-\u0645\u062f\u0644-hero-9-black",
-            "rating": {
-                "rate": 90,
-                "count": 4
-            },
-            "price": 109535000
-        }, {
-            "id": 4442903,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u0639\u06a9\u0627\u0633\u06cc \u0648 \u0641\u06cc\u0644\u0645 \u0628\u0631\u062f\u0627\u0631\u06cc",
-                "\u0628\u0627\u062a\u0631\u06cc\u060c \u0634\u0627\u0631\u0698\u0631 \u0648 \u0645\u062a\u0639\u0644\u0642\u0627\u062a",
-                "\u0628\u0627\u062a\u0631\u06cc \u0648 \u0634\u0627\u0631\u0698\u0631 \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f",
-                "\u0628\u0627\u062a\u0631\u06cc \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f"
-            ],
-            "supply_category": ["AC",
-                "\u0628\u0627\u062a\u0631\u06cc \u0648 \u0634\u0627\u0631\u0698\u0631 \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f"
-            ],
-            "name": "\u0628\u0627\u062a\u0631\u06cc \u0646\u06cc\u0645 \u0642\u0644\u0645\u06cc \u067e\u06cc\u06a9\u0633\u0644 \u0645\u062f\u0644 Super Heavy Duty \u0628\u0633\u062a\u0647 4 \u0639\u062f\u062f\u06cc",
-            "brand": "\u067e\u06cc\u200c\u06a9\u06cc \u0633\u0644",
-            "category": "\u0628\u0627\u062a\u0631\u06cc \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f",
-            "category_id": 5880,
-            "price_detail": {
-                "selling_price": 129000,
-                "discount_percent": 77
-            },
-            "position": 35,
-            "status": "marketable",
-            "multi_color": false,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 14304891,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/681d6975321e337fcb66703e5e68df64f2e21fb2_1613053970.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-4442903\/\u0628\u0627\u062a\u0631\u06cc-\u0646\u06cc\u0645-\u0642\u0644\u0645\u06cc-\u067e\u06cc\u06a9\u0633\u0644-\u0645\u062f\u0644-super-heavy-duty-\u0628\u0633\u062a\u0647-4-\u0639\u062f\u062f\u06cc",
-            "rating": {
-                "rate": 82.8,
-                "count": 665
-            },
-            "price": 129000
-        }, {
-            "id": 3400718,
-            "site_category": ["\u06a9\u0627\u0644\u0627\u06cc \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646",
-                "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc"
-            ],
-            "supply_category": ["AV", "\u062f\u0648\u0631\u0628\u06cc\u0646"],
-            "name": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062f\u06cc\u062c\u06cc\u062a\u0627\u0644 \u0645\u062f\u0644 mn6077",
-            "brand": "\u0645\u062a\u0641\u0631\u0642\u0647",
-            "category": "\u062f\u0648\u0631\u0628\u06cc\u0646 \u0639\u06a9\u0627\u0633\u06cc",
-            "category_id": 48,
-            "price_detail": {
-                "selling_price": 6970000,
-                "discount_percent": 15
-            },
-            "position": 36,
-            "status": "marketable",
-            "multi_color": true,
-            "multi_size": false,
-            "multi_warranty": true,
-            "multi_seller": true,
-            "buy_box_winner": 11045357,
-            "image_src": "https:\/\/dkstatics-public.digikala.com\/digikala-products\/5e807a3dab0ec90bd20a82556351ada8fa71b239_1600170684.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90",
-            "product_url": "https:\/\/digikala.com\/product\/dkp-3400718\/\u062f\u0648\u0631\u0628\u06cc\u0646-\u062f\u06cc\u062c\u06cc\u062a\u0627\u0644-\u0645\u062f\u0644-mn6077",
-            "rating": {
-                "rate": 61.6,
-                "count": 12
-            },
-            "price": 6970000
-        }];
+        var parameters = {"category_path":"\/category-car-accessory-parts","query":{"sortby":4},"list_view":false};
+        var cart = {"cartId":0,"variants":[],"products":[],"itemCount":0,"isPlusUser":false};
+        var emarsysCategoryBreadcrumb = "\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc > \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648";
+        var click_impression = [{"id":605575,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u0633\u0648\u0646\u06cc \u0645\u062f\u0644 DSX-A110U","brand":"Sony","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":20000000,"discount_percent":2},"position":1,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":19617215,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/2586774.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-605575\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u0633\u0648\u0646\u06cc-\u0645\u062f\u0644-dsx-a110u","rating":{"rate":86,"count":314},"price":20000000},{"id":3159480,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u067e\u0627\u0646\u0627\u062a\u06a9 \u0645\u062f\u0644 P-CP201","brand":"Panatech","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":3948500,"discount_percent":0},"position":2,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":19890554,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/ba936343ce5a953c6d36266c3dbdb43b47c65da3_1595935402.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-3159480\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u067e\u0627\u0646\u0627\u062a\u06a9-\u0645\u062f\u0644-p-cp201","rating":{"rate":74,"count":149},"price":3948500},{"id":131958,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u0627\u0633\u067e\u06cc\u06a9\u0631 \u062e\u0648\u062f\u0631\u0648 \u067e\u0627\u06cc\u0648\u0646\u06cc\u0631 \u0645\u062f\u0644 TS-6975 V3","brand":"Pioneer","category":"\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648","category_id":5752,"price_detail":{"selling_price":29450000,"discount_percent":0},"position":3,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":21468645,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/400083.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-131958\/\u0627\u0633\u067e\u06cc\u06a9\u0631-\u062e\u0648\u062f\u0631\u0648-\u067e\u0627\u06cc\u0648\u0646\u06cc\u0631-\u0645\u062f\u0644-ts-6975-v3","rating":{"rate":78,"count":241},"price":29450000},{"id":2403842,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648  \u067e\u0627\u06cc\u0648\u0646\u0631 \u0645\u062f\u0644 IR22-P","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":1450000,"discount_percent":0},"position":4,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":6956750,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/119078866.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-2403842\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u067e\u0627\u06cc\u0648\u0646\u0631-\u0645\u062f\u0644-ir22-p","rating":{"rate":68,"count":123},"price":1450000},{"id":3628094,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u0645\u062f\u0644 JSD-520","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":4400000,"discount_percent":0},"position":5,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":13043256,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/97892329e944f5df7f1aeb592b2d124dfddc70c5_1603790374.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-3628094\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u0645\u062f\u0644-jsd-520","rating":{"rate":76,"count":148},"price":4400000},{"id":6518344,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u0633\u0646\u0627\u062a\u0648\u0631 \u0645\u062f\u0644 ST-1130","brand":"Senator","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":6100000,"discount_percent":0},"position":6,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":23412770,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/5c88361256edbe26654145a27f98bf5408040e35_1632214360.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-6518344\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u0633\u0646\u0627\u062a\u0648\u0631-\u0645\u062f\u0644-st-1130","rating":{"rate":86,"count":34},"price":6100000},{"id":56708,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0646\u0638\u0627\u0641\u062a \u0648 \u0646\u06af\u0647\u062f\u0627\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u06a9\u0627\u0631\u0648\u0627\u0634"],"supply_category":["TC","\u0627\u0628\u0632\u0627\u0631 \u0628\u0631\u0642\u06cc"],"name":"\u06a9\u0627\u0631\u0648\u0627\u0634 \u0631\u0648\u0646\u06cc\u06a9\u0633 \u0645\u062f\u0644 RP-U100","brand":"\u0631\u0648\u0646\u06cc\u06a9\u0633","category":"\u06a9\u0627\u0631\u0648\u0627\u0634","category_id":6184,"price_detail":{"selling_price":24100000,"discount_percent":0},"position":7,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":23318407,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/446884.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-56708\/\u06a9\u0627\u0631\u0648\u0627\u0634-\u0631\u0648\u0646\u06cc\u06a9\u0633-\u0645\u062f\u0644-rp-u100","rating":{"rate":82,"count":174},"price":24100000},{"id":4372718,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u0645\u062f\u0644 \u0645\u0627\u0646\u06cc\u062a\u0648\u0631 206","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":27500000,"discount_percent":0},"position":8,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":19622058,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/a396f1472808ce10e27c7199f9e2c837ee6d2534_1612213355.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-4372718\/\u0645\u0627\u0646\u06cc\u062a\u0648\u0631-\u0641\u0627\u0628\u0631\u06cc\u06a9-\u0627\u0646\u062f\u0631\u0648\u06cc\u062f-\u0645\u062f\u0644-206","rating":{"rate":74,"count":11},"price":27500000},{"id":5206106,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u067e\u0627\u0646\u0627\u062a\u06a9 \u0645\u062f\u0644 P-CP208P","brand":"Panatech","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":3832600,"discount_percent":0},"position":9,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":17162033,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/2db7586d7ffcb027d86925fa2fe63ee36c5d053b_1621342085.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-5206106\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u067e\u0627\u0646\u0627\u062a\u06a9-\u0645\u062f\u0644-p-cp208p","rating":{"rate":74,"count":28},"price":3832600},{"id":170935,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u0627\u0633\u067e\u06cc\u06a9\u0631 \u062e\u0648\u062f\u0631\u0648 \u067e\u0627\u06cc\u0648\u0646\u06cc\u0631 \u0645\u062f\u0644 TS-R6951S","brand":"Pioneer","category":"\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648","category_id":5752,"price_detail":{"selling_price":13490500,"discount_percent":0},"position":10,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":15854405,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/587296.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-170935\/\u0627\u0633\u067e\u06cc\u06a9\u0631-\u062e\u0648\u062f\u0631\u0648-\u067e\u0627\u06cc\u0648\u0646\u06cc\u0631-\u0645\u062f\u0644-ts-r6951s","rating":{"rate":82,"count":244},"price":13490500},{"id":1532347,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u06a9\u0641\u067e\u0648\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u06a9\u0641\u067e\u0648\u0634 \u0633\u0647 \u0628\u0639\u062f\u06cc ( \u067e\u0644\u06cc \u0627\u0648\u0631\u062a\u0627\u0646 ) \u062e\u0648\u062f\u0631\u0648 \u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc \u067e\u0698\u0648 405 \u060c \u067e\u0698\u0648 \u067e\u0627\u0631\u0633 \u0648 \u0633\u0645\u0646\u062f","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u06a9\u0641\u067e\u0648\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":8270,"price_detail":{"selling_price":1035000,"discount_percent":7},"position":11,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":4935672,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/110700040.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-1532347\/\u06a9\u0641\u067e\u0648\u0634-\u0633\u0647-\u0628\u0639\u062f\u06cc-\u067e\u0644\u06cc-\u0627\u0648\u0631\u062a\u0627\u0646-\u062e\u0648\u062f\u0631\u0648-\u0645\u0646\u0627\u0633\u0628-\u0628\u0631\u0627\u06cc-\u067e\u0698\u0648-405-\u067e\u0698\u0648-\u067e\u0627\u0631\u0633-\u0648-\u0633\u0645\u0646\u062f","rating":{"rate":72,"count":1139},"price":1035000},{"id":807351,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u06a9\u0641\u067e\u0648\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u06a9\u0641\u067e\u0648\u0634 \u0633\u0647 \u0628\u0639\u062f\u06cc \u062e\u0648\u062f\u0631\u0648 \u0645\u0627\u0647\u0648\u062a \u0645\u062f\u0644 \u0627\u06a9\u0648 \u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc \u067e\u0631\u0627\u06cc\u062f \u062a\u06cc\u0628\u0627 \u0633\u0627\u06cc\u0646\u0627","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u06a9\u0641\u067e\u0648\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":8270,"price_detail":{"selling_price":1120000,"discount_percent":0},"position":12,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":13526799,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/3695269.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-807351\/\u06a9\u0641\u067e\u0648\u0634-\u0633\u0647-\u0628\u0639\u062f\u06cc-\u062e\u0648\u062f\u0631\u0648-\u0645\u0627\u0647\u0648\u062a-\u0645\u062f\u0644-\u0627\u06a9\u0648-\u0645\u0646\u0627\u0633\u0628-\u0628\u0631\u0627\u06cc-\u067e\u0631\u0627\u06cc\u062f-\u062a\u06cc\u0628\u0627-\u0633\u0627\u06cc\u0646\u0627","rating":{"rate":72,"count":863},"price":1120000},{"id":340984,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0627\u0628\u0632\u0627\u0631 \u062e\u0648\u062f\u0631\u0648","\u06a9\u0645\u067e\u0631\u0633\u0648\u0631 \u0647\u0648\u0627"],"supply_category":["TC","\u0627\u0628\u0632\u0627\u0631 \u0628\u0631\u0642\u06cc"],"name":"\u06a9\u0645\u067e\u0631\u0633\u0648\u0631 \u0628\u0627\u062f \u0641\u0646\u062f\u06a9\u06cc \u0627\u06cc\u06a9\u0633 \u0648\u0627\u0646 \u0645\u062f\u0644 BOHO","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u06a9\u0645\u067e\u0631\u0633\u0648\u0631 \u0647\u0648\u0627","category_id":6191,"price_detail":{"selling_price":9385000,"discount_percent":0},"position":13,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":2007926,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/1937217.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-340984\/\u06a9\u0645\u067e\u0631\u0633\u0648\u0631-\u0628\u0627\u062f-\u0641\u0646\u062f\u06a9\u06cc-\u0627\u06cc\u06a9\u0633-\u0648\u0627\u0646-\u0645\u062f\u0644-boho","rating":{"rate":76,"count":890},"price":9385000},{"id":2253534,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648 \u0645\u062f\u0644 2002 \u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc \u067e\u0631\u0627\u06cc\u062f \u0635\u0628\u0627","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648","category_id":8185,"price_detail":{"selling_price":2200000,"discount_percent":0},"position":14,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":6421502,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/117259288.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-2253534\/\u0631\u0648\u06a9\u0634-\u0635\u0646\u062f\u0644\u06cc-\u062e\u0648\u062f\u0631\u0648-\u0645\u062f\u0644-2002-\u0645\u0646\u0627\u0633\u0628-\u0628\u0631\u0627\u06cc-\u067e\u0631\u0627\u06cc\u062f-\u0635\u0628\u0627","rating":{"rate":64,"count":495},"price":2200000},{"id":4961602,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u0633\u0646\u0627\u062a\u0648\u0631 \u0645\u062f\u0644 ST-1067-PRO","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":6990000,"discount_percent":0},"position":15,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":20939279,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/e64f058e01a7b359ad783f1c8ab63c302b86f38f_1618945733.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-4961602\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u0633\u0646\u0627\u062a\u0648\u0631-\u0645\u062f\u0644-st-1067-pro","rating":{"rate":78,"count":15},"price":6990000},{"id":3620772,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u06a9\u0627\u0631\u0648\u0632\u0631\u06cc\u0627 \u0645\u062f\u0644 CRX-2020","brand":"Carozeria","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":3400000,"discount_percent":0},"position":16,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":11654232,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/dae2de1685cfbf08c54b1b896ed4581d8ce86080_1603707181.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-3620772\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u06a9\u0627\u0631\u0648\u0632\u0631\u06cc\u0627-\u0645\u062f\u0644-crx-2020","rating":{"rate":74,"count":56},"price":3400000},{"id":1481442,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0646\u0638\u0645 \u062f\u0647\u0646\u062f\u0647 \u062f\u0627\u062e\u0644 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u062c\u0627\u06cc \u062f\u0633\u062a\u0645\u0627\u0644 \u06a9\u0627\u063a\u0630\u06cc \u062e\u0648\u062f\u0631\u0648 \u0622\u06cc\u0644\u06cc\u0646 \u06a9\u062f 9101131","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0646\u0638\u0645 \u062f\u0647\u0646\u062f\u0647 \u062f\u0627\u062e\u0644 \u062e\u0648\u062f\u0631\u0648","category_id":8369,"price_detail":{"selling_price":205000,"discount_percent":0},"position":17,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":18729948,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/110560997.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-1481442\/\u062c\u0627\u06cc-\u062f\u0633\u062a\u0645\u0627\u0644-\u06a9\u0627\u063a\u0630\u06cc-\u062e\u0648\u062f\u0631\u0648-\u0622\u06cc\u0644\u06cc\u0646-\u06a9\u062f-9101131","rating":{"rate":78,"count":4627},"price":205000},{"id":1662486,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u0633\u0648\u0646\u06cc \u0645\u062f\u0644 DSX-A410BT","brand":"Sony","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":26450000,"discount_percent":0},"position":18,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":19041502,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/111400414.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-1662486\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u0633\u0648\u0646\u06cc-\u0645\u062f\u0644-dsx-a410bt","rating":{"rate":88,"count":122},"price":26450000},{"id":2542738,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648 \u0645\u062f\u0644 4004 \u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc \u067e\u0631\u0627\u06cc\u062f","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648","category_id":8185,"price_detail":{"selling_price":3250000,"discount_percent":0},"position":19,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":7480956,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/a72ee2cbdc871e968fbbd728d41b4e5d4d9c53bc_1613540135.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-2542738\/\u0631\u0648\u06a9\u0634-\u0635\u0646\u062f\u0644\u06cc-\u062e\u0648\u062f\u0631\u0648-\u0645\u062f\u0644-4004-\u0645\u0646\u0627\u0633\u0628-\u0628\u0631\u0627\u06cc-\u067e\u0631\u0627\u06cc\u062f","rating":{"rate":66,"count":252},"price":3250000},{"id":3729933,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u0646\u0627\u06a9\u0627\u0645\u06cc\u0686\u06cc \u0645\u062f\u0644 NQ711b","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":10900000,"discount_percent":0},"position":20,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":23580959,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/dee636fb910a7c0252fbb40020d6faf698602f17_1605024182.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-3729933\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u0646\u0627\u06a9\u0627\u0645\u06cc\u0686\u06cc-\u0645\u062f\u0644-nq711b","rating":{"rate":80,"count":69},"price":10900000},{"id":1007488,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u0645\u0633\u06cc\u0631\u06cc\u0627\u0628 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u0631\u062f\u06cc\u0627\u0628 \u0634\u062e\u0635\u06cc \u0648 \u0622\u0647\u0646\u0631\u0628\u0627\u06cc\u06cc \u0645\u062f\u0644 fat122","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0645\u0633\u06cc\u0631\u06cc\u0627\u0628 \u062e\u0648\u062f\u0631\u0648","category_id":8350,"price_detail":{"selling_price":6600000,"discount_percent":0},"position":21,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":17477577,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/4732617.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-1007488\/\u0631\u062f\u06cc\u0627\u0628-\u0634\u062e\u0635\u06cc-\u0648-\u0622\u0647\u0646\u0631\u0628\u0627\u06cc\u06cc-\u0645\u062f\u0644-fat122","rating":{"rate":58,"count":33},"price":6600000},{"id":334883,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0646\u0638\u0627\u0641\u062a \u0648 \u0646\u06af\u0647\u062f\u0627\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u06a9\u0627\u0631\u0648\u0627\u0634"],"supply_category":["TC","\u0627\u0628\u0632\u0627\u0631 \u0628\u0631\u0642\u06cc"],"name":"\u06a9\u0627\u0631\u0648\u0627\u0634 \u0627\u06cc\u0632\u06cc \u062c\u062a \u0645\u062f\u0644 1001","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u06a9\u0627\u0631\u0648\u0627\u0634","category_id":6184,"price_detail":{"selling_price":1103400,"discount_percent":0},"position":22,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":7534530,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/2046301.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-334883\/\u06a9\u0627\u0631\u0648\u0627\u0634-\u0627\u06cc\u0632\u06cc-\u062c\u062a-\u0645\u062f\u0644-1001","rating":{"rate":70,"count":397},"price":1103400},{"id":4187159,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u0645\u06cc\u062f\u0631\u0646\u062c \u062e\u0648\u062f\u0631\u0648 \u0645\u0648\u0631\u0644\u00a0\u0645\u062f\u0644  ML-8","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648","category_id":5752,"price_detail":{"selling_price":3356500,"discount_percent":33},"position":23,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":13519330,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/e3cdacf0f0de35fbd61f73dd99455f2ec0ae5a23_1610201717.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-4187159\/\u0645\u06cc\u062f\u0631\u0646\u062c-\u062e\u0648\u062f\u0631\u0648-\u0645\u0648\u0631\u0644-\u0645\u062f\u0644-ml-8","rating":{"rate":76,"count":22},"price":3356500},{"id":4164693,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0646\u0638\u0645 \u062f\u0647\u0646\u062f\u0647 \u062f\u0627\u062e\u0644 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u062c\u0639\u0628\u0647 \u0646\u0638\u0645 \u062f\u0647\u0646\u062f\u0647 \u0635\u0646\u062f\u0648\u0642 \u0639\u0642\u0628 \u062e\u0648\u062f\u0631\u0648 \u0646\u06cc\u0627\u0632\u0634\u0627\u067e \u0645\u062f\u0644 NPR891","brand":"\u0646\u06cc\u0627\u0632\u0634\u0627\u067e","category":"\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0646\u0638\u0645 \u062f\u0647\u0646\u062f\u0647 \u062f\u0627\u062e\u0644 \u062e\u0648\u062f\u0631\u0648","category_id":8369,"price_detail":{"selling_price":1350000,"discount_percent":49},"position":24,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":14696806,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/994d01179d743dd38badfd62c50418f590638633_1609788871.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-4164693\/\u062c\u0639\u0628\u0647-\u0646\u0638\u0645-\u062f\u0647\u0646\u062f\u0647-\u0635\u0646\u062f\u0648\u0642-\u0639\u0642\u0628-\u062e\u0648\u062f\u0631\u0648-\u0646\u06cc\u0627\u0632\u0634\u0627\u067e-\u0645\u062f\u0644-npr891","rating":{"rate":72,"count":161},"price":1350000},{"id":964055,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u0631\u0648\u06a9\u0634 \u0641\u0631\u0645\u0627\u0646"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u0631\u0648\u06a9\u0634 \u0641\u0631\u0645\u0627\u0646 \u06a9\u062f 16","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0631\u0648\u06a9\u0634 \u0641\u0631\u0645\u0627\u0646","category_id":8336,"price_detail":{"selling_price":160000,"discount_percent":0},"position":25,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":15371041,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/4506389.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-964055\/\u0631\u0648\u06a9\u0634-\u0641\u0631\u0645\u0627\u0646-\u06a9\u062f-16","rating":{"rate":78,"count":2183},"price":160000},{"id":528576,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u06a9\u0641\u067e\u0648\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u06a9\u0641\u067e\u0648\u0634 \u0633\u0647 \u0628\u0639\u062f\u06cc \u062e\u0648\u062f\u0631\u0648 \u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc \u067e\u0631\u0627\u06cc\u062f","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u06a9\u0641\u067e\u0648\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":8270,"price_detail":{"selling_price":1000000,"discount_percent":0},"position":26,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":11602248,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/3422186.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-528576\/\u06a9\u0641\u067e\u0648\u0634-\u0633\u0647-\u0628\u0639\u062f\u06cc-\u062e\u0648\u062f\u0631\u0648-\u0645\u0646\u0627\u0633\u0628-\u0628\u0631\u0627\u06cc-\u067e\u0631\u0627\u06cc\u062f","rating":{"rate":74,"count":472},"price":1000000},{"id":3579724,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u0627\u0633\u067e\u06cc\u06a9\u0631 \u062e\u0648\u062f\u0631\u0648 \u0633\u06cc\u0644\u062a\u0631\u0648\u0646 \u0645\u062f\u0644 PS1301 \u0628\u0633\u062a\u0647 \u062f\u0648 \u0639\u062f\u062f\u06cc","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648","category_id":5752,"price_detail":{"selling_price":1790000,"discount_percent":0},"position":27,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":23581861,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/d949e38f1a5e1d57fb6c3897a4aa26c2a2bd2bca_1603113727.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-3579724\/\u0627\u0633\u067e\u06cc\u06a9\u0631-\u062e\u0648\u062f\u0631\u0648-\u0633\u06cc\u0644\u062a\u0631\u0648\u0646-\u0645\u062f\u0644-ps1301-\u0628\u0633\u062a\u0647-\u062f\u0648-\u0639\u062f\u062f\u06cc","rating":{"rate":76,"count":157},"price":1790000},{"id":4196408,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u067e\u0627\u0646\u0627\u062a\u06a9 \u0645\u062f\u0644 P-CP203","brand":"Panatech","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":4250000,"discount_percent":4},"position":28,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":21742500,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/9c694f88d5fb6746ccb5b474e03713c4a504ca67_1610197529.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-4196408\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u067e\u0627\u0646\u0627\u062a\u06a9-\u0645\u062f\u0644-p-cp203","rating":{"rate":78,"count":139},"price":4250000},{"id":3575332,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u0631 \u0627\u06af\u0632\u0648\u0632"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u0645\u0646\u0628\u0639 \u0627\u06af\u0632\u0648\u0632 \u0645\u062f\u0644 B420","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0633\u0631 \u0627\u06af\u0632\u0648\u0632","category_id":8716,"price_detail":{"selling_price":2810000,"discount_percent":0},"position":29,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":23841568,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/31e53aaf9b29c4d6bad8cc2412d6a4204dfe06c6_1618315206.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-3575332\/\u0645\u0646\u0628\u0639-\u0627\u06af\u0632\u0648\u0632-\u0645\u062f\u0644-b420","rating":{"rate":90,"count":93},"price":2810000},{"id":1555774,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0646\u0638\u0645 \u062f\u0647\u0646\u062f\u0647 \u062f\u0627\u062e\u0644 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u0633\u0637\u0644 \u0632\u0628\u0627\u0644\u0647 \u062e\u0648\u062f\u0631\u0648 \u0645\u062f\u0644 AS","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0646\u0638\u0645 \u062f\u0647\u0646\u062f\u0647 \u062f\u0627\u062e\u0644 \u062e\u0648\u062f\u0631\u0648","category_id":8369,"price_detail":{"selling_price":178000,"discount_percent":0},"position":30,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":16834128,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/110824092.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-1555774\/\u0633\u0637\u0644-\u0632\u0628\u0627\u0644\u0647-\u062e\u0648\u062f\u0631\u0648-\u0645\u062f\u0644-as","rating":{"rate":72,"count":3843},"price":178000},{"id":35400,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u0627\u0633\u067e\u06cc\u06a9\u0631 \u062e\u0648\u062f\u0631\u0648 \u06a9\u0646\u0648\u0648\u062f \u0645\u062f\u0644 KFC-HQ718EX","brand":"Kenwood","category":"\u0628\u0644\u0646\u062f\u06af\u0648\u06cc \u062e\u0648\u062f\u0631\u0648","category_id":5752,"price_detail":{"selling_price":26220000,"discount_percent":0},"position":31,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":21469572,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/103591.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-35400\/\u0627\u0633\u067e\u06cc\u06a9\u0631-\u062e\u0648\u062f\u0631\u0648-\u06a9\u0646\u0648\u0648\u062f-\u0645\u062f\u0644-kfc-hq718ex","rating":{"rate":84,"count":301},"price":26220000},{"id":2184216,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u0631 \u062f\u0646\u062f\u0647"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u0633\u0631\u062f\u0646\u062f\u0647 \u0686\u0631\u0627\u063a \u062f\u0627\u0631 \u062e\u0648\u062f\u0631\u0648 \u0645\u062f\u0644 YI-62","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0633\u0631 \u062f\u0646\u062f\u0647","category_id":8273,"price_detail":{"selling_price":494500,"discount_percent":14},"position":32,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":6192193,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/114223421.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-2184216\/\u0633\u0631\u062f\u0646\u062f\u0647-\u0686\u0631\u0627\u063a-\u062f\u0627\u0631-\u062e\u0648\u062f\u0631\u0648-\u0645\u062f\u0644-yi-62","rating":{"rate":66,"count":33},"price":494500},{"id":818389,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0646\u0638\u0627\u0641\u062a \u0648 \u0646\u06af\u0647\u062f\u0627\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u0648\u0627\u06a9\u0633\u060c \u067e\u0648\u0644\u06cc\u0634 \u0648 \u062a\u0645\u06cc\u0632\u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u0645\u0635\u0631\u0641\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u067e\u0648\u0644\u06cc\u0634 \u0628\u062f\u0646\u0647 \u062e\u0648\u062f\u0631\u0648 \u062c\u0644\u0627\u0633\u0646\u062c \u0645\u062f\u0644 \u0646\u0631\u0645 \u062d\u062c\u0645 170 \u06af\u0631\u0645","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0648\u0627\u06a9\u0633\u060c \u067e\u0648\u0644\u06cc\u0634 \u0648 \u062a\u0645\u06cc\u0632\u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648","category_id":8355,"price_detail":{"selling_price":220000,"discount_percent":0},"position":33,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":23929493,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/3755113.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-818389\/\u067e\u0648\u0644\u06cc\u0634-\u0628\u062f\u0646\u0647-\u062e\u0648\u062f\u0631\u0648-\u062c\u0644\u0627\u0633\u0646\u062c-\u0645\u062f\u0644-\u0646\u0631\u0645-\u062d\u062c\u0645-170-\u06af\u0631\u0645","rating":{"rate":80,"count":3391},"price":220000},{"id":5206255,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u067e\u0627\u0646\u0627\u062a\u06a9 \u0645\u062f\u0644 P-CP209P","brand":"Panatech","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":3829900,"discount_percent":0},"position":34,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":19513653,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/3eac31d01cb826aff33e44c2979c95ff2c8882ef_1621342915.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-5206255\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u067e\u0627\u0646\u0627\u062a\u06a9-\u0645\u062f\u0644-p-cp209p","rating":{"rate":68,"count":36},"price":3829900},{"id":2326219,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0644\u0648\u0627\u0632\u0645 \u062a\u0632\u0626\u06cc\u0646\u06cc \u062e\u0648\u062f\u0631\u0648","\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648"],"supply_category":["TC","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0645\u0648\u062a\u0648\u0631\u0633\u06cc\u06a9\u0644\u062a"],"name":"\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648 \u0645\u062f\u0644 2006 \u0645\u0646\u0627\u0633\u0628 \u0628\u0631\u0627\u06cc \u0633\u0645\u0646\u062f","brand":"\u0645\u062a\u0641\u0631\u0642\u0647","category":"\u0631\u0648\u06a9\u0634 \u0635\u0646\u062f\u0644\u06cc \u062e\u0648\u062f\u0631\u0648","category_id":8185,"price_detail":{"selling_price":3500000,"discount_percent":0},"position":35,"status":"marketable","multi_color":true,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":12477574,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/bd564ef400df9391a84b989ba0810f3f770e2522_1606912334.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-2326219\/\u0631\u0648\u06a9\u0634-\u0635\u0646\u062f\u0644\u06cc-\u062e\u0648\u062f\u0631\u0648-\u0645\u062f\u0644-2006-\u0645\u0646\u0627\u0633\u0628-\u0628\u0631\u0627\u06cc-\u0633\u0645\u0646\u062f","rating":{"rate":64,"count":30},"price":3500000},{"id":6804638,"site_category":["\u062e\u0648\u062f\u0631\u0648\u060c \u0627\u0628\u0632\u0627\u0631 \u0648 \u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0646\u0639\u062a\u06cc","\u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc \u062e\u0648\u062f\u0631\u0648","\u0633\u06cc\u0633\u062a\u0645 \u0635\u0648\u062a\u06cc \u0648 \u062a\u0635\u0648\u06cc\u0631\u06cc \u062e\u0648\u062f\u0631\u0648","\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648"],"supply_category":["AV","\u062a\u062c\u0647\u06cc\u0632\u0627\u062a \u0635\u0648\u062a\u06cc \u062e\u0648\u062f\u0631\u0648 \u0648 \u0644\u0648\u0627\u0632\u0645 \u062c\u0627\u0646\u0628\u06cc"],"name":"\u067e\u062e\u0634 \u06a9\u0646\u0646\u062f\u0647 \u062e\u0648\u062f\u0631\u0648 \u067e\u0627\u06cc\u0648\u0646\u06cc\u0631 \u0645\u062f\u0644 DEH-S 4250BT","brand":"Pioneer","category":"\u062f\u0633\u062a\u06af\u0627\u0647 \u067e\u062e\u0634 \u062e\u0648\u062f\u0631\u0648","category_id":5751,"price_detail":{"selling_price":65450000,"discount_percent":0},"position":36,"status":"marketable","multi_color":false,"multi_size":false,"multi_warranty":true,"multi_seller":true,"buy_box_winner":23012633,"image_src":"https:\/\/dkstatics-public.digikala.com\/digikala-products\/393ca15cf5e08dbf7a32b8932498d4a4301dab9c_1634658936.jpg?x-oss-process=image\/resize,m_lfit,h_600,w_600\/quality,q_90","product_url":"https:\/\/digikala.com\/product\/dkp-6804638\/\u067e\u062e\u0634-\u06a9\u0646\u0646\u062f\u0647-\u062e\u0648\u062f\u0631\u0648-\u067e\u0627\u06cc\u0648\u0646\u06cc\u0631-\u0645\u062f\u0644-deh-s-4250bt","rating":{"rate":100,"count":1},"price":65450000}];
         var page_search_url = null;
-        var sntracker_search_data = {
-            "source": 1,
-            "page": 1,
-            "pages": 277,
-            "foundItems": 20796,
-            "query": "",
-            "bannerId": null,
-            "categoryId": 6,
-            "attributes": {
-                "sort_by": 4,
-                "has_selling_stock": false,
-                "has_ready_to_shipment": 0
-            },
-            "products": [{
-                "product_id": 260095,
-                "category_id": 48,
-                "brand_id": 15,
-                "is_sponsored": false,
-                "selling_price": 15900000
-            }, {
-                "product_id": 777295,
-                "category_id": 48,
-                "brand_id": 12,
-                "is_sponsored": false,
-                "selling_price": 92500000
-            }, {
-                "product_id": 3588110,
-                "category_id": 141,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 3337000
-            }, {
-                "product_id": 3593269,
-                "category_id": 48,
-                "brand_id": 15,
-                "is_sponsored": false,
-                "selling_price": 15900000
-            }, {
-                "product_id": 98691,
-                "category_id": 48,
-                "brand_id": 13,
-                "is_sponsored": false,
-                "selling_price": 499900000
-            }, {
-                "product_id": 1856080,
-                "category_id": 48,
-                "brand_id": 12,
-                "is_sponsored": false,
-                "selling_price": 98900000
-            }, {
-                "product_id": 3108356,
-                "category_id": 129,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 900000
-            }, {
-                "product_id": 3339128,
-                "category_id": 141,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 3699900
-            }, {
-                "product_id": 4459464,
-                "category_id": 141,
-                "brand_id": 16102,
-                "is_sponsored": false,
-                "selling_price": 9000000
-            }, {
-                "product_id": 2520810,
-                "category_id": 48,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 3400000
-            }, {
-                "product_id": 3443396,
-                "category_id": 107,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 879800
-            }, {
-                "product_id": 3190220,
-                "category_id": 70,
-                "brand_id": 18,
-                "is_sponsored": false,
-                "selling_price": 2097000
-            }, {
-                "product_id": 690710,
-                "category_id": 173,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 7470000
-            }, {
-                "product_id": 4508458,
-                "category_id": 70,
-                "brand_id": 63,
-                "is_sponsored": false,
-                "selling_price": 1095000
-            }, {
-                "product_id": 138649,
-                "category_id": 48,
-                "brand_id": 12,
-                "is_sponsored": false,
-                "selling_price": 279900000
-            }, {
-                "product_id": 3133047,
-                "category_id": 173,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 3900000
-            }, {
-                "product_id": 3197248,
-                "category_id": 141,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 1770000
-            }, {
-                "product_id": 949493,
-                "category_id": 48,
-                "brand_id": 13,
-                "is_sponsored": false,
-                "selling_price": 129950000
-            }, {
-                "product_id": 3557656,
-                "category_id": 107,
-                "brand_id": 9585,
-                "is_sponsored": false,
-                "selling_price": 3260000
-            }, {
-                "product_id": 3692356,
-                "category_id": 141,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 6990000
-            }, {
-                "product_id": 4370886,
-                "category_id": 141,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 8047500
-            }, {
-                "product_id": 1925099,
-                "category_id": 49,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 1320000
-            }, {
-                "product_id": 3438922,
-                "category_id": 173,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 43000000
-            }, {
-                "product_id": 191819,
-                "category_id": 5880,
-                "brand_id": 170,
-                "is_sponsored": false,
-                "selling_price": 199800
-            }, {
-                "product_id": 222962,
-                "category_id": 48,
-                "brand_id": 12,
-                "is_sponsored": false,
-                "selling_price": 356000000
-            }, {
-                "product_id": 203383,
-                "category_id": 48,
-                "brand_id": 12,
-                "is_sponsored": false,
-                "selling_price": 63000000
-            }, {
-                "product_id": 4565123,
-                "category_id": 70,
-                "brand_id": 63,
-                "is_sponsored": false,
-                "selling_price": 1980000
-            }, {
-                "product_id": 587646,
-                "category_id": 48,
-                "brand_id": 12,
-                "is_sponsored": false,
-                "selling_price": 149950000
-            }, {
-                "product_id": 3687426,
-                "category_id": 141,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 1990000
-            }, {
-                "product_id": 4411537,
-                "category_id": 141,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 3699200
-            }, {
-                "product_id": 3375458,
-                "category_id": 107,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 1610000
-            }, {
-                "product_id": 3869816,
-                "category_id": 107,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 950000
-            }, {
-                "product_id": 4370591,
-                "category_id": 141,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 1550000
-            }, {
-                "product_id": 3410241,
-                "category_id": 49,
-                "brand_id": 76,
-                "is_sponsored": false,
-                "selling_price": 109535000
-            }, {
-                "product_id": 4442903,
-                "category_id": 5880,
-                "brand_id": 19429,
-                "is_sponsored": false,
-                "selling_price": 129000
-            }, {
-                "product_id": 3400718,
-                "category_id": 48,
-                "brand_id": 719,
-                "is_sponsored": false,
-                "selling_price": 6970000
-            }],
-            "sponsored_products": [],
-            "searchPhase": null,
-            "searchModelName": null,
-            "searchModelVersion": null
-        };
-        var categoryId = 6;
-        var nowTimeInUTC = "2021-07-13 16:17:15";
+        var sntracker_search_data = {"source":1,"page":1,"pages":277,"foundItems":70710,"query":"","bannerId":null,"categoryId":6175,"attributes":{"sort_by":4,"has_selling_stock":false,"has_ready_to_shipment":0},"products":[{"product_id":605575,"category_id":5751,"brand_id":1,"is_sponsored":false,"selling_price":20000000},{"product_id":3159480,"category_id":5751,"brand_id":10052,"is_sponsored":false,"selling_price":3948500},{"product_id":131958,"category_id":5752,"brand_id":42,"is_sponsored":false,"selling_price":29450000},{"product_id":2403842,"category_id":5751,"brand_id":719,"is_sponsored":false,"selling_price":1450000},{"product_id":3628094,"category_id":5751,"brand_id":719,"is_sponsored":false,"selling_price":4400000},{"product_id":6518344,"category_id":5751,"brand_id":2927,"is_sponsored":false,"selling_price":6100000},{"product_id":56708,"category_id":6184,"brand_id":1377,"is_sponsored":false,"selling_price":24100000},{"product_id":4372718,"category_id":5751,"brand_id":719,"is_sponsored":false,"selling_price":27500000},{"product_id":5206106,"category_id":5751,"brand_id":10052,"is_sponsored":false,"selling_price":3832600},{"product_id":170935,"category_id":5752,"brand_id":42,"is_sponsored":false,"selling_price":13490500},{"product_id":1532347,"category_id":8270,"brand_id":719,"is_sponsored":false,"selling_price":1035000},{"product_id":807351,"category_id":8270,"brand_id":719,"is_sponsored":false,"selling_price":1120000},{"product_id":340984,"category_id":6191,"brand_id":719,"is_sponsored":false,"selling_price":9385000},{"product_id":2253534,"category_id":8185,"brand_id":719,"is_sponsored":false,"selling_price":2200000},{"product_id":4961602,"category_id":5751,"brand_id":719,"is_sponsored":false,"selling_price":6990000},{"product_id":3620772,"category_id":5751,"brand_id":9083,"is_sponsored":false,"selling_price":3400000},{"product_id":1481442,"category_id":8369,"brand_id":719,"is_sponsored":false,"selling_price":205000},{"product_id":1662486,"category_id":5751,"brand_id":1,"is_sponsored":false,"selling_price":26450000},{"product_id":2542738,"category_id":8185,"brand_id":719,"is_sponsored":false,"selling_price":3250000},{"product_id":3729933,"category_id":5751,"brand_id":719,"is_sponsored":false,"selling_price":10900000},{"product_id":1007488,"category_id":8350,"brand_id":719,"is_sponsored":false,"selling_price":6600000},{"product_id":334883,"category_id":6184,"brand_id":719,"is_sponsored":false,"selling_price":1103400},{"product_id":4187159,"category_id":5752,"brand_id":719,"is_sponsored":false,"selling_price":3356500},{"product_id":4164693,"category_id":8369,"brand_id":16803,"is_sponsored":false,"selling_price":1350000},{"product_id":964055,"category_id":8336,"brand_id":719,"is_sponsored":false,"selling_price":160000},{"product_id":528576,"category_id":8270,"brand_id":719,"is_sponsored":false,"selling_price":1000000},{"product_id":3579724,"category_ie":160000},{"product_id":528576,"category_id":8270,"brand_id":719,"is_sponsored":false,"selling_price":1000000},{"product_id":3579724,"category_id":5752,"brand_id":719,"is_sponsored":false,"selling_price":1790000},{"product_id":4196408,"category_id":5751,"brand_id":10052,"is_sponsored":false,"selling_price":4250000},{"product_id":3575332,"category_id":8716,"brand_id":719,"is_sponsored":false,"selling_price":2810000},{"product_id":1555774,"category_id":8369,"brand_id":719,"is_sponsored":false,"selling_price":178000},{"product_id":35400,"category_id":5752,"brand_id":1101,"is_sponsored":false,"selling_price":26220000},{"product_id":2184216,"category_id":8273,"brand_id":719,"is_sponsored":false,"selling_price":494500},{"product_id":818389,"category_id":8355,"brand_id":719,"is_sponsored":false,"selling_price":220000},{"product_id":5206255,"category_id":5751,"brand_id":10052,"is_sponsored":false,"selling_price":3829900},{"product_id":2326219,"category_id":8185,"brand_id":719,"is_sponsored":false,"selling_price":3500000},{"product_id":6804638,"category_id":5751,"brand_id":42,"is_sponsored":false,"selling_price":65450000}],"sponsored_products":[],"searchPhase":null,"searchModelName":null,"searchModelVersion":null};
+        var categoryId = 6175;
+        var nowTimeInUTC = "2021-11-13 18:38:32";
         var isAnanasFriendly = true;
-        var userId = 9735394;
+        var userId = null;
         var adroRCActivation = true;
-        var loginRegisterUrlWithBack =
-            "\/users\/login-register\/?_back=https:\/\/www.digikala.com\/search\/category-camera\/";
+        var loginRegisterUrlWithBack = "\/users\/login-register\/?_back=https:\/\/www.digikala.com\/search\/category-car-accessory-parts\/";
         var isNewCustomer = false;
-        var digiclubLuckyDrawEndTime = "2021-09-29 15:30:32";
+        var digiclubLuckyDrawEndTime = "2021-12-28 23:59:28";
         var activateUrl = "\/digiclub\/activate\/";
-    </script>
+     </script>
 
+    {{--  <script src="https://www.digikala.com/static/merged/548dd659.js"></script>
+    <script src="https://www.digikala.com/static/merged/d9bff2f1.js"></script>  --}}
     <script src="{{ asset('assets/new/js/sentry.js') }}"></script>
     <script src="{{ asset('assets/new/js/url2.min.js') }}"></script>
 
@@ -1491,7 +133,12 @@
                                     </script>
 
 
-                                    <div class="c-box">
+<div class="c-box"><div class="c-box__header">دسته‌بندی نتایج</div><div class="c-filter c-filter--catalog js-box-content"><div class=" js-box-content-items"><div class="c-catalog show-more"><ul class="c-catalog__list--depth js-catalog-list" style="max-height: unset; height: 250px;"><li class="c-catalog__cat-item "><span class="c-catalog__cat-item c-catalog__cat-item--arrow-left"><a class="c-catalog__link " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;خودرو، ابزار و تجهیزات صنعتی&quot;}" href="/search/category-vehicles/">خودرو، ابزار و تجهیزات صنعتی</a></span><div class=" show-more  "><ul class="c-catalog__list--depth "><li class="c-catalog__cat-item "><span class="c-catalog__cat-item c-catalog__cat-item--arrow-down"><a class="c-catalog__link  is-active" data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;لوازم جانبی خودرو&quot;}" href="/search/category-car-accessory-parts/">لوازم جانبی خودرو</a></span><ul class="c-catalog__list--depth"><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;لوازم تزئینی خودرو&quot;}" href="/search/category-in-car-accessorie/">لوازم تزئینی خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;تجهیزات بیرونی خودرو&quot;}" href="/search/category-exterior-car-equipment/">تجهیزات بیرونی خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;سیستم صوتی و تصویری خودرو&quot;}" href="/search/category-car-stereo/">سیستم صوتی و تصویری خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;سایر لوازم خودرو&quot;}" href="/search/category-in-car-accessories/">سایر لوازم خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;امنیت خودرو&quot;}" href="/search/category-car-security-systems/">امنیت خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;ابزار خودرو&quot;}" href="/search/category-car-tools/">ابزار خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;نظافت و نگهداری خودرو&quot;}" href="/search/category-car-cleaning-and-maintenance/">نظافت و نگهداری خودرو</a></li><li class="c-catalog__cat-item"><a class="c-catalog__link  " data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;تیونینگ و تقویت موتور&quot;}" href="/search/category-tuning-motor-boost/">تیونینگ و تقویت موتور</a></li></ul></li></ul></div></li></ul><div data-snt-event="dkSearchPageClick" data-snt-params="{&quot;item&quot;:&quot;catalog-filter&quot;,&quot;item_option&quot;:&quot;show-all&quot;}" class="c-catalog__show-more js-catalog-show-more">
+                مشاهده همه دسته‌بندی‌ها
+            </div></div></div></div></div>
+
+
+                                    {{--  <div class="c-box">
                                         <div class="c-box__header">دسته‌بندی نتایج</div>
                                         <div class="c-filter c-filter--catalog js-box-content">
                                             <div class=" js-box-content-items">
@@ -1499,35 +146,32 @@
                                                     <ul class="c-catalog__list--depth js-catalog-list"
                                                         style="max-height: unset; height: 250px;">
                                                         <li class="c-catalog__cat-item ">
-                                                <span class="c-catalog__cat-item c-catalog__cat-item--arrow-left">
-                                                  <a class="c-catalog__link "
-                                                     href="/search/category-electronic-devices/">{{ $fullCategoryList[0]  }}</a>
-                                                </span>
+                                                            <span class="c-catalog__cat-item c-catalog__cat-item--arrow-left">
+                                                            <a class="c-catalog__link "
+                                                                href="/search/category-electronic-devices/">{{ $fullCategoryList[0]  }}</a>
+                                                            </span>
 
                                                             <?php
                                                                 $counter = count($fullCategoryList);
                                                                 $j = 1;
                                                             ?>
-
-{{--                                                            @include('front::layouts.category-menu', ['fullCategoryList' => $fullCategoryList, 'counter' => $counter, 'j' => $j])--}}
-
+                                                            @include('front::layouts.category-menu', compact('fullCategoryList', 'counter', 'j', 'other_categories'))
 
                                                         </li>
                                                     </ul>
                                                     <div data-snt-event="dkSearchPageClick"
-                                                         class="c-catalog__show-more js-catalog-show-more">
-                                                        مشاهده همه دسته‌بندی‌ها
-                                                    </div>
+                                             data-snt-params='{"item":"catalog-filter","item_option":"show-all"}'
+                                             class="c-catalog__show-more js-catalog-show-more">
+                                             مشاهده همه دسته‌بندی‌ها
+                                          </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
+                                    </div>  --}}
 
                                     <div class="c-box c-box--brands-filter js-ab-sidebar-filter">
                                         <div class="">
-                                            <div class=" c-box__header c-box__header--toggleable
-                                js-box-toggle ">برند
+                                            <div class=" c-box__header c-box__header--toggleable js-box-toggle ">برند
                                             </div>
                                             <div class="  c-filter c-filter--params js-box-content">
                                                 <div class="c-ui-input c-ui-input--quick-search">
@@ -1574,62 +218,51 @@
                                     </div>
 
 
-                                    {{-- <div class="c-box c-box--brands-filter js-ab-sidebar-filter"> --}}
-                                    {{-- <div class=""> --}}
-                                    {{-- <div class="c-box__header c-box__header--toggleable js-box-toggle ">فروشنده --}}
 
-                                    {{-- </div> --}}
-                                    {{-- <div class="c-filter c-filter--params js-box-content"> --}}
-                                    {{-- <div class="c-message c-message-light c-message-light--info js-message-error u-hidden"> --}}
-                                    {{-- <p>برند یا سازنده‌ای با این نام پیدا نشد!</p> --}}
-                                    {{-- </div> --}}
-                                    {{-- <div class="c-box__divider c-box__divider--full"> --}}
-                                    {{-- <div></div> --}}
-                                    {{-- </div> --}}
-                                    {{-- <div class="c-box__scroll-container"> --}}
-                                    {{-- <div class="c-box__scroll js-box-content-items"> --}}
-                                    {{-- <ul> --}}
-                                    {{-- <li> --}}
-                                    {{-- <label class="c-filter__label js-box-content-item" for="seller_condition-param-digikala" data-fa="دیجی‌کالا" data-en="" data-search=" "> --}}
-                                    {{-- دیجی‌کالا --}}
-                                    {{-- </label> --}}
-                                    {{-- <label class="c-ui-checkbox"><input type="checkbox" value="digikala" --}}
-                                    {{-- name="seller_condition[]" --}}
-                                    {{-- data-search-uid="seller_condition" --}}
-                                    {{-- id="seller_condition-param-digikala"><span --}}
-                                    {{-- class="c-ui-checkbox__check"></span></label></li> --}}
-                                    {{-- <li><label class="c-filter__label js-box-content-item" --}}
-                                    {{-- for="seller_condition-param-official" data-fa="فروشنده رسمی برند" data-en="" --}}
-                                    {{-- data-search=" "> --}}
-                                    {{-- فروشنده رسمی برند --}}
-                                    {{-- </label><label class="c-ui-checkbox"><input type="checkbox" value="official" --}}
-                                    {{-- name="seller_condition[]" --}}
-                                    {{-- data-search-uid="seller_condition" --}}
-                                    {{-- id="seller_condition-param-official"><span --}}
-                                    {{-- class="c-ui-checkbox__check"></span></label></li> --}}
-                                    {{-- <li><label class="c-filter__label js-box-content-item" --}}
-                                    {{-- for="seller_condition-param-trusted" data-fa="فروشنده برگزیده" data-en="" --}}
-                                    {{-- data-search=" "> --}}
-                                    {{-- فروشنده برگزیده --}}
-                                    {{-- </label><label class="c-ui-checkbox"><input type="checkbox" value="trusted" --}}
-                                    {{-- name="seller_condition[]" --}}
-                                    {{-- data-search-uid="seller_condition" --}}
-                                    {{-- id="seller_condition-param-trusted"><span --}}
-                                    {{-- class="c-ui-checkbox__check"></span></label></li> --}}
-                                    {{-- <li><label class="c-filter__label js-box-content-item" for="seller_condition-param-roosta" --}}
-                                    {{-- data-fa="کسب و کارهای بومی" data-en="" data-search=" "> --}}
-                                    {{-- کسب و کارهای بومی --}}
-                                    {{-- </label><label class="c-ui-checkbox"><input type="checkbox" value="roosta" --}}
-                                    {{-- name="seller_condition[]" --}}
-                                    {{-- data-search-uid="seller_condition" --}}
-                                    {{-- id="seller_condition-param-roosta"><span --}}
-                                    {{-- class="c-ui-checkbox__check"></span></label></li> --}}
-                                    {{-- </ul> --}}
-                                    {{-- </div> --}}
-                                    {{-- </div> --}}
-                                    {{-- </div> --}}
-                                    {{-- </div> --}}
-                                    {{-- </div> --}}
+
+
+                            @foreach($attribute_groups as $attribute_group)
+                                <?php $attributes = $attribute_group->attributes()->orderBy('position', 'asc')->where('is_filterable', 1)->get(); ?>
+                                @foreach ($attributes as $attribute)
+                                    @if($attribute->products()->where('has_stock', '>', 0)->exists())
+                                        <div class="c-box">
+                                            <div class="c-box__header c-box__header--toggleable js-box-toggle is-hidden">
+                                                {{ $attribute->name }}
+                                            </div>
+                                            <div class="c-filter c-filter--params js-box-content" style="display: none;">
+                                            <div class="c-message c-message-light c-message-light--info js-message-error u-hidden">
+                                                <p>برند یا سازنده‌ای با این نام پیدا نشد!</p>
+                                            </div>
+                                            <div class="c-box__divider c-box__divider--full">
+                                                <div></div>
+                                            </div>
+                                            <div class="c-box__scroll-container">
+                                                <div class="c-box__scroll js-box-content-items">
+                                                    <ul>
+                                                        @foreach($attribute->values as $value)
+                                                            <li>
+                                                                <label class="c-filter__label js-box-content-item" for="{{ $attribute->id }}-param-{{ $value->id }}" data-fa="{{ $value->value }}" data-en="" data-search=" ">
+                                                                    {{ $value->value }}
+                                                                </label>
+                                                                <label class="c-ui-checkbox">
+                                                                    <input type="checkbox" value="{{ $value->id }}" name="attribute[{{ $attribute->id }}][]" data-search-uid="{{ $attribute->id }}" id="{{ $attribute->id }}-param-{{ $value->id }}">
+                                                                    <span class="c-ui-checkbox__check"></span>
+                                                                </label>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endforeach
+
+
+
+
+
 
 
                                     <script>
@@ -1679,10 +312,10 @@
                                                                                                   disabled="disabled">
                                                 </li>
                                                 <li data-label="تا" data-currency="تومان"><input type="text"
-                                                                                                 data-value="240000000"
-                                                                                                 value="240000000"
+                                                                                                 data-value="{{ $max_price }}"
+                                                                                                 value="{{ $max_price }}"
                                                                                                  name="price[max]"
-                                                                                                 data-range="240000000"
+                                                                                                 data-range="{{ $max_price }}"
                                                                                                  class="js-slider-range-to disabled"
                                                                                                  disabled="disabled">
                                                 </li>
@@ -1906,7 +539,8 @@
                                                             </div>
 
                                                             @if (isset($product->variants) && $product->variants()->active()->count())
-                                                                <div class="c-product-box__row c-product-box__row--price">
+                                                                <div
+                                                                    class="c-product-box__row c-product-box__row--price">
                                                                     <div class="c-price">
                                                                         <div
                                                                             class="c-price__value c-price__value--plp ">
@@ -1925,12 +559,16 @@
                                                                     </div>
                                                                 </div>
                                                             @else
-                                                                <div class="c-product-box__row c-product-box__row--price">
+                                                                <div
+                                                                    class="c-product-box__row c-product-box__row--price">
                                                                     <div class="c-price">
-                                                                        <div class="c-price__value c-price__value--plp "></div>
+                                                                        <div
+                                                                            class="c-price__value c-price__value--plp "></div>
                                                                     </div>
-                                                                    <div class="c-promotion-box__cover c-promotion-box__cover--out-of-stock">
-                                                                        <div class="c-promotion-box__cover-text js-product-status">
+                                                                    <div
+                                                                        class="c-promotion-box__cover c-promotion-box__cover--out-of-stock">
+                                                                        <div
+                                                                            class="c-promotion-box__cover-text js-product-status">
                                                                             ناموجود
                                                                         </div>
                                                                     </div>
@@ -1953,11 +591,10 @@
                                                     </div>
                                                 </li>
                                             @endforeach
-
                                         </ul>
 
                                         <div class="c-pager">
-                                            {{ $products->links('layouts.front.pagination', ['route' => route('front.ajax.categoryPage', $slug)]) }}
+                                            {{ $products->links('layouts.front.pagination', ['route' => '/']) }}
                                         </div>
                                     </div>
                                 </article>

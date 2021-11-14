@@ -30,7 +30,10 @@ class FrontController extends Controller
 
   public function productPage($product_code)
   {
-    $product = Product::where('product_code', $product_code)->with('variants')->firstOrFail();
+    $product = Product::where('product_code', $product_code)
+        ->with('variants')
+        ->firstOrFail();
+
     $variant_defualt = variant_defualt($product);
 
     $variant_ids = [];

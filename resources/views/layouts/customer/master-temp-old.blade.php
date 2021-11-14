@@ -6200,12 +6200,12 @@
                             data-event-label="category_en:  - category_fa: کاغذ چاپ و پرینتر - level: 3">
                           <a data-snt-event="dkMegaMenuClick"
                              data-snt-params="{&quot;type&quot;:&quot;option-item&quot;,&quot;category_title&quot;:&quot;کاغذ چاپ و پرینتر&quot;}"
-                             href="/search/category-paper/?type[0]=5072&amp;pageno=1&amp;last_filter=type&amp;last_value=5072&amp;sortby=4&amp;entry=mm"
+                             href="/search/category-paper/?type[0]=5072&amp;page=1&amp;last_filter=type&amp;last_value=5072&amp;sortby=4&amp;entry=mm"
                              class=" c-navi-new__big-display-title">
                             کاغذ چاپ و پرینتر
                           </a><a data-snt-event="dkMegaMenuClick"
                                  data-snt-params="{&quot;type&quot;:&quot;option-item&quot;,&quot;category_title&quot;:&quot;کاغذ چاپ و پرینتر&quot;}"
-                                 href="/search/category-paper/?type[0]=5072&amp;pageno=1&amp;last_filter=type&amp;last_value=5072&amp;sortby=4&amp;entry=mm"
+                                 href="/search/category-paper/?type[0]=5072&amp;page=1&amp;last_filter=type&amp;last_value=5072&amp;sortby=4&amp;entry=mm"
                                  class=" c-navi-new__medium-display-title">
                             کاغذ چاپ و پرینتر
                           </a></li>
@@ -7303,7 +7303,7 @@
                   <div class="c-navi-new__ads js-categories-ad " id="categories-ad-7">
                     <div class="c-navi-new__ads--banners"><a data-id="52860"
                                                              class="js-menu-top-banner"
-                                                             href="https://www.digikala.com/brand/candy/?has_selling_stock=1&amp;pageno=1&amp;sortby=4&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%DA%A9%D9%86%D8%AF%DB%8C&amp;promo_position=sponsored_menu_top&amp;promo_creative=52860&amp;bCode=52860">
+                                                             href="https://www.digikala.com/brand/candy/?has_selling_stock=1&amp;page=1&amp;sortby=4&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%DA%A9%D9%86%D8%AF%DB%8C&amp;promo_position=sponsored_menu_top&amp;promo_creative=52860&amp;bCode=52860">
                         <div class="banner-item"><img
                             src="https://dkstatics-public.digikala.com/digikala-adservice-banners/1f8226c4f32b961075ae267fc15e46e6b7a65839_1610266709.jpg?x-oss-process=image/quality,q_80"
                             alt="پارتنرشیپ - کندی 1">

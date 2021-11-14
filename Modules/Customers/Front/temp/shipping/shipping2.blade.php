@@ -10850,11 +10850,11 @@
                             data-event="megamenu_click" data-event-category="header_section"
                             data-event-label="category_en:  - category_fa: کاغذ چاپ و پرینتر - level: 3"><a data-snt-event="dkMegaMenuClick"
                                                                                                             data-snt-params='{"type":"option-item","category_title":"کاغذ چاپ و پرینتر"}'
-                                                                                                            href="/search/category-paper/?type[0]=5072&pageno=1&last_filter=type&last_value=5072&sortby=4&entry=mm" class=" c-navi-new__big-display-title">
+                                                                                                            href="/search/category-paper/?type[0]=5072&page=1&last_filter=type&last_value=5072&sortby=4&entry=mm" class=" c-navi-new__big-display-title">
                             کاغذ چاپ و پرینتر
                           </a><a data-snt-event="dkMegaMenuClick"
                                  data-snt-params='{"type":"option-item","category_title":"کاغذ چاپ و پرینتر"}'
-                                 href="/search/category-paper/?type[0]=5072&pageno=1&last_filter=type&last_value=5072&sortby=4&entry=mm" class=" c-navi-new__medium-display-title">
+                                 href="/search/category-paper/?type[0]=5072&page=1&last_filter=type&last_value=5072&sortby=4&entry=mm" class=" c-navi-new__medium-display-title">
                             کاغذ چاپ و پرینتر
                           </a>
                         </li>

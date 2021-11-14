@@ -1,38 +1,39 @@
 <nav class="js-breadcrumb ">
     <ul vocab="https://schema.org/" typeof="BreadcrumbList" class="c-breadcrumb">
-        <li property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage"
-                                                            href="https://www.digikala.com"><span property="name">فروشگاه اینترنتی دیجی‌کالا</span></a>
+        <li property="itemListElement" typeof="ListItem">
+            <a property="item" typeof="WebPage" href="https://www.digikala.com">
+                <span property="name">فروشگاه اینترنتی دیجی‌کالا</span>
+            </a>
             <meta property="position" content="1">
         </li>
-        <li><span property="name">کالای دیجیتال</span></li>
+        <li>
+            <span property="name">کالای دیجیتال</span>
+        </li>
     </ul>
 </nav>
+
 <div class="c-listing js-listing">
-    <div class="c-listing__counter">{{ persianNum($products->total()) }} کالا</div>
+    <div class="c-listing__counter">
+        {{ persianNum($products->total()) }} کالا
+    </div>
     <div class="c-listing__header">
         <ul class="c-listing__sort js-sort-options" data-label="مرتب‌سازی بر اساس :">
             <li class="">
-                <a href=" javascript:" data-sort="newest"
-                   class="{{ $sort_by == 'newest' ? 'is-active' : '' }}">جدیدترین</a>
+                <a href=" javascript:" data-sort="newest" class="{{ $sort_by == 'newest' ? 'is-active' : '' }}">جدیدترین</a>
             </li>
             <li class="">
-                <a href=" javascript:" data-sort="best_selling"
-                   class="{{ $sort_by == 'best_selling' ? 'is-active' : '' }}">
-                    پرفروش‌ترین‌</a>
+                <a href=" javascript:" data-sort="best_selling" class="{{ $sort_by == 'best_selling' ? 'is-active' : '' }}">پرفروش‌ترین‌</a>
             </li>
             <li class="">
-                <a href=" javascript:" data-sort="cheapest" class="{{ $sort_by == 'cheapest' ? 'is-active' : '' }}">
-                    ارزان‌ترین</a>
+                <a href=" javascript:" data-sort="cheapest" class="{{ $sort_by == 'cheapest' ? 'is-active' : '' }}">ارزان‌ترین</a>
             </li>
             <li class="">
-                <a href=" javascript:" data-sort="most_expensive"
-                   class="{{ $sort_by == 'most_expensive' ? 'is-active' : '' }}">
-                    گران‌ترین</a>
+                <a href=" javascript:" data-sort="most_expensive" class="{{ $sort_by == 'most_expensive' ? 'is-active' : '' }}">گران‌ترین</a>
             </li>
         </ul>
     </div>
-    <ul class="c-listing__items js-plp-products-list">
 
+    <ul class="c-listing__items js-plp-products-list">
         @foreach($products as $product)
             <li>
                 <div class="c-product-box c-promotion-box js-product-box has-more is-plp">
@@ -138,33 +139,9 @@
                 </div>
             </li>
         @endforeach
-
-
     </ul>
 
     <div class="c-pager">
-        <ul class="c-pager__items">
-
-
-            <li class="js-pagination-item ">
-                <a class="c-pager__item is-active" href="javascript:" data-page="1">۱</a>
-            </li>
-            <li class="js-pagination-item ">
-                <a class="c-pager__item" href="http://diginova.test/ajax/search/category-mobile-phone?page=2"
-                   data-page="2">۲</a>
-            </li>
-            <li class="js-pagination-item ">
-                <a class="c-pager__item" href="http://diginova.test/ajax/search/category-mobile-phone?page=3"
-                   data-page="3">۳</a>
-            </li>
-
-            <li class="js-pagination-item ">
-                <a class="c-pager__next" href="http://diginova.test/search/category-mobile-phone?page=3"
-                   data-page="3"></a>
-            </li>
-
-        </ul>
-
-
+        {{ $products->links('layouts.front.pagination', ['route' => '/']) }}
     </div>
 </div>

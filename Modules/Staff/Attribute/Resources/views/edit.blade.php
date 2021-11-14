@@ -290,7 +290,7 @@ $(document).ready(function (){
 });
 
 $(".attr_type").each(function () {
-    if ($(this).val() == 1) {
+    if ($(this).val() == 1 || $(this).val() == 5) {
         $(this).closest('.row').find("input[name='attr_filterable']").attr('disabled', 'true');
     }
 
@@ -638,8 +638,6 @@ $(document).on('change', '.attr_type', function (){
         $(this).closest('.row').find("input[name='attr_favorite']").removeAttr('disabled');
     }
 
-
-
     if (($(this).val() == 3) || ($(this).val() == 4))
     {
         $(this).closest('.row').find("input[name='attr_filterable']").removeAttr('disabled');
@@ -671,7 +669,8 @@ $(document).on('change', '.attr_type', function (){
 
     if ($(this).val() == 5)
     {
-        $(this).closest('.row').find("input[name='attr_filterable']").removeAttr('disabled');
+        // $(this).closest('.row').find("input[name='attr_filterable']").removeAttr('disabled');
+        $(this).closest('.row').find("input[name='attr_filterable']").attr('disabled', 'true');
         $(this).closest('.row').find("input[name='attr_favorite']").removeAttr('disabled');
 
         var xxx = $(".select-unit:last").clone();

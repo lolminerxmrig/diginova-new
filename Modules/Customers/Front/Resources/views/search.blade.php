@@ -2821,20 +2821,20 @@
                         <li class="js-pagination__item"><a class="c-pager__item is-active" href="javascript:"
                                                            data-page="1">۱</a></li>
                         <li class="js-pagination__item"><a class="c-pager__item"
-                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;pageno=2"
+                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;page=2"
                                                            data-page="2">۲</a></li>
                         <li class="js-pagination__item"><a class="c-pager__item"
-                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;pageno=3"
+                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;page=3"
                                                            data-page="3">۳</a></li>
                         <li class="js-pagination__item"><a class="c-pager__item"
-                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;pageno=4"
+                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;page=4"
                                                            data-page="4">۴</a></li>
                         <li class="js-pagination__item"><a class="c-pager__item"
-                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;pageno=5"
+                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;page=5"
                                                            data-page="5">۵</a></li>
                         <line class="c-pager__items--partition"></line>
                         <li class="js-pagination__item"><a class="c-pager__next"
-                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;pageno=277"
+                                                           href="/search/?q=%D9%84%D9%BE%20%D8%AA%D8%A7%D9%BE&amp;sortby=22&amp;page=277"
                                                            data-page="277"></a></li>
                       </ul>
                     </div>

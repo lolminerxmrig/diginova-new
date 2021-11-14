@@ -15,7 +15,6 @@ use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedSort;
 
 
-
 class CategoryController extends Controller
 {
 
@@ -53,7 +52,32 @@ class CategoryController extends Controller
         ->when($request->input('sortby') == 'best_selling', function ($q){
             $q->orderBy('sales_count', 'desc');
         })
-        ->paginate(10);
+        ->when(isset($request->price['min']), function ($q) use ($request) {
+            $q->where('min_price', '>', $request->price['min']);
+        })
+        ->when(isset($request->price['max']), function ($q) use ($request) {
+            $q->where('min_price', '<', $request->price['max']);
+        })
+        ->when(filled($request->attribute), function ($q) use ($request) {
+                $q->whereHas('attributes', function($q) use ($request) {
+                    $q->whereHas('values', function($q) use ( $request) {
+                        foreach($request->attribute as $attribute_key => $attribute_id) {
+                            foreach($attribute_id as $value_key => $value_id) {
+                                if ($value_key == 0) {
+                                    Log::info("where ");
+                                    Log::info($value_id);
+                                    $q->whereId($value_id);
+                                } else {
+                                    Log::info("orWhere ");
+                                    Log::info($value_id);
+                                    $q->orWhere('id', $value_id);
+                                }
+                            }
+                        }
+                    });
+                });
+        })
+        ->paginate(1);
 
       $sort_by = $request->input('sortby');
 
@@ -61,10 +85,9 @@ class CategoryController extends Controller
         'status' => true,
         'data' => [
           'products' => view('front::ajax.product_category.products',
-              compact('products', 'sort_by'))->render(),
+              compact('products', 'sort_by', 'slug'))->render(),
         ]
       ]);
-
   }
 
 }

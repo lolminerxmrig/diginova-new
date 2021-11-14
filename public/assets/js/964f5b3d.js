@@ -9183,7 +9183,7 @@ var Main = {
             );
         };
     },
-    
+
     initCustomRequest: function () {
         var _ajax = $.ajax;
         if (_ajax) {
@@ -10263,7 +10263,7 @@ var Main = {
                 $naviOverlay.removeClass("is-active");
                 $megaMenuOptionsContainer.hide()
             });
-        
+
         $megaMenuCategory.hover(
             function () {
 
@@ -10277,7 +10277,7 @@ var Main = {
                 $(this).addClass('c-navi-new-list__inner-category--hovered');
                 $megaMenuOptionsContainer.find('#categories-' + $(this).data('index')).addClass('is-active');
             },
-            
+
             function () {
             }
         );
@@ -11122,14 +11122,14 @@ var Main = {
                     if (typeof carouselType == "undefined") {
                         return;
                     }
-                    var pageNo = "pageNo" in activeInstance ? activeInstance.pageNo : 2;
+                    var page = "page" in activeInstance ? activeInstance.page : 2;
 
-                    activeInstance.pageNo = pageNo + 1;
+                    activeInstance.page = page + 1;
 
                     // Services.ajaxGETRequestJSON(
                     //     '/ajax/carousel/' + carouselType,
                     //     {
-                    //         'pageno': pageNo
+                    //         'page': page
                     //     },
                     //     function (data) {
                     //         if (data.products) {
@@ -11197,14 +11197,14 @@ var Main = {
                     if (typeof carouselType == "undefined") {
                         return;
                     }
-                    var pageNo = "pageNo" in activeInstance ? activeInstance.pageNo : 2;
+                    var page = "page" in activeInstance ? activeInstance.page : 2;
 
-                    activeInstance.pageNo = pageNo + 1;
+                    activeInstance.page = page + 1;
 
                     // Services.ajaxGETRequestJSON(
                     //     '/ajax/carousel/' + carouselType,
                     //     {
-                    //         'pageno': pageNo
+                    //         'page': page
                     //     },
                     //     function (data) {
                     //         if (data.products) {
@@ -11255,14 +11255,14 @@ var Main = {
                     if (typeof carouselType == "undefined") {
                         return;
                     }
-                    var pageNo = "pageNo" in activeInstance ? activeInstance.pageNo : 2;
+                    var page = "page" in activeInstance ? activeInstance.page : 2;
 
-                    activeInstance.pageNo = pageNo + 1;
+                    activeInstance.page = page + 1;
 
                     // Services.ajaxGETRequestJSON(
                     //     '/ajax/carousel/' + carouselType,
                     //     {
-                    //         'pageno': pageNo
+                    //         'page': page
                     //     },
                     //     function (data) {
                     //         if (data.products) {
@@ -14115,7 +14115,7 @@ var Adro = {
       if (method === "POST") {
         headers["Content-Type"] = "application/json";
         headers["Accept"] = "application/json";
-        body = JSON.stringify(data); 
+        body = JSON.stringify(data);
       }
       return $.ajax(
         {

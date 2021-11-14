@@ -218,13 +218,22 @@ class FrontController extends Controller
         $products = $category->products()
             ->orderBy('has_stock', 'desc')
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(1);
+
+        $max_price = $category->products()->max('min_price');
 
         $cat = $category;
 
         $categories = Category::all();
 
         $list = $this->fullCategoryList($category);
+
+        $fullCategoryList = [];
+        foreach($list as $category_id) {
+            $fullCategoryList[] = Category::find($category_id)->name;
+        }
+
+        $other_categories = $category->parent->children->where('id', '<>', $category->id);
 
         $end_index = end($list);
         array_pop($list);
@@ -234,11 +243,14 @@ class FrontController extends Controller
             $q->whereRelation('category', 'category_id', $category->id);
         })->get();
 
-        $fullCategoryList = ['دسته 3', 'دسته 2', 'دسته 1'];
+        // $fullCategoryList = ['دسته 3', 'دسته 2', 'دسته 1'];
+
+        $attribute_groups = $cat->attributeGroups;
 
         return view(
             'front::category',
-            compact('cat', 'category', 'fullCategoryList', 'categories', 'brands', 'products', 'slug')
+            compact('cat', 'category', 'fullCategoryList', 'categories', 'brands',
+             'products', 'slug', 'max_price', 'attribute_groups', 'other_categories')
         );
     }
 
