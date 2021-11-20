@@ -116,6 +116,63 @@ class CategoryController extends Controller
       ]);
   }
 
+  public function searchQuery(Request $request)
+  {
+
+      $query = $request->filter['search'];
+
+      $products = QueryBuilder::for(Product::class)
+        ->allowedFilters([
+          AllowedFilter::scope('search'),
+        ])
+        ->defaultSort('-has_stock')
+        ->where('title_fa', 'Like', '%' . $query . '%')
+        ->when($request->has_selling_stock == 1, function ($q) {
+          $q->whereRelation('variants', 'stock_count', '>', 0);
+          Log::info('a');
+        })
+        ->when($request->only_original == 1 && Brand::where('en_name', 'miscellaneous')->exists(), function ($q) {
+            Log::info('d');
+          $q->whereRelation('brand', 'id', '<>' ,Brand::where('en_name', 'miscellaneous')->first()->id);
+        })
+        ->when(isset($request->price['min']), function ($q) use ($request) {
+            Log::info('i');
+            $q->where('min_price', '>', $request->price['min']);
+        })
+        ->when(isset($request->price['max']), function ($q) use ($request) {
+            Log::info('j');
+            $q->where('min_price', '<', $request->price['max']);
+        })
+        ->when($request->input('sortby') == 'newest', function ($q){
+            Log::info('e');
+            $q->orderBy('created_at', 'desc');
+        })
+        ->when($request->input('sortby') == 'cheapest', function ($q){
+            Log::info('f');
+            $q->orderBy('min_price', 'asc');
+        })
+        ->when($request->input('sortby') == 'most_expensive', function ($q){
+            Log::info('g');
+            $q->orderBy('min_price', 'desc');
+        })
+        ->when($request->input('sortby') == 'best_selling', function ($q){
+            Log::info('h');
+            $q->orderBy('sales_count', 'desc');
+        })
+        ->orderBy('has_stock', 'desc')
+        ->paginate(1);
+
+
+      $sort_by = $request->input('sortby');
+
+      return response()->json([
+        'status' => true,
+        'data' => [
+          'products' => view('front::ajax.product_category.products',
+              compact('products', 'sort_by'))->render(),
+        ]
+      ]);
+  }
 
     public function findCategoryChilds(Category $category)
     {

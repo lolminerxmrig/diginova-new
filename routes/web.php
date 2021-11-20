@@ -39,6 +39,7 @@ Route::get('search', [FrontController::class, 'search'])->name('search');
 
 Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::get('search/category-{slug}', [CategoryController::class, 'searchFilter'])->name('categoryPage');
+  Route::get('search', [CategoryController::class, 'searchQuery'])->name('searchPage');
 
   Route::get('product/comments/{product_id}', [FrontController::class, 'productComments'])->name('productComments');
   Route::get('product/comments/list/{product_id}/', [FrontController::class, 'productCommentList'])->name('productCommentList');
