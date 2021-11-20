@@ -2,7 +2,6 @@
 
 @section('head')
     <title> {{ $cat->name }} | {{ $fa_store_name }}</title>
-    {{-- <link rel="canonical" href="{{ route('front.cart') }}"/> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script>
@@ -25,8 +24,6 @@
         var activateUrl = "\/digiclub\/activate\/";
      </script>
 
-    {{--  <script src="https://www.digikala.com/static/merged/548dd659.js"></script>
-    <script src="https://www.digikala.com/static/merged/d9bff2f1.js"></script>  --}}
     <script src="{{ asset('assets/new/js/sentry.js') }}"></script>
     <script src="{{ asset('assets/new/js/url2.min.js') }}"></script>
 
@@ -55,18 +52,6 @@
                 position: relative !important;
             }
         }
-
-        /*.o-page__content {*/
-        /*  padding-left: 10px !important;*/
-        /*}*/
-
-        /*.o-page__aside {*/
-        /*  padding-right: 10px !important;*/
-        /*}*/
-
-        /*body.has-top-banner.c-checkout-pages {*/
-        /*   padding-top: 0 !important;*/
-        /*}*/
 
         body {
             padding-top: 190px !important;

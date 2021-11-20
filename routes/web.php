@@ -33,7 +33,7 @@ Route::get("product/comment/$product_code_prefix-{product_code}", [FrontControll
     ->middleware('web', 'customer')
     ->name('front.createComment');
 Route::get('search/category-{slug}', [FrontController::class, 'categoryPage'])->name('front.categoryPage');
-Route::get('search/q={keywoard}', [FrontController::class, 'search'])->name('search');
+Route::get('search', [FrontController::class, 'search'])->name('search');
 
 //Route::get('ajax/search/category-phone-data-cable', [CategoryController::class, 'searchFilter'])->name('front.categoryPage');
 

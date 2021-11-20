@@ -30,6 +30,8 @@ use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Product\Models\ProductWeight;
 use Modules\Staff\Setting\Models\Setting;
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 use Modules\Staff\Shiping\Http\postPishtaz;
 use Modules\Staff\Shiping\Http\postSefareshi;
 use Modules\Staff\Shiping\Models\DeliveryMethod;
@@ -40,11 +42,14 @@ use Modules\Staff\Voucher\Models\Voucher;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedSort;
 
 class FrontController extends Controller
 {
 
+    private $category_childs = [];
 
     public function index()
     {
@@ -213,9 +218,19 @@ class FrontController extends Controller
      */
     public function categoryPage($slug)
     {
+
         $category = Category::whereSlug($slug)->firstOrFail();
 
-        $products = $category->products()
+        $products = QueryBuilder::for(Product::class)
+            ->whereHas('category', function(Builder $query) use ($category) {
+                foreach($this->getCategoryChilds($category) as $key => $id) {
+                    if ($key = 0) {
+                        $query->where('id', $id);
+                    } else {
+                        $query->orWhere('id', $id);
+                    }
+                }
+            })
             ->orderBy('has_stock', 'desc')
             ->orderBy('created_at', 'desc')
             ->paginate(1);
@@ -233,7 +248,9 @@ class FrontController extends Controller
             $fullCategoryList[] = Category::find($category_id);
         }
 
-        $other_categories = $category->parent->children->where('id', '<>', $category->id);
+        $other_categories = $category->children
+        ? $category->children->where('id', '<>', $category->id)
+        : $category;
 
         $end_index = end($list);
         array_pop($list);
@@ -243,9 +260,8 @@ class FrontController extends Controller
             $q->whereRelation('category', 'category_id', $category->id);
         })->get();
 
-        // $fullCategoryList = ['دسته 3', 'دسته 2', 'دسته 1'];
-
         $attribute_groups = $cat->attributeGroups;
+
 
         return view(
             'front::category',
@@ -2047,9 +2063,20 @@ class FrontController extends Controller
         ]);
     }
 
-    public function search($query)
+    public function search(Request $request)
     {
-        return view('front::search', compact('query'));
+        $query = $request->q;
+
+        $products = QueryBuilder::for(Product::class)
+            ->where('title_fa', 'Like', '%' . $query . '%')
+            ->orderBy('has_stock', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(1);
+
+        $max_price = Product::where('title_fa', 'Like', '%' . $query . '%')->max('min_price');
+
+        return view('front::search', compact('query', 'products', 'max_price'));
+
     }
 
 
@@ -2105,4 +2132,35 @@ class FrontController extends Controller
         $list = array_reverse($list, true);
         return $list;
     }
+
+    public function findChilds($category)
+    {
+          $this->child_list[] = $category->id;
+          if ($category->children) {
+              foreach($category->children as $child){
+                  $this->findChilds($child);
+              }
+          }
+    }
+
+
+
+
+
+    public function findCategoryChilds(Category $category)
+    {
+        $this->category_childs[] = $category->id;
+
+        if($category->children){
+            foreach($category->children as $child){
+                $this->findCategoryChilds($child);
+            }
+        }
+    }
+
+  public function getCategoryChilds(Category $category)
+  {
+        $this->findCategoryChilds($category);
+        return $this->category_childs;
+  }
 }
