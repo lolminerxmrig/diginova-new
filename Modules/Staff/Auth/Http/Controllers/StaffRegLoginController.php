@@ -62,22 +62,19 @@ class StaffRegLoginController extends Controller
           compact('peyment_methods', 'settings', 'products', 'consignments', 'send_tomorrow_only', 'send_today_only', 'delivery_order_delay'));
     }
 
+    /**
+     * login staff
+     */
     public function confirm(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
-        if (isset($request->remember) && $request->remember == "true") {
-          if (Auth::guard('staff')->attempt($credentials, true)) {
-            $request->session()->regenerate();
-            return redirect()->route('staff.dashboardPage');
-          }
-        } else {
-          if (Auth::guard('staff')->attempt($credentials, false)) {
-            $request->session()->regenerate();
-            return redirect()->route('staff.dashboardPage');
-          }
-        }
+        $remember = filled($request->remember) ?: false;
 
+        if (Auth::guard('staff')->attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+            return redirect()->route('staff.dashboardPage');
+          }
 
         return back()->withErrors([
             'wrongEmailPass' => 'نام کاربری یا رمز عبور اشتباه است لطفا دوباره تلاش نمایید',
@@ -87,8 +84,6 @@ class StaffRegLoginController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('staff')->logout();
-//        $request->session()->invalidate();
-//        $request->session()->regenerateToken();
         return redirect()->route('staff.indexPage');
     }
 

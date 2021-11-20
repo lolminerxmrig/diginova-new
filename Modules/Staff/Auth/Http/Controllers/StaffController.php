@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
 
-
 class StaffController extends Controller
 {
     public function index()
@@ -22,11 +21,6 @@ class StaffController extends Controller
     public function dashboardPage()
     {
         return view('staffauth::dashboard');
-    }
-
-    public function logout()
-    {
-
     }
 
     public function forgotPage()
