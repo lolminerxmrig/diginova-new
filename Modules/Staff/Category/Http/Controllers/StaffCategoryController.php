@@ -2,246 +2,376 @@
 
 namespace Modules\Staff\Category\Http\Controllers;
 
-use App\Models\Mediable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
-
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
-use Modules\Staff\Category\Http\Requests\StaffCategoryImageRequest;
-use Modules\Staff\Category\Http\Requests\StaffCategoryRequest;
-use Modules\Staff\Category\Models\Category;
-use App\Models\Media;
-use Modules\Staff\Rating\Models\Rating;
-use phpDocumentor\Reflection\Php\Factory\Type;
-use Modules\Staff\Variant\Models\VariantGroup;
+use Illuminate\Support\Facades\Auth;
 
+use App\Models\Media;
+use Modules\Staff\Category\Models\Category;
+use Modules\Staff\Category\Http\Requests\StaffCategoryRequest;
 
 class StaffCategoryController extends Controller
 {
+    protected $staff_id;
 
-  public function index()
-  {
-    $categories = Category::orderBy('created_at', 'asc')->get();
-    $media = Media::all();
-
-    return view('staffcategory::index', compact('categories', 'media'));
-  }
-
-  public function create()
-  {
-    $categories = Category::orderBy('created_at', 'asc')->get();
-    return view('staffcategory::create', compact('categories'));
-  }
-
-  public function store(StaffCategoryRequest $request)
-  {
-
-    Category::updateOrCreate(['en_name' => $request->en_name],
-    [
-      'name' => $request->name,
-      'slug' => $request->slug,
-      'parent_id' => $request->parent_id,
-      'description' => $request->description,
-    ]);
-
-    $category = Category::where('en_name', $request->en_name)->first();
-
-    if (Media::where('id', $request->image)->exists()) {
-      Media::find($request->image)->categories()->attach($category);
-      Media::find($request->image)->update([
-        'status' => 1,
-      ]);
-    }
-
-    if (VariantGroup::whereId(1)->exists())
+    public function __construct()
     {
-      $variantGroup = VariantGroup::find(1);
-      $category->variantGroup()->attach($variantGroup);
+//        $this->staff_id = Auth::guard('staff')
+//            ->user()->id;
     }
 
-    $rating_ids = [1,2,3,4];
-    foreach ($rating_ids as $id) {
-      if (Rating::whereId($id)->exists()){
-        $rating = Rating::find($id);
-        $category->ratings()->attach($rating);
-      }
-    }
-
-
-
-  }
-
-  public function getData(Request $request)
-  {
-
-    $category = Category::find($request->id);
-
-    if ($category->media()->exists()) {
-      $cat_media = $category->media()->first();
-      return response()->json([
-        'image' => View::make('staffcategory::layouts.ajax.image-box.uploaded-image', compact('cat_media'))->render(),
-        'category' => $category,
-      ], 200);
-    }
-
-    return response()->json([
-      'category' => $category,
-    ], 200);
-
-  }
-
-  public function update(Request $request)
-  {
-
-    $user_id = auth()->guard('staff')->user()->id;
-    $category = Category::find($request->id);
-    $media = ($category->media()->exists()) ? $category->media()->first() : null;
-
-    $category->update([
-      'name' => $request->name,
-      'en_name' => $request->en_name,
-      'slug' => $request->slug,
-      'description' => $request->description,
-    ]);
-
-    if ($request->image_id !== null && $media !== null){
-      $this->deleteImage($category->media()->first()->id);
-      $category->media()->detach();
-    }
-
-    if ($request->image_id !== null) {
-      Media::find($request->image_id)->categories()->attach($category->id);
-      Media::find($request->image_id)->update([
-        'status' => 1,
-      ]);
-    }
-
-    if ($request->image_id == null && $media !== null){
-      $request->id =  $category->media()->first()->id;
-      $category->media()->detach();
-      $this->deleteImage($request);
-    }
-
-  }
-
-  public function childCatsLoader(Request $request)
-  {
-    $categories = Category::orderBy('created_at', 'asc')->get()->unique('name');
-    $id = $request->id;
-    // حل مشکل ستون های خالی
-    if (Category::where('parent_id', $id)->exists()) {
-      return View::make("staffcategory::layouts.ajax.category-box.child", compact('id', 'categories'));
-    }
-  }
-
-  public function breadcrumbLoader(Request $request)
-  {
-    $category = Category::find($request->id);
-    return View::make("staffcategory::layouts.ajax.category-box.breadcrumb", compact('category'));
-  }
-
-  public function mainCatReloader(Request $request)
-  {
-    $categories = Category::orderBy('created_at', 'asc')->get()->unique('name');
-    return View::make("staffcategory::layouts.ajax.category-box.main", compact('categories'));
-  }
-
-  public function ajaxSearch(Request $request)
-  {
-    $categories = Category::query()->where('name', 'LIKE', "%{$request->search}%")->get();
-    return View::make("staffcategory::layouts.ajax.category-box.search", compact('categories'));
-  }
-
-  public function deleteImage(Request $request)
-  {
-
-    $media = Media::find($request->id);
-    $user_id = auth()->guard('staff')->user()->id;
-
-    if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id))
+    /**
+     * index page.
+     *
+     * @return Illuminate\Contracts\View\View
+     */
+    public function index()
     {
-      unlink(public_path("$media->path/") . $media->name);
-      $media->delete();
+        $categories = Category::latest()->get();
+
+        return view('staffcategory::index',
+            compact('categories'));
     }
 
-  }
-
-  public function destroy(Request $request)
-  {
-    $seleted_category = Category::find($request->id);
-    $this->deleteSubCategory($seleted_category->id);
-
-    if ($seleted_category->media()->exists())
+    /**
+     * create page.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function create()
     {
-      $media = $seleted_category->media()->first();
-      unlink(public_path("$media->path/") . $media->name);
-      $seleted_category->media()->detach();
-      $seleted_category->media()->delete();
+        $categories = Category::latest()->get();
+
+        return view('staffcategory::create',
+            compact('categories'));
     }
 
-    $seleted_category->product_variants()->detach();
-    $seleted_category->product_variants()->forceDelete();
-    $seleted_category->products()->detach();
-    $seleted_category->products()->forceDelete();
+    /**
+     * get category data for index page.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getData(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
 
-    $seleted_category->delete();
-  }
+        if ($cat_media = $category->media()->first()) {
+            return response()->json([
+                'image' => View::make('staffcategory::layouts.ajax.image-box.uploaded-image',
+                    compact('cat_media'))->render(),
+                'category' => $category,
+            ]);
+        }
 
-  public function deleteSubCategory($cat_id)
-  {
-    $sub_categories = Category::where('parent_id', $cat_id)->get();
-    foreach ($sub_categories as $sub_category) {
-      $sub_category_id = $sub_category->id;
+        return response()->json([
+            'category' => $category,
+        ]);
+    }
 
-      if ($sub_category_id->media()->exists())
-      {
-        $media = $sub_category_id->media()->first();
+    public function update(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $media = $category->media()->first();
+
+        $category->update([
+            'name' => $request->name,
+            'en_name' => $request->en_name,
+            'slug' => $request->slug,
+            'description' => $request->description,
+        ]);
+
+        if ($request->image_id !== null && $media !== null) {
+            $this->deleteImage($category->media()->first()->id);
+            $category->media()->detach();
+        }
+
+        if ($request->image_id !== null) {
+            $image = Media::findOrFail($request->image_id);
+            $image->categories()->attach($category->id);
+            $image->update([
+                'status' => 1,
+            ]);
+        }
+
+        if ($request->image_id == null && $media !== null) {
+            $request->id = $category->media()->first()->id;
+            $category->media()->detach();
+            $this->deleteImage($request);
+        }
+
+    }
+
+    /**
+     * category children loader.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View|null
+     */
+    public function childCatsLoader(Request $request)
+    {
+        $categories = Category::latest()
+            ->get()
+            ->unique('name');
+
+        $id = $request->id;
+
+        // حل مشکل ستون های خالی
+        if (Category::whereParentId($id)->exists()) {
+            return View::make("staffcategory::layouts.ajax.category-box.child",
+                compact('id', 'categories'));
+        }
+
+        return null;
+    }
+
+    /**
+     * breadcrumb loader
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function breadcrumbLoader(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+
+        return View::make("staffcategory::layouts.ajax.category-box.breadcrumb",
+            compact('category'));
+    }
+
+    /**
+     * main category loader
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function mainCatReloader(Request $request)
+    {
+        $categories = Category::latest()
+            ->get()
+            ->unique('name');
+
+        return View::make("staffcategory::layouts.ajax.category-box.main",
+            compact('categories'));
+    }
+
+    /**
+     * ajax search category.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function ajaxSearch(Request $request)
+    {
+        $categories = Category::query()
+            ->where('name', 'LIKE', "%{$request->search}%")
+            ->get();
+
+        return View::make("staffcategory::layouts.ajax.category-box.search",
+            compact('categories'));
+    }
+
+    /**
+     * delete image.
+     *
+     * @param Request $request
+     */
+    public function deleteImage(Request $request)
+    {
+        $media = Media::find($request->id);
         unlink(public_path("$media->path/") . $media->name);
-        $sub_category_id->media()->detach();
-        $sub_category_id->media()->delete();
-      }
-      $sub_category->product_variants()->detach();
-      $sub_category->product_variants()->forceDelete();
-      $sub_category->products()->detach();
-      $sub_category->products()->forceDelete();
-
-      $sub_category->delete();
-
-      if (Category::where('parent_id', $sub_category_id)->exists()) {
-        $this->deleteSubCategory($sub_category_id);
-      }
-    }
-  }
-
-  public function uploadImage(Request $request)
-  {
-
-    if ($request->old_img) {
-      $request->id = $request->old_img;
-
-      if (isset($request->category_id)) {
-        Category::find($request->category_id)->media()->detach();
-      }
-
-      $this->deleteImage($request);
+        $media->delete();
     }
 
-    $imageSize = $request->file('image')->getSize();
-    $imageExtension = $request->file('image')->extension();
+    public function uploadImage(Request $request)
+    {
+        if ($request->old_img) {
+            $request->id = $request->old_img;
+            if (filled($request->category_id)) {
+                $category = Category::findOrFail($request->category_id);
+                $category->media()->detach();
+            }
+            $this->deleteImage($request);
+        }
 
-    $input['image'] = time() . '.' . $imageExtension;
-    $request->file('image')->move(public_path('media/categories'), $input['image']);
+        $imageSize = $request->file('image')->getSize();
+        $imageExtension = $request->file('image')->extension();
+        $input['image'] = time() . '.' . $imageExtension;
 
-    $media = Media::create([
-      'name' => $input['image'],
-      'path' => 'media/categories',
-      'person_id' => auth()->guard('staff')->user()->id,
-      'person_role' => 'staff' ,
-    ]);
+        $request->file('image')->move(public_path('media/categories'), $input['image']);
 
-    return View::make("staffcategory::layouts.ajax.image-box.upload-image",
-      compact('input', 'imageSize', 'request', 'media'));
-  }
+        $media = Media::create([
+            'name' => $input['image'],
+            'path' => 'media/categories',
+            'person_id' => $this->staff_id,
+            'person_role' => 'staff',
+        ]);
+
+        return View::make("staffcategory::layouts.ajax.image-box.upload-image",
+            compact('input', 'imageSize', 'request', 'media'));
+    }
+
+    /**
+     * delete category with all children and transfer or delete dependencies.
+     *
+     * @param Request $request
+     */
+    public function destroy(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $all_children = array_reverse($this->getAllChildren($category));
+        array_push($all_children, $category->id);
+
+        foreach ($all_children as $child_id) {
+            $child_category = Category::findOrFail($child_id);
+            $this->transferDependenciesToUncategorized($child_category);
+            $this->deleteDependencies($child_category);
+            $child_category->delete();
+        }
+    }
+
+
+    public function deleteSubCategory($cat_id)
+    {
+        $sub_categories = Category::where('parent_id', $cat_id)->get();
+        foreach ($sub_categories as $sub_category) {
+            $sub_category_id = $sub_category->id;
+
+            if ($sub_category_id->media()->exists()) {
+                $media = $sub_category_id->media()->first();
+                unlink(public_path("$media->path/") . $media->name);
+                $sub_category_id->media()->detach();
+                $sub_category_id->media()->delete();
+            }
+            $sub_category->product_variants()->detach();
+            $sub_category->product_variants()->forceDelete();
+            $sub_category->products()->detach();
+            $sub_category->products()->forceDelete();
+
+            $sub_category->delete();
+
+            if (Category::where('parent_id', $sub_category_id)->exists()) {
+                $this->deleteSubCategory($sub_category_id);
+            }
+        }
+    }
+
+    /**
+     * store new category.
+     *
+     * @param StaffCategoryRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(StaffCategoryRequest $request)
+    {
+        Category::updateOrCreate(['en_name' => $request->en_name], [
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'parent_id' => $request->parent_id,
+            'description' => $request->description,
+        ]);
+
+        $category = Category::whereEnName($request->en_name)->first();
+
+        if ($media = Media::whereId($request->image)->first()) {
+            $media->categories()->attach($category);
+            $media->update([
+                'status' => 1,
+            ]);
+        }
+
+        return response()->json(true, 200);
+
+//        if (VariantGroup::whereId(1)->exists()) {
+//            $variantGroup = VariantGroup::find(1);
+//            $category->variantGroup()->attach($variantGroup);
+//        }
+
+//        $rating_ids = [1, 2, 3, 4];
+//        foreach ($rating_ids as $id) {
+//            if (Rating::whereId($id)->exists()) {
+//                $rating = Rating::find($id);
+//                $category->ratings()->attach($rating);
+//            }
+//        }
+    }
+
+
+    /**
+     * delete category dependencies.
+     *
+     * @param $category
+     */
+    public function deleteDependencies($category)
+    {
+        /**
+         * delete media
+         */
+        if ($media = $category->media()->first()) {
+            $category->media()->detach();
+            $category->media()->delete();
+            unlink(public_path("$media->path/") . $media->name);
+        }
+    }
+
+    /**
+     * transfer dependencies to uncategorized category.
+     *
+     * @param $category
+     * @param string[] $dependencies
+     */
+    public function transferDependenciesToUncategorized($category)
+    {
+        /** @var $uncategorized */
+        $uncategorized = Category::whereEnName('uncategorized')
+            ->firstOrFail();
+
+        /** @var array $dependencies */
+        $dependencies = [
+            'products',
+            'brands',
+            'warranties',
+            'variantGroup',
+            'attributes',
+            'ratings',
+            'types',
+            'product_variants'
+        ];
+
+        /**
+         * detach relationships with category.
+         */
+        foreach ($dependencies as $dependency) {
+            foreach ($category->$dependency as $item) {
+                $item->categories()->detach($category);
+                $item->categories()->attach($uncategorized);
+            }
+        }
+
+    }
+
+    /**
+     * return array of category children.
+     *
+     * @param $category
+     * @return array
+     */
+    private function getAllChildren($category)
+    {
+        $ids = [];
+        foreach ($category->children as $cat) {
+            $ids[] = $cat->id;
+            $ids = array_merge($ids, $this->getAllChildren($cat));
+        }
+        return $ids;
+    }
+
+    public function test()
+    {
+        $products = Category::find(13)->product_variants;
+        return dd($products);
+    }
 
 }

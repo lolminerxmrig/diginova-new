@@ -107,24 +107,5 @@ Route::get('tracker/events', function (){
 Route::get('ajax/profile/wallet', function () {
 });
 
-Route::get('test', function (){
-  $amazing_offer = Campain::whereType('amazing_offer')->firstOrFail();
-
-  $amazing_offer_products = \Modules\Staff\Product\Models\Product::whereHas('variants', function ($q){
-    $q->whereHas('promotions', function ($q) {
-        $q->whereDate('start_at', '<=', now())->whereDate('end_at', '>=', now())
-          ->where('status', 'active')->orWhere('status', 1)
-          ->whereHas('campain', function ($q) {
-            $q->where('type', 'amazing_offer');
-          });
-    });
-  })->get();
-  dd($amazing_offer_products);
-
-//  if($amazing_offer->promotions->count()) {
-//    foreach($amazing_offer->promotions as $promotion) {
-//      dd($promotion->productVariants);
-//    }
-//  }
-});
+Route::get('test', [\Modules\Staff\Category\Http\Controllers\StaffCategoryController::class, 'test']);
 

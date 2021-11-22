@@ -37,9 +37,9 @@ class Category extends Model
         return $this->search($query, $searchText, $searchColumns);
     }
 
-    public function scopeDigiSearch($query, $column,  string $searchText)
+    public function scopeDigiSearch($query, $column, string $searchText)
     {
-        return $query->where($column, 'like', '%' .$searchText. '%');
+        return $query->where($column, 'like', '%' . $searchText . '%');
     }
 
     public function scopeMain($query)
@@ -84,7 +84,8 @@ class Category extends Model
 
     public function products()
     {
-        return $this->morphedByMany(Product::class, 'categorizable', 'categorizables', 'category_id', 'categorizable_id');
+        return $this->morphedByMany(Product::class,
+            'categorizable', 'categorizables', 'category_id', 'categorizable_id');
     }
 
     public function media()
@@ -105,6 +106,7 @@ class Category extends Model
     public function product_variants()
     {
         return $this->hasManyThrough(ProductHasVariant::class, Product::class)
-            ->where('categorizable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
+            ->where('categorizable_type', array_search(static::class, Relation::morphMap())
+                ?: static::class);
     }
 }
