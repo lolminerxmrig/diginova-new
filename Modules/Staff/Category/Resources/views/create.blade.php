@@ -1,6 +1,6 @@
 @extends('layouts.staff.master')
 
-@section('title') ایجاد دسته بندی | {{ $fa_store_name }}  @endsection
+@section('title') ایجاد دسته‌بندی | {{ $fa_store_name }}  @endsection
 @section('head')
   <script src="{{ asset('seller/js/create-category-validation.js') }}"></script>
   <script src="{{ asset('seller/js/tags.js') }}"></script>
@@ -13,7 +13,7 @@
               <div class="c-content-page c-content-page--plain c-grid__row">
                   <div class="c-grid__col">
                       <div class="c-content-page__header">
-                          <span class="c-content-page__header-action">ایجاد دسته بندی</span>
+                          <span class="c-content-page__header-action">ایجاد دسته‌بندی</span>
                           <span
                               class="c-content-page__header-desc">برای محصولات فروشگاه دسته و زیر دسته ایجاد کنید</span>
                       </div>
@@ -29,7 +29,7 @@
                                           <section class="c-content-accordion__row js-content-section uk-open"
                                                    id="stepCategoryAccordion">
                                               <h2 style="font-size: 18px; margin-right: 33px; margin-top: -8px;">
-                                                  <div style="color: #606265;">ایجاد دسته بندی</div>
+                                                  <div style="color: #606265;">ایجاد دسته‌بندی</div>
                                               </h2>
 
                                               <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;"></div>
@@ -107,7 +107,7 @@
                                                       <label for="" class="search-form__action-label">جستجو در میان دسته ها</label>
                                                       <div class="search-form__autocomplete-container">
                                                           <div class="search-form__autocomplete js-autosuggest-box">
-                                                              <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل">
+                                                              <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="دسته‌بندی و یا کد دسته‌بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل">
                                                           </div>
                                                       </div>
                                                   </div>
@@ -366,7 +366,7 @@ $(function () {
 
 });
 
-// پنهان کردن دسته بندی وقتی روی چک باکس کلیک شد
+// پنهان کردن دسته‌بندی وقتی روی چک باکس کلیک شد
 function valueChanged() {
     if ($("#is_main").is(":checked")) {
         $(".category-box").hide();
@@ -377,7 +377,7 @@ function valueChanged() {
     }
 }
 
-// تغییر آدرس دسته بندی در راهنمای فیلد نامک
+// تغییر آدرس دسته‌بندی در راهنمای فیلد نامک
 $(document).on('click', "#is_main", function (e) {
     if ($("#is_main").is(":checked")) {
         $(".button-urls").val('/{{ $site_url }}' + '/main');
@@ -629,7 +629,7 @@ $('#searchKeyword').on('keyup', function () {
     }
 });
 
-// ریست کامل لیست دسته بندی ها
+// ریست کامل لیست دسته‌بندی‌ها
 $(document).on('click', ".reset-box", function (e) {
     $.ajax({
         type: 'post',

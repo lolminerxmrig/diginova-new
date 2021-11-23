@@ -587,7 +587,7 @@
                                                             <input id="searchKeyword"
                                                                    class="c-content-input__origin js-prevent-submit"
                                                                    type="text"
-                                                                   placeholder="نام کالا،  دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل"
+                                                                   placeholder="نام کالا،  دسته‌بندی و یا کد دسته‌بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل"
                                                                    disabled>
                                                         </div>
                                                     </div>
@@ -1604,7 +1604,7 @@
                                                                             <div class="field-wrapper ui-select ui-select__container">
                                                                                 <select class="uk-input uk-input--select js-select-origin select2-hidden-accessible {{ ($attribute->is_required)? 'js-required-attribute' : '' }}"
                                                                                     name="attributes[{{$attribute->id}}]" data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true">
-                                                                                    <option value="">یکی از گزینه ها
+                                                                                    <option value="">یکی از گزینه‌ها
                                                                                         را انتخاب کنید
                                                                                     </option>
 
@@ -1737,7 +1737,7 @@
                                                                     <div class="c-content-product__auto-title-msg">
                                                                         برای این گروه کالایی شما هیچ ویژگی ایجاد
                                                                         نکرده اید پیشنهاد می شود حتما ابتدا برای
-                                                                        دسته بندی ها ویژگی ایجاد کنید سپس اقدام به
+                                                                        دسته‌بندی‌ها ویژگی ایجاد کنید سپس اقدام به
                                                                         ایجاد محصول کنید و یا پس از ذخیره این صفحه و
                                                                         ایجاد ویژگی برای آن نسبت به ویرایش محصول
                                                                         اقدام کنید.
@@ -2308,7 +2308,7 @@
                                     <div class="c-content-accordion__modal-text uk-hidden js-guideline-desc"><p>
                                             مطابق با دستورالعملهای وزارت صنعت، معدن و تجارت و سازمان حمایت مصرف
                                             کنندگان و تولید کنندگان، کالاهای گروه های زیر فقط با قیمت مرجع (قیمت
-                                            مندرج روی کالا یا مصوب) امکان فروش در سایت را خواهند داشت و قیمت گذاری
+                                            مندرج روی کالا یا مصوب) امکان فروش در سایت را خواهند داشت و قیمت‌گذاری
                                             بالاتر از قیمت مصرف کننده کالا در سایت تخلف محسوب می شود:</p>
 
                                         <p>روغن موتور/روغن گیربکس</p>

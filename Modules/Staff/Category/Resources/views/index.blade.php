@@ -14,7 +14,7 @@
                     <div class="c-grid__col">
                         <div class="c-content-page__header">
                             <span class="c-content-page__header-action">مدیریت دسته ها</span>
-                            <span class="c-content-page__header-desc">از این صفحه می توانید دسته هایتان را مدیریت کنید</span>
+                            <span class="c-content-page__header-desc">از این صفحه می‌توانید دسته هایتان را مدیریت کنید</span>
                         </div>
                     </div>
                 </div>
@@ -300,7 +300,7 @@ $(function () {
 
 });
 
-// تغییر آدرس دسته بندی در راهنمای فیلد نامک
+// تغییر آدرس دسته‌بندی در راهنمای فیلد نامک
 $(document).on('click', "#categoryStepNext", function (e) {
     if ($("input[type='radio']:checked").attr('data-status') == 'ziro_parent') {
         $(".button-urls").val('/{{ $site_url }}' + '/main');
@@ -589,7 +589,7 @@ $('#searchKeyword').on('keyup', function () {
     }
 });
 
-// ریست کامل لیست دسته بندی ها
+// ریست کامل لیست دسته‌بندی‌ها
 $(document).on('click', ".reset-box", function (e) {
     $.ajax({
         type: 'post',

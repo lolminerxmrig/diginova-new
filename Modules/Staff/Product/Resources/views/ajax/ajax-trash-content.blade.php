@@ -147,7 +147,7 @@
                                                             <h2 class="c-modal-notification__header">هشدار</h2>
 
                                                             <p class="c-modal-notification__text">با حذف محصول ، تمامی
-                                                                تنوع های آن نیز حذف خواهد شد. آیا از حذف آن اطمینان
+                                                                تنوع‌های آن نیز حذف خواهد شد. آیا از حذف آن اطمینان
                                                                 دارید؟</p>
                                                             <div class="c-modal-notification__actions">
                                                                 <button

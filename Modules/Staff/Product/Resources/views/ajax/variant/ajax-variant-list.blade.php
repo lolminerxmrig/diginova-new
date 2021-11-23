@@ -6,7 +6,7 @@
     <div class="c-grid__col">
         <div class="c-variation-diversity">
             <div class="c-variation-diversity__header">
-                <div class="c-variation-diversity__title">لیست تنوع ها</div>
+                <div class="c-variation-diversity__title">لیست تنوع‌ها</div>
 
                 <div class="c-card__paginator">
                     <div class="c-ui-paginator js-paginator">

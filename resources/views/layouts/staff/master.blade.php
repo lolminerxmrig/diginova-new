@@ -631,7 +631,7 @@
             <ul class="uk-navbar-nav uk-navbar-nav--responsive">
 
               <li class="first-level">
-                <a href="{{ route('staff.dashboardPage') }}" class="" aria-expanded="false">داشبورد</a>
+                <a href="{{ route('staff.dashboardPage') }}" class="" aria-expanded="false">پیشخوان</a>
               </li>
 
               <li class="first-level">
@@ -641,7 +641,7 @@
                 <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li>
-                      <a href="{{ route('staff.categories.index') }}">دسته بندی ها</a>
+                      <a href="{{ route('staff.categories.index') }}">دسته‌بندی‌ها</a>
                     </li>
 
                     <li>
@@ -649,7 +649,7 @@
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.attributes.index') }}">ویژگی ها</a>
+                      <a href="{{ route('staff.attributes.index') }}">ویژگی‌ها</a>
                     </li>
 
                     <li>
@@ -657,7 +657,7 @@
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.types.index') }}">نوع ها</a>
+                      <a href="{{ route('staff.types.index') }}">نوع‌ها</a>
                     </li>
 
                     <li>
@@ -665,11 +665,11 @@
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.ratings.index') }}">گزینه های امتیازدهی</a>
+                      <a href="{{ route('staff.ratings.index') }}">گزینه‌های امتیازدهی</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.warranties.index') }}">گارانتی ها</a>
+                      <a href="{{ route('staff.warranties.index') }}">گارانتی‌ها</a>
                     </li>
 
                     <li>
@@ -677,7 +677,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('staff.comments.index') }}">دیدگاه ها</a>
+                        <a href="{{ route('staff.comments.index') }}">دیدگاه‌ها</a>
                     </li>
 
                     <li>
@@ -689,7 +689,7 @@
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.navs.index') }}">فهرست ها</a>
+                      <a href="{{ route('staff.navs.index') }}">فهرست‌ها</a>
                     </li>
 
                   </ul>
@@ -711,7 +711,7 @@
                             </li>
 
                             <li>
-                              <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های شگفت انگیز</a>
+                              <a href="{{ route('staff.periodic-prices.index') }}">تخفیف‌های شگفت انگیز</a>
                             </li>
 
                             <li>
@@ -722,11 +722,11 @@
                 </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.delivery.index') }}" class="" aria-expanded="false">روش های ارسال</a>
+                <a href="{{ route('staff.delivery.index') }}" class="" aria-expanded="false">روش‌های ارسال</a>
               </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.peyment.index') }}" class="" aria-expanded="false">درگاه های پرداخت</a>
+                <a href="{{ route('staff.peyment.index') }}" class="" aria-expanded="false">درگاه‌های پرداخت</a>
               </li>
 
               <li class="first-level">
@@ -756,7 +756,7 @@
                       <a href="{{ route('staff.dashboardPage') }}" class="has-icon ">
                         <span uk-icon="icon: clock;" class="uk-icon">
                         </span>
-                        داشبورد
+                        پیشخوان
                       </a>
                     </li>
                     <li>
@@ -807,7 +807,7 @@
         <ul class="uk-navbar-nav">
           <div class="uk-navbar-container__bottom__header">
             <a href="{{ route('staff.dashboardPage') }}">
-            داشبورد
+            پیشخوان
             </a>
           </div>
           <li>
@@ -824,7 +824,7 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.categories.index') }}">دسته بندی ها</a>
+                  <a href="{{ route('staff.categories.index') }}">دسته‌بندی‌ها</a>
                 </li>
 
                 <li>
@@ -832,15 +832,15 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.attributes.index') }}">ویژگی ها</a>
+                  <a href="{{ route('staff.attributes.index') }}">ویژگی‌ها</a>
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.types.index') }}">نوع ها</a>
+                  <a href="{{ route('staff.types.index') }}">نوع‌ها</a>
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.ratings.index') }}">گزینه های امتیازدهی</a>
+                  <a href="{{ route('staff.ratings.index') }}">گزینه‌های امتیازدهی</a>
                 </li>
 
                 <li>
@@ -848,7 +848,7 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.warranties.index') }}">گارانتی ها</a>
+                  <a href="{{ route('staff.warranties.index') }}">گارانتی‌ها</a>
                 </li>
 
                 <li>
@@ -856,7 +856,7 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.comments.index') }}">دیدگاه ها</a>
+                  <a href="{{ route('staff.comments.index') }}">دیدگاه‌ها</a>
                 </li>
 
                 <li>
@@ -864,7 +864,7 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.navs.index') }}">فهرست ها</a>
+                  <a href="{{ route('staff.navs.index') }}">فهرست‌ها</a>
                 </li>
 
               </ul>
@@ -889,7 +889,7 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.periodic-prices.index') }}">تخفیف های شگفت انگیز</a>
+                  <a href="{{ route('staff.periodic-prices.index') }}">تخفیف‌های شگفت انگیز</a>
                 </li>
 
                 <li>
@@ -902,7 +902,7 @@
           <li>
             <a href="{{ route('staff.delivery.index') }}" class="js-menu-item" aria-expanded="false">
               <div>
-                روش های ارسال
+                روش‌های ارسال
               </div>
               <div></div>
             </a>
@@ -911,7 +911,7 @@
           <li>
             <a href="{{ route('staff.peyment.index') }}" class="js-menu-item" aria-expanded="false">
               <div>
-                درگاه های پرداخت
+                درگاه‌های پرداخت
               </div>
               <div></div>
             </a>

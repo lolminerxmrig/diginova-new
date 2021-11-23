@@ -599,7 +599,7 @@
             </form>
             <input type="hidden" value="" name="has-warehouses">
             <div class="c-card c-card--transparent c-ui--my-5">
-              <h1 class="c-card__title c-card__title--dark c-card__title--desc">سفارش‌های ثبت شده <span>از این بخش می توانید سفارش های ثبت شده را مدیریت کنید.</span></h1>
+              <h1 class="c-card__title c-card__title--dark c-card__title--desc">سفارش‌های ثبت شده <span>از این بخش می‌توانید سفارش‌های ثبت شده را مدیریت کنید.</span></h1>
             </div>
           </div>
         </div>

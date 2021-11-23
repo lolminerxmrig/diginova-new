@@ -577,7 +577,7 @@
               <div class="c-reg-form__col c-reg-form__col--12">
                 <label class="c-reg-form__text" for="shaba-number">شماره شبا (به نام شخص یا شرکت ثبت نام کننده)</label>
                 <div class="c-ui-input">
-                  <input type="text" name="register[shaba_number]" class="c-ui-input__field c-ui-input__field--ltr accept-only-digits js-sheba-field" id="shaba-number" value="IR 69-0120-0100-0000-5688-5060-77" placeholder="IR __-____-____-____-____-____-__" maxlength="33" required="" data-exceptions="73, 82" data-ui-tooltip="با کلیک راست بر روی کادر و انتخاب گزینه Paste می توانید شماره شبا خود را اضافه نمایید.">
+                  <input type="text" name="register[shaba_number]" class="c-ui-input__field c-ui-input__field--ltr accept-only-digits js-sheba-field" id="shaba-number" value="IR 69-0120-0100-0000-5688-5060-77" placeholder="IR __-____-____-____-____-____-__" maxlength="33" required="" data-exceptions="73, 82" data-ui-tooltip="با کلیک راست بر روی کادر و انتخاب گزینه Paste می‌توانید شماره شبا خود را اضافه نمایید.">
                 </div>
               </div>
             </div>

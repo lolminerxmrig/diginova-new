@@ -19,7 +19,7 @@
                     <div class="c-grid__col">
                         <input type="hidden" value="" name="has-warehouses">
                         <div class="c-card c-card--transparent">
-                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت محصول ها<span>از این صفحه می توانید محصول ها را مدیریت کنید</span>
+                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت محصول ها<span>از این صفحه می‌توانید محصول ها را مدیریت کنید</span>
                             </h1>
                         </div>
                     </div>
@@ -345,7 +345,7 @@
                                                                                     هشدار</h2>
 
                                                                                 <p class="c-modal-notification__text">با
-                                                                                    حذف محصول ، تمامی تنوع های آن نیز
+                                                                                    حذف محصول ، تمامی تنوع‌های آن نیز
                                                                                     حذف خواهد شد. آیا از حذف آن اطمینان
                                                                                     دارید؟</p>
                                                                                 <div

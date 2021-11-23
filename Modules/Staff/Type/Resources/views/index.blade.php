@@ -17,7 +17,7 @@
                     <div class="c-content-page__header">
                         <span class="c-content-page__header-action">مدیریت نوع کالا</span>
                         <span
-                            class="c-content-page__header-desc">از این صفحه می توانید نوع کالا را مدیریت، ویرایش و حذف کنید</span>
+                            class="c-content-page__header-desc">از این صفحه می‌توانید نوع کالا را مدیریت، ویرایش و حذف کنید</span>
                     </div>
                 </div>
             </div>

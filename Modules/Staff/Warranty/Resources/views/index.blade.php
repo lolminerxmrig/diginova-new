@@ -12,7 +12,7 @@
                 <div class="c-grid__col">
                     <input type="hidden" value="" name="has-warehouses">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت گارانتی ها<span>از این صفحه می توانید گارانتی ها را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت گارانتی‌ها<span>از این صفحه می‌توانید گارانتی‌ها را مدیریت کنید</span>
                         </h1>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                                         </a>
                                         @if($trashed_warranties->count())
                                         <div class="c-grid__col c-grid__col--lg-4">
-                                            <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی های حذف شده</a>
+                                            <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی‌های حذف شده</a>
                                         </div>
                                         @endif
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
@@ -184,7 +184,7 @@
 
                                         @if($trashed_warranties->count())
                                             <div class="c-grid__col c-grid__col--lg-4">
-                                                <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی های حذف شده</a>
+                                                <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی‌های حذف شده</a>
                                             </div>
                                         @endif
 

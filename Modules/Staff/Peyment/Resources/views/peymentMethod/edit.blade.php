@@ -49,7 +49,7 @@
             <h1 class="c-card__title c-card__title--dark c-card__title--desc">
               مدیریت منو‌‌‌‌‌ها
               <span>
-                از این صفحه می توانید منو ها یا مگامنو ها را مدیریت کنید.
+                از این صفحه می‌توانید منو ها یا مگامنو ها را مدیریت کنید.
             </span>
             </h1>
           </div>
@@ -249,7 +249,7 @@
                   </div>
                 @endif
 
-                {{-- گزینه های پرداخت درب منزل --}}
+                {{-- گزینه‌های پرداخت درب منزل --}}
                 @if($peyment_method->en_name == 'cod')
                   <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">
                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" style="padding-right: 0px !important;width: 32%;">

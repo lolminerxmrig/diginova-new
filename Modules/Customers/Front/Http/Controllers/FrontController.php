@@ -1414,7 +1414,7 @@ class FrontController extends Controller
                         continue;
                     }
 
-                    // اگه کد تخفیف محدود به دسته بندی خاصی بود چک کنه سبد رو و هرکدوم که تو اون دسته و زیر مجموعه هاش نبود رو رد کنه
+                    // اگه کد تخفیف محدود به دسته‌بندی خاصی بود چک کنه سبد رو و هرکدوم که تو اون دسته و زیر مجموعه هاش نبود رو رد کنه
                     if ($voucher->categories()->exists()) {
                         $variant_category_id = $item->product_variant()->first()->product->category()->first()->id;
                         if (count($voucher_categories_id) && !in_array($variant_category_id, $voucher_categories_id)) {
@@ -1646,7 +1646,7 @@ class FrontController extends Controller
 
             $consignment_id = OrderHasConsignment::where('consignment_code', $consignment_code)->first()->id;
 
-            // اضافه کردن تنوع ها به مرسوله
+            // اضافه کردن تنوع‌ها به مرسوله
             foreach ($first_carts as $item) {
 
                 // ایدی حجم: key
@@ -1890,7 +1890,7 @@ class FrontController extends Controller
             'order_status_id' => OrderStatus::where('en_name', 'awaiting_review')->first()->id,
         ]);
 
-        // تغییر وضعیت تنوع های مرسولات سفارش به بفروش رفته sold
+        // تغییر وضعیت تنوع‌های مرسولات سفارش به بفروش رفته sold
         ConsignmentHasProductVariants::where('order_id', $order->id)->update([
             'order_status_id' => OrderStatus::where('en_name', 'sold')->first()->id,
         ]);
@@ -1933,7 +1933,7 @@ class FrontController extends Controller
             'order_status_id' => OrderStatus::where('en_name', 'canceled')->first()->id,
         ]);
 
-        // تغییر وضعیت تنوع های مرسولات سفارش به لغو شده
+        // تغییر وضعیت تنوع‌های مرسولات سفارش به لغو شده
         ConsignmentHasProductVariants::where('order_id', $order->id)->update([
             'order_status_id' => OrderStatus::where('en_name', 'canceled')->first()->id,
         ]);

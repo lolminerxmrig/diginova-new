@@ -13,7 +13,7 @@
           <div class="c-card c-card--transparent">
               <h1 class="c-card__title c-card__title--dark c-card__title--desc">
                 مدیریت برندها
-                <span>از این صفحه می توانید برند ها را مدیریت کنید</span>
+                <span>از این صفحه می‌توانید برند ها را مدیریت کنید</span>
               </h1>
           </div>
         </div>

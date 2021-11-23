@@ -19,7 +19,7 @@ $warranty->name = persianNum($warranty->name);
         <div class="c-grid__col">
           <div class="c-content-page__header">
             <span class="c-content-page__header-action">ویرایش گارانتی</span>
-            <span class="c-content-page__header-desc"> از این صفحه می توانید گارانتی "{{ $warranty->name }}" را ویرایش کنید.</span>
+            <span class="c-content-page__header-desc"> از این صفحه می‌توانید گارانتی "{{ $warranty->name }}" را ویرایش کنید.</span>
           </div>
         </div>
       </div>

@@ -583,7 +583,7 @@
                             <div class="search-form__autocomplete-container">
                               <div class="search-form__autocomplete js-autosuggest-box">
                                 <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text"
-                                       placeholder="نام کالا،  دسته بندی و یا کد دسته بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل">
+                                       placeholder="نام کالا،  دسته‌بندی و یا کد دسته‌بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل">
                               </div>
                             </div>
                           </div>
@@ -1490,7 +1490,7 @@
                             <div class="uk-flex uk-flex-right" style="float: left;">
                               <button class="uk-button-danger final-submit" value="0" id="saveDraft"
                                       style="border-radius: 8px;padding-right: 12px;padding-left: 10px;">
-                                ذخیره به عنوان پیش نویس
+                                ذخیره به عنوان پیش‌نویس
                               </button>
                               <button class="c-ui-btn c-ui-btn--next final-submit" value="1" id="saveButton">
                                 انتشار
@@ -1581,7 +1581,7 @@
                     </div>
                     <div class="c-content-accordion__modal-text uk-hidden js-guideline-desc"><p>مطابق با دستورالعملهای
                         وزارت صنعت، معدن و تجارت و سازمان حمایت مصرف کنندگان و تولید کنندگان، کالاهای گروه های زیر فقط
-                        با قیمت مرجع (قیمت مندرج روی کالا یا مصوب) امکان فروش در سایت را خواهند داشت و قیمت گذاری بالاتر
+                        با قیمت مرجع (قیمت مندرج روی کالا یا مصوب) امکان فروش در سایت را خواهند داشت و قیمت‌گذاری بالاتر
                         از قیمت مصرف کننده کالا در سایت تخلف محسوب می شود:</p>
 
                       <p>روغن موتور/روغن گیربکس</p>

@@ -902,7 +902,7 @@
           <div class="js-c-box-suppliers c-box-suppliers" id="suppliers" xmlns="http://www.w3.org/1999/html">
             <div class="c-box-suppliers__headline-container">
               <div class="o-box__header">
-                <span class="o-box__title">گارانتی های قابل انتخاب</span>
+                <span class="o-box__title">گارانتی‌های قابل انتخاب</span>
               </div>
             </div>
             <div class="c-box">

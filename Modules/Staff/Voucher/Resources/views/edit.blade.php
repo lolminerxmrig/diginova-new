@@ -202,7 +202,7 @@
                                                             <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">
                                                                 <input type="checkbox" class="c-ui-checkbox__origin" name="has_category_limit" id="productIsFake" value="1" {{ ($voucher->categories()->exists())? 'checked' : '' }}>
                                                                 <span class="c-ui-checkbox__check"></span>
-                                                                <span class="c-ui-checkbox__label">استفاده از کد تخفیف فقط برای دسته بندی مشخص قابل استفاده باشد</span>
+                                                                <span class="c-ui-checkbox__label">استفاده از کد تخفیف فقط برای دسته‌بندی مشخص قابل استفاده باشد</span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -490,7 +490,7 @@ $(document).on('change', "input[type='radio']", function (e) {
 
 });
 
-// ایجکس سرچ دسته بندی
+// ایجکس سرچ دسته‌بندی
 $('#searchKeyword').on('keyup', function () {
 
     var searchValue = $(this).val();
@@ -522,7 +522,7 @@ $('#searchKeyword').on('keyup', function () {
     }
 });
 
-// ریست کامل لیست دسته بندی ها
+// ریست کامل لیست دسته‌بندی‌ها
 $(document).on('click', ".reset-box", function (e) {
     $.ajax({
         type: 'post',

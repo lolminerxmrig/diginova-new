@@ -12,7 +12,7 @@
           <div class="c-grid__col">
             <div class="c-card c-card--transparent">
               <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-                مدیریت برند های حذف شده<span>از این صفحه می توانید برند های حذف شده را مدیریت کنید</span>
+                مدیریت برند های حذف شده<span>از این صفحه می‌توانید برند های حذف شده را مدیریت کنید</span>
               </h1>
             </div>
           </div>

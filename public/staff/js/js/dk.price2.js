@@ -256,8 +256,8 @@ var dk = dk || {};
 
             var pointsTooltip_minDk = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>پایین ترین قیمت دیجی‌کالا</div><div>' + dk.core.basics.toPersianCurrency(minDk) + '</div></div> <div class="title"> ' + minDkTitle + '</div>    </div>');
             var pointsTooltip_maxDk = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>بالاترین قیمت دیجی‌کالا</div><div>' + dk.core.basics.toPersianCurrency(maxDk) + '</div></div> <div class="title"> ' + maxDkTitle + '</div>    </div>');
-            var pointsTooltip_minOther = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>پایین ترین قیمت بازار</div><div>' + dk.core.basics.toPersianCurrency(minOther) + '</div></div>  <div class="title"> ' + minOtherTitle + '</div> </div>');//   
-            var pointsTooltip_maxOther = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>بالاترین قیمت بازار</div><div>' + dk.core.basics.toPersianCurrency(maxOther) + '</div></div> <div class="title"> ' + maxOtherTitle + '</div>   </div>');// 
+            var pointsTooltip_minOther = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>پایین ترین قیمت بازار</div><div>' + dk.core.basics.toPersianCurrency(minOther) + '</div></div>  <div class="title"> ' + minOtherTitle + '</div> </div>');//
+            var pointsTooltip_maxOther = $('<div class="dk-price-chart-points-tooltip"> <div class="price"><div>بالاترین قیمت بازار</div><div>' + dk.core.basics.toPersianCurrency(maxOther) + '</div></div> <div class="title"> ' + maxOtherTitle + '</div>   </div>');//
 
 
             if (minOther == null && maxOther == null) {
@@ -425,9 +425,9 @@ var dk = dk || {};
             var priceNoteslist = $('<ul class="dk-price-notes-list"></ul>');
             priceNotesWrapper.append(priceNoteslist);
             //if ((data.priceChart == null || (data.priceChart.minDk.price == data.priceChart.maxDk.price))) {
-            var priceNotes_Satisfaction_projectionPercent = $('<li>میزان رضایت مشتریان از این قیمت<span id="price-satisfaction">0</span>٪خواهد بود و می توانید<span id="sales-projection-percent">0</span>٪افراد متمایل به خرید را جذب نمایید.</li>');
+            var priceNotes_Satisfaction_projectionPercent = $('<li>میزان رضایت مشتریان از این قیمت<span id="price-satisfaction">0</span>٪خواهد بود و می‌توانید<span id="sales-projection-percent">0</span>٪افراد متمایل به خرید را جذب نمایید.</li>');
             var priceNotes_Satisfaction = $('<li>میزان رضایت مشتریان از این قیمت<span id="price-satisfaction">0</span>٪خواهد بود .</li>');
-            var priceNotes_ProjectionPercent = $('<li>می توانید<span id="sales-projection-percent">0</span>٪افراد متمایل به خرید را جذب نمایید.</li>');
+            var priceNotes_ProjectionPercent = $('<li>می‌توانید<span id="sales-projection-percent">0</span>٪افراد متمایل به خرید را جذب نمایید.</li>');
 
 
             //var priceSatisfaction = null;
@@ -2505,7 +2505,7 @@ var IndexAction = {
 
     initModal: function () {
         $('.js-select-products').on('click', function (e) {
-            
+
             UIkit.modal('#js-select-products').show();
         });
     },
@@ -2818,7 +2818,7 @@ var IndexAction = {
         if(!$close) return;
 
         $close.on('click', function(){
-            
+
             $('.js-guide-container').fadeOut(500, function(){
                 $(this).addClass('uk-hidden');
             });

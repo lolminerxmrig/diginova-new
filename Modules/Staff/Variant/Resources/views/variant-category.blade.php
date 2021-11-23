@@ -16,7 +16,7 @@
                     <div class="c-content-page__header">
                         <span class="c-content-page__header-action">مدیریت تنوع مجاز گروه کالایی</span>
                         <span
-                            class="c-content-page__header-desc">از این صفحه می توانید تنوع مجاز هر گروه کالایی را مشخص کنید</span>
+                            class="c-content-page__header-desc">از این صفحه می‌توانید تنوع مجاز هر گروه کالایی را مشخص کنید</span>
                     </div>
                 </div>
             </div>

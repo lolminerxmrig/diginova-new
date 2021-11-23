@@ -108,7 +108,7 @@
           <div class="c-reg-form__col c-reg-form__col--12">
             <p class="c-reg-form__text c-reg-form__text--condensed c-reg-form__text--pane">
               <span class="c-reg-form__text-label">توجه: </span> در صورتی که مراحل ثبت نام را نیمه تمام گذاشته
-              اید، می توانید با همان ایمیل ثبت نام خود را ادامه دهید.
+              اید، می‌توانید با همان ایمیل ثبت نام خود را ادامه دهید.
             </p>
           </div>
         </div>

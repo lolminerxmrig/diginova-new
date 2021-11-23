@@ -11,7 +11,7 @@
                 <div class="c-grid__col">
                     <input type="hidden" value="" name="has-warehouses">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت تنوع<span>از این صفحه می توانید تنوع و گروه تنوع ها را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت تنوع<span>از این صفحه می‌توانید تنوع و گروه تنوع‌ها را مدیریت کنید</span>
                         </h1>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                                                                     class="table-header-searchable uk-text-nowrap "> عنوان گروه تنوع </span>
                                                             </th>
                                                             <th class="c-ui-table__header"><span
-                                                                    class="table-header-searchable uk-text-nowrap table-header-searchable--desc"> تعداد تنوع ها </span>
+                                                                    class="table-header-searchable uk-text-nowrap table-header-searchable--desc"> تعداد تنوع‌ها </span>
                                                             </th>
                                                             <th class="c-ui-table__header"><span
                                                                     class="table-header-searchable uk-text-nowrap "> توضیحات گروه تنوع</span>
@@ -236,7 +236,7 @@
                 <div class="c-modal-notification">
                     <div class="c-modal-notification__content c-modal-notification__content--limited">
                         <h2 class="c-modal-notification__header">هشدار</h2>
-                        <p class="c-modal-notification__text">با حذف این گروه، تمامی تنوع های ایجاد شده برای محصولات که از تنوع های این گروه استفاده می کنند به صورت کامل حذف خواهند شد. آیا از حذف کامل آن اطمینان دارید؟</p>
+                        <p class="c-modal-notification__text">با حذف این گروه، تمامی تنوع‌های ایجاد شده برای محصولات که از تنوع‌های این گروه استفاده می کنند به صورت کامل حذف خواهند شد. آیا از حذف کامل آن اطمینان دارید؟</p>
                         <div class="c-modal-notification__actions">
                             <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
                             <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>

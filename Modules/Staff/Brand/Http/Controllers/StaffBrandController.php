@@ -304,7 +304,7 @@ class StaffBrandController extends Controller
       ]);
     }
 
-    // حدف ریلیشن دسته بندی ها و ایجاد دوباره ریلیشن ها
+    // حدف ریلیشن دسته‌بندی‌ها و ایجاد دوباره ریلیشن ها
     $brand->categories()->detach();
     foreach ($categories as $category)
     {

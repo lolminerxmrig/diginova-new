@@ -11,7 +11,7 @@
                 <div class="c-grid__col">
                     <input type="hidden" value="" name="has-warehouses">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت اسلایدر ها<span>از این صفحه می توانید اسلایدر ها را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت اسلایدر ها<span>از این صفحه می‌توانید اسلایدر ها را مدیریت کنید</span>
                         </h1>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <input name="page_type" value="index" hidden>
                     <div style="margin-top: 20px; margin-bottom: 30px;"></div>
                     <div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25" style="margin-bottom: 30px !important;">
-                       برای هر دسته بندی اصلی به صورت خودکار یک لیست ایجاد می شود که در آن می توانید بنر ها و اسلایدر های مربوط به آن دسته را مدیریت کنید.
+                       برای هر دسته‌بندی اصلی به صورت خودکار یک لیست ایجاد می شود که در آن می‌توانید بنر ها و اسلایدر های مربوط به آن دسته را مدیریت کنید.
                     </div>
                     <div class="c-grid__row">
                         <div class="c-grid__col">

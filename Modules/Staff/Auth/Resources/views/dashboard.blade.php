@@ -1,6 +1,6 @@
 @extends('layouts.staff.master')
 
-@section('title') داشبورد دیجی نوا @endsection
+@section('title') پیشخوان دیجی نوا @endsection
 
 @section('head')
   <script>
@@ -158,7 +158,7 @@
               <div class="c-grid__col c-grid__col--sm-4">
                 <div class="c-card c-card--transparent">
                   <div class="c-interactive-status {{ $peyment_methods->where('status', 'active')->count()? 'c-interactive-status--ok' : 'c-interactive-status--warning' }}" id="dashboard-step-3">
-                    <div class="c-interactive-status__title">روش های پرداخت</div>
+                    <div class="c-interactive-status__title">روش‌های پرداخت</div>
                     @if($peyment_methods->where('status', 'active')->count())
                       <div class="c-interactive-status__description">فعال</div>
                     @else
@@ -212,7 +212,7 @@
               <div class="c-grid__col c-grid__col--sm-4 c-grid__col--xs-gap">
                 <a href="{{ route('staff.periodic-prices.index') }}" class="c-card c-card--is-link c-dashboard-status__jc-c uk-open" id="dashboard-step-7" aria-expanded="false">
                   <div class="c-card__header c-card__header--no-border">
-                    <h2 class="c-card__title c-card__title--dark">تنوع های فعال در پروموشن‌ها
+                    <h2 class="c-card__title c-card__title--dark">تنوع‌های فعال در پروموشن‌ها
                       <span class="c-card__title-side c-card__title-side--arrow">۰
                         </span>
                     </h2>
@@ -263,7 +263,7 @@
                     <div class="c-rating-chart c-rating-chart--condensed">
                       <a class="c-rating-chart__details-bar">
                         <div class="c-rating-chart__description c-rating-chart__description--bar c-card__stat-description uk-inline">
-                          محصولات پیش نویس
+                          محصولات پیش‌نویس
                           <div class="c-rating-chart__description"></div>
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
@@ -314,13 +314,13 @@
               <div class="c-grid__col c-grid__col--sm-4 c-grid__col--xs-gap">
                 <div class="c-card" id="dashboard-step-10">
                   <div class="c-card__header">
-                    <h2 class="c-card__title">مدیریت تنوع و قیمت گذاری</h2>
+                    <h2 class="c-card__title">مدیریت تنوع و قیمت‌گذاری</h2>
                   </div>
                   <div class="c-card__body">
                     <a class="c-rating-chart c-rating-chart--condensed">
                       <div class="c-rating-chart__details-bar">
                         <div class="c-rating-chart__description c-rating-chart__description--bar c-card__stat-description uk-inline">
-                          کل تنوع های فعال
+                          کل تنوع‌های فعال
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
                           {{ persianNum(\Modules\Staff\Product\Models\ProductHasVariant::where('status', 1)->count()) }}
@@ -331,7 +331,7 @@
                     <a class="c-rating-chart c-rating-chart--condensed">
                       <div class="c-rating-chart__details-bar">
                         <div class="c-rating-chart__description c-rating-chart__description--bar c-card__stat-description uk-inline">
-                         کل تنوع های غیرفعال
+                         کل تنوع‌های غیرفعال
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
                           {{ persianNum(\Modules\Staff\Product\Models\ProductHasVariant::where('status', 0)->count()) }}
@@ -342,7 +342,7 @@
                     <a class="c-rating-chart c-rating-chart--condensed">
                       <div class="c-rating-chart__details-bar">
                         <div class="c-rating-chart__description c-rating-chart__description--bar c-card__stat-description uk-inline">
-                          تنوع هایی که فروش نداشتند
+                          تنوع‌هایی که فروش نداشتند
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
                           {{ persianNum($consignments->count() - count(\Modules\Staff\Product\Models\ProductVariantable::where('variantable_type', 'ConsignmentHasProductVariants')->select('variantable_id')->distinct()->get())) }}
@@ -353,7 +353,7 @@
                     <div class="c-rating-chart c-rating-chart--condensed">
                       <a class="c-rating-chart__details-bar">
                         <div class="c-rating-chart__description c-rating-chart__description--bar c-card__stat-description uk-inline">
-                           تنوع های در حال اتمام موجودی (کمتر از سه عدد)
+                           تنوع‌های در حال اتمام موجودی (کمتر از سه عدد)
                         </div>
 
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
@@ -365,7 +365,7 @@
                     <a class="c-rating-chart c-rating-chart--condensed">
                       <div class="c-rating-chart__details-bar">
                         <div class="c-rating-chart__description c-rating-chart__description--bar c-card__stat-description uk-inline">
-                          تنوع های بدون موجودی
+                          تنوع‌های بدون موجودی
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
                           {{ persianNum(\Modules\Staff\Product\Models\ProductHasVariant::where('stock_count', 0)->count()) }}
@@ -414,7 +414,7 @@
                           {{ persianNum($send_today_only) }}
                         </div>
                         <div class="c-rating-chart__description-tooltip uk-dropdown" uk-dropdown="boundary: .js-dropdown-desc; pos: bottom-center;delay: 0">
-                          <div class="c-rating-chart__description c-rating-chart__description--bar c-rating-chart__description--sub c-card__stat-description">حداقل یک فروشنده روی کالای مشابه قیمت گذاری کرده است</div>
+                          <div class="c-rating-chart__description c-rating-chart__description--bar c-rating-chart__description--sub c-card__stat-description">حداقل یک فروشنده روی کالای مشابه قیمت‌گذاری کرده است</div>
                         </div>
                       </div>
                     </a>
@@ -439,7 +439,7 @@
                           {{ persianNum($delivery_order_delay) }}
                         </div>
                         <div class="c-rating-chart__description-tooltip uk-dropdown" uk-dropdown="boundary: .js-dropdown-desc; pos: bottom-center;delay: 0">
-                          <div class="c-rating-chart__description c-rating-chart__description--bar c-rating-chart__description--sub c-card__stat-description">تنوع های که در حال حاضرشما تنها فروشنده آن هستید</div>
+                          <div class="c-rating-chart__description c-rating-chart__description--bar c-rating-chart__description--sub c-card__stat-description">تنوع‌های که در حال حاضرشما تنها فروشنده آن هستید</div>
                         </div>
                       </div>
                     </a>
@@ -546,28 +546,28 @@
           <div class="c-grid__col c-grid__col--xs-gap c-grid__col--sm-gap c-grid__col--lg-4" id="dashboard-step-17">
             <div class="c-card">
               <div class="c-card__header">
-                <h2 class="c-card__title">وضعیت سفارش ها در ماه گذشته</h2>
+                <h2 class="c-card__title">وضعیت سفارش‌ها در ماه گذشته</h2>
               </div>
               <div class="c-card__body">
                 <a class="c-card__stat">
                   <div class="c-rating-chart__details-value c-rating-chart__details-value--full c-card__stat-value c-rating-chart__details-value--info">
                     {{ persianNum($sum_order_count_filter5) }}
                   </div>
-                  <p class="c-card__stat-description">سفارش های پرداخت موفق</p>
+                  <p class="c-card__stat-description">سفارش‌های پرداخت موفق</p>
                 </a>
 
                 <a class="c-card__stat">
                   <div class="c-rating-chart__details-value c-rating-chart__details-value--full c-card__stat-value c-rating-chart__details-value--3">
                     {{ persianNum($sum_order_count_filter4) }}
                   </div>
-                  <p class="c-card__stat-description ">سفارش های لغو شده/بایگانی شده</p>
+                  <p class="c-card__stat-description ">سفارش‌های لغو شده/بایگانی شده</p>
                 </a>
 
                 <a class="c-card__stat">
                   <div class="c-rating-chart__details-value c-rating-chart__details-value--full c-card__stat-value c-rating-chart__details-value--1">
                     ۰
                   </div>
-                  <p class="c-card__stat-description">سفارش های مرجوع شده</p>
+                  <p class="c-card__stat-description">سفارش‌های مرجوع شده</p>
                 </a>
 
               </div>

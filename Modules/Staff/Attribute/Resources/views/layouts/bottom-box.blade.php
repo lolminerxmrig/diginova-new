@@ -11,7 +11,7 @@
             </div>
             <div class="c-content-modal__body c-content-modal__body--overflow">
                 <div class="c-content-modal__body-container">
-                    <div class="c-content-modal__intro">از این بخش می توانید گروه ویژگی ایجاد کنید. هدف از ایجاد گروه های ویژگی ارائه اطلاعات جزئی محصول به مشتریان است.</div>
+                    <div class="c-content-modal__intro">از این بخش می‌توانید گروه ویژگی ایجاد کنید. هدف از ایجاد گروه های ویژگی ارائه اطلاعات جزئی محصول به مشتریان است.</div>
                     <div class="c-content-modal__notes">
                         <span class="c-content-modal__notes-title">توجه:</span>
                         <ul class="c-content-modal__notes-list">
@@ -67,7 +67,7 @@
             <div class="c-modal-notification">
                 <div class="c-modal-notification__content c-modal-notification__content--limited">
                     <h2 class="c-modal-notification__header">هشدار</h2>
-                    <p class="c-modal-notification__text">با حذف این گروه، تمامی گزینه ها و اطلاعات موجود در آن که در محصولات دسته مرتبط درج شده اند به صورت کامل حذف خواهند شد. آیا از حذف کامل آن اطمینان دارید؟</p>
+                    <p class="c-modal-notification__text">با حذف این گروه، تمامی گزینه‌ها و اطلاعات موجود در آن که در محصولات دسته مرتبط درج شده اند به صورت کامل حذف خواهند شد. آیا از حذف کامل آن اطمینان دارید؟</p>
                     <div class="c-modal-notification__actions">
                         <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
                         <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>

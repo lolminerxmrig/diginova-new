@@ -39,7 +39,7 @@
                     <div class="c-grid__col">
                         <div class="c-card c-card--transparent c-ui--my-5">
                             <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-                                جزییات امتیاز محصول <span>در این بخش می توانید جزییات امتیاز و نظرات مربوط به کالای خود را ببینید.</span>
+                                جزییات امتیاز محصول <span>در این بخش می‌توانید جزییات امتیاز و نظرات مربوط به کالای خود را ببینید.</span>
                             </h1>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                             <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select">
                                                 <label class="c-ui-form__label uk-text-right">مرتب سازی بر اساس:</label>
                                                 <select id="sortType" class="js-select2 c-ui-select--with-svg-icon c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" name="sortType" tabindex="-1" aria-hidden="true">
-                                                    <option value="all">همه دیدگاه ها</option>
+                                                    <option value="all">همه دیدگاه‌ها</option>
                                                     <option value="not_checked">در انتظار برررسی</option>
                                                     <option value="accepted">تایید شده</option>
                                                     <option value="rejected">رد شده</option>

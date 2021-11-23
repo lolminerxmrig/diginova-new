@@ -15,7 +15,7 @@ $(document).on('click', ".remove-breadcrumb", function(e) {
 });
 
 
-//  ریلود دسته بندی وقتی دکمه امتخاب دسته کلیک میشه
+//  ریلود دسته‌بندی وقتی دکمه امتخاب دسته کلیک میشه
 $(document).on('click', "#categoryStepNext", function(e) {
     $(this).addClass('disabled');
     $("#hidden_cat_group-error").remove();
@@ -71,7 +71,7 @@ $(document).on("change", "#uploadImage", function () {
     $('.js-upload-name').text(filename);
 });
 
-// وقتی کلیک شد رو اسم دسته بندی اون هاور بشه
+// وقتی کلیک شد رو اسم دسته‌بندی اون هاور بشه
 $(document).on('click', "input[name='category']", function (e) {
     $(this).closest("div").nextAll().remove();
     $("li").removeClass('is-active');

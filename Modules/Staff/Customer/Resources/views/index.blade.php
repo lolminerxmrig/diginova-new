@@ -590,7 +590,7 @@
                     <div class="c-grid__col c-join__flex-space-between">
                         <h1 class="c-card__title c-card__title--dark c-card__title--desc c-add-products__title">
                             مدیریت مشتریان
-                            <span class="c-card__title-sub c-card__title-sub--no-spacing">از طریق این صفحه می توانید مشتریان را مدیریت کنید.</span></h1>
+                            <span class="c-card__title-sub c-card__title-sub--no-spacing">از طریق این صفحه می‌توانید مشتریان را مدیریت کنید.</span></h1>
 {{--                            <a href="{{ route('staff.customers.create') }}" class="c-join__btn c-join__btn--secondary-greenish c-join__btn--icon-left c-join__btn--icon-plus">ایجاد مشتری جدید</a>--}}
                     </div>
                 </div>

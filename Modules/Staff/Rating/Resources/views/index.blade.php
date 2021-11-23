@@ -14,9 +14,9 @@
             <div class="c-content-page c-content-page--plain c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-content-page__header">
-                        <span class="c-content-page__header-action">مدیریت گزینه های امتیازدهی</span>
+                        <span class="c-content-page__header-action">مدیریت گزینه‌های امتیازدهی</span>
                         <span
-                            class="c-content-page__header-desc">از این صفحه می توانید گزینه های امتیازدهی کالا ها را مدیریت، ویرایش و حذف کنید</span>
+                            class="c-content-page__header-desc">از این صفحه می‌توانید گزینه‌های امتیازدهی کالا ها را مدیریت، ویرایش و حذف کنید</span>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 ">
                                                 <div style="
                   color: #606265;
-                  ">مدیریت گزینه های امتیازدهی
+                  ">مدیریت گزینه‌های امتیازدهی
                                                 </div>
                                             </h2>
                                             <div
@@ -245,7 +245,7 @@ $('#submit-form').on('click', function (e) {
             window.location.href = "{{ route('staff.ratings.index') }}";
         {{--$.toast({--}}
             {{--    heading: 'موفق!',--}}
-            {{--    text: "گزینه های امتیازدهی با موفقیت ذخیره شد",--}}
+            {{--    text: "گزینه‌های امتیازدهی با موفقیت ذخیره شد",--}}
             {{--    bgColor: '#3DC3A1',--}}
             {{--    textColor: '#fff',--}}
             {{--});--}}

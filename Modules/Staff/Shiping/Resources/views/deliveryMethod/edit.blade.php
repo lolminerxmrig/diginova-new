@@ -49,7 +49,7 @@
             <h1 class="c-card__title c-card__title--dark c-card__title--desc">
               مدیریت منو‌‌‌‌‌ها
               <span>
-                از این صفحه می توانید منو ها یا مگامنو ها را مدیریت کنید.
+                از این صفحه می‌توانید منو ها یا مگامنو ها را مدیریت کنید.
             </span>
             </h1>
           </div>
@@ -163,7 +163,7 @@
 
                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">
                       <div class="field-wrapper">
-                        <label class="c-ui-form__label" for="product_page_title">نوع قیمت گذاری:</label>
+                        <label class="c-ui-form__label" for="product_page_title">نوع قیمت‌گذاری:</label>
                         <select id="method_cost_type" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible c-ui-input--disabled"
                                 name="method_cost_type" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;" {{ ($delivery_method->id == 1 || $delivery_method->id == 2) ? 'disabled' : '' }}>
                           @if(count($deliveryCostDetTypes))

@@ -10,8 +10,8 @@
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت گارانتی های حذف شده<span>
-                                از این صفحه می توانید گارانتی های حذف شده را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت گارانتی‌های حذف شده<span>
+                                از این صفحه می‌توانید گارانتی‌های حذف شده را مدیریت کنید</span>
                         </h1>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                                 <div class="c-card__wrapper">
                                     <div class="c-card__header c-card__header--table">
                                         <div class="c-grid__col c-grid__col--lg-4">
-                                            <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی ها</a>
+                                            <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی‌ها</a>
                                         </div>
 
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
@@ -115,7 +115,7 @@
                                         </table>
                                     </div>
                                     <div class="c-card__footer" style="width: auto;">
-                                        <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی ها</a>
+                                        <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی‌ها</a>
 
                                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
                                         <div class="c-ui-paginator js-paginator" data-select2-id="25">
@@ -196,7 +196,7 @@
                                                         نتیجه ای برای نمایش وجود ندارد!
                                                     </p>
                                                     <p class="c-join__promotion-info-statement">
-                                                        برای مدیریت گارانتی ها روی دکمه زیر کلیک کنید.
+                                                        برای مدیریت گارانتی‌ها روی دکمه زیر کلیک کنید.
                                                     </p>
                                                     <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
                                                        href="{{ route('staff.warranties.index') }}">مدیریت گارانتیها</a>

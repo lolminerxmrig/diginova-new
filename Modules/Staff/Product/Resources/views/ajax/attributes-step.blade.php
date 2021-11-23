@@ -22,7 +22,7 @@
 
         <div class="field-wrapper ui-select ui-select__container">
             <select class="uk-input uk-input--select js-select-origin select2-hidden-accessible {{ ($attribute->is_required)? 'js-required-attribute' : '' }}" name="attributes[{{$attribute->id}}]" data-placeholder="انتخاب کنید" tabindex="-1" aria-hidden="true">
-                <option value="">یکی از گزینه ها را انتخاب کنید</option>
+                <option value="">یکی از گزینه‌ها را انتخاب کنید</option>
               @foreach($attribute->values as $item)
                 <option value="{{ $item->id }}"> {{ $item->value }} </option>
               @endforeach
@@ -154,7 +154,7 @@
 <div class="c-grid__row c-grid__row--gap-lg js-auto-title-message">
   <div
     class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
-    <div class="c-content-product__auto-title-msg">برای این گروه کالایی شما هیچ ویژگی ایجاد نکرده اید پیشنهاد می شود حتما ابتدا برای دسته بندی ها ویژگی ایجاد کنید سپس اقدام به ایجاد محصول کنید و یا پس از ذخیره این صفحه و ایجاد ویژگی برای آن نسبت به ویرایش محصول اقدام کنید.</div>
+    <div class="c-content-product__auto-title-msg">برای این گروه کالایی شما هیچ ویژگی ایجاد نکرده اید پیشنهاد می شود حتما ابتدا برای دسته‌بندی‌ها ویژگی ایجاد کنید سپس اقدام به ایجاد محصول کنید و یا پس از ذخیره این صفحه و ایجاد ویژگی برای آن نسبت به ویرایش محصول اقدام کنید.</div>
   </div>
 </div>
 @endif

@@ -21,7 +21,7 @@
         <div class="c-grid__col">
           <div class="c-content-page__header">
             <span class="c-content-page__header-action"> ویرایش برند {{ $brand->name }} </span>
-            <span class="c-content-page__header-desc"> از این صفحه می توانید برند  {{ $brand->name }} را ویرایش کنید</span>
+            <span class="c-content-page__header-desc"> از این صفحه می‌توانید برند  {{ $brand->name }} را ویرایش کنید</span>
           </div>
         </div>
       </div>

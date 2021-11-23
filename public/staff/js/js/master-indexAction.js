@@ -64,7 +64,7 @@ ProductsAction = {
                     if (duplicateProductId != null && productUrl != null) {
                         content += "<h5>کالای شما با کالایی که قبلا در سایت وجود داشته با شماره " +
                             "<a href='" + productUrl + "'>" + duplicateProductId + "</a>" +
-                            " مشابه است. لطفا از این کالا برای قیمت گذاری استفاده کنید.</h5>"
+                            " مشابه است. لطفا از این کالا برای قیمت‌گذاری استفاده کنید.</h5>"
                     } else {
                         if (response.data[0].description != null) {
                             data += response.data[0].description + '\n';
@@ -138,7 +138,7 @@ ProductsAction = {
     },
     initProductList: function () {
         var publish_alert = function () {
-            var publishAlertContent = $(' <div  class="yellow-alert publish-alert" uk-alert><p>محصول با وضعیت پیش نویس فقط برای شما قابل نمایش است و توسط مرکز فروشندگان قابل رویت نیست. محصول پیش نویس خود را انتشار داده و منتظر تأیید آن باشید.<a href="/product/create/" >درج محصول جدید</a></p></div>');
+            var publishAlertContent = $(' <div  class="yellow-alert publish-alert" uk-alert><p>محصول با وضعیت پیش‌نویس فقط برای شما قابل نمایش است و توسط مرکز فروشندگان قابل رویت نیست. محصول پیش‌نویس خود را انتشار داده و منتظر تأیید آن باشید.<a href="/product/create/" >درج محصول جدید</a></p></div>');
             if($('.js-publish').length > 0) {
                 if (!$('.publish-alert').length > 0) {
                     publishAlertContent.insertAfter('.c-filters');

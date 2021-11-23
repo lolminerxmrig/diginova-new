@@ -655,7 +655,7 @@ var is_yalda = 0;
                                                     <ul class="c-variant__secondary-info--table">
                                                         <li class="c-variant__secondary-info--table-row">
                                                             <div class="c-variant__secondary-info--table-cell">
-                                                                <span class="c-variant__info">دسته بندی:</span>
+                                                                <span class="c-variant__info">دسته‌بندی:</span>
                                                                 <span
                                                                     class="c-variant__info--main">{{ $product->category()->first()->name }}</span>
                                                             </div>
@@ -747,7 +747,7 @@ var is_yalda = 0;
                                             <div class="c-grid__col">
                                                 <div class="c-variation-diversity">
                                                     <div class="c-variation-diversity__header">
-                                                        <div class="c-variation-diversity__title">لیست تنوع ها</div>
+                                                        <div class="c-variation-diversity__title">لیست تنوع‌ها</div>
 
                                                         <div class="c-card__paginator">
                                                             <div class="c-ui-paginator js-paginator">

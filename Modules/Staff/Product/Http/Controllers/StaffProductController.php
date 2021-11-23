@@ -158,7 +158,7 @@ class StaffProductController extends Controller
       if ($category->variantGroup()->exists() && !is_null($category->variantGroup()->first()->description)) {
             $categoryThemeDescription = "<strong>تنوع $variant_group->name: </strong>$variant_group->description";
         } else {
-            $categoryThemeDescription = "<strong>تعیین نشده: </strong>برای تعیین تنوع مجاز برای دسته بندی انتخابی از بخش تنوع روی دکمه تعیین تنوع مجاز کلیک کنید";
+            $categoryThemeDescription = "<strong>تعیین نشده: </strong>برای تعیین تنوع مجاز برای دسته‌بندی انتخابی از بخش تنوع روی دکمه تعیین تنوع مجاز کلیک کنید";
         }
 
 

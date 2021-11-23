@@ -34,7 +34,7 @@
                                 <span class="table-header-searchable uk-text-nowrap "> عنوان گروه ویژگی </span>
                               </th>
                               <th class="c-ui-table__header">
-                                <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc"> تعداد ویژگی ها </span>
+                                <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc"> تعداد ویژگی‌ها </span>
                               </th>
                               <th class="c-ui-table__header">
                                 <span class="table-header-searchable uk-text-nowrap "> توضیحات گروه ویژگی</span>

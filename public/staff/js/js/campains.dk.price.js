@@ -425,9 +425,9 @@ var dk = dk || {};
             var priceNoteslist = $('<ul class="dk-price-notes-list"></ul>');
             priceNotesWrapper.append(priceNoteslist);
             //if ((data.priceChart == null || (data.priceChart.minDk.price == data.priceChart.maxDk.price))) {
-            var priceNotes_Satisfaction_projectionPercent = $('<li>میزان رضایت مشتریان از این قیمت<span id="price-satisfaction">0</span>٪خواهد بود و می توانید<span id="sales-projection-percent">0</span>٪افراد متمایل به خرید را جذب نمایید.</li>');
+            var priceNotes_Satisfaction_projectionPercent = $('<li>میزان رضایت مشتریان از این قیمت<span id="price-satisfaction">0</span>٪خواهد بود و می‌توانید<span id="sales-projection-percent">0</span>٪افراد متمایل به خرید را جذب نمایید.</li>');
             var priceNotes_Satisfaction = $('<li>میزان رضایت مشتریان از این قیمت<span id="price-satisfaction">0</span>٪خواهد بود .</li>');
-            var priceNotes_ProjectionPercent = $('<li>می توانید<span id="sales-projection-percent">0</span>٪افراد متمایل به خرید را جذب نمایید.</li>');
+            var priceNotes_ProjectionPercent = $('<li>می‌توانید<span id="sales-projection-percent">0</span>٪افراد متمایل به خرید را جذب نمایید.</li>');
 
 
             //var priceSatisfaction = null;

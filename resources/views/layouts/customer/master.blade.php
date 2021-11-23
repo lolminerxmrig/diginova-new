@@ -7978,7 +7978,7 @@ $customer = auth()->guard('customer')->user();
                 {{ persianNum($footer_description) }}
               </span>
               {{--              <span class="c-footer__seo-readmore" id="js-footer-readmore-content" style="font-weight: 400;">--}}
-              {{--              <span style="font-weight: 400;"> می توانید کلیه نیازهای خود را تنها با چند کلیک سفارش داده و در کمترین زمان ممکن درب منزل تحویل بگیرید. مناسب&zwnj;ترین جمله درباره دیجی&zwnj;کالا ،بازار بزرگ اینترنتی، است؛ چرا که با قدم گذاشتن در آن می&zwnj;توانید، یک خرید اینترنتی لذت بخش، با قیمت مناسب و ارزان به همراه تخفیف ویژه در حراج ها را تجربه کنید.</span></span>--}}
+              {{--              <span style="font-weight: 400;"> می‌توانید کلیه نیازهای خود را تنها با چند کلیک سفارش داده و در کمترین زمان ممکن درب منزل تحویل بگیرید. مناسب&zwnj;ترین جمله درباره دیجی&zwnj;کالا ،بازار بزرگ اینترنتی، است؛ چرا که با قدم گذاشتن در آن می&zwnj;توانید، یک خرید اینترنتی لذت بخش، با قیمت مناسب و ارزان به همراه تخفیف ویژه در حراج ها را تجربه کنید.</span></span>--}}
               {{--              <a data-snt-event="dkFooterClick" data-snt-params='{"item":"read-more","item_option":null}' href="#" id="js-footer-readmore">مشاهده بیشتر</a><br/>--}}
             </p>
           </article>

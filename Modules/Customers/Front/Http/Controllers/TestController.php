@@ -94,7 +94,7 @@ class TestController
 
       $consignment_id = OrderHasConsignment => =>where('consignment_code', $consignment_code)->first()->id;
 
-      // اضافه کردن تنوع ها به مرسوله
+      // اضافه کردن تنوع‌ها به مرسوله
       foreach ($first_carts as $item)
       [
 
@@ -179,7 +179,7 @@ class TestController
         'order_status_id' => OrderStatus => =>where('en_name', 'awaiting_review')->first()->id,
       ]);
 
-      // تغییر وضعیت تنوع های مرسولات سفارش به بفروش رفته sold
+      // تغییر وضعیت تنوع‌های مرسولات سفارش به بفروش رفته sold
       ConsignmentHasProductVariants => =>where('order_id', $order->id)->update([
         'order_status_id' => OrderStatus => =>where('en_name', 'sold')->first()->id,
       ]);

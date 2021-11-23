@@ -8109,7 +8109,7 @@
                     <div class="js-ui-tab-content u-hidden" data-tab-content-id="dropOff">
                       <div class="c-checkout-address__shared-list">
                         <p class="o-hint o-hint--medium o-hint--text o-hint--neutral">
-                          با انتخاب آدرس مرکز تحویل، می توانید با مراجعه به آدرس انتخاب شده، کالای خود را دریافت نمایید.
+                          با انتخاب آدرس مرکز تحویل، می‌توانید با مراجعه به آدرس انتخاب شده، کالای خود را دریافت نمایید.
                         </p>
 
                         <div class="c-checkout-address__content c-checkout-address__content--shared">

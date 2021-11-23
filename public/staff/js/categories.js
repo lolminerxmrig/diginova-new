@@ -17,7 +17,7 @@ $(document).on("change", "#uploadImage", function() {
     $('.js-upload-name').text(filename);
 });
 
-// تغییر آدرس دسته بندی در راهنمای فیلد نامک
+// تغییر آدرس دسته‌بندی در راهنمای فیلد نامک
 $(document).on('click', "#is_main", function(e) {
     if ($("#is_main").is(":checked")) {
         $(".button-urls").val('/{{ config('app.url') }}' + '/main');
@@ -39,7 +39,7 @@ $(function() {
 
 });
 
-// پنهان کردن دسته بندی وقتی روی چک باکس کلیک شد
+// پنهان کردن دسته‌بندی وقتی روی چک باکس کلیک شد
 function valueChanged() {
     if ($("input[type=checkbox]").attr('data-status') == 1) {
         $(".category-box").hide();

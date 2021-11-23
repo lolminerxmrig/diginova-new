@@ -69,7 +69,7 @@
                                                 <span class="table-header-searchable uk-text-nowrap ">زیر عنوان</span>
                                               </th>
                                               <th class="c-ui-table__header">
-                                                <span class="table-header-searchable uk-text-nowrap ">دسته بندی</span>
+                                                <span class="table-header-searchable uk-text-nowrap ">دسته‌بندی</span>
                                               </th>
                                               <th class="c-ui-table__header" style="max-width: 5% !important;">
                                                 <span class="table-header-searchable uk-text-nowrap ">مرتب سازی بر اساس</span>

@@ -587,8 +587,8 @@
                     <div class="c-grid__col">
                         <div class="c-card c-join-smart-joined__container">
                             <img src="https://seller.digikala.com/static/files/7c0b3151.svg" alt="">
-                            <div class="c-join-smart-emty__des-title">تخفیف های تعیین شده بر روی کالاهای انتخابی شما اعمال شد</div>
-                            <div class="c-join-smart-emty__des-sub-title c-join-smart-joined--no-with-limitation">خلاصه ی وضعیت تخفیف ها و پروموشن ها و کمپین های شرکت داده شده به شرح زیر می باشد:</div>
+                            <div class="c-join-smart-emty__des-title">تخفیف‌های تعیین شده بر روی کالاهای انتخابی شما اعمال شد</div>
+                            <div class="c-join-smart-emty__des-sub-title c-join-smart-joined--no-with-limitation">خلاصه ی وضعیت تخفیف‌ها و پروموشن ها و کمپین های شرکت داده شده به شرح زیر می باشد:</div>
                             <div class="c-join-smart-joined__detail">
                                 <div class="c-join-smart-joined__detail-type">
                                     <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--discount"></div>
@@ -622,7 +622,7 @@
                                 </div>
                             </div>
                             <div class="c-mega-campaigns__btns-green c-join-smart-joined--mt-70 js-back-promotion-management">
-                                <a href="/periodic-prices/active/">تایید و بازگشت به مدیریت تخفیف ها </a></div>
+                                <a href="/periodic-prices/active/">تایید و بازگشت به مدیریت تخفیف‌ها </a></div>
                         </div>
                     </div>
                 </div>

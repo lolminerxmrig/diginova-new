@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-@section('title') مدیریت ویژگی ها | {{ $fa_store_name }}  @endsection
+@section('title') مدیریت ویژگی‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('seller/js/tags3.js') }}"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
@@ -11,8 +11,8 @@
                 <div class="c-content-page c-content-page--plain c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-content-page__header">
-                            <span class="c-content-page__header-action">مدیریت ویژگی های کالا</span>
-                            <span class="c-content-page__header-desc">برای مدیریت ویژگی های کالا ابتدا گروه های کالای خود را انتخاب کنید</span>
+                            <span class="c-content-page__header-action">مدیریت ویژگی‌های کالا</span>
+                            <span class="c-content-page__header-desc">برای مدیریت ویژگی‌های کالا ابتدا گروه های کالای خود را انتخاب کنید</span>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                                     <div class="c-content-accordion js-accordion uk-accordion">
                                         <section class="c-content-accordion__row js-content-section uk-open" id="stepCategoryAccordion">
                                             <h2 style="font-size: 18px; margin-right: 33px; margin-top: -8px;">
-                                                <div style="color: #606265;">مدیریت ویژگی های کالا</div>
+                                                <div style="color: #606265;">مدیریت ویژگی‌های کالا</div>
                                             </h2>
                                             <div style="width: 100%;margin: -7px 0px 20px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;">
                                             </div>
@@ -131,7 +131,7 @@
 
   });
 
-  // ریست کامل لیست دسته بندی ها
+  // ریست کامل لیست دسته‌بندی‌ها
   $(document).on('click', ".reset-box", function (e) {
       $.ajax({
           type: 'post',
