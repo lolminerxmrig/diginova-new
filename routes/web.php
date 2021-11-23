@@ -107,5 +107,5 @@ Route::get('tracker/events', function (){
 Route::get('ajax/profile/wallet', function () {
 });
 
-Route::get('test', [\Modules\Staff\Category\Http\Controllers\StaffCategoryController::class, 'test']);
+// Route::get('test', [\Modules\Staff\Category\Http\Controllers\StaffCategoryController::class, 'test']);
 

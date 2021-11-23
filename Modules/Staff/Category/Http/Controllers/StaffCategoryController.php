@@ -3,23 +3,21 @@
 namespace Modules\Staff\Category\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Auth;
 
 use App\Models\Media;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Category\Http\Requests\StaffCategoryRequest;
+use Illuminate\Contracts\Auth\Guard;
 
 class StaffCategoryController extends Controller
 {
     protected $staff_id;
 
-    public function __construct()
+    public function __construct(Guard $auth)
     {
-//        $this->staff_id = Auth::guard('staff')
-//            ->user()->id;
+        $this->staff_id = $auth->id();
     }
 
     /**
@@ -113,8 +111,7 @@ class StaffCategoryController extends Controller
     public function childCatsLoader(Request $request)
     {
         $categories = Category::latest()
-            ->get()
-            ->unique('name');
+            ->get();
 
         $id = $request->id;
 
@@ -150,8 +147,7 @@ class StaffCategoryController extends Controller
     public function mainCatReloader(Request $request)
     {
         $categories = Category::latest()
-            ->get()
-            ->unique('name');
+            ->get();
 
         return View::make("staffcategory::layouts.ajax.category-box.main",
             compact('categories'));
@@ -337,7 +333,6 @@ class StaffCategoryController extends Controller
             'attributes',
             'ratings',
             'types',
-            'product_variants'
         ];
 
         /**
@@ -367,11 +362,4 @@ class StaffCategoryController extends Controller
         }
         return $ids;
     }
-
-    public function test()
-    {
-        $products = Category::find(13)->product_variants;
-        return dd($products);
-    }
-
 }
