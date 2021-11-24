@@ -421,6 +421,8 @@ $('#category_form').on('submit', function (e) {
 
     // if (name && slug && en_name && ((image > 0) || (image == 'not_required'))) {
     if (name && slug && en_name) {
+        $('#submit-form').prop('disabled', true);
+
         $.ajax({
             method: "post",
             url: '{{route('staff.categories.store')}}',
@@ -433,6 +435,7 @@ $('#category_form').on('submit', function (e) {
                 description: description,
             },
             success: function (response) {
+                $('#submit-form').prop('disabled', false);
 
                 $('#category_form').trigger("reset");
 
@@ -461,6 +464,9 @@ $('#category_form').on('submit', function (e) {
                 });
                 $(".category-box").show();
             },
+            error: function (){
+                $('#submit-form').prop('disabled', false);
+            }
         });
     }
 });
