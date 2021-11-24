@@ -3,8 +3,8 @@
 @section('title') ایجاد برند | {{ $fa_store_name }}  @endsection
 
 @section('head')
-<script src="{{ asset('seller/js/create-brand-validation.js') }}"></script>
-<script src="{{ asset('seller/js/tags.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/create-brand-validation.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
 @endsection
 
 @section('content')
@@ -59,7 +59,10 @@
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
                                   <label for="" class="uk-form-label">شرح برند:</label>
                                   <div class="field-wrapper field-wrapper--textarea">
-                                    <textarea name="description" placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …" class="c-content-input__origin c-content-input__origin--textarea js-textarea-words" rows="" maxlength="500"></textarea>
+                                    <textarea name="description"
+                                              placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"
+                                              class="c-content-input__origin c-content-input__origin--textarea js-textarea-words"
+                                              rows="" maxlength="500"></textarea>
                                   </div>
                                 </div>
                               </div>
@@ -70,7 +73,9 @@
                                 </label>
                                 <div class="field-wrapper">
                                   <input type="text" class="c-content-input__origin js-attribute-old-value url-inputs" name="slug" dir="ltr">
-                                  <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit js-tag-submit-btn button-urls" value="/{{ $site_url }}/brand" disabled>
+                                  <input type="button" id="button-urls" style="width: auto;"
+                                         class="c-ui-tag__submit js-tag-submit-btn button-urls"
+                                         value="/{{ $site_url }}/brand" disabled>
                                 </div>
                                 <div></div>
                               </div>
@@ -87,7 +92,9 @@
                                         @foreach($categories->where('parent_id', 0) as $category)
                                           <li class="c-content-categories__item">
                                             <label data-cat-id="{{ $category->id }}" class="c-content-categories__link js-category-link">
-                                              <input type="radio" name="category" value="{{ $category->id }}" class="js-category-data radio uk-hidden" data-cat-id="{{ $category->id }}" data-theme="" style="visibility: hidden;">
+                                              <input type="radio" name="category" value="{{ $category->id }}"
+                                                     class="js-category-data radio uk-hidden" data-cat-id="{{ $category->id }}"
+                                                     data-theme="" style="visibility: hidden;">
                                               {{ $category->name }}
                                             </label>
                                           </li>
@@ -120,10 +127,12 @@
                                 <div class="c-content-loader__spinner"></div>
                               </div>
                           </div>
-                          <input type="text" name="category_group" class="category_group" id="hidden_cat_group" style="visibility: hidden">
+                          <input type="text" name="category_group" class="category_group"
+                                 id="hidden_cat_group" style="visibility: hidden">
                         </section>
                         <section id="stepImagesAccordion">
-                          <div class="c-content-accordion__content c-content-accordion__content--last" id="stepImagesContainer" aria-hidden="false" style="margin-right: -25px; display: block !important;">
+                          <div class="c-content-accordion__content c-content-accordion__content--last"
+                               id="stepImagesContainer" aria-hidden="false" style="margin-right: -25px; display: block !important;">
                             <div class="c-card__body c-card__body--content marketplace-redesign" id="stepImagesContent">
                               <div id="imagesSelfServiceContainer" class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col">
@@ -162,7 +171,7 @@
                                         <div class="upload-box">
                                           <h3 class="product-form__section-title product-form__section-title--gap">تصویر در حال بارگذاری</h3>
                                           <ul id="imagesContainer" class="c-content-upload__gallery-list js-uploaded-list js-sortable-list uk-sortable">
-                                            <li class="c-content-upload__gallery-row js-uploads-row  li-error" id="1dsWB">
+                                            <li class="c-content-upload__gallery-row js-uploads-row  li-error">
                                               <div class="c-content-upload__img-container">
                                                 <img name="uploaded" data-id="0" id="preview_uploading" class="c-content-upload__img js-upload-thumb upload-image" />
                                                 <div class="c-content-upload__img-loader">
@@ -201,7 +210,6 @@
                               </div>
                             </div>
                           </div>
-                          <span></span>
                         </section>
                       </div>
                     </div>
@@ -300,7 +308,6 @@ $(document).on("change", "#uploadImage", function() {
             $("#imagesSection").show();
 
             $(".li-error").addClass('has-error');
-            // $(".error-image").html(data.responseJSON.error);
             $(".error-image").html('تصویری که انتخاب کرید شرایط لازم را ندارد');
         }
     });
@@ -346,12 +353,6 @@ $('#brand_form').on('submit', function(e){
     var slug = $("input[name='slug']").val();
     var image = $('#preview_uploading').attr('data-id');
 
-    // if ($("input[name='type']").is(':checked')) {
-    //     var type = 1;
-    // } else {
-    //     var type = 0;
-    // }
-
     if (name && en_name && slug)
     {
         $.ajax({
@@ -361,33 +362,13 @@ $('#brand_form').on('submit', function(e){
                 name: name,
                 en_name: en_name,
                 description: description,
-                // type: type,
                 slug: slug,
                 image: image,
                 categories: categories,
             },
             success: function(response) {
-                // $.toast({
-                //     heading: 'موفق!',
-                //     text: "برند با موفقیت ایجاد شد",
-                //     bgColor: '#3DC3A1',
-                //     textColor: '#fff',
-                // });
-
                 $('#brand_form').trigger("reset");
-                // $("li[data-cat-id]").remove();
-                // $("#imagesSection").hide();
-                // $('#preview_uploading').attr('data-id', '0');
-                // $("input[name='type']").removeAttr('checked');
                 window.location.href = "{{ route('staff.brands.index') }}";
-                //
-                // $(".category_group").each(function() {
-                //     $(this).remove();
-                // });
-                //
-                // var hidden_input = '<input type="text" name="category_group" class="category_group" id="hidden_cat_group" style="visibility: hidden">';
-                // $("#top-fields").append(hidden_input);
-
             }
         });
     }

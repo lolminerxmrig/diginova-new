@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 @section('title') برند های حذف شده | {{ $fa_store_name }}  @endsection
 @section('head')
-  <script src="{{ asset('seller/js/indexAction.js') }}"></script>
-  <script src="{{ asset('seller/js/tableView.js') }}"></script>
+    <script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+    <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 @endsection
 @section('content')
 <main class="c-main">
@@ -102,7 +102,9 @@
                                 <td class="c-ui-table__cell">
                                   <div class="c-promo__actions">
                                     <button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn" value="{{ $brand->id }}">بازگردانی</button>
-                                    <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn" value="{{ $brand->id }}">حذف کامل</button>
+                                    <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
+                                        c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
+                                            value="{{ $brand->id }}">حذف کامل</button>
                                   </div>
                                 </td>
                               </div>
@@ -117,7 +119,9 @@
                       {{ $brands->links('staffbrand::layouts.pagination.pagination') }}
                       <div class="c-ui-paginator js-paginator">
                         <div class="c-ui-paginator__total">
-                          تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
+                          تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">
+                                {{ persianNum($brands->total()) }}
+                                مورد</span>
                         </div>
                       </div>
                     </div>
@@ -135,14 +139,15 @@
                     <div class="c-grid__col">
                       <div class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible" data-tab="1">
                         <div class="c-join__promotion-info-box c-join__promotion-info-box--empty">
-                          <img class="c-join__promotion-info-img" src="https://seller.digikala.com/static/files/ac21f0e6.svg" alt="Empty">
+                          <img class="c-join__promotion-info-img" src="{{ asset('mehdi/staff/images/no-content.svg') }}" alt="Empty">
                           <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
                             نتیجه ای برای نمایش وجود ندارد!
                           </p>
                           <p class="c-join__promotion-info-statement">
                             برای مدیریت برند ها روی دکمه زیر کلیک کنید.
                           </p>
-                          <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish" href="{{ route('staff.brands.index') }}">مدیریت برندها</a>
+                          <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
+                             href="{{ route('staff.brands.index') }}">مدیریت برندها</a>
                         </div>
                       </div>
                     </div>

@@ -40,7 +40,8 @@
                           </div>
                         </h2>
                         <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;"></div>
-                        <div class="c-content-accordion__content c-content-accordion__content--small" id="stepTitleContainer" aria-hidden="false" style="margin-right: -25px;">
+                        <div class="c-content-accordion__content c-content-accordion__content--small"
+                             id="stepTitleContainer" aria-hidden="false" style="margin-right: -25px;">
                           <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr" style="margin: 0 0 0 0;width: 100%;">
                             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                               <label class="uk-form-label uk-flex uk-flex-between">
@@ -50,7 +51,6 @@
                               <div class="field-wrapper">
                                 <input type="text" class="c-content-input__origin js-attribute-old-value" name="name" value="{{ old('name')?? $brand->name }}">
                               </div>
-                              <div></div>
                             </div>
                             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                               <label class="uk-form-label uk-flex uk-flex-between">
@@ -60,7 +60,6 @@
                               <div class="field-wrapper">
                                 <input type="text" class="c-content-input__origin js-attribute-old-value" name="en_name" value="{{ old('en_name')?? $brand->en_name }}">
                               </div>
-                              <div></div>
                             </div>
                           </div>
                           <div class="c-grid__row c-grid__row--gap-lg" style="margin-right: 0px; width: 100%; margin-bottom: 40px;">
@@ -100,7 +99,10 @@
                                     @foreach($categories->where('parent_id', 0) as $category)
                                       <li class="c-content-categories__item">
                                         <label data-cat-id="{{ $category->id }}" class="c-content-categories__link js-category-link">
-                                          <input type="radio" name="category" value="{{ $category->id }}" class="js-category-data radio uk-hidden" data-cat-id="{{ $category->id }}" data-theme="" style="visibility: hidden;">
+                                          <input type="radio" name="category" value="{{ $category->id }}"
+                                                 class="js-category-data radio uk-hidden"
+                                                 data-cat-id="{{ $category->id }}"
+                                                 data-theme="" style="visibility: hidden;">
                                           {{ $category->name }}
                                         </label>
                                       </li>
@@ -121,7 +123,8 @@
                                   @foreach($brand->categories as $category)
                                     <li class="select2-selection__choice" data-cat-id="{{ $category->id }}" style="background: #889098;color: #ffffff;height: 25px;border-radius: 33px;font-size: 12px;padding: 5px 11px 0px 11px;margin-left: 5px;">
                                       <span class="select2-selection__choice__remove" role="presentation">{{ $category->name }}</span>
-                                      <a class="select2-selection__choice__remove remove-breadcrumb" data-cat-id="{{ $category->id }}" role="presentation" style="margin-right: 5px; font-weight: bold; padding-right: 2px;color: white;">×</a>
+                                      <a class="select2-selection__choice__remove remove-breadcrumb"
+                                         data-cat-id="{{ $category->id }}" role="presentation" style="margin-right: 5px; font-weight: bold; padding-right: 2px;color: white;">×</a>
                                     </li>
                                   @endforeach
                                 </ul>
@@ -141,7 +144,8 @@
                         @endforeach
                       </section>
                       <section id="stepImagesAccordion">
-                        <div class="c-content-accordion__content c-content-accordion__content--last" id="stepImagesContainer" aria-hidden="false" style="margin-right: -25px; display: block !important;">
+                        <div class="c-content-accordion__content c-content-accordion__content--last"
+                             id="stepImagesContainer" aria-hidden="false" style="margin-right: -25px; display: block !important;">
                           <div class="c-card__body c-card__body--content marketplace-redesign" id="stepImagesContent">
                             <div id="imagesSelfServiceContainer" class="c-grid__row c-grid__row--gap-lg">
                               <div class="c-grid__col">
@@ -176,7 +180,8 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div id="imagesSection" class="c-content-upload__uploads js-uploaded-section imagesSection2 {{ ($brand->media()->exists())? '': 'hide-div' }}">
+                                    <div id="imagesSection" class="c-content-upload__uploads js-uploaded-section imagesSection2
+                                        {{ ($brand->media()->exists())? '': 'hide-div' }}">
                                       <h3 class="product-form__section-title product-form__section-title--gap">
                                         تصویر بارگذاری شده
                                       </h3>
@@ -349,10 +354,6 @@
     } else {
       var image = $("img[name='uploaded']").attr('data-id');
     }
-    // var image = $('#preview_uploading').attr('data-id');
-
-    // if (name && en_name && slug && image && (image !== '0') )
-    // {
     $.ajax({
       method: "POST",
       url: '{{ route('staff.brands.update') }}',
@@ -370,11 +371,7 @@
       success: function () {
         window.location.href = "{{ route('staff.brands.index') }}";
       },
-      error: function () {
-        //
-      }
     });
-    // }
 
   });
 </script>

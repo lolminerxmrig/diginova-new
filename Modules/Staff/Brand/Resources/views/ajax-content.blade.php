@@ -16,7 +16,9 @@
             @endif
             <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total">
-                تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
+                تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">
+                      {{ persianNum($brands->total()) }}
+                  مورد</span>
               </div>
             </div>
           </div>
@@ -39,9 +41,6 @@
                   <th class="c-ui-table__header">
                     <span class="table-header-searchable uk-text-nowrap ">تعداد کالا</span>
                   </th>
-{{--                  <th class="c-ui-table__header">--}}
-{{--                    <span class="table-header-searchable uk-text-nowrap ">کالاهای فعال</span>--}}
-{{--                  </th>--}}
                   <th class="c-ui-table__header">
                     <span class="table-header-searchable uk-text-nowrap ">عملیات</span>
                   </th>
@@ -51,7 +50,9 @@
                   @foreach($brands as $key => $brand)
                     <tr name="row" id="{{$brand->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                       <td class="c-ui-table__cell">
-                        <span class="c-wallet__body-card-row-item"> {{ persianNum($brands->firstItem() + $key) }} </span>
+                        <span class="c-wallet__body-card-row-item">
+                            {{ persianNum($brands->firstItem() + $key) }}
+                        </span>
                       </td>
                       <td class="c-ui-table__cell" style="min-width: 90px">
                         @if(count($brand->media))
@@ -64,10 +65,10 @@
                         <div class="uk-flex uk-flex-column">
                           <a href="#" target="_blank">
                             <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                            {{ $brand->name }}
-                            @if($brand->type == 1)
-                              <span style="color: red; font-size: 11px;"> (ویژه) </span>
-                            @endif
+                                {{ $brand->name }}
+                                @if($brand->type == 1)
+                                  <span style="color: red; font-size: 11px;"> (ویژه) </span>
+                                @endif
                             </span>
                             <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                           </a>
@@ -87,9 +88,6 @@
                       <td class="c-ui-table__cell">
                         <span class="c-wallet__body-card-row-item"> {{ persianNum($brand->products()->count()) }} </span>
                       </td>
-{{--                      <td class="c-ui-table__cell">--}}
-{{--                        <span class="c-wallet__body-card-row-item"> ۱ </span>--}}
-{{--                      </td>--}}
                       <td class="c-ui-table__cell">
                         <div class="c-promo__actions">
                           <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.brands.edit', $brand->en_name) }}">ویرایش</a>
@@ -102,17 +100,14 @@
               </table>
           </div>
           <div class="c-card__footer" style="width: auto;">
-
               <a href="{{ route('staff.brands.create') }}" target="_blank">
                 <div class="c-mega-campaigns__btns-green-plus uk-margin-remove"> ایجاد برند جدید</div>
               </a>
-
               @if($trashed_brands->count())
                 <div class="c-grid__col c-grid__col--lg-4">
                   <a href="{{ route('staff.brands.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت برند های حذف شده</a>
                 </div>
               @endif
-
               {{ $brands->links('staffbrand::layouts.pagination.pagination') }}
 
               <div class="c-ui-paginator js-paginator" data-select2-id="25">

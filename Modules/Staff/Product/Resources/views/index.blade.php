@@ -431,7 +431,7 @@
                                                 <div
                                                     class="c-join__promotion-info-box c-join__promotion-info-box--empty">
                                                     <img class="c-join__promotion-info-img"
-                                                         src="https://seller.digikala.com/static/files/ac21f0e6.svg"
+                                                         src="{{ asset('mehdi/staff/images/no-content.svg') }}"
                                                          alt="Empty">
                                                     @if($trashed_products->count())
                                                         <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">

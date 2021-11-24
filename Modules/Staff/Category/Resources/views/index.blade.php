@@ -263,7 +263,7 @@
                                         <div class="c-grid__col">
                                             <div class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible" data-tab="1">
                                                 <div class="c-join__promotion-info-box c-join__promotion-info-box--empty">
-                                                    <img class="c-join__promotion-info-img" src="https://seller.digikala.com/static/files/ac21f0e6.svg" alt="Empty">
+                                                    <img class="c-join__promotion-info-img" src="{{ asset('mehdi/staff/images/no-content.svg') }}" alt="Empty">
                                                         <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">شما تا به حال هیچ دسته ای ایجاد نکرده‌اید</p>
                                                         <p class="c-join__promotion-info-statement">
                                                             برای ایجاد دسته جدید روی دکمه زیر کلیک کنید.

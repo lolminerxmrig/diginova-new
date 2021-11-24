@@ -10,12 +10,16 @@
             </div>
             <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total" data-rows="۶">
-                تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
+                  تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">
+                      {{ persianNum($brands->total()) }}
+                      مورد
+                      </span>
               </div>
             </div>
           </div>
           <div class="c-card__body c-ui-table__wrapper">
-            <table class="c-ui-table js-search-table js-table-fixed-header c-join__table" data-search-url="/ajax/product/search/">
+            <table class="c-ui-table js-search-table js-table-fixed-header c-join__table"
+                   data-search-url="/ajax/product/search/">
               <thead>
                 <tr class="c-ui-table__row">
                 <th class="c-ui-table__header">
@@ -80,8 +84,10 @@
                     </td>
                     <td class="c-ui-table__cell">
                       <div class="c-promo__actions">
-                        <button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn" value="{{ $brand->id }}">بازگردانی</button>
-                        <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn" value="{{ $brand->id }}">حذف کامل</button>
+                        <button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish
+                            restore-btn" value="{{ $brand->id }}">بازگردانی</button>
+                        <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp
+                            js-remove-product-list delete-btn" value="{{ $brand->id }}">حذف کامل</button>
                       </div>
                     </td>
                   </tr>
@@ -93,7 +99,7 @@
           <div class="c-card__footer" style="width: auto;">
             <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برند ها</a>
             {{ $brands->links('staffbrand::layouts.pagination.pagination') }}
-            <div class="c-ui-paginator js-paginator" data-select2-id="25">
+            <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total" data-rows="۶">
                 تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
               </div>
