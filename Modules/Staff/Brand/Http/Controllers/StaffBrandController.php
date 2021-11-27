@@ -12,7 +12,7 @@ use Modules\Staff\Brand\Models\Brand;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Brand\Http\Requests\StaffBrandRequest;
 use Modules\Staff\Brand\Http\Requests\StaffBrandImageRequest;
-
+use Modules\Staff\Category\Models\Categorizable;
 
 class StaffBrandController extends Controller
 {
