@@ -3,7 +3,8 @@
   <ul id="imagesContainer" class="c-content-upload__gallery-list js-uploaded-list js-sortable-list uk-sortable">
     <li class="c-content-upload__gallery-row js-uploads-row li-error" id="1dsWB">
       <div class="c-content-upload__img-container">
-        <img name="uploaded" id="preview_uploading" src="{{ asset("media/brands/{$input['image']}") }}" data-id="{{ $media->id }}" class="c-content-upload__img js-upload-thumb upload-image">
+        <img name="uploaded" id="preview_uploading" src="{{ asset("media/brands/{$input['image']}") }}" 
+          data-id="{{ $media->id }}" class="c-content-upload__img js-upload-thumb upload-image">
         <div class="c-content-upload__img-loader" style="display: none;">
           <div class="progress__wrapper">
             <span class="progress"></span>

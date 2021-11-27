@@ -1,4 +1,4 @@
-<div class="js-table-container" data-select2-id="17">
+<div class="js-table-container">
   <input name="page_type" value="{{$pageType}}" hidden>
   <div style="margin-top: 20px; margin-bottom: 20px;"></div>
   <div class="c-grid__row">
@@ -110,7 +110,7 @@
               @endif
               {{ $brands->links('staffbrand::layouts.pagination.pagination') }}
 
-              <div class="c-ui-paginator js-paginator" data-select2-id="25">
+              <div class="c-ui-paginator js-paginator">
                 <div class="c-ui-paginator__total" data-rows="۶">
                   تعداد نتایج: <span name="total" data-id="{{ $brands->total() }}">{{ persianNum($brands->total()) }} مورد</span>
                 </div>
