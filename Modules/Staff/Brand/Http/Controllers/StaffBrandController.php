@@ -302,13 +302,13 @@ class StaffBrandController extends Controller
 
         if (($media) && ($media->person_role == 'staff') && ($media->person_id == $this->staff_id)) {
             unlink(public_path("$media->path/") . $media->name);
-            $media->categories()->detach($brand);
+            // $media->categories()->detach($brand);
+            Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
             $media->delete();
-//            Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
         }
 
-        $media->categories()->detach($brand);
-//        Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();
+        // $media->categories()->detach($brand);
+       Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();
 
         if ($brand->products) {
             foreach ($brand->products as $product) {
