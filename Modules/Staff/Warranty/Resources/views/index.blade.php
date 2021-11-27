@@ -265,7 +265,7 @@
                                                 <img class="c-join__promotion-info-img" src="{{ asset('mehdi/staff/images/no-content.svg') }}" alt="Empty">
                                                  @if($trashed_warranties->count())
                                                     <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
-                                                        نتیجه ای برای نمایش وجود ندارد!
+                                                        نتیجه‌ای برای نمایش وجود ندارد!
                                                     </p>
                                                     <p class="c-join__promotion-info-statement">
                                                         شما تعداد {{ persianNum($trashed_warranties->count()) }} گارانتی حذف شده در Trash دارید برای مدیریت و بازگردانی آنها بر روی دکمه زیر کلیک کنید

@@ -257,7 +257,7 @@
                                                          alt="Empty">
                                                     @if($trashed_brands->count())
                                                         <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
-                                                            نتیجه ای برای نمایش وجود ندارد!
+                                                            نتیجه‌ای برای نمایش وجود ندارد!
                                                         </p>
                                                         <p class="c-join__promotion-info-statement">
                                                             شما تعداد

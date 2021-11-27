@@ -193,7 +193,7 @@
                                             <div class="c-join__promotion-info-box c-join__promotion-info-box--empty">
                                                 <img class="c-join__promotion-info-img" src="{{ asset('mehdi/staff/images/no-content.svg') }}" alt="Empty">
                                                     <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
-                                                        نتیجه ای برای نمایش وجود ندارد!
+                                                        نتیجه‌ای برای نمایش وجود ندارد!
                                                     </p>
                                                     <p class="c-join__promotion-info-statement">
                                                         برای مدیریت گارانتی‌ها روی دکمه زیر کلیک کنید.

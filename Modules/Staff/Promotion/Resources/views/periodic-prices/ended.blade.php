@@ -734,7 +734,7 @@
                                                     </div>
                                                 @else
                                                     <div class="c-ui-paginator__total" data-rows="۰">
-                                                        جستجو نتیجه ای نداشت
+                                                        جستجو نتیجه‌ای نداشت
                                                     </div>
                                                 @endif
                                             </div>
@@ -879,7 +879,7 @@
                                                     </div>
                                                 @else
                                                     <div class="c-ui-paginator__total" data-rows="۰">
-                                                        جستجو نتیجه ای نداشت
+                                                        جستجو نتیجه‌ای نداشت
                                                     </div>
                                                 @endif
                                             </div>

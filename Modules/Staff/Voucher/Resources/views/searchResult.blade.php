@@ -7,7 +7,7 @@
             </div>
         @else
             <div class="c-ui-paginator__total" data-rows="۰">
-                جستجو نتیجه ای نداشت
+                جستجو نتیجه‌ای نداشت
             </div>
         @endif
     </div>
@@ -60,7 +60,7 @@
                                 </div>
                             @else
                                 <div class="c-join__landing-state c-ui-table__cell--text-error">
-                                    <span class="c-join__has-icon c-join__has-icon--clock"  style="padding-right: 25px;">غیر فعال</span>
+                                    <span class="c-join__has-icon c-join__has-icon--clock"  style="padding-right: 25px;">غیرفعال</span>
                                 </div>
                             @endif
                             {{--                                                            <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-id="{{ $voucher->id }}" name="status" {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }}  {{ ((($voucher->end_at > now() || is_null($voucher->end_at) && ($voucher->status == 'active')) ) )? 'checked' : '' }}>--}}
@@ -144,7 +144,7 @@
                     </div>
                 @else
                     <div class="c-ui-paginator__total" data-rows="۰">
-                        جستجو نتیجه ای نداشت
+                        جستجو نتیجه‌ای نداشت
                     </div>
                 @endif
             </div>

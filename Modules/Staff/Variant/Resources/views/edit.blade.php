@@ -137,7 +137,7 @@ margin-bottom: 7px;
                                                 <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان تنوع</span>
                                             </th>
                                             <th class="c-ui-table__header">
-                                                <span class="table-header-searchable uk-text-nowrap">فعال/غیر فعال</span>
+                                                <span class="table-header-searchable uk-text-nowrap">فعال/غیرفعال</span>
                                             </th>
                                             @if($variantGroup->type == 2)
                                                 <th class="c-ui-table__header">

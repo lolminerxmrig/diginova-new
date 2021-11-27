@@ -201,10 +201,10 @@ const DashboardAction = {
             window.dashboard_sold_history_quantities,
             window.dashboard_sold_history_prices
         );
-   
+
         $('.js-change-selling-chart').on('click' , function (e) {
             e.preventDefault()
-            $('.js-duration-sold-items').val($(this).data("option")).trigger('change'); 
+            $('.js-duration-sold-items').val($(this).data("option")).trigger('change');
         })
 
         $('.js-duration-sold-items').on('change', function () {
@@ -771,7 +771,7 @@ const DashboardAction = {
                 minimumResultsForSearch: hasSearch ? 0 : Infinity,
                 language: {
                     noResults: function () {
-                        return 'نتیجه ای پیدا نشد';
+                        return 'نتیجه‌ای پیدا نشد';
                     },
                     searching: function () {
                         return 'form.general.select.search.searching';
@@ -899,7 +899,7 @@ const DashboardAction = {
                     minimumResultsForSearch: hasSearch ? 0 : Infinity,
                     language: {
                         noResults: function () {
-                            return 'نتیجه ای پیدا نشد';
+                            return 'نتیجه‌ای پیدا نشد';
                         },
                         searching: function () {
                             return 'form.general.select.search.searching';

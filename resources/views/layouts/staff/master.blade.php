@@ -953,7 +953,7 @@
       <div class="uk-container uk-container-large">
         <div class="uk-flex uk-flex-between">
           <div>
-            قدرت گرفته از فروشگاه ساز قدرتمند
+            قدرت گرفته از فروشگاه‌ساز قدرتمند
             <span style="color: rgba(243, 187, 97, 1)">
             دیجی نوا
             </span>

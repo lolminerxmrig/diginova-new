@@ -569,7 +569,7 @@ $('.delete-icon-nav').on('click', function (e) {
       $('#iconImageTempId').val('');
 
       UIkit.notification({
-        message: 'آیکن حذف شد.',
+        message: 'آیکون حذف شد.',
         status: 'success',
         pos: 'top-left',
         timeout: 3000

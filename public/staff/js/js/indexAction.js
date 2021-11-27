@@ -1559,7 +1559,7 @@ var IndexAction = {
                         console.log('is false');
                         $('#span_' + productVariantId).removeClass("c-wallet__body-card-status-no-circle--active");
                         $('#span_' + productVariantId).addClass("c-wallet__body-card-status-no-circle--danger");
-                        $('#span_' + productVariantId).text('غیر فعال');
+                        $('#span_' + productVariantId).text('غیرفعال');
                     }
 
                     if (window.dimensionLevel === 'item') {

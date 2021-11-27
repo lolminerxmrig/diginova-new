@@ -624,7 +624,7 @@
                                                         <select name="status" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" tabindex="-1" aria-hidden="true">
                                                             <option class="option-control" value="all">نمایش همه</option>
                                                             <option class="option-control" value="active">فعال</option>
-                                                            <option class="option-control" value="inactive">غیر فعال</option>
+                                                            <option class="option-control" value="inactive">غیرفعال</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -640,7 +640,7 @@
                                                     </div>
                                                 @else
                                                     <div class="c-ui-paginator__total" data-rows="۰">
-                                                        جستجو نتیجه ای نداشت
+                                                        جستجو نتیجه‌ای نداشت
                                                     </div>
                                                 @endif
                                             </div>
@@ -740,7 +740,7 @@
                                                           </div>
                                                       @else
                                                           <div class="c-ui-paginator__total" data-rows="۰">
-                                                              جستجو نتیجه ای نداشت
+                                                              جستجو نتیجه‌ای نداشت
                                                           </div>
                                                       @endif
                                                     </div>

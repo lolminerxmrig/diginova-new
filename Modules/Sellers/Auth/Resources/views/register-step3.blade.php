@@ -666,7 +666,7 @@
               <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--12 c-ui-form__col--small-gap c-ui-form__col--shrink">
                 <div class="c-ui-input">
                   <input type="text" name="" class="c-ui-input__field" id="google-map-search" value="" placeholder="جستجو کنید …">
-                  <div class="c-modal-map__error">نتیجه ای یافت نشد، لطفا عبارت جستجو شده را تغییر داده و دوباره تلاش کنید.</div>
+                  <div class="c-modal-map__error">نتیجه‌ای یافت نشد، لطفا عبارت جستجو شده را تغییر داده و دوباره تلاش کنید.</div>
                 </div>
               </div>
               <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--wrap-xs">

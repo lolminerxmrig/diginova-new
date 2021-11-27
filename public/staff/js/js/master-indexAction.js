@@ -1209,7 +1209,7 @@ IndexAction = {
                                 dir: "rtl",
                                 language: {
                                     noResults: function () {
-                                        return 'نتیجه ای پیدا نشد';
+                                        return 'نتیجه‌ای پیدا نشد';
                                     },
                                     searching: function () {
                                         return 'form.general.select.search.searching';

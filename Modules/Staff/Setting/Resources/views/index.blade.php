@@ -786,7 +786,7 @@
                                 <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
                                   <input type="checkbox" class="c-ui-checkbox__origin" name="site_index_status" {{ ($settings->where('name', 'site_index_status')->first()->value == 'true')? 'checked' : '' }}>
                                   <span class="c-ui-checkbox__check"></span>
-                                  <span class="c-ui-checkbox__label">از موتوهای جستجو درخواست کن تا محتوای سایت را بررسی نکنند</span>
+                                  <span class="c-ui-checkbox__label">از موتورهای جستجو درخواست کن تا محتوای سایت را بررسی نکنند</span>
                                 </label>
                               </div>
                             </div>
@@ -863,7 +863,7 @@
                           <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
                             <span style="display: block;">لوگو هدر سایت</span>
                             <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 110x30px</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg, jpeg, jpg</span>
                           </div>
                         </div>
 
@@ -897,7 +897,7 @@
                           <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
                             <span style="display: block;">فاوآیکون</span>
                             <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 96x96px</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg, jpeg, jpg</span>
                           </div>
                         </div>
 
@@ -929,7 +929,7 @@
                           </div>
                           <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
                             <span style="display: block;">نماد فروشگاه در صفحه محصول</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 24x24px</span><span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 24x24px</span><span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg, jpeg, jpg</span>
                           </div>
                         </div>
 
@@ -1100,7 +1100,7 @@
 
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-12">
-                          <label class="c-RD-profile__input-name" for="inـpersonـdelivery" style="width: 100%">فعال/غیر فعال کردن تحویل حضوری کالا:</label>
+                          <label class="c-RD-profile__input-name" for="inـpersonـdelivery" style="width: 100%">فعال/غیرفعال کردن تحویل حضوری کالا:</label>
                           <div class="field-wrapper field-wrapper--justify field-wrapper--background"
                                style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;width: 46%;">
                             <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
@@ -1176,7 +1176,7 @@
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="site_email_status">فعال/غیر فعال کردن ایمیل فروشگاه:</label>
+                            <label class="c-RD-profile__input-name" for="site_email_status">فعال/غیرفعال کردن ایمیل فروشگاه:</label>
                             <div class="field-wrapper field-wrapper--justify field-wrapper--background"
                                  style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                               <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
@@ -1197,7 +1197,7 @@
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="mail_server">
-                              سرویس دهنده ایمیل:
+                              سرویس‌دهنده ایمیل:
                             </label>
                             <div class="c-ui-input ">
                               <input type="text" name="mail_server" value="{{ $settings->where('name', 'mail_server')->first()->value }}"
@@ -1483,7 +1483,7 @@
 
                       <div class="c-grid__row" style="margin-top: 75px !important;">
                         <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
-                          <span class="c-RD-profile__title" style="width: auto;">نماد های الکترونیک &nbsp;</span>
+                          <span class="c-RD-profile__title" style="width: auto;">نمادهای الکترونیک &nbsp;</span>
                           <span style="font-size: 11px;"> (در صورتی که قصد نمایش نماد را ندارید فیلد را خالی رها کنید)</span>
                         </div>
                         <div class="c-RD-profile__action-btn c-RD-profile__action-btn--cancel uk-hidden"></div>
@@ -1492,7 +1492,7 @@
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="ecunion_link">لینک مجوز اتحادیه کسب و کارهای مجازی:</label>
+                            <label class="c-RD-profile__input-name" for="ecunion_link">لینک مجوز اتحادیه کسب‌وکارهای مجازی:</label>
                             <div class="c-ui-input ">
                               <input type="text" name="ecunion_link" value="{{ $settings->where('name', 'ecunion_link')->first()->value }}" class="c-ui-input__field c-ui-input__RD-field">
                             </div>
@@ -1846,7 +1846,7 @@
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="sms_provider">سرویس دهنده پیامک:</label>
+                            <label class="c-RD-profile__input-name" for="sms_provider">سرویس‌دهنده پیامک:</label>
                             <div class="c-ui-input ">
                               <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
                                       name="sms_provider" data-active="false" aria-hidden="true">
@@ -2192,7 +2192,7 @@
                               </span>
 
                             <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 600x300px</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg, jpeg, jpg</span>
 
                           </div>
                         </div>

@@ -54,7 +54,7 @@
                                                   </th>
                                                   <th class="c-ui-table__header">
                                                       <span class="table-header-searchable uk-text-nowrap ">
-                                                          آیکن
+                                                          آیکون
                                                       </span>
                                                   </th>
                                                   <th class="c-ui-table__header">

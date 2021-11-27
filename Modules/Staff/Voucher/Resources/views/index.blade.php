@@ -638,7 +638,7 @@
                                                         <select name="status" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible" tabindex="-1" aria-hidden="true">
                                                             <option class="option-control" value="all">نمایش همه</option>
                                                             <option class="option-control" value="active">فعال</option>
-                                                            <option class="option-control" value="inactive">غیر فعال</option>
+                                                            <option class="option-control" value="inactive">غیرفعال</option>
                                                             <option class="option-control" value="ended">پایان یافته</option>
                                                             <option class="option-control" value="has_time">زمان دار</option>
                                                             <option class="option-control" value="without_time">بدون زمان</option>
@@ -658,7 +658,7 @@
                                                     </div>
                                                 @else
                                                     <div class="c-ui-paginator__total" data-rows="۰">
-                                                        جستجو نتیجه ای نداشت
+                                                        جستجو نتیجه‌ای نداشت
                                                     </div>
                                                 @endif
                                             </div>
@@ -711,7 +711,7 @@
                                                                 </div>
                                                             @else
                                                                 <div class="c-join__landing-state c-ui-table__cell--text-error">
-                                                                    <span class="c-join__has-icon c-join__has-icon--clock"  style="padding-right: 25px;">غیر فعال</span>
+                                                                    <span class="c-join__has-icon c-join__has-icon--clock"  style="padding-right: 25px;">غیرفعال</span>
                                                                 </div>
                                                             @endif
 {{--                                                            <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-id="{{ $voucher->id }}" name="status" {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }}  {{ ((($voucher->end_at > now() || is_null($voucher->end_at) && ($voucher->status == 'active')) ) )? 'checked' : '' }}>--}}
@@ -795,7 +795,7 @@
                                                             </div>
                                                         @else
                                                             <div class="c-ui-paginator__total" data-rows="۰">
-                                                                جستجو نتیجه ای نداشت
+                                                                جستجو نتیجه‌ای نداشت
                                                             </div>
                                                         @endif
                                                     </div>

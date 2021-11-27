@@ -65,7 +65,7 @@
 
           <div id="iranianBrandLogo" class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--row-attr">
             <label class="uk-form-label">
-              آیکن فهرست: (اختیاری)
+              آیکون فهرست: (اختیاری)
             </label>
             <div class="field-wrapper">
               <div id="iconUpload" class="c-content-modal__uploads-label empty">

@@ -63,7 +63,7 @@
                                                                     class="table-header-searchable uk-text-nowrap "> توضیحات گروه تنوع</span>
                                                             </th>
                                                             <th class="c-ui-table__header"><span
-                                                                    class="table-header-searchable uk-text-nowrap "> فعال/غیر فعال </span>
+                                                                    class="table-header-searchable uk-text-nowrap "> فعال/غیرفعال </span>
                                                             </th>
                                                             <th class="c-ui-table__header"><span
                                                                     class="table-header-searchable uk-text-nowrap ">عملیات</span>

@@ -270,7 +270,7 @@ class StaffSettingController extends Controller
     public function updateEmail($request)
     {
         $messages = [
-          'mail_server.required_if' => 'در وضعیت انتخابی وارد کردن سرویس دهنده ایمیل اجباری است',
+          'mail_server.required_if' => 'در وضعیت انتخابی وارد کردن سرویس‌دهنده ایمیل اجباری است',
           'mail_port.required_if' => 'در وضعیت انتخابی وارد کردن درگاه ایمیل اجباری است',
           'mail_username.required_if' => 'در وضعیت انتخابی وارد کردن نام کاربری اجباری است',
           'mail_password.required_if' => 'در وضعیت انتخابی وارد کردن کلمه عبور اجباری است',
@@ -324,7 +324,7 @@ class StaffSettingController extends Controller
     public function updateSms($request)
     {
         $messages = [
-          'sms_provider.required_if' => 'در وضعیت انتخابی وارد کردن سرویس دهنده پیامک اجباری است',
+          'sms_provider.required_if' => 'در وضعیت انتخابی وارد کردن سرویس‌دهنده پیامک اجباری است',
           'api_key.required_if' => 'در وضعیت انتخابی وارد کردن کلید ای پی آی اجباری است',
           'order_sms_text.required_if' => 'در وضعیت انتخابی وارد کردن متن پیام ثبت موفق سفارش اجباری است',
           'sms_sender_number.required_if' => 'در وضعیت انتخابی وارد کردن شماره خط ارسالی اجباری است',
