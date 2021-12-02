@@ -16,6 +16,7 @@ class StaffUnitController extends Controller
     public function index()
     {
         $units = Unit::all()->sortBy('position');
+
         return view('staffunit::index', compact('units'));
     }
 
@@ -140,6 +141,7 @@ class StaffUnitController extends Controller
     public function edit(Request $request)
     {
         $units = Unit::where('name', $request->name)->get();
+        
         return View::make('staffunit::ajax.edit-modal', compact('units'));
     }
 }
