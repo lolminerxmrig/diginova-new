@@ -2,11 +2,11 @@
     id="stepTitleContainer" aria-hidden="false" style=" margin-right: -25px;">
     <div class="c-card__body c-card__body--content category-box">
         <label for="" class="search-form__action-label">
-            جستجو در میان دسته ها
+            جستجو در میان دسته‌ها
         </label>
         <div class="search-form__autocomplete-container">
             <div class="search-form__autocomplete js-autosuggest-box">
-                <input name="search" id="searchKeyword" class="c-content-input__origin js-prevent-submit" 
+                <input name="search" id="searchKeyword" class="c-content-input__origin js-prevent-submit"
                 type="text" placeholder="دسته مورد نظرتان را جستجو کنید">
             </div>
         </div>

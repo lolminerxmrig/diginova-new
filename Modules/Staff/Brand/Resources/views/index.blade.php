@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-@section('title') مدیریت برند ها | {{ $fa_store_name }}  @endsection
+@section('title') مدیریت برندها | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
     <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
@@ -89,7 +89,7 @@
                                             @if($trashed_brands->count())
                                                 <div class="c-grid__col c-grid__col--lg-4">
                                                     <a href="{{ route('staff.brands.trash') }}"
-                                                       class="c-ui-btn js-view-all-orders">مدیریت برند های حذف شده</a>
+                                                       class="c-ui-btn js-view-all-orders">مدیریت برندهای حذف شده</a>
                                                 </div>
                                             @endif
                                             <div class="c-ui-paginator js-paginator">
@@ -117,7 +117,7 @@
                                                     <th class="c-ui-table__header">
                                                         <span class="table-header-searchable uk-text-nowrap
                                                             table-header-searchable--desc">
-                                                            نام برند (Brand)
+                                                            نام برند
                                                         </span>
                                                     </th>
                                                     <th class="c-ui-table__header">
@@ -219,7 +219,7 @@
                                                 <div class="c-grid__col c-grid__col--lg-4">
                                                     <a href="{{ route('staff.brands.trash') }}"
                                                        class="c-ui-btn js-view-all-orders">
-                                                        مدیریت برند های حذف شده
+                                                        مدیریت برندهای حذف شده
                                                     </a>
                                                 </div>
                                             @endif
