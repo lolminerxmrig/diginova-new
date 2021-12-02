@@ -1,13 +1,16 @@
 @extends('layouts.staff.master')
 @section('title') مدیریت واحدها | {{ $fa_store_name }}  @endsection
 @section('head')
-    <script src="{{ asset('seller/js/tags4.js') }}"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
-    <script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
-    <script src="{{ asset('seller/js/tagify.min.js') }}"></script>
-    <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
-    <script src="https://unpkg.com/@yaireo/dragsort"></script>
+    <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
+    <script src="{{ asset('mehdi/public/js/jquery-ui.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
+    <script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
+    <script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
+         media="print" onload="this.media='all'">
+    <script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
+    <!-- <script src="{{ asset('seller/js/tags4.js') }}"></script> --> 
+
     <style>
         .select2-search {
             display: none;
@@ -34,29 +37,28 @@
     <main class="c-main">
         <div class="uk-container uk-container-large">
             <div class="c-grid">
-                <div class="c-grid__row c-product-list--align-header" style="
-margin-bottom: 25px;
-">
+                <div class="c-grid__row c-product-list--align-header" style="margin-bottom: 25px;">
                     <div class="c-grid__col">
                         <div class="c-card c-card--transparent">
-                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">ایجاد و ویرایش واحد
+                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">
+                                ایجاد و ویرایش واحد
                                 <span>
-                            برای ایجاد و ویرایش  واحد ها از این قسمت استفاده نمایید
-                        </span>
+                                    برای ایجاد و ویرایش  واحد ها از این قسمت استفاده نمایید
+                                </span>
                             </h1>
                         </div>
                     </div>
                 </div>
 
                 <div class="js-table-container">
-
                     <div class="c-grid__row">
                         <div class="c-grid__col">
                             <div class="c-card">
                                 <div class="c-card__wrapper">
-                                    <div class="c-card__header c-card__header--table"><a target="_blank">
-                                            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد واحد
-                                                جدید
+                                    <div class="c-card__header c-card__header--table">
+                                        <a target="_blank">
+                                            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
+                                                ایجاد واحد جدید
                                             </div>
                                         </a>
                                         <div class="c-ui-paginator js-paginator"></div>
@@ -70,7 +72,8 @@ margin-bottom: 25px;
                                                     <span class="table-header-searchable uk-text-nowrap "></span>
                                                 </th>
                                                 <th class="c-ui-table__header">
-                                                    <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان واحد</span>
+                                                    <span class="table-header-searchable uk-text-nowrap
+                                                         table-header-searchable--desc">عنوان واحد</span>
                                                 </th>
                                                 <th class="c-ui-table__header">
                                                     <span class="table-header-searchable uk-text-nowrap ">تعداد فیلد</span>
@@ -97,12 +100,12 @@ margin-bottom: 25px;
                                                             </div>
                                                         </td>
                                                         <td class="c-ui-table__cell" style="min-width: 90px">
-                                                            <input type="text" name="unit_name" value="{{ ($unit->name)? $unit->name : '' }}" class="c-content-input__origin js-unit-old-value attr_name">
+                                                            <input type="text" name="unit_name" value="{{ ($unit->name)? $unit->name : '' }}" 
+                                                                class="c-content-input__origin js-unit-old-value attr_name">
                                                         </td>
                                                         <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: right; min-width: 200px;">
-                                                            <select name="unit_type"
+                                                            <select name="unit_type"  tabindex="-1" aria-hidden="true"
                                                                     class="uk-input uk-input--select js-select-origin select2-hidden-accessible"
-                                                                    tabindex="-1" aria-hidden="true"
                                                                     aria-invalid="false" disabled>
                                                                 <option value="0" {{ ($unit->type == 0)? 'selected' : '' }}>تک فیلد</option>
                                                                 <option value="1" {{ ($unit->type == 1)? 'selected' : '' }}>چند فیلد</option>
@@ -111,18 +114,17 @@ margin-bottom: 25px;
                                                         <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                             <div class="uk-flex uk-flex-column">
                                                                 @if($unit->type == 0)
-                                                                    <input type="text" class="c-content-input__origin unit_input_tag c-ui-input--deactive val_field" value="" disabled>
+                                                                    <input type="text" class="c-content-input__origin 
+                                                                        unit_input_tag c-ui-input--deactive val_field" value="" disabled>
                                                                 @else
                                                                     <input name='drag-sort' class="unit_input_tag" value='{{ $unit->values }}'>
-
-{{--                                                                    <input name='input-sort' value='tag 1, tag 2, tag 3, tag 4, tag 5, tag 6' />--}}
-
                                                                 @endif
                                                             </div>
                                                         </td>
                                                         <td class="c-ui-table__cell">
                                                             <div class="c-promo__actions" style="width: 50%; margin: auto;">
-                                                                <button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button>
+                                                                <button type="button" class="c-content-upload__btn
+                                                                     c-content-upload__btn--remove remove-btn"></button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -134,8 +136,8 @@ margin-bottom: 25px;
 
                                     <div class="c-card__footer" style="width: auto;">
                                         <a>
-                                            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد واحد
-                                                جدید
+                                            <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
+                                                ایجاد واحد جدید
                                             </div>
                                         </a>
                                     </div>
@@ -151,15 +153,15 @@ margin-bottom: 25px;
                 <div class="c-grid__col">
                     <div class="c-card">
                         <div class="edit-form-section c-card__footer c-card__footer--products">
-                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap" style="
-                        width: 40%; loat: left; display: contents;">
-                                <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-left: 68px;max-width: 100px;" id="submit-form">ذخیره
+                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial
+                                 c-grid__col--lg-6 c-grid__col--xs-gap" style="width: 40%; loat: left; display: contents;">
+                                <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-left: 68px;max-width: 100px;" id="submit-form">
+                                    ذخیره
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <div id="pageLoader" class="c-content-loader c-content-loader--fixed">
                 <div class="c-content-loader__logo"></div>
@@ -173,18 +175,16 @@ margin-bottom: 25px;
          style="display: none;">
         <div class="uk-modal-dialog uk-modal-dialog--flex">
             <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
-
             <div class="uk-modal-body">
                 <div class="c-modal-notification">
                     <div class="c-modal-notification__content c-modal-notification__content--limited">
                         <h2 class="c-modal-notification__header">هشدار</h2>
-
                         <p class="c-modal-notification__text">با حذف واحد مورد نظر ، این واحد از فیلتر محصولات دسته
                             انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
                         <div class="c-modal-notification__actions">
                             <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
-                            <button
-                                class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">
+                            <button class="c-modal-notification__btn 
+                                c-modal-notification__btn--secondary yes uk-modal-close">
                                 بله
                             </button>
                         </div>
@@ -281,15 +281,37 @@ margin-bottom: 25px;
         });
 
         $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
-            var tr = '<tr name="row" id="item-new" class="c-ui-table__row c-ui-table__row--body c-join__table-row row"><td class="c-ui-table__cell" style="padding-right:0;padding-left:23px">' +
-                '<div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer"><span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span> ' +
-                '<span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down">' +
-                '</span></div></td><td class="c-ui-table__cell" style="min-width:90px"><input class="c-content-input__origin js-unit-old-value unit_name" name="unit_name"></td>' +
-                '<td class="c-ui-table__cell c-ui-table__cell--small-text td-select" style="text-align:right; min-width: 200px;"><select name="unit_type" class="uk-input uk-input--select js-select-origin attr_type select2-hidden-accessible" ' +
-                'tabindex="-1" aria-hidden="true" aria-invalid="false"><option value="0" selected>تک فیلد</option><option value="1">چند فیلد</option></select></td>' +
-                '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">' +
-                '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin unit_input_tag c-ui-input--deactive val_field" disabled></div></td><td class="c-ui-table__cell"><div class="c-promo__actions" style="width:50%;margin:auto">' +
-                '<button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button></div></td></tr>';
+            var tr = `
+                <tr name="row" id="item-new" class="c-ui-table__row c-ui-table__row--body c-join__table-row row">
+                    <td class="c-ui-table__cell" style="padding-right:0;padding-left:23px">
+                        <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
+                            <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
+                                <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
+                                <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down">
+                            </span>
+                        </div>
+                    </td>
+                    <td class="c-ui-table__cell" style="min-width:90px">
+                        <input class="c-content-input__origin js-unit-old-value unit_name" name="unit_name">
+                    </td>
+                    <td class="c-ui-table__cell c-ui-table__cell--small-text td-select" style="text-align:right; min-width: 200px;">
+                        <select name="unit_type" class="uk-input uk-input--select js-select-origin attr_type select2-hidden-accessible"
+                            tabindex="-1" aria-hidden="true" aria-invalid="false">
+                            <option value="0" selected>تک فیلد</option>
+                            <option value="1">چند فیلد</option>
+                        </select>
+                    </td>
+                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
+                    <div class="uk-flex uk-flex-column values-td">
+                        <input type="text" class="c-content-input__origin unit_input_tag c-ui-input--deactive val_field" disabled></div>
+                    </td>
+                    <td class="c-ui-table__cell">
+                        <div class="c-promo__actions" style="width:50%;margin:auto">
+                            <button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button>
+                        </div>
+                    </td>
+                </tr>
+            `;
 
             $("#tbody").append(tr);
             generateSelectUi();
@@ -299,7 +321,7 @@ margin-bottom: 25px;
             $('.js-select-origin').each(function () {
                 const $this = $(this);
                 const isMultiSelect = $this.attr('multiple');
-                const $placeholder = $this.attr('data-placeholder') || '';
+                const $placeholder = $this.attr('datas-placeholder') || '';
                 const inProductStep = $this.hasClass('js-in-product');
 
                 $this.select2({
@@ -327,7 +349,8 @@ margin-bottom: 25px;
                     $('.select2-results__options').prepend($sortedOptions);
                 }).on('change', function () {
                     if (isMultiSelect && inProductStep) {
-                        let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
+                        let $selectionsContainerWidth = $this.siblings('.select2-container')
+                            .find('ul.select2-selection__rendered').width() - 77;
                         const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
 
                         $selections.removeClass('hidden');
@@ -489,7 +512,10 @@ margin-bottom: 25px;
                     $(this).remove();
                 });
                 $(this).closest('.row').find(".tagify").remove();
-                var disabled_field = '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin unit_input_tag c-ui-input--deactive val_field" disabled></td>';
+                var disabled_field = `
+                    <div class="uk-flex uk-flex-column values-td">
+                        <input type="text" class="c-content-input__origin unit_input_tag c-ui-input--deactive val_field" disabled>
+                    </td>`;
                 $(this).closest('.row').find(".values-td").replaceWith(disabled_field);
             }
 
@@ -527,8 +553,6 @@ margin-bottom: 25px;
         var input = document.querySelector('input[name=input-sort]'),
             tagify = new Tagify(input);
 
-        // using 3-party script "dragsort"
-        // https://github.com/yairEO/dragsort
         var dragsort = new DragSort(tagify.DOM.scope, {
             selector:'.'+tagify.settings.classNames.tag,
             callbacks: {

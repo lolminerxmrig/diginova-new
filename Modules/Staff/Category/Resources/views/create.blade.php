@@ -2,14 +2,14 @@
 
 @section('title') ایجاد دسته‌بندی | {{ $fa_store_name }}  @endsection
 @section('head')
-  <script src="{{ asset('seller/js/create-category-validation.js') }}"></script>
-  <script src="{{ asset('seller/js/tags.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/create-category-validation.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
 @endsection
 
 @section('content')
   <main class="c-content-layout">
       <div class="uk-container uk-container-large">
-          <div class="c-grid" data-select2-id="137">
+          <div class="c-grid">
               <div class="c-content-page c-content-page--plain c-grid__row">
                   <div class="c-grid__col">
                       <div class="c-content-page__header">
