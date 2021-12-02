@@ -638,27 +638,27 @@
                 <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li>
-                      <a href="{{ route('staff.categories.index') }}">دسته‌بندی‌ها</a>
+                      <a href="{{ route('staff.categories.index') }}">مدیریت دسته‌بندی</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.brands.index') }}">برند ها</a>
+                      <a href="{{ route('staff.brands.index') }}">مدیریت برند</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.attributes.index') }}">ویژگی‌ها</a>
+                      <a href="{{ route('staff.attributes.index') }}">ویژگی‌های کالا</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.units.index') }}">واحد ها</a>
+                      <a href="{{ route('staff.units.index') }}">مدیریت واحد</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.types.index') }}">نوع‌ها</a>
+                      <a href="{{ route('staff.types.index') }}">مدیریت نوع کالا</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.products.index') }}">محصولات</a>
+                      <a href="{{ route('staff.products.index') }}">مدیریت محصولات</a>
                     </li>
 
                     <li>
@@ -666,19 +666,19 @@
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.warranties.index') }}">گارانتی‌ها</a>
+                      <a href="{{ route('staff.warranties.index') }}">مدیریت گارانتی</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.variants.index') }}">تنوع</a>
+                      <a href="{{ route('staff.variants.index') }}">مدیریت تنوع</a>
                     </li>
 
                     <li>
-                        <a href="{{ route('staff.comments.index') }}">دیدگاه‌ها</a>
+                        <a href="{{ route('staff.comments.index') }}">دیدگاه محصولات</a>
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.sliders.index') }}">اسلایدر و بنر ها</a>
+                      <a href="{{ route('staff.sliders.index') }}">اسلایدر و بنرها</a>
                     </li>
 
                     <li>
@@ -686,7 +686,7 @@
                     </li>
 
                     <li>
-                      <a href="{{ route('staff.navs.index') }}">فهرست‌ها</a>
+                      <a href="{{ route('staff.navs.index') }}">مدیریت فهرست</a>
                     </li>
 
                   </ul>
@@ -700,19 +700,19 @@
                     <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
                             <li>
-                              <a href="{{ route('staff.campains.index') }}">کمپین ها</a>
+                              <a href="{{ route('staff.campains.index') }}">مدیریت کمپین‌ها</a>
                             </li>
 
                             <li>
-                              <a href="{{ route('staff.landings.index') }}">صفحه سفارشی</a>
+                              <a href="{{ route('staff.landings.index') }}">مدیریت صفحه سفارشی</a>
                             </li>
 
                             <li>
-                              <a href="{{ route('staff.periodic-prices.index') }}">تخفیف‌های شگفت انگیز</a>
+                              <a href="{{ route('staff.periodic-prices.index') }}">تخفیف‌های شگفت‌انگیز</a>
                             </li>
 
                             <li>
-                              <a href="{{ route('staff.vouchers.index') }}">کد تخفیف</a>
+                              <a href="{{ route('staff.vouchers.index') }}">مدیریت کد تخفیف</a>
                             </li>
                         </ul>
                     </div>
@@ -727,7 +727,7 @@
               </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.customers.index') }}" class="" aria-expanded="false">مشتریان</a>
+                <a href="{{ route('staff.customers.index') }}" class="" aria-expanded="false">مدیریت مشتریان</a>
               </li>
 
               <li class="first-level">
@@ -878,7 +878,7 @@
             <div class="new-navbar-dropdown--close">
               <ul>
                 <li>
-                  <a href="{{ route('staff.campains.index') }}">کمپین ها</a>
+                  <a href="{{ route('staff.campains.index') }}">کمپین‌ها</a>
                 </li>
 
                 <li>
@@ -886,7 +886,7 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.periodic-prices.index') }}">تخفیف‌های شگفت انگیز</a>
+                  <a href="{{ route('staff.periodic-prices.index') }}">تخفیف‌های شگفت‌انگیز</a>
                 </li>
 
                 <li>

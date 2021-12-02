@@ -248,7 +248,7 @@
             <h2 class="c-modal-notification__header">هشدار</h2>
 
             <p class="c-modal-notification__text">با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته
-              انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
+              انتخابی به صورت کامل حذف شده و قابل بازیابی نمی‌باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
             <div class="c-modal-notification__actions">
               <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
               <button

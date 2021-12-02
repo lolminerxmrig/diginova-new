@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
          media="print" onload="this.media='all'">
     <script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
-    <!-- <script src="{{ asset('seller/js/tags4.js') }}"></script> --> 
+    <!-- <script src="{{ asset('seller/js/tags4.js') }}"></script> -->
 
     <style>
         .select2-search {
@@ -79,7 +79,7 @@
                                                     <span class="table-header-searchable uk-text-nowrap ">تعداد فیلد</span>
                                                 </th>
                                                 <th class="c-ui-table__header">
-                                                    <span class="table-header-searchable uk-text-nowrap ">فیلد ها</span>
+                                                    <span class="table-header-searchable uk-text-nowrap ">فیلدها</span>
                                                 </th>
                                                 <th class="c-ui-table__header">
                                                     <span class="table-header-searchable uk-text-nowrap ">حذف</span>
@@ -100,7 +100,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="c-ui-table__cell" style="min-width: 90px">
-                                                            <input type="text" name="unit_name" value="{{ ($unit->name)? $unit->name : '' }}" 
+                                                            <input type="text" name="unit_name" value="{{ ($unit->name)? $unit->name : '' }}"
                                                                 class="c-content-input__origin js-unit-old-value attr_name">
                                                         </td>
                                                         <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: right; min-width: 200px;">
@@ -114,7 +114,7 @@
                                                         <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                             <div class="uk-flex uk-flex-column">
                                                                 @if($unit->type == 0)
-                                                                    <input type="text" class="c-content-input__origin 
+                                                                    <input type="text" class="c-content-input__origin
                                                                         unit_input_tag c-ui-input--deactive val_field" value="" disabled>
                                                                 @else
                                                                     <input name='drag-sort' class="unit_input_tag" value='{{ $unit->values }}'>
@@ -179,11 +179,11 @@
                 <div class="c-modal-notification">
                     <div class="c-modal-notification__content c-modal-notification__content--limited">
                         <h2 class="c-modal-notification__header">هشدار</h2>
-                        <p class="c-modal-notification__text">با حذف واحد مورد نظر ، این واحد از فیلتر محصولات دسته
-                            انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
+                        <p class="c-modal-notification__text">با حذف واحد مورد نظر، این واحد از فیلتر محصولات دسته
+                            انتخابی به صورت کامل حذف شده و قابل بازیابی نمی‌باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
                         <div class="c-modal-notification__actions">
                             <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
-                            <button class="c-modal-notification__btn 
+                            <button class="c-modal-notification__btn
                                 c-modal-notification__btn--secondary yes uk-modal-close">
                                 بله
                             </button>

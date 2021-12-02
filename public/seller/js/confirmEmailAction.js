@@ -86,7 +86,7 @@ let RegisterConfirmEmailAction = {
                 },
                 messages: {
                     'register[code]': {
-                        required: 'وارد نمودن کد تایید اجباری می باشد',
+                        required: 'وارد نمودن کد تایید اجباری می‌باشد',
                         minlength: 'کد اعتبار سنجی می‌بایست حداقل ۴ رقم باشد',
                         maxlength: 'کد اعتبار سنجی می‌بایست حداکثر ۴ رقم باشد',
                     },

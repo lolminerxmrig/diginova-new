@@ -1323,19 +1323,19 @@ var IndexAction = {
                     },
                     'product_variant[length]': {
                         'required': 'وارد کردن ابعاد اجباری است',
-                        'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می باشد.'
+                        'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می‌باشد.'
                     },
                     'product_variant[width]': {
                         'required': 'وارد کردن ابعاد اجباری است',
-                        'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می باشد.'
+                        'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می‌باشد.'
                     },
                     'product_variant[height]': {
                         'required': 'وارد کردن ابعاد اجباری است',
-                        'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می باشد.'
+                        'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می‌باشد.'
                     },
                     'product_variant[weight]': {
                         'required': 'وارد کردن وزن اجباری است',
-                        'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می باشد.'
+                        'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می‌باشد.'
                     },
                     'product_variant[gold_wage]': {
                         'required': 'وارد کردن دستمزد اجباری است'
@@ -1438,19 +1438,19 @@ var IndexAction = {
                     },
                     'product_variant[length]': {
                         'required': 'وارد کردن ابعاد اجباری است',
-                            'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می باشد.'
+                            'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می‌باشد.'
                     },
                     'product_variant[width]': {
                         'required': 'وارد کردن ابعاد اجباری است',
-                            'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می باشد.'
+                            'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می‌باشد.'
                     },
                     'product_variant[height]': {
                         'required': 'وارد کردن ابعاد اجباری است',
-                            'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می باشد.'
+                            'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می‌باشد.'
                     },
                     'product_variant[weight]': {
                         'required': 'وارد کردن وزن اجباری است',
-                            'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می باشد.'
+                            'splitByDot': 'کاراکترهای مجاز شامل عدد و نقطه (.) می‌باشد.'
                     },
                     'product_variant[gold_wage]': {
                         'required': 'وارد کردن دستمزد اجباری است'

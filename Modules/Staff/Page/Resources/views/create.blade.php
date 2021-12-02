@@ -189,7 +189,7 @@
 {{--                                    </div>--}}
 {{--                                    <div class="c-content-categories__summary">--}}
 {{--                                      <div class="c-content-categories__summary-breadcrumbs">--}}
-{{--                                        <span class="">دسته های انتخابی شما:</span>--}}
+{{--                                        <span class="">دسته‌های انتخابی شما:</span>--}}
 {{--                                        <ul class="js-selected-category c-content-categories__selected-list" id="breadcrumbs">--}}
 {{--                                          <!-- ajax -->--}}
 {{--                                        </ul>--}}

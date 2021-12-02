@@ -685,7 +685,7 @@
                             </form>
 
                             <div class="c-join__buttons">
-                                <button class="c-join__btn c-join__btn--secondary c-join__btn--secondary-greenish c-join__btn--icon-left js-save-list-page-button">تایید و ساخت کمپین</button>
+                                <button class="c-join__btn c-join__btn--secondary c-join__btn--secondary-greenish c-join__btn--icon-left js-save-list-page-button">تایید و ایجاد کمپین جدید</button>
                             </div>
                             <div class="c-join__loading c-loading c-loading--hidden">
                                 <div class="c-loading__container">
@@ -733,7 +733,7 @@
                     <div class="c-grid__col">
                         <div class="c-card c-join-smart-emty--p-20">
                             <div class="uk-flex uk-flex-between c-join-smart-emty__guide">
-                                <div class="c-join-smart-emty__guide-title">راهنمای تخفیف‌های شگفت انگیز</div>
+                                <div class="c-join-smart-emty__guide-title">راهنمای تخفیف‌های شگفت‌انگیز</div>
                                 <div class="c-join-smart-emty__guide-close js-close-guide"></div>
                             </div>
                             <ul class="c-join-smart-emty__guide-item">

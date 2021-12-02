@@ -660,7 +660,7 @@
                                     </form>
 
                                     <div class="c-join__buttons">
-                                        <button class="c-join__btn c-join__btn--secondary c-join__btn--secondary-greenish c-join__btn--icon-left js-save-list-page-button">تایید و ساخت کمپین</button>
+                                        <button class="c-join__btn c-join__btn--secondary c-join__btn--secondary-greenish c-join__btn--icon-left js-save-list-page-button">تایید و ایجاد کمپین جدید</button>
                                     </div>
                                     <div class="c-join__loading c-loading c-loading--hidden">
                                         <div class="c-loading__container">

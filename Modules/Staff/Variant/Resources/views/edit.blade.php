@@ -137,7 +137,7 @@ margin-bottom: 7px;
                                                 <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">عنوان تنوع</span>
                                             </th>
                                             <th class="c-ui-table__header">
-                                                <span class="table-header-searchable uk-text-nowrap">فعال/غیرفعال</span>
+                                                <span class="table-header-searchable uk-text-nowrap">فعال / غیرفعال</span>
                                             </th>
                                             @if($variantGroup->type == 2)
                                                 <th class="c-ui-table__header">
@@ -245,7 +245,7 @@ margin-bottom: 7px;
                     <h2 class="c-modal-notification__header">هشدار</h2>
 
                     <p class="c-modal-notification__text">با حذف تنوع مورد نظر ، این تنوع از فیلتر محصولات دسته
-                        انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
+                        انتخابی به صورت کامل حذف شده و قابل بازیابی نمی‌باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
                     <div class="c-modal-notification__actions">
                         <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
                         <button

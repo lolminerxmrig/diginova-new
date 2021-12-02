@@ -588,7 +588,7 @@
                         <div class="c-card c-join-smart-joined__container">
                             <img src="https://seller.digikala.com/static/files/7c0b3151.svg" alt="">
                             <div class="c-join-smart-emty__des-title">تخفیف‌های تعیین شده بر روی کالاهای انتخابی شما اعمال شد</div>
-                            <div class="c-join-smart-emty__des-sub-title c-join-smart-joined--no-with-limitation">خلاصه ی وضعیت تخفیف‌ها و پروموشن ها و کمپین های شرکت داده شده به شرح زیر می باشد:</div>
+                            <div class="c-join-smart-emty__des-sub-title c-join-smart-joined--no-with-limitation">خلاصه ی وضعیت تخفیف‌ها و پروموشن ها و کمپین‌های شرکت داده شده به شرح زیر می‌باشد:</div>
                             <div class="c-join-smart-joined__detail">
                                 <div class="c-join-smart-joined__detail-type">
                                     <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--discount"></div>
@@ -611,13 +611,13 @@
                                 <div class="c-join-smart-joined__detail-type c-join-smart-joined__detail--br">
                                     <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--campaign"></div>
                                     <div class="c-join-smart-joined__detail-type-count">۰</div>
-                                    <div class="c-join-smart-joined__detail-type-title">تنوع کالا به کمپین های {{ $fa_store_name }} اضافه شدند</div>
+                                    <div class="c-join-smart-joined__detail-type-title">تنوع کالا به کمپین‌های {{ $fa_store_name }} اضافه شدند</div>
                                     <div class="c-join-smart-joined__detail-type-des">
                                         این کالاها علاوه بر نمایش به صورت تخفیف خورده
                                         <b>
                                             در صورت تایید
                                         </b>
-                                        به کمپین های {{ $fa_store_name }} نیز اضافه می شوند
+                                        به کمپین‌های {{ $fa_store_name }} نیز اضافه می شوند
                                     </div>
                                 </div>
                             </div>

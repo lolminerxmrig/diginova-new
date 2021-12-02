@@ -148,7 +148,7 @@ class StaffPeriodicPricesController extends Controller
 
         if (Campain::where('type', 'amazing_offer')->doesntExist()) {
             Campain::create([
-                'name' => 'تخفیف شگفت انگیز',
+                'name' => 'تخفیف شگفت‌انگیز',
                 'type' => 'amazing_offer',
                 'status' => 'active',
             ]);
@@ -156,7 +156,7 @@ class StaffPeriodicPricesController extends Controller
 
         if (Campain::where('type', 'special_offer')->doesntExist()) {
             Campain::create([
-                'name' => 'تخفیف شگفت انگیز',
+                'name' => 'تخفیف شگفت‌انگیز',
                 'type' => 'special_offer',
                 'status' => 'active',
             ]);

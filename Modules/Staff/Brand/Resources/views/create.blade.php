@@ -36,7 +36,7 @@
                             <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr" style="margin: 0 0 0 0;width: 100%;">
                               <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                 <label class="uk-form-label uk-flex uk-flex-between">
-                                  نام برند
+                                  نام فارسی برند:
                                   <span class="uk-form-label__required"></span>
                                 </label>
                                 <div class="field-wrapper">
@@ -46,7 +46,7 @@
                               </div>
                               <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                 <label class="uk-form-label uk-flex uk-flex-between">
-                                  نام انگلیسی
+                                  نام انگلیسی برند:
                                   <span class="uk-form-label__required"></span>
                                 </label>
                                 <div class="field-wrapper">
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="c-content-categories__summary">
                                   <div class="c-content-categories__summary-breadcrumbs">
-                                    <span class="">دسته های انتخابی شما:</span>
+                                    <span class="">دسته‌های انتخابی شما:</span>
                                     <ul class="js-selected-category c-content-categories__selected-list" id="breadcrumbs">
                                       <!-- ajax -->
                                     </ul>

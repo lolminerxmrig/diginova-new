@@ -1,6 +1,6 @@
 @extends('layouts.staff.master')
 
-@section('title') مدیریت دسته ها | {{ $fa_store_name }}  @endsection
+@section('title') مدیریت دسته‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('mehdi/staff/js/create-category-validation.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
@@ -14,8 +14,8 @@
                 <div class="c-content-page c-content-page--plain c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-content-page__header">
-                            <span class="c-content-page__header-action">مدیریت دسته ها</span>
-                            <span class="c-content-page__header-desc">از این صفحه می‌توانید دسته هایتان را مدیریت کنید</span>
+                            <span class="c-content-page__header-action">مدیریت دسته‌ها</span>
+                            <span class="c-content-page__header-desc">از این صفحه می‌توانید دسته‌هایتان را مدیریت کنید</span>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                                         <div class="c-content-accordion js-accordion uk-accordion">
                                             <section class="c-content-accordion__row js-content-section uk-open" id="stepCategoryAccordion">
                                                 <h2 style="font-size: 18px; margin-right: 33px;margin-top: -8px;">
-                                                    <div id="defualt-postion" style="color: #606265;">مدیریت دسته ها</div>
+                                                    <div id="defualt-postion" style="color: #606265;">مدیریت دسته‌ها</div>
                                                     <a href="{{ route('staff.categories.create') }}" target="_blank"
                                                        style="float: left;margin-top: -37px;margin-left: 6px;">
                                                         <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
@@ -40,7 +40,7 @@
                                                 <div style="width: 100%;margin: -7px 0px 20px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;"></div>
                                                 <div class="c-content-accordion__content c-content-accordion__content--small" id="stepTitleContainer" aria-hidden="false" style=" margin-right: -25px;">
                                                     <div class="c-card__body c-card__body--content category-box">
-                                                        <label for="" class="search-form__action-label">جستجو در میان دسته ها</label>
+                                                        <label for="" class="search-form__action-label">جستجو در میان دسته‌ها</label>
                                                         <div class="search-form__autocomplete-container">
                                                             <div class="search-form__autocomplete js-autosuggest-box">
                                                                 <input name="search" id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="دسته مورد نظرتان را جستجو کنید">
@@ -96,7 +96,7 @@
                                                     <div class="edit-form-section edit-form-section-first c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr" style="margin: 40px 0 0 0;width: 100%;" id="edit-form-section-first">
                                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                             <label class="uk-form-label uk-flex uk-flex-between">نام
-                                                                دسته
+                                                                فارسی دسته:
                                                                 <span class="uk-form-label__required"></span>
                                                             </label>
                                                             <div class="field-wrapper">
@@ -107,7 +107,7 @@
 
                                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                             <label class="uk-form-label uk-flex uk-flex-between">نام
-                                                                انگلیسی
+                                                                انگلیسی دسته:
                                                                 <span class="uk-form-label__required"></span>
                                                             </label>
 
@@ -129,7 +129,7 @@
 
                                                     <div class="edit-form-section c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                         <label class="uk-form-label uk-flex uk-flex-between">
-                                                            نامک
+                                                            نامک:
                                                             <span class="uk-form-label__required"></span>
                                                         </label>
                                                         <div class="field-wrapper">
@@ -517,7 +517,7 @@ $(document).on("click", ".js-remove-upload", function () {
     $("#imagesSection").hide();
 });
 
-// ایجکس دسته ها
+// ایجکس دسته‌ها
 $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();

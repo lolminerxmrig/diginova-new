@@ -596,7 +596,7 @@
                 <div class="c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-card c-card--transparent">
-                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">تخفیف‌های شگفت انگیز
+                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">تخفیف‌های شگفت‌انگیز
                                 <span class="c-card__title-sub c-card__title-sub--no-spacing">در این قسمت می‌توانید برای کالاهای خود تخفیف تعیین کنید. کالاها بر مبنای میزان تخفیف تعیین شده به پروموشن‌های مختلف {{ $fa_store_name }} اضافه می‌شوند.</span>
                             </h1>
                         </div>
@@ -607,7 +607,7 @@
                         <div class="c-card c-join-smart-emty__container">
                             <div class="c-join-smart-emty__des">
                                 <img src="https://seller.digikala.com/static/files/7c0b3151.svg" alt="">
-                                <div class="c-join-smart-emty__des-title">شما هیچ کالایی را در لیست تخفیف‌های شگفت انگیز قرار
+                                <div class="c-join-smart-emty__des-title">شما هیچ کالایی را در لیست تخفیف‌های شگفت‌انگیز قرار
                                     نداده‌اید
                                 </div>
 
@@ -629,7 +629,7 @@
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">تخفیف‌های شگفت انگیز
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">تخفیف‌های شگفت‌انگیز
                             <span class="c-card__title-sub c-card__title-sub--no-spacing">در این قسمت می‌توانید برای کالاهای خود تخفیف تعیین کنید. کالاها بر مبنای میزان تخفیف تعیین شده به پروموشن‌های مختلف {{ $fa_store_name }} اضافه می‌شوند.</span>
                         </h1>
                     </div>
@@ -640,7 +640,7 @@
                 <div class="c-grid__col">
                     <div class="c-card c-join-smart-emty--p-20">
                         <div class="uk-flex uk-flex-between c-join-smart-emty__guide">
-                            <div class="c-join-smart-emty__guide-title">راهنمای تخفیف‌های شگفت انگیز</div>
+                            <div class="c-join-smart-emty__guide-title">راهنمای تخفیف‌های شگفت‌انگیز</div>
                             <div class="c-join-smart-emty__guide-close js-close-guide"></div>
                         </div>
                         <ul class="c-join-smart-emty__guide-item">
@@ -758,11 +758,11 @@
                 <div class="c-grid__col">
                     <div class="c-card">
                         <div class="c-mega-campaigns-join-empty__body-card ">
-                            <div class="c-join-smart-products__header">کالاهای دارای تخفیف شگفت انگیز</div>
+                            <div class="c-join-smart-products__header">کالاهای دارای تخفیف شگفت‌انگیز</div>
                             <div class="c-mega-campaigns-join-list__options js-remove-in-add-form">
-                                <a href="{{ route('staff.periodic-prices.index') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">تخفیف‌های شگفت انگیز فعال/آغاز نشده</a>
-                                <a href="{{ route('staff.periodic-prices.ended') }}" class="c-mega-campaigns-join-list__options-item">تخفیف‌های شگفت انگیز پایان‌یافته</a>
-{{--                                <a href="{{ route('staff.periodic-prices.ended') }}" class="c-mega-campaigns-join-list__options-item {{ (!$ended_status)? 'uk-hidden' : '' }}">تخفیف‌های شگفت انگیز پایان‌یافته</a>--}}
+                                <a href="{{ route('staff.periodic-prices.index') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">تخفیف‌های شگفت‌انگیز فعال / آغاز نشده</a>
+                                <a href="{{ route('staff.periodic-prices.ended') }}" class="c-mega-campaigns-join-list__options-item">تخفیف‌های شگفت‌انگیز پایان‌یافته</a>
+{{--                                <a href="{{ route('staff.periodic-prices.ended') }}" class="c-mega-campaigns-join-list__options-item {{ (!$ended_status)? 'uk-hidden' : '' }}">تخفیف‌های شگفت‌انگیز پایان‌یافته</a>--}}
                             </div>
                             <div class="c-mega-campaigns-join-list__container">
                                 <div class="uk-flex uk-flex-bottom">

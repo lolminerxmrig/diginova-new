@@ -28,7 +28,7 @@
         <div class="c-new-login__main-footer-copyright c-new-login__main-footer-copyright--bold">
             کليه حقوق اين سايت متعلق به
             <em> {{ $fa_store_name }} </em>
-            می باشد.
+            می‌باشد.
         </div>
         <div class="c-new-login__main-footer-copyright">Copyright © 2021 DigiNova</div>
     </div>

@@ -49,7 +49,7 @@
                                                 style=" margin-right: -25px;">
                                                 <div class="c-card__body c-card__body--content category-box">
                                                     <label for="" class="search-form__action-label">جستجو در میان
-                                                        دسته ها</label>
+                                                        دسته‌ها</label>
                                                     <div class="search-form__autocomplete-container">
                                                         <div class="search-form__autocomplete js-autosuggest-box">
                                                             <input name="search" id="searchKeyword"
@@ -159,7 +159,7 @@
                                                                     <div class="c-modal-notification__content c-modal-notification__content--limited">
                                                                         <h2 class="c-modal-notification__header">هشدار</h2>
 
-                                                                        <p class="c-modal-notification__text">با حذف نوع مورد نظر ، این نوع از فیلتر محصولات دسته انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
+                                                                        <p class="c-modal-notification__text">با حذف نوع مورد نظر ، این نوع از فیلتر محصولات دسته انتخابی به صورت کامل حذف شده و قابل بازیابی نمی‌باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
                                                                         <div class="c-modal-notification__actions">
                                                                             <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
                                                                             <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
@@ -273,7 +273,7 @@ $('#submit-form').on('click', function (e) {
 
 });
 
-// ایجکس دسته ها
+// ایجکس دسته‌ها
 $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();
