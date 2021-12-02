@@ -1,7 +1,7 @@
 $.validator.addMethod("requiredIfChecked", function (val, ele, arg) {
     if ($("#is_main").is(":checked") && ($.trim(val) == '')) { return true; }
     return false;
-}, "انتخاب تصویر برای زیر دسته ها اجباری است");
+}, "انتخاب تصویر برای زیر دسته‌ها اجباری است");
 
 var CategoryFormAction = {
     init: function () {

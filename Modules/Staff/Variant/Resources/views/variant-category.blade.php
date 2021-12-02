@@ -48,7 +48,7 @@
                                                 style=" margin-right: -25px;">
                                                 <div class="c-card__body c-card__body--content category-box">
                                                     <label for="" class="search-form__action-label">جستجو در میان
-                                                        دسته ها</label>
+                                                        دسته‌ها</label>
                                                     <div class="search-form__autocomplete-container">
                                                         <div class="search-form__autocomplete js-autosuggest-box">
                                                             <input name="search" id="searchKeyword"
@@ -185,7 +185,7 @@ $('#submit-form').on('click', function (e) {
 
 });
 
-// ایجکس دسته ها
+// ایجکس دسته‌ها
 $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();

@@ -1341,7 +1341,7 @@ class FrontController extends Controller
         }
 
         if ($voucher->type == 'first_purchase' && $customer->orders()->exists()) {
-            return $this->returnError('این کد تخفیف فقط برای مشتریان خرید اولی قابل استفاده می باشد.');
+            return $this->returnError('این کد تخفیف فقط برای مشتریان خرید اولی قابل استفاده می‌باشد.');
         }
 
         $voucher_varints_cost = $this->voucherCostLogic($customer, $voucher, $method_ids);

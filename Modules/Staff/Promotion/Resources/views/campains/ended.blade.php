@@ -581,9 +581,9 @@
                     <div class="c-grid__col c-join__flex-space-between">
                         <h1 class="c-card__title c-card__title--dark c-card__title--desc c-add-products__title">
                             کمپین
-                            <span class="c-card__title-sub c-card__title-sub--no-spacing">کمپین جدید بسازید و یا کمپین های ساخته شده را ویرایش کنید.</span></h1>
+                            <span class="c-card__title-sub c-card__title-sub--no-spacing">کمپین جدید بسازید و یا کمپین‌های ساخته شده را ویرایش کنید.</span></h1>
                             <a href="{{ route('staff.campains.create') }}" class="c-join__btn c-join__btn--secondary-greenish c-join__btn--icon-left c-join__btn--icon-plus">
-                            ساخت کمپین
+                            ایجاد کمپین جدید
                         </a>
                     </div>
                 </div>
@@ -593,13 +593,13 @@
                         <div class="c-card">
                             <div class="c-card__header" style="border-bottom: unset !important;">
                                 <div class="c-grid__col">
-                                    <h2 class="c-card__title">کمپین های ایجاد شده</h2>
+                                    <h2 class="c-card__title">کمپین‌های ایجاد شده</h2>
                                 </div>
                             </div>
 
                             <div class="c-mega-campaigns-join-list__options js-remove-in-add-form">
-                                <a href="{{ route('staff.campains.index') }}" class="c-mega-campaigns-join-list__options-item">کمپین های فعال/آغاز نشده</a>
-                                <a href="{{ route('staff.campains.ended') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">کمپین های پایان‌یافته</a>
+                                <a href="{{ route('staff.campains.index') }}" class="c-mega-campaigns-join-list__options-item">کمپین‌های فعال / آغاز نشده</a>
+                                <a href="{{ route('staff.campains.ended') }}" class="c-mega-campaigns-join-list__options-item c-mega-campaigns-join-list__options-item--active">کمپین‌های پایان‌یافته</a>
                             </div>
 
                             <div class="c-card__body">

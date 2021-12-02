@@ -1100,7 +1100,7 @@
 
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-12">
-                          <label class="c-RD-profile__input-name" for="inـpersonـdelivery" style="width: 100%">فعال/غیرفعال کردن تحویل حضوری کالا:</label>
+                          <label class="c-RD-profile__input-name" for="inـpersonـdelivery" style="width: 100%">فعال / غیرفعال کردن تحویل حضوری کالا:</label>
                           <div class="field-wrapper field-wrapper--justify field-wrapper--background"
                                style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;width: 46%;">
                             <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
@@ -1176,7 +1176,7 @@
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="site_email_status">فعال/غیرفعال کردن ایمیل فروشگاه:</label>
+                            <label class="c-RD-profile__input-name" for="site_email_status">فعال / غیرفعال کردن ایمیل فروشگاه:</label>
                             <div class="field-wrapper field-wrapper--justify field-wrapper--background"
                                  style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                               <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
@@ -1827,7 +1827,7 @@
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="site_sms_status">فعال/غیرفعالسازی:</label>
+                            <label class="c-RD-profile__input-name" for="site_sms_status">فعال / غیرفعالسازی:</label>
                             <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                               <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
                                 <input type="checkbox" class="c-ui-checkbox__origin" name="site_sms_status" value="1"

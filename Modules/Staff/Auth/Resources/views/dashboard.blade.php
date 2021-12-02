@@ -342,7 +342,7 @@
                     <a class="c-rating-chart c-rating-chart--condensed">
                       <div class="c-rating-chart__details-bar">
                         <div class="c-rating-chart__description c-rating-chart__description--bar c-card__stat-description uk-inline">
-                          تنوع‌هایی که فروش نداشتند
+                          تنوع‌های بدون فروش
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
                           {{ persianNum($consignments->count() - count(\Modules\Staff\Product\Models\ProductVariantable::where('variantable_type', 'ConsignmentHasProductVariants')->select('variantable_id')->distinct()->get())) }}
@@ -560,7 +560,7 @@
                   <div class="c-rating-chart__details-value c-rating-chart__details-value--full c-card__stat-value c-rating-chart__details-value--3">
                     {{ persianNum($sum_order_count_filter4) }}
                   </div>
-                  <p class="c-card__stat-description ">سفارش‌های لغو شده/بایگانی شده</p>
+                  <p class="c-card__stat-description ">سفارش‌های لغو شده / بایگانی شده</p>
                 </a>
 
                 <a class="c-card__stat">

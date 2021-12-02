@@ -1054,7 +1054,7 @@
                                     <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
                                       <input type="checkbox" class="c-ui-checkbox__origin" name="recipient_status" {{ (!is_null($item->is_recipient_self) && ($item->is_recipient_self == true))? 'checked' : '' }}>
                                       <span class="c-ui-checkbox__check"></span>
-                                      <span class="c-ui-checkbox__label">گیرنده سفارش خود مشتری می باشد</span>
+                                      <span class="c-ui-checkbox__label">گیرنده سفارش خود مشتری می‌باشد</span>
                                     </label>
                                   </div>
                                 </div>

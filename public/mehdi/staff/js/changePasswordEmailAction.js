@@ -37,7 +37,7 @@ let changePasswordEmailAction = {
                     'required': 'وارد کردن رمز عبور اجباری می‌باشد',
                     'minlength': 'طول رمز عبور کوتاه است',
                     'maxlength': 'کلمه عبور فعلی بسیار بلند است',
-                    'equalTo':  'رمز عبور های وارد شده یکسان نمی باشد.'
+                    'equalTo':  'رمز عبور های وارد شده یکسان نمی‌باشد.'
                 }
             }
         }).showBackendErrors();

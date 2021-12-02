@@ -37,7 +37,7 @@
                     <span class="js-search-table-column">تعداد استفاده شده</span>
                 </th>
                 <th class="c-ui-table__header  ">
-                    <span class="js-search-table-column">فعال/غیرفعال</span>
+                    <span class="js-search-table-column">فعال / غیرفعال</span>
                 </th>
                 <th class="c-ui-table__header c-ui-table__header--nowrap ">
                     <span class="js-search-table-column">عملیات</span>

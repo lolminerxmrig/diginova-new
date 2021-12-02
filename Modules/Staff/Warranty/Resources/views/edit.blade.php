@@ -81,7 +81,7 @@ $warranty->name = persianNum($warranty->name);
                                             <span class="c-ui-checkbox__check"></span>
                                             <span class="c-ui-checkbox__label">بیمه دارد</span>
                                             <div class="c-wiki c-wiki__holder">
-                                                <span class="c-wiki-sign js-tooltip" data-tooltip="اگر گارانتی شامل بیمه می باشد این گزینه را انتخاب کنید"></span>
+                                                <span class="c-wiki-sign js-tooltip" data-tooltip="اگر گارانتی شامل بیمه می‌باشد این گزینه را انتخاب کنید"></span>
                                             </div>
                                         </label>
                                     </div>

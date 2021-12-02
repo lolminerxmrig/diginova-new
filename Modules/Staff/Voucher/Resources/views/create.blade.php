@@ -214,7 +214,7 @@
 
                                                 <div class="c-card__body c-card__body--content category-box" style="margin-top: 45px; display: none;">
                                                     <label for="" class="search-form__action-label">جستجو در میان
-                                                        دسته ها</label>
+                                                        دسته‌ها</label>
                                                     <div class="search-form__autocomplete-container">
                                                         <div class="search-form__autocomplete js-autosuggest-box">
                                                             <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="کد تخفیف و یا کد کد تخفیف مورد نظر خود را بنویسید، مثال: گوشی موبایل">
@@ -437,7 +437,7 @@ function generateCode(length) {
     return text;
 }
 
-// ایجکس دسته ها
+// ایجکس دسته‌ها
 $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();

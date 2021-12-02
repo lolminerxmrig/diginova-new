@@ -3792,8 +3792,8 @@ const contactDetailsAction = {
                 'register[phone]': {
                     required: 'وارد نمون مقدار تلفن اجباری است',
                     validate_persian_and_english_digits: 'فقط عدد مجاز است',
-                    minlength: 'شماره تلفن ثابت باید 8 رقمی باشد',
-                    maxlength: 'شماره تلفن ثابت باید 8 رقمی باشد',
+                    minlength: 'شماره تلفن ثابت باید 8 رقمی‌باشد',
+                    maxlength: 'شماره تلفن ثابت باید 8 رقمی‌باشد',
                 },
                 'register[mobile_phone]': {
                     required: 'وارد نمودن مقدار شماره موبایل اجباری است',
@@ -3801,7 +3801,7 @@ const contactDetailsAction = {
                     minlength: 'شماره همراه باید با ۰۹ شروع شود و ۱۱ رقم باشد',
                     maxlength: 'شماره همراه باید با ۰۹ شروع شود و ۱۱ رقم باشد',
                     mobile_phone: 'شماره همراه باید با 09 شروع شود و 11 رقم باشد',
-                    unique_phone: 'شماره موبایل وارد شده تکراری می باشد',
+                    unique_phone: 'شماره موبایل وارد شده تکراری می‌باشد',
                 },
                 'register[state_id]': {
                     required: 'انتخاب استان اجباری است',
@@ -3820,7 +3820,7 @@ const contactDetailsAction = {
                     validate_persian_and_english_digits: 'کدپستی فقط شامل عدد می‌باشد',
                     minlength: 'کدپستی باید 10 رقمی‌باشد',
                     maxlength: 'کدپستی باید 10 رقمی‌باشد',
-                    validate_post_zeros: 'کدپستی وارد شده صحیح نمی باشد'
+                    validate_post_zeros: 'کدپستی وارد شده صحیح نمی‌باشد'
                 },
                 'register[first_name]': {
                     required: 'وارد نمودن نام اجباری است',
@@ -3864,14 +3864,14 @@ const contactDetailsAction = {
                     digits: 'لطفا اعداد انگلیسی وارد نمایید',
                     minlength: 'کد اقتصادی میبایست حداقل 12 رقم باشد',
                     maxlength: 'کد اقتصادی میبایست حداکثر 12 رقم باشد',
-                    company_economic_number: 'کد اقتصادی وارد شده معتبر نمی باشد',
+                    company_economic_number: 'کد اقتصادی وارد شده معتبر نمی‌باشد',
                 },
                 'register[company_national_identity_number]': {
                     required: 'وارد نمودن شناسه ملی اجباری است',
                     digits: 'لطفا اعداد انگلیسی وارد نمایید',
                     minlength: 'شناسه ملی میبایست حداقل 11 رقم باشد',
                     maxlength: 'شناسه ملی حداکثر باید 11 رقم باشد',
-                    company_national_identity_number: 'شناسه ملی وارد شده معتبر نمی باشد',
+                    company_national_identity_number: 'شناسه ملی وارد شده معتبر نمی‌باشد',
                     unique_company_national_id: 'این شناسه ملی قبلا استفاده شده است',
                 },
                 'register[company_registration_number]': {

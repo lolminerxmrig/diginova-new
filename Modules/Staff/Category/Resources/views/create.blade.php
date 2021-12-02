@@ -40,7 +40,7 @@
 
                                                       <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                           <label class="uk-form-label uk-flex uk-flex-between">
-                                                              نام دسته:
+                                                              نام فارسی دسته:
                                                               <span class="uk-form-label__required"></span>
                                                           </label>
 
@@ -53,7 +53,7 @@
                                                       <div
                                                           class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                           <label class="uk-form-label uk-flex uk-flex-between">
-                                                              نام انگلیسی:
+                                                              نام انگلیسی دسته:
                                                               <span class="uk-form-label__required"></span>
                                                           </label>
                                                           <div class="field-wrapper">
@@ -84,7 +84,7 @@
                                                               <span class="c-ui-checkbox__check"></span>
                                                               <span class="c-ui-checkbox__label">دسته اصلی</span>
                                                               <div class="c-wiki c-wiki__holder">
-                                                              <span class="c-wiki-sign js-tooltip" data-tooltip="اگر دسته ای که قصد ایجاد آن را دارید زیر مجموعه دسته دیگری نیست و خود جزو دسته اصلی می باشد این گزینه را انتخاب کنید."></span>
+                                                              <span class="c-wiki-sign js-tooltip" data-tooltip="اگر دسته ای که قصد ایجاد آن را دارید زیر مجموعه دسته دیگری نیست و خود جزو دسته اصلی می‌باشد این گزینه را انتخاب کنید."></span>
                                                               </div>
                                                           </label>
                                                       </div>
@@ -104,7 +104,7 @@
 
                                                   @if($categories->where('parent_id', 0)->count())
                                                   <div class="c-card__body c-card__body--content category-box">
-                                                      <label for="" class="search-form__action-label">جستجو در میان دسته ها</label>
+                                                      <label for="" class="search-form__action-label">جستجو در میان دسته‌ها</label>
                                                       <div class="search-form__autocomplete-container">
                                                           <div class="search-form__autocomplete js-autosuggest-box">
                                                               <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="دسته‌بندی و یا کد دسته‌بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل">
@@ -562,7 +562,7 @@ $(document).on("click", ".js-remove-upload", function () {
 
 });
 
-// ایجکس دسته ها
+// ایجکس دسته‌ها
 $(document).on('change', "input[name='category']", function (e) {
 
     $(this).closest("div").nextAll().remove();

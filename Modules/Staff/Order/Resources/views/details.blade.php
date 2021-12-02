@@ -1110,7 +1110,7 @@
                                     @elseif(!is_null($consignment_variant->promotion_type) && ($consignment_variant->promotion_type == 'campain'))
                                       کمپین
                                     @elseif(!is_null($consignment_variant->promotion_type) && ($consignment_variant->promotion_type == 'campain'))
-                                      تخفیف شگفت انگیز
+                                      تخفیف شگفت‌انگیز
                                     @else
                                       بدون تخفیف
                                     @endif
