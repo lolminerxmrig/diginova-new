@@ -68,7 +68,7 @@
                                 شرح برند:
                               </label>
                               <div class="field-wrapper field-wrapper--textarea">
-                                <textarea name="description" placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …" class="c-content-input__origin c-content-input__origin--textarea js-textarea-words" rows="" maxlength="500">{{ old('description')?? $brand->description }}</textarea>
+                                <textarea name="description" placeholder="توضیحات برند بهتر است بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …" class="c-content-input__origin c-content-input__origin--textarea js-textarea-words" rows="" maxlength="500">{{ old('description')?? $brand->description }}</textarea>
                                 <span class="textarea__wordcount">
                                   <span class="js-wordcount-target">0</span>/500
                                 </span>

@@ -8228,7 +8228,7 @@ $customer = auth()->guard('customer')->user();
           style="color: red">*</label></label><input class="js-public-list-title"><span
         class="js-public-list-error-message u-hidden">عنوان لیست باید بیشتر از ۴ حرف داشته باشد.</span><label
         class="u-mt-16">توضیحات</label><textarea class="js-public-list-description"></textarea><span
-        class="js-public-list-description-error-message u-hidden">توضیحات لیست باید کمتر از ۲۵۰ حرف داشته باشد.</span>
+        class="js-public-list-description-error-message u-hidden">توضیحات لیست بهتر است کمتر از ۲۵۰ حرف داشته باشد.</span>
     </div>
     <div class="c-public-fav-list__modal-footer c-public-fav-list__modal-footer--left">
       <button aria-label="Close" class="o-btn o-btn--outlined-gray-md u-ml-12" data-remodal-action="close">انصراف
@@ -8324,7 +8324,7 @@ $customer = auth()->guard('customer')->user();
         <div class="c-form-account__link"><a class="btn-link-spoiler"
                                              data-snt-event="dkLoginClick"
                                              data-snt-params="{&quot;type&quot;:&quot;forgetPassword&quot;,&quot;site&quot;:&quot;login-modal&quot;}" href="/users/password/forgot/">رمز عبور خود را
-            فراموش کرده ام</a></div>
+            فراموش کرده‌ام</a></div>
         <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
           یا کلمه عبور اشتباه است.
         </div>

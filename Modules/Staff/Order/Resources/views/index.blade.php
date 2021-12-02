@@ -622,7 +622,7 @@
                           <span class="c-ui-switch__label"><span class="c-ui-switch__desc ">{{ $fa_store_name }}</span>
                         </span>
                           <span class="c-ui-switch__tooltip">
-                            <span class="c-ui-switch__tooltip-title">در حال حاضر کالاهای شما فقط از انبار {{ $fa_store_name }} برای مشتری ارسال می شود.</span>
+                            <span class="c-ui-switch__tooltip-title">در حال حاضر کالاهای شما فقط از انبار {{ $fa_store_name }} برای مشتری ارسال می‌شود.</span>
                             <span class="c-ui-switch__tooltip-text"></span>
                           </span>
                         </label>

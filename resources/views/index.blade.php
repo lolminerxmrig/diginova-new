@@ -8898,7 +8898,7 @@
                 <div class="c-form-account__row c-form-account__row--submit">
                     <div class="c-form-account__col"><button class="btn-login login-button-js">ورود به دیجی‌کالا</button></div>
                 </div>
-                <div class="c-form-account__link"><a data-snt-event="dkLoginClick" data-snt-params="{&quot;type&quot;:&quot;forgetPassword&quot;,&quot;site&quot;:&quot;login-modal&quot;}" href="https://www.digikala.com/users/password/forgot/" class="btn-link-spoiler">رمز عبور خود را فراموش کرده ام</a></div>
+                <div class="c-form-account__link"><a data-snt-event="dkLoginClick" data-snt-params="{&quot;type&quot;:&quot;forgetPassword&quot;,&quot;site&quot;:&quot;login-modal&quot;}" href="https://www.digikala.com/users/password/forgot/" class="btn-link-spoiler">رمز عبور خود را فراموش کرده‌ام</a></div>
                 <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
                     یا کلمه عبور اشتباه است.
                 </div>

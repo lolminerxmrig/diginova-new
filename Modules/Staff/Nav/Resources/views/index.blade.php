@@ -21,7 +21,7 @@
                     <input name="page_type" value="index" hidden>
                     <div style="margin-top: 20px; margin-bottom: 30px;"></div>
 {{--                    <div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25" style="margin-bottom: 30px !important;">--}}
-{{--                       برای هر دسته‌بندی اصلی به صورت خودکار یک لیست ایجاد می شود که در آن می‌توانید بنر ها و اسلایدر های مربوط به آن دسته را مدیریت کنید.--}}
+{{--                       برای هر دسته‌بندی اصلی به صورت خودکار یک لیست ایجاد می‌شود که در آن می‌توانید بنر ها و اسلایدر های مربوط به آن دسته را مدیریت کنید.--}}
 {{--                    </div>--}}
                     <div class="c-grid__row">
                         <div class="c-grid__col">

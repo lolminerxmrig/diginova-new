@@ -83,7 +83,7 @@
     <div class="c-reg-form__row c-reg-form__row--align-center c-reg-form__row--gap-40">
       <div class="c-reg-form__col">
         <p class="c-reg-form__text"><a href="{{ route('seller.forgot') }}" class="c-reg-form__link">رمز عبورم را
-          فراموش کرده ام.</a>
+          فراموش کرده‌ام.</a>
         </p>
       </div>
     </div>

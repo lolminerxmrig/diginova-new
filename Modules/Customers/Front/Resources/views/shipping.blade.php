@@ -8835,7 +8835,7 @@
       </div>
       <div class="c-form-account__link">
         <a data-snt-event="dkLoginClick" data-snt-params='{"type":"forgetPassword","site":"login-modal"}'
-           href="{{ route('customer.forgotPage') }}" class="btn-link-spoiler">رمز عبور خود را فراموش کرده ام</a>
+           href="{{ route('customer.forgotPage') }}" class="btn-link-spoiler">رمز عبور خود را فراموش کرده‌ام</a>
       </div>
       <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">
         نام کاربری یا کلمه عبور اشتباه است.

@@ -8110,7 +8110,7 @@ $customer = auth()->guard('customer')->user();
       <div class="c-form-account__link"><a data-snt-event="dkLoginClick"
                                            data-snt-params='{"type":"forgetPassword","site":"login-modal"}'
                                            href="/users/password/forgot/" class="btn-link-spoiler">رمز عبور خود را
-          فراموش کرده ام</a></div>
+          فراموش کرده‌ام</a></div>
       <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
         یا کلمه عبور اشتباه است.
       </div>
@@ -8397,7 +8397,7 @@ $customer = auth()->guard('customer')->user();
         <div class="c-form-account__link"><a class="btn-link-spoiler"
                                              data-snt-event="dkLoginClick"
                                              data-snt-params="{&quot;type&quot;:&quot;forgetPassword&quot;,&quot;site&quot;:&quot;login-modal&quot;}" href="/users/password/forgot/">رمز عبور خود را
-            فراموش کرده ام</a></div>
+            فراموش کرده‌ام</a></div>
         <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
           یا کلمه عبور اشتباه است.
         </div>

@@ -861,7 +861,7 @@
                             </div>
                           </div>
                           <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
-                            <span style="display: block;">لوگو هدر سایت</span>
+                            <span style="display: block;">لوگو سایت</span>
                             <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 110x30px</span>
                             <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg, jpeg, jpg</span>
                           </div>
@@ -1834,7 +1834,7 @@
                                   {{ ($settings->where('name', 'site_sms_status')->first()->value == 'active')? 'checked' : '' }} >
                                 <span class="c-ui-checkbox__check"></span>
                                 <span class="c-ui-checkbox__label">
-                                  در صورت انتخاب سامانه پیامکی فعال می شود
+                                  در صورت انتخاب سامانه پیامکی فعال می‌شود
                                 </span>
                               </label>
                             </div>

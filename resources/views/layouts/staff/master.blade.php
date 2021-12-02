@@ -612,10 +612,7 @@
     <header class="c-header js-header">
       <div class="uk-container uk-container-large">
         <div class="c-header__top">
-          <h1 class="c-header__logo">
-            <a class="with-new-logo" href="/"></a>
-          </h1>
-          <h2 class="c-header__tag">پنل مدیریت</h2>
+                    <h1 class="c-header__tag">پنل مدیریت</h1>
         </div>
       </div>
     </header>
@@ -754,7 +751,7 @@
                   <ul class="uk-nav uk-navbar-dropdown-nav">
                     <li>
                       <a href="{{ route('staff.dashboardPage') }}" class="has-icon ">
-                        <span uk-icon="icon: clock;" class="uk-icon">
+                        <span uk-icon="icon: user;" class="uk-icon">
                         </span>
                         پیشخوان
                       </a>

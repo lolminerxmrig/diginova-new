@@ -3919,7 +3919,7 @@ const contactDetailsAction = {
                     required: 'form.general.number_of_variants.validation.empty',
                 },
                 'register[agreement]': {
-                    validate_online_contract_fields: 'لطفا ابتدا اطلاعات خود را در فیلد های مربوطه وارد فرمایید',
+                    validate_online_contract_fields: 'لطفا ابتدا اطلاعات خود را در فیلدهای مربوطه وارد فرمایید',
                     required: 'لطفا قوانین و مقررات را مطالعه و موافقت خود را اعلام فرمایید',
                 },
                 'register[birth_day]': {

@@ -1627,7 +1627,7 @@ $product_categories = array_reverse($product_categories, true);
           <div class="c-form-account__link"><a data-snt-event="dkLoginClick"
                                                data-snt-params="{&quot;type&quot;:&quot;forgetPassword&quot;,&quot;site&quot;:&quot;login-modal&quot;}"
                                                href="/users/password/forgot/" class="btn-link-spoiler">رمز عبور خود را
-              فراموش کرده ام</a></div>
+              فراموش کرده‌ام</a></div>
           <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
             یا کلمه عبور اشتباه است.
           </div>

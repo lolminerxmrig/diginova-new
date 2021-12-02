@@ -913,7 +913,7 @@ let IndexAction = {
         new window.Tags('.js-textarea-tags-cons', 'after', {
             min: 5,
             max: 50,
-            message: 'متن وارد شده در هر نقطه ضعف بایستی بین 5 تا 50 کاراکتر باشد'
+            message: 'متن وارد شده در هر نقطه ضعف بایستی بین ۵ تا ۵۰ کاراکتر باشد'
         });
         new window.Tags('.js-textarea-tags-dkpc', 'after');
     },

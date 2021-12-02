@@ -979,7 +979,7 @@
                                     <div
                                       class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap">
                                       <label for="" class="uk-form-label">
-                                        وزن بسته بندی (گرم):
+                                        وزن بسته‌بندی (گرم):
                                         <span class="uk-form-label__required"></span>
                                       </label>
                                       <div class="field-wrapper">
@@ -1268,7 +1268,7 @@
 
                             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
                                 <label class="uk-form-label uk-flex uk-flex-between">
-                                    متا تگ های سفارشی (Code):
+                                    متا تگ‌های سفارشی (Code):
                                 </label>
 
                                 <div class="field-wrapper">
@@ -1284,7 +1284,7 @@
                                 انصراف
                               </button>
                               <button class="c-ui-btn c-ui-btn--outline-blue hidden disabled" id="editSubjectSuggested">
-                                ویرایش فیلد های پیشنهادی
+                                ویرایش فیلدهای پیشنهادی
                               </button>
                               <button class="c-ui-btn c-ui-btn--next hidden disabled" id="setSubjectStepNext">
                                 تأیید و ادامه
@@ -1359,13 +1359,13 @@
                                         <ul class="c-content-upload__list c-content-upload__list--tooltips">
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             ابعاد
-                                            تصویر بهتر است در بازه ۶۰۰x۶۰۰ تا ۲۵۰۰x۲۵۰۰ و حجم آن باید کمتر از ۶ مگابایت
+                                            تصویر بهتر است در بازه ۶۰۰x۶۰۰ تا ۲۵۰۰x۲۵۰۰ و حجم آن بهتر است کمتر از ۶ مگابایت
                                             باشد.
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             کالا
                                             بهتر است
-                                            ۸۵٪ کل تصویر را در برگیرد و پس زمینه تصویر اصلی باید کاملاً سفید باشد.
+                                            ۸۵٪ کل تصویر را در برگیرد و پس زمینه تصویر اصلی بهتر است کاملاً سفید باشد.
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             تصویر
@@ -1582,7 +1582,7 @@
                     <div class="c-content-accordion__modal-text uk-hidden js-guideline-desc"><p>مطابق با دستورالعملهای
                         وزارت صنعت، معدن و تجارت و سازمان حمایت مصرف کنندگان و تولید کنندگان، کالاهای گروه های زیر فقط
                         با قیمت مرجع (قیمت مندرج روی کالا یا مصوب) امکان فروش در سایت را خواهند داشت و قیمت‌گذاری بالاتر
-                        از قیمت مصرف کننده کالا در سایت تخلف محسوب می شود:</p>
+                        از قیمت مصرف کننده کالا در سایت تخلف محسوب می‌شود:</p>
 
                       <p>روغن موتور/روغن گیربکس</p>
 
@@ -1663,7 +1663,7 @@
                 کالا</p>
               <div class="o-spacing-m-t-5 c-content-accordion__modal-content-container">
                 <p class="c-content-accordion__modal-text js-modal-item uk-hidden" data-item="short_description">در این
-                  مرحله، باید گروه کالایی که محصول شما در آن قرار می‌گیرد را انتخاب نمایید.</p>
+                  مرحله، بهتر است گروه کالایی که محصول شما در آن قرار می‌گیرد را انتخاب نمایید.</p>
                 <div class="o-spacing-m-t-6 c-content-accordion__modal-video js-modal-item uk-hidden" data-item="video">
                   <figure>
                     <video width="100%" height="100%" controls="" class="" poster="">

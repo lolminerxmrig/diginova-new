@@ -1079,7 +1079,7 @@
                                                                     <div
                                                                         class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap">
                                                                         <label for="" class="uk-form-label">
-                                                                            وزن بسته بندی (گرم):
+                                                                            وزن بسته‌بندی (گرم):
                                                                             <span
                                                                                 class="uk-form-label__required"></span>
                                                                         </label>
@@ -1339,7 +1339,7 @@
                                                                         <div id="brandDescription"
                                                                              class="field-wrapper">
                 <textarea name="brand[description]" class="uk-textarea" cols="" rows="3"
-                          placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"></textarea>
+                          placeholder="توضیحات برند بهتر است بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"></textarea>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1736,7 +1736,7 @@
                                                                     class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12">
                                                                     <div class="c-content-product__auto-title-msg">
                                                                         برای این گروه کالایی شما هیچ ویژگی ایجاد
-                                                                        نکرده اید پیشنهاد می شود حتما ابتدا برای
+                                                                        نکرده‌اید پیشنهاد می‌شود حتما ابتدا برای
                                                                         دسته‌بندی‌ها ویژگی ایجاد کنید سپس اقدام به
                                                                         ایجاد محصول کنید و یا پس از ذخیره این صفحه و
                                                                         ایجاد ویژگی برای آن نسبت به ویرایش محصول
@@ -1916,7 +1916,7 @@
 
                                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-12">
                                                             <label class="uk-form-label uk-flex uk-flex-between">
-                                                                متا تگ های سفارشی (Code):
+                                                                متا تگ‌های سفارشی (Code):
                                                             </label>
 
                                                             <div class="field-wrapper">
@@ -2026,14 +2026,14 @@
                                                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                                                                     ابعاد
                                                                                     تصویر بایستی در بازه ۶۰۰x۶۰۰ تا
-                                                                                    ۲۵۰۰x۲۵۰۰ و حجم آن باید کمتر از
+                                                                                    ۲۵۰۰x۲۵۰۰ و حجم آن بهتر است کمتر از
                                                                                     ۶ مگابایت باشد.
                                                                                 </li>
                                                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                                                                     کالا
-                                                                                    باید
+                                                                                    بهتر است
                                                                                     ۸۵٪ کل تصویر را در برگیرد و پس
-                                                                                    زمینه تصویر اصلی باید کاملاً
+                                                                                    زمینه تصویر اصلی بهتر است کاملاً
                                                                                     سفید باشد.
                                                                                 </li>
                                                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
@@ -2309,7 +2309,7 @@
                                             مطابق با دستورالعملهای وزارت صنعت، معدن و تجارت و سازمان حمایت مصرف
                                             کنندگان و تولید کنندگان، کالاهای گروه های زیر فقط با قیمت مرجع (قیمت
                                             مندرج روی کالا یا مصوب) امکان فروش در سایت را خواهند داشت و قیمت‌گذاری
-                                            بالاتر از قیمت مصرف کننده کالا در سایت تخلف محسوب می شود:</p>
+                                            بالاتر از قیمت مصرف کننده کالا در سایت تخلف محسوب می‌شود:</p>
 
                                         <p>روغن موتور/روغن گیربکس</p>
 

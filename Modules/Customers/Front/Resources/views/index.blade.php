@@ -469,7 +469,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                 <div class="c-form-account__link">
                     <a data-snt-event="dkLoginClick" data-snt-params='{"type":"forgetPassword","site":"login-modal"}'
                         href="/users/password/forgot/" class="btn-link-spoiler">
-                        رمز عبور خود را فراموش کرده ام
+                        رمز عبور خود را فراموش کرده‌ام
                     </a>
                 </div>
 

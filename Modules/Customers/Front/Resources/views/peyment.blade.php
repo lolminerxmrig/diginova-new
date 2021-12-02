@@ -6732,7 +6732,7 @@ var activateUrl = "\/digiclub\/activate\/";
                               <div class="c-wiki__container js-dk-wiki ">
                                 <div class="c-wiki__arrow"></div>
                                 <p class="c-wiki__text">
-                                  با پرداخت اینترنتی، سفارش شما با اولویت بیشتری نسبت به پرداخت در محل پردازش و ارسال می شود. در صورت پرداخت ناموفق هزینه کسر شده حداکثر طی ۷۲ ساعت به حساب شما بازگردانده می‌شود.
+                                  با پرداخت اینترنتی، سفارش شما با اولویت بیشتری نسبت به پرداخت در محل پردازش و ارسال می‌شود. در صورت پرداخت ناموفق هزینه کسر شده حداکثر طی ۷۲ ساعت به حساب شما بازگردانده می‌شود.
                                 </p>
                               </div>
                             </div>
@@ -7076,7 +7076,7 @@ var activateUrl = "\/digiclub\/activate\/";
       </div>
       <div class="c-form-account__link"><a  data-snt-event="dkLoginClick"
                                             data-snt-params='{"type":"forgetPassword","site":"login-modal"}'
-                                            href="/users/password/forgot/" class="btn-link-spoiler">رمز عبور خود را فراموش کرده ام</a></div>
+                                            href="/users/password/forgot/" class="btn-link-spoiler">رمز عبور خود را فراموش کرده‌ام</a></div>
       <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری
         یا کلمه عبور اشتباه است.
       </div>

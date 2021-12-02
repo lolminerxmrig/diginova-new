@@ -113,7 +113,7 @@
 {{--                                                شرح صفحه:--}}
 {{--                                            </label>--}}
 {{--                                            <div class="field-wrapper field-wrapper--textarea">--}}
-{{--                                                <textarea name="description" placeholder="توضیحات صفحه باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات صفحه باشد …" class="c-content-input__origin c-content-input__origin--textarea js-textarea-words" rows="" maxlength="500"></textarea>--}}
+{{--                                                <textarea name="description" placeholder="توضیحات صفحه بهتر است بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات صفحه باشد …" class="c-content-input__origin c-content-input__origin--textarea js-textarea-words" rows="" maxlength="500"></textarea>--}}
 {{--                                                <span class="textarea__wordcount">--}}
 {{--                                                    <span class="js-wordcount-target">0</span>/500--}}
 {{--                                                </span>--}}
@@ -238,7 +238,7 @@
 {{--                                            <span class="c-content-upload__ui-btn">بارگذاری تصویر</span>--}}
 {{--                                            <ul class="c-content-upload__list c-content-upload__list--tooltips">--}}
 {{--                                                <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">--}}
-{{--                                                تصویر شما باید مربعی باشد یا ابعاد--}}
+{{--                                                تصویر شما بهتر است مربعی باشد یا ابعاد--}}
 {{--                                                یک در یک داشته باشد--}}
 {{--                                                </li>--}}
 {{--                                                <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">--}}

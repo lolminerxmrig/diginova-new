@@ -98,7 +98,7 @@
                                                             </label>
                                                             <div class="field-wrapper field-wrapper--textarea">
                                                                 <textarea name="description"
-                                                                          placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"
+                                                                          placeholder="توضیحات برند بهتر است بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"
                                                                           class="c-content-input__origin c-content-input__origin--textarea js-textarea-words"
                                                                           rows="" maxlength="500">{{ old('description')?? $brand->description }}</textarea>
                                                                 <span class="textarea__wordcount">
@@ -272,7 +272,7 @@
                                                                             <span class="c-content-upload__ui-btn">بارگذاری تصویر</span>
                                                                             <ul class="c-content-upload__list c-content-upload__list--tooltips">
                                                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                                                                    تصویر شما باید مربعی باشد یا
+                                                                                    تصویر شما بهتر است مربعی باشد یا
                                                                                     ابعاد
                                                                                     یک در یک داشته باشد
                                                                                 </li>

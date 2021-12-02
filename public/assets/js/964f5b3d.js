@@ -13487,7 +13487,7 @@ var UIComponents = {
                         showFileError(file, 'مجاز به بارگذاری حداکثر پنج عکس می‌باشید');
                     }
                 } else {
-                    showFileError(file, 'حجم عکس نباید بیش از ۱ مگا بایت باشد');
+                    showFileError(file, 'حجم عکس نبهتر است بیش از ۱ مگا بایت باشد');
                 }
             } else if (videoRegEx.test(file.type)) {
                 if (file.size < videoMaxSize) {
@@ -13500,9 +13500,9 @@ var UIComponents = {
                     }
                 } else {
                     if(usedIn === 'comment') {
-                        showFileError(file, 'حجم ویدیو نباید بیش از ۱۰۰ مگا بایت باشد');
+                        showFileError(file, 'حجم ویدیو نبهتر است بیش از ۱۰۰ مگا بایت باشد');
                     } else {
-                        showFileError(file, 'حجم ویدیو نباید بیش از ۵۰ مگا بایت باشد');
+                        showFileError(file, 'حجم ویدیو نبهتر است بیش از ۵۰ مگا بایت باشد');
                     }
                 }
             } else {

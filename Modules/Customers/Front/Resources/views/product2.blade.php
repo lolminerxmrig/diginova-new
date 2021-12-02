@@ -1836,7 +1836,7 @@
 {{--                                             data-snt-event="dkLoginClick"--}}
 {{--                                             data-snt-params='{"type":"forgetPassword","site":"login-modal"}'--}}
 {{--                                             href="https://www.digikala.com/users/password/forgot/">رمز عبور خود را--}}
-{{--            فراموش کرده ام</a></div>--}}
+{{--            فراموش کرده‌ام</a></div>--}}
 {{--        <div class="c-message-light c-message-light--error has-oneline" id="loginFormError">نام کاربری--}}
 {{--          یا کلمه عبور اشتباه است.--}}
 {{--        </div>--}}

@@ -159,7 +159,7 @@
                                                                         <span class="c-content-upload__ui-btn">بارگذاری تصویر</span>
                                                                         <ul class="c-content-upload__list c-content-upload__list--tooltips">
                                                                             <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                                                                تصویر شما باید مربعی باشد یا ابعاد یک در یک داشته باشد
+                                                                                تصویر شما بهتر است مربعی باشد یا ابعاد یک در یک داشته باشد
                                                                             </li>
                                                                             <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                                                                 حداقل ابعاد عکس 125 * 125 پیکسل باشد

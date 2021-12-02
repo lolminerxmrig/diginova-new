@@ -94,7 +94,7 @@
               </label>
               <div id="brandDescription" class="field-wrapper">
                                         <textarea name="brand[description]" class="uk-textarea" cols="" rows="3"
-                                                  placeholder="توضیحات برند باید بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"></textarea>
+                                                  placeholder="توضیحات برند بهتر است بین ۷۰ تا ۱۰۰ کلمه درباره‌ی تاریخچه و محصولات برند باشد …"></textarea>
               </div>
             </div>
           </div>
