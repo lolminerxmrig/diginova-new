@@ -16,7 +16,14 @@ class Brand extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name', 'en_name', 'type', 'category_id', 'slug', 'description'];
+    protected $fillable = [
+        'name',
+        'en_name',
+        'type',
+        'category_id',
+        'slug',
+        'description'
+    ];
 
     public function media()
     {
