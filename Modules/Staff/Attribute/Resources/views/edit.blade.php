@@ -82,9 +82,7 @@
                                             js-textarea-words attr_group_desc" rows="2" maxlength="1000"
                                             @if(!$attributeGroup->description) 
                                                 placeholder="در صورت تمایل اطلاعات گروه ویژگی را وارد کنید ..." 
-                                            @endif >
-                                            {{ ($attributeGroup->description)? $attributeGroup->description : '' }}
-                                        </textarea>
+                                            @endif >{{ ($attributeGroup->description)? $attributeGroup->description : '' }}</textarea>
                                     </div>
                                 </div>
                             </div>
