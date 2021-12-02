@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
          media="print" onload="this.media='all'">
     <script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
-    <!-- <script src="{{ asset('seller/js/tags4.js') }}"></script> --> -->
+    <!-- <script src="{{ asset('seller/js/tags4.js') }}"></script> --> 
 
     <style>
         .select2-search {
