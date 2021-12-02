@@ -11,7 +11,8 @@
       @foreach($categories as $category)
         <li class="c-content-categories__results-item">
           <label for="category_{{$category->id}}" class="c-ui-radio c-content-categories__results-label">
-            <input type="radio" name="search-results" id="category_{{$category->id}}" class="js-category-change c-ui-radio__origin" value="{{$category->id}}" data-theme="colored"/>
+            <input type="radio" name="search-results" id="category_{{$category->id}}"
+               class="js-category-change c-ui-radio__origin" value="{{$category->id}}" data-theme="colored"/>
             <span class="c-ui-radio__check"></span>
             <span class="c-ui-radio__label">{{ $category->name }}</span>
             <ul class="c-content-categories__selected-list c-content-categories__selected-list--search">

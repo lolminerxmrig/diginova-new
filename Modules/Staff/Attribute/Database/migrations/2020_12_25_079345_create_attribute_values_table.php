@@ -20,8 +20,10 @@ class CreateAttributeValuesTable extends Migration
             $table->integer('position')->default(0);
             $table->timestamps();
 
-            $table->foreign('attribute_id')->references('id')->on('attributes')
-              ->onDelete('cascade');
+            $table->foreign('attribute_id')
+                ->references('id')
+                ->on('attributes')
+                ->onDelete('cascade');
         });
     }
 

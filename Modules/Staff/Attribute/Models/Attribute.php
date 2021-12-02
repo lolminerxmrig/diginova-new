@@ -14,7 +14,17 @@ class Attribute extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','name', 'type', 'is_required', 'is_filterable', 'is_favorite', 'group_id', 'unit_id', 'position'];
+    protected $fillable = [
+        'id',
+        'name',
+        'type', 
+        'is_required', 
+        'is_filterable', 
+        'is_favorite', 
+        'group_id', 
+        'unit_id', 
+        'position'
+    ];
 
     public function categories()
     {
@@ -35,14 +45,5 @@ class Attribute extends Model
     {
         return $this->belongsTo(Unit::class);
     }
-
-//    public function products()
-//    {
-//        return $this->belongsToMany(Product::class)
-//            ->withPivot('value')
-//            ->using(ProductAttributes::class);
-//    }
-
-
 }
 

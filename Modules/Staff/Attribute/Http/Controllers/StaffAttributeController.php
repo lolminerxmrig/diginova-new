@@ -4,7 +4,6 @@ namespace Modules\Staff\Attribute\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Modules\Staff\Attribute\Models\Attribute;
@@ -13,37 +12,43 @@ use Modules\Staff\Category\Models\Category;
 use Illuminate\Support\Facades\Validator;
 use Modules\Staff\Attribute\Models\AttributeGroup;
 use Modules\Staff\Unit\Models\Unit;
-use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\F;
 
 class StaffAttributeController extends Controller
 {
 
     public function index()
     {
-        $categories = Category::orderBy('created_at', 'asc')->get();
+        $categories = Category::latest()->get();
+
         return view('staffattribute::index', compact('categories'));
     }
 
     public function edit($id)
     {
-        $attributeGroup = AttributeGroup::where('id', $id)->firstOrFail();
+        $attributeGroup = AttributeGroup::where('id', $id)
+            ->firstOrFail();
 
-        if (count($attributes = Attribute::where('group_id', $id)->get())) {
-            $attributes = Attribute::where('group_id', $id)->orderBy('position')->get();
-        } else {
-            $attributes = collect();
-        }
+        $attributes = Attribute::where('group_id', $id)
+            ->orderBy('position')
+            ->get();
 
-        $units = Unit::orderBy('position')->get();
+        $attributes = $attributes ?? collect();
+    
 
-        return view('staffattribute::edit', compact('attributeGroup', 'attributes', 'units'));
+        $units = Unit::orderBy('position')
+            ->get();
+
+        return view('staffattribute::edit', 
+            compact('attributeGroup', 'attributes', 'units'));
     }
 
     public function getData(Request $request)
     {
         $category = Category::findOrFail($request->category_id);
+
         if ($category->attributeGroups()) {
-            return View::make('staffattribute::ajax-content', compact('category'));
+            return View::make('staffattribute::ajax-content',
+                 compact('category'));
         } else {
             return response()->json('saved data not found', 200);
         }
@@ -76,6 +81,7 @@ class StaffAttributeController extends Controller
 
             $category = Category::find($request->category_id);
             $category->attributeGroups()->save($created_attrGroup);
+
             return response()->json('', 200);
         }
     }
@@ -141,7 +147,8 @@ class StaffAttributeController extends Controller
     public function unitSelector()
     {
         $units = Unit::all();
-        return view::make('staffattribute::layouts.ajax.unit-selector', compact('units'));
+        return view::make('staffattribute::layouts.ajax.unit-selector',
+            compact('units'));
     }
 
     public function AttrGroupUpdate($request)
@@ -163,7 +170,7 @@ class StaffAttributeController extends Controller
         if (isset($request->deleted_rows) && (!is_null($request->deleted_rows)))
          {
             foreach ($request->deleted_rows as $deleted_row) {
-                 Attribute::find($deleted_row)->values()->delete();
+                Attribute::find($deleted_row)->values()->delete();
                 Attribute::find($deleted_row)->delete();
             }
         }
@@ -216,29 +223,6 @@ class StaffAttributeController extends Controller
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             if ($positions[$i] == 0)
             {
                 // اگه جدید بود
@@ -259,7 +243,6 @@ class StaffAttributeController extends Controller
                     $i++;
                     continue;
                 }
-
 
                 if (($request->attr_types[$i] == 3) || ($request->attr_types[$i] == 4))
                 {
@@ -282,7 +265,6 @@ class StaffAttributeController extends Controller
                                 $val_position++;
                             }
                         }
-
                     }
                 }
 
@@ -293,23 +275,6 @@ class StaffAttributeController extends Controller
                 }
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             else {  // اگه سطر جدید نبود
                 if (!Attribute::find($positions[$i])) {
                     $i++;
@@ -364,10 +329,5 @@ class StaffAttributeController extends Controller
 
             $i++;
         }
-
-
-
-
     }
-
 }

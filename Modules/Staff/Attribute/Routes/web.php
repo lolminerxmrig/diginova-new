@@ -57,7 +57,4 @@ Route::domain('staff.diginova.test')->prefix('attributes')->name('staff.attribut
 
     Route::post('unit-selector', [StaffAttributeController::class, 'unitSelector'])
         ->name('unitSelector');
-
-
-
 });

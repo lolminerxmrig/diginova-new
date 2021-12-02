@@ -1,16 +1,18 @@
-<div
-    class="c-content-accordion__content c-content-accordion__content--small"
-    id="stepTitleContainer" aria-hidden="false"
-    style=" margin-right: -25px;">
+<div class="c-content-accordion__content c-content-accordion__content--small"
+    id="stepTitleContainer" aria-hidden="false" style=" margin-right: -25px;">
     <div class="c-card__body c-card__body--content category-box">
-        <label for="" class="search-form__action-label">جستجو در میان دسته ها</label>
+        <label for="" class="search-form__action-label">
+            جستجو در میان دسته ها
+        </label>
         <div class="search-form__autocomplete-container">
             <div class="search-form__autocomplete js-autosuggest-box">
-                <input name="search" id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="دسته مورد نظرتان را جستجو کنید">
+                <input name="search" id="searchKeyword" class="c-content-input__origin js-prevent-submit" 
+                type="text" placeholder="دسته مورد نظرتان را جستجو کنید">
             </div>
         </div>
     </div>
-    <div class="c-card__body  c-card__body--content category-box" id="stepTitleContent" style="margin-top: -20px;">
+    <div class="c-card__body  c-card__body--content category-box"
+        id="stepTitleContent" style="margin-top: -20px;">
     </div>
     <div class="c-card__body c-card__body--content category-box">
         <!-- category a -->
@@ -21,7 +23,9 @@
                         @foreach($categories->where('parent_id', 0) as $category)
                             <li class="c-content-categories__item {{ (count($category->children) > 0) ? 'has-children' : '' }}">
                                 <label class="c-content-categories__link js-category-link">
-                                    <input type="radio" name="category" value="{{ $category->id }}" class="js-category-data radio uk-hidden" data-id="{{ $category->id }}" data-theme="" style="visibility: hidden;">
+                                    <input type="radio" name="category" value="{{ $category->id }}"
+                                         class="js-category-data radio uk-hidden" data-id="{{ $category->id }}"
+                                         data-theme="" style="visibility: hidden;">
                                     {{ $category->name }}
                                 </label>
                             </li>
@@ -55,7 +59,6 @@
         <div class="c-content-loader__logo"></div>
         <div class="c-content-loader__spinner"></div>
     </div>
-
 
     @include('staffattribute::layouts.bottom-box')
 </div>

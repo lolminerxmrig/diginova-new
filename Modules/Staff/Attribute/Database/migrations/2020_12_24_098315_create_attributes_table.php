@@ -25,8 +25,14 @@ class CreateAttributesTable extends Migration
             $table->integer('position')->nullable();
             $table->timestamps();
 
-            $table->foreign('group_id')->references('id')->on('attribute_groups')->onDelete('cascade');
-            $table->foreign('unit_id')->references('id')->on('units');
+            $table->foreign('group_id')
+                ->references('id')
+                ->on('attribute_groups')
+                ->onDelete('cascade');
+
+            $table->foreign('unit_id')
+                ->references('id')
+                ->on('units');
         });
     }
 

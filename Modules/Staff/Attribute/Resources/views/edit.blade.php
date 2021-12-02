@@ -1,27 +1,21 @@
 @extends('layouts.staff.master')
-@section('title') ویرایش گروه ویژگی | {{ $fa_store_name }}  @endsection
+@section('title') 
+    ویرایش گروه ویژگی | {{ $fa_store_name }} 
+@endsection
 @section('head')
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script src="{{ asset('mehdi/public/js/jquery-ui.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
+<script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
 
-<link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
-<script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
-<script src="{{ asset('seller/js/tagify.min.js') }}"></script>
-<link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
-<script src="https://unpkg.com/@yaireo/dragsort"></script>
+<script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
+         media="print" onload="this.media='all'">
+<script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
+
 <style>
-    /*.select2-search {*/
-    /*    display: none;*/
-    /*}*/
-
     .select2-selection__arrow {
         display: block !important;
     }
-
-    /*.select2-search--dropdown {*/
-    /*    display: none;*/
-    /*}*/
-
-
     .select2-selection--single {
         background-color: #fff;
         border: 1px solid #bbbaba;
@@ -37,10 +31,12 @@
             <div class="c-grid__row c-product-list--align-header">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">ویرایش گروه ویژگی
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">
+                            ویرایش گروه ویژگی
                             <span>
-                            برای ویرایش  گروه ویژگی و ایجاد ویژگی برای آن از این قسمت استفاده نمایید
-                        </span>
+                            برای ویرایش  گروه ویژگی و ایجاد ویژگی 
+                            برای آن از این قسمت استفاده نمایید
+                            </span>
                         </h1>
                     </div>
                 </div>
@@ -51,20 +47,25 @@
                         <h2 style="font-size: 18px;margin-right: 33px;margin-top: 28px;margin-bottom: -30px;">
                             <div style="color: #606265;">اطلاعات گروه ویژگی</div>
                         </h2>
-                        <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;display: none;"></div>
+                        <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;
+                            background: #e2dddd;height: 1px;display: none;">
+                        </div>
                         <div class="c-card__header"></div>
                         <div class="c-card__body">
                             <div class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-8 ">
                                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
-                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap">
+                                        <div class="c-grid__col c-grid__col--gap-lg 
+                                            c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap">
                                             <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px;">نام گروه ویژگی
                                                 <span class="uk-form-label__required"></span>
                                             </label>
                                             <div class="field-wrapper">
                                                 <label class="c-content-input">
                                                     <input name="group_id" class="group_id" value="{{ $attributeGroup->id }}" hidden>
-                                                    <input type="text" class="c-content-input__origin c-content-input__origin attr_group_name" name="attr_group_name" value="{{ $attributeGroup->name }}" dir="rtl" style="text-align: right;">
+                                                    <input type="text" class="c-content-input__origin
+                                                     c-content-input__origin attr_group_name" name="attr_group_name" 
+                                                     value="{{ $attributeGroup->name }}" dir="rtl" style="text-align: right;">
                                                 </label>
                                             </div>
                                         </div>
@@ -73,10 +74,17 @@
                             </div>
                             <div class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
-                                    <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 8px;">توضیحات (اختیاری)</label>
+                                    <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 8px;">
+                                        توضیحات (اختیاری)
+                                    </label>
                                     <div class="field-wrapper field-wrapper--textarea">
-                                        <textarea name="attr_group_desc"class="c-content-input__origin c-content-input__origin--textarea js-textarea-words attr_group_desc"
-                                            rows="2" maxlength="1000" @if(!$attributeGroup->description) placeholder="در صورت تمایل اطلاعات گروه ویژگی را وارد کنید ..." @endif >{{ ($attributeGroup->description)? $attributeGroup->description : '' }}</textarea>
+                                        <textarea name="attr_group_desc"class="c-content-input__origin c-content-input__origin--textarea 
+                                            js-textarea-words attr_group_desc" rows="2" maxlength="1000"
+                                            @if(!$attributeGroup->description) 
+                                                placeholder="در صورت تمایل اطلاعات گروه ویژگی را وارد کنید ..." 
+                                            @endif >
+                                            {{ ($attributeGroup->description)? $attributeGroup->description : '' }}
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -86,14 +94,17 @@
             </div>
 
             <div class="js-table-container">
-
                 <div class="c-grid__row" style="margin-top:30px">
                     <div class="c-grid__col">
                         <div class="c-card">
                             <div class="c-card__wrapper">
                                 <div class="c-card__header c-card__header--table">
-                                    <a target="_blank"><div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد ویژگی جدید</div></a>
-                                    <div class="c-ui-paginator js-paginator" data-select2-id="36"></div>
+                                    <a target="_blank">
+                                        <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
+                                            ایجاد ویژگی جدید
+                                        </div>
+                                    </a>
+                                    <div class="c-ui-paginator js-paginator"></div>
                                 </div>
                                 <div class="c-card__body c-ui-table__wrapper">
                                     <table class="c-ui-table  js-search-table js-table-fixed-header c-join__table">
@@ -128,7 +139,8 @@
                                         <tbody id="tbody">
                                           @if(isset($attributes) && !is_null($attributes))
                                             @foreach($attributes->unique() as $attribute)
-                                              <tr name="row db-row" id="item-{{$attribute->id}}" data-id="{{$attribute->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
+                                              <tr name="row db-row" id="item-{{$attribute->id}}" data-id="{{$attribute->id}}"
+                                                class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
                                                 <input name="attribute_id" value="{{ $attribute->id }}" hidden>
                                                 <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
                                                     <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
@@ -138,10 +150,12 @@
                                                     </div>
                                                 </td>
                                                 <td class="c-ui-table__cell" style="min-width: 90px">
-                                                    <input type="text" name="attr_name" value="{{ ($attribute->name)? $attribute->name : '' }}" class="c-content-input__origin js-attribute-old-value attr_name">
+                                                    <input type="text" name="attr_name" value="{{ ($attribute->name)? $attribute->name : '' }}"
+                                                        class="c-content-input__origin js-attribute-old-value attr_name">
                                                 </td>
                                                 <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: right; min-width: 200px;">
-                                                    <select name="attr_type" class="uk-input uk-input--select attr_type js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false" disabled>
+                                                    <select name="attr_type" class="uk-input uk-input--select attr_type js-select-origin
+                                                     select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false" disabled>
                                                         <option value="1" {{ ($attribute->type == 1)? 'selected' : '' }}>عبارت کوتاه (text)</option>
                                                         <option value="2" {{ ($attribute->type == 2)? 'selected' : '' }}>متن بلند (textarea)</option>
                                                         <option value="3" {{ ($attribute->type == 3)? 'selected' : '' }}>تک انتخابی (select box)</option>
@@ -153,7 +167,8 @@
                                                     <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                             <label class="c-ui-toggle">
-                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox" name="attr_required" {{ ($attribute->is_required)? 'checked' : '' }}>
+                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox"
+                                                                    name="attr_required" {{ ($attribute->is_required)? 'checked' : '' }}>
                                                                 <span class="c-ui-toggle__check"></span>
                                                             </label>
                                                         </div>
@@ -163,7 +178,8 @@
                                                     <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                             <label class="c-ui-toggle">
-                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_filterable" type="checkbox" name="attr_filterable"  {{ ($attribute->is_filterable)? 'checked' : '' }}>
+                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_filterable"
+                                                                 type="checkbox" name="attr_filterable"  {{ ($attribute->is_filterable)? 'checked' : '' }}>
                                                                 <span class="c-ui-toggle__check"></span>
                                                             </label>
                                                         </div>
@@ -173,7 +189,8 @@
                                                     <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                             <label class="c-ui-toggle">
-                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_favorite" type="checkbox" name="attr_favorite"  {{ ($attribute->is_favorite)? 'checked' : '' }}>
+                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_favorite" 
+                                                                    type="checkbox" name="attr_favorite"  {{ ($attribute->is_favorite)? 'checked' : '' }}>
                                                                 <span class="c-ui-toggle__check"></span>
                                                             </label>
                                                         </div>
@@ -186,10 +203,13 @@
                                                         @elseif(($attribute->type == 3) || ($attribute->type == 4))
                                                             <input name='drag-sort' class="attr_input_tag" value='{{ $attribute->values }}'>
                                                         @elseif($attribute->type == 5)
-                                                            <select name="attr_unit" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
+                                                            <select name="attr_unit" class="uk-input uk-input--select attr_input_tag js-select-origin 
+                                                                select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
                                                                 @if(isset($units) && count($units))
                                                                     @foreach($units as $unit)
-                                                                        <option value="{{ $unit->id }}" {{ ($attribute->unit_id == $unit->id)? 'selected' : '' }}>{{ $unit->name }}</option>
+                                                                        <option value="{{ $unit->id }}" {{ ($attribute->unit_id == $unit->id)? 'selected' : '' }}>
+                                                                            {{ $unit->name }}
+                                                                        </option>
                                                                     @endforeach
                                                                 @endif
                                                             </select>
@@ -208,7 +228,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-
                                 <div class="c-card__footer" style="width: auto;">
                                     <a>
                                         <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد ویژگی
@@ -216,7 +235,6 @@
                                         </div>
                                     </a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -224,29 +242,31 @@
             </div>
         </div>
 
-
         <div class="c-grid__row">
             <div class="c-grid__col">
                 <div class="c-card">
                     <div class="edit-form-section c-card__footer c-card__footer--products">
-                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap" style="width: 40%; float: left; display: contents;">
-                        <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-left: 68px;max-width: 100px;" id="submit-form">ذخیره
+                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap"
+                         style="width: 40%; float: left; display: contents;">
+                        <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-left: 68px;max-width: 100px;" id="submit-form">
+                            ذخیره
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-    <div id="pageLoader" class="c-content-loader c-content-loader--fixed">
-        <div class="c-content-loader__logo"></div>
-        <div class="c-content-loader__spinner"></div>
-    </div>
+    
+        <div id="pageLoader" class="c-content-loader c-content-loader--fixed">
+            <div class="c-content-loader__logo"></div>
+            <div class="c-content-loader__spinner"></div>
+        </div>
     </div>
 </main>
 
-<div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal" style="display: none;">
+<div uk-modal="esc-close: true; bg-close: true;" 
+    class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal"
+     style="display: none;">
     <div class="uk-modal-dialog uk-modal-dialog--flex">
         <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
         <div class="uk-modal-body">
@@ -255,7 +275,8 @@
                     <h2 class="c-modal-notification__header">هشدار</h2>
 
                     <p class="c-modal-notification__text">
-                      با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته انتخابی به صورت کامل حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟
+                      با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته انتخابی به صورت کامل 
+                      حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟
                     </p>
                     <div class="c-modal-notification__actions">
                         <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
@@ -267,20 +288,18 @@
     </div>
 </div>
 <div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
-
-<select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible">
-    @if(isset($units) && count($units))
-      @foreach($units as $unit)
-       <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-      @endforeach
-    @endif
-</select>
+    <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible">
+        @if(isset($units) && count($units))
+        @foreach($units as $unit)
+        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+        @endforeach
+        @endif
+    </select>
 </div>
 @endsection
 @section('script')
 <script>
 
-//!!!!!!!!
 $(document).ready(function (){
   $(".tagify").each(function (){
       $(this).removeClass('attr_input_tag');
@@ -408,20 +427,67 @@ $("tbody").sortable({
 });
 
 $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
-    var tr = '<tr name="row" id="item-new" class="c-ui-table__row c-ui-table__row--body c-join__table-row row"><td class="c-ui-table__cell" style="padding-right:0;padding-left:23px">' +
-        '<div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer"><span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span> ' +
-        '<span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span> <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down">' +
-        '</span></div></td><td class="c-ui-table__cell" style="min-width:90px"><input class="c-content-input__origin js-attribute-old-value attr_name" name="attr_name"></td>' +
-        '<td class="c-ui-table__cell c-ui-table__cell--small-text td-select" style="text-align:right; min-width: 200px;"><select name="attr_type" class="uk-input uk-input--select js-select-origin attr_type select2-hidden-accessible" ' +
-        'tabindex="-1" aria-hidden="true" aria-invalid="false"><option value="1" selected>عبارت کوتاه (text)</option><option value="2">عبارت بلند (textarea)</option>' +
-        '<option value="3">تک انتخابی (select box)</option><option value="4">چند انتخابی (select box)</option><option value="5">عبارت کوتاه با واحد</option></select></td><td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle">' +
-        '<input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox" name="attr_required" value="1"> <span class="c-ui-toggle__check"></span></label></div></div>' +
-        '</td><td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product attr_filterable" type="checkbox" name="attr_filterable" value="1" disabled> ' +
-        '<span class="c-ui-toggle__check"></span></label></div></div></td>' +
-        '<td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product attr_filterable" type="checkbox" name="attr_favorite"><span class="c-ui-toggle__check"></span></label></div></div></td>' +
-        '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">' +
-        '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin attr_input_tag c-ui-input--deactive val_field" disabled=""></div></td><td class="c-ui-table__cell"><div class="c-promo__actions" style="width:50%;margin:auto">' +
-        '<button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button></div></td></tr>';
+    var tr = `
+    <tr name="row" id="item-new" class="c-ui-table__row c-ui-table__row--body c-join__table-row row">
+        <td class="c-ui-table__cell" style="padding-right:0;padding-left:23px">
+            <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
+                <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
+                <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
+                <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
+            </div>
+        </td>
+        <td class="c-ui-table__cell" style="min-width:90px">
+            <input class="c-content-input__origin js-attribute-old-value attr_name" name="attr_name">    
+        </td>
+        <td class="c-ui-table__cell c-ui-table__cell--small-text td-select" style="text-align:right; min-width: 200px;">
+            <select name="attr_type" class="uk-input uk-input--select js-select-origin attr_type select2-hidden-accessible"
+             tabindex="-1" aria-hidden="true" aria-invalid="false">
+                <option value="1" selected>عبارت کوتاه (text)</option>
+                <option value="2">عبارت بلند (textarea)</option>
+                <option value="3">تک انتخابی (select box)</option>
+                <option value="4">چند انتخابی (select box)</option>
+                <option value="5">عبارت کوتاه با واحد</option>
+            </select>
+        </td>
+        <td class="c-ui-table__cell c-ui-table__cell--small-text">
+            <div class="c-ui-tooltip__anchor">
+                <div class="c-ui-toggle__group"><label class="c-ui-toggle">
+                    <input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox" 
+                    name="attr_required" value="1"> <span class="c-ui-toggle__check"></span></label>
+                </div>
+            </div>
+        </td>
+        <td class="c-ui-table__cell c-ui-table__cell--small-text">
+        <div class="c-ui-tooltip__anchor">
+            <div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin
+             js-toggle-active-product attr_filterable" type="checkbox" name="attr_filterable" value="1" disabled>
+                <span class="c-ui-toggle__check"></span></label>
+            </div>
+        </div>
+        </td>
+        <td class="c-ui-table__cell c-ui-table__cell--small-text">
+        <div class="c-ui-tooltip__anchor">
+            <div class="c-ui-toggle__group">
+            <label class="c-ui-toggle">
+            <input class="c-ui-toggle__origin 
+            js-toggle-active-product attr_filterable" type="checkbox" name="attr_favorite">
+            <span class="c-ui-toggle__check"></span>
+            </label>
+        </div>
+        </div>
+        </td>
+        <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
+        <div class="uk-flex uk-flex-column values-td">
+            <input type="text" class="c-content-input__origin attr_input_tag
+             c-ui-input--deactive val_field" disabled=""></div>
+        </td>
+        <td class="c-ui-table__cell">
+        <div class="c-promo__actions" style="width:50%;margin:auto">
+            <button type="button" class="c-content-upload__btn 
+            c-content-upload__btn--remove remove-btn"></button>
+        </div>
+        </td>
+    </tr>`;
 
     $("#tbody").append(tr);
     generateSelectUi();
@@ -460,8 +526,10 @@ function generateSelectUi() {
             $('.select2-results__options').prepend($sortedOptions);
         }).on('change', function () {
             if (isMultiSelect && inProductStep) {
-                let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
-                const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
+                let $selectionsContainerWidth = $this.siblings('.select2-container')
+                    .find('ul.select2-selection__rendered').width() - 77;
+                const $selections = $this.siblings('.select2-container')
+                    .find('li.select2-selection__choice');
 
                 $selections.removeClass('hidden');
                 $selections.each(function () {
@@ -471,7 +539,8 @@ function generateSelectUi() {
                     }
                 });
 
-                let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
+                let $selectionsCount = $this.siblings('.select2-container')
+                    .find('li.select2-selection__choice.hidden').length;
                 let $counter = $this.siblings('.select-counter');
 
                 if ($selectionsCount > 0) {
@@ -488,8 +557,10 @@ function generateSelectUi() {
         });
 
         if (isMultiSelect && inProductStep) {
-            let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
-            const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
+            let $selectionsContainerWidth = $this.siblings('.select2-container')
+                .find('ul.select2-selection__rendered').width() - 77;
+            const $selections = $this.siblings('.select2-container')
+                .find('li.select2-selection__choice');
 
             $selections.removeClass('hidden');
             $selections.each(function () {
@@ -500,7 +571,8 @@ function generateSelectUi() {
             });
 
             let $counter = $this.siblings('.select-counter');
-            let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
+            let $selectionsCount = $this.siblings('.select2-container')
+                .find('li.select2-selection__choice.hidden').length;
 
             if ($selectionsCount > 0) {
                 $counter.text($selectionsCount.toLocaleString('fa-IR'));
@@ -542,8 +614,10 @@ $('.js-select-origin').each(function () {
         $('.select2-results__options').prepend($sortedOptions);
     }).on('change', function () {
         if (isMultiSelect && inProductStep) {
-            let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
-            const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
+            let $selectionsContainerWidth = $this.siblings('.select2-container')
+                .find('ul.select2-selection__rendered').width() - 77;
+            const $selections = $this.siblings('.select2-container')
+                .find('li.select2-selection__choice');
 
             $selections.removeClass('hidden');
             $selections.each(function () {
@@ -553,7 +627,8 @@ $('.js-select-origin').each(function () {
                 }
             });
 
-            let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
+            let $selectionsCount = $this.siblings('.select2-container')
+                .find('li.select2-selection__choice.hidden').length;
             let $counter = $this.siblings('.select-counter');
 
             if ($selectionsCount > 0) {
@@ -570,8 +645,10 @@ $('.js-select-origin').each(function () {
     });
 
     if (isMultiSelect && inProductStep) {
-        let $selectionsContainerWidth = $this.siblings('.select2-container').find('ul.select2-selection__rendered').width() - 77;
-        const $selections = $this.siblings('.select2-container').find('li.select2-selection__choice');
+        let $selectionsContainerWidth = $this.siblings('.select2-container')
+            .find('ul.select2-selection__rendered').width() - 77;
+        const $selections = $this.siblings('.select2-container')
+            .find('li.select2-selection__choice');
 
         $selections.removeClass('hidden');
         $selections.each(function () {
@@ -582,7 +659,8 @@ $('.js-select-origin').each(function () {
         });
 
         let $counter = $this.siblings('.select-counter');
-        let $selectionsCount = $this.siblings('.select2-container').find('li.select2-selection__choice.hidden').length;
+        let $selectionsCount = $this.siblings('.select2-container')
+            .find('li.select2-selection__choice.hidden').length;
 
         if ($selectionsCount > 0) {
             $counter.text($selectionsCount.toLocaleString('fa-IR'));
@@ -595,17 +673,6 @@ $('.js-select-origin').each(function () {
 $("input[name=drag-sort]").each(function () {
         var input = document.querySelector('input[name=drag-sort]'),
             tagify = new Tagify(this);
-
-        // var dragsort = new DragSort(tagify.DOM.scope, {
-        //     selector: '.' + tagify.settings.classNames.tag,
-        //     callbacks: {
-        //         dragEnd: onDragEnd
-        //     }
-        // })
-        //
-        // function onDragEnd(elm) {
-        //     tagify.updateValueByDOMTags()
-        // }
 });
 
 $('tbody').sortable({
@@ -622,7 +689,13 @@ $(document).on('change', '.attr_type', function (){
         }
 
         $(this).closest('.row').find(".tagify").remove();
-        var disabled_field = '<div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin attr_input_tag c-ui-input--deactive val_field" disabled=""></td>';
+
+        var disabled_field = `
+            <div class="uk-flex uk-flex-column values-td">
+            <input type="text" class="c-content-input__origin attr_input_tag 
+                c-ui-input--deactive val_field" disabled="">
+            </td>
+        `;
         $(this).closest('.row').find(".values-td").replaceWith(disabled_field);
     }
 
@@ -644,36 +717,41 @@ $(document).on('change', '.attr_type', function (){
         $(this).closest('.row').find("input[name='attr_favorite']").removeAttr('disabled');
 
         $(this).closest('.row').find(".tagify").remove();
-        var tag_field = '<div class="uk-flex uk-flex-column values-td"><input name="drag-sort" class="drag-sort new-tag-input attr_input_tag val_field"></td>';
+        var tag_field = `
+            <div class="uk-flex uk-flex-column values-td">
+                <input name="drag-sort" class="drag-sort new-tag-input attr_input_tag val_field">
+            </td>
+        `;
         $(this).closest('.row').find(".values-td").replaceWith(tag_field);
         var input = document.querySelector('.new-tag-input');
         tagify = new Tagify(input);
-
-        // var dragsort = new DragSort(tagify.DOM.scope, {
-        //     selector: '.' + tagify.settings.classNames.tag,
-        //     callbacks: {
-        //         dragEnd: onDragEnd
-        //     }
-        // });
-        //
-        // function onDragEnd(elm) {
-        //     tagify.updateValueByDOMTags()
-        // }
-
         $(".drag-sort").removeClass("new-tag-input");
         $(".tagify").each(function (){
             $(this).removeClass('attr_input_tag');
         });
-
     }
 
     if ($(this).val() == 5)
     {
-        // $(this).closest('.row').find("input[name='attr_filterable']").removeAttr('disabled');
         $(this).closest('.row').find("input[name='attr_filterable']").attr('disabled', 'true');
         $(this).closest('.row').find("input[name='attr_favorite']").removeAttr('disabled');
 
-        var xxx = $(".select-unit:last").clone();
+        // var xxx = $(".select-unit:last").clone();
+        
+        var xxx = `
+        <div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
+            <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag
+             js-select-origin select2-hidden-accessible">
+                @if(isset($units) && count($units))
+                    @foreach($units as $unit)
+                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                    @endforeach
+                @endif
+            </select>
+        </div>
+        `;
+
+
         $(this).closest('.row').find(".values-td").replaceWith(xxx);
         $(this).closest('.row').find(".select2-container").remove();
         $(this).closest('.row').find(".select-unit").show();
