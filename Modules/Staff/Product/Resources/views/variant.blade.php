@@ -644,7 +644,7 @@ var is_yalda = 0;
                                                   @endif
                                                 @endforeach
                                               @else
-                                                <img src="{{ asset('staff/images/default_picture.png') }}"  class="c-variant__img">
+                                                <img src="{{ asset('mehdi/staff/images/default-picture.png') }}"  class="c-variant__img">
                                               @endif
                                             </div>
                                             <div class="c-variant__descr">

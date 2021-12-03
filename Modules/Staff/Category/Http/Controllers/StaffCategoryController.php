@@ -177,8 +177,16 @@ class StaffCategoryController extends Controller
     public function deleteImage(Request $request)
     {
         $media = Media::find($request->id);
-        unlink(public_path("$media->path/") . $media->name);
-        $media->delete();
+
+        if($media) {
+            $imagePath = $media->path . "\/" . $media->name;
+            unlink(public_path($media));
+            $media->delete();
+
+        }
+        // if (file_exists($imagePath)) {
+        // }
+
     }
 
     public function uploadImage(Request $request)

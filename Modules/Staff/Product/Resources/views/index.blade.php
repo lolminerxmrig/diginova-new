@@ -198,7 +198,7 @@
                                                                 @endif
                                                             @endforeach
                                                           @else
-                                                            <img src="{{ asset('staff/images/default_picture.png') }}" width="65" height="65">
+                                                            <img src="{{ asset('mehdi/staff/images/default-picture.png') }}" width="65" height="65">
                                                           @endif
                                                         </td>
 

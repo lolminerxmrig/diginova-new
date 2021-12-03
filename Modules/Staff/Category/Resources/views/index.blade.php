@@ -3,8 +3,7 @@
 @section('title') مدیریت دسته‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('mehdi/staff/js/create-category-validation.js') }}"></script>
-<script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
-<!-- <script src="{{ asset('seller/js/tags3.js') }}"></script> -->
+<script src="{{ asset('seller/js/category-tags.js') }}"></script>
 @endsection
 
 @section('content')

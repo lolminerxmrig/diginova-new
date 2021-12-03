@@ -47,15 +47,15 @@ class StaffTypeController extends Controller
             }
         }
 
-        if (isset($request->database_data) && !is_null($request->database_data)) {
+        if (filled($request->database_data)) {
             return $this->update($request);
         }
     }
 
     public function update($request)
     {
-        if (isset($request->database_data) && !is_null($request->database_data)){
-
+        if (filled($request->database_data))
+        {
             $positionArray = str_replace('item[]=', '', $request->sort_data);
             $positionArray = str_replace('&', ',', $positionArray);
             $positionArray = explode(',', $positionArray);
@@ -68,7 +68,10 @@ class StaffTypeController extends Controller
             foreach ($data as $key => $value)
             {
                 if ($value == 'deleted'){
-                    Category::find($request->category)->types()->where('id', $key)->delete();
+                    Category::find($request->category)
+                        ->types()
+                        ->where('id', $key)
+                        ->delete();
                 }
                 elseif (!is_null($value)){
                     Type::find($key)->update([
@@ -76,7 +79,9 @@ class StaffTypeController extends Controller
                         'position' => array_search($key, $positionArray),
                     ]);
                 } else {
-                    Category::find($request->category)->types()->where('id', $key)->delete();
+                    Category::find($request->category)
+                        ->types()->where('id', $key)
+                        ->delete();
                 }
             }
         }
@@ -89,28 +94,37 @@ class StaffTypeController extends Controller
         // حل مشکل ستون های خالی
         if (count(Category::where('parent_id', $id)->get()) !== 0)
         {
-            return View::make("stafftype::layouts.ajax.category-box.child", compact('id', 'categories'));
+            return View::make("stafftype::layouts.ajax.category-box.child", 
+                compact('id', 'categories'));
         }
     }
 
     public function breadcrumbLoader(Request $request)
     {
         $category = Category::find($request->id);
-        return View::make("stafftype::layouts.ajax.category-box.breadcrumb", compact('category'));
+
+        return View::make("stafftype::layouts.ajax.category-box.breadcrumb",
+         compact('category'));
     }
 
     public function mainCatReloader(Request $request)
     {
         $categories = Category::get()->unique('name');
-        return View::make("stafftype::layouts.ajax.category-box.main", compact('categories'));
+
+        return View::make("stafftype::layouts.ajax.category-box.main",
+         compact('categories'));
     }
 
     public function ajaxSearch(Request $request)
     {
-        $categories = Category::query()->where('name', 'LIKE', "%{$request->search}%")->get();
+        $categories = Category::query()
+            ->where('name', 'LIKE', "%{$request->search}%")
+            ->get();
+
         if($categories)
         {
-            return View::make("stafftype::layouts.ajax.category-box.search", compact('categories'));
+            return View::make("stafftype::layouts.ajax.category-box.search",
+             compact('categories'));
         }
     }
 
