@@ -6,7 +6,7 @@
                 <div class="c-card__wrapper">
                     <div class="c-card__header c-card__header--table">
                         <div class="c-grid__col c-grid__col--lg-4">
-                            <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برند ها</a>
+                            <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برندها</a>
                         </div>
 
                         {{--                                        {{ $brands->links('staffbrand::layouts.pagination.pagination') }}--}}
@@ -117,7 +117,7 @@
                         </table>
                     </div>
                     <div class="c-card__footer" style="width: auto;">
-                        <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برند ها</a>
+                        <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برندها</a>
 
                         {{ $brands->links('staffbrand::layouts.pagination.pagination') }}
                         <div class="c-ui-paginator js-paginator" data-select2-id="25">

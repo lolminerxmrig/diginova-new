@@ -13,7 +13,7 @@
                         </a>
                         @if($trashed_brands->count())
                             <div class="c-grid__col c-grid__col--lg-4">
-                                <a href="{{ route('staff.brands.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت برند های حذف شده</a>
+                                <a href="{{ route('staff.brands.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت برندهای حذف شده</a>
                             </div>
                         @endif
 
@@ -143,7 +143,7 @@
 
                         @if($trashed_brands->count())
                             <div class="c-grid__col c-grid__col--lg-4">
-                                <a href="{{ route('staff.brands.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت برند های حذف شده</a>
+                                <a href="{{ route('staff.brands.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت برندهای حذف شده</a>
                             </div>
                         @endif
 

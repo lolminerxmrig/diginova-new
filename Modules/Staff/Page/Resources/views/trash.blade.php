@@ -10,7 +10,7 @@
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت برند های حذف شده<span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت برندهای حذف شده<span>
                                 از این صفحه می‌توانید برند های حذف شده را مدیریت کنید</span>
                         </h1>
                     </div>
@@ -95,7 +95,7 @@
                                 <div class="c-card__wrapper">
                                     <div class="c-card__header c-card__header--table">
                                         <div class="c-grid__col c-grid__col--lg-4">
-                                            <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برند ها</a>
+                                            <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برندها</a>
                                         </div>
 
 {{--                                        {{ $brands->links('staffbrand::layouts.pagination.pagination') }}--}}
@@ -206,7 +206,7 @@
                                         </table>
                                     </div>
                                     <div class="c-card__footer" style="width: auto;">
-                                        <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برند ها</a>
+                                        <a href="{{ route('staff.brands.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت برندها</a>
 
                                         {{ $brands->links('staffbrand::layouts.pagination.pagination') }}
                                         <div class="c-ui-paginator js-paginator" data-select2-id="25">
@@ -287,7 +287,7 @@
                                                         نتیجه‌ای برای نمایش وجود ندارد!
                                                     </p>
                                                     <p class="c-join__promotion-info-statement">
-                                                        برای مدیریت برند ها روی دکمه زیر کلیک کنید.
+                                                        برای مدیریت برندها روی دکمه زیر کلیک کنید.
                                                     </p>
                                                     <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
                                                        href="{{ route('staff.brands.index') }}">مدیریت برندها</a>
