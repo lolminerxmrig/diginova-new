@@ -195,7 +195,7 @@
                                                                                   یک در یک داشته باشد
                                                                               </li>
                                                                               <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                                                                  حداقل ابعاد عکس 125 * 125 پیکسل باشد
+                                                                              حداقل ابعاد عکس بهتر است ۱۲۵ * ۱۲۵ پیکسل باشد
                                                                               </li>
                                                                           </ul>
                                                                       </label>

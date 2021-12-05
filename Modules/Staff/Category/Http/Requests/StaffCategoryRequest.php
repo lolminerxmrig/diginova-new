@@ -23,44 +23,11 @@ class StaffCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        $data = $this->all();
-
         return [
           'name' => 'required',
           'slug' => 'required',
           'en_name' => 'required',
           'image' => 'required',
         ];
-
-//        if($data['image'] !== 'not_required'){
-//            return [
-//                'name' => 'required',
-//                'slug' => 'required',
-//                'en_name' => 'required',
-//                'image' => 'required',
-////                'parent_id' => 'required',
-//            ];
-//        }
-//        else{
-//            return [
-//                'name' => 'required',
-//                'slug' => 'required',
-//                'en_name' => 'required',
-//                'parent_id' => 'required',
-//            ];
-//        }
     }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-
-        ];
-    }
-
 }

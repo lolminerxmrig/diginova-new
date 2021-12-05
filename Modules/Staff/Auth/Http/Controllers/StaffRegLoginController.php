@@ -19,6 +19,7 @@ use Modules\Staff\Product\Models\ProductHasVariant;
 use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Models\Media;
 
 
 class StaffRegLoginController extends Controller
@@ -72,6 +73,7 @@ class StaffRegLoginController extends Controller
         $remember = filled($request->remember) ?: false;
 
         if (Auth::guard('staff')->attempt($credentials, $remember)) {
+            $this->deleteUnusedMedia();
             $request->session()->regenerate();
             return redirect()->route('staff.dashboardPage');
           }
@@ -79,6 +81,26 @@ class StaffRegLoginController extends Controller
         return back()->withErrors([
             'wrongEmailPass' => 'نام کاربری یا رمز عبور اشتباه است لطفا دوباره تلاش نمایید',
         ]);
+    }
+
+    public function deleteUnusedMedia()
+    {
+        $unusedMedia = Media::where('status', null)
+            ->where('created_at', '<', Carbon::now()
+              ->subHours(1)
+              ->toDateTimeString()
+            )
+            ->get();
+
+
+        foreach ($unusedMedia as $media)
+        {
+          $imagePath = public_path($media->path . "/" . $media->name);
+          if (file_exists($imagePath)) {
+              unlink($imagePath);
+          }
+          $media->delete();
+        }
     }
 
     public function logout(Request $request)

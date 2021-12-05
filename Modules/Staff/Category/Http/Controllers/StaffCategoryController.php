@@ -10,6 +10,7 @@ use App\Models\Media;
 use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Category\Http\Requests\StaffCategoryRequest;
 use Illuminate\Contracts\Auth\Guard;
+use Auth;
 
 class StaffCategoryController extends Controller
 {
@@ -17,7 +18,10 @@ class StaffCategoryController extends Controller
 
     public function __construct(Guard $auth)
     {
-        $this->staff_id = $auth->id();
+        $this->middleware(function ($request, $next) {
+            $this->staff_id = Auth::guard('staff')->user()->id;
+            return $next($request);
+        });
     }
 
     /**
@@ -113,7 +117,7 @@ class StaffCategoryController extends Controller
         $categories = Category::latest()
             ->get();
 
-        $id = $request->id;
+        $id = intval($request->id);
 
         // حل مشکل ستون های خالی
         if (Category::whereParentId($id)->exists()) {
@@ -179,14 +183,12 @@ class StaffCategoryController extends Controller
         $media = Media::find($request->id);
 
         if($media) {
-            $imagePath = $media->path . "\/" . $media->name;
-            unlink(public_path($media));
-            $media->delete();
-
+            $imagePath = public_path($media->path . "\/" . $media->name);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+                $media->delete();
+            }
         }
-        // if (file_exists($imagePath)) {
-        // }
-
     }
 
     public function uploadImage(Request $request)
@@ -228,11 +230,11 @@ class StaffCategoryController extends Controller
         $all_children = array_reverse($this->getAllChildren($category));
         array_push($all_children, $category->id);
 
-        foreach ($all_children as $child_id) {
-            $child_category = Category::findOrFail($child_id);
-            $this->transferDependenciesToUncategorized($child_category);
-            $this->deleteDependencies($child_category);
-            $child_category->delete();
+        foreach($all_children as $child_id) {
+                $child_category = Category::findOrFail($child_id);
+                $this->transferDependenciesToUncategorized($child_category);
+                $this->deleteDependencies($child_category);
+                $child_category->delete();
         }
     }
 
@@ -330,7 +332,7 @@ class StaffCategoryController extends Controller
     {
         /** @var $uncategorized */
         $uncategorized = Category::whereEnName('uncategorized')
-            ->firstOrFail();
+            ->first();
 
         /** @var array $dependencies */
         $dependencies = [
@@ -344,15 +346,25 @@ class StaffCategoryController extends Controller
         ];
 
         /**
-         * detach relationships with category.
+         * if there was no uncategorized then
+         * category detach relationships with category.
          */
+        if (! $uncategorized)
+        {
+            Category::create([
+                'name' => 'دسته بندی نشده',
+                'en_name' => 'uncategorized',
+                'slug' => 'uncategorized',
+                'parent_id' => 0
+            ]);
+        }
+
         foreach ($dependencies as $dependency) {
             foreach ($category->$dependency as $item) {
                 $item->categories()->detach($category);
                 $item->categories()->attach($uncategorized);
             }
         }
-
     }
 
     /**
