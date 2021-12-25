@@ -139,9 +139,9 @@
                                                             {{ !is_null($customer->email)? $customer->email : '' }}
                                                         </td>
 
-                                                          {{ ($customer->orders()->exists())? persianNum($customer->orders()->count()) : persianNum(0) }}                    <td class="c-ui-table__cell c-ui-tطable__cell--small-text">
+                                                        <td class="c-ui-table__cell c-ui-tطable__cell--small-text">
                                                           <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-
+                                                            {{ ($customer->orders()->exists())? persianNum($customer->orders()->count()) : persianNum(0) }}                    
                                                           </span>
                                                         </td>
 
