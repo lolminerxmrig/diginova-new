@@ -16,15 +16,25 @@ class StaffWarrantyController extends Controller
 
     public function index()
     {
-        $warranties = Warranty::distinct('name')->orderBy('created_at', 'desc')->paginate(10);
-        $trashed_warranties = Warranty::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $warranties = Warranty::distinct('name')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        $trashed_warranties = Warranty::distinct('name')
+            ->onlyTrashed()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
         $categories = Category:: all();
-        return view('staffwarranty::index', compact('warranties', 'categories', 'trashed_warranties'));
+
+        return view('staffwarranty::index', 
+            compact('warranties', 'categories', 'trashed_warranties'));
     }
 
     public function create()
     {
-        $categories = Category::get()->unique('name');
+        $categories = Category::get();
+
         return view('staffwarranty::create', compact('categories'));
     }
 
@@ -58,13 +68,14 @@ class StaffWarrantyController extends Controller
     {
         $warranty = Warranty::find($id);
         $warranties = Warranty::all();
-        $categories = Category::get()->unique('name');
-        return view('staffwarranty::edit', compact('categories', 'warranty', 'warranties'));
+        $categories = Category::get();
+
+        return view('staffwarranty::edit',
+             compact('categories', 'warranty', 'warranties'));
     }
 
     public function update(Request $request)
     {
-
         if (is_null($request->categories)) {
             return response()->json('error', 400);
         }
@@ -82,34 +93,41 @@ class StaffWarrantyController extends Controller
             return intval($value);
         }, $request->categories);
 
-        Categorizable::where('categorizable_type', 'Warranty')->where('categorizable_id', $request->id)->delete();
+        Categorizable::where('categorizable_type', 'Warranty')
+            ->where('categorizable_id', $request->id)
+            ->delete();
 
         foreach ($categories as $category)
         {
             $this_cat = Category::find($category);
-            $warranty->categories()->attach($this_cat);
-        }
 
+            $warranty->categories()
+                ->attach($this_cat);
+        }
     }
 
-    public  function ajaxPagination(Request $request)
+    public function ajaxPagination(Request $request)
     {
-        if ($request->paginatorNum){
-            $paginatorNum = $request->paginatorNum;
-        }
-        else {
-            $paginatorNum = 10;
-        }
+        $request->paginatorNum 
+            ? $paginatorNum = $request->paginatorNum;
+            : $paginatorNum = 10;
 
-        $warranties = Warranty::distinct('name')->orderBy('created_at', 'desc')->paginate($paginatorNum);
-        $trashed_warranties = Warranty::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $warranties = Warranty::distinct('name')
+            ->orderBy('created_at', 'desc')
+            ->paginate($paginatorNum);
+
+        $trashed_warranties = Warranty::distinct('name')
+            ->onlyTrashed()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         $categories = Category::all();
 
         $pageType = 'index';
 
         return View::make('staffwarranty::ajax-content',
-            compact('warranties', 'categories', 'pageType', 'trashed_warranties'))->render();
+            compact('warranties', 'categories', 'pageType', 'trashed_warranties'))
+            ->render();
     }
 
     public function filterByType(Request $request)
@@ -117,49 +135,74 @@ class StaffWarrantyController extends Controller
         if ($request->search_type == 'all')
         {
             return $this->ajaxPagination($request);
-
         }
-        else {
-            $warranties = Warranty::where('type', 1)->distinct('name')->orderBy('created_at', 'desc')->paginate(10);
-            $trashed_warranties = Warranty::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
-            $pageType = 'only_special';
 
-            if ($warranties){
-                return View::make('staffwarranty::ajax-content', compact('warranties', 'pageType', 'trashed_warranties'));
-            }
+        $warranties = Warranty::where('type', 1)
+            ->distinct('name')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
+        $trashed_warranties = Warranty::distinct('name')
+            ->onlyTrashed()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        $pageType = 'only_special';
+
+        if ($warranties){
+            return View::make('staffwarranty::ajax-content', 
+                compact('warranties', 'pageType', 'trashed_warranties'));
         }
+
+    
     }
 
     public function trash()
     {
-        $warranties = Warranty::onlyTrashed()->paginate(10);
+        $warranties = Warranty::onlyTrashed()
+            ->paginate(10);
+
         return view('staffwarranty::trash', compact('warranties'));
     }
 
     public function trashPagination(){
-        $warranties = Warranty::onlyTrashed()->paginate(10);
-        return View::make('staffwarranty::ajax-trash-content', compact('warranties'));
+        $warranties = Warranty::onlyTrashed()
+            ->paginate(10);
+
+        return View::make('staffwarranty::ajax-trash-content',
+            compact('warranties'));
     }
 
     public function moveToTrash(Request $request)
     {
-        Warranty::find($request->id)->delete();
+        Warranty::find($request->id)
+            ->delete();
+
         return $this->ajaxPagination($request);
     }
 
     public function restoreFromTrash(Request $request)
     {
-        Warranty::withTrashed()->find($request->id)->restore();
-        $warranties = Warranty::onlyTrashed()->paginate(10);
-        return View::make('staffwarranty::ajax-trash-content', compact('warranties'));
+        Warranty::withTrashed()
+            ->find($request->id)
+            ->restore();
+
+        $warranties = Warranty::onlyTrashed()
+            ->paginate(10);
+
+        return View::make('staffwarranty::ajax-trash-content',
+            compact('warranties'));
     }
 
     public function removeFromTrash(Request $request)
     {
-        $warranty = Warranty::withTrashed()->find($request->id);
+        $warranty = Warranty::withTrashed()
+            ->find($request->id);
 
-        Categorizable::where('categorizable_type', 'Warranty')->where('categorizable_id', $request->id)->delete();
+        Categorizable::where('categorizable_type', 'Warranty')
+            ->where('categorizable_id', $request->id)
+            ->delete();
+
         if($warranty->product_variants)
         {
             foreach ($warranty->product_variants as $variant)
@@ -170,10 +213,14 @@ class StaffWarrantyController extends Controller
                 ]);
             }
         }
-      $warranty->forceDelete();
 
-      $warranties = Warranty::onlyTrashed()->paginate(10);
-        return View::make('staffwarranty::ajax-trash-content', compact('warranties'));
+        $warranty->forceDelete();
+
+        $warranties = Warranty::onlyTrashed()
+            ->paginate(10);
+
+        return View::make('staffwarranty::ajax-trash-content',
+            compact('warranties'));
 
     }
 
@@ -181,8 +228,14 @@ class StaffWarrantyController extends Controller
     {
         $search_keyword = $request->search_keyword;
 
-        $warranties = Warranty::query()->where('name', 'LIKE', "%{$search_keyword}%")->paginate(10);
-        $trashed_warranties = Warranty::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $warranties = Warranty::query()
+            ->where('name', 'LIKE', "%{$search_keyword}%")
+            ->paginate(10);
+
+        $trashed_warranties = Warranty::distinct('name')
+            ->onlyTrashed()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         if ($warranties) {
             $pageType = 'warrantySearch';
@@ -201,8 +254,13 @@ class StaffWarrantyController extends Controller
 
         if ($warranties) {
             $pageType = 'warrantyCatSearch';
-            $trashed_warranties = Warranty::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
-            return View::make("staffwarranty::ajax-content", compact('warranties', 'pageType', 'trashed_warranties'));
+            $trashed_warranties = Warranty::distinct('name')
+                ->onlyTrashed()
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            return View::make("staffwarranty::ajax-content",
+                compact('warranties', 'pageType', 'trashed_warranties'));
         }
     }
 

@@ -16,13 +16,18 @@ class Comment extends Model
 {
     use SoftDeletes;
 
-    // protected $table = 'comments';
-    protected $fillable = ['parent_id', 'text', 'title', 'advantages', 'disadvantages', 'is_anonymous', 'recommend_status', 'publish_status', 'product_id', 'customer_id'];
-
-
-    public function scopeAccepted($query) {
-        return $query->where('publish_status', 'accepted');
-    }
+    protected $fillable = [
+        'parent_id',
+        'text', 
+        'title', 
+        'advantages', 
+        'disadvantages', 
+        'is_anonymous', 
+        'recommend_status', 
+        'publish_status', 
+        'product_id', 
+        'customer_id'
+    ];
 
     public function media()
     {
@@ -47,6 +52,10 @@ class Comment extends Model
     public function ratings()
     {
         return $this->hasMany(CommentHasRating::class, 'comment_id');
+    }
+
+    public function scopeAccepted($query) {
+        return $query->where('publish_status', 'accepted');
     }
 
 }

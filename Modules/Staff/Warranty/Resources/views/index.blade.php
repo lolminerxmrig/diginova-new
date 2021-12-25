@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 @section('title') مدیریت گارانتی‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('seller/js/indexAction.js') }}"></script>
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
+    <script src="{{ asset('seller/js/indexAction.js') }}"></script>
+    <script src="{{ asset('seller/js/tableView.js') }}"></script>
 @endsection
 @section('content')
 <main class="c-main">
@@ -12,7 +12,9 @@
                 <div class="c-grid__col">
                     <input type="hidden" value="" name="has-warehouses">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت گارانتی‌ها<span>از این صفحه می‌توانید گارانتی‌ها را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">
+                            مدیریت گارانتی‌ها
+                            <span>از این صفحه می‌توانید گارانتی‌ها را مدیریت کنید</span>
                         </h1>
                     </div>
                 </div>
@@ -31,11 +33,12 @@
                                         <label class="c-ui-form__label">جستجو بر اساس:</label>
                                         <div class="c-ui-form__row" data-select2-id="10">
                                             <div
-                                                class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--xs c-ui-form__col--wrap-xs"
+                                                class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12
+                                                 c-ui-form__col--small-gap c-ui-form__col--xs c-ui-form__col--wrap-xs"
                                                 style="min-width: 175px" >
                                                 <select
                                                     class="c-ui-select c-ui-select--common c-ui-select--small js-form-clearable select2-hidden-accessible"
-                                                    name="searchGroup" data-select2-id="1" tabindex="-1"
+                                                    name="searchGroup" tabindex="-1"
                                                     aria-hidden="true" id="searchGroup">
                                                     <option value="warranty_name" selected>نام گارانتی</option>
                                                     <option value="warranty_category">گروه کالا</option>
@@ -43,23 +46,23 @@
                                             </div>
                                             <div
                                                 class="c-ui-form__col c-ui-form__col--6 c-ui-form__col--xs-12
-                  c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
+                                                    c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
                                                 <label>
                                                     <div class="c-ui-input">
-                                                        <input type="text" name="searchKeyword" class="c-ui-input__field c-ui-input__field--order js-form-clearable"
-                                                               id="searchKeyword" value="" placeholder="عنوان را بنویسید ...">
+                                                        <input type="text" name="searchKeyword" class="c-ui-input__field c-ui-input__field--order 
+                                                            js-form-clearable" id="searchKeyword" value="" placeholder="عنوان را بنویسید ...">
                                                     </div>
                                                 </label>
                                             </div>
-                                            <div
-                                                class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
+                                            <div class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap
+                                             c-ui-form__col--wrap-xs c-ui-form__col--xs">
                                                 <button class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--search-form"
                                                     id="search-btn" disabled>
                                                     <span>جستجو</span>
                                                 </button>
                                             </div>
-                                            <div
-                                                class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
+                                            <div class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--wrap-xs
+                                             c-ui-form__col--xs">
                                                 <button type="button"
                                                         class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--clear-form"
                                                         id="searchClear" disabled=""></button>
@@ -86,12 +89,16 @@
                                         </a>
                                         @if($trashed_warranties->count())
                                         <div class="c-grid__col c-grid__col--lg-4">
-                                            <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی‌های حذف شده</a>
+                                            <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">
+                                                مدیریت گارانتی‌های حذف شده
+                                            </a>
                                         </div>
                                         @endif
-                                        <div class="c-ui-paginator js-paginator" data-select2-id="16">
-                                            <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
+                                        <div class="c-ui-paginator js-paginator">
+                                            <div class="c-ui-paginator__total">
+                                                تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">
+                                                    {{ persianNum($warranties->total()) }} مورد
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -112,9 +119,6 @@
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap ">تعداد تنوع</span>
                                                 </th>
-{{--                                                <th class="c-ui-table__header"><span--}}
-{{--                                                        class="table-header-searchable uk-text-nowrap ">کالاهای فعال</span>--}}
-{{--                                                </th>--}}
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap ">عملیات</span>
                                                 </th>
@@ -124,7 +128,9 @@
                                             @foreach($warranties as $key => $warranty)
                                                 <tr name="row" id="{{$warranty->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                     <td class="c-ui-table__cell">
-                                                        <span class="c-wallet__body-card-row-item"> {{ persianNum($warranties->firstItem() + $key) }} </span>
+                                                        <span class="c-wallet__body-card-row-item">
+                                                             {{ persianNum($warranties->firstItem() + $key) }} 
+                                                        </span>
                                                     </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                         <div class="uk-flex uk-flex-column">
@@ -151,23 +157,21 @@
                                                             </div>
                                                         </a>
                                                     </td>
-{{--                                                    <td class="c-ui-table__cell">--}}
-{{--                                                        <div class="">--}}
-{{--                                                            <div class="c-wallet__body-card-status-no-circle--}}
-{{--                          c-wallet__body-card-status-no-circle--active uk-text-nowrap" style="margin: auto">--}}
-{{--                                                                فعال--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </td>--}}
-                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> {{ persianNum($warranty->product_variants->count()) }} </span>
+                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> 
+                                                        {{ persianNum($warranty->product_variants->count()) }} 
+                                                    </span>
                                                     </td>
-{{--                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> ۱ </span>--}}
-{{--                                                    </td>--}}
                                                     <td class="c-ui-table__cell">
                                                         <div class="c-promo__actions">
-                                                            <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.warranties.edit', $warranty->id) }}">ویرایش</a>
-                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                               value="{{ $warranty->id }}">حذف</button>
+                                                            <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit
+                                                             c-join__btn--secondary-greenish" href="{{ route('staff.warranties.edit', $warranty->id) }}">
+                                                                ویرایش
+                                                            </a>
+                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete 
+                                                                c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
+                                                                value="{{ $warranty->id }}">
+                                                                حذف
+                                                            </button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -184,35 +188,20 @@
 
                                         @if($trashed_warranties->count())
                                             <div class="c-grid__col c-grid__col--lg-4">
-                                                <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">مدیریت گارانتی‌های حذف شده</a>
+                                                <a href="{{ route('staff.warranties.trash') }}" 
+                                                    class="c-ui-btn js-view-all-orders">
+                                                    مدیریت گارانتی‌های حذف شده
+                                                </a>
                                             </div>
                                         @endif
 
                                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
                                         <div class="c-ui-paginator js-paginator" data-select2-id="25">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">
+                                                    {{ persianNum($warranties->total()) }} مورد
+                                                </span>
                                             </div>
-{{--                                            <div class="c-ui-paginator__select" data-select2-id="24">--}}
-{{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-{{--                                                <div class="c-ui-paginator__select-pages">--}}
-{{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-{{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-{{--                                                         select2-hidden-accessible paginator-selected"--}}
-{{--                                                            name="paginator-select-pages" id="paginator-bottom"--}}
-{{--                                                            tabindex="-1" aria-hidden="true">--}}
-{{--                                                            <option value="10">۱۰</option>--}}
-{{--                                                            <option value="20">۲۰</option>--}}
-{{--                                                            <option value="50">۵۰</option>--}}
-{{--                                                            <option value="100">۱۰۰</option>--}}
-{{--                                                        </select>--}}
-
-
-{{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -225,39 +214,6 @@
                     <div class="c-grid__row">
                         <div class="c-grid__col">
                             <div class="c-card">
-                                {{--
-                                <div class="c-card__header">
-                                  --}}
-                                {{--
-                                <div class="c-grid__col">
-                                  --}}
-                                {{--
-                                <h2 class="c-card__title c-join__tab-card-title">مدیریت گارانتیها</h2>
-                                --}}
-                                {{--
-                                <ul class="uk-tab c-promo__tabs">
-                                  --}}
-                                {{--
-                                <li class="c-promo__tab-item c-promo__tab-item--promotions uk-active" data-tab="1">--}}
-                                {{--                                            <a href="/promotion-management/">همه گارانتیها</a>--}}
-                                {{--
-                              </li>
-                              --}}
-                                {{--
-                                <li class="c-promo__tab-item c-promo__tab-item--products" data-tab="2">--}}
-                                {{--                                            <a href="/promotion-management/products/">گارانتیهای حذف شده</a>--}}
-                                {{--
-                              </li>
-                              --}}
-                                {{--
-                              </ul>
-                              --}}
-                                {{--
-                              </div>
-                              --}}
-                                {{--
-                              </div>
-                              --}}
                                 <div class="c-card__body">
                                     <div class="c-grid__col">
                                         <div class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible" data-tab="1">
@@ -268,12 +224,15 @@
                                                         نتیجه‌ای برای نمایش وجود ندارد!
                                                     </p>
                                                     <p class="c-join__promotion-info-statement">
-                                                        شما تعداد {{ persianNum($trashed_warranties->count()) }} گارانتی حذف شده در Trash دارید برای مدیریت و بازگردانی آنها بر روی دکمه زیر کلیک کنید
+                                                        شما تعداد {{ persianNum($trashed_warranties->count()) }} گارانتی حذف شده در Trash 
+                                                        دارید برای مدیریت و بازگردانی آنها بر روی دکمه زیر کلیک کنید
                                                     </p>
                                                     <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
                                                        href="{{ route('staff.warranties.trash') }}">ورود به صفحه Trash</a>
                                                 @else
-                                                    <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">شما تا به حال هیچ گارانتی ایجاد نکرده‌اید</p>
+                                                    <p class="c-join__promotion-info-statement c-join__promotion-info-statement--bg">
+                                                        شما تا به حال هیچ گارانتی ایجاد نکرده‌اید
+                                                    </p>
                                                     <p class="c-join__promotion-info-statement">
                                                         برای ایجاد گارانتی جدید روی دکمه زیر کلیک کنید.
                                                     </p>

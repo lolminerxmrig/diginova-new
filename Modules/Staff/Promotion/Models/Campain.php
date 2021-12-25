@@ -13,7 +13,14 @@ use Modules\Staff\Product\Models\ProductHasVariant;
 
 class Campain extends Model
 {
-    protected $fillable = ['name', 'min_percent', 'start_at', 'end_at', 'type', 'status'];
+    protected $fillable = [
+        'name',
+        'min_percent',
+        'start_at',
+        'end_at',
+        'type',
+        'status'
+    ];
 
     public function categories()
     {
@@ -30,11 +37,6 @@ class Campain extends Model
         return $this->morphTo(ProductHasVariant::class);
     }
 
-//    public function promotions()
-//    {
-//        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
-//    }
-
     public function landing()
     {
         return $this->hasOne(Landing::class);
@@ -44,5 +46,10 @@ class Campain extends Model
     {
         return $this->hasMany(Promotion::class);
     }
+
+//    public function promotions()
+//    {
+//        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
+//    }
 
 }

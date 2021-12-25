@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory as ModelFactory;
 
-
-
 class StaffCommentServiceProvider extends ServiceProvider
 {
     /**
@@ -28,5 +26,4 @@ class StaffCommentServiceProvider extends ServiceProvider
             'Comment' => 'Modules\Staff\Comment\Models\Comment',
         ]);
     }
-
 }

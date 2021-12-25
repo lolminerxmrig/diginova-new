@@ -2,11 +2,8 @@
 
 namespace Modules\Staff\Customer\Providers;
 
-use Faker\Factory;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory as ModelFactory;
-
 
 class StaffCustomerServiceProvider extends ServiceProvider
 {

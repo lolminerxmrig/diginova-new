@@ -14,6 +14,7 @@ class CommentFeedback extends Model
 {
 
     protected $table = 'comments_feedbacks';
+
     protected $fillable = ['status', 'comment_id', 'customer_id'];
 
     public function customer()
@@ -33,6 +34,6 @@ class CommentFeedback extends Model
 
     public function scopeDislike($query)
     {
-        return $query->where('status', 'like');
+        return $query->where('status', 'dislike');
     }
 }

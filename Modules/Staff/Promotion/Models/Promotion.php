@@ -13,13 +13,16 @@ use Modules\Staff\Product\Models\ProductHasVariant;
 class Promotion extends Model
 {
 
-    protected $table = 'promotions';
-    protected $fillable = ['promotion_price', 'percent', 'start_at', 'end_at', 'promotion_limit', 'promotion_order_limit', 'status', 'campain_id'];
-
-    public function productVariants()
-    {
-        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', 'variantable_id', 'product_variant_id');
-    }
+    protected $fillable = [
+        'promotion_price',
+        'percent',
+        'start_at',
+        'end_at',
+        'promotion_limit',
+        'promotion_order_limit',
+        'status',
+        'campain_id'
+    ];
 
     public function campain() {
       return $this->belongsTo(Campain::class);
@@ -30,6 +33,15 @@ class Promotion extends Model
             ->whereDate('end_at', '>=', now())
             ->where('status', 'active')
             ->orWhere('status', 1);
+    }
+
+    public function productVariants()
+    {
+        return $this->morphToMany(ProductHasVariant::class,
+         'variantable',
+         'product_variantables',
+         'variantable_id',
+         'product_variant_id');
     }
 
 //    public function productVariants()

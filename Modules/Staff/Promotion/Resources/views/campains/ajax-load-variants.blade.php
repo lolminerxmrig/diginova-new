@@ -9,26 +9,33 @@
                     <div class="c-card">
                         <div class="c-card__body">
                             <form class="c-ui-form" method="POST" id="searchForm">
-
                                 <form class="c-ui-form" method="POST" id="searchForm">
                                     <div class="uk-flex">
-                                        <div class="uk-width-1-2 c-mega-campaigns-join-list__container-filters-search c-mega-campaigns-join-list__container-filters-search--large">
-                                            <div class="uk-width-1-1 c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap uk-padding-remove-left uk-padding-remove-right">
+                                        <div class="uk-width-1-2 c-mega-campaigns-join-list__container-filters-search
+                                         c-mega-campaigns-join-list__container-filters-search--large">
+                                            <div class="uk-width-1-1 c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap
+                                             uk-padding-remove-left uk-padding-remove-right">
                                                 <label class="c-ui-form__label uk-text-right">جستجو در</label>
                                                 <div class="c-ui-form__row c-ui-form__row--group c-ui-form__row--nowrap c-ui-form__row--wrap-xs">
-                                                    <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-search-type">
-                                                        <select class="js-form-clearable js-re-init-select2-after-ajax c-ui-select c-ui-select--common c-ui-select--small c-ui-select--search" name="type"                                                                >
+                                                    <div class="c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs
+                                                     c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-search-type">
+                                                        <select class="js-form-clearable js-re-init-select2-after-ajax c-ui-select c-ui-select--common 
+                                                        c-ui-select--small c-ui-select--search" name="type"                                                                >
                                                             <option value="all" {{ (isset($type) && ($type == 'all'))? 'selected' : ''  }}  {{ (!isset($type))? 'selected' : '' }}>همه موارد</option>
                                                             <option value="product_name" {{ (isset($type) && ($type == 'product_name'))? 'selected' : ''  }}>نام محصول</option>
                                                             <option value="product_id" {{ (isset($type) && ($type == 'product_id'))? 'selected' : ''  }}>کد محصول</option>
-                                                            <option value="product_variant_id" {{ (isset($type) && ($type == 'product_variant_id'))? 'selected' : ''  }}>کد تنوع</option>
-{{--                                                            <option value="product_category">گروه کالا</option>--}}
+                                                            <option value="product_variant_id" {{ (isset($type) && ($type == 'product_variant_id'))? 'selected' : ''  }}>
+                                                                کد تنوع
+                                                            </option>
                                                         </select>
                                                     </div>
-                                                    <div class="uk-width-1-1 c-ui-form__col c-ui-form__col--xs-6 c-ui-form__col--group-item c-ui-form__col--wrap-xs c-ui-form__col--xs-full">
+                                                    <div class="uk-width-1-1 c-ui-form__col c-ui-form__col--xs-6 c-ui-form__col--group-item 
+                                                    c-ui-form__col--wrap-xs c-ui-form__col--xs-full">
                                                         <label>
                                                             <div class="c-ui-input">
-                                                                <input type='text' name='query' class='c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable c-mega-campaigns--light-border' id='questions-search' value='{{ $query }}' placeholder='عبارت جستجو ...'>
+                                                                <input type='text' name='query' class='c-ui-input__field c-ui-input__field--order
+                                                                 c-ui-input__field--has-btn js-form-clearable c-mega-campaigns--light-border'
+                                                                  id='questions-search' value='{{ $query }}' placeholder='عبارت جستجو ...'>
                                                             </div>
                                                         </label>
                                                     </div>
@@ -41,30 +48,17 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                        <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select c-mega-campaigns--mr-30">
+                                        <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 
+                                        c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select c-mega-campaigns--mr-30">
                                             <label class="c-ui-form__label uk-text-right">مرتب‌‌سازی کالاها بر اساس:</label>
-                                            <select class="js-form-clearable js-re-init-select2-after-ajax c-ui-select c-ui-select--common c-ui-select--small" name="sort">
+                                            <select class="js-form-clearable js-re-init-select2-after-ajax
+                                             c-ui-select c-ui-select--common c-ui-select--small" name="sort">
                                                 <option value="desc" selected>جدیدترین</option>
                                                 <option value="price_low">ارزان‌ترین</option>
                                                 <option value="price_high">گرانترین</option>
                                             </select>
                                         </div>
                                     </div>
-
-{{--                                    <div class="c-join-smart-select__notif">--}}
-{{--                                        <div class="c-join-smart-select__notif-title">--}}
-{{--                                         <span class="c-join-smart-select__notif-title-count">--}}
-{{--                                            ۸--}}
-{{--                                        </span>--}}
-{{--                                            پروموشن و کمیپن فعال، منطبق با کالاهای لیست زیر در سایت موجود است.--}}
-{{--                                        </div>--}}
-{{--                                        <div class="c-join-smart-select__notif-link js-active-campaign-list">--}}
-{{--                                            <a target="_blank" href="/join-promotions-list/index/?showAllPublicPromotions=1">لیست همه پروموشن‌های فعال</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-
                                 </form>
                             </form>
                         </div>
@@ -72,7 +66,9 @@
                 </div>
             </div>
             <div class="c-join-promotion__table">
-                <table class="c-ui-table js-sub-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="/periodic-prices/0/load-product-variants/" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
+                <table class="c-ui-table js-sub-search-table js-table-fixed-header" data-sort-column="created_at"
+                 data-sort-order="desc" data-search-url="/periodic-prices/0/load-product-variants/" 
+                 data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
                     <thead>
                     <tr class="c-ui-table__row">
                         <th class="c-ui-table__header c-ui-table__header--nowrap ">
@@ -110,11 +106,12 @@
                     <tbody>
                     @if(!is_null($product_variants))
                     @foreach($product_variants as $product_variant)
-                      <tr data-variant-id="{{ $product_variant->id  }}" class="c-ui-table__row c-ui-table__row--body c-ui-table__row--with-hover c-join__table-row ">
+                      <tr data-variant-id="{{ $product_variant->id  }}" class="c-ui-table__row c-ui-table__row--body
+                       c-ui-table__row--with-hover c-join__table-row ">
                         <td class="c-ui-table__cell">
                             <label class="c-ui-checkbox js-checkbox-{{ $product_variant->id  }}">
-{{--                                {{ (!is_null($promotions->productVariants->find($product_variant)))? 'checked disabled' : '' }}--}}
-                                <input type="checkbox"  value="{{ $product_variant->id  }}" class="js-selected-item c-ui-checkbox__origin all-checkbox">
+                                <input type="checkbox"  value="{{ $product_variant->id  }}" 
+                                class="js-selected-item c-ui-checkbox__origin all-checkbox">
                                 <span class="c-ui-checkbox__check"></span>
                             </label>
                         </td>
@@ -124,18 +121,15 @@
                         <td class="c-ui-table__cell">
                             {{ $product_code_prefix . '-' . $product_variant->product->product_code }}
                         </td>
-
-{{--                        <td class="c-ui-table__cell ">--}}
-{{--                            {{ $product_variant->product->title_fa }}--}}
-{{--                            <span class="c-join-promotion__dkpc-number">{{ $product_code_prefix }}C-{{ $product_variant->variant_code  }}</span>--}}
-{{--                        </td>--}}
                         <td class="c-ui-table__cell " style="text-align: right;">
                               {{ $product_variant->product->title_fa }} | {{ $product_variant->variant->name }} | گارانتی
                               {{ (!is_null($product_variant->warranty->month))? persianNum($product_variant->warranty->month) . ' ماهه' : '' }}
                               {{ $product_variant->warranty->name }}
                               <span class="c-join-promotion__dkpc-number">{{ $product_code_prefix }}C-{{ $product_variant->variant_code  }}</span>
                           </td>
-                        <td class="c-ui-table__cell">{{ (!is_null($product_variant->buy_price)? persianNum(number_format($product_variant->buy_price)) : '') }}</td>
+                        <td class="c-ui-table__cell">
+                            {{ (!is_null($product_variant->buy_price)? persianNum(number_format($product_variant->buy_price)) : '') }}
+                        </td>
                         <td class="c-ui-table__cell">{{ persianNum(number_format($product_variant->sale_price)) }}</td>
                         <td class="c-ui-table__cell">-</td>
                         <td class="c-ui-table__cell">
@@ -161,7 +155,8 @@
         </div>
         <div class="c-card__footer c-join__table-footer" style="width: 95%;">
             <div class="c-grid__row c-grid__row--align-center">
-                <button class="js-add-variant-to-promotion c-join__btn c-join__btn--secondary c-join__btn c-join__btn--icon-left c-join__btn--icon-plus">
+                <button class="js-add-variant-to-promotion c-join__btn c-join__btn--secondary
+                 c-join__btn c-join__btn--icon-left c-join__btn--icon-plus">
                     افزودن به لیست تخفیف‌ها
                 </button>
                 <p class="c-join-promotion__selected-products-text">
