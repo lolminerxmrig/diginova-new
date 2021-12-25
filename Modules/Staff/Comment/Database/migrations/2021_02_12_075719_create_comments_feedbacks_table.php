@@ -20,8 +20,15 @@ class CreateCommentsFeedbacksTable extends Migration
             $table->foreignId('customer_id');
             $table->timestamps();
 
-            $table->foreign('comment_id')->references('id')->on('comments');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('comment_id')
+                ->references('id')
+                ->on('comments')
+                ->onDelete('cascade');
+                
+            $table->foreign('customer_id')
+                ->references('id')
+                ->on('customers')
+                ->onDelete('cascade');
         });
     }
 

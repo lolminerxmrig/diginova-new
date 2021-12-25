@@ -2,7 +2,6 @@
 
 namespace Modules\Staff\Promotion\Http\Controllers;
 
-
 use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -16,31 +15,36 @@ use Modules\Staff\Landing\Models\Landing;
 
 class StaffCampainController extends Controller
 {
-    // goods
     public function campainStatus(Request $request)
     {
-        Campain::where('id', $request->id)->update([
+        $campain = Campain::whereId($request->id)->first()
+        $campain->update([
             'status' => $request->status,
         ]);
     }
 
     public function endedCampainSearch(Request $request, Campain $campains)
     {
-        $campains->where('end_at', '<', now())->orWhere('status', 'ended')->get();
-        (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
+        $campains->where('end_at', '<', now())
+            ->orWhere('status', 'ended')
+            ->get();
+
+        $request->paginatorNum = $request->paginatorNum ?? 10;
 
         $campains = $this->campainFilter($request, $campains);
 
-        return view('staffpromotion::campains.endedSearchResult', compact('campains'));
+        return view('staffpromotion::campains.endedSearchResult',
+         compact('campains'));
     }
 
     public function searchCampain(Request $request, Campain $campains)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
+        $request->paginatorNum = $request->paginatorNum ?? 10;
 
         $campains = $this->campainFilter($request, $campains);
 
-        return view('staffpromotion::campains.searchResult', compact('campains'));
+        return view('staffpromotion::campains.searchResult',
+         compact('campains'));
     }
 
     public function moveToEnds(Request $request)
@@ -85,8 +89,12 @@ class StaffCampainController extends Controller
 
     public function index()
     {
-        $campains = Campain::where('end_at', '<', now())->orWhere('status', 'active')->paginate(10);
-        return view('staffpromotion::campains.index', compact('campains'));
+        $campains = Campain::where('end_at', '<', now())
+            ->orWhere('status', 'active')
+            ->paginate(10);
+
+        return view('staffpromotion::campains.index',
+         compact('campains'));
     }
 
     public function create()
@@ -96,7 +104,6 @@ class StaffCampainController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $start_at = $request->start_at;
         $end_at = $request->end_at;
 
@@ -131,7 +138,7 @@ class StaffCampainController extends Controller
             ]);
         }
 
-        ($request->status)? $status='active' : $status='inactive';
+        $status = $request->status ? 'active' : 'inactive';
 
         $campain = Campain::updateOrCreate(['id' => $request->campain_id], [
             'name' => $request->name,
@@ -170,9 +177,11 @@ class StaffCampainController extends Controller
     public function manage($id)
     {
         $campain = Campain::findOrFail($id);
-        $promotions = $campain->promotions()->paginate(10);
+        $promotions = $campain->promotions()
+            ->paginate(10);
 
-        return view('staffpromotion::campains.manageCampain', compact('campain', 'promotions'));
+        return view('staffpromotion::campains.manageCampain',
+         compact('campain', 'promotions'));
     }
 
     public function renderAddVariantsRows(Request $request)
@@ -182,7 +191,8 @@ class StaffCampainController extends Controller
             $product_variants = ProductHasVariant::all();
             return response()->json([
                 'status' => true,
-                'data' => view('staffpromotion::campains.render-add-variants-rows', compact('variantIds', 'product_variants'))->render(),
+                'data' => view('staffpromotion::campains.render-add-variants-rows',
+                 compact('variantIds', 'product_variants'))->render(),
             ]);
         } else {
             return response()->json([
@@ -210,7 +220,9 @@ class StaffCampainController extends Controller
         ], $messages);
 
         if ($validator->fails()) {
-            $errors = $validator->errors()->first();
+            $errors = $validator->errors()
+                ->first();
+
             return response()->json([
                 'status' => false,
                 'data' => [
@@ -232,7 +244,8 @@ class StaffCampainController extends Controller
 
         $product_variant = ProductHasVariant::find($request->id);
 
-        $promotion->productVariants()->sync($product_variant);
+        $promotion->productVariants()
+            ->sync($product_variant);
 
         return response()->json([
             'status' => true,
@@ -245,24 +258,29 @@ class StaffCampainController extends Controller
     public function ended()
     {
         if (Campain::where('status', 'ended')->count()) {
-            $campains = Campain::where('status', 'ended')->paginate(1);
+            $campains = Campain::where('status', 'ended')
+                ->paginate(10);
         } else {
             $campains = [];
         }
 
-        return view('staffpromotion::campains.ended', compact('campains'));
+        return view('staffpromotion::campains.ended',
+         compact('campains'));
     }
-
-
 
     public function loadProductVariants(Request $request, ProductHasVariant $product_variants, $id)
     {
-        (!$request->paginatorNum)? $request->paginatorNum = 2 : '';
+        $request->paginatorNum = $request->paginatorNum ?? 10;
 
         $product_variants = $this->ProductVariantsSearch($request, $product_variants);
 
-        (!is_null($request['query'])? $query = $request['query'] : $query = '');
-        (!is_null($request['type'])? $type = $request['type'] : $type = '');
+        (!is_null($request['query'])
+            ? $query = $request['query'] 
+            : $query = '');
+            
+        (!is_null($request['type'])
+            ? $type = $request['type']
+            : $type = '');
 
         return view('staffpromotion::campains.ajax-load-variants',
             compact('product_variants', 'query', 'type'));
@@ -320,11 +338,13 @@ class StaffCampainController extends Controller
 
     public function done()
     {
-        return view('staffpromotion::campains.done', compact('promotions'));
+        return view('staffpromotion::campains.done',
+            compact('promotions'));
     }
 
     public function delete(Request $request){
-        Promotion::find($request->promotionVariantId)->delete();
+        Promotion::find($request->promotionVariantId)
+            ->delete();
         return response()->json([
             'status' => true,
             'data' => true,
@@ -333,8 +353,9 @@ class StaffCampainController extends Controller
 
     public function search(Request $request, Promotion $promotions)
     {
+        $request->paginatorNum = $request->paginatorNum ?? 10;
+
         $paginate_type = 'active';
-        (!$request->paginatorNum)? $request->paginatorNum = 10 : '';
         $promotions = $promotions->with('productVariants');
 
         $search_keyword = ltrim($request->search['title'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
@@ -342,9 +363,13 @@ class StaffCampainController extends Controller
 
         $promotions = $this->promotionSearch($request, $promotions, $paginate_type);
 
+        (!is_null($request->search['title'])
+            ? $query = $request->search['title']
+            : $query = '');
 
-        (!is_null($request->search['title'])? $query = $request->search['title'] : $query = '');
-        (!is_null($request['type'])? $request['type'] : $type = '');
+        (!is_null($request['type'])
+            ? $request['type']
+            : $type = '');
 
         $paginate_type = 'active';
 

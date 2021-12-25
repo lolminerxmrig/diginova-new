@@ -3,7 +3,7 @@
 @section('title') مدیریت دسته‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('mehdi/staff/js/create-category-validation.js') }}"></script>
-<script src="{{ asset('seller/js/category-tags.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/category-tags.js') }}"></script>
 @endsection
 
 @section('content')
@@ -36,13 +36,16 @@
                                                         </div>
                                                     </a>
                                                 </h2>
-                                                <div style="width: 100%;margin: -7px 0px 20px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;"></div>
-                                                <div class="c-content-accordion__content c-content-accordion__content--small" id="stepTitleContainer" aria-hidden="false" style=" margin-right: -25px;">
+                                                <div style="width: 100%;margin: -7px 0px 20px 0px !important;padding: 0px !important;
+                                                    background: #e2dddd;height: 1px;"></div>
+                                                <div class="c-content-accordion__content c-content-accordion__content--small" 
+                                                id="stepTitleContainer" aria-hidden="false" style=" margin-right: -25px;">
                                                     <div class="c-card__body c-card__body--content category-box">
                                                         <label for="" class="search-form__action-label">جستجو در میان دسته‌ها</label>
                                                         <div class="search-form__autocomplete-container">
                                                             <div class="search-form__autocomplete js-autosuggest-box">
-                                                                <input name="search" id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="دسته مورد نظرتان را جستجو کنید">
+                                                                <input name="search" id="searchKeyword" class="c-content-input__origin js-prevent-submit"
+                                                                 type="text" placeholder="دسته مورد نظرتان را جستجو کنید">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -55,9 +58,12 @@
                                                                 <div class="c-content-categories__wrapper js-category-column cat-box" id="cat-box" data-id="0">
                                                                     <ul class="c-content-categories__list" style="list-style: none;">
                                                                         @foreach($categories->where('parent_id', 0) as $category)
-                                                                            <li class="c-content-categories__item {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}">
+                                                                            <li class="c-content-categories__item 
+                                                                                {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}">
                                                                                 <label class="c-content-categories__link js-category-link">
-                                                                                    <input type="radio" name="category" value="{{ $category->id }}" class="js-category-data radio uk-hidden" data-id="{{ $category->id }}" data-theme="" data-status="ziro_parent" style="visibility: hidden;">
+                                                                                    <input type="radio" name="category" value="{{ $category->id }}"
+                                                                                     class="js-category-data radio uk-hidden" data-id="{{ $category->id }}" data-theme=""
+                                                                                      data-status="ziro_parent" style="visibility: hidden;">
                                                                                     {{ $category->name }}
                                                                                 </label>
                                                                             </li>
@@ -92,7 +98,8 @@
                                                         <div class="c-content-loader__logo"></div>
                                                         <div class="c-content-loader__spinner"></div>
                                                     </div>
-                                                    <div class="edit-form-section edit-form-section-first c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr" style="margin: 40px 0 0 0;width: 100%;" id="edit-form-section-first">
+                                                    <div class="edit-form-section edit-form-section-first c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr"
+                                                     style="margin: 40px 0 0 0;width: 100%;" id="edit-form-section-first">
                                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
                                                             <label class="uk-form-label uk-flex uk-flex-between">نام
                                                                 فارسی دسته:

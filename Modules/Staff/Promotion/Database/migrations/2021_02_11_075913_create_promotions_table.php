@@ -25,7 +25,9 @@ class CreatePromotionsTable extends Migration
             $table->foreignId('campain_id');
             $table->timestamps();
 
-            $table->foreign('campain_id')->references('id')->on('campains');
+            $table->foreign('campain_id')
+                ->references('id')
+                ->on('campains');
         });
     }
 

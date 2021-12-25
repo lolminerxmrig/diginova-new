@@ -12,13 +12,15 @@ class StaffCommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::orderBy('created_at', 'desc')->paginate(10);
+        $comments = Comment::orderBy('created_at', 'desc')
+            ->paginate(10);
+
         return view('staffcomment::index', compact('comments'));
     }
 
     public function searchComment(Request $request, Comment $comments)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
+        $request->paginatorNum = $request->paginatorNum ?? 10;
 
         $comments = $this->Commentfilter($request, $comments);
 
@@ -28,7 +30,6 @@ class StaffCommentController extends Controller
     public function Commentfilter($request, $comments)
     {
         $comments = $comments->newQuery();
-
 
         if (isset($request->sortType)) {
             if ($request->sortType == 'not_checked') {
@@ -44,14 +45,16 @@ class StaffCommentController extends Controller
             }
         }
 
-        return $comments->orderBy('created_at', 'desc')->paginate($request->paginatorNum);
+        return $comments->orderBy('created_at', 'desc')
+            ->paginate($request->paginatorNum);
     }
 
     public function delete(Request $request, Comment $comments)
     {
-        Comment::findOrFail($request->id)->delete();
+        Comment::findOrFail($request->id)
+            ->delete();
 
-        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
+        $request->paginatorNum = $request->paginatorNum ?? 10;
 
         $comments = $this->Commentfilter($request, $comments);
 
@@ -84,7 +87,6 @@ class StaffCommentController extends Controller
             ], 400);
         }
 
-
         Comment::whereId($request->comment_id)->update([
             'text' => $request->text,
             'advantages' => $request->advantages,
@@ -94,10 +96,7 @@ class StaffCommentController extends Controller
             'recommend_status' => $request->recommend_status,
         ]);
 
-
-
-
-        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
+        $request->paginatorNum = $request->paginatorNum ?? 10;
 
         $comments = $this->Commentfilter($request, $comments);
 

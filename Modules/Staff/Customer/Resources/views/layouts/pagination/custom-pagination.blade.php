@@ -3,7 +3,8 @@
     {{-- صفحه قبل --}}
     @if ($paginator->onFirstPage())
         <li class="c-ui-paginator__control-item">
-            <a class="pagination-link c-ui-paginator__control-prev c-ui-paginator__control-prev--disabled" aria-hidden="true" data-page=""></a>
+            <a class="pagination-link c-ui-paginator__control-prev c-ui-paginator__control-prev--disabled"
+             aria-hidden="true" data-page=""></a>
         </li>
     @else
         <li class="c-ui-paginator__control-item">
@@ -20,7 +21,9 @@
     @foreach ($element as $page => $url)
     @if ($page == $paginator->currentPage())
     <li class="c-ui-paginator__control-item uk-active">
-        <a data-page="{{ $page }}" class="c-ui-paginator__control-digit c-ui-paginator__control-digit--current">{{ persianNum($page) }}</a>
+        <a data-page="{{ $page }}" class="c-ui-paginator__control-digit c-ui-paginator__control-digit--current">
+            {{ persianNum($page) }}
+        </a>
     </li>
     @else
     <li class="c-ui-paginator__control-item">
@@ -37,7 +40,8 @@
         </li>
     @else
         <li class="c-ui-paginator__control-item" aria-disabled="true" aria-label="@lang('pagination.next')">
-            <a class="pagination-link c-ui-paginator__control-next c-ui-paginator__control-next--disabled" aria-hidden="true" data-page="" rel="next" aria-label="@lang('pagination.next')"></a>
+            <a class="pagination-link c-ui-paginator__control-next c-ui-paginator__control-next--disabled"
+             aria-hidden="true" data-page="" rel="next" aria-label="@lang('pagination.next')"></a>
         </li>
     @endif
 </ul>

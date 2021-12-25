@@ -2,19 +2,18 @@
 
 namespace Modules\Staff\Customer\Http\Controllers;
 
-use _HumbugBox7eb78fbcc73e\ParagonIE\Sodium\Core\Curve25519\Ge\P1p1;
 use App\Models\Media;
 use App\Models\State;
 use App\Models\StoreAddress;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\View\View;
 use Modules\Customers\Panel\Models\CustomerLegal;
 use Modules\Staff\Category\Models\Category;
 use Modules\Customers\Auth\Models\Customer;
-use Illuminate\Http\Request;
 use Modules\Staff\Customer\Models\CustomerAddress;
 
 class StaffCustomerController extends Controller
@@ -22,6 +21,7 @@ class StaffCustomerController extends Controller
 
     public function index() {
         $customers = Customer::paginate(10);
+
         return view('staffcustomer::index', compact('customers'));
     }
 
@@ -31,7 +31,8 @@ class StaffCustomerController extends Controller
         $states = State::all();
         $store_addresses = StoreAddress::all();
 
-        return view('staffcustomer::profile', compact('customer', 'states', 'store_addresses', 'customers'));
+        return view('staffcustomer::profile', 
+        compact('customer', 'states', 'store_addresses', 'customers'));
     }
 
     public function update(Request $request)
@@ -64,7 +65,6 @@ class StaffCustomerController extends Controller
         $validator = Validator::make($request->all(), [
           'status' => 'required',
           'email' => "nullable|required_if:mobile,null",
-//          'mobile' => 'nullable|required_if:phone,null',
           'has_legal_info' => 'required',
           'company_name' => 'nullable|required_if:has_legal_info,active',
           'economic_number' => 'nullable|integer|required_if:has_legal_info,active',
@@ -118,16 +118,16 @@ class StaffCustomerController extends Controller
     public function updateAddresses($request)
     {
 
-      if (isset($request->address_district_refrence) && !is_null($request->address_district_refrence)) {
+      if (filled($request->address_district_refrence)) {
         foreach ($request->address_district_refrence as $k => $i) {
           $address_district[$i] = $request->address_district_id[$k];
         }
       }
 
       foreach ($request->address_id as $key => $id)
-        {
+      {
 
-          if (isset($address_district[$id]) && !is_null($address_district[$id])) {
+          if (filled($address_district[$id])) {
             $state_id = $address_district[$id];
           }
           else {
@@ -145,10 +145,8 @@ class StaffCustomerController extends Controller
             'recipient_mobile' => $request->recipient_mobile[$key],
             'is_recipient_self' => $request->recipient_status,
             'state_id' => $state_id,
-            //is_main
           ]);
-        }
-
+      }
     }
 
     public function remove($id)
@@ -159,16 +157,11 @@ class StaffCustomerController extends Controller
         'status' => true,
         'data' => true,
       ]);
-
     }
 
     public function search(Requ1est $request, Customer $customers)
     {
-      (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
-
-//      $request->title = ltrim('0', $request->title);
-
-
+      $request->paginatorNum = $request->paginatorNum ?? 10;
       $customers = $this->Customerfilter($request, $customers);
 
       return view('staffcustomer::searchResult', compact('customers'));
@@ -186,33 +179,36 @@ class StaffCustomerController extends Controller
         $customers->orWhere("email", "LIKE", "%{$request->title}%");
       }
 
+      if (!is_null($request->status)) {
+        if ($request->status == 'active') {
+          $customers->where('status', 'active');
+        }
 
-    if (!is_null($request->status)) {
-      if ($request->status == 'active') {
-        $customers->where('status', 'active');
+        if ($request->status == 'inactive') {
+          $customers->where('status', 'inactive');
+        }
       }
 
-      if ($request->status == 'inactive') {
-        $customers->where('status', 'inactive');
-      }
-
-    }
-
-    return $customers->paginate($request->paginatorNum);
+      return $customers->paginate($request->paginatorNum);
   }
 
     public function cities(Request $request)
     {
-      $cities = State::where('state_id', $request->state_id)->where('type', 'city')->get();
+      $cities = State::where('state_id', $request->state_id)
+        ->where('type', 'city')->get();
       $type = $request->type;
-      return view('staffcustomer::layouts.ajax.citySelect', compact('cities', 'type'));
+
+      return view('staffcustomer::layouts.ajax.citySelect',
+       compact('cities', 'type'));
     }
 
     public function district(Request $request)
     {
-      $districts = State::where('state_id', $request->city_id)->where('type', 'district')->get();
+      $districts = State::where('state_id', $request->city_id)
+        ->where('type', 'district')->get();
       $type = $request->type;
-      return view('staffcustomer::layouts.ajax.districtSelect', compact('districts', 'type'));
-    }
 
+      return view('staffcustomer::layouts.ajax.districtSelect',
+       compact('districts', 'type'));
+    }
 }

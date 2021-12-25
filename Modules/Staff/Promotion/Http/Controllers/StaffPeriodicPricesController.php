@@ -17,24 +17,33 @@ class StaffPeriodicPricesController extends Controller
     public function active()
     {
         if (Promotion::where('status', '!=', 'ended')->count()) {
-            $promotions = Promotion::where('status', '!=', 'ended')->paginate(10);
+            $promotions = Promotion::where('status', '!=', 'ended')
+                ->paginate(10);
         } else {
             $promotions = [];
         }
 
-        $ended_status = Promotion::where('status', 'ended')->count() ? true : false;
+        $ended_status = Promotion::where('status', 'ended')->count()
+            ? true
+            : false;
 
-        return view('staffpromotion::periodic-prices.active', compact('promotions', 'ended_status'));
+        return view('staffpromotion::periodic-prices.active',
+         compact('promotions', 'ended_status'));
     }
 
     public function loadProductVariants(Request $request, ProductHasVariant $product_variants, $id)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 2 : '';
+        $request->paginatorNum = $request->paginatorNum ?? 10;
 
         $product_variants = $this->ProductVariantsSearch($request, $product_variants);
 
-        (!is_null($request['query']) ? $query = $request['query'] : $query = '');
-        (!is_null($request['type']) ? $type = $request['type'] : $type = '');
+        (!is_null($request['query']) 
+            ? $query = $request['query']
+            : $query = '');
+
+        (!is_null($request['type'])
+            ? $type = $request['type']
+            : $type = '');
 
         return view('staffpromotion::periodic-prices.ajax-load-variants',
             compact('product_variants', 'query', 'type'));

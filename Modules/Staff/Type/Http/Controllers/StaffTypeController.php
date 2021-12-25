@@ -4,7 +4,6 @@ namespace Modules\Staff\Type\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
 use Illuminate\Support\Facades\View;
 use Modules\Staff\Type\Http\Requests\StaffTypeRequest;
 use Modules\Staff\Category\Models\Category;
@@ -13,10 +12,10 @@ use Modules\Staff\Type\Models\Type;
 
 class StaffTypeController extends Controller
 {
-
     public function index()
     {
         $categories = Category::all();
+
         return view('stafftype::index', compact('categories'));
     }
 
@@ -31,7 +30,7 @@ class StaffTypeController extends Controller
         }, $positionArray);
 
         // فیلد جدید داشتیم
-        if(!is_null($request->type_fields))
+        if(! is_null($request->type_fields))
         {
             $new_data_array = array_filter($request->type_fields);
 
@@ -43,7 +42,9 @@ class StaffTypeController extends Controller
                 ]);
 
                 $category = Category::find($request->category);
-                $category->types()->save($insert_type);
+
+                $category->types()
+                    ->save($insert_type);
             }
         }
 
@@ -65,6 +66,7 @@ class StaffTypeController extends Controller
             }, $positionArray);
 
             $data = array_filter($request->database_data);
+            
             foreach ($data as $key => $value)
             {
                 if ($value == 'deleted'){
@@ -92,7 +94,7 @@ class StaffTypeController extends Controller
         $categories = Category::get()->unique('name');
         $id = $request->id;
         // حل مشکل ستون های خالی
-        if (count(Category::where('parent_id', $id)->get()) !== 0)
+        if (Category::where('parent_id', $id)->count() !== 0)
         {
             return View::make("stafftype::layouts.ajax.category-box.child", 
                 compact('id', 'categories'));
@@ -104,12 +106,12 @@ class StaffTypeController extends Controller
         $category = Category::find($request->id);
 
         return View::make("stafftype::layouts.ajax.category-box.breadcrumb",
-         compact('category'));
+            compact('category'));
     }
 
     public function mainCatReloader(Request $request)
     {
-        $categories = Category::get()->unique('name');
+        $categories = Category::get();
 
         return View::make("stafftype::layouts.ajax.category-box.main",
          compact('categories'));
@@ -131,11 +133,13 @@ class StaffTypeController extends Controller
     public function getData(Request $request)
     {
         $category = Category::findOrFail($request->category_id);
+
         if ($category->types())
         {
-            return View::make('stafftype::ajax-content', compact('category'));
-        } else {
-            return response()->json('saved data not found', 200);
-        }
+            return View::make('stafftype::ajax-content', 
+                compact('category'));
+        } 
+
+        return response()->json('saved data not found', 200);
     }
 }

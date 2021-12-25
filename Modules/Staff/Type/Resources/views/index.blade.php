@@ -2,13 +2,10 @@
 
 @section('title') مدیریت نوع‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
-    <!-- <script src="{{ asset('seller/js/category-tags.js') }}"></script> -->
-    <!-- <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script> -->
     <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
     <script src="{{ asset('mehdi/public/js/jquery-ui.min.js') }}"></script>
-
-    <script src="https://unpkg.com/@yaireo/dragsort"></script>
-    <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css"
+    <script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
          media="print" onload="this.media='all'">
 @endsection
 
@@ -20,8 +17,9 @@
                 <div class="c-grid__col">
                     <div class="c-content-page__header">
                         <span class="c-content-page__header-action">مدیریت نوع کالا</span>
-                        <span
-                            class="c-content-page__header-desc">از این صفحه می‌توانید نوع کالا را مدیریت، ویرایش و حذف کنید</span>
+                        <span class="c-content-page__header-desc">
+                            از این صفحه می‌توانید نوع کالا را مدیریت، ویرایش و حذف کنید
+                        </span>
                     </div>
                 </div>
             </div>
@@ -34,18 +32,11 @@
                                     <div class="c-content-accordion js-accordion uk-accordion">
                                         <section class="c-content-accordion__row js-content-section uk-open"
                                                  id="stepCategoryAccordion">
-                                            <h2 style="
-                font-size: 18px;
-                margin-right: 33px;
-                margin-top: -8px;
-                ">
-                                                <div style="
-                  color: #606265;
-                  ">مدیریت نوع کالا
-                                                </div>
+                                            <h2 style="font-size: 18px;margin-right: 33px;margin-top: -8px;">
+                                                <div style="color: #606265;">مدیریت نوع کالا</div>
                                             </h2>
-                                            <div
-                                                style="width: 100%;margin: -7px 0px 20px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;">
+                                            <div style="width: 100%;margin: -7px 0px 20px 0px !important;padding: 0px !important;
+                                                background: #e2dddd;height: 1px;">
                                             </div>
                                             <div
                                                 class="c-content-accordion__content c-content-accordion__content--small"
@@ -128,45 +119,48 @@
 
 
                                                 <div class="editable-section">
-                                                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6 edit-form-section">
-
+                                                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
+                                                     c-grid__col--sm-6 edit-form-section">
                                                         <div class="field-wrapper" style="margin-right: 15px;">
-                                                            <label for="type-field" class="uk-form-label" style="margin-right: 10px; margin-top: 30px;"> افزودن نوع</label>
-                                                            <input type="text" class="c-content-input__origin js-attribute-old-value" id="type-field" name="type-field" style="width: 61%;margin-right: 10px;float: right;">
-
-                                                            <a class="c-ui-btn c-ui-btn--next mr-a js-continue-btn create-field " style="margin-right: 10px;">ایجاد نوع</a>
-
+                                                            <label for="type-field" class="uk-form-label" style="margin-right: 10px; margin-top: 30px;">
+                                                            افزودن نوع
+                                                            </label>
+                                                            <input type="text" class="c-content-input__origin js-attribute-old-value" id="type-field"
+                                                                name="type-field" style="width: 61%;margin-right: 10px;float: right;">
+                                                            <a class="c-ui-btn c-ui-btn--next mr-a js-continue-btn create-field "
+                                                                style="margin-right: 10px;">ایجاد نوع</a>
                                                         </div>
                                                         <div>
                                                         </div>
                                                     </div>
 
-                                                    <label class="uk-form-label edit-form-section" style="margin-bottom: 15px;margin-top: 40px;margin-right: 40px;">لیست نوع:</label>
+                                                    <label class="uk-form-label edit-form-section" 
+                                                        style="margin-bottom: 15px;margin-top: 40px;margin-right: 40px;">لیست نوع:</label>
 
                                                     <div id="dragable_section" class="ui-sortable">
-    {{--                                                            <div class="ajax-append connectedSortable" id="sortable2"></div>--}}
-
-                                                        <div class="fields-box edit-form-section connectedSortable" id="sortable1" style="margin-top: 30px;">
-                                                            <!-- append -->
-                                                        </div>
+                                                        <div class="fields-box edit-form-section connectedSortable" id="sortable1" style="margin-top: 30px;"></div>
                                                     </div>
 
                                                     <div class="deleted-fields"></div>
 
-                                                    <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal" style="display: none;">
+                                                    <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message
+                                                        js-common-modal-notification uk-modal" style="display: none;">
                                                         <div class="uk-modal-dialog uk-modal-dialog--flex">
                                                             <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
 
-                                                            <div class="uk-modal-body" data-gtm-vis-recent-on-screen-9662696_13="79003" data-gtm-vis-first-on-screen-9662696_13="79004"
-                                                                 data-gtm-vis-total-visible-time-9662696_13="100" data-gtm-vis-has-fired-9662696_13="1">
+                                                            <div class="uk-modal-body">
                                                                 <div class="c-modal-notification">
                                                                     <div class="c-modal-notification__content c-modal-notification__content--limited">
                                                                         <h2 class="c-modal-notification__header">هشدار</h2>
 
-                                                                        <p class="c-modal-notification__text">با حذف نوع مورد نظر ، این نوع از فیلتر محصولات دسته انتخابی به صورت کامل حذف شده و قابل بازیابی نمی‌باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
+                                                                        <p class="c-modal-notification__text">
+                                                                            با حذف نوع مورد نظر ، این نوع از فیلتر محصولات دسته انتخابی به صورت کامل حذف شده
+                                                                             و قابل بازیابی نمی‌باشد. آیا از حذف کامل آن اطمینان دارید؟
+                                                                        </p>
                                                                         <div class="c-modal-notification__actions">
                                                                             <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
-                                                                            <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
+                                                                            <button class="c-modal-notification__btn 
+                                                                                c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -182,8 +176,8 @@
                                         <div class="c-grid__row">
                                             <div class="c-grid__col c-grid__col--flex-initial">
                                                 <div class="uk-flex uk-flex-right" style="width: 97%;">
-                                                    <a class="c-ui-btn c-ui-btn--next mr-a"
-                                                            style="margin-right: 13px;" id="submit-form">ذخیره
+                                                    <a class="c-ui-btn c-ui-btn--next mr-a" style="margin-right: 13px;" id="submit-form">
+                                                        ذخیره
                                                     </a>
                                                 </div>
                                             </div>
@@ -234,8 +228,6 @@ $('#submit-form').on('click', function (e) {
     var sort_data = $("#sortable1").sortable('serialize');
 
     var category_id = $("input[name='selected-cat']").val();;
-    // var category_id = $("input[type='radio']:checked").val();
-
 
     $.ajax({
         method: "post",
@@ -248,30 +240,6 @@ $('#submit-form').on('click', function (e) {
         },
         success: function () {
             window.location.href = "{{ route('staff.types.index') }}";
-        {{--$.toast({--}}
-            {{--    heading: 'موفق!',--}}
-            {{--    text: "نوع کالا با موفقیت ذخیره شد",--}}
-            {{--    bgColor: '#3DC3A1',--}}
-            {{--    textColor: '#fff',--}}
-            {{--});--}}
-
-            {{--$(".edit-form-section").hide();--}}
-
-            {{--$('#category_form').trigger("reset");--}}
-
-            {{--$(".type-field-box").each(function () {--}}
-            {{--    $(this).remove();--}}
-            {{--});--}}
-
-            {{--$.ajax({--}}
-            {{--    type: 'post',--}}
-            {{--    url: '{{route('staff.types.mainCatLoader')}}',--}}
-            {{--    success: function (response) {--}}
-            {{--        $('.c-content-categories__wrapper').replaceWith(response);--}}
-            {{--    }--}}
-            {{--});--}}
-
-            {{--$(".category-box").show();--}}
         },
     });
 
@@ -423,7 +391,6 @@ $(".create-field").on('click', function (){
 });
 
 $(document).on('click', '.remove-field-btn', function () {
-
     $(".uk-modal-container").addClass('uk-open');
     $(".uk-modal-container").css('display', 'block');
     $(this).closest('.c-grid__row').addClass('selected-group');
@@ -446,7 +413,6 @@ $(document).on('click', '.remove-field-btn', function () {
             $(this).removeClass('selected-group');
         });
     });
-
 });
 
 $(document).on('click', '.uk-modal-close-default', function (){
@@ -457,7 +423,6 @@ $(document).on('click', '.uk-modal-close-default', function (){
 });
 
 $(document).on('click', '.edit-field-btn', function () {
-
     var input_val = $(this).closest('.field-wrapper').find('input').val();
     $(this).closest('.field-wrapper').find('input').attr('data-old', input_val);
     $(this).closest('.field-wrapper').find('input').removeAttr('disabled');
@@ -467,7 +432,6 @@ $(document).on('click', '.edit-field-btn', function () {
         '<button class="c-ui-btn c-ui-btn--outline-blue cancell-btn black-btn">لغو</button>';
 
     $(this).closest('.field-wrapper').find('.edit-field-btn').replaceWith(chenge_btn);
-
 });
 
 $(document).on('click', '.confirm-btn', function (){
@@ -481,7 +445,6 @@ $(document).on('click', '.confirm-btn', function (){
 });
 
 $(document).on('click', '.cancell-btn', function (){
-
     $(this).closest('.field-wrapper').find('input').attr('disabled', true);
     $(this).closest('.field-wrapper').find('input').addClass('c-ui-input--deactive');
 
@@ -491,7 +454,6 @@ $(document).on('click', '.cancell-btn', function (){
     var chenge_btn = '<a class="c-ui-btn c-ui-btn--outline-blue edit-field-btn">ویرایش نوع</a>';
     $(this).closest('.field-wrapper').find(".confirm-btn").replaceWith(chenge_btn);
     $(this).remove();
-
 });
 
 $("#sortable1").sortable({

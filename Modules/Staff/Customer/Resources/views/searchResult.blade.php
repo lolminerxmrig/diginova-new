@@ -13,9 +13,12 @@
   </div>
 
   <div class="c-grid__row c-promo__row--m-sm">
-    <table class="c-ui-table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc"
-           data-search-url="{{ route('staff.customers.search') }}" data-auto-reload-seconds="0" data-new-ui="1"
-           data-is-header-floating="1" data-has-checkboxes="" style="text-align: right !important; display: rtl !important;">
+    <table class="c-ui-table c-join__table  js-search-table js-table-fixed-header"
+     data-sort-column="created_at" data-sort-order="desc"
+           data-search-url="{{ route('staff.customers.search') }}" 
+           data-auto-reload-seconds="0" data-new-ui="1"
+           data-is-header-floating="1" data-has-checkboxes=""
+            style="text-align: right !important; display: rtl !important;">
       <thead>
       <tr class="c-ui-table__row">
         <th class="c-ui-table__header ">
@@ -43,24 +46,23 @@
         @foreach($customers as $customer)
           <tr class="c-ui-table__row c-ui-table__row--body c-join__table-row">
             <td class="c-ui-table__cell">
-              {{--                                                            <div style="font-weight: bold;">{{ $customer->first_name . ' ' . $customer->last_name }}</div>--}}
               <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                            {{ $customer->first_name . ' ' . $customer->last_name }}
-                                                          </span>
+                {{ $customer->first_name . ' ' . $customer->last_name }}
+              </span>
             </td>
             <td class="c-ui-table__cell" style="">
-                                                          <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                            {{ !is_null($customer->mobile)? persianNum(0 . $customer->mobile) : '' }}
-                                                          </span>
+              <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                {{ !is_null($customer->mobile)? persianNum(0 . $customer->mobile) : '' }}
+              </span>
             </td>
             <td class="c-ui-table__cell c-ui-table__cell--text-blue">
               {{ !is_null($customer->email)? $customer->email : '' }}
             </td>
 
             <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                                                          <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                            {{ ($customer->orders()->exists())? persianNum($customer->orders()->count()) : persianNum(0) }}
-                                                          </span>
+              <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                {{ ($customer->orders()->exists())? persianNum($customer->orders()->count()) : persianNum(0) }}
+              </span>
             </td>
 
             <td class="c-ui-table__cell">
@@ -74,11 +76,13 @@
                 </div>
               @endif
             </td>
-
+            
             <td class="c-ui-table__cell c-ui-table__cell--small-text" style="width: 21% !important;">
               <div class="c-promo__actions">
-                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.customers.profile', ['id' => $customer->id]) }}">ویرایش</a>
-                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-customer" data-url="{{ route('staff.customers.remove', ['id' => $customer->id]) }}">حذف</button>
+                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit
+                 c-join__btn--secondary-greenish" href="{{ route('staff.customers.profile', ['id' => $customer->id]) }}">ویرایش</a>
+                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary
+                 js-remove-plp js-remove-customer" data-url="{{ route('staff.customers.remove', ['id' => $customer->id]) }}">حذف</button>
               </div>
             </td>
           </tr>
@@ -87,10 +91,8 @@
       </tbody>
     </table>
     <div class="c-card__loading"></div>
-
   </div>
   <br>
-
 
   <div class="c-card__footer" style="width: auto;">
     <a href="#" style="visibility: hidden;">
@@ -112,8 +114,6 @@
         @endif
       </div>
     </div>
-
   </div>
-
 
 </div>

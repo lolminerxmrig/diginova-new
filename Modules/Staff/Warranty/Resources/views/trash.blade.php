@@ -10,8 +10,11 @@
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت گارانتی‌های حذف شده<span>
-                                از این صفحه می‌توانید گارانتی‌های حذف شده را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">
+                            مدیریت گارانتی‌های حذف شده
+                            <span>
+                                از این صفحه می‌توانید گارانتی‌های حذف شده را مدیریت کنید
+                            </span>
                         </h1>
                     </div>
                 </div>
@@ -25,12 +28,17 @@
                                 <div class="c-card__wrapper">
                                     <div class="c-card__header c-card__header--table">
                                         <div class="c-grid__col c-grid__col--lg-4">
-                                            <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی‌ها</a>
+                                            <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">
+                                                بازگشت به صفحه مدیریت گارانتی‌ها
+                                            </a>
                                         </div>
 
-                                        <div class="c-ui-paginator js-paginator" data-select2-id="16">
-                                            <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
+                                        <div class="c-ui-paginator js-paginator">
+                                            <div class="c-ui-paginator__total">
+                                                تعداد نتایج:
+                                                <span name="total" data-id="{{ $warranties->total() }}">
+                                                    {{ persianNum($warranties->total()) }} مورد
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -39,109 +47,100 @@
                                                data-search-url="/ajax/product/search/">
                                             <thead>
                                             <tr class="c-ui-table__row">
-                                                <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap "> ردیف </span>
+                                                <th class="c-ui-table__header">
+                                                    <span class="table-header-searchable uk-text-nowrap "> ردیف </span>
                                                 </th>
-                                                <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام گارانتی</span>
+                                                <th class="c-ui-table__header">
+                                                    <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام گارانتی</span>
                                                 </th>
-                                                <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>
+                                                <th class="c-ui-table__header">
+                                                    <span class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>
                                                 </th>
-                                                <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap ">تعداد تنوع</span>
+                                                <th class="c-ui-table__header">
+                                                    <span class="table-header-searchable uk-text-nowrap ">تعداد تنوع</span>
                                                 </th>
-                                                <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap ">عملیات</span>
+                                                <th class="c-ui-table__header">
+                                                    <span class="table-header-searchable uk-text-nowrap ">عملیات</span>
                                                 </th>
                                             </tr>
                                             </thead>
                                             <tbody id="tbody">
-                                            @foreach($warranties as $key => $warranty)
-                                                <tr name="row" id="{{$warranty->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
-                                                    <td class="c-ui-table__cell">
-                                                        <span class="c-wallet__body-card-row-item"> {{ persianNum($warranties->firstItem() + $key) }} </span>
+                                                @foreach($warranties as $key => $warranty)
+                                                    <tr name="row" id="{{$warranty->id}}"
+                                                        class="c-ui-table__row c-ui-table__row--body c-join__table-row">
+                                                        <td class="c-ui-table__cell">
+                                                            <span class="c-wallet__body-card-row-item"> 
+                                                                {{ persianNum($warranties->firstItem() + $key) }}
+                                                            </span>
+                                                        </td>
                                                     </td>
-                                                 </td>
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
-                                                        <div class="uk-flex uk-flex-column">
-                                                            <a href="#" target="_blank">
-                                                                <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                                                  @if($warranty->month !== null)
-                                                                    {{ 'گارانتی ' . persianNum($warranty->month) . ' ' . ' ماهه ' . $warranty->name  }}
-                                                                  @else
-                                                                    {{ 'گارانتی ' . $warranty->name  }}
-                                                                  @endif                                                                    @if($warranty->type == 1)
-                                                                        <span style="color: red; font-size: 11px;"> (ویژه) </span>
-                                                                    @endif
-                                                                </span>
-                                                                <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                    <td class="c-ui-table__cell">
-                                                        <a href="#">
+                                                        <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                             <div class="uk-flex uk-flex-column">
-                                                                  <span class="c- -card-row-item" style="line-height: 23px;">
-                                                                      @foreach($warranty->categories as $category)
-                                                                          {{ $category->name }}&nbsp;<br>
-                                                                      @endforeach
-                                                                  </span>
+                                                                <a href="#" target="_blank">
+                                                                    <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                                                                        @if($warranty->month !== null)
+                                                                            {{ 'گارانتی ' . persianNum($warranty->month) . ' ' . ' ماهه ' . $warranty->name  }}
+                                                                        @else
+                                                                            {{ 'گارانتی ' . $warranty->name  }}
+                                                                        @endif                                                                
+                                                                        @if($warranty->type == 1)
+                                                                            <span style="color: red; font-size: 11px;"> (ویژه) </span>
+                                                                        @endif
+                                                                    </span>
+                                                                    <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
+                                                                </a>
                                                             </div>
-                                                        </a>
-                                                    </td>
+                                                        </td>
+                                                        <td class="c-ui-table__cell">
+                                                            <a href="#">
+                                                                <div class="uk-flex uk-flex-column">
+                                                                    <span class="c- -card-row-item" style="line-height: 23px;">
+                                                                        @foreach($warranty->categories as $category)
+                                                                            {{ $category->name }}&nbsp;<br>
+                                                                        @endforeach
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </td>
 
-                                                    <td class="c-ui-table__cell">
-                                                      <span class="c-wallet__body-card-row-item"> {{ persianNum($warranty->product_variants->count()) }} </span>
-                                                    </td>
+                                                        <td class="c-ui-table__cell">
+                                                            <span class="c-wallet__body-card-row-item"> 
+                                                                {{ persianNum($warranty->product_variants->count()) }} 
+                                                            </span>
+                                                        </td>
 
-                                                    <div class="modal-section">
-                                                    <td class="c-ui-table__cell">
-                                                        <div class="c-promo__actions">
-                                                           <button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn"
-                                                                value="{{ $warranty->id }}">بازگردانی</button>
+                                                        <div class="modal-section">
+                                                        <td class="c-ui-table__cell">
+                                                            <div class="c-promo__actions">
+                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn"
+                                                                    value="{{ $warranty->id }}">بازگردانی</button>
 
-                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
-                                                              c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                               value="{{ $warranty->id }}">حذف کامل</button>
+                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
+                                                                c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
+                                                                value="{{ $warranty->id }}">حذف کامل</button>
+                                                            </div>
+                                                        </td>
                                                         </div>
-                                                    </td>
-                                                    </div>
-                                                </tr>
-                                            @endforeach
-                                            @include('staffwarranty::layouts.modal')
-
+                                                    </tr>
+                                                @endforeach
+                                                @include('staffwarranty::layouts.modal')
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="c-card__footer" style="width: auto;">
-                                        <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی‌ها</a>
+                                        <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">
+                                            بازگشت به صفحه مدیریت گارانتی‌ها
+                                        </a>
 
                                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
+
                                         <div class="c-ui-paginator js-paginator" data-select2-id="25">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
+                                                تعداد نتایج: 
+                                                <span name="total" data-id="{{ $warranties->total() }}">
+                                                    {{ persianNum($warranties->total()) }} مورد
+                                                </span>
                                             </div>
-{{--                                            <div class="c-ui-paginator__select" data-select2-id="24">--}}
-{{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-{{--                                                <div class="c-ui-paginator__select-pages">--}}
-{{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-{{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-{{--                                                         select2-hidden-accessible paginator-selected"--}}
-{{--                                                            name="paginator-select-pages" id="paginator-bottom"--}}
-{{--                                                            tabindex="-1" aria-hidden="true">--}}
-{{--                                                            <option value="10">۱۰</option>--}}
-{{--                                                            <option value="20">۲۰</option>--}}
-{{--                                                            <option value="50">۵۰</option>--}}
-{{--                                                            <option value="100">۱۰۰</option>--}}
-{{--                                                        </select>--}}
-
-
-{{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -154,39 +153,6 @@
                     <div class="c-grid__row">
                         <div class="c-grid__col">
                             <div class="c-card">
-                                {{--
-                                <div class="c-card__header">
-                                  --}}
-                                {{--
-                                <div class="c-grid__col">
-                                  --}}
-                                {{--
-                                <h2 class="c-card__title c-join__tab-card-title">مدیریت گارانتیها</h2>
-                                --}}
-                                {{--
-                                <ul class="uk-tab c-promo__tabs">
-                                  --}}
-                                {{--
-                                <li class="c-promo__tab-item c-promo__tab-item--promotions uk-active" data-tab="1">--}}
-                                {{--                                            <a href="/promotion-management/">همه گارانتیها</a>--}}
-                                {{--
-                              </li>
-                              --}}
-                                {{--
-                                <li class="c-promo__tab-item c-promo__tab-item--products" data-tab="2">--}}
-                                {{--                                            <a href="/promotion-management/products/">گارانتیهای حذف شده</a>--}}
-                                {{--
-                              </li>
-                              --}}
-                                {{--
-                              </ul>
-                              --}}
-                                {{--
-                              </div>
-                              --}}
-                                {{--
-                              </div>
-                              --}}
                                 <div class="c-card__body">
                                     <div class="c-grid__col">
                                         <div class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible" data-tab="1">
@@ -199,7 +165,9 @@
                                                         برای مدیریت گارانتی‌ها روی دکمه زیر کلیک کنید.
                                                     </p>
                                                     <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"
-                                                       href="{{ route('staff.warranties.index') }}">مدیریت گارانتیها</a>
+                                                       href="{{ route('staff.warranties.index') }}">
+                                                       مدیریت گارانتیها
+                                                    </a>
                                             </div>
                                         </div>
                                     </div>
@@ -215,6 +183,7 @@
 @endsection
 @section('script')
 <script>
+    
 // تبدیل اعداد انگلیسی به فارسی
 function ConvertNumberToPersion() {
     persian = { 0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹' };
@@ -263,25 +232,6 @@ $(document).on('click', '.c-ui-paginator__control a', function(e){
     });
 });
 
-
-//حذف گارانتی
-{{--$(document).on('click','.delete-btn' , function (){--}}
-{{--    var warranty_id = $(this).val();--}}
-
-{{--    $.ajax({--}}
-{{--        method: 'post',--}}
-{{--        url: "{{route('staff.warranties.removeFromTrash')}}",--}}
-{{--        data: {--}}
-{{--            'id': warranty_id,--}}
-{{--        },--}}
-{{--        success: function (response){--}}
-{{--            $('.js-table-container').replaceWith(response);--}}
-{{--        },--}}
-{{--    });--}}
-{{--});--}}
-
-
-
 $(document).on('click', '.delete-btn', function () {
 
     $('.c-header__nav').hide();
@@ -324,14 +274,9 @@ $(document).on('click', '.delete-btn', function () {
                     });
                 },
             });
-
         }
-
     });
 });
-
-
-
 
 // بازگردانی
 $(document).on('click','.restore-btn' , function (){
@@ -348,15 +293,6 @@ $(document).on('click','.restore-btn' , function (){
         },
     });
 });
-
-
-    {{--<button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn"--}}
-    {{--value="{{ $warranty->id }}">بازگردانی</button>--}}
-
-    {{--    <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete--}}
-    {{--c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"--}}
-    {{--value="{{ $warranty->id }}">حذف کامل</button>--}}
-    {{--</script>--}}
 
 </script>
 @endsection

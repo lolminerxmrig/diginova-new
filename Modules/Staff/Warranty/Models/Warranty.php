@@ -18,6 +18,7 @@ class  Warranty extends Model
     use SoftDeletes;
 
     protected $table = 'warranties';
+    
     protected $fillable = ['name', 'month', 'has_insurance'];
 
     public function categories()
@@ -25,11 +26,8 @@ class  Warranty extends Model
         return $this->morphToMany(Category::class, 'categorizable');
     }
 
-
     public function product_variants()
     {
       return $this->hasMany(ProductHasVariant::class, 'warranty_id');
     }
-
-
 }
