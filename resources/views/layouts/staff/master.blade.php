@@ -817,7 +817,7 @@
               <ul>
 
                 <li>
-                  <a href="{{ route('staff.brands.index') }}">برند ها</a>
+                  <a href="{{ route('staff.brands.index') }}">برندها</a>
                 </li>
 
                 <li>

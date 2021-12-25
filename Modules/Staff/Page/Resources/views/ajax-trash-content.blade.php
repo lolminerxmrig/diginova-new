@@ -47,7 +47,7 @@
                                         class="table-header-searchable uk-text-nowrap ">لوگو برند</span>
                                 </th>
                                 <th class="c-ui-table__header"><span
-                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام برند (Brand)</span>
+                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام برند</span>
                                 </th>
                                 <th class="c-ui-table__header"><span
                                         class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>

@@ -7137,7 +7137,7 @@ $customer = auth()->guard('customer')->user();
                           </div>
                         </div>
                       </a></div>
-                    <div class="c-navi-new__ads--brand-holder"><h3>برند های ویژه</h3>
+                    <div class="c-navi-new__ads--brand-holder"><h3>برندهای ویژه</h3>
                       <div class="c-navi-new__ads--brands"><a data-id="52844"
                                                               class="js-menu-ad-brands"
                                                               href="https://www.digikala.com/brand-landing/huawei/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%87%D9%88%D8%A2%D9%88%DB%8C&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52844&amp;bCode=52844">
@@ -7175,7 +7175,7 @@ $customer = auth()->guard('customer')->user();
                           </div>
                         </div>
                       </a></div>
-                    <div class="c-navi-new__ads--brand-holder"><h3>برند های ویژه</h3>
+                    <div class="c-navi-new__ads--brand-holder"><h3>برندهای ویژه</h3>
                       <div class="c-navi-new__ads--brands"><a data-id="52853"
                                                               class="js-menu-ad-brands"
                                                               href="https://www.digikala.com/brand/arian-nakh-baf/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%A2%D8%B1%DB%8C%D8%A7%D9%86+%D9%86%D8%AE+%D8%A8%D8%A7%D9%81&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52853&amp;bCode=52853">
@@ -7213,7 +7213,7 @@ $customer = auth()->guard('customer')->user();
                           </div>
                         </div>
                       </a></div>
-                    <div class="c-navi-new__ads--brand-holder"><h3>برند های ویژه</h3>
+                    <div class="c-navi-new__ads--brand-holder"><h3>برندهای ویژه</h3>
                       <div class="c-navi-new__ads--brands"><a data-id="52869"
                                                               class="js-menu-ad-brands"
                                                               href="https://www.digikala.com/brand/cross/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%DA%A9%D8%B1%D8%A7%D8%B3&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52869&amp;bCode=52869">
@@ -7251,7 +7251,7 @@ $customer = auth()->guard('customer')->user();
                           </div>
                         </div>
                       </a></div>
-                    <div class="c-navi-new__ads--brand-holder"><h3>برند های ویژه</h3>
+                    <div class="c-navi-new__ads--brand-holder"><h3>برندهای ویژه</h3>
                       <div class="c-navi-new__ads--brands"><a data-id="52876"
                                                               class="js-menu-ad-brands"
                                                               href="https://www.digikala.com/brand/do-ghazal/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%DA%AF%D9%84%D8%B3%D8%AA%D8%A7%D9%86&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52876&amp;bCode=52876">
@@ -7289,7 +7289,7 @@ $customer = auth()->guard('customer')->user();
                           </div>
                         </div>
                       </a></div>
-                    <div class="c-navi-new__ads--brand-holder"><h3>برند های ویژه</h3>
+                    <div class="c-navi-new__ads--brand-holder"><h3>برندهای ویژه</h3>
                       <div class="c-navi-new__ads--brands"><a data-id="52857"
                                                               class="js-menu-ad-brands"
                                                               href="https://www.digikala.com/brand-landing/zi-moi/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%B2%DB%8C+%D9%85%D9%88%DB%8C&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52857&amp;bCode=52857">
@@ -7327,7 +7327,7 @@ $customer = auth()->guard('customer')->user();
                           </div>
                         </div>
                       </a></div>
-                    <div class="c-navi-new__ads--brand-holder"><h3>برند های ویژه</h3>
+                    <div class="c-navi-new__ads--brand-holder"><h3>برندهای ویژه</h3>
                       <div class="c-navi-new__ads--brands"><a data-id="52861"
                                                               class="js-menu-ad-brands"
                                                               href="https://www.digikala.com/brand-landing/snowa/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%A7%D8%B3%D9%86%D9%88%D8%A7&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52861&amp;bCode=52861">
@@ -7365,7 +7365,7 @@ $customer = auth()->guard('customer')->user();
                           </div>
                         </div>
                       </a></div>
-                    <div class="c-navi-new__ads--brand-holder"><h3>برند های ویژه</h3>
+                    <div class="c-navi-new__ads--brand-holder"><h3>برندهای ویژه</h3>
                       <div class="c-navi-new__ads--brands"><a data-id="52865"
                                                               class="js-menu-ad-brands"
                                                               href="https://www.digikala.com/brand/faber-castell/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%81%D8%A7%D8%A8%D8%B1+%DA%A9%D8%A7%D8%B3%D8%AA%D9%84&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52865&amp;bCode=52865">
@@ -7403,7 +7403,7 @@ $customer = auth()->guard('customer')->user();
                           </div>
                         </div>
                       </a></div>
-                    <div class="c-navi-new__ads--brand-holder"><h3>برند های ویژه</h3>
+                    <div class="c-navi-new__ads--brand-holder"><h3>برندهای ویژه</h3>
                       <div class="c-navi-new__ads--brands"><a data-id="55138"
                                                               class="js-menu-ad-brands"
                                                               href="https://www.digikala.com/brand/firo-plus/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%81%DB%8C%D8%B1%D9%88+%D9%BE%D9%84%D8%A7%D8%B3&amp;promo_position=sponsored_menu_brand&amp;promo_creative=55138&amp;bCode=55138">

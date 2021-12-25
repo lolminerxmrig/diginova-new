@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-@section('title') برند های حذف شده | {{ $fa_store_name }}  @endsection
+@section('title') برندهای حذف شده | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
     <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
@@ -12,7 +12,7 @@
           <div class="c-grid__col">
             <div class="c-card c-card--transparent">
               <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-                مدیریت برندهای حذف شده<span>از این صفحه می‌توانید برند های حذف شده را مدیریت کنید</span>
+                مدیریت برندهای حذف شده<span>از این صفحه می‌توانید برندهای حذف شده را مدیریت کنید</span>
               </h1>
             </div>
           </div>
@@ -45,7 +45,7 @@
                               <span class="table-header-searchable uk-text-nowrap ">لوگو برند</span>
                             </th>
                             <th class="c-ui-table__header">
-                              <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام برند (Brand)</span>
+                              <span class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام برند</span>
                             </th>
                             <th class="c-ui-table__header">
                               <span class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>

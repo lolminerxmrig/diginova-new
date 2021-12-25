@@ -11,7 +11,7 @@
                 <div class="c-grid__col">
                     <input type="hidden" value="" name="has-warehouses">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت برندها<span>از این صفحه می‌توانید برند ها را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت برندها<span>از این صفحه می‌توانید برندها را مدیریت کنید</span>
                         </h1>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                                         class="table-header-searchable uk-text-nowrap ">لوگو برند</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
-                                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام برند (Brand)</span>
+                                                        class="table-header-searchable uk-text-nowrap table-header-searchable--desc">نام برند</span>
                                                 </th>
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap "> گروه کالایی </span>

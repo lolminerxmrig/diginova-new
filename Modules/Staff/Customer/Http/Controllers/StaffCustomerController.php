@@ -31,7 +31,7 @@ class StaffCustomerController extends Controller
         $states = State::all();
         $store_addresses = StoreAddress::all();
 
-        return view('staffcustomer::profile', 
+        return view('staffcustomer::profile',
         compact('customer', 'states', 'store_addresses', 'customers'));
     }
 
@@ -159,7 +159,7 @@ class StaffCustomerController extends Controller
       ]);
     }
 
-    public function search(Requ1est $request, Customer $customers)
+    public function search(Request $request, Customer $customers)
     {
       $request->paginatorNum = $request->paginatorNum ?? 10;
       $customers = $this->Customerfilter($request, $customers);

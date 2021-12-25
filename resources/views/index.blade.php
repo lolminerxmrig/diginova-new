@@ -2791,7 +2791,7 @@
                                             </a>
                                         </div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand-landing/huawei/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%87%D9%88%D8%A2%D9%88%DB%8C&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52844&amp;bCode=52844">
                                                     <div class="brand-item"><img src="./assets/index/6828b3f1b07bb71b1d44be139f0dd2afe4b6c880_1606296019.jpg" alt="پارتنرشیپ - هوآوی 1"></div>
@@ -2820,7 +2820,7 @@
                                             </a>
                                         </div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand/pars-khazar/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%BE%D8%A7%D8%B1%D8%B3+%D8%AE%D8%B2%D8%B1&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52848&amp;bCode=52848">
                                                     <div class="brand-item"><img src="./assets/index/d82e7d1ba7b9ed56b2625038a51cf008ea9c9cf1_1606296677.jpg" alt="پارتنرشیپ - پارس خزر 1"></div>
@@ -2837,7 +2837,7 @@
                                     <div class="c-navi-new__ads js-categories-ad " id="categories-ad-3">
                                         <div class="c-navi-new__ads--banners"></div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand/arian-nakh-baf/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%A2%D8%B1%DB%8C%D8%A7%D9%86+%D9%86%D8%AE+%D8%A8%D8%A7%D9%81&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52853&amp;bCode=52853">
                                                     <div class="brand-item"><img src="./assets/index/5d33994d86b4ff67cac866d02037591609fc68d6_1606297569.jpg" alt="پارتنرشیپ - آریان نخ باف 1"></div>
@@ -2866,7 +2866,7 @@
                                             </a>
                                         </div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand-landing/zi-moi/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D8%B2%DB%8C+%D9%85%D9%88%DB%8C&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52857&amp;bCode=52857">
                                                     <div class="brand-item"><img src="./assets/index/7215bb9fcf5145026e177da8d05bfc49a0e5f300_1606298030.jpg" alt="پارتنرشیپ - زی موی 1"></div>
@@ -2895,7 +2895,7 @@
                                             </a>
                                         </div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand-landing/pakshoma/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%BE%D8%A7%DA%A9%D8%B4%D9%88%D9%85%D8%A7&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52861&amp;bCode=52861">
                                                     <div class="brand-item"><img src="./assets/index/e74dc77fcac74185b74b679445faaa4865415e09_1606298421.jpg" alt="پارتنرشیپ - پاکشوما 1"></div>
@@ -2924,7 +2924,7 @@
                                             </a>
                                         </div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand/faber-castell/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%81%D8%A7%D8%A8%D8%B1+%DA%A9%D8%A7%D8%B3%D8%AA%D9%84&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52865&amp;bCode=52865">
                                                     <div class="brand-item"><img src="./assets/index/6142d028fe8ef083c545d819e4a6c8c17ee9bf70_1606299711.jpg" alt="پارتنرشیپ - فابر کاستل 1"></div>
@@ -2953,7 +2953,7 @@
                                             </a>
                                         </div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand/cross/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%DA%A9%D8%B1%D8%A7%D8%B3&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52869&amp;bCode=52869">
                                                     <div class="brand-item"><img src="./assets/index/3679d1a2d4ada50bacfb3171a6ec36f8f8ba15a2_1606300210.jpg" alt="پارتنرشیپ - کراس 1"></div>
@@ -2982,7 +2982,7 @@
                                             </a>
                                         </div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand/firo-plus/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%D9%81%DB%8C%D8%B1%D9%88+%D9%BE%D9%84%D8%A7%D8%B3&amp;promo_position=sponsored_menu_brand&amp;promo_creative=55138&amp;bCode=55138">
                                                     <div class="brand-item"><img src="./assets/index/7d38b4b96db3fb57c1d19c30ea0ea9e10c1b8ba1_1607780060.jpg" alt="پارتنرشیپ - فیرو پلاس 1"></div>
@@ -3011,7 +3011,7 @@
                                             </a>
                                         </div>
                                         <div class="c-navi-new__ads--brand-holder">
-                                            <h3>برند های ویژه</h3>
+                                            <h3>برندهای ویژه</h3>
                                             <div class="c-navi-new__ads--brands">
                                                 <a href="https://www.digikala.com/brand/golestan-fmcg/?&amp;promo_name=%D9%BE%D8%A7%D8%B1%D8%AA%D9%86%D8%B1%D8%B4%DB%8C%D9%BE+-+%DA%AF%D9%84%D8%B3%D8%AA%D8%A7%D9%86&amp;promo_position=sponsored_menu_brand&amp;promo_creative=52876&amp;bCode=52876">
                                                     <div class="brand-item"><img src="./assets/index/4b3f2a24b6a606d99d514dc4d2d74168dc956434_1606300824.jpg" alt="پارتنرشیپ - گلستان 1"></div>

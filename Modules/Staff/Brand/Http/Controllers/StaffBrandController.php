@@ -200,7 +200,7 @@ class StaffBrandController extends Controller
         if ($request->old_img) {
             $request->id = $request->old_img;
 
-            if (\DB::table('mediable')->where('media_id', $request->old_img)->first() == null) {
+            if (\DB::table('mediables')->where('media_id', $request->old_img)->first() == null) {
                 $this->deleteImage($request);
             }
         }
