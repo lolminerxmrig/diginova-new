@@ -593,8 +593,8 @@
                                 <div class="c-join-smart-joined__detail-type">
                                     <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--discount"></div>
                                     <div class="c-join-smart-joined__detail-type-count">۶</div>
-                                    <div class="c-join-smart-joined__detail-type-title">تنوع کالا با تخفیف نمایش داده می شوند</div>
-                                    <div class="c-join-smart-joined__detail-type-des">این کالاها با قیمت خط خورده و با درصد تخفیف در وب سایت {{ $fa_store_name }} نمایش داده می شوند.</div>
+                                    <div class="c-join-smart-joined__detail-type-title">تنوع کالا با تخفیف نمایش داده می‌شوند</div>
+                                    <div class="c-join-smart-joined__detail-type-des">این کالاها با قیمت خط خورده و با درصد تخفیف در وب سایت {{ $fa_store_name }} نمایش داده می‌شوند.</div>
                                 </div>
                                 <div class="c-join-smart-joined__detail-type c-join-smart-joined__detail--br">
                                     <div class="c-join-smart-joined__detail-icon c-join-smart-joined__detail-icon--promotion"></div>
@@ -605,7 +605,7 @@
                                         <b>
                                             در صورت تایید
                                         </b>
-                                        به لیست کالاهای فروش ویژه نیز اضافه می شوند.
+                                        به لیست کالاهای فروش ویژه نیز اضافه می‌شوند.
                                     </div>
                                 </div>
                                 <div class="c-join-smart-joined__detail-type c-join-smart-joined__detail--br">
@@ -617,7 +617,7 @@
                                         <b>
                                             در صورت تایید
                                         </b>
-                                        به کمپین‌های {{ $fa_store_name }} نیز اضافه می شوند
+                                        به کمپین‌های {{ $fa_store_name }} نیز اضافه می‌شوند
                                     </div>
                                 </div>
                             </div>

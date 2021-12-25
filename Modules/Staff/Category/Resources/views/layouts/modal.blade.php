@@ -7,7 +7,7 @@
                 <div class="c-modal-notification__content c-modal-notification__content--limited">
                     <h2 class="c-modal-notification__header">هشدار</h2>
 
-                    <p class="c-modal-notification__text">با حذف این دسته، تمامی زیر دسته‌های آن نیز حذف شده و قابل بازیابی نمی باشند و همچنین تمامی محصولاتی که متعلق به این دسته و زیر دسته‌های آن می باشند به دسته متفرقه منتقل می شوند. آیا از حذف کامل آن اطمینان دارید؟</p>
+                    <p class="c-modal-notification__text">با حذف این دسته، تمامی زیر دسته‌های آن نیز حذف شده و قابل بازیابی نمی‌باشند و همچنین تمامی محصولاتی که متعلق به این دسته و زیر دسته‌های آن می‌باشند به دسته متفرقه منتقل می‌شوند. آیا از حذف کامل آن اطمینان دارید؟</p>
                     <div class="c-modal-notification__actions">
                         <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
                         <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
