@@ -66,7 +66,8 @@ class StaffBrandController extends Controller
      */
     public function edit($brand)
     {
-        $brand = Brand::where('en_name', $brand)->firstOrFail();
+        $brand = Brand::where('en_name', $brand)
+            ->firstOrFail();
 
         $brands = Brand::all();
         $categories = Category::latest()->get();
@@ -283,8 +284,12 @@ class StaffBrandController extends Controller
      */
     public function restoreFromTrash(Request $request)
     {
-        Brand::onlyTrashed()->find($request->id)->restore();
-        $brands = Brand::onlyTrashed()->paginate(10);
+        Brand::onlyTrashed()
+            ->find($request->id)
+            ->restore();
+
+        $brands = Brand::onlyTrashed()
+            ->paginate(10);
 
         return View::make('staffbrand::ajax-trash-content',
             compact('brands'));
@@ -298,17 +303,18 @@ class StaffBrandController extends Controller
      */
     public function removeFromTrash(Request $request)
     {
-        $brand = Brand::withTrashed()->find($request->id);
-        $media = $brand->media()->first();
+        $brand = Brand::withTrashed()
+            ->find($request->id);
+
+        $media = $brand->media()
+            ->first();
 
         if (($media) && ($media->person_role == 'staff') && ($media->person_id == $this->staff_id)) {
             unlink(public_path("$media->path/") . $media->name);
-            // $media->categories()->detach($brand);
             Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
             $media->delete();
         }
 
-        // $media->categories()->detach($brand);
        Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();
 
         if ($brand->products) {

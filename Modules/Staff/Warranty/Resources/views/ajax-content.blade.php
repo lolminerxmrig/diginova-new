@@ -40,9 +40,6 @@
                                 <th class="c-ui-table__header"><span
                                         class="table-header-searchable uk-text-nowrap ">تعداد تنوع</span>
                                 </th>
-{{--                                <th class="c-ui-table__header"><span--}}
-{{--                                        class="table-header-searchable uk-text-nowrap ">کالاهای فعال</span>--}}
-{{--                                </th>--}}
                                 <th class="c-ui-table__header"><span
                                         class="table-header-searchable uk-text-nowrap ">عملیات</span>
                                 </th>
@@ -74,27 +71,17 @@
                                     <td class="c-ui-table__cell">
                                         <a href="#">
                                             <div class="uk-flex uk-flex-column">
-                                                                  <span class="c- -card-row-item" style="line-height: 23px;">
-                                                                  @foreach($warranty->categories as $category)
-                                                                          {{ $category->name }}&nbsp;<br>
-                                                                      @endforeach
-                                                                  </span>
+                                                <span class="c- -card-row-item" style="line-height: 23px;">
+                                                    @foreach($warranty->categories as $category)
+                                                        {{ $category->name }}&nbsp;<br>
+                                                    @endforeach
+                                                </span>
                                             </div>
                                         </a>
                                     </td>
-{{--                                    <td class="c-ui-table__cell">--}}
-{{--                                        <div class="">--}}
-{{--                                            <div class="c-wallet__body-card-status-no-circle--}}
-{{--                          c-wallet__body-card-status-no-circle--active uk-text-nowrap" style="margin: auto">--}}
-{{--                                                فعال--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </td>--}}
                                     <td class="c-ui-table__cell">
                                       <span class="c-wallet__body-card-row-item"> {{ persianNum($warranty->product_variants->count()) }} </span>
                                     </td>
-{{--                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> ۱ </span>--}}
-{{--                                    </td>--}}
                                     <td class="c-ui-table__cell">
                                         <div class="c-promo__actions">
                                             <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish"
@@ -127,26 +114,6 @@
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                             </div>
-                            {{--                                            <div class="c-ui-paginator__select" data-select2-id="24">--}}
-                            {{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-                            {{--                                                <div class="c-ui-paginator__select-pages">--}}
-                            {{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-                            {{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-                            {{--                                                         select2-hidden-accessible paginator-selected"--}}
-                            {{--                                                            name="paginator-select-pages" id="paginator-bottom"--}}
-                            {{--                                                            tabindex="-1" aria-hidden="true">--}}
-                            {{--                                                            <option value="10">۱۰</option>--}}
-                            {{--                                                            <option value="20">۲۰</option>--}}
-                            {{--                                                            <option value="50">۵۰</option>--}}
-                            {{--                                                            <option value="100">۱۰۰</option>--}}
-                            {{--                                                        </select>--}}
-
-
-                            {{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-                            {{--                                                    </div>--}}
-                            {{--                                                </div>--}}
-                            {{--                                            </div>--}}
                         </div>
                     </div>
                 </div>

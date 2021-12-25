@@ -61,10 +61,6 @@
                                                              placeholder="جستجوی نام، نام خانوادگی، شماره یا ایمیل" style="width: 400px;">
                                                             <button class="uk-icon-button c-join__search-btn uk-icon" uk-tooltip="title: جستجو;"
                                                              uk-icon="icon: search" id="submitButton" title="" aria-expanded="false">
-                                                                <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1">
-                                                                    <circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle>
-                                                                    <path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path>
-                                                                </svg>
                                                             </button>
                                                         </div>
                                                     </div>
