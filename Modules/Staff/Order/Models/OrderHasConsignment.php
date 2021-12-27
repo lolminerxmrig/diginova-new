@@ -14,8 +14,16 @@ class OrderHasConsignment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['consignment_code', 'shiping_cost', 'delivery_code', 'tracking_code', 'delivery_at', 'order_status_id', 'delivery_method_id', 'order_id'];
-
+    protected $fillable = [
+      'consignment_code',
+      'shiping_cost',
+      'delivery_code',
+      'tracking_code',
+      'delivery_at',
+      'order_status_id',
+      'delivery_method_id',
+      'order_id'
+    ];
 
     public function customer()
     {

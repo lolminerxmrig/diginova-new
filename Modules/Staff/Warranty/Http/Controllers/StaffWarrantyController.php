@@ -16,12 +16,10 @@ class StaffWarrantyController extends Controller
 
     public function index()
     {
-        $warranties = Warranty::distinct('name')
-            ->orderBy('created_at', 'desc')
+        $warranties = Warranty::orderBy('created_at', 'desc')
             ->paginate(10);
 
-        $trashed_warranties = Warranty::distinct('name')
-            ->onlyTrashed()
+        $trashed_warranties = Warranty::onlyTrashed()
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
@@ -248,9 +246,10 @@ class StaffWarrantyController extends Controller
     {
         $search_keyword = $request->search_keyword;
 
-        $warranties = $warranties->whereHas('categories', function ($query) use ($search_keyword) {
+        $warranties = $warranties->whereHas('categories',
+         function ($query) use ($search_keyword) {
             $query->where('name', 'LIKE', '%' . $search_keyword . '%');
-        })->paginate(5);
+        })->paginate(10);
 
         if ($warranties) {
             $pageType = 'warrantyCatSearch';

@@ -12,7 +12,7 @@
 @section('content')
 <main class="c-content-layout">
     <div class="uk-container uk-container-large">
-        <div class="c-grid" data-select2-id="137">
+        <div class="c-grid">
             <div class="c-content-page c-content-page--plain c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-content-page__header">
@@ -25,7 +25,7 @@
             </div>
             <div class="c-grid__row">
                 <div class="c-grid__col">
-                    <div class="c-card" data-select2-id="136">
+                    <div class="c-card">
                         <form id="category_form">
                             <div class="c-grid__col">
                                 <div class="product-form">
@@ -458,14 +458,6 @@ $(document).on('click', '.cancell-btn', function (){
 
 $("#sortable1").sortable({
     connectWith: ".connectedSortable",
-    {{--update: function (event, ui) {--}}
-    {{--    var data = $("#sortable1").sortable('serialize');--}}
-    {{--    $.ajax({--}}
-    {{--        data: data,--}}
-    {{--        type: 'post',--}}
-    {{--        url: '{{route('staff.units.indexChangePosition')}}'--}}
-    {{--    });--}}
-    {{--}--}}
 });
 
 </script>

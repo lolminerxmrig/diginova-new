@@ -18,7 +18,11 @@
           </div>
         </div>
         <div class="c-card__body c-ui-table__wrapper">
-          <table class="c-ui-table   js-search-table js-table-fixed-header" data-sort-column="order_created_at" data-sort-order="desc" data-search-url="{{ route('staff.orders.search') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="1" data-export-url="/order/export/">
+          <table class="c-ui-table   js-search-table js-table-fixed-header" 
+          data-sort-column="order_created_at" data-sort-order="desc" 
+          data-search-url="{{ route('staff.orders.search') }}" data-auto-reload-seconds="0"
+           data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="1"
+            data-export-url="/order/export/">
             <thead>
             <tr class="c-ui-table__row">
               <th class="c-ui-table__header c-ui-table__header--nowrap ">
@@ -107,29 +111,6 @@
             </tbody>
           </table>
         </div>
-
-        {{--                <div class="c-card__footer" style="width: unset !important;">--}}
-        {{--                  <a href="#" style="visibility: hidden;">--}}
-        {{--                    <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">--}}
-        {{--                    </div>--}}
-        {{--                  </a>--}}
-        {{--                  --}}
-        {{--                  {{ $orders->links('stafforder::layouts.pagination.custom-pagination') }}--}}
-
-        {{--                  <div class="c-card__paginator">--}}
-        {{--                    <div class="c-ui-paginator js-paginator">--}}
-        {{--                      @if(count($orders))--}}
-        {{--                        <div class="c-ui-paginator__total" data-rows="">--}}
-        {{--                          تعداد نتایج: <span>{{ persianNum($orders->total()) }} مورد</span>--}}
-        {{--                        </div>--}}
-        {{--                      @else--}}
-        {{--                        <div class="c-ui-paginator__total" data-rows="۰">--}}
-        {{--                          جستجو نتیجه‌ای نداشت--}}
-        {{--                        </div>--}}
-        {{--                      @endif--}}
-        {{--                    </div>--}}
-        {{--                  </div>--}}
-        {{--                </div>--}}
 
         <div class="c-card__footer" style="width: auto;">
           <a href="#" style="visibility: hidden;">

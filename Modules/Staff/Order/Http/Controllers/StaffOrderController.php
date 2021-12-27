@@ -66,7 +66,6 @@ class StaffOrderController extends Controller
   {
     $orders = $orders->newQuery();
 
-//    if (!is_null($request->search_order_status)) {
       if ($request->search_order_status == 'awaiting_peyment') {
         $orders->where('order_status_id', 1);
       }
@@ -82,7 +81,6 @@ class StaffOrderController extends Controller
       if ($request->search_order_status == 'delivered') {
         $orders->where('order_status_id', 4);
       }
-//    }
 
     if (isset($request->searchـsend_today_only) && $request->searchـsend_today_only == 1) {
       $orders->whereHas('consignments', function (Builder $query){

@@ -6,7 +6,7 @@
 @section('content')
 <main class="c-main">
     <div class="uk-container uk-container-large">
-        <div class="c-grid " data-select2-id="13">
+        <div class="c-grid ">
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             @if ($warranties->count())
-                <div class="js-table-container" data-select2-id="17">
+                <div class="js-table-container">
                     <div style="margin-top: 20px; margin-bottom: 20px;"></div>
                     <div class="c-grid__row">
                         <div class="c-grid__col">
@@ -134,7 +134,7 @@
 
                                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
 
-                                        <div class="c-ui-paginator js-paginator" data-select2-id="25">
+                                        <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: 
                                                 <span name="total" data-id="{{ $warranties->total() }}">

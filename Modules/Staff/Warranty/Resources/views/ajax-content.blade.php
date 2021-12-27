@@ -1,4 +1,4 @@
-<div class="js-table-container" data-select2-id="17">
+<div class="js-table-container">
     <input name="page_type" value="{{$pageType}}" hidden>
     <div style="margin-top: 20px; margin-bottom: 20px;"></div>
     <div class="c-grid__row">
@@ -17,7 +17,7 @@
                             </div>
                         @endif
 
-                        <div class="c-ui-paginator js-paginator" data-select2-id="16">
+                        <div class="c-ui-paginator js-paginator">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                             </div>
@@ -110,7 +110,7 @@
                         @endif
 
                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
-                        <div class="c-ui-paginator js-paginator" data-select2-id="25">
+                        <div class="c-ui-paginator js-paginator">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                             </div>

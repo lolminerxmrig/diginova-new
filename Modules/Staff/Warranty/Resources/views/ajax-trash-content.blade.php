@@ -1,4 +1,4 @@
-<div class="js-table-container" data-select2-id="17">
+<div class="js-table-container">
     <div style="margin-top: 20px; margin-bottom: 20px;"></div>
     <div class="c-grid__row">
         <div class="c-grid__col">
@@ -8,7 +8,7 @@
                         <div class="c-grid__col c-grid__col--lg-4">
                             <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی‌ها</a>
                         </div>
-                        <div class="c-ui-paginator js-paginator" data-select2-id="16">
+                        <div class="c-ui-paginator js-paginator">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                             </div>
@@ -96,7 +96,7 @@
                         <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی‌ها</a>
 
                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
-                        <div class="c-ui-paginator js-paginator" data-select2-id="25">
+                        <div class="c-ui-paginator js-paginator">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
                             </div>

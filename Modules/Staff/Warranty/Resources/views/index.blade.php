@@ -1,15 +1,13 @@
 @extends('layouts.staff.master')
 @section('title') مدیریت گارانتی‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
-    <!-- <script src="{{ asset('seller/js/indexAction.js') }}"></script> -->
-    <!-- <script src="{{ asset('seller/js/tableView.js') }}"></script> -->
     <script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
     <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 @endsection
 @section('content')
 <main class="c-main">
     <div class="uk-container uk-container-large">
-        <div class="c-grid " data-select2-id="13">
+        <div class="c-grid ">
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <input type="hidden" value="" name="has-warehouses">
@@ -29,11 +27,10 @@
                                 <h2 class="c-card__title">جستجو و فیلتر</h2>
                             </div>
                             <div class="c-card__body">
-                                <div class="c-ui-form__row" data-select2-id="12">
-                                    <div class="c-ui-form__col c-ui-form__col--8 c-ui-form__col--xs-12"
-                                         data-select2-id="11">
+                                <div class="c-ui-form__row">
+                                    <div class="c-ui-form__col c-ui-form__col--8 c-ui-form__col--xs-12">
                                         <label class="c-ui-form__label">جستجو بر اساس:</label>
-                                        <div class="c-ui-form__row" data-select2-id="10">
+                                        <div class="c-ui-form__row">
                                             <div
                                                 class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12
                                                  c-ui-form__col--small-gap c-ui-form__col--xs c-ui-form__col--wrap-xs"
@@ -76,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="js-table-container" data-select2-id="17">
+                <div class="js-table-container">
                     <input name="page_type" value="index" hidden>
                     <div style="margin-top: 20px; margin-bottom: 20px;"></div>
                     <div class="c-grid__row">
@@ -198,7 +195,7 @@
                                         @endif
 
                                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
-                                        <div class="c-ui-paginator js-paginator" data-select2-id="25">
+                                        <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">
                                                     {{ persianNum($warranties->total()) }} مورد

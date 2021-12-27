@@ -14,17 +14,24 @@ class ConsignmentHasProductVariants extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['count', 'variant_price', 'promotion_price', 'promotion_percent', 'product_id', 'product_variant_id', 'consignment_id', 'order_id', 'promotion_type' , 'order_status_id', 'customer_id'];
+    protected $fillable = [
+      'count', 
+      'variant_price', 
+      'promotion_price', 
+      'promotion_percent', 
+      'product_id', 
+      'product_variant_id', 
+      'consignment_id', 
+      'order_id', 
+      'promotion_type', 
+      'order_status_id', 
+      'customer_id'
+    ];
 
     public function consignment()
     {
       return $this->belongsTo(OrderHasConsignment::class, 'consignment_id');
     }
-
-//    public function product_variant()
-//    {
-//      return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', 'variantable_id', 'product_variant_id');
-//    }
 
     public function status()
     {
