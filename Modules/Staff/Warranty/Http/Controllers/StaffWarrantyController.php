@@ -109,7 +109,7 @@ class StaffWarrantyController extends Controller
     public function ajaxPagination(Request $request)
     {
         $request->paginatorNum 
-            ? $paginatorNum = $request->paginatorNum;
+            ? $paginatorNum = $request->paginatorNum
             : $paginatorNum = 10;
 
         $warranties = Warranty::distinct('name')
