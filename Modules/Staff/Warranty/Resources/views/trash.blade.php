@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت گارانتی‌های حذف شده | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>

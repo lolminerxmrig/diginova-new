@@ -193,7 +193,7 @@
                                                 </a>
                                             </div>
                                         @endif
-
+  
                                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
                                         <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
