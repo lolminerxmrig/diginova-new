@@ -2,8 +2,8 @@
 
 @section('title') ایجاد گارانتی‌ | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('seller/js/create-warranty-validation.js') }}"></script>
-<script src="{{ asset('seller/js/tags.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/create-warranty-validation.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
 @endsection
 
 @section('content')
@@ -65,7 +65,6 @@
                                   c-grid__col--sm-6">
                                   <label class="uk-form-label uk-flex uk-flex-between">
                                       مدت گارانتی:
-{{--                                      <span class="uk-form-label__required"></span>--}}
                                   </label>
                                     <div class="field-wrapper">
                                         <label class="c-content-input">
@@ -79,12 +78,9 @@
                               </div>
 
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-4 c-grid__col--xs-gap" style="margin-top: 15px;margin-bottom: 25px;">
-                                    <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="
-                            width: 201px;
-                            ">
+                                    <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="width: 201px;">
                                         <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">
                                             <input type="checkbox" class="c-ui-checkbox__origin" name="has_insurance" id="has_insurance">
-{{--                                                <input type="checkbox" class="c-ui-checkbox__origin" name="has_insurance" id="has_insurance" value="1" onchange="valueChanged()">--}}
                                             <span class="c-ui-checkbox__check"></span>
                                             <span class="c-ui-checkbox__label">بیمه دارد</span>
                                             <div class="c-wiki c-wiki__holder">
@@ -132,7 +128,6 @@
                                 </div>
                                 <div class="c-content-categories__summary">
                                   <div class="c-content-categories__summary-breadcrumbs">
-{{--                                        <span class="">انتخابی ها:</span>--}}
                                     <ul class="js-selected-category c-content-categories__selected-list" id="breadcrumbs" style="margin-right: 10px;">
 
                                     </ul>
@@ -142,10 +137,7 @@
                                       <a class="c-ui-btn c-ui-btn--next mr-a disabled js-continue-btn" id="categoryStepNext">
                                           انتخاب دسته
                                       </a>
-{{--                                        <button type="button" class="c-content-categories__search-reset reset-box" id="categoryReset">--}}
-{{--                                        </button>--}}
                                   </div>
-
                                 </div>
                               </div>
                               <div class="c-content-loader c-content-loader--fixed category-box">

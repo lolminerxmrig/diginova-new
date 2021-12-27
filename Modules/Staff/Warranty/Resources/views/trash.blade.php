@@ -1,7 +1,7 @@
 @extends('layouts.staff.master')
 @section('head')
-<script src="{{ asset('seller/js/indexAction.js') }}"></script>
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 @endsection
 @section('content')
 <main class="c-main">
@@ -116,8 +116,8 @@
                                                                     value="{{ $warranty->id }}">بازگردانی</button>
 
                                                                 <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
-                                                                c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                                value="{{ $warranty->id }}">حذف کامل</button>
+                                                                    c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
+                                                                    value="{{ $warranty->id }}">حذف کامل</button>
                                                             </div>
                                                         </td>
                                                         </div>

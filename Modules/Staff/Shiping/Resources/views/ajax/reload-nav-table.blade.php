@@ -4,13 +4,11 @@
       <div class="c-card">
         <div class="c-card__wrapper">
           <div class="c-card__header c-card__header--table">
-            {{--                    @if(($nav->type == "nav") || ($nav->type == "nav-r"))--}}
             <a target="_blank">
               <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد فهرست
                 جدید
               </div>
             </a>
-            {{--                    @endif--}}
             <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
             <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total" data-rows="۶">
@@ -55,14 +53,12 @@
                         <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
                         <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
                       </div>
-                      {{--                            <span class="c-wallet__body-card-row-item"> {{ persianNum($navs->firstItem() + $key) }} </span>--}}
                     </td>
 
-
                     <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
-                              <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                  {{ $nav->name }}
-                              </span>
+                      <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                          {{ $nav->name }}
+                      </span>
                     </td>
 
                     <td class="c-ui-table__cell c-ui-table__cell--text-blue">
@@ -74,9 +70,9 @@
 
 
                     <td class="c-ui-table__cell c-ui-table__cell-desc" style="text-align: center;">
-                              <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                  {{ ($nav->type == 'common')? 'معمولی' : 'دارای مگا‌منو' }}
-                              </span>
+                      <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                          {{ ($nav->type == 'common')? 'معمولی' : 'دارای مگا‌منو' }}
+                      </span>
                     </td>
 
                     <td class="c-ui-table__cell c-ui-table__cell--small-text">
@@ -141,17 +137,14 @@
           </div>
 
           <div class="c-card__footer" style="width: auto;">
-
-            {{--                    @if(($nav->type == "nav") || ($nav->type == "nav-r"))--}}
             <a target="_blank">
               <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد فهرست
                 جدید
               </div>
             </a>
-            {{--                    @endif--}}
-            <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
+            <div class="c-ui-paginator js-paginator" style="visibility: hidden;"></div>
 
-            <div class="c-ui-paginator js-paginator" data-select2-id="25">
+            <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total" data-rows="۶">
                 تعداد نتایج: <span name="total" data-id="2">{{ persianNum($navs->total()) }} مورد</span>
               </div>

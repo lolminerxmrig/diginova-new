@@ -13,13 +13,6 @@
             </div>
           </a>
           <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
-
-{{--          <div class="c-ui-paginator js-paginator">--}}
-{{--            <div class="c-ui-paginator__total" data-rows="۶">--}}
-{{--              تعداد نتایج: <span name="total" data-id="5">{{ persianNum($items->total()) }} مورد</span>--}}
-{{--            </div>--}}
-{{--          </div>--}}
-
         </div>
         <div class="c-card__body c-ui-table__wrapper">
           <table class="c-ui-table  js-search-table js-table-fixed-header c-join__table">
@@ -49,20 +42,9 @@
             @if(count($items))
               @foreach($items->sortBy('position') as $key => $item)
                 <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
-
-{{--                  <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">--}}
-{{--                    <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">--}}
-{{--                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>--}}
-{{--                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>--}}
-{{--                      <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>--}}
-{{--                    </div>--}}
-{{--                  </td>--}}
-
-
                   <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                      1
+                      {{ persianNum($key+1) }}
                   </td>
-
 
                   <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
                       <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
@@ -113,12 +95,6 @@
           </a>
 
           <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
-
-{{--          <div class="c-ui-paginator js-paginator" data-select2-id="25">--}}
-{{--            <div class="c-ui-paginator__total" data-rows="۶">--}}
-{{--              تعداد نتایج: <span name="total" data-id="2">{{ persianNum($items->total()) }} مورد</span>--}}
-{{--            </div>--}}
-{{--          </div>--}}
 
         </div>
       </div>

@@ -1,8 +1,10 @@
 @extends('layouts.staff.master')
 @section('title') مدیریت گارانتی‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
-    <script src="{{ asset('seller/js/indexAction.js') }}"></script>
-    <script src="{{ asset('seller/js/tableView.js') }}"></script>
+    <!-- <script src="{{ asset('seller/js/indexAction.js') }}"></script> -->
+    <!-- <script src="{{ asset('seller/js/tableView.js') }}"></script> -->
+    <script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+    <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 @endsection
 @section('content')
 <main class="c-main">
@@ -358,17 +360,6 @@ $(document).on('click','.delete-btn' , function (){
         },
         success: function (result){
             $('.js-table-container').replaceWith(result);
-            // $("tr[id="+ id +"]").remove();
-            //
-            // var total_count = $("span[name='total']").attr('data-id');
-            // var new_count = total_count-1;
-            //
-            // var total = '<span name="total" data-id=" + new_count + ">' + new_count + ' مورد</span>';
-            //
-            // $("span[name='total']").replaceWith(total);
-            //
-            // ConvertNumberToPersion();
-
         },
     });
 });

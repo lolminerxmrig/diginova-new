@@ -29,9 +29,6 @@
                 <th class="c-ui-table__header">
                   <span class="table-header-searchable uk-text-nowrap ">لینک به آدرس</span>
                 </th>
-                {{--                        <th class="c-ui-table__header"><span--}}
-                {{--                            class="table-header-searchable uk-text-nowrap ">تبلیغات</span>--}}
-                {{--                        </th>--}}
                 <th class="c-ui-table__header"><span
                     class="table-header-searchable uk-text-nowrap ">وضعیت</span>
                 </th>
@@ -81,7 +78,6 @@
                         <input type="hidden" value="0" class="js-active-input">
                       </div>
                     </td>
-
 
                     <td class="c-ui-table__cell">
                       <div class="c-promo__actions">

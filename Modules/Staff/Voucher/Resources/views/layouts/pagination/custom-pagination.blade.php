@@ -12,26 +12,25 @@
     @endif
 
     @foreach ($elements as $element)
-    @if (is_string($element))
-    <li class="c-ui-paginator__control-item" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
-    @endif
+        @if (is_string($element))
+            <li class="c-ui-paginator__control-item" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
+        @endif
 
-    @if (is_array($element))
-    @foreach ($element as $page => $url)
-    @if ($page == $paginator->currentPage())
-    <li class="c-ui-paginator__control-item uk-active">
-        <a data-page="{{ $page }}" class="c-ui-paginator__control-digit c-ui-paginator__control-digit--current">{{ persianNum($page) }}</a>
-    </li>
-    @else
-    <li class="c-ui-paginator__control-item">
-        <a data-page="{{ $page }}" class="c-ui-paginator__control-digit">{{ persianNum($page) }}</a>
-    </li>
-    @endif
-    @endforeach
-    @endif
+        @if (is_array($element))
+            @foreach ($element as $page => $url)
+                @if ($page == $paginator->currentPage())
+                <li class="c-ui-paginator__control-item uk-active">
+                    <a data-page="{{ $page }}" class="c-ui-paginator__control-digit c-ui-paginator__control-digit--current">{{ persianNum($page) }}</a>
+                </li>
+                @else
+                <li class="c-ui-paginator__control-item">
+                    <a data-page="{{ $page }}" class="c-ui-paginator__control-digit">{{ persianNum($page) }}</a>
+                </li>
+                @endif
+            @endforeach
+        @endif
     @endforeach
     @if ($paginator->hasMorePages())
-
         <li class="c-ui-paginator__control-item">
             <a class="c-ui-paginator__control-next" data-page="{{ ($paginator->currentPage())+1 }}"></a>
         </li>

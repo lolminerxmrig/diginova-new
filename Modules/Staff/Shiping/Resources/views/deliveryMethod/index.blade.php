@@ -1,7 +1,7 @@
 @extends('layouts.staff.master')
 @section('head')
-<script src="{{ asset('seller/js/indexAction.js') }}"></script>
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 <style>
   td {
     text-align: right !important;

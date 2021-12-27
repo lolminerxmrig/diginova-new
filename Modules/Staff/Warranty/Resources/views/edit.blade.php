@@ -4,13 +4,13 @@
 @section('title') ویرایش گارانتی‌ | {{ $fa_store_name }}  @endsection
 
 @section('head')
-<script src="{{ asset('seller/js/create-warranty-validation.js') }}"></script>
-<script src="{{ asset('seller/js/tags.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/create-warranty-validation.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
 @endsection
 
 @section('content')
 <?php
-$warranty->name = persianNum($warranty->name);
+  $warranty->name = persianNum($warranty->name);
 ?>
 <main class="c-content-layout">
   <div class="uk-container uk-container-large">
@@ -61,7 +61,6 @@ $warranty->name = persianNum($warranty->name);
                                   c-grid__col--sm-6">
                                   <label class="uk-form-label uk-flex uk-flex-between">
                                       مدت گارانتی:
-{{--                                      <span class="uk-form-label__required"></span>--}}
                                   </label>
                                     <div class="field-wrapper">
                                         <label class="c-content-input">
@@ -125,7 +124,6 @@ $warranty->name = persianNum($warranty->name);
                                 </div>
                                 <div class="c-content-categories__summary">
                                   <div class="c-content-categories__summary-breadcrumbs">
-{{--                                        <span class="">انتخابی ها:</span>--}}
                                     <ul class="js-selected-category c-content-categories__selected-list" id="breadcrumbs" style="margin-right: 10px;">
                                         @foreach($warranty->categories as $category)
                                             <li class="select2-selection__choice" data-cat-id="{{ $category->id }}" style="background: #889098;
@@ -133,8 +131,7 @@ $warranty->name = persianNum($warranty->name);
                                                                         padding: 5px 11px 0px 11px;margin-left: 5px;">
                                                 <span class="select2-selection__choice__remove" role="presentation">{{ $category->name }}</span>
                                                 <a class="select2-selection__choice__remove remove-breadcrumb" data-cat-id="{{ $category->id }}"
-                                                   role="presentation" style="margin-right: 5px; font-weight: bold; padding-right: 2px;
-                                                                                color: white;">×</a>
+                                                   role="presentation" style="margin-right: 5px; font-weight: bold; padding-right: 2px;color: white;">×</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -144,8 +141,6 @@ $warranty->name = persianNum($warranty->name);
                                       <a class="c-ui-btn c-ui-btn--next mr-a disabled js-continue-btn" id="categoryStepNext">
                                           انتخاب دسته
                                       </a>
-{{--                                        <button type="button" class="c-content-categories__search-reset reset-box" id="categoryReset">--}}
-{{--                                        </button>--}}
                                   </div>
 
                                 </div>
@@ -155,7 +150,6 @@ $warranty->name = persianNum($warranty->name);
                                 <div class="c-content-loader__spinner"></div>
                               </div>
                             </div>
-{{--                            <input type="text" name="category_group" class="category_group" id="hidden_cat_group" style="visibility: hidden">--}}
                               @foreach($warranty->categories as $category)
                                   <input type="text" name="category_group" class="category_group" value="{{ $category->id }}"  style="visibility: hidden">
                               @endforeach
@@ -246,9 +240,7 @@ $('#warranty_form').on('submit', function(e){
             }
         });
     }
-
 });
-
 
 if ($('.select2-selection__choice').length > 5) {
     $(".select2-selection__choice__remove").each(function (){

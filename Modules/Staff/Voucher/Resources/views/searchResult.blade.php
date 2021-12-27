@@ -28,7 +28,9 @@
                     <span class="js-search-table-column">کد تخفیف</span>
                 </th>
                 <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                    <span class="js-search-table-column-sortable table-header-searchable" data-sort-column="start_end_at" data-sort-order="desc">مهلت استفاده</span>
+                    <span class="js-search-table-column-sortable table-header-searchable" 
+                     data-sort-column="start_end_at"
+                     data-sort-order="desc">مهلت استفاده</span>
                 </th>
                 <th class="c-ui-table__header  ">
                     <span class="js-search-table-column">جزئیات بیشتر</span>
@@ -63,14 +65,11 @@
                                     <span class="c-join__has-icon c-join__has-icon--clock"  style="padding-right: 25px;">غیرفعال</span>
                                 </div>
                             @endif
-                            {{--                                                            <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-id="{{ $voucher->id }}" name="status" {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }}  {{ ((($voucher->end_at > now() || is_null($voucher->end_at) && ($voucher->status == 'active')) ) )? 'checked' : '' }}>--}}
-
                         </td>
                         <td class="c-ui-table__cell" style="">
                             {{ persianNum($voucher->percent) }} درصد تخفیف
                             {{ (!is_null($voucher->max_usable))? 'تا سقف ' . persianNum(number_format($voucher->up_to)) . ' ریال' : '' }} <br>
                             {{ (!is_null($voucher->max_usable))? 'برای خرید بالای ' . persianNum(number_format($voucher->min_product_price)) . ' ریال' : '' }}
-
                         </td>
                         <td class="c-ui-table__cell c-ui-table__cell--text-blue">
                             <a class="c-join__promotion-link" href="" target="_blank" style="font-weight: bold">{{ $voucher->code }}</a>
@@ -88,24 +87,24 @@
                         <td class="c-ui-table__cell">
                             <div class="c-join__status-cell">
                                 <span style="text-align: right">{{ (!is_null($voucher->max_usable))? 'قابل استفاده: ' . persianNum($voucher->max_usable) . ' نفر' : '' }}</span>
-                                {{--                                                                <span style="text-align: right">{{ (!is_null($voucher->max_usable))? 'بیشترین تعداد استفاده: ' . persianNum($voucher->max_usable) . ' عدد' : '' }}</span>--}}
                                 <span style="text-align: right">{{ (!is_null($voucher->type) && ($voucher->type == 'first_purchase'))? 'فقط برای خرید اول' : '' }}</span>
                                 <span style="text-align: right">{{ (!is_null($voucher->freeـshipping) && ($voucher->freeـshipping == 'true'))? 'با هزینه ارسال رایگان' : '' }}</span>
                                 @if($voucher->categories()->exists())
                                     <span style="text-align: right"> فعال برای دسته: {{ $voucher->categories()->first()->name }} </span>
                                 @endif
-                                {{--                                                                {{ (!!is_null($voucher->max_usable) && ($voucher->type !== 'first_purchase') && ($voucher->freeـshipping !== 'true'))? '-' : '' }}--}}
                             </div>
                         </td>
                         <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                            {{--                                                            {{ persianNum(0) }}--}}
                             -
                         </td>
                         <td class="c-ui-table__cell c-ui-table__cell--small-text">
                             <div class="c-ui-tooltip__anchor">
                                 <div class="c-ui-toggle__group">
                                     <label class="c-ui-toggle">
-                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-id="{{ $voucher->id }}" name="status" {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }}  {{ ((($voucher->end_at > now() || is_null($voucher->end_at) && ($voucher->status == 'active')) ) )? 'checked' : '' }}>
+                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox"
+                                         data-id="{{ $voucher->id }}" name="status"
+                                          {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }} 
+                                           {{ ((($voucher->end_at > now() || is_null($voucher->end_at) && ($voucher->status == 'active')) ) )? 'checked' : '' }}>
                                         <span class="c-ui-toggle__check"></span>
                                     </label>
                                 </div>
@@ -114,8 +113,12 @@
                         </td>
                         <td class="c-ui-table__cell">
                             <div class="c-promo__actions">
-                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.vouchers.edit', ['id' => $voucher->id]) }}">ویرایش</a>
-                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="{{ route('staff.vouchers.removeVoucher', ['id' => $voucher->id]) }}">حذف صفحه</button>
+                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" 
+                                    href="{{ route('staff.vouchers.edit', ['id' => $voucher->id]) }}">ویرایش</a>
+                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary
+                                    js-remove-plp js-remove-product-list" data-url="{{ route('staff.vouchers.removeVoucher', ['id' => $voucher->id]) }}">
+                                    حذف صفحه
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -124,7 +127,6 @@
             </tbody>
         </table>
         <div class="c-card__loading"></div>
-
     </div>
     <br>
 
@@ -149,8 +151,5 @@
                 @endif
             </div>
         </div>
-
     </div>
-
-
 </div>

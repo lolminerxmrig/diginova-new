@@ -8,7 +8,6 @@
                         <div class="c-grid__col c-grid__col--lg-4">
                             <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی‌ها</a>
                         </div>
-
                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>

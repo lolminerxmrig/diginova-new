@@ -1,23 +1,27 @@
 @extends('layouts.staff.master')
 @section('head')
-<script src="{{ asset('seller/js/indexAction.js') }}"></script>
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 @endsection
 @section('content')
 <main class="c-main">
     <div class="uk-container uk-container-large">
-        <div class="c-grid " data-select2-id="13">
+        <div class="c-grid ">
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <input type="hidden" value="" name="has-warehouses">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت اسلایدر ها<span>از این صفحه می‌توانید اسلایدر ها را مدیریت کنید</span>
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">
+                            مدیریت اسلایدر ها
+                            <span>
+                                از این صفحه می‌توانید اسلایدر ها را مدیریت کنید
+                            </span>
                         </h1>
                     </div>
                 </div>
             </div>
             @if ($slider_groups->count())
-                <div class="js-table-container" data-select2-id="17">
+                <div class="js-table-container">
                     <input name="page_type" value="index" hidden>
                     <div style="margin-top: 20px; margin-bottom: 30px;"></div>
                     <div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25" style="margin-bottom: 30px !important;">
@@ -34,7 +38,7 @@
                                             </div>
                                         </a>
 
-                                        <div class="c-ui-paginator js-paginator" data-select2-id="16">
+                                        <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $slider_groups->total() }}">{{ persianNum($slider_groups->total()) }} مورد</span>
                                             </div>
@@ -79,7 +83,8 @@
                                                           <img src="{{ asset('staff/icon/Home2.png') }}" width="85%" height="85%">
                                                         @endif
                                                     </td>
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" 
+                                                        style="min-width: 50% !important; width: 50% !important;">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
@@ -104,7 +109,8 @@
                                                       @endif
                                                     </td>
                                                     <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish" href="{{ route('staff.sliders.sliders', $slider_group->id) }}" style="width: 120px;">مدیریت لیست</a>
+                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish"
+                                                       href="{{ route('staff.sliders.sliders', $slider_group->id) }}" style="width: 120px;">مدیریت لیست</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -112,10 +118,12 @@
                                         </table>
                                     </div>
                                     <div class="c-card__footer" style="width: auto;">
-                                      <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
-                                      <div class="c-ui-paginator js-paginator" data-select2-id="25">
+                                      <div class="c-ui-paginator js-paginator" style="visibility: hidden;"></div>
+                                      <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $slider_groups->total() }}">{{ persianNum($slider_groups->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $slider_groups->total() }}">
+                                                    {{ persianNum($slider_groups->total()) }} مورد
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

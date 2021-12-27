@@ -34,17 +34,14 @@
 
     {{-- Next Page Link --}}
     @if ($paginator->hasMorePages())
-
         <li class="c-ui-paginator__control-item">
             <a class="pagination-link c-ui-paginator__control-next js-content-pager-item"
                href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')"></a>
         </li>
     @else
-
-    <li class="c-ui-paginator__control-item" aria-disabled="true" aria-label="@lang('pagination.next')">
-        <a class="pagination-link c-ui-paginator__control-next c-ui-paginator__control-next--disabled" data-page=""  aria-hidden="true"></a>
-    </li>
-
+        <li class="c-ui-paginator__control-item" aria-disabled="true" aria-label="@lang('pagination.next')">
+            <a class="pagination-link c-ui-paginator__control-next c-ui-paginator__control-next--disabled" data-page=""  aria-hidden="true"></a>
+        </li>
     @endif
 </ul>
 @endif

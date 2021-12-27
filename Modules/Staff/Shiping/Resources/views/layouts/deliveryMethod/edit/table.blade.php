@@ -73,13 +73,11 @@
                     </td>
 
                     @elseif($item->type == 'multi')
-{{--{{ dd($item) }}--}}
                       <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;" colspan="3">
                         <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
                           <input type="text" class="c-content-input__origin c-content-input__origin menu_link" name="intra_province" value="{{ $item->intra_province }}" dir="rtl" style="text-align: right;">
                         </span>
                       </td>
-
                     @endif
 
                   </tr>
@@ -116,6 +114,5 @@
         </div>
       </div>
     </div>
-
-</div>
+  </div>
 </div>

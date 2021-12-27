@@ -1,6 +1,6 @@
 @extends('layouts.staff.master')
 @section('head')
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 
 <style>
   .select2-selection__arrow {
@@ -255,8 +255,6 @@
 
                   <div class="field-wrapper ui-select ui-select__container ui-select__container--product" style="text-align: right; border-color: #e6e9ed !important;">
                     <select name="method_states" class="uk-input uk-input--select js-select-origin method_states" multiple="multiple" style="text-align: right; border-color: #e6e9ed !important;">
-{{--                      {{ (count($product->category[0]->types) == 0)? 'disabled' : '' }}--}}
-
                       @php
                         if(isset($delivery_method->states) && !is_null($delivery_method->states)) {
                           foreach ($delivery_method->states as $state)

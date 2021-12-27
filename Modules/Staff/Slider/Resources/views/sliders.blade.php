@@ -1,29 +1,20 @@
 @extends('layouts.staff.master')
 @section('head')
-  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
-  <script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
-  <script src="{{ asset('seller/js/tagify.min.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('staff/css/venobox.min.css') }}">
-  <script src="{{ asset('staff/js/venobox.min.js') }}"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
-  <script src="https://unpkg.com/@yaireo/dragsort"></script>
+  <script type="text/javascript" src="{{ asset('mehdi/staff/js/jquery-latest.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
+  <script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('mehdi/staff/css/venobox.min.css') }}">
+  <script src="{{ asset('mehdi/staff/js/venobox.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
+   media="print" onload="this.media='all'">
+  <script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
 
   <style>
-    /*.select2-search {*/
-    /*    display: none;*/
-    /*}*/
-
     .select2-selection__arrow {
       display: block !important;
     }
-
-    /*.select2-search--dropdown {*/
-    /*    display: none;*/
-    /*}*/
-
 
     .select2-selection--single {
       background-color: #fff;
@@ -68,17 +59,15 @@
               <div class="c-card">
                 <div class="c-card__wrapper">
                   <div class="c-card__header c-card__header--table">
-                    <a target="_blank">
-
-                    </a>
+                    <a target="_blank"></a>
                     <div class="c-ui-paginator js-paginator">
-                      <div class="c-ui-paginator__total" data-rows="۶">
-                        تعداد نتایج: <span name="total" data-id="5">{{ persianNum($sliders->total()) }} مورد</span>
+                      <div class="c-ui-paginator__total">
+                        تعداد نتایج: <span name="total">{{ persianNum($sliders->total()) }} مورد</span>
                       </div>
                     </div>
                   </div>
                   <div class="c-card__body c-ui-table__wrapper">
-                    <table class="c-ui-table  js-search-table js-table-fixed-header c-join__table">
+                    <table class="c-ui-table js-search-table js-table-fixed-header c-join__table">
                       <thead>
                       <tr class="c-ui-table__row">
                         <th class="c-ui-table__header">
@@ -110,7 +99,8 @@
 
                       @foreach($sliders as $key => $slider)
 
-                        <tr name="row db-row" id="item-{{ $slider->id }}" data-id="1" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
+                        <tr name="row db-row" id="item-{{ $slider->id }}" data-id="1"
+                         class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
 
                           <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
                             <span class="c-wallet__body-card-row-item"> {{ persianNum($sliders->firstItem() + $key) }} </span>
@@ -133,18 +123,26 @@
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;">
-                            <input type="text" name="link" value="{{ ($slider->images()->exists())? $slider->images()->first()->link : '' }}" class="c-content-input__origin js-attribute-old-value link {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'c-ui-input--disabled' : '' }}" {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'disabled' : '' }}>
+                            <input type="text" name="link" value="{{ ($slider->images()->exists())? $slider->images()->first()->link : '' }}"
+                             class="c-content-input__origin js-attribute-old-value link
+                              {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'c-ui-input--disabled' : '' }}"
+                               {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'disabled' : '' }}>
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                            <input type="text" name="img_alt" value="{{ ($slider->images()->exists())? $slider->images()->first()->alt : '' }}" class="c-content-input__origin js-attribute-old-value img_alt {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'c-ui-input--disabled' : '' }}" {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'disabled' : '' }}>
+                            <input type="text" name="img_alt" value="{{ ($slider->images()->exists())? $slider->images()->first()->alt : '' }}"
+                             class="c-content-input__origin js-attribute-old-value img_alt
+                              {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'c-ui-input--disabled' : '' }}"
+                               {{ (($slider->type !== "banner") && ($slider->type !== "banner-r"))? 'disabled' : '' }}>
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                            <div class="c-ui-tooltip__anchor" style="{{ (($slider->type == 'banner-r') || ($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'opacity:30%' : '' }}">
+                            <div class="c-ui-tooltip__anchor" 
+                            style="{{ (($slider->type == 'banner-r') || ($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'opacity:30%' : '' }}">
                               <div class="c-ui-toggle__group">
                                 <label class="c-ui-toggle">
-                                  <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" name="status" {{ ($slider->status == 'active')? 'checked' : '' }} {{ (($slider->type == 'banner-r') || ($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'disabled' : '' }}>
+                                  <input class="c-ui-toggle__origin js-toggle-active-product status"
+                                   type="checkbox" name="status" {{ ($slider->status == 'active')? 'checked' : '' }} {{ (($slider->type == 'banner-r') || ($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'disabled' : '' }}>
                                   <span class="c-ui-toggle__check"></span>
                                 </label>
                               </div>
@@ -157,16 +155,15 @@
                               @if($slider->type == 'banner' || $slider->type == 'banner-r')
 
                                 <label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">
-                                  <input name="sliderImage" data-id="{{ $slider->id }}" type="file" class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg">
-                                  <input name="sliderImageId" type="hidden" value="{{ ($slider->images()->exists() && $slider->images->first()->media()->exists())? $slider->images()->first()->media->first()->id : '' }}">
+                                  <input name="sliderImage" data-id="{{ $slider->id }}" type="file" class="js-profile-business-info-logo"
+                                   accept="image/jpg,image/png,image/jpeg">
+                                  <input name="sliderImageId" type="hidden" 
+                                  value="{{ ($slider->images()->exists() && $slider->images->first()->media()->exists())? $slider->images()->first()->media->first()->id : '' }}">
                                 </label>
-
-
                                   <a href="{{ ($slider->images()->exists() && $slider->images->first()->media()->exists())? $site_url . '/' . $slider->images()->first()->media->first()->path . '/'. $slider->images()->first()->media->first()->name : '' }}"
                                      class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;">
                                   <span data-tooltip-body="" style="min-height:20px; width: auto;">مشاهده تصویر</span>
                                 </a>
-
                               @else
 
                                 <a href="{{ route('staff.sliders.sliderImages', ['id' => $slider->id ]) }}" style="width: 25px;margin-left: 15px;float: right;margin-top: 5px;margin-right: 0px !important;padding-right: 0px;" class="uk-padding-remove">
@@ -176,37 +173,30 @@
                                   </div>
                                 </a>
 
-                                <button class="o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="15202354" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;opacity: 40% !important;"></button>
-
+                                <button class="o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge 
+                                uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" 
+                                 data-hide="{is_archived: true}" data-value="1" data-is-archived="false"
+                                 data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true"
+                                  style="float: right;margin-top: 5px !important;margin-right: 5px;opacity: 40% !important;"></button>
                               @endif
-
-                                <button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn" style="float: right;margin-top: 5px !important;margin-right: 5px;opacity: 43%;" disabled=""></button>
-
+                                <button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn" 
+                                style="float: right;margin-top: 5px !important;margin-right: 5px;opacity: 43%;" disabled=""></button>
                             </div>
                           </td>
-
-
-
-
                         </tr>
-
                       @endforeach
-
                       </tbody>
                     </table>
                   </div>
 
                   <div class="c-card__footer" style="width: auto;">
-
-                    <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;">
+                    <div class="c-ui-paginator js-paginator" style="visibility: hidden;">
                     </div>
-
-                    <div class="c-ui-paginator js-paginator" data-select2-id="25">
-                      <div class="c-ui-paginator__total" data-rows="۶">
-                        تعداد نتایج: <span name="total" data-id="2">{{ persianNum($sliders->total()) }} مورد</span>
+                    <div class="c-ui-paginator js-paginator">
+                      <div class="c-ui-paginator__total">
+                        تعداد نتایج: <span name="total">{{ persianNum($sliders->total()) }} مورد</span>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -214,7 +204,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="c-grid__row">
         <div class="c-grid__col">
@@ -228,9 +217,8 @@
             </div>
           </div>
         </div>
-
-
       </div>
+
       <div id="pageLoader" class="c-content-loader c-content-loader--fixed">
         <div class="c-content-loader__logo"></div>
         <div class="c-content-loader__spinner"></div>
@@ -265,7 +253,8 @@
   </div>
   <div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
 
-    <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
+    <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin
+     select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
       @if(isset($units) && count($units))
         @foreach($units as $unit)
           <option value="{{ $unit->id }}">{{ $unit->name }}</option>
@@ -318,8 +307,6 @@
             pos: 'top-left',
             timeout: 3000
           });
-
-          {{--          window.location.href = "{{ route('staff.sliders.sliders', ['id' => $slider_group] ) }}";--}}
         },
       });
 

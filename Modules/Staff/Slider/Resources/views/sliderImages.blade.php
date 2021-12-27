@@ -1,29 +1,20 @@
 @extends('layouts.staff.master')
 @section('head')
-  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
-  <script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
-  <script src="{{ asset('seller/js/tagify.min.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('staff/css/venobox.min.css') }}">
-  <script src="{{ asset('staff/js/venobox.min.js') }}"></script>
-  <link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
-  <script src="https://unpkg.com/@yaireo/dragsort"></script>
+  <script type="text/javascript" src="{{ asset('mehdi/staff/js/jquery-latest.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
+  <script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('mehdi/staff/css/venobox.min.css') }}">
+  <script src="{{ asset('mehdi/staff/js/venobox.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
+   media="print" onload="this.media='all'">
+  <script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
 
   <style>
-    /*.select2-search {*/
-    /*    display: none;*/
-    /*}*/
-
     .select2-selection__arrow {
       display: block !important;
     }
-
-    /*.select2-search--dropdown {*/
-    /*    display: none;*/
-    /*}*/
-
 
     .select2-selection--single {
       background-color: #fff;
@@ -52,9 +43,7 @@
               <h1 class="c-card__title c-card__title--dark c-card__title--desc">
                 انتخاب تصاویر برای بنر ها و اسلایدر ها
                 <span>
-                برای بنر ها و اسلایدرهای
-{{--                {{ !is_null($slider_group->category_id)? 'دسته ' . '"' .$slider_group->category->name . '"' : 'صفحه اصلی' }}--}}
-                تصاویر مناسب انتخاب کنید.
+                برای بنر ها و اسلایدرها تصاویر مناسب انتخاب کنید.
               </span>
               </h1>
             </div>
@@ -62,7 +51,6 @@
         </div>
 
         <div class="js-table-container">
-
           <div class="c-grid__row" style="margin-top:30px">
             <div class="c-grid__col">
               <div class="c-card">
@@ -117,7 +105,8 @@
                       @endphp
                       @foreach($slider_images->sortBy('position') as $key => $item)
 
-                        <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
+                        <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" 
+                          class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
 
                           <input name="media_id" hidden>
 
@@ -130,7 +119,8 @@
                           </td>
 
                           <td class="c-ui-table__cell" style="min-width: 90px">
-                            <img src="{{ asset("staff/icon/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}" width="85%" height="85%">
+                            <img src="{{ asset("staff/icon/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}"
+                             width="85%" height="85%">
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
@@ -146,18 +136,21 @@
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="text-align: right;">
-                            <input type="text" name="link" value="{{ $item->link }}" class="c-content-input__origin js-attribute-old-value link {{ (($item->type == 'required_multiple')|| ($item->type == 'multiple'))? 'c-ui-input--disabled' : '' }}" {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'disabled' : '' }}>
+                            <input type="text" name="link" value="{{ $item->link }}" class="c-content-input__origin
+                             js-attribute-old-value link {{ (($item->type == 'required_multiple')|| ($item->type == 'multiple'))? 'c-ui-input--disabled' : '' }}" {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'disabled' : '' }}>
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                            <input type="text" name="img_alt" value="{{ $item->alt }}" class="c-content-input__origin js-attribute-old-value img_alt {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'c-ui-input--disabled' : '' }}" {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'disabled' : '' }}>
+                            <input type="text" name="img_alt" value="{{ $item->alt }}" class="c-content-input__origin
+                             js-attribute-old-value img_alt {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'c-ui-input--disabled' : '' }}" {{ (($item->type == 'required_multiple') || ($item->type == 'multiple'))? 'disabled' : '' }}>
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text">
                             <div class="c-ui-tooltip__anchor">
                               <div class="c-ui-toggle__group">
                                 <label class="c-ui-toggle">
-                                  <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" name="status" {{ ($item->status == 'active')? 'checked' : '' }} {{ (($item->type == 'required_single') || ($item->type == 'required_multiple'))? 'disabled' : '' }}>
+                                  <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox"
+                                   name="status" {{ ($item->status == 'active')? 'checked' : '' }} {{ (($item->type == 'required_single') || ($item->type == 'required_multiple'))? 'disabled' : '' }}>
                                   <span class="c-ui-toggle__check"></span>
                                 </label>
                               </div>
@@ -168,12 +161,15 @@
                             <div class="c-promo__actions" style="width: auto; min-width: 15%; margin: auto;">
 
                               <label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">
-                                <input name="sliderImage" data-id="{{ $item->id }}" type="file" class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg">
-                                <input name="sliderImageId" type="hidden" value="{{ ($item->media()->exists())? $item->media->first()->id : '' }}">
+                                <input name="sliderImage" data-id="{{ $item->id }}" type="file" 
+                                  class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg">
+                                <input name="sliderImageId" type="hidden" 
+                                  value="{{ ($item->media()->exists())? $item->media->first()->id : '' }}">
                               </label>
 
                               <a href="{{ ($item->media()->exists())? $site_url . '/' . $item->media->first()->path . '/'. $item->media->first()->name : '' }}"
-                                 class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;">
+                                 class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge
+                                   uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;">
                                 <span data-tooltip-body="" style="min-height:20px; width: auto;">شاهده تصویر</span>
                               </a>
 
