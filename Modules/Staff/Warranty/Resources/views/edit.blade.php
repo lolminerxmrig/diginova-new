@@ -256,7 +256,6 @@ if ($('.select2-selection__choice').length > 8) {
     });
 }
 
-
 </script>
 @endsection
 

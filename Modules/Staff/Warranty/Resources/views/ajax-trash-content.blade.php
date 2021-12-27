@@ -77,7 +77,6 @@
 
                                     <td class="c-ui-table__cell">
                                         <div class="c-promo__actions">
-
                                             <button class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish restore-btn"
                                                     value="{{ $warranty->id }}">بازگردانی</button>
 
@@ -96,6 +95,7 @@
                         <a href="{{ route('staff.warranties.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت گارانتی‌ها</a>
 
                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
+
                         <div class="c-ui-paginator js-paginator">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">{{ persianNum($warranties->total()) }} مورد</span>
