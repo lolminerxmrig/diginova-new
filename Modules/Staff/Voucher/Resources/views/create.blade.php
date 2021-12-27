@@ -215,7 +215,7 @@
                                                         دسته‌ها</label>
                                                     <div class="search-form__autocomplete-container">
                                                         <div class="search-form__autocomplete js-autosuggest-box">
-                                                            <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="کد تخفیف و یا کد کد تخفیف مورد نظر خود را بنویسید، مثال: گوشی موبایل">
+                                                            <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="دسته‌بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل">
                                                         </div>
                                                     </div>
                                                 </div>

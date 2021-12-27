@@ -56,7 +56,7 @@
                                                     <div class="c-ui-form__col c-ui-form__col-4">
                                                         <label class="c-ui-form__label">جستجو:</label>
                                                         <div class="c-ui-input">
-                                                            <input type="search" name="title" class="c-ui-input__field c-ui-input__field--order js-form-clearable c-join__input" id="search_input" placeholder="جستجوی نام صفحه" style="width: 400px;">
+                                                            <input type="search" name="title" class="c-ui-input__field c-ui-input__field--order js-form-clearable c-join__input" id="search_input" placeholder="جستجوی عنوان تخفیف" style="width: 400px;">
                                                             <button class="uk-icon-button c-join__search-btn uk-icon" uk-tooltip="title: جستجو;" uk-icon="icon: search" id="submitButton" title="" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"> <circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle> <path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path></svg></button>
                                                         </div>
                                                     </div>
@@ -111,7 +111,7 @@
                                                     <thead>
                                                     <tr class="c-ui-table__row">
                                                         <th class="c-ui-table__header  ">
-                                                            <span class="js-search-table-column">عنوان کد تخفیف</span>
+                                                            <span class="js-search-table-column">عنوان</span>
                                                         </th>
                                                         <th class="c-ui-table__header  ">
                                                             <span class="js-search-table-column">میزان تخفیف</span>
@@ -202,7 +202,7 @@
                                                         <td class="c-ui-table__cell">
                                                             <div class="c-promo__actions">
                                                                 <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.vouchers.edit', ['id' => $voucher->id]) }}">ویرایش</a>
-                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="{{ route('staff.vouchers.removeVoucher', ['id' => $voucher->id]) }}">حذف صفحه</button>
+                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="{{ route('staff.vouchers.removeVoucher', ['id' => $voucher->id]) }}">حذف</button>
                                                             </div>
                                                         </td>
                                                     </tr>

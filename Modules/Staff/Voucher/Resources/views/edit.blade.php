@@ -11,8 +11,8 @@
                 <div class="c-content-page c-content-page--plain c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-content-page__header">
-                            <span class="c-content-page__header-action">ایجاد کد تخفیف</span>
-                            <span class="c-content-page__header-desc">برای محصولات فروشگاه کد تخفیف ایجاد کنید</span>
+                            <span class="c-content-page__header-action">ویرایش کد تخفیف</span>
+                            <span class="c-content-page__header-desc">کد تخفیف را ویرایش کنید</span>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                                         <div class="c-content-accordion js-accordion uk-accordion">
                                             <section class="c-content-accordion__row js-content-section uk-open" id="stepCategoryAccordion">
                                                 <h2 style="font-size: 18px; margin-right: 33px; margin-top: -8px;">
-                                                    <div style="color: #606265;">ایجاد کد تخفیف</div>
+                                                    <div style="color: #606265;">ویرایش کد تخفیف</div>
                                                 </h2>
 
                                                 <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;"></div>
@@ -211,7 +211,7 @@
                                                         دسته‌ها</label>
                                                     <div class="search-form__autocomplete-container">
                                                         <div class="search-form__autocomplete js-autosuggest-box">
-                                                            <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="کد تخفیف و یا کد کد تخفیف مورد نظر خود را بنویسید، مثال: گوشی موبایل">
+                                                            <input id="searchKeyword" class="c-content-input__origin js-prevent-submit" type="text" placeholder="دسته‌بندی مورد نظر خود را بنویسید، مثال: گوشی موبایل">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -287,7 +287,7 @@
                                             </div>
                                             <div class="uk-flex uk-flex-left" style="width: 96%;margin-top: 40px;margin-bottom: 20px;">
                                                 <button class="c-ui-btn c-ui-btn--next mr-a" id="submit-form">
-                                                    ایجاد کد تخفیف
+                                                    ویرایش کد تخفیف
                                                 </button>
                                             </div>
                                         </div>

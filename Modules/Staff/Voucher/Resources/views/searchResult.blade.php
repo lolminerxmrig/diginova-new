@@ -19,7 +19,7 @@
             <thead>
             <tr class="c-ui-table__row">
                 <th class="c-ui-table__header  ">
-                    <span class="js-search-table-column">عنوان کد تخفیف</span>
+                    <span class="js-search-table-column">عنوان</span>
                 </th>
                 <th class="c-ui-table__header c-ui-table__header--nowrap  ">
                     <span class="js-search-table-column">میزان تخفیف</span>
@@ -28,7 +28,7 @@
                     <span class="js-search-table-column">کد تخفیف</span>
                 </th>
                 <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                    <span class="js-search-table-column-sortable table-header-searchable" 
+                    <span class="js-search-table-column-sortable table-header-searchable"
                      data-sort-column="start_end_at"
                      data-sort-order="desc">مهلت استفاده</span>
                 </th>
@@ -103,7 +103,7 @@
                                     <label class="c-ui-toggle">
                                         <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox"
                                          data-id="{{ $voucher->id }}" name="status"
-                                          {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }} 
+                                          {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }}
                                            {{ ((($voucher->end_at > now() || is_null($voucher->end_at) && ($voucher->status == 'active')) ) )? 'checked' : '' }}>
                                         <span class="c-ui-toggle__check"></span>
                                     </label>
@@ -113,11 +113,11 @@
                         </td>
                         <td class="c-ui-table__cell">
                             <div class="c-promo__actions">
-                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" 
+                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish"
                                     href="{{ route('staff.vouchers.edit', ['id' => $voucher->id]) }}">ویرایش</a>
                                 <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary
                                     js-remove-plp js-remove-product-list" data-url="{{ route('staff.vouchers.removeVoucher', ['id' => $voucher->id]) }}">
-                                    حذف صفحه
+                                    حذف
                                 </button>
                             </div>
                         </td>
