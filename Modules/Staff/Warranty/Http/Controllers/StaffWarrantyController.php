@@ -108,7 +108,7 @@ class StaffWarrantyController extends Controller
     {
         $request->paginatorNum 
             ? $paginatorNum = $request->paginatorNum
-            : $paginatorNum = 10;
+            : $paginatorNum = 1;
 
         $warranties = Warranty::distinct('name')
             ->orderBy('created_at', 'desc')

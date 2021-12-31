@@ -1190,19 +1190,20 @@ var IndexAction = {
             if (!removeUrl || removeUrl.length === 0) return;
             var $this = $(this);
 
-            var confirmRemove = confirm('آیا واقعا می‌خواهید صفحه را حذف کنید؟');
+            var confirmRemove = confirm('آیا قصد حذف آن را دارید؟');
             if (confirmRemove === true) {
                 Services.ajaxPOSTRequestJSON(
                     removeUrl,
                     {},
                     function () {
                         UIkit.notification({
-                            message: 'صفحه کالا حذف شد',
+                            message: 'با موفقیت حذف شد',
                             status: 'success',
                             pos: 'top-left',
                             timeout: 3000
                         });
                         $this.closest('tr').remove();
+                        location.reload();
                     },
                     function (errors) {
                         Promotion.displayError(errors.errors);

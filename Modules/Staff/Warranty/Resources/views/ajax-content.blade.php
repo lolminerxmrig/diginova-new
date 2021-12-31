@@ -110,15 +110,8 @@
                             </div>
                         </a>
 
-                        @if($trashed_warranties->count())
-                            <div class="c-grid__col c-grid__col--lg-4">
-                                <a href="{{ route('staff.warranties.trash') }}" class="c-ui-btn js-view-all-orders">
-                                    مدیریت گارانتی‌های حذف شده
-                                </a>
-                            </div>
-                        @endif
-
                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
+                        
                         <div class="c-ui-paginator js-paginator">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">

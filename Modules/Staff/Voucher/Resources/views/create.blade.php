@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-
+@section('title') ایجاد کد تخفیف | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('mehdi/staff/js/promotions.js') }}"></script>
 @endsection
@@ -224,8 +224,8 @@
                                                 <div class="c-card__body c-card__body--content category-box" style="display: none">
                                                     <!-- category a -->
                                                     <div id="categoriesContainer" class="c-content-categories">
-                                                        <div class="c-content-categories__container"
-                                                             id="categoriesContainerContent">
+                                                        
+                                                        <div class="c-content-categories__container" id="categoriesContainerContent">
                                                             <div class="c-content-categories__wrapper js-category-column cat-box" id="cat-box" data-id="0">
                                                                 <ul class="c-content-categories__list" style="list-style: none;">
                                                                     @foreach($categories->where('parent_id', 0) as $category)
@@ -239,6 +239,7 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
+
                                                         <div class="c-content-loader">
                                                             <div class="c-content-loader__logo"></div>
                                                             <div class="c-content-loader__spinner"></div>

@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت کد تخفیف | {{ $fa_store_name }}  @endsection
 @section('head')
 <script>
     var supernova_mode = "production";
@@ -163,8 +164,8 @@
 
                                                         </td>
                                                         <td class="c-ui-table__cell c-ui-table__cell--text-blue">
-                                                            <a class="c-join__promotion-link" href="" target="_blank" style="font-weight: bold">{{ $voucher->code }}</a>
-                                                            <a class="c-join__promotion-copy-btn js-copy-btn" href="#" data-link="{{ $voucher->code }}">کپی کد</a>
+                                                            <a class="c-join__promotion-link" href="javascript:void(0);" style="font-weight: bold">{{ $voucher->code }}</a>
+                                                            <a class="c-join__promotion-copy-btn js-copy-btn" href="javascript:void(0);" data-link="{{ $voucher->code }}">کپی کد</a>
                                                         </td>
                                                         <td class="c-ui-table__cell c-join-promotion__date-range">
                                                             @if(!is_null($voucher->start_at))
@@ -192,7 +193,9 @@
                                                             <div class="c-ui-tooltip__anchor">
                                                                 <div class="c-ui-toggle__group">
                                                                     <label class="c-ui-toggle">
-                                                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-id="{{ $voucher->id }}" name="status" {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }}  {{ ((($voucher->end_at > now() || is_null($voucher->end_at) && ($voucher->status == 'active')) ) )? 'checked' : '' }}>
+                                                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" data-id="{{ $voucher->id }}"
+                                                                         name="status" {{ (($voucher->end_at > now() || is_null($voucher->end_at)) )? '' : 'disabled' }}
+                                                                           {{ ((($voucher->end_at > now() || is_null($voucher->end_at) && ($voucher->status == 'active')) ) )? 'checked' : '' }}>
                                                                         <span class="c-ui-toggle__check"></span>
                                                                     </label>
                                                                 </div>
@@ -201,8 +204,10 @@
                                                         </td>
                                                         <td class="c-ui-table__cell">
                                                             <div class="c-promo__actions">
-                                                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.vouchers.edit', ['id' => $voucher->id]) }}">ویرایش</a>
-                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="{{ route('staff.vouchers.removeVoucher', ['id' => $voucher->id]) }}">حذف</button>
+                                                                <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish"
+                                                                 href="{{ route('staff.vouchers.edit', ['id' => $voucher->id]) }}">ویرایش</a>
+                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary 
+                                                                js-remove-plp js-remove-product-list" data-url="{{ route('staff.vouchers.removeVoucher', ['id' => $voucher->id]) }}">حذف</button>
                                                             </div>
                                                         </td>
                                                     </tr>

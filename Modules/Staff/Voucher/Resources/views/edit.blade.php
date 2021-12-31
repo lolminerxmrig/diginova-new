@@ -1,5 +1,6 @@
 @extends('layouts.staff.master')
 
+@section('title') ویرایش کد تخفیف | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('mehdi/staff/js/promotions.js') }}"></script>
 @endsection
@@ -220,27 +221,43 @@
                                                 <div class="c-card__body c-card__body--content category-box" style="{{ (!$voucher->categories()->exists())? 'display: none' : '' }}">
                                                     <!-- category a -->
                                                     <div id="categoriesContainer" class="c-content-categories">
-                                                        <div class="c-content-categories__container" id="categoriesContainerContent">
-                                                            @foreach($all_parent as $parent)
-                                                                @if($categories->where('parent_id', $parent)->count() > 0)
-                                                                    <div class="c-content-categories__wrapper js-category-column">
-                                                                        <ul class="c-content-categories__list">
-                                                                            @foreach($categories->where('parent_id',$parent) as $category)
-                                                                                <li class="c-content-categories__item
-                                                                                 {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}
-                                                                                {{ in_array($category->id, $all_parent) ? 'is-active' : '' }}">
-                                                                                    <label class="c-content-categories__link js-category-link">
-                                                                                        <input type="radio" class="uk-hidden js-category-data" data-id="{{ $category->id }}" name="category" value="{{ $category->name }}" data-theme="" {{ in_array($category->id, $all_parent) ? 'checked' : '' }}>
-                                                                                        {{ $category->name }}
-                                                                                    </label>
-                                                                                </li>
-                                                                            @endforeach
-                                                                        </ul>
-                                                                    </div>
-                                                                @endif
-                                                            @endforeach
 
+                                                        <div class="c-content-categories__container" id="categoriesContainerContent">
+                                                            @if($voucher->categories()->exists())
+                                                                @foreach($all_parent as $parent)
+                                                                    @if($categories->where('parent_id', $parent)->count() > 0)
+                                                                        <div class="c-content-categories__wrapper js-category-column">
+                                                                            <ul class="c-content-categories__list">
+                                                                                @foreach($categories->where('parent_id',$parent) as $category)
+                                                                                    <li class="c-content-categories__item
+                                                                                    {{ $categories->where('parent_id', $category->id)->count() > 0 ? 'has-children' : '' }}
+                                                                                    {{ in_array($category->id, $all_parent) ? 'is-active' : '' }}">
+                                                                                        <label class="c-content-categories__link js-category-link">
+                                                                                            <input type="radio" class="uk-hidden js-category-data" data-id="{{ $category->id }}" name="category" value="{{ $category->name }}" data-theme="" {{ in_array($category->id, $all_parent) ? 'checked' : '' }}>
+                                                                                            {{ $category->name }}
+                                                                                        </label>
+                                                                                    </li>
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            @else
+                                                            <div class="c-content-categories__wrapper js-category-column cat-box" id="cat-box" data-id="0">
+                                                                <ul class="c-content-categories__list" style="list-style: none;">
+                                                                    @foreach($categories->where('parent_id', 0) as $category)
+                                                                        <li class="c-content-categories__item {{ (count($category->children) > 0) ? 'has-children' : '' }}">
+                                                                            <label class="c-content-categories__link js-category-link">
+                                                                                <input type="radio" name="category" value="{{ $category->id }}" class="js-category-data radio uk-hidden" data-id="{{ $category->id }}" data-theme="" style="visibility: hidden;">
+                                                                                {{ $category->name }}
+                                                                            </label>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                            @endif
                                                         </div>
+
                                                         <div class="c-content-loader">
                                                             <div class="c-content-loader__logo"></div>
                                                             <div class="c-content-loader__spinner"></div>

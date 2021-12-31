@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class StaffVoucherController extends Controller
 {
     public function index() {
-        $vouchers = Voucher::orderBy('end_at')->paginate(1);
+        $vouchers = Voucher::orderBy('end_at')->paginate(10);
         return view('staffvoucher::index', compact('vouchers'));
     }
 
@@ -82,9 +82,13 @@ class StaffVoucherController extends Controller
            'platform' => 'all',
         ]);
 
+        $category = Category::find($request->category_id);
+
         if ($request->has_category_limit) {
-            $category = Category::find($request->category_id);
+            $voucher->categories()->detach();
             $voucher->categories()->attach($category);
+        } else {
+            $voucher->categories()->detach($category);
         }
     }
 
