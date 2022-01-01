@@ -41,7 +41,6 @@
     @endphp
     <main class="c-content-layout">
         <div class="uk-container uk-container-large">
-{{--            c-grid__row--}}
             <div class="" style="margin-top: 25px;">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">

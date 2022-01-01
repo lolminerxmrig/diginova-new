@@ -113,7 +113,6 @@
                       <tr data-variant-id="{{ $product_variant->id  }}" class="c-ui-table__row c-ui-table__row--body c-ui-table__row--with-hover c-join__table-row ">
                         <td class="c-ui-table__cell">
                             <label class="c-ui-checkbox js-checkbox-{{ $product_variant->id  }}">
-{{--                                {{ (!is_null($promotions->productVariants->find($product_variant)))? 'checked disabled' : '' }}--}}
                                 <input type="checkbox"  value="{{ $product_variant->id  }}" class="js-selected-item c-ui-checkbox__origin all-checkbox">
                                 <span class="c-ui-checkbox__check"></span>
                             </label>
@@ -124,11 +123,6 @@
                         <td class="c-ui-table__cell">
                             {{ $product_code_prefix . '-' . $product_variant->product->product_code }}
                         </td>
-
-{{--                        <td class="c-ui-table__cell ">--}}
-{{--                            {{ $product_variant->product->title_fa }}--}}
-{{--                            <span class="c-join-promotion__dkpc-number">{{ $product_code_prefix }}C-{{ $product_variant->variant_code  }}</span>--}}
-{{--                        </td>--}}
                         <td class="c-ui-table__cell " style="text-align: right;">
                               {{ $product_variant->product->title_fa }} | {{ $product_variant->variant->name }} | گارانتی
                               {{ (!is_null($product_variant->warranty->month))? persianNum($product_variant->warranty->month) . ' ماهه' : '' }}
@@ -183,7 +177,6 @@
                         @if(!is_null($product_variants) && count($product_variants))
                         {{ $product_variants->links('staffpromotion::periodic-prices.custom-pagination') }}
                         @endif
-
                     </div>
                 </div>
 
