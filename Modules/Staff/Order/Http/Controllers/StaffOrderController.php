@@ -55,7 +55,7 @@ class StaffOrderController extends Controller
 
   public function search(Request $request, Order $orders)
   {
-    (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
+    (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
 
     $orders = $this->searchFilter($request, $orders);
 

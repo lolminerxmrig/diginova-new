@@ -788,7 +788,9 @@
                                                     </td>
                                                     <td class="c-ui-table__cell" style="text-align: right">
                                                         {{ $promotion->productVariants()->first()->product->title_fa . '|' . $promotion->productVariants()->first()->warranty->name }}
-                                                        <span class="c-mega-campaigns-join-list__container-table-dkpc">{{ $product_code_prefix }}C-{{ $promotion->productVariants()->first()->variant_code }}</span>
+                                                        <span class="c-mega-campaigns-join-list__container-table-dkpc">
+                                                            {{ $product_code_prefix }}C-{{ $promotion->productVariants()->first()->variant_code }}
+                                                        </span>
                                                         <div class="c-mega-campaigns-join-list__container-table-error uk-text-nowrap uk-hidden added-by-js-messages-{{ $promotion->id }}">
                                                         </div>
                                                     </td>
@@ -803,8 +805,10 @@
                                                         <div class="c-mega-campaigns--mh-105 uk-flex">
                                                             <div class="c-mega-campaigns--mt-25 uk-flex">
                                                                 <div class="uk-flex uk-flex-column">
-                                                                    <div class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--xs js-number-input-wrapper" style="margin-top: 4px !important;">
-                                                                        <input readonly="" type="number" class="js-discount-value js-number-input" value="{{ $promotion->percent }}">
+                                                                    <div class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--xs 
+                                                                        js-number-input-wrapper" style="margin-top: 4px !important;">
+                                                                        <input readonly="" type="number" class="js-discount-value js-number-input"
+                                                                         value="{{ $promotion->percent }}">
                                                                     </div>
                                                                     <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">
                                                                         حداقل تخفیف:۲%
@@ -817,8 +821,13 @@
                                                     <td class="c-ui-table__cell uk-padding-remove">
                                                         <div class="uk-flex uk-flex-column c-mega-campaigns--mh-105 uk-flex-center">
                                                             <div class="c-mega-campaigns--mt-12">
-                                                                <div class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--medium js-number-input-wrapper" style="margin-top: 7px !important;">
-                                                                    <input readonly="" type="text" name="variant[promotion_price]" class="js-promotion-price js-numeric-input" value="{{ $promotion->promotion_price }}" data-selling_price="{{ $promotion->productVariants()->first()->sale_price }}" data-crossed_price="{{ $promotion->productVariants()->first()->sale_price }}">
+                                                                <div class="c-mega-campaigns-join-modal__body-table-input
+                                                                 c-mega-campaigns-join-modal__body-table-input--medium 
+                                                                 js-number-input-wrapper" style="margin-top: 7px !important;">
+                                                                    <input readonly="" type="text" name="variant[promotion_price]" 
+                                                                    class="js-promotion-price js-numeric-input" value="{{ $promotion->promotion_price }}"
+                                                                     data-selling_price="{{ $promotion->productVariants()->first()->sale_price }}"
+                                                                      data-crossed_price="{{ $promotion->productVariants()->first()->sale_price }}">
                                                                 </div>
                                                                 <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">
                                                                     حداکثر قیمت مجاز:۴۸۰,۲۰۰ریال

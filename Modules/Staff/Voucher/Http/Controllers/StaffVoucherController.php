@@ -129,7 +129,7 @@ class StaffVoucherController extends Controller
 
     public function searchVoucher(Request $request, Voucher $vouchers)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
+        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
 
         $vouchers = $this->Voucherfilter($request, $vouchers);
 

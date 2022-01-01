@@ -173,7 +173,7 @@ class StaffLandingController extends Controller
 
     public function searchLanding(Request $request, Landing $landings)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 1 : '';
+        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
 
         $landings = $this->Landingfilter($request, $landings);
 
