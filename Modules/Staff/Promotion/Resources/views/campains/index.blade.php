@@ -11,8 +11,8 @@
     var newSeller = 1;
     var is_yalda = 0;
 </script>
-<script src="{{ asset('seller/js/campainTableView.js') }}"></script>
-<script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
+<script src="{{ asset('mehdi/staff/js/campainTableView.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/jalali-moment.browser.js') }}"></script>
 @endsection
 @section('content')
 <main class="c-main">
@@ -68,22 +68,23 @@
                                                             style="width: 400px;">
                                                             <button class="uk-icon-button c-join__search-btn uk-icon" uk-tooltip="title: جستجو;"
                                                              uk-icon="icon: search" id="submitButton" title="" aria-expanded="false">
-                                                             <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1"> 
-                                                                 <circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle>
-                                                                  <path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path></svg>
-                                                                </button>
+                                                            </button>
                                                         </div>
                                                     </div>
 
                                                     <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
                                                         <label for="form-field-start_at" class="c-ui-form__label">تاریخ و زمان شروع</label>
-                                                        <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" data-date="1" data-name="start_at" value="" id="form-field-dt-36491" autocomplete="off">
+                                                        <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker
+                                                         pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" 
+                                                         data-date="1" data-name="start_at" value="" id="form-field-dt-36491" autocomplete="off">
                                                         <input name="start_at" id="start_at" type="hidden" value="">
                                                     </span>
 
                                                     <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
                                                         <label for="form-field-end_at" class="c-ui-form__label">تاریخ و زمان پایان</label>
-                                                        <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" data-date="1" data-name="end_at" value="" id="form-field-dt-25286" autocomplete="off">
+                                                        <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker
+                                                         pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" 
+                                                         data-date="1" data-name="end_at" value="" id="form-field-dt-25286" autocomplete="off">
                                                         <input name="end_at" id="end_at" type="hidden" value="">
                                                     </span>
 
@@ -273,8 +274,6 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-
-
 
 $(document).on('click', '.js-stop-promotion', function (e) {
     e.preventDefault();

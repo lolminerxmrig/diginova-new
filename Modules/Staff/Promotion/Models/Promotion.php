@@ -43,10 +43,4 @@ class Promotion extends Model
          'variantable_id',
          'product_variant_id');
     }
-
-//    public function productVariants()
-//    {
-//      return $this->morphedByMany(ProductHasVariant::class, 'variantable', 'product_variantables', 'product_variant_id', 'variantable_id', 'id', 'id');
-//    }
-
 }

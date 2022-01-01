@@ -1,33 +1,22 @@
 @extends('layouts.staff.master')
 @section('title') مدیریت صفحه اصلی | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-
-<link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
-<script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
-<script src="{{ asset('seller/js/tagify.min.js') }}"></script>
-<link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
-<script src="https://unpkg.com/@yaireo/dragsort"></script>
+<script src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
+<script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}" media="print" onload="this.media='all'">
+<script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
 <style>
-    /*.select2-search {*/
-    /*    display: none;*/
-    /*}*/
+.select2-selection__arrow {
+    display: block !important;
+}
 
-    .select2-selection__arrow {
-        display: block !important;
-    }
-
-    /*.select2-search--dropdown {*/
-    /*    display: none;*/
-    /*}*/
-
-
-    .select2-selection--single {
-        background-color: #fff;
-        border: 1px solid #bbbaba;
-        border-radius: 4px;
-    }
-
+.select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #bbbaba;
+    border-radius: 4px;
+}
 </style>
 @endsection
 @section('content')
@@ -37,7 +26,8 @@
             <div class="c-grid__row c-product-list--align-header">
                 <div class="c-grid__col">
                     <div class="c-card c-card--transparent">
-                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت صفحه اصلی
+                        <h1 class="c-card__title c-card__title--dark c-card__title--desc">
+                            مدیریت صفحه اصلی
                             <span>
                             برای مدیریت  صفحه اصلی از این قسمت استفاده نمایید
                         </span>
@@ -53,8 +43,12 @@
                         <div class="c-card">
                             <div class="c-card__wrapper">
                                 <div class="c-card__header c-card__header--table">
-                                    <a target="_blank"><div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد اسلایدر محصول </div></a>
-                                    <div class="c-ui-paginator js-paginator" data-select2-id="36"></div>
+                                    <a target="_blank">
+                                        <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
+                                            ایجاد اسلایدر محصول 
+                                        </div>
+                                    </a>
+                                    <div class="c-ui-paginator js-paginator"></div>
                                 </div>
                                 <div class="c-card__body c-ui-table__wrapper">
                                     <table class="c-ui-table  js-search-table js-table-fixed-header c-join__table">

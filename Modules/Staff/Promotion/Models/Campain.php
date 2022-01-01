@@ -46,10 +46,4 @@ class Campain extends Model
     {
         return $this->hasMany(Promotion::class);
     }
-
-//    public function promotions()
-//    {
-//        return $this->morphToMany(ProductHasVariant::class, 'variantable', 'product_variantables', '', 'product_variant_id', 'id', 'id');
-//    }
-
 }

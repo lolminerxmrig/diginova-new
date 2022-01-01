@@ -9,10 +9,16 @@ use Modules\Staff\Slider\Models\SliderGroup;
 
 class Slider extends Model
 {
-
     use HasFactory;
 
-    protected $fillable = ['name', 'link', 'alt', 'status', 'group_id', 'en_name'];
+    protected $fillable = [
+      'name',
+      'link',
+      'alt',
+      'status',
+      'group_id',
+      'en_name'
+    ];
 
     public function group()
     {
@@ -28,10 +34,4 @@ class Slider extends Model
     {
       return $this->hasMany(SliderImage::class);
     }
-
-//    public function image()
-//    {
-//      return $this->hasOne(SliderImage::class);
-//    }
-
 }

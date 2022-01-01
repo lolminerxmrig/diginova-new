@@ -14,7 +14,13 @@ class DeliveryMethod extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name', 'status', 'free_shipping_min_cost', 'cost_det_type_id', 'delivery_cost'];
+    protected $fillable = [
+      'name',
+      'status',
+      'free_shipping_min_cost',
+      'cost_det_type_id',
+      'delivery_cost'
+    ];
 
 
     public function media()

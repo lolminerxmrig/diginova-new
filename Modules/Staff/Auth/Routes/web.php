@@ -45,10 +45,4 @@ Route::domain('staff.diginova.test')->middleware('web')->group(function () {
 
   Route::get('account/changepasswordemail/{token?}', [StaffRegLoginController::class, 'resetPassword'])
       ->name('staff.resetPassword');
-
-  Route::get('account/test', function (){
-      $email = 'test@test.com';
-      $token = 'dddd';
-      return view('staffauth::reset', compact('email', 'token'));
-  });
 });

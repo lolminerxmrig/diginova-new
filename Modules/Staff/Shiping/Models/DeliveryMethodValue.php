@@ -11,7 +11,14 @@ class DeliveryMethodValue extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name', 'status', 'intra_province', 'extra_province', 'neighboring_provinces', 'delivery_method_id'];
+    protected $fillable = [
+      'name',
+      'status',
+      'intra_province',
+      'extra_province',
+      'neighboring_provinces',
+      'delivery_method_id'
+    ];
 
     protected $table = 'delivery_method_values';
 

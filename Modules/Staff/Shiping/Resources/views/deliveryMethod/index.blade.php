@@ -15,7 +15,7 @@
 @section('content')
 <main class="c-main">
     <div class="uk-container uk-container-large">
-        <div class="c-grid " data-select2-id="13">
+        <div class="c-grid ">
                 <div class="c-grid__row">
                     <div class="c-grid__col">
                         <input type="hidden" value="" name="has-warehouses">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="js-table-container" data-select2-id="17">
+                <div class="js-table-container">
                     <input name="page_type" value="index" hidden>
                     <div style="margin-top: 20px; margin-bottom: 30px;"></div>
                     <div class="c-grid__row">
@@ -34,17 +34,19 @@
                             <div class="c-card">
                                 <div class="c-card__wrapper">
                                     <div class="c-card__header c-card__header--table">
-                                        <a href="#" target="_blank">
-                                        </a>
+                                        <a href="#" target="_blank"></a>
 
-                                        <div class="c-ui-paginator js-paginator" data-select2-id="16">
+                                        <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $delivery_methods->total() }}">{{ persianNum($delivery_methods->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $delivery_methods->total() }}">
+                                                  {{ persianNum($delivery_methods->total()) }} مورد
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="c-card__body c-ui-table__wrapper">
-                                          <table class="c-ui-table js-search-table js-table-fixed-header c-join__table" data-search-url="/ajax/product/search/">
+                                          <table class="c-ui-table js-search-table js-table-fixed-header c-join__table" 
+                                            data-search-url="/ajax/product/search/">
                                               <thead>
                                               <tr class="c-ui-table__row"  style="text-align: right !important;">
                                                   <th class="c-ui-table__header">
@@ -89,7 +91,9 @@
                                                 @foreach($delivery_methods as $key => $delivery_method)
                                                   <tr name="row" id="{{ $delivery_method->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                       <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                          <span class="c-wallet__body-card-row-item"> {{ persianNum($delivery_methods->firstItem() + $key) }} </span>
+                                                          <span class="c-wallet__body-card-row-item"> 
+                                                            {{ persianNum($delivery_methods->firstItem() + $key) }} 
+                                                          </span>
                                                       </td>
 
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
@@ -109,9 +113,11 @@
                                                         </div>
                                                     </td>
 
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important;
+                                                       width: 50% !important;">
                                                         @foreach($delivery_method->weights as $weight)
-                                                        <span style="background-color: #f5f7fa;padding: 6px 10px 6px 10px;border-radius: 5px;margin-right: 5px;font-size: 13px !important;">{{ $weight->name }}</span>
+                                                        <span style="background-color: #f5f7fa;padding: 6px 10px 6px 10px;border-radius: 5px;margin-right: 5px;
+                                                          font-size: 13px !important;">{{ $weight->name }}</span>
                                                         @endforeach
                                                     </td>
 
@@ -123,7 +129,9 @@
                                                       <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                           <label class="c-ui-toggle">
-                                                            <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" data-delivery-id="{{ $delivery_method->id }}" name="status" {{ ($delivery_method->status == 'active')? 'checked' : '' }}>
+                                                            <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox"
+                                                             data-delivery-id="{{ $delivery_method->id }}" name="status"
+                                                              {{ ($delivery_method->status == 'active')? 'checked' : '' }}>
                                                             <span class="c-ui-toggle__check"></span>
                                                           </label>
                                                         </div>
@@ -131,7 +139,8 @@
                                                     </td>
 
                                                     <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.delivery.edit', $delivery_method->id) }}" style="width: 115px !important;">ویرایش</a>
+                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish"
+                                                       href="{{ route('staff.delivery.edit', $delivery_method->id) }}" style="width: 115px !important;">ویرایش</a>
                                                     </td>
                                                   </tr>
                                               @endforeach
@@ -142,10 +151,13 @@
                                       </div>
 
                                   <div class="c-card__footer" style="width: auto;">
-                                      <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
-                                      <div class="c-ui-paginator js-paginator" data-select2-id="25">
+                                      <div class="c-ui-paginator js-paginator" style="visibility: hidden;"></div>
+                                      <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $delivery_methods->total() }}">{{ persianNum($delivery_methods->total()) }} مورد</span>
+                                                تعداد نتایج: 
+                                                <span name="total" data-id="{{ $delivery_methods->total() }}">
+                                                  {{ persianNum($delivery_methods->total()) }} مورد
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

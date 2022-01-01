@@ -20,14 +20,19 @@ class StaffSliderController extends Controller
 
     public function index()
     {
-        $slider_groups = SliderGroup::paginate(100);
+        $slider_groups = SliderGroup::paginate(10);
+
         return view('staffslider::index', compact('slider_groups'));
     }
 
     public function sliders($id)
     {
       $slider_group = SliderGroup::find($id);
-      $sliders = SliderGroup::find($id)->sliders()->orderBy('name', 'asc')->paginate(20);
+
+      $sliders = SliderGroup::find($id)
+        ->sliders()
+        ->orderBy('name', 'asc')
+        ->paginate(10);
 
       return view('staffslider::sliders', compact('sliders', 'slider_group'));
     }
@@ -52,8 +57,6 @@ class StaffSliderController extends Controller
           'person_role' => 'staff' ,
         ]);
 
-//        $slider = Slider::find($request->slider_id);
-//        $slider->media()->attach($media);1
         SliderImage::updateOrCreate(['slider_id' => $request->slider_id], [
           'slider_id' => $request->slider_id,
         ]);
@@ -108,7 +111,7 @@ class StaffSliderController extends Controller
 
     public function sliderImages($id)
     {
-        $slider_images = Slider::find($id)->images()->paginate();
+        $slider_images = Slider::find($id)->images()->paginate(10);
         $slider = Slider::find($id);
         return view('staffslider::sliderImages', compact('slider_images', 'slider'));
     }
@@ -145,7 +148,6 @@ class StaffSliderController extends Controller
             $sliderImage = SliderImage::find($deleted_row);
             Log::info($sliderImage);
 
-//            $sliderImage->media()->detach();
             $sliderImage->forceDelete();
           }
         }

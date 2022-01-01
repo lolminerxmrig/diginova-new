@@ -17,7 +17,7 @@ class StaffCampainController extends Controller
 {
     public function campainStatus(Request $request)
     {
-        $campain = Campain::whereId($request->id)->first()
+        $campain = Campain::whereId($request->id)->first();
         $campain->update([
             'status' => $request->status,
         ]);

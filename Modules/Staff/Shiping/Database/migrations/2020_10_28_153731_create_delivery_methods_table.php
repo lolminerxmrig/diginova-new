@@ -22,7 +22,9 @@ class CreateDeliveryMethodsTable extends Migration
             $table->foreignId('cost_det_type_id')->comment('cost determination type');
             $table->timestamps();
 
-            $table->foreign('cost_det_type_id')->references('id')->on('delivery_cost_det_types');
+            $table->foreign('cost_det_type_id')
+                ->references('id')
+                ->on('delivery_cost_det_types');
         });
     }
 

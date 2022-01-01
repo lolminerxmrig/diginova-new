@@ -10,7 +10,9 @@
 
 <tr class="c-ui-table__row c-ui-table__row--body js-edit-row added-by-js added-by-js-{{ $product_variant->id }}" data-id="{{ $product_variant->id }}" style="text-align: center !important;">
     <td class="c-ui-table__cell">
-        <img src="https://dkstatics-public.digikala.com/digikala-products/120361841.jpg?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+        <img src="
+        https://dkstatics-public.digikala.com/digikala-products/120361841.jpg
+        ?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
             alt="
                 {{ $product_variant->product->title_fa }} | {{ $product_variant->variant->name }} | گارانتی
                 {{ (!is_null($product_variant->warranty->month))? persianNum($product_variant->warranty->month) . ' ماهه' : '' }}
@@ -48,7 +50,6 @@
                 <div class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--medium js-number-input-wrapper">
                     <input type="text" name="variant[promotion_price]" class="js-promotion-price js-numeric-input"
                            value="" data-selling_price="{{ $product_variant->sale_price }}" data-crossed_price="{{ $product_variant->sale_price }}">
-{{--                           value="" data-selling_price="250700" data-crossed_price="250700">--}}
                 </div>
                 <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">حداکثر قیمت مجاز:۲۴۵,۶۰۰ریال</span>
             </div>

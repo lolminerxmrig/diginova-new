@@ -5,14 +5,17 @@
         <div class="c-card__wrapper">
           <div class="c-card__header c-card__header--table">
             <a target="_blank">
-              <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد فهرست
-                جدید
+              <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
+                ایجاد فهرست جدید
               </div>
             </a>
-            <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
+            <div class="c-ui-paginator js-paginator" style="visibility: hidden;"></div>
             <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total" data-rows="۶">
-                تعداد نتایج: <span name="total" data-id="5">{{ persianNum($navs->total()) }} مورد</span>
+                تعداد نتایج: 
+                <span name="total" data-id="5">
+                  {{ persianNum($navs->total()) }} مورد
+                </span>
               </div>
             </div>
           </div>
@@ -146,7 +149,10 @@
 
             <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total" data-rows="۶">
-                تعداد نتایج: <span name="total" data-id="2">{{ persianNum($navs->total()) }} مورد</span>
+                تعداد نتایج: 
+                <span name="total" data-id="2">
+                  {{ persianNum($navs->total()) }} مورد
+                </span>
               </div>
             </div>
 

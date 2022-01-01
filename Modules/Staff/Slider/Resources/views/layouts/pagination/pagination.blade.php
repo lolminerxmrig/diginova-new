@@ -25,7 +25,8 @@
     </li>
     @else
     <li class="c-ui-paginator__control-item">
-        <a href="{{ $url }}" data-page="" class="pagination-link c-ui-paginator__control-digit js-content-pager-item">{{ persianNum($page) }}</a>
+        <a href="{{ $url }}" data-page="" class="pagination-link 
+            c-ui-paginator__control-digit js-content-pager-item">{{ persianNum($page) }}</a>
     </li>
     @endif
     @endforeach

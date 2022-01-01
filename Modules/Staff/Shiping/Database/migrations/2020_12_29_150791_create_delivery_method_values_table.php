@@ -24,7 +24,9 @@ class CreateDeliveryMethodValuesTable extends Migration
             $table->foreignId('delivery_method_id');
             $table->timestamps();
 
-            $table->foreign('delivery_method_id')->references('id')->on('delivery_methods');
+            $table->foreign('delivery_method_id')
+                ->references('id')
+                ->on('delivery_methods');
         });
     }
 
