@@ -24,19 +24,12 @@
                 <div class="js-table-container">
                     <input name="page_type" value="index" hidden>
                     <div style="margin-top: 20px; margin-bottom: 30px;"></div>
-                    <div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25" style="margin-bottom: 30px !important;">
-                       برای هر دسته‌بندی اصلی به صورت خودکار یک لیست ایجاد می‌شود که در آن می‌توانید بنرها و اسلایدرهای مربوط به آن دسته را مدیریت کنید.
-                    </div>
                     <div class="c-grid__row">
                         <div class="c-grid__col">
                             <div class="c-card">
                                 <div class="c-card__wrapper">
                                     <div class="c-card__header c-card__header--table">
-                                        <a href="#" target="_blank">
-                                            <div class="c-join__btn c-join__btn--icon-right c-join__btn--secondary-greenish" style="padding-right: 15px; padding-left: 15px !important;">
-                                                مشاهده عکس راهنما
-                                            </div>
-                                        </a>
+                                        <div class="c-join__btn c-join__btn--icon-right " style="padding-right: 15px; padding-left: 15px !important;"></div>
 
                                         <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">

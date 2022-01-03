@@ -14,18 +14,24 @@
 
     @foreach ($elements as $element)
     @if (is_string($element))
-    <li class="c-ui-paginator__control-item" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
+    <li class="c-ui-paginator__control-item" aria-disabled="true">
+        <span class="page-link">{{ $element }}</span>
+    </li>
     @endif
 
     @if (is_array($element))
     @foreach ($element as $page => $url)
     @if ($page == $paginator->currentPage())
     <li class="c-ui-paginator__control-item uk-active">
-        <a href="{{ $url }}" data-page="" class="pagination-link c-ui-paginator__control-digit c-ui-paginator__control-digit--current">{{ persianNum($page) }}</a>
+        <a href="{{ $url }}" data-page="" class="pagination-link c-ui-paginator__control-digit 
+        c-ui-paginator__control-digit--current">
+        {{ persianNum($page) }}
+    </a>
     </li>
     @else
     <li class="c-ui-paginator__control-item">
-        <a href="{{ $url }}" data-page="" class="pagination-link c-ui-paginator__control-digit js-content-pager-item">{{ persianNum($page) }}</a>
+        <a href="{{ $url }}" data-page="" class="pagination-link c-ui-paginator__control-digit
+         js-content-pager-item">{{ persianNum($page) }}</a>
     </li>
     @endif
     @endforeach

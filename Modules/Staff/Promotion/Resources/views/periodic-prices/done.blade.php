@@ -586,7 +586,7 @@
                 <div class="c-grid__row">
                     <div class="c-grid__col">
                         <div class="c-card c-join-smart-joined__container">
-                            <img src="https://seller.digikala.com/static/files/7c0b3151.svg" alt="">
+                            <img src="{{ asset('mehdi/staff/images/promotion.svg') }}" alt="">
                             <div class="c-join-smart-emty__des-title">تخفیف‌های تعیین شده بر روی کالاهای انتخابی شما اعمال شد</div>
                             <div class="c-join-smart-emty__des-sub-title c-join-smart-joined--no-with-limitation">خلاصه ی وضعیت تخفیف‌ها و پروموشن ها و کمپین‌های شرکت داده شده به شرح زیر می‌باشد:</div>
                             <div class="c-join-smart-joined__detail">

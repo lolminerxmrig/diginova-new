@@ -74,6 +74,11 @@ class StaffTypeController extends Controller
                         ->types()
                         ->where('id', $key)
                         ->delete();
+
+                    DB::table('categorizables')
+                        ->where('categorizable_type', 'Type')
+                        ->where('categorizable_id', $request->category)
+                        ->delete();
                 }
                 elseif (!is_null($value)){
                     Type::find($key)->update([
