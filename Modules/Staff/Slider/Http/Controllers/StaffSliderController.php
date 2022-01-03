@@ -39,7 +39,7 @@ class StaffSliderController extends Controller
 
     public function customUploadImage(Request $request)
     {
-        if ($request->old_img) {
+        if (filled($request->old_img)) {
           $request->id = $request->old_img;
           
           // Slider::find($request->slider_id)
@@ -47,8 +47,7 @@ class StaffSliderController extends Controller
           //   ->detach($request->id);
 
           \DB::table('mediables')
-            ->where('mediable_type', 'SliderImage')
-            ->where('mediable_id', $request->old_img)
+            ->where('media_id', intval($request->old_img))
             ->delete();
 
 
