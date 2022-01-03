@@ -41,7 +41,11 @@ class StaffSliderController extends Controller
     {
         if ($request->old_img) {
           $request->id = $request->old_img;
-          Slider::find($request->slider_id)->media()->detach(3);
+          
+          Slider::find($request->slider_id)
+            ->media()
+            ->detach($request->id);
+
           $this->deleteImage($request);
         }
 
@@ -99,14 +103,10 @@ class StaffSliderController extends Controller
     }
 
     public function deleteImage(Request $request)
-        {
-        $media = Media::find($request->id);
-        $user_id = auth()->guard('staff')->user()->id;
-
-        if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
+      {
+          $media = Media::find($request->id);
           unlink(public_path("$media->path/") . $media->name);
           $media->delete();
-        }
       }
 
     public function sliderImages($id)
@@ -146,8 +146,6 @@ class StaffSliderController extends Controller
         if (isset($request->deleted_rows) && count($request->deleted_rows)) {
           foreach ($request->deleted_rows as $deleted_row) {
             $sliderImage = SliderImage::find($deleted_row);
-            Log::info($sliderImage);
-
             $sliderImage->forceDelete();
           }
         }
