@@ -41,9 +41,9 @@
           <div class="c-grid__col">
             <div class="c-card c-card--transparent">
               <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-                انتخاب تصاویر برای بنر ها و اسلایدر ها
+                انتخاب تصاویر برای بنرها و اسلایدرها
                 <span>
-                برای بنر ها و اسلایدرها تصاویر مناسب انتخاب کنید.
+                برای بنرها و اسلایدرها تصاویر مناسب انتخاب کنید.
               </span>
               </h1>
             </div>
@@ -105,7 +105,7 @@
                       @endphp
                       @foreach($slider_images->sortBy('position') as $key => $item)
 
-                        <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" 
+                        <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}"
                           class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
 
                           <input name="media_id" hidden>
@@ -119,7 +119,7 @@
                           </td>
 
                           <td class="c-ui-table__cell" style="min-width: 90px">
-                            <img src="{{ asset("staff/icon/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}"
+                            <img src="{{ asset("mehdi/staff/images/slider/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}"
                              width="85%" height="85%">
                           </td>
 
@@ -161,9 +161,9 @@
                             <div class="c-promo__actions" style="width: auto; min-width: 15%; margin: auto;">
 
                               <label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">
-                                <input name="sliderImage" data-id="{{ $item->id }}" type="file" 
+                                <input name="sliderImage" data-id="{{ $item->id }}" type="file"
                                   class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg">
-                                <input name="sliderImageId" type="hidden" 
+                                <input name="sliderImageId" type="hidden"
                                   value="{{ ($item->media()->exists())? $item->media->first()->id : '' }}">
                               </label>
 
@@ -393,7 +393,7 @@
     $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
       var slider_name = "{{ $slider->name }}";
       var slider_size = "{{ $slider->size . ' px' }}";
-      var slider_image = "{{ asset("staff/icon/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}";
+      var slider_image = "{{ asset("mehdi/staff/images/slider/" . substr($slider->name, 0, strrpos($slider->name, '(')-1) . ".png") }}";
 
       var tr = '<tr name="row" id="item-new" data-id="" class="c-ui-table__row c-ui-table__row--body c-join__table-row row">' +
         '<td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;"><input name="media_id" hidden>' +

@@ -857,7 +857,7 @@
                 </li>
 
                 <li>
-                  <a href="{{ route('staff.sliders.index') }}">اسلایدر و بنر ها</a>
+                  <a href="{{ route('staff.sliders.index') }}">اسلایدر و بنرها</a>
                 </li>
 
                 <li>

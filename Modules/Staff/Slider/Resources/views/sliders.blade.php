@@ -41,9 +41,9 @@
           <div class="c-grid__col">
             <div class="c-card c-card--transparent">
               <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-                انتخاب تصاویر برای بنر ها و اسلایدر ها
+                انتخاب تصاویر برای بنرها و اسلایدرها
                 <span>
-                برای بنر ها و اسلایدرهای
+                برای بنرها و اسلایدرهای
                 {{ !is_null($slider_group->category_id)? 'دسته ' . '"' .$slider_group->category->name . '"' : 'صفحه اصلی' }}
                 تصاویر مناسب انتخاب کنید.
               </span>
@@ -107,7 +107,7 @@
                           </td>
 
                           <td class="c-ui-table__cell" style="min-width: 90px">
-                            <img src="{{ asset("staff/icon/" . $slider->en_name . ".png") }}" width="85%" height="85%">
+                            <img src="{{ asset("mehdi/staff/images/slider/" . $slider->en_name . ".png") }}" width="85%" height="85%">
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
@@ -137,7 +137,7 @@
                           </td>
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text">
-                            <div class="c-ui-tooltip__anchor" 
+                            <div class="c-ui-tooltip__anchor"
                             style="{{ (($slider->type == 'banner-r') || ($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'opacity:30%' : '' }}">
                               <div class="c-ui-toggle__group">
                                 <label class="c-ui-toggle">
@@ -157,7 +157,7 @@
                                 <label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">
                                   <input name="sliderImage" data-id="{{ $slider->id }}" type="file" class="js-profile-business-info-logo"
                                    accept="image/jpg,image/png,image/jpeg">
-                                  <input name="sliderImageId" type="hidden" 
+                                  <input name="sliderImageId" type="hidden"
                                   value="{{ ($slider->images()->exists() && $slider->images->first()->media()->exists())? $slider->images()->first()->media->first()->id : '' }}">
                                 </label>
                                   <a href="{{ ($slider->images()->exists() && $slider->images->first()->media()->exists())? $site_url . '/' . $slider->images()->first()->media->first()->path . '/'. $slider->images()->first()->media->first()->name : '' }}"
@@ -173,13 +173,13 @@
                                   </div>
                                 </a>
 
-                                <button class="o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge 
-                                uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" 
+                                <button class="o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge
+                                uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye"
                                  data-hide="{is_archived: true}" data-value="1" data-is-archived="false"
                                  data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true"
                                   style="float: right;margin-top: 5px !important;margin-right: 5px;opacity: 40% !important;"></button>
                               @endif
-                                <button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn" 
+                                <button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"
                                 style="float: right;margin-top: 5px !important;margin-right: 5px;opacity: 43%;" disabled=""></button>
                             </div>
                           </td>
