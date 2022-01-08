@@ -1,7 +1,7 @@
 @extends('layouts.staff.master')
+@section('title') ویرایش درگاه | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
-
+<script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 <style>
   .select2-selection__arrow {
     display: block !important;
@@ -47,9 +47,9 @@
         <div class="c-grid__col">
           <div class="c-card c-card--transparent">
             <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-              مدیریت منو‌‌‌‌‌ها
+                ویرایش درگاه
               <span>
-                از این صفحه می‌توانید منو ها یا مگامنو ها را مدیریت کنید.
+                از این صفحه می‌توانید تنظیمات درگاه پرداخت را ویرایش کنید.
             </span>
             </h1>
           </div>
@@ -62,7 +62,8 @@
               <div style="color: #606265;">ویرایش درگاه  "{{ $peyment_method->name }}"</div>
             </h2>
 
-            <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;display: none;"></div>
+            <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;
+              background: #e2dddd;height: 1px;display: none;"></div>
 
             <div class="c-card__header"></div>
 
@@ -80,7 +81,8 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" name="name" value="{{ $peyment_method->name }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                            <input type="text" class="c-content-input__origin c-content-input__origin" name="name"
+                             value="{{ $peyment_method->name }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
                       </div>
@@ -110,15 +112,15 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" name="description" value="{{ $peyment_method->description }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                            <input type="text" class="c-content-input__origin c-content-input__origin"
+                             name="description" value="{{ $peyment_method->description }}" dir="rtl"
+                              style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
                       </div>
                     </div>
-
                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm"></div>
                   </div>
-
 
                 {{-- شناسه پیکربندی --}}
                 @if($peyment_method->en_name == 'asanpardakht')
@@ -132,7 +134,9 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" name="iv" value="{{ $peyment_method->iv }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                            <input type="text" class="c-content-input__origin c-content-input__origin" 
+                            name="iv" value="{{ $peyment_method->iv }}" dir="rtl" 
+                            style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
                       </div>
@@ -143,7 +147,9 @@
                 @endif
 
                 {{-- کلید تراکنش --}}
-                @if($peyment_method->en_name == 'asanpardakht' || $peyment_method->en_name == 'irankish' || $peyment_method->en_name == 'sadad')
+                @if($peyment_method->en_name == 'asanpardakht' 
+                  || $peyment_method->en_name == 'irankish' 
+                  || $peyment_method->en_name == 'sadad')
                   <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 ">
                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
                       <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">
@@ -154,7 +160,9 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" name="key" value="{{ $peyment_method->key }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                            <input type="text" class="c-content-input__origin c-content-input__origin" name="key"
+                             value="{{ $peyment_method->key }}" dir="rtl" 
+                             style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
                       </div>
@@ -176,7 +184,9 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" name="username" value="{{ $peyment_method->username }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                            <input type="text" class="c-content-input__origin c-content-input__origin"
+                             name="username" value="{{ $peyment_method->username }}" dir="rtl"
+                              style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
                       </div>
@@ -195,7 +205,9 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" name="password" value="{{ $peyment_method->password }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                            <input type="text" class="c-content-input__origin c-content-input__origin"
+                             name="password" value="{{ $peyment_method->password }}" dir="rtl"
+                              style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
                       </div>
@@ -217,7 +229,9 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" name="terminalId" value="{{ $peyment_method->terminalId }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                            <input type="text" class="c-content-input__origin c-content-input__origin" 
+                            name="terminalId" value="{{ $peyment_method->terminalId }}"
+                             dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
                       </div>
@@ -239,7 +253,8 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" name="merchantId" value="{{ $peyment_method->merchantId }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                            <input type="text" class="c-content-input__origin c-content-input__origin" name="merchantId"
+                             value="{{ $peyment_method->merchantId }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
                       </div>
@@ -252,9 +267,11 @@
                 {{-- گزینه‌های پرداخت درب منزل --}}
                 @if($peyment_method->en_name == 'cod')
                   <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">
-                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" style="padding-right: 0px !important;width: 32%;">
+                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap"
+                     style="padding-right: 0px !important;width: 32%;">
                       <label class="c-ui-form__label" for="product_page_title">ارزش سبد خرید:</label>
-                      <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
+                      <div class="field-wrapper field-wrapper--justify field-wrapper--background"
+                       style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                         <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
                           <input type="checkbox" class="c-ui-checkbox__origin" name="has_free_peyment" value="1">
                           <span class="c-ui-checkbox__check"></span>
@@ -268,8 +285,11 @@
                         <div class="field-wrapper">
                           <label class="c-ui-form__label" for="product_page_title">حداکثر ارزش سبد خرید:</label>
                           <label class="c-content-input" style="">
-                            <input type="number" placeholder="" class=" c-mega-campaigns-join-modal__body-table-input js-number-input-wrapper min_card_cost c-ui-input--disabled" value="" name="min_card_cost" disabled="" style="width: 92%;">
-                            <span class="c-content-input__text c-content-input__text--overlay" style="left: 10px !important;right: unset !important;">ریال</span>
+                            <input type="number" placeholder="" class=" c-mega-campaigns-join-modal__body-table-input
+                             js-number-input-wrapper min_card_cost c-ui-input--disabled" value=""
+                              name="min_card_cost" disabled="" style="width: 92%;">
+                            <span class="c-content-input__text c-content-input__text--overlay"
+                             style="left: 10px !important;right: unset !important;">ریال</span>
                           </label>
                         </div>
                       </div>
@@ -277,11 +297,14 @@
                   </div>
 
                   <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">
-                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" style="padding-right: 0px !important;width: 32%;">
+                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" 
+                    style="padding-right: 0px !important;width: 32%;">
                       <label class="c-ui-form__label" for="product_page_title">محدودیت:</label>
-                      <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
+                      <div class="field-wrapper field-wrapper--justify field-wrapper--background" 
+                      style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                         <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">
-                          <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1" {{ count($peyment_method->states)? 'checked' : '' }}>
+                          <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1"
+                           {{ count($peyment_method->states)? 'checked' : '' }}>
                           <span class="c-ui-checkbox__check"></span>
                           <span class="c-ui-checkbox__label">تعیین محدودیت برای استان و یا شهر</span>
                         </label>
@@ -289,35 +312,15 @@
                     </div>
                   </div>
 
-                  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div" style=" {{ !count($peyment_method->states)? 'display: none' : '' }}">
-
+                  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div"
+                   style=" {{ !count($peyment_method->states)? 'display: none' : '' }}">
                     <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px; margin-top: 20px;">
                       استان یا شهر:
                       <span class="uk-form-label__required"></span>
                     </label>
 
-                    <div class="field-wrapper ui-select ui-select__container ui-select__container--product" style="text-align: right; border-color: #e6e9ed !important;">
-
-  {{--                    <select name="method_states" class="uk-input uk-input--select js-select-origin method_states" multiple="multiple" style="text-align: right; border-color: #e6e9ed !important;">--}}
-  {{--                      {{ (count($product->category[0]->types) == 0)? 'disabled' : '' }}--}}
-
-  {{--                      @php--}}
-  {{--                        if(isset($peyment_method->states) && !is_null($peyment_method->states)) {--}}
-  {{--                          foreach ($peyment_method->states as $state)--}}
-  {{--                            {--}}
-  {{--                              $this_states[] = $state->id;--}}
-  {{--                          }--}}
-  {{--                        }--}}
-  {{--                      @endphp--}}
-
-  {{--                      @if(isset($states) && !is_null($states))--}}
-  {{--                        @foreach($states as $state)--}}
-  {{--                          <option value="{{ $state->id }}" {{ (isset($this_states) && in_array($state->id, $this_states))? 'selected' : '' }} >{{ ($state->type == 'state')? 'استان ' : ''  }}{{ $state->name }}</option>--}}
-  {{--                        @endforeach--}}
-  {{--                      @endif--}}
-
-  {{--                    </select>--}}
-
+                    <div class="field-wrapper ui-select ui-select__container ui-select__container--product" 
+                      style="text-align: right; border-color: #e6e9ed !important;">
                       <span class="select-counter"></span>
                       <div class="js-select-options"></div>
                     </div>
@@ -328,11 +331,14 @@
                 {{-- زرین گیت --}}
                 @if($peyment_method->en_name == 'zarinpal')
                   <div class="c-grid__row " style="margin-right: 15px;">
-                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" style="padding-right: 0px !important;width: 32%;">
+                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" 
+                      style="padding-right: 0px !important;width: 32%;">
                       <label class="c-ui-form__label" for="product_page_title">زرین گیت:</label>
-                      <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
+                      <div class="field-wrapper field-wrapper--justify field-wrapper--background" 
+                        style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                         <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
-                          <input type="checkbox" class="c-ui-checkbox__origin" name="zarin_gate_status" {{ ($peyment_method->options == 'zarin_gate')? 'checked' : '' }}>
+                          <input type="checkbox" class="c-ui-checkbox__origin" name="zarin_gate_status" 
+                            {{ ($peyment_method->options == 'zarin_gate')? 'checked' : '' }}>
                           <span class="c-ui-checkbox__check"></span>
                           <span class="c-ui-checkbox__label">درگاه مستقیم (زرین گیت) فعال باشد</span>
                         </label>
@@ -340,15 +346,12 @@
                     </div>
                   </div>
                 @endif
-
-
               </div>
             </div>
 
-              <div class="c-grid__row c-grid__row--gap-lg" style="margin-bottom: 30px; margin-top: 30px !important;">
-                <a class="c-ui-btn c-ui-btn--next mr-a save-form" style=" margin-left: 40px !important;" data-value="top">ذخیره</a>
-              </div>
-
+            <div class="c-grid__row c-grid__row--gap-lg" style="margin-bottom: 30px; margin-top: 30px !important;">
+              <a class="c-ui-btn c-ui-btn--next mr-a save-form" style=" margin-left: 40px !important;" data-value="top">ذخیره</a>
+            </div>
           </div>
         </div>
       </div>
@@ -387,14 +390,6 @@ $(".save-form").on('click', function (e) {
   var status = $("select[name='status']").val();
   var description = $("input[name='description']").val();
 
-  // var iv = $("input[name='iv']").val();
-  // var key = $("input[name='key']").val();
-  // var username = $("input[name='username']").val();
-  // var password = $("input[name='password']").val();
-  // var terminalId = $("input[name='terminalId']").val();
-  // var merchantId = $("input[name='merchantId']").val();
-
-
   $.ajax({
     method: "post",
     url: '{{route('staff.peyment.storePeymentMethod')}}',
@@ -412,7 +407,6 @@ $(".save-form").on('click', function (e) {
       merchantId: merchantId,
       zarin_gate_status: zarin_gate_status,
     },
-
 
     success: function () {
         $(window).scrollTop(0);

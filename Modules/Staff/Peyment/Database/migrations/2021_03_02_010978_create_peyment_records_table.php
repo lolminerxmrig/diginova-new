@@ -24,8 +24,13 @@ class CreatePeymentRecordsTable extends Migration
             $table->nullableMorphs('method');
             $table->timestamps();
 
-            $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('order_id')
+                ->references('id')
+                ->on('orders');
+
+            $table->foreign('customer_id')
+                ->references('id')
+                ->on('customers');
         });
     }
 

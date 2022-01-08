@@ -1,7 +1,8 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت روش های پرداخت | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('seller/js/indexAction.js') }}"></script>
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 <style>
   td {
     text-align: right !important;
@@ -39,12 +40,15 @@
 
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $peyment_methods->total() }}">{{ persianNum($peyment_methods->total()) }} مورد</span>
+                                                تعداد نتایج: <span name="total" data-id="{{ $peyment_methods->total() }}">
+                                                  {{ persianNum($peyment_methods->total()) }} مورد
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="c-card__body c-ui-table__wrapper">
-                                          <table class="c-ui-table js-search-table js-table-fixed-header c-join__table" data-search-url="/ajax/product/search/">
+                                          <table class="c-ui-table js-search-table js-table-fixed-header c-join__table" 
+                                            data-search-url="/ajax/product/search/">
                                               <thead>
                                               <tr class="c-ui-table__row"  style="text-align: right !important;">
                                                   <th class="c-ui-table__header">
@@ -67,7 +71,6 @@
                                                       توضیحات
                                                     </span>
                                                   </th>
-
                                                   <th class="c-ui-table__header">
                                                       <span class="table-header-searchable uk-text-nowrap ">
                                                         وضعیت
@@ -85,19 +88,16 @@
                                                 @foreach($peyment_methods as $key => $peyment_method)
                                                   <tr name="row" id="{{ $peyment_method->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                       <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                          <span class="c-wallet__body-card-row-item"> {{ persianNum($peyment_methods->firstItem() + $key) }} </span>
+                                                          <span class="c-wallet__body-card-row-item"> 
+                                                            {{ persianNum($peyment_methods->firstItem() + $key) }}
+                                                          </span>
                                                       </td>
-
-{{--                                                    <td class="c-ui-table__cell" style="min-width: 90px">--}}
-{{--                                                      @if(count($peyment_method->media))--}}
-{{--                                                        <img src="{{ $site_url . '/' . $peyment_method->media()->first()->path . '/'.$peyment_method->media()->first()->name }}" width="65" height="65">--}}
-{{--                                                      @endif--}}
-{{--                                                    </td>--}}
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                      <img src="{{ asset("staff/icon/bank/" . $peyment_method->en_name . ".png") }}" width="85%" height="85%">
+                                                      <img src="{{ asset("mehdi/staff/images/icon/bank/" . $peyment_method->en_name . ".png") }}"
+                                                       width="85%" height="85%">
                                                     </td>
-
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 15% !important; width: 15% !important;">
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" 
+                                                      style="min-width: 15% !important; width: 15% !important;">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
@@ -108,7 +108,8 @@
                                                         </div>
                                                     </td>
 
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" 
+                                                      style="min-width: 50% !important; width: 50% !important;">
                                                       {{ $peyment_method->description }}
                                                     </td>
 
@@ -116,20 +117,22 @@
                                                       <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                           <label class="c-ui-toggle">
-                                                            <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" data-peyment-id="{{ $peyment_method->id }}" name="status" {{ ($peyment_method->status == 'active')? 'checked' : '' }}>
+                                                            <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox"
+                                                             data-peyment-id="{{ $peyment_method->id }}" name="status" 
+                                                             {{ ($peyment_method->status == 'active')? 'checked' : '' }}>
                                                             <span class="c-ui-toggle__check"></span>
                                                           </label>
                                                         </div>
                                                       </div>
                                                     </td>
-
                                                     <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.peyment.edit', $peyment_method->en_name) }}" style="width: 115px !important;">ویرایش</a>
+                                                      <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish"
+                                                       href="{{ route('staff.peyment.edit', $peyment_method->en_name) }}" 
+                                                       style="width: 115px !important;">ویرایش</a>
                                                     </td>
                                                   </tr>
                                               @endforeach
                                               @endif
-
                                               </tbody>
                                           </table>
                                       </div>
@@ -138,7 +141,10 @@
                                       <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
                                       <div class="c-ui-paginator js-paginator" data-select2-id="25">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: <span name="total" data-id="{{ $peyment_methods->total() }}">{{ persianNum($peyment_methods->total()) }} مورد</span>
+                                                تعداد نتایج: 
+                                                <span name="total" data-id="{{ $peyment_methods->total() }}">
+                                                  {{ persianNum($peyment_methods->total()) }} مورد
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

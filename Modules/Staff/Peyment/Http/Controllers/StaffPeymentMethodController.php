@@ -6,7 +6,6 @@ use Modules\Staff\Setting\Models\Setting;
 use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Modules\Staff\Product\Models\ProductWeight;
@@ -21,7 +20,6 @@ use Modules\Staff\Peyment\Models\PeymentMethodValue;
 
 class StaffPeymentMethodController extends Controller
 {
-
     public function index()
     {
       $peyment_methods = PeymentMethod::orderBy('status')->paginate(100);
@@ -76,7 +74,8 @@ class StaffPeymentMethodController extends Controller
 
       $peymentMethod = PeymentMethod::where('en_name', $request->en_name)->first();
 
-      if ($request->status == 'active' && count(PeymentMethod::where('status', 'active')->get()) >= 3 && $peymentMethod->status !== 'active') {
+      if ($request->status == 'active' && PeymentMethod::where('status', 'active')->count() >= 3
+         && $peymentMethod->status !== 'active') {
           return response()->json([
             'status' => false,
             'data' => [
@@ -99,7 +98,9 @@ class StaffPeymentMethodController extends Controller
           'password' => isset($request->password)? $request->password : null,
           'terminalId' => isset($request->terminalId)? $request->terminalId : null,
           'merchantId' => isset($request->merchantId)? $request->merchantId : null,
-          'options' => (isset($request->zarin_gate_status) && ($request->zarin_gate_status == 'active')) ? 'zarin_gate' : null,
+          'options' => (isset($request->zarin_gate_status) && ($request->zarin_gate_status == 'active')) 
+            ? 'zarin_gate' 
+            : null,
         ]);
 
     }
@@ -107,7 +108,7 @@ class StaffPeymentMethodController extends Controller
     public function status(Request $request)
     {
 
-      if ($request->status == 'active' && count(PeymentMethod::where('status', 'active')->get()) >= 3) {
+      if ($request->status == 'active' && PeymentMethod::where('status', 'active')->count() >= 3) {
         return response()->json([
           'status' => false,
           'data' => [

@@ -11,11 +11,22 @@ use Modules\Staff\Peyment\Models\PeymentMethodValue;
 
 class PeymentMethod extends Model
 {
-
     use HasFactory;
 
-    protected $fillable = ['name', 'en_name', 'status', 'description', 'username', 'password', 'merchantId', 'terminalId', 'key', 'sha1Key', 'iv', 'options'];
-
+    protected $fillable = [
+      'name',
+      'en_name',
+      'status',
+      'description',
+      'username',
+      'password',
+      'merchantId',
+      'terminalId',
+      'key',
+      'sha1Key',
+      'iv',
+      'options'
+    ];
 
     public function media()
     {

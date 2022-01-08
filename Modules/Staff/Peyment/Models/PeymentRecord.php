@@ -10,10 +10,18 @@ use Modules\Staff\Order\Models\Order;
 
 class PeymentRecord extends Model
 {
-
     use HasFactory;
 
-    protected $fillable = ['tracking_code', 'status', 'price', 'order_id', 'method_type', 'method_id', 'customer_id', 'invoiceـnumber'];
+    protected $fillable = [
+      'tracking_code',
+      'status',
+      'price',
+      'order_id',
+      'method_type',
+      'method_id',
+      'customer_id',
+      'invoiceـnumber'
+    ];
 
     public function peymentMethod()
     {
@@ -32,7 +40,8 @@ class PeymentRecord extends Model
 
     public function scopeSuccessfulPeyment($query)
     {
-        return $query->where('status', 'successful')->where('method_type', 'PeymentMethod');
+        return $query->where('status', 'successful')
+          ->where('method_type', 'PeymentMethod');
     }
 
 }
