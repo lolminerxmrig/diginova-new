@@ -41,10 +41,6 @@ class StaffSliderController extends Controller
     {
         if (filled($request->old_img)) {
           $request->id = $request->old_img;
-          
-          // Slider::find($request->slider_id)
-          //   ->media()
-          //   ->detach($request->id);
 
           \DB::table('mediables')
             ->where('media_id', intval($request->old_img))
