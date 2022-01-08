@@ -93,7 +93,7 @@
                                                           </span>
                                                       </td>
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                      <img src="{{ asset("mehdi/staff/images/icon/bank/" . $peyment_method->en_name . ".png") }}"
+                                                      <img src="{{ asset("mehdi/staff/images/bank/" . $peyment_method->en_name . ".png") }}"
                                                        width="85%" height="85%">
                                                     </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" 
