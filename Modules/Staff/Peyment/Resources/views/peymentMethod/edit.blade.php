@@ -242,7 +242,7 @@
                 @endif
 
                 {{-- مرچنت کد --}}
-                @if($peyment_method->en_name !== 'behpardakht' && $peyment_method->en_name !== 'sepehr ')
+                @if($peyment_method->en_name !== 'behpardakht' && $peyment_method->en_name !== 'sepehr' !! $peyment_method->en_name !== 'cod')
                   <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 ">
                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
                       <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">
