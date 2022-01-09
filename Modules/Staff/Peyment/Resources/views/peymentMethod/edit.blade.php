@@ -134,8 +134,8 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" 
-                            name="iv" value="{{ $peyment_method->iv }}" dir="rtl" 
+                            <input type="text" class="c-content-input__origin c-content-input__origin"
+                            name="iv" value="{{ $peyment_method->iv }}" dir="rtl"
                             style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
@@ -147,8 +147,8 @@
                 @endif
 
                 {{-- کلید تراکنش --}}
-                @if($peyment_method->en_name == 'asanpardakht' 
-                  || $peyment_method->en_name == 'irankish' 
+                @if($peyment_method->en_name == 'asanpardakht'
+                  || $peyment_method->en_name == 'irankish'
                   || $peyment_method->en_name == 'sadad')
                   <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 ">
                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
@@ -161,7 +161,7 @@
                         <div class="field-wrapper">
                           <label class="c-content-input">
                             <input type="text" class="c-content-input__origin c-content-input__origin" name="key"
-                             value="{{ $peyment_method->key }}" dir="rtl" 
+                             value="{{ $peyment_method->key }}" dir="rtl"
                              style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
                         </div>
@@ -229,7 +229,7 @@
 
                         <div class="field-wrapper">
                           <label class="c-content-input">
-                            <input type="text" class="c-content-input__origin c-content-input__origin" 
+                            <input type="text" class="c-content-input__origin c-content-input__origin"
                             name="terminalId" value="{{ $peyment_method->terminalId }}"
                              dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
                           </label>
@@ -242,7 +242,7 @@
                 @endif
 
                 {{-- مرچنت کد --}}
-                @if($peyment_method->en_name !== 'behpardakht' && $peyment_method->en_name !== 'sepehr' !! $peyment_method->en_name !== 'cod')
+                @if($peyment_method->en_name !== 'behpardakht' && $peyment_method->en_name !== 'sepehr' &&  $peyment_method->en_name !== 'cod')
                   <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 ">
                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
                       <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">
@@ -297,10 +297,10 @@
                   </div>
 
                   <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">
-                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" 
+                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap"
                     style="padding-right: 0px !important;width: 32%;">
                       <label class="c-ui-form__label" for="product_page_title">محدودیت:</label>
-                      <div class="field-wrapper field-wrapper--justify field-wrapper--background" 
+                      <div class="field-wrapper field-wrapper--justify field-wrapper--background"
                       style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                         <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">
                           <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1"
@@ -319,7 +319,7 @@
                       <span class="uk-form-label__required"></span>
                     </label>
 
-                    <div class="field-wrapper ui-select ui-select__container ui-select__container--product" 
+                    <div class="field-wrapper ui-select ui-select__container ui-select__container--product"
                       style="text-align: right; border-color: #e6e9ed !important;">
                       <span class="select-counter"></span>
                       <div class="js-select-options"></div>
@@ -331,13 +331,13 @@
                 {{-- زرین گیت --}}
                 @if($peyment_method->en_name == 'zarinpal')
                   <div class="c-grid__row " style="margin-right: 15px;">
-                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" 
+                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap"
                       style="padding-right: 0px !important;width: 32%;">
                       <label class="c-ui-form__label" for="product_page_title">زرین گیت:</label>
-                      <div class="field-wrapper field-wrapper--justify field-wrapper--background" 
+                      <div class="field-wrapper field-wrapper--justify field-wrapper--background"
                         style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                         <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
-                          <input type="checkbox" class="c-ui-checkbox__origin" name="zarin_gate_status" 
+                          <input type="checkbox" class="c-ui-checkbox__origin" name="zarin_gate_status"
                             {{ ($peyment_method->options == 'zarin_gate')? 'checked' : '' }}>
                           <span class="c-ui-checkbox__check"></span>
                           <span class="c-ui-checkbox__label">درگاه مستقیم (زرین گیت) فعال باشد</span>
