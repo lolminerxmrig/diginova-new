@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                     <div class="c-card__body c-ui-table__wrapper">
-                                          <table class="c-ui-table js-search-table js-table-fixed-header c-join__table" 
+                                          <table class="c-ui-table js-search-table js-table-fixed-header c-join__table"
                                             data-search-url="/ajax/product/search/">
                                               <thead>
                                               <tr class="c-ui-table__row"  style="text-align: right !important;">
@@ -91,12 +91,12 @@
                                                 @foreach($delivery_methods as $key => $delivery_method)
                                                   <tr name="row" id="{{ $delivery_method->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                       <td class="c-ui-table__cell" style="max-width: 10% !important; width: 10% !important;">
-                                                          <span class="c-wallet__body-card-row-item"> 
-                                                            {{ persianNum($delivery_methods->firstItem() + $key) }} 
+                                                          <span class="c-wallet__body-card-row-item">
+                                                            {{ persianNum($delivery_methods->firstItem() + $key) }}
                                                           </span>
                                                       </td>
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                      @if($delivery_method == 1)
+                                                      @if($delivery_method->id == 1)
                                                         <img src="{{ asset('mehdi\staff\images\delivery_methods\sefareshi.svg') }}" width="65" height="65">
                                                       @elseif($delivery_method->id == 2)
                                                         <img src="{{ asset('mehdi\staff\images\delivery_methods\pishtaz.svg') }}" width="65" height="65">
@@ -106,7 +106,7 @@
                                                         <img src="{{ asset('mehdi\staff\images\delivery_methods\peyk.svg') }}" width="65" height="65">
                                                       @endif
                                                     </td>
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" 
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"
                                                       style="min-width: 50% !important; width: 50% !important;">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#">
@@ -118,7 +118,7 @@
                                                         </div>
                                                     </td>
 
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" 
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"
                                                       style="min-width: 50% !important;
                                                        width: 50% !important;">
                                                         @foreach($delivery_method->weights as $weight)
@@ -162,7 +162,7 @@
                                       <div class="c-ui-paginator js-paginator" style="visibility: hidden;"></div>
                                       <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
-                                                تعداد نتایج: 
+                                                تعداد نتایج:
                                                 <span name="total" data-id="{{ $delivery_methods->total() }}">
                                                   {{ persianNum($delivery_methods->total()) }} مورد
                                                 </span>

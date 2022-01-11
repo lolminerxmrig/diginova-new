@@ -83,8 +83,8 @@
 
                       <div class="field-wrapper">
                         <label class="c-content-input">
-                          <input type="text" class="c-content-input__origin c-content-input__origin" 
-                          name="method_name" value="{{ $delivery_method->name }}" dir="rtl" 
+                          <input type="text" class="c-content-input__origin c-content-input__origin"
+                          name="method_name" value="{{ $delivery_method->name }}" dir="rtl"
                           style="text-align: right;border-color: #e6e9ed!important;">
                         </label>
                       </div>
@@ -97,9 +97,9 @@
                         <span class="uk-form-label__required"></span>
                       </label>
 
-                      <div class="field-wrapper ui-select ui-select__container ui-select__container--product" 
+                      <div class="field-wrapper ui-select ui-select__container ui-select__container--product"
                         style="text-align: right; border-color: #e6e9ed !important;">
-                        <select name="method_product_weight" id="method_product_weight" 
+                        <select name="method_product_weight" id="method_product_weight"
                         class="uk-input uk-input--select js-select-origin" multiple="multiple"
                          style="text-align: right; border-color: #e6e9ed !important;">
 
@@ -130,46 +130,7 @@
 
                   <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm"></div>
 
-                  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--row-attr">
-
-                    <label class="c-ui-form__label" for="product_page_title">
-                      آیکون:
-                      @if($delivery_method->media()->exists())
-                        <a class="c-ui-btn c-ui-btn--next mr-a delete-icon"  
-                          style="margin-left: 21px;width: 59px !important;height: 20px !important;min-width: 45px !important;
-                          border-radius: 5px;font-size: 10px;box-shadow: unset;font-weight: bold;" id="submit-form">حذف آیکون</a>
-                      @endif
-                    </label>
-
-                    <div class="field-wrapper">
-
-                      <div id="iconUpload" class="c-content-modal__uploads-label {{ (!$delivery_method->media()->exists())? 'empty' : '' }}">
-                        <span uk-form-custom="" class="uk-form-custom">
-                            <input id="brandLogoFile" type="file" class="hidden">
-                        </span>
-
-                        <!-- <label for="brandLogoFile" class="c-content-modal__uploads-preview">
-                          <img src="{{ ($delivery_method->media()->exists())? $site_url . '/' . $delivery_method->media()->first()->path . '/' . $delivery_method->media()->first()->name : '' }}" id="iconUploadPreview" class="c-content-modal__uploads-img" alt="">
-                          <span class="c-content-upload__img-loader js-img-loader">
-                                  <span class="progress__wrapper">
-                                      <span class="progress"></span>
-                                  </span>
-                              </span>
-                        </label> -->
-
-                        <span class="c-content-modal__list c-content-modal__uploads-tooltips">
-                          <span class="c-content-modal__uploads-text">آیکون منو را در نسبت ۱ در ۱ بارگذاری کنید.</span>
-                        </span>
-
-                      </div>
-
-                      <input type="hidden" name="logo_id" class="force-validation" id="iconImageTempId" value="">
-                      <div class="c-content-modal__errors-full" id="iconUploadErrors"></div>
-                    </div>
-                  </div>
-
                   <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
-
                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">
                       <div class="field-wrapper">
                         <label class="c-ui-form__label" for="product_page_title">نوع قیمت‌گذاری:</label>
@@ -182,7 +143,6 @@
                                     continue;
                                   }
                                 ?>
-
                               <option class="option-control" value="{{ $deliveryCostDetType->id }}" {{ ($delivery_method->deliveryCostDetType->id == $deliveryCostDetType->id)? 'selected' : '' }}>{{ $deliveryCostDetType->name }}</option>
                             @endforeach
                           @endif
@@ -242,18 +202,18 @@
 
                 </div>
 
-                <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">
-                  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" style="padding-right: 0px !important;width: 32%;">
-                    <label class="c-ui-form__label" for="product_page_title">محدودیت:</label>
-                    <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
-                      <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">
-                        <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1" {{ count($delivery_method->states)? 'checked' : '' }}>
-                        <span class="c-ui-checkbox__check"></span>
-                        <span class="c-ui-checkbox__label">تعیین محدودیت برای استان</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
+{{--                <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">--}}
+{{--                  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap" style="padding-right: 0px !important;width: 32%;">--}}
+{{--                    <label class="c-ui-form__label" for="product_page_title">محدودیت:</label>--}}
+{{--                    <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">--}}
+{{--                      <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">--}}
+{{--                        <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1" {{ count($delivery_method->states)? 'checked' : '' }}>--}}
+{{--                        <span class="c-ui-checkbox__check"></span>--}}
+{{--                        <span class="c-ui-checkbox__label">تعیین محدودیت برای استان</span>--}}
+{{--                      </label>--}}
+{{--                    </div>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
 
                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div" style=" {{ !count($delivery_method->states)? 'display: none' : '' }}">
 
