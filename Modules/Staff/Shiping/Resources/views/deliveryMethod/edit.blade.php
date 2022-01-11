@@ -215,36 +215,36 @@
 {{--                  </div>--}}
 {{--                </div>--}}
 
-                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div" style=" {{ !count($delivery_method->states)? 'display: none' : '' }}">
+{{--                <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div" style=" {{ !count($delivery_method->states)? 'display: none' : '' }}">--}}
 
-                  <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px; margin-top: 20px;">
-                    استان:
-                    <span class="uk-form-label__required"></span>
-                  </label>
+{{--                  <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px; margin-top: 20px;">--}}
+{{--                    استان:--}}
+{{--                    <span class="uk-form-label__required"></span>--}}
+{{--                  </label>--}}
 
-                  <div class="field-wrapper ui-select ui-select__container ui-select__container--product" style="text-align: right; border-color: #e6e9ed !important;">
-                    <select name="method_states" class="uk-input uk-input--select js-select-origin method_states" multiple="multiple" style="text-align: right; border-color: #e6e9ed !important;">
-                      @php
-                        if(isset($delivery_method->states) && !is_null($delivery_method->states)) {
-                          foreach ($delivery_method->states as $state)
-                            {
-                              $this_states[] = $state->id;
-                          }
-                        }
-                      @endphp
+{{--                  <div class="field-wrapper ui-select ui-select__container ui-select__container--product" style="text-align: right; border-color: #e6e9ed !important;">--}}
+{{--                    <select name="method_states" class="uk-input uk-input--select js-select-origin method_states" multiple="multiple" style="text-align: right; border-color: #e6e9ed !important;">--}}
+{{--                      @php--}}
+{{--                        if(isset($delivery_method->states) && !is_null($delivery_method->states)) {--}}
+{{--                          foreach ($delivery_method->states as $state)--}}
+{{--                            {--}}
+{{--                              $this_states[] = $state->id;--}}
+{{--                          }--}}
+{{--                        }--}}
+{{--                      @endphp--}}
 
-                      @if(isset($states) && !is_null($states))
-                        @foreach($states->where('type', 'state') as $state)
-                          <option value="{{ $state->id }}" {{ (isset($this_states) && in_array($state->id, $this_states))? 'selected' : '' }} >{{ $state->name }}</option>
-                        @endforeach
-                      @endif
+{{--                      @if(isset($states) && !is_null($states))--}}
+{{--                        @foreach($states->where('type', 'state') as $state)--}}
+{{--                          <option value="{{ $state->id }}" {{ (isset($this_states) && in_array($state->id, $this_states))? 'selected' : '' }} >{{ $state->name }}</option>--}}
+{{--                        @endforeach--}}
+{{--                      @endif--}}
 
-                    </select>
-                    <span class="select-counter"></span>
-                    <div class="js-select-options"></div>
-                  </div>
+{{--                    </select>--}}
+{{--                    <span class="select-counter"></span>--}}
+{{--                    <div class="js-select-options"></div>--}}
+{{--                  </div>--}}
 
-                </div>
+{{--                </div>--}}
 
               </div>
             </div>
