@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-@section('title') ویرایش روش  پرداخت | {{ $fa_store_name }}  @endsection
+@section('title') ویرایش روش  ارسال | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 
@@ -48,9 +48,9 @@
         <div class="c-grid__col">
           <div class="c-card c-card--transparent">
             <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-              مدیریت منو‌‌‌‌‌ها
+              ویرایش روش ارسال
               <span>
-                از این صفحه می‌توانید منو ها یا مگامنو ها را مدیریت کنید.
+                از این صفحه می‌توانید روش ارسال را مدیریت کنید.
             </span>
             </h1>
           </div>
@@ -63,7 +63,8 @@
               <div style="color: #606265;">اطلاعات روش ارسال</div>
             </h2>
 
-            <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;display: none;"></div>
+            <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;
+              background: #e2dddd;height: 1px;display: none;"></div>
 
             <div class="c-card__header"></div>
 
@@ -82,7 +83,9 @@
 
                       <div class="field-wrapper">
                         <label class="c-content-input">
-                          <input type="text" class="c-content-input__origin c-content-input__origin" name="method_name" value="{{ $delivery_method->name }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                          <input type="text" class="c-content-input__origin c-content-input__origin" 
+                          name="method_name" value="{{ $delivery_method->name }}" dir="rtl" 
+                          style="text-align: right;border-color: #e6e9ed!important;">
                         </label>
                       </div>
                     </div>
@@ -94,8 +97,11 @@
                         <span class="uk-form-label__required"></span>
                       </label>
 
-                      <div class="field-wrapper ui-select ui-select__container ui-select__container--product" style="text-align: right; border-color: #e6e9ed !important;">
-                        <select name="method_product_weight" id="method_product_weight" class="uk-input uk-input--select js-select-origin" multiple="multiple" style="text-align: right; border-color: #e6e9ed !important;">
+                      <div class="field-wrapper ui-select ui-select__container ui-select__container--product" 
+                        style="text-align: right; border-color: #e6e9ed !important;">
+                        <select name="method_product_weight" id="method_product_weight" 
+                        class="uk-input uk-input--select js-select-origin" multiple="multiple"
+                         style="text-align: right; border-color: #e6e9ed !important;">
 
                           @php
                             if(isset($delivery_method->weights) && !is_null($delivery_method->weights)) {
@@ -129,7 +135,9 @@
                     <label class="c-ui-form__label" for="product_page_title">
                       آیکون:
                       @if($delivery_method->media()->exists())
-                        <a class="c-ui-btn c-ui-btn--next mr-a delete-icon"  style="margin-left: 21px;width: 59px !important;height: 20px !important;min-width: 45px !important;border-radius: 5px;font-size: 10px;box-shadow: unset;font-weight: bold;" id="submit-form">حذف آیکون</a>
+                        <a class="c-ui-btn c-ui-btn--next mr-a delete-icon"  
+                          style="margin-left: 21px;width: 59px !important;height: 20px !important;min-width: 45px !important;
+                          border-radius: 5px;font-size: 10px;box-shadow: unset;font-weight: bold;" id="submit-form">حذف آیکون</a>
                       @endif
                     </label>
 
@@ -140,14 +148,14 @@
                             <input id="brandLogoFile" type="file" class="hidden">
                         </span>
 
-                        <label for="brandLogoFile" class="c-content-modal__uploads-preview">
+                        <!-- <label for="brandLogoFile" class="c-content-modal__uploads-preview">
                           <img src="{{ ($delivery_method->media()->exists())? $site_url . '/' . $delivery_method->media()->first()->path . '/' . $delivery_method->media()->first()->name : '' }}" id="iconUploadPreview" class="c-content-modal__uploads-img" alt="">
                           <span class="c-content-upload__img-loader js-img-loader">
                                   <span class="progress__wrapper">
                                       <span class="progress"></span>
                                   </span>
                               </span>
-                        </label>
+                        </label> -->
 
                         <span class="c-content-modal__list c-content-modal__uploads-tooltips">
                           <span class="c-content-modal__uploads-text">آیکون منو را در نسبت ۱ در ۱ بارگذاری کنید.</span>
@@ -341,7 +349,6 @@ $(".save-form").on('click', function (e) {
 
   var method_name = $("input[name='method_name']").val();
   var method_product_weight = $("#method_product_weight").val();
-  var iconImageTempId = $("input[name='iconImageTempId']").val();
   var method_cost_type = $("#method_cost_type").val();
   var delivery_cost = $("input[name='delivery_cost']").val();
   var min_card_cost = $("input[name='min_card_cost']").val();
@@ -355,7 +362,6 @@ $(".save-form").on('click', function (e) {
       method_id: {{ $delivery_method->id }},
       name: method_name,
       weights: method_product_weight,
-      iconImageTempId: iconImageTempId,
       cost__det_type: method_cost_type,
       delivery_cost: delivery_cost,
       has_free_delivery: has_free_delivery,
@@ -366,7 +372,6 @@ $(".save-form").on('click', function (e) {
       intra_provinces: intra_provinces,
       extra_provinces: extra_provinces,
       neighboring_provinces: neighboring_provinces,
-      uploaded_icon_id: uploaded_icon_id,
     },
 
 

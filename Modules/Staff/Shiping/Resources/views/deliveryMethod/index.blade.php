@@ -36,7 +36,6 @@
                                 <div class="c-card__wrapper">
                                     <div class="c-card__header c-card__header--table">
                                         <a href="#" target="_blank"></a>
-
                                         <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $delivery_methods->total() }}">
@@ -96,14 +95,19 @@
                                                             {{ persianNum($delivery_methods->firstItem() + $key) }} 
                                                           </span>
                                                       </td>
-
                                                     <td class="c-ui-table__cell" style="min-width: 90px">
-                                                      @if(count($delivery_method->media))
-                                                        <img src="{{ $site_url . '/' . $delivery_method->media()->first()->path . '/'.$delivery_method->media()->first()->name }}" width="65" height="65">
+                                                      @if($delivery_method == 1)
+                                                        <img src="{{ asset('mehdi\staff\images\delivery_methods\sefareshi.svg') }}" width="65" height="65">
+                                                      @elseif($delivery_method->id == 2)
+                                                        <img src="{{ asset('mehdi\staff\images\delivery_methods\pishtaz.svg') }}" width="65" height="65">
+                                                      @elseif($delivery_method->id == 3)
+                                                        <img src="{{ asset('mehdi\staff\images\delivery_methods\barbari.svg') }}" width="65" height="65">
+                                                      @elseif($delivery_method->id == 4)
+                                                        <img src="{{ asset('mehdi\staff\images\delivery_methods\peyk.svg') }}" width="65" height="65">
                                                       @endif
                                                     </td>
-
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important; width: 50% !important;">
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" 
+                                                      style="min-width: 50% !important; width: 50% !important;">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#">
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
@@ -114,11 +118,14 @@
                                                         </div>
                                                     </td>
 
-                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 50% !important;
+                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" 
+                                                      style="min-width: 50% !important;
                                                        width: 50% !important;">
                                                         @foreach($delivery_method->weights as $weight)
-                                                        <span style="background-color: #f5f7fa;padding: 6px 10px 6px 10px;border-radius: 5px;margin-right: 5px;
-                                                          font-size: 13px !important;">{{ $weight->name }}</span>
+                                                          <span style="background-color: #f5f7fa;padding: 6px 10px 6px 10px;border-radius: 5px;
+                                                            margin-right: 5px;font-size: 13px !important;">
+                                                            {{ $weight->name }}
+                                                          </span>
                                                         @endforeach
                                                     </td>
 

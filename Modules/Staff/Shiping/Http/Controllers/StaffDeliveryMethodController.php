@@ -35,7 +35,9 @@ class StaffDeliveryMethodController extends Controller
       $weights = ProductWeight::all();
       $states = State::all();
       $values = $delivery_method->values()->orderBy('type', 'desc')->paginate();
-      return view('staffdelivery::deliveryMethod.edit', compact('delivery_method', 'deliveryCostDetTypes', 'states', 'values', 'weights'));
+
+      return view('staffdelivery::deliveryMethod.edit', 
+        compact('delivery_method', 'deliveryCostDetTypes', 'states', 'values', 'weights'));
     }
 
     public function storeDeliveryMethod(Request $request)
@@ -50,7 +52,6 @@ class StaffDeliveryMethodController extends Controller
         $validator = Validator::make($request->all(),[
           'name' => 'required',
           'weights' => 'required',
-          'iconImageTempId' => 'nullable',
           'cost__det_type' => 'required',
           'delivery_cost' => 'nullable|required_if:cost__det_type,2,3',
           'has_free_delivery' => 'nullable',
@@ -93,17 +94,25 @@ class StaffDeliveryMethodController extends Controller
         }
 
         if (isset($request->intra_provinces) && count($request->intra_provinces)) {
-          $deliveryMethodValues = DeliveryMethodValue::where('delivery_method_id', $request->method_id)->orderBy('type', 'desc')->get();
+          $deliveryMethodValues = DeliveryMethodValue::where('delivery_method_id', $request->method_id)
+            ->orderBy('type', 'desc')->get();
           foreach ($deliveryMethodValues as $key => $deliveryMethodValue) {
             $deliveryMethodValue->update([
-              'intra_province' => isset($request->intra_provinces[$key])? $request->intra_provinces[$key] : null,
-              'extra_province' => isset($request->extra_provinces[$key])? $request->extra_provinces[$key] : null,
-              'neighboring_provinces' => isset($request->neighboring_provinces[$key])? $request->neighboring_provinces[$key] : null,
+              'intra_province' => isset($request->intra_provinces[$key])
+                ? $request->intra_provinces[$key] 
+                : null,
+              'extra_province' => isset($request->extra_provinces[$key])
+                ? $request->extra_provinces[$key] 
+                : null,
+              'neighboring_provinces' => isset($request->neighboring_provinces[$key])
+                ? $request->neighboring_provinces[$key] 
+                : null,
             ]);
           }
         }
 
         $deliveryMethod->weights()->detach();
+        
         foreach ($request->weights as $weight) {
           $methodWeight = ProductWeight::find(intval($weight));
           $deliveryMethod->weights()->attach($methodWeight);
@@ -119,55 +128,7 @@ class StaffDeliveryMethodController extends Controller
         else {
           $deliveryMethod->states()->detach();
         }
-
-        if (!is_null($request->uploaded_icon_id))
-        {
-          $media = Media::find($request->uploaded_icon_id);
-          $deliveryMethod->media()->sync($media);
-        }
-
     }
-
-    public function deleteIcon(Request $request)
-    {
-      $method = DeliveryMethod::find($request->method_id);
-      $media_id = $method->media()->first()->id;
-      $method->media()->detach();
-      Media::find($media_id)->delete();
-
-      return response()->json([
-        'status' => true,
-        'data' => true,
-      ]);
-    }
-
-    public function UploadImage(Request $request)
-  {
-    $imageExtension = $request->image->extension();
-
-    $input['image'] = time() . '.' . $imageExtension;
-    $request->image->move(public_path('media/deliveryMethods'), $input['image']);
-
-    $media = Media::create([
-      'name' => $input['image'],
-      'path' => 'media/deliveryMethods',
-      'person_id' => auth()->guard('staff')->user()->id,
-      'person_role' => 'staff' ,
-    ]);
-
-    $settings = Setting::select('name', 'value')->get();
-    $site_url = $settings->where('name', 'site_url')->first()->value;
-
-    return response()->json([
-      'status' => true,
-      'data' => [
-        'id' => "$media->id",
-        'url' => "$site_url/$media->path/$media->name",
-        'tempFile' => true,
-        'slot' => null,
-      ]
-    ]);
-  }
 
     public function status(Request $request)
     {
