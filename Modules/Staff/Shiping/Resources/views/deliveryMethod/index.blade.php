@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-@section('title') مدیریت روش های ارسال | {{ $fa_store_name }}  @endsection
+@section('title') مدیریت روش‌های ارسال | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
