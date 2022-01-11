@@ -134,8 +134,10 @@
                     <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">
                       <div class="field-wrapper">
                         <label class="c-ui-form__label" for="product_page_title">نوع قیمت‌گذاری:</label>
-                        <select id="method_cost_type" class="dropdown-control c-ui-select c-ui-select--common c-ui-select--small select2-hidden-accessible c-ui-input--disabled"
-                                name="method_cost_type" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;" {{ ($delivery_method->id == 1 || $delivery_method->id == 2) ? 'disabled' : '' }}>
+                        <select id="method_cost_type" class="dropdown-control c-ui-select c-ui-select--common
+                            c-ui-select--small select2-hidden-accessible c-ui-input--disabled"
+                            name="method_cost_type" tabindex="-1" aria-hidden="true" style="width: 150px ​!important;"
+                            {{ ($delivery_method->id == 1 || $delivery_method->id == 2) ? 'disabled' : '' }}>
                           @if(count($deliveryCostDetTypes))
                             @foreach($deliveryCostDetTypes as $key => $deliveryCostDetType)
                                 <?php
@@ -143,29 +145,35 @@
                                     continue;
                                   }
                                 ?>
-                              <option class="option-control" value="{{ $deliveryCostDetType->id }}" {{ ($delivery_method->deliveryCostDetType->id == $deliveryCostDetType->id)? 'selected' : '' }}>{{ $deliveryCostDetType->name }}</option>
+                              <option class="option-control" value="{{ $deliveryCostDetType->id }}"
+                                  {{ ($delivery_method->deliveryCostDetType->id == $deliveryCostDetType->id)? 'selected' : '' }}>
+                                    {{ $deliveryCostDetType->name }}
+                              </option>
                             @endforeach
                           @endif
                         </select>
                       </div>
                     </div>
-                    <div class="uk-flex uk-flex-column delivery_cost-div" style="{{ ($delivery_method->deliveryCostDetType->id == 1)? 'display: none' : '' }}">
-                      <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">
-                        <div class="field-wrapper">
-                          <label class="c-ui-form__label delivery_cost-lable" for="product_page_title">
-                            @if($delivery_method->deliveryCostDetType->id == 3)
-                              هزینه ارسال:
-                            @else
-                              حداقل هزینه ارسال:
-                            @endif
-                          </label>
-                          <label class="c-content-input">
-                            <input type="number" placeholder="" class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--xs js-number-input-wrapper delivery_cost" value="{{ $delivery_method->delivery_cost }}" name="delivery_cost" style="max-width: 124px !important;">
-                            <span class="c-content-input__text c-content-input__text--overlay" style="left: 0 !important;right: unset !important;">ریال</span>
-                          </label>
+
+                    @if($delivery_method->deliveryCostDetType->id == 3 || $delivery_method->deliveryCostDetType->id == 4)
+                        <div class="uk-flex uk-flex-column delivery_cost-div" style="{{ ($delivery_method->deliveryCostDetType->id == 1)? 'display: none' : '' }}">
+                          <div class=" c-grid__col c-grid__col--gap-small c-grid__col--flex-initial c-grid__col--xs-gap">
+                            <div class="field-wrapper">
+                              <label class="c-ui-form__label delivery_cost-lable" for="product_page_title">
+                                @if($delivery_method->deliveryCostDetType->id == 4)
+                                  هزینه ارسال:
+                                @elseif($delivery_method->deliveryCostDetType->id == 3)
+                                  حداقل هزینه ارسال:
+                                @endif
+                              </label>
+                              <label class="c-content-input">
+                                <input type="number" placeholder="" class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--xs js-number-input-wrapper delivery_cost" value="{{ $delivery_method->delivery_cost }}" name="delivery_cost" style="max-width: 124px !important;">
+                                <span class="c-content-input__text c-content-input__text--overlay" style="left: 0 !important;right: unset !important;">ریال</span>
+                              </label>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
+                    @endif
 
                   </div>
 
@@ -486,18 +494,18 @@ $(document).on('change', "input[name='has_state_limit']", function (){
 });
 
 $(document).on('change', "#method_cost_type", function (){
-  if ($(this).val() == 3) {
+  if ($(this).val() == 4) {
     $(".delivery_cost-div").show();
     $(".delivery_cost-lable").text('هزینه ارسال:');
   }
-  else if($(this).val() == 2) {
+  else if($(this).val() == 3) {
     $(".delivery_cost-div").show();
     $(".delivery_cost-lable").text('حداقل هزینه ارسال:');
   }
-  else if($(this).val() == 1){
+  else if($(this).val() == 1 || $(this).val() == 2){
 
     $(".delivery_cost-div").hide();
-    $(".delivery_cost").val('');1
+    $(".delivery_cost").val('');
 
     $.ajax({
       method: 'post',
