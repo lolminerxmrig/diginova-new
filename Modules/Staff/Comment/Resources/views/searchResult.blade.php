@@ -86,7 +86,8 @@
                                 <td class="c-ui-table__cell c-ui-table__expander" data-expand="{{ $comment->id }}">
                                     <span class="c-ui-table__expander-control js-expand-comment" data-id="{{ $comment->id }}"></span>
                                     <span class="c-ui-table__expander-control  c-ui-table c-join__btn--icon-delete delete-btn"
-                                        data-id="{{ $comment->id }}" style="margin-left: 15px;color: #60667a;font-weight: bold;"></span>                                                                </td>
+                                        data-id="{{ $comment->id }}" style="margin-left: 15px;color: #60667a;font-weight: bold;"></span>                                                                
+                                </td>
                             </tr>
                             <tr class="c-ui-table__expand-row c-ui-table__expand-row--first c-ui-table__expand-row--last
                                 js-expanded-row c-ui-table__expand-row--hidden" data-expand-target="{{ $comment->id }}" style="color: #81858b !important;">
@@ -140,8 +141,6 @@
                                     </table>
 
                                     <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%;margin: auto;margin-top: 28px;">
-
-
                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6"
                                             style="padding-right: 0px;float: right;">
                                             <label class="uk-form-label uk-flex uk-flex-between" style="color: #81858b !important;">
@@ -199,7 +198,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%; margin: auto;">
                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12
                                          c-grid__col--xs-gap" style="padding-right: 0px;margin-top: 20px;">
@@ -211,7 +209,6 @@
                                             </div>
                                         </div>
                                     </div>
-
 
                                     <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%; margin: auto; margin-bottom: 40px !important;">
                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12 c-grid__col--xs-gap"

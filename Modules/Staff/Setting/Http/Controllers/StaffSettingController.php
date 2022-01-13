@@ -21,7 +21,8 @@ class StaffSettingController extends Controller
       $states = State::all();
       $store_addresses = StoreAddress::all();
 
-      if(!is_null($settings->where('name', 'invoice_stamp')->first()->media) && count($settings->where('name', 'invoice_stamp')->first()->media)){
+      if(!is_null($settings->where('name', 'invoice_stamp')->first()->media) 
+        && count($settings->where('name', 'invoice_stamp')->first()->media)){
         $stamp_image = $settings->where('name', 'invoice_stamp')->first()->media()->first();
       }
       else {
@@ -81,11 +82,9 @@ class StaffSettingController extends Controller
           'en_store_name' => 'required',
           'site_title' => 'required',
           'site_index_status' => 'required',
-          // nullable
           'site_url' => 'nullable',
           'index_meta_keywords' => 'nullable',
           'index_meta_description' => 'nullable',
-          // image id "nullable"
           'logoImageId' => 'nullable',
           'faviconImageId' => 'nullable',
           'symbolImageId' => 'nullable',
@@ -401,8 +400,17 @@ class StaffSettingController extends Controller
         $stamp->media()->sync($media);
       }
 
-      $fillable = ['invoice_title', 'invoice_seller', 'invoice_national_id', 'invoice_reg_number', 'invoice_economic_number', 'invoice_company_address', 'invoice_company_postal_code', 'invoice_company_fax_phone', 'invoice_description'];
-
+      $fillable = [
+        'invoice_title',
+        'invoice_seller',
+        'invoice_national_id',
+        'invoice_reg_number',
+        'invoice_economic_number',
+        'invoice_company_address',
+        'invoice_company_postal_code',
+        'invoice_company_fax_phone',
+        'invoice_description'
+      ];
 
       foreach ($request->all() as $key => $item)
       {

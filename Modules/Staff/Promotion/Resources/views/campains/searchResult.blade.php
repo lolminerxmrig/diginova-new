@@ -96,10 +96,8 @@
             </tbody>
         </table>
         <div class="c-card__loading"></div>
-
     </div>
     <br>
-
 
     <div class="c-card__footer" style="width: auto;">
         <a href="#" style="visibility: hidden;">
@@ -108,6 +106,7 @@
         </a>
 
         {{ $campains->links('staffpromotion::campains.custom-pagination') }}
+        
         <div class="c-ui-paginator js-paginator">
             <div class="c-ui-paginator js-paginator">
                 @if(count($campains))
@@ -121,7 +120,6 @@
                 @endif
             </div>
         </div>
-
     </div>
 
 

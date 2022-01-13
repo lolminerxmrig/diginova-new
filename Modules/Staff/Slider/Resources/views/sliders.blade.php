@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') انتخاب تصویر اسلایدر | {{ $fa_store_name }}  @endsection
 @section('head')
   <script type="text/javascript" src="{{ asset('mehdi/staff/js/jquery-latest.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
@@ -53,7 +54,6 @@
         </div>
 
         <div class="js-table-container">
-
           <div class="c-grid__row" style="margin-top:30px">
             <div1 class="c-grid__col">
               <div class="c-card">

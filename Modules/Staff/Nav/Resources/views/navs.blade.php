@@ -1,21 +1,13 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت فهرست ها | {{ $fa_store_name }}  @endsection
 @section('head')
-  <script src="{{ asset('seller/js/tableView.js') }}"></script>
-  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+  <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
   <style>
-    /*.select2-search {*/
-    /*    display: none;*/
-    /*}*/
-
     .select2-selection__arrow {
       display: block !important;
     }
-
-    /*.select2-search--dropdown {*/
-    /*    display: none;*/
-    /*}*/
-
-
+    
     .select2-selection--single {
       background-color: #fff;
       border: 1px solid #bbbaba;
@@ -60,13 +52,11 @@
                 <div class="c-card">
                   <div class="c-card__wrapper">
                     <div class="c-card__header c-card__header--table">
-                      {{--                    @if(($nav->type == "nav") || ($nav->type == "nav-r"))--}}
                       <a target="_blank">
                         <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد فهرست
                           جدید
                         </div>
                       </a>
-                      {{--                    @endif--}}
                       <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
                       <div class="c-ui-paginator js-paginator">
                         <div class="c-ui-paginator__total" data-rows="۶">
@@ -103,7 +93,8 @@
                         @endphp
                         @if(count($navs))
                           @foreach($navs->sortBy('position') as $key => $nav)
-                            <tr name="row db-row" id="item-{{ $nav->id }}" data-id="{{ $nav->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
+                            <tr name="row db-row" id="item-{{ $nav->id }}" data-id="{{ $nav->id }}" class="c-ui-table__row c-ui-table__row--body
+                             c-join__table-row row db-row">
 
                               <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
                                 <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
@@ -111,14 +102,12 @@
                                   <span class="c-content-upload__drag-handler c-content-upload__drag-handler--bg"></span>
                                   <span class="c-content-upload__drag-handler c-content-upload__drag-handler--down js-sort-down"></span>
                                 </div>
-                                {{--                            <span class="c-wallet__body-card-row-item"> {{ persianNum($navs->firstItem() + $key) }} </span>--}}
                               </td>
 
-
                               <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: center; min-width: 200px;">
-                              <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                  {{ $nav->name }}
-                              </span>
+                                <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                                    {{ $nav->name }}
+                                </span>
                               </td>
 
                               <td class="c-ui-table__cell c-ui-table__cell--text-blue">
@@ -127,7 +116,6 @@
                                   <a class="c-join__promotion-copy-btn js-copy-btn" href="#" data-link="{{ $nav->link }}">کپی لینک</a>
                                 @endif
                               </td>
-
 
                               <td class="c-ui-table__cell c-ui-table__cell-desc" style="text-align: center;">
                               <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
@@ -139,7 +127,8 @@
                                 <div class="c-ui-tooltip__anchor">
                                   <div class="c-ui-toggle__group">
                                     <label class="c-ui-toggle">
-                                      <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" name="status" {{ ($nav->status == 'active')? 'checked' : '' }} data-nav-id="{{$nav->id}}">
+                                      <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" name="status"
+                                       {{ ($nav->status == 'active')? 'checked' : '' }} data-nav-id="{{$nav->id}}">
                                       <span class="c-ui-toggle__check"></span>
                                     </label>
                                   </div>
@@ -151,21 +140,21 @@
 
                               <td class="c-ui-table__cell">
                                 <div class="c-promo__actions">
-                                  <a class="c-join__btn c-join__btn--secondary-greenish" href="{{ route('staff.navs.navItems', $nav->id) }}">ویرایش فهرست</a>
-
-                                  <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list delete-btn" value="{{ $nav->id }}">حذف</button>
+                                  <a class="c-join__btn c-join__btn--secondary-greenish" href="{{ route('staff.navs.navItems', $nav->id) }}">
+                                    ویرایش فهرست
+                                  </a>
+                                  <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp
+                                   js-remove-product-list delete-btn" value="{{ $nav->id }}">حذف</button>
                                 </div>
 
-                                <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message js-common-modal-notification" style="display: none;">
+                                <div uk-modal="esc-close: true; bg-close: true;" class="uk-modal-container uk-modal-container--message
+                                 js-common-modal-notification" style="display: none;">
                                   <div class="uk-modal-dialog uk-modal-dialog--flex">
                                     <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
-
                                     <div class="uk-modal-body">
                                       <div class="c-modal-notification">
                                         <div class="c-modal-notification__content c-modal-notification__content--limited">
-                                          <h2 class="c-modal-notification__header">
-                                            هشدار</h2>
-
+                                          <h2 class="c-modal-notification__header">هشدار</h2>
                                           <p class="c-modal-notification__text">
                                             با حذف این فهرست، تمامی منو های آن حذف خواهد شد. آیا از حذف آن اطمینان دارید؟
                                           </p>
@@ -182,9 +171,7 @@
                                     </div>
                                   </div>
                                 </div>
-
                               </td>
-
                             </tr>
 
                             @php
@@ -197,14 +184,11 @@
                     </div>
 
                     <div class="c-card__footer" style="width: auto;">
-
-                      {{--                    @if(($nav->type == "nav") || ($nav->type == "nav-r"))--}}
                       <a target="_blank">
                         <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">ایجاد فهرست
                           جدید
                         </div>
                       </a>
-                      {{--                    @endif--}}
                       <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
 
                       <div class="c-ui-paginator js-paginator" data-select2-id="25">
@@ -212,22 +196,16 @@
                           تعداد نتایج: <span name="total" data-id="2">{{ persianNum($navs->total()) }} مورد</span>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-
         </div>
-
-
       </div>
 
       @include('staffnav::layouts.createNavModal')
-
 
       <div id="pageLoader" class="c-content-loader c-content-loader--fixed">
         <div class="c-content-loader__logo"></div>
@@ -247,8 +225,10 @@
           <div class="c-modal-notification__content c-modal-notification__content--limited">
             <h2 class="c-modal-notification__header">هشدار</h2>
 
-            <p class="c-modal-notification__text">با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته
-              انتخابی به صورت کامل حذف شده و قابل بازیابی نمی‌باشد. آیا از حذف کامل آن اطمینان دارید؟</p>
+            <p class="c-modal-notification__text">
+              با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته
+              انتخابی به صورت کامل حذف شده و قابل بازیابی نمی‌باشد. آیا از حذف کامل آن اطمینان دارید؟
+            </p>
             <div class="c-modal-notification__actions">
               <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
               <button
@@ -263,7 +243,8 @@
   </div>
   <div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
 
-    <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
+    <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible"
+     tabindex="-1" aria-hidden="true" aria-invalid="false">
       @if(isset($units) && count($units))
         @foreach($units as $unit)
           <option value="{{ $unit->id }}">{{ $unit->name }}</option>

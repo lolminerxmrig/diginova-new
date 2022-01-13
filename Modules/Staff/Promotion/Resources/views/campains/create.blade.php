@@ -158,12 +158,7 @@
                                                 <input type="search" name="query" class="c-ui-input__field c-ui-input__field--order 
                                                 js-form-clearable c-join__input" id="search_input" placeholder="جستجوی کد کالا، کد تنوع و ..."
                                                  style="width: 400px;">
-                                                <button class="uk-icon-button c-join__search-btn uk-icon" uk-icon="icon: search">
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ratio="1">
-                                                        <circle fill="none" stroke="#000" stroke-width="1.1" cx="9" cy="9" r="7"></circle>
-                                                        <path fill="none" stroke="#000" stroke-width="1.1" d="M14,14 L18,18 L14,14 Z"></path>
-                                                    </svg>
-                                                </button>
+                                                <button class="uk-icon-button c-join__search-btn uk-icon" uk-icon="icon: search"></button>
                                             </div>
                                         </div>
                                     </div>

@@ -60,7 +60,8 @@ class StaffRegLoginController extends Controller
         })->where('order_status_id', '!=', 1)->where('order_status_id', '!=', 7)->count();
 
         return view('staffauth::dashboard',
-          compact('peyment_methods', 'settings', 'products', 'consignments', 'send_tomorrow_only', 'send_today_only', 'delivery_order_delay'));
+          compact('peyment_methods', 'settings', 'products', 'consignments',
+           'send_tomorrow_only', 'send_today_only', 'delivery_order_delay'));
     }
 
     /**
@@ -142,7 +143,8 @@ class StaffRegLoginController extends Controller
 
           $email = $request->email;
 
-          Mail::send('staffauth::verify', compact('token', 'fa_store_name', 'email'), function($message) use($request, $fa_store_name){
+          Mail::send('staffauth::verify', compact('token', 'fa_store_name', 'email'), function($message)
+           use($request, $fa_store_name){
             $message->to($request->email);
             $message->subject('فراموشی رمز عبور' . ' ' . $fa_store_name);
           });
@@ -180,7 +182,8 @@ class StaffRegLoginController extends Controller
         ]);
       }
 
-      if ($request->rc !== '' && !is_null($request->rc) && Staff::where('remember_token', $request->rc)->exists() && $request->password == $request->password_confirmation)
+      if ($request->rc !== '' && !is_null($request->rc) && Staff::where('remember_token', $request->rc)->exists() 
+      && $request->password == $request->password_confirmation)
       {
         Staff::where('remember_token', $request->rc)->update([
           'password' => Hash::make($request->password),

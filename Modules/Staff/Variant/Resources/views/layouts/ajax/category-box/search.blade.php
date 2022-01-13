@@ -50,7 +50,8 @@
     </ul>
   </div>
 @else
-  <div class="c-content-categories__wrapper c-content-categories__wrapper--empty js-category-column" style="border: none;">
+  <div class="c-content-categories__wrapper c-content-categories__wrapper--empty js-category-column" 
+    style="border: none;">
     جستجو شما نتیجه‌ای نداشت.
   </div>
 @endif

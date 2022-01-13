@@ -50,7 +50,7 @@
                                                 </div>
                                                 <div
                                                     class="c-ui-form__col c-ui-form__col--6 c-ui-form__col--xs-12
-                  c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
+                                                        c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
                                                     <label>
                                                         <div class="c-ui-input">
                                                             <input type="text" name="searchKeyword"
@@ -78,20 +78,6 @@
                                         </div>
                                         <div
                                             class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">
-                                            {{--                                        <div class="c-join__filter">--}}
-                                            {{--                                            <p class="c-ui-form__label">نمایش محصول:</p>--}}
-                                            {{--                                            <div class="c-join__filter-container">--}}
-                                            {{--                                                <label class="c-join__radio-label">--}}
-                                            {{--                                                    <input class="c-join__radio search_type" type="radio"--}}
-                                            {{--                                                           name="search_type" value="all" checked>--}}
-                                            {{--                                                    <span class="c-join__radio-option">همه محصول ها</span>--}}
-                                            {{--                                                </label>--}}
-                                            {{--                                                <label class="c-join__radio-label">--}}
-                                            {{--                                                    <input class="c-join__radio search_type" type="radio" name="search_type" value="only_special">--}}
-                                            {{--                                                    <span class="c-join__radio-option">فقط ویژه ها</span>--}}
-                                            {{--                                                </label>--}}
-                                            {{--                                            </div>--}}
-                                            {{--                                        </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -117,33 +103,11 @@
                                                        class="c-ui-btn js-view-all-orders">مدیریت محصول های حذف شده</a>
                                                 </div>
                                             @endif
-
-
-                                            {{--                                            {{ $products->links('staffproduct::layouts.pagination.pagination') }}--}}
-
                                             <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                                 <div class="c-ui-paginator__total" data-rows="۶">
                                                     تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
                                                 </div>
-                                                {{--                                            <div class="c-ui-paginator__select" data-select2-id="15">--}}
-                                                {{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-                                                {{--                                                <div class="c-ui-paginator__select-pages">--}}
-                                                {{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-                                                {{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-                                                {{--                                                        select2-hidden-accessible paginator-selected"--}}
-                                                {{--                                                            name="paginator-select-pages" tabindex="-1" id="paginator-top" aria-hidden="true">--}}
-                                                {{--                                                            <option value="10">۱۰</option>--}}
-                                                {{--                                                            <option value="20">۲۰</option>--}}
-                                                {{--                                                            <option value="50">۵۰</option>--}}
-                                                {{--                                                            <option value="100">۱۰۰</option>--}}
-                                                {{--                                                        </select>--}}
-
-                                                {{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-                                                {{--                                                    </div>--}}
-                                                {{--                                                </div>--}}
-                                                {{--                                            </div>--}}
-                                            </div>
+=                                            </div>
                                         </div>
                                         <div class="c-card__body c-ui-table__wrapper">
                                             <table
@@ -205,7 +169,6 @@
                                                         <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
                                                             <div class="uk-flex uk-flex-column">
                                                                 <a href="{{ route('front.productPage', $product->product_code) }}" target="_blank">
-{{--                                                                <a href="{{$site_url}}/{{ $product_code_prefix }}-{{ $product->product_code }}/" target="_blank">--}}
                                                                   <span
                                                                       class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"
                                                                       style="margin:auto;">
@@ -231,8 +194,8 @@
                                                         </td>
 
                                                         <td class="c-ui-table__cell">
-                                                            <a href="#">
-                                                                <div class="uk-flex uk-flex-column">
+                                                    <a href="#">
+                                                        <div class="uk-flex uk-flex-column">
                                                           <span class="c- -card-row-item" style="margin: auto;">
                                                               @if(!is_null($product->brand))
                                                                   {{ $product->brand->name }}
@@ -240,50 +203,16 @@
                                                                   {{ 'متفرقه' }}
                                                               @endif
                                                           </span>
-                                                                    <span class="c-wallet__body-card-row-item"
-                                                                          style="margin: auto;">
+                                                          <span class="c-wallet__body-card-row-item" style="margin: auto;">
                                                             @if(!is_null($product->brand))
-                                                                            {{ $product->brand->en_name }}
-                                                                        @else
-                                                                            {{ 'Miscellaneous' }}
-                                                                        @endif
+                                                                {{ $product->brand->en_name }}
+                                                            @else
+                                                                {{ 'Miscellaneous' }}
+                                                            @endif
                                                           </span>
                                                                 </div>
                                                             </a>
                                                         </td>
-
-                                                        {{--                                                    <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">--}}
-                                                        {{--                                                        <div class="uk-flex uk-flex-column">--}}
-                                                        {{--                                                            <a href="#" target="_blank">--}}
-                                                        {{--                                                                <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">--}}
-                                                        {{--                                                                {{ $product->name }}--}}
-                                                        {{--                                                                    @if($product->type == 1)--}}
-                                                        {{--                                                                        <span style="color: red; font-size: 11px;"> (ویژه) </span>--}}
-                                                        {{--                                                                    @endif--}}
-                                                        {{--                                                                </span>--}}
-                                                        {{--                                                                <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>--}}
-                                                        {{--                                                            </a>--}}
-                                                        {{--                                                        </div>--}}
-                                                        {{--                                                    </td>--}}
-                                                        {{--                                                    <td class="c-ui-table__cell">--}}
-                                                        {{--                                                        <a href="#">--}}
-                                                        {{--                                                            <div class="uk-flex uk-flex-column">--}}
-                                                        {{--                                                                  <span class="c- -card-row-item" style="line-height: 23px;">--}}
-                                                        {{--                                                                    @foreach($product->categories as $category)--}}
-                                                        {{--                                                                          {{ $category->name }}&nbsp;<br>--}}
-                                                        {{--                                                                      @endforeach--}}
-                                                        {{--                                                                  </span>--}}
-                                                        {{--                                                            </div>--}}
-                                                        {{--                                                        </a>--}}
-                                                        {{--                                                    </td>--}}
-                                                        {{--                                                    <td class="c-ui-table__cell">--}}
-                                                        {{--                                                        <div class="">--}}
-                                                        {{--                                                            <div class="c-wallet__body-card-status-no-circle--}}
-                                                        {{--                          c-wallet__body-card-status-no-circle--active uk-text-nowrap" style="margin: auto">--}}
-                                                        {{--                                                                فعال--}}
-                                                        {{--                                                            </div>--}}
-                                                        {{--                                                        </div>--}}
-                                                        {{--                                                    </td>--}}
 
                                                         <td class="c-ui-table__cell c-ui-table__cell--small-text">
                                                             <div class="c-ui-tooltip__anchor">
@@ -298,7 +227,6 @@
                                                                         <span class="c-ui-toggle__check"></span>
                                                                     </label>
                                                                 </div>
-
                                                                 <input type="hidden" value="0" class="js-active-input">
                                                             </div>
                                                         </td>
@@ -310,7 +238,6 @@
                                                         <td class="c-ui-table__cell">
                                                             <div class="c-promo__actions">
                                                                 <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit
-{{--                          c-join__btn--secondary-greenish" href="">ویرایش</a>--}}
                                                                     c-join__btn--secondary-greenish"
                                                                    href="{{ route('staff.products.edit', $product->product_code) }}">ویرایش</a>
                                                                 <a class="uk-padding-remove" href="{{ route('staff.products.variant', $product->product_code) }}"
@@ -354,8 +281,7 @@
                                                                                         class="c-modal-notification__btn no uk-modal-close">
                                                                                         خیر
                                                                                     </button>
-                                                                                    <button
-                                                                                        class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">
+                                                                                    <button class="c-modal-notification__btn c-modal-notification__btn--secondary yes uk-modal-close">
                                                                                         بله
                                                                                     </button>
                                                                                 </div>
@@ -364,7 +290,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -388,28 +313,11 @@
                                             {{ $products->links('staffproduct::layouts.pagination.pagination') }}
                                             <div class="c-ui-paginator js-paginator" data-select2-id="25">
                                                 <div class="c-ui-paginator__total" data-rows="۶">
-                                                    تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
+                                                    تعداد نتایج: 
+                                                    <span name="total" data-id="{{ $products->total() }}">
+                                                        {{ persianNum($products->total()) }} مورد
+                                                    </span>
                                                 </div>
-                                                {{--                                            <div class="c-ui-paginator__select" data-select2-id="24">--}}
-                                                {{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-                                                {{--                                                <div class="c-ui-paginator__select-pages">--}}
-                                                {{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-                                                {{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-                                                {{--                                                         select2-hidden-accessible paginator-selected"--}}
-                                                {{--                                                            name="paginator-select-pages" id="paginator-bottom"--}}
-                                                {{--                                                            tabindex="-1" aria-hidden="true">--}}
-                                                {{--                                                            <option value="10">۱۰</option>--}}
-                                                {{--                                                            <option value="20">۲۰</option>--}}
-                                                {{--                                                            <option value="50">۵۰</option>--}}
-                                                {{--                                                            <option value="100">۱۰۰</option>--}}
-                                                {{--                                                        </select>--}}
-
-
-                                                {{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-                                                {{--                                                    </div>--}}
-                                                {{--                                                </div>--}}
-                                                {{--                                            </div>--}}
                                             </div>
                                         </div>
                                     </div>

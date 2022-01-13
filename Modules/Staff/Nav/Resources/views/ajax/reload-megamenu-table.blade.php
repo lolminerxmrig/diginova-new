@@ -9,7 +9,7 @@
                   ایجاد مگامنو جدید
               </div>
             </a>
-            <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
+            <div class="c-ui-paginator js-paginator" style="visibility: hidden;"></div>
             <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total" data-rows="۶">
                 تعداد نتایج: <span name="total" data-id="5">{{ persianNum($items->total()) }} مورد</span>
@@ -29,9 +29,6 @@
                 <th class="c-ui-table__header">
                   <span class="table-header-searchable uk-text-nowrap ">لینک به آدرس</span>
                 </th>
-                {{--                        <th class="c-ui-table__header"><span--}}
-                {{--                            class="table-header-searchable uk-text-nowrap ">تبلیغات</span>--}}
-                {{--                        </th>--}}
                 <th class="c-ui-table__header"><span
                     class="table-header-searchable uk-text-nowrap ">وضعیت</span>
                 </th>
@@ -81,7 +78,6 @@
                         <input type="hidden" value="0" class="js-active-input">
                       </div>
                     </td>
-
 
                     <td class="c-ui-table__cell">
                       <div class="c-promo__actions">
@@ -137,9 +133,9 @@
               </div>
             </a>
 
-            <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
+            <div class="c-ui-paginator js-paginator" style="visibility: hidden;"></div>
 
-            <div class="c-ui-paginator js-paginator" data-select2-id="25">
+            <div class="c-ui-paginator js-paginator">
               <div class="c-ui-paginator__total" data-rows="۶">
                 تعداد نتایج: <span name="total" data-id="2">{{ persianNum($items->total()) }} مورد</span>
               </div>

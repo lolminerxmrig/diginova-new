@@ -27,7 +27,6 @@ class CreateOrderAddressesTable extends Migration
             $table->bigInteger('mobile')->nullable();
             $table->foreignId('customer_id')->nullable();
             $table->foreignId('state_id')->nullable();
-
             $table->foreignId('order_id')->nullable();
             $table->timestamps();
 

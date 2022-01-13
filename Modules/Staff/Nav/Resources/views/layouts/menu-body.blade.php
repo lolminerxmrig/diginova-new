@@ -13,13 +13,6 @@
             </div>
           </a>
           <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
-
-{{--          <div class="c-ui-paginator js-paginator">--}}
-{{--            <div class="c-ui-paginator__total" data-rows="۶">--}}
-{{--              تعداد نتایج: <span name="total" data-id="5">{{ persianNum($items->total()) }} مورد</span>--}}
-{{--            </div>--}}
-{{--          </div>--}}
-
         </div>
         <div class="c-card__body c-ui-table__wrapper">
           <table class="c-ui-table  js-search-table js-table-fixed-header c-join__table">
@@ -34,9 +27,6 @@
               <th class="c-ui-table__header">
                 <span class="table-header-searchable uk-text-nowrap ">لینک به آدرس</span>
               </th>
-              {{--                        <th class="c-ui-table__header"><span--}}
-              {{--                            class="table-header-searchable uk-text-nowrap ">تبلیغات</span>--}}
-              {{--                        </th>--}}
               <th class="c-ui-table__header"><span
                   class="table-header-searchable uk-text-nowrap ">هایلایت (پررنگ)</span>
               </th>
@@ -102,21 +92,12 @@
         </div>
 
         <div class="c-card__footer" style="width: auto;">
-
           <a target="_blank">
             <div class="c-mega-campaigns__btns-green-plus uk-margin-remove add-menu">
                 ایجاد منو جدید
             </div>
           </a>
-
           <div class="c-ui-paginator js-paginator" data-select2-id="25" style="visibility: hidden;"></div>
-
-{{--          <div class="c-ui-paginator js-paginator" data-select2-id="25">--}}
-{{--            <div class="c-ui-paginator__total" data-rows="۶">--}}
-{{--              تعداد نتایج: <span name="total" data-id="2">{{ persianNum($items->total()) }} مورد</span>--}}
-{{--            </div>--}}
-{{--          </div>--}}
-
         </div>
       </div>
 

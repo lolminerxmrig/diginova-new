@@ -17,7 +17,9 @@ class StaffOrderController extends Controller
 
   public function index()
   {
-    $orders = Order::where('order_status_id', '!=', 1)->where('order_status_id', '!=', 7)->paginate(10);
+    $orders = Order::where('order_status_id', '!=', 1)
+      ->where('order_status_id', '!=', 7)
+      ->paginate(10);
 
     $send_today_only = Order::whereHas('consignments', function (Builder $query){
       $query->where('delivery_at','<=' , Carbon::today());
@@ -28,7 +30,8 @@ class StaffOrderController extends Controller
     })->count();
 
     $consignments = OrderHasConsignment::all();
-    return view('stafforder::index', compact('orders', 'send_today_only', 'send_tomorrow_only', 'consignments'));
+    return view('stafforder::index', compact('orders', 'send_today_only', 
+    'send_tomorrow_only', 'consignments'));
   }
 
   public function details($id)
@@ -99,7 +102,6 @@ class StaffOrderController extends Controller
 
   public function updateDetail(Request $request)
   {
-
     $order = Order::find($request->order_id);
 
     if ($request->consignment_id == 'order_detail')
@@ -121,7 +123,8 @@ class StaffOrderController extends Controller
         $order_status_id = OrderStatus::where('en_name', 'confirmed')->first()->id;
       }
 
-      if ($order->consignments()->where('order_status_id', 9)->orWhere('order_status_id', 10)->orWhere('order_status_id', 11)->count()) {
+      if ($order->consignments()->where('order_status_id', 9)->orWhere('order_status_id', 10)
+        ->orWhere('order_status_id', 11)->count()) {
         $order_status_id = OrderStatus::where('en_name', 'processing')->first()->id;
       }
 

@@ -1,21 +1,12 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت منوها | {{ $fa_store_name }}  @endsection
 @section('head')
-  <script src="{{ asset('seller/js/tableView.js') }}"></script>
-  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+  <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
   <style>
-    /*.select2-search {*/
-    /*    display: none;*/
-    /*}*/
-
     .select2-selection__arrow {
       display: block !important;
     }
-
-    /*.select2-search--dropdown {*/
-    /*    display: none;*/
-    /*}*/
-
-
     .select2-selection--single {
       background-color: #fff;
       border: 1px solid #bbbaba;
@@ -53,18 +44,11 @@
         <div class="c-grid__row">
           <div class="c-grid__col">
             <div class="c-card">
-              <h2 style="
-                          font-size: 18px;
-                          margin-right: 33px;
-                          margin-top: 28px;
-                          margin-bottom: -30px;
-                          ">
+              <h2 style="font-size: 18px;margin-right: 33px;margin-top: 28px;margin-bottom: -30px;">
                 <div style="color: #606265;">اطلاعات مگا‌منو</div>
               </h2>
               <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;display: none;"></div>
               <div class="c-card__header"></div>
-
-
               <div class="c-card__body">
                 <div class="c-grid__row c-grid__row--gap-lg">
                   <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 ">
@@ -100,8 +84,6 @@
                       </div>
 
                       <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-2 c-grid__col--xs-gap">
-
-
                       </div>
 
                     </div>
@@ -175,7 +157,8 @@
 
   <div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
 
-    <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
+    <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag js-select-origin
+     select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
       @if(isset($units) && count($units))
         @foreach($units as $unit)
           <option value="{{ $unit->id }}">{{ $unit->name }}</option>
@@ -245,7 +228,6 @@ $(document).on('click', '.delete-btn', function () {
   });
 
 });
-
 
 function initIconUpload() {
   $.ajaxSetup({
@@ -335,8 +317,6 @@ $(document).on('click', '.no', function (){
 
 // ایجکس فرم پاپ آپ
 $('.save-btn').on('click', function (e) {
-  // e.preventDefault();
-
   var megamenu_name = $("input[name='megamenu_name']").val();
   var megamenu_link = $("input[name='megamenu_link']").val();
   var uploaded_icon_id = $("#iconImageTempId").val();

@@ -168,11 +168,8 @@
                                                     </tbody>
                                                 </table>
                                                 <div class="c-card__loading"></div>
-
                                             </div>
                                             <br>
-
-
                                                 <div class="c-card__footer" style="width: auto;">
                                                     <a href="#" style="visibility: hidden;">
                                                         <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">

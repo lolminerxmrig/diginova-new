@@ -3,12 +3,9 @@
     <button class="uk-modal-close uk-modal-close--search uk-close uk-icon" type="button" uk-close="">
     </button>
     <form id="newNanRequestForm" novalidate="novalidate">
-{{--      <input type="hidden" name="location_id" value="{{ $megamenu_location->id }}">--}}
       <div class="c-content-modal__header c-content-modal__header--overflow">
         <h3 class="c-content-modal__title">ایجاد منو جدید</h3>
       </div>
-
-
       <div class="c-content-modal__body c-content-modal__body--overflow">
         <div class="c-content-modal__body-container">
 
@@ -42,9 +39,13 @@
             </div>
           </div>
 
-          <label class="uk-form-label" style="visibility: hidden">نوع منو:<span class="uk-form-label__required"></span></label>
+          <label class="uk-form-label" style="visibility: hidden">
+            نوع منو:
+            <span class="uk-form-label__required"></span>
+          </label>
 
-          <div id="iranianBrandLogo" class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--row-attr">
+          <div id="iranianBrandLogo" class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial
+           c-grid__col--lg-6 c-grid__col--row-attr">
             <label class="uk-form-label">
               آیکون منو: (اختیاری)
             </label>
@@ -69,8 +70,6 @@
               <div class="c-content-modal__errors-full" id="iconUploadErrors"></div>
             </div>
           </div>
-
-
         </div>
       </div>
 
@@ -78,10 +77,8 @@
         <button class="modal-footer__btn modal-footer__btn--confirm modal-footer__btn--wide js-modal-uploads-confirm js-accept save-btn" type="button" id="saveBrandRequestButton">
           <span id="brandRequestBtnLabel">ایجاد مگا‌منو جدید</span>
         </button>
-
         <button class="modal-footer__btn modal-footer__btn--wide uk-close uk-modal-close js-decline" type="button" id="cancelBrandRequestButton">انصراف</button>
       </div>
-
     </form>
 
     <div class="c-content-loader">

@@ -226,7 +226,6 @@
                                             </div>
                                             <br>
 
-
                                             <div class="c-card__footer" style="width: auto;">
                                                 <a href="#" style="visibility: hidden;">
                                                     <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
@@ -308,8 +307,6 @@ $(document).on('click', '.js-stop-promotion', function (e) {
         );
     }, 50);
 });
-
-
 
 $(document).on('change', 'input[name="status"]', function () {
     if($(this).is(':checked'))

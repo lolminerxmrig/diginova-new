@@ -2,11 +2,13 @@
      style="font-family:Tahoma;color:#6e6e6e;font-size:16px;background-color:#f5f7fa">
     <center>
         <table align="center" border="0" cellpadding="0" cellspacing="0" width="800"
-               style="background-image:url(https://ci6.googleusercontent.com/proxy/CNVyh4IvfCyVjXAYuyQlC-EmyAoosm57QxiueSirw90tVt3cbKOLF84GG-9nm0SQjFSqIMePc8vfSkDAXyobZaqZWaKDunxW=s0-d-e1-ft#https://seller.digikala.com/static/files/5080b863.png);background-repeat:repeat-x;max-width:800px;border:1px solid #e3e3e3;border-radius:3px">
+               style="background-image:url({{ asset('mehdi/staff/images/email-bg.png') }});
+                background-repeat:repeat-x;max-width:800px;border:1px solid #e3e3e3;border-radius:3px">
             <tbody>
             <tr>
                 <td align="center" valign="top"
-                    style="background-image:url(https://ci6.googleusercontent.com/proxy/CNVyh4IvfCyVjXAYuyQlC-EmyAoosm57QxiueSirw90tVt3cbKOLF84GG-9nm0SQjFSqIMePc8vfSkDAXyobZaqZWaKDunxW=s0-d-e1-ft#https://seller.digikala.com/static/files/5080b863.png);background-repeat:repeat-x;border-radius:3px;background-color:#ffffff"
+                    style="background-image:url({{ asset('mehdi/staff/images/email-bg.png') }});
+                        background-repeat:repeat-x;border-radius:3px;background-color:#ffffff"
                     background="{{ asset('mehdi/staff/images/email-bg.png') }}" bgcolor="white">
                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tbody>
@@ -55,16 +57,6 @@
                                                 سایت {{ $fa_store_name }} برای شما
                                                 ارسال شده است.
                                             </p>
-                                            {{--                      <p dir="rtl" style="font-family:Tahoma">--}}
-                                            {{--                        لطفاً توجه داشته باشید لینک فوق از تاریخ ارسال برای مدت 48 ساعت معتبر می--}}
-                                            {{--                        باشد و پس از آن منقضی می گردد.--}}
-                                            {{--                      </p>--}}
-                                            {{--                      <p dir="rtl" style="font-family:Tahoma">--}}
-                                            {{--                        تاریخ:--}}
-                                            {{--                        <span style="color:#64a000">--}}
-                                            {{--                          <b>1400/05/03</b>--}}
-                                            {{--                        </span>--}}
-                                            {{--                      </p>--}}
                                             <p dir="rtl" style="font-family:Tahoma"><br>
                                                 لطفا جهت تغییر رمز عبور خود بر روی لینک زیر کلیک نمائید :
                                             </p>

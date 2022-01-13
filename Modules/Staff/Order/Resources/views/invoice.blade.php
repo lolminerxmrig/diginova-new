@@ -366,7 +366,6 @@
           <div class="flex">
             <div>تاریخ:</div>
             <div class="flex-grow span-date" style="text-align: left" data-value="{{ ($order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->exists())? $order->peyment_records()->where('method_type', 'PeymentMethod')->where('status', 'success')->first()->created_at : '' }}"></div>
-{{--            <div class="flex-grow span-date" style="text-align: left" data-value="{{ $order->peyment_records()->whereNotNull('tracking_code')->where('status', 'success')->first()->first()->created_at }}"></div>--}}
           </div>
           <div class="flex">
             <div>پیگیری:</div>
@@ -684,10 +683,7 @@
           <div class="flex-grow">مهر و امضای فروشنده:</div>
           <div class="flex-grow">تاریخ تحویل:</div>
           <div class="flex-grow">ساعت تحویل:</div>
-
-
           <div class="flex-grow">مهر و امضای خریدار:</div>
-
         </div>
         <div class="flex">
           <div class="flex-grow">
@@ -709,7 +705,6 @@
     </tfoot>
   </table>
 </div>
-
 
 <div class="page">
   <h1 style="text-align: center;">

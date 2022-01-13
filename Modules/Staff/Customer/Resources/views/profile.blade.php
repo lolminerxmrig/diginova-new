@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') پروفایل | {{ $fa_store_name }}  @endsection
 @section('head')
 <script>
   var supernova_mode = "production";
@@ -117,7 +118,6 @@
                             <span class="c-RD-profile__title">وضعیت</span>
                           </div>
                         </div>
-
 
                         <div class="c-grid__row">
                           <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">

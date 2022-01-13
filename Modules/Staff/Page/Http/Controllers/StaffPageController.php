@@ -19,11 +19,19 @@ class StaffPageController extends Controller
 
     public function index()
     {
-        $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate(10);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $brands = Brand::distinct('name')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        $trashed_brands = Brand::distinct('name')
+            ->onlyTrashed()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
         $media = Media:: all();
         $categories = Category:: all();
-        return view('staffpage::index', compact('brands', 'media', 'categories', 'trashed_brands'));
+        return view('staffpage::index', 
+            compact('brands', 'media', 'categories', 'trashed_brands'));
     }
 
     public  function ajaxPagination(Request $request)
@@ -35,8 +43,14 @@ class StaffPageController extends Controller
             $paginatorNum = 10;
         }
 
-        $brands = Brand::distinct('name')->orderBy('created_at', 'desc')->paginate($paginatorNum);
-        $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $brands = Brand::distinct('name')
+            ->orderBy('created_at', 'desc')
+            ->paginate($paginatorNum);
+
+        $trashed_brands = Brand::distinct('name')
+            ->onlyTrashed()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         $media = Media::all();
         $categories = Category::all();
@@ -55,12 +69,21 @@ class StaffPageController extends Controller
 
         }
         else {
-            $brands = Brand::where('type', 1)->distinct('name')->orderBy('created_at', 'desc')->paginate(10);
-            $trashed_brands = Brand::distinct('name')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+            $brands = Brand::where('type', 1)
+                ->distinct('name')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
+            $trashed_brands = Brand::distinct('name')
+                ->onlyTrashed()
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
             $pageType = 'only_special';
 
             if ($brands){
-                return View::make('staffpage::ajax-content', compact('brands', 'pageType', 'trashed_brands'));
+                return View::make('staffpage::ajax-content', 
+                    compact('brands', 'pageType', 'trashed_brands'));
             }
 
         }
@@ -78,7 +101,9 @@ class StaffPageController extends Controller
         $brands = Brand::all();
         $categories = Category::get()->unique('name');
         $media = Media:: all();
-        return view('staffpage::edit', compact('categories', 'brand', 'brands', 'media'));
+
+        return view('staffpage::edit', 
+            compact('categories', 'brand', 'brands', 'media'));
     }
 
     public function update(staffpageRequest $request)
@@ -105,7 +130,8 @@ class StaffPageController extends Controller
             $old_img = Mediable::where('media_id', $request->image)->first();
             if($old_img == null)
             {
-                if (Brand::find($request->id)->media()->first() !== null && Brand::find($request->id)->media()->first()->id !== $request->image){
+                if (Brand::find($request->id)->media()->first() !== null 
+                    && Brand::find($request->id)->media()->first()->id !== $request->image){
                     Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
                     if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
                         unlink(public_path("$media->path/") . $media->name);
@@ -122,7 +148,9 @@ class StaffPageController extends Controller
             }
         }
 
-        Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();
+        Categorizable::where('categorizable_type', 'Brand')
+            ->where('categorizable_id', $request->id)
+            ->delete();
 
         foreach ($categories as $category)
         {
@@ -255,7 +283,9 @@ class StaffPageController extends Controller
         if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
             unlink(public_path("$media->path/") . $media->name);
             $media->delete();
-            Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
+            Mediable::where('mediable_type', 'Brand')
+                ->where('mediable_id', $request->id)
+                ->delete();
         }
 
         Categorizable::where('categorizable_type', 'Brand')->where('categorizable_id', $request->id)->delete();

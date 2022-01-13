@@ -17,10 +17,6 @@ use Modules\Staff\Unit\Models\Unit;
 
 class StaffVariantController extends Controller
 {
-    /**
-     *
-     * @return \Illuminate\Contracts\View\View
-     */
     public function index()
     {
         $variant_groups = VariantGroup::paginate(10)

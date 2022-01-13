@@ -28,9 +28,6 @@
                 <th class="c-ui-table__header">
                   <span class="table-header-searchable uk-text-nowrap ">لینک به آدرس</span>
                 </th>
-                {{--                        <th class="c-ui-table__header"><span--}}
-                {{--                            class="table-header-searchable uk-text-nowrap ">تبلیغات</span>--}}
-                {{--                        </th>--}}
                 <th class="c-ui-table__header"><span
                     class="table-header-searchable uk-text-nowrap ">وضعیت</span>
                 </th>
@@ -45,8 +42,8 @@
               @endphp
               @if(count($items))
                 @foreach($items->sortBy('position') as $key => $item)
-                  <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
-
+                  <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}"
+                   class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
                     <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
                       <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer">
                         <span class="c-content-upload__drag-handler c-content-upload__drag-handler--up js-sort-up"></span>
@@ -80,7 +77,6 @@
                         <input type="hidden" value="0" class="js-active-input">
                       </div>
                     </td>
-
 
                     <td class="c-ui-table__cell">
                       <div class="c-promo__actions">

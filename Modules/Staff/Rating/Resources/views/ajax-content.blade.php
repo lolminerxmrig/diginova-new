@@ -1,4 +1,3 @@
-{{--<div class="ajax-append">--}}
 @foreach($category->ratings()->orderBy('position', 'asc')->get() as $rating)
 <div class="c-grid__row c-grid__row--gap-lg c-grid__row--negative-gap-attr type-field-box appended-box" id="item-{{ $rating->id }}">
     <div class="c-content-upload__drag-handler c-content-upload__drag-handler--outer ui-sortable-handle" style="margin-right: 0px;">
@@ -15,4 +14,3 @@
     </div>
 </div>
 @endforeach
-{{--</div>--}}

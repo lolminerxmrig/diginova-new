@@ -69,15 +69,3 @@ Route::domain('staff.diginova.test')->prefix('pages')->name('staff.pages.')
     ->name('ajaxdelete');
 
 });
-
-
-
-//Route::domain('staff.diginova.test')->name('staff.pages.')
-//    ->middleware('web', 'staff')->group(function () {
-//
-//    Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')
-//        ->name('ckfinder_connector');
-//
-//    Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')
-//        ->name('ckfinder_browser');
-//});

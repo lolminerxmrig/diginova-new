@@ -48,9 +48,8 @@
                 <div class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--medium js-number-input-wrapper">
                     <input type="text" name="variant[promotion_price]" class="js-promotion-price js-numeric-input"
                            value="" data-selling_price="{{ $product_variant->sale_price }}" data-crossed_price="{{ $product_variant->sale_price }}">
-{{--                           value="" data-selling_price="250700" data-crossed_price="250700">--}}
                 </div>
-                <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">حداکثر قیمت مجاز:۲۴۵,۶۰۰ریال</span>
+                <!-- <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">حداکثر قیمت مجاز:ریال</span> -->
             </div>
         </div>
     </td>

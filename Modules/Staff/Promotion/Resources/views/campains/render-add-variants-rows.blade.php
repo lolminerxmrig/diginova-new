@@ -8,7 +8,8 @@
     $product_variant = $product_variants->find($variantId);
 @endphp
 
-<tr class="c-ui-table__row c-ui-table__row--body js-edit-row added-by-js added-by-js-{{ $product_variant->id }}" data-id="{{ $product_variant->id }}" style="text-align: center !important;">
+<tr class="c-ui-table__row c-ui-table__row--body js-edit-row added-by-js added-by-js-{{ $product_variant->id }}"
+ data-id="{{ $product_variant->id }}" style="text-align: center !important;">
     <td class="c-ui-table__cell">
         <img src="{{ $site_url . '/' . $product_variant->product->media()->first()->path . '/' . $product_variant->product->media()->first()->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
             alt="
@@ -49,7 +50,7 @@
                     <input type="text" name="variant[promotion_price]" class="js-promotion-price js-numeric-input"
                            value="" data-selling_price="{{ $product_variant->sale_price }}" data-crossed_price="{{ $product_variant->sale_price }}">
                 </div>
-                <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">حداکثر قیمت مجاز:۲۴۵,۶۰۰ریال</span>
+                <!-- <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">حداکثر قیمت مجاز:ریال</span> -->
             </div>
         </div>
     </td>

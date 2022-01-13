@@ -1,26 +1,16 @@
 @extends('layouts.staff.master')
+@section('title') ویرایش گروه تنوع | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
 <style>
-    /*.select2-search {*/
-    /*    display: none;*/
-    /*}*/
-
     .select2-selection__arrow {
         display: block !important;
     }
-
-    /*.select2-search--dropdown {*/
-    /*    display: none;*/
-    /*}*/
-
-
     .select2-selection--single {
         background-color: #fff;
         border: 1px solid #bbbaba;
         border-radius: 4px;
     }
-
 </style>
 @endsection
 @section('content')
@@ -41,12 +31,7 @@
             <div class="c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-card">
-                        <h2 style="
-                          font-size: 18px;
-                          margin-right: 33px;
-                          margin-top: 28px;
-                          margin-bottom: -30px;
-                          ">
+                        <h2 style="font-size: 18px;margin-right: 33px;margin-top: 28px;margin-bottom: -30px;">
                             <div style="color: #606265;">اطلاعات گروه تنوع</div>
                         </h2>
                         <div style="width: 100%;margin: -7px 0px 50px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;display: none;"></div>
@@ -55,16 +40,10 @@
                             <div class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6 ">
                                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
-
                                         <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap">
-
-                                            <label for="" class="uk-form-label" style="
-color: #606265;
-margin-bottom: 7px;
-">نام گروه تنوع
+                                            <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px;">نام گروه تنوع
                                                 <span class="uk-form-label__required"></span>
                                             </label>
-
                                             <div class="field-wrapper">
                                                 <label class="c-content-input">
                                                     <input name="group_id" class="group_id" value="{{ $variantGroup->id }}" hidden>
@@ -102,7 +81,9 @@ margin-bottom: 7px;
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial">
                                     <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 8px;">توضیحات (اختیاری)</label>
                                     <div class="field-wrapper field-wrapper--textarea">
-                                        <textarea name="variant_group_desc" class="c-content-input__origin c-content-input__origin--textarea js-textarea-words variant_group_desc" rows="2" maxlength="1000" @if(!$variantGroup->description)placeholder="در صورت تمایل اطلاعات گروه تنوع را وارد کنید ..."@endif
+                                        <textarea name="variant_group_desc" class="c-content-input__origin
+                                         c-content-input__origin--textarea js-textarea-words variant_group_desc"
+                                          rows="2" maxlength="1000" @if(!$variantGroup->description)placeholder="در صورت تمایل اطلاعات گروه تنوع را وارد کنید ..."@endif
                                         >{{ ($variantGroup->description)? $variantGroup->description : '' }}</textarea>
                                     </div>
                                 </div>
@@ -259,8 +240,6 @@ margin-bottom: 7px;
     </div>
 </div>
 <div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
-
-
 </div>
 @endsection
 @section('script')
@@ -369,7 +348,6 @@ $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
         '<td class="c-ui-table__cell c-ui-table__cell--small-text"><div class="c-ui-tooltip__anchor"><div class="c-ui-toggle__group"><label class="c-ui-toggle"><input class="c-ui-toggle__origin js-toggle-active-product variant_status" type="checkbox" name="variant_status" checked> ' +
         '<span class="c-ui-toggle__check"></span></label></div></div></td>' +
         td +
-        // '<td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15"><div class="uk-flex uk-flex-column values-td"><input type="text" class="c-content-input__origin c-ui-input--deactive val_field" disabled=""></div></td>' +
         '<td class="c-ui-table__cell"><div class="c-promo__actions" style="width:50%;margin:auto">' +
         '<button type="button" class="c-content-upload__btn c-content-upload__btn--remove remove-btn"></button></div></td></tr>';
 

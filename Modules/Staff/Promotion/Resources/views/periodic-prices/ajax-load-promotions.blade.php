@@ -6,52 +6,54 @@
                     افزودن کالای جدید به لیست تخفیف‌ها
                 </div>
             </div>
-
         </div>
         <div class="c-promo__row--m-sm">
-            <table class="c-ui-table c-periodic-prices__table c-join__table  js-search-table js-table-fixed-header" data-sort-column="created_at" data-sort-order="desc" data-search-url="{{ ($paginate_type == 'active')? route('staff.periodic-prices.search') : route('staff.periodic-prices.endedSearch') }}" data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
+            <table class="c-ui-table c-periodic-prices__table c-join__table  js-search-table js-table-fixed-header"
+             data-sort-column="created_at" data-sort-order="desc" 
+             data-search-url="{{ ($paginate_type == 'active')? route('staff.periodic-prices.search') : route('staff.periodic-prices.endedSearch') }}"
+             data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
                 <thead>
-                <tr class="c-ui-table__row">
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column"></span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">عنوان و‌ کد تنوع کالا ({{ $product_code_prefix }}C)</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">قیمت فروش (ریال)</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">٪ تخفیف از قیمت شما</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">قیمت پس  از تخفیف (ریال)</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">زمان دار</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">بازه زمانی تخفیف</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">وضعیت</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">موجودی فعلی کالا</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">تعداد در تخفیف</span>
-                    </th>
-                    <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">تعداد در سبد</span>
-                    </th>
-                    <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                        <span class="js-search-table-column"></span>
-                    </th>
-                    <th class="c-ui-table__header c-ui-table__header--nowrap ">
-                        <span class="js-search-table-column"></span>
-                    </th>
-                </tr>
+                    <tr class="c-ui-table__row">
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column"></span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">عنوان و‌ کد تنوع کالا ({{ $product_code_prefix }}C)</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">قیمت فروش (ریال)</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">٪ تخفیف از قیمت شما</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">قیمت پس  از تخفیف (ریال)</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">زمان دار</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">بازه زمانی تخفیف</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">وضعیت</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">موجودی فعلی کالا</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">تعداد در تخفیف</span>
+                        </th>
+                        <th class="c-ui-table__header  ">
+                            <span class="js-search-table-column">تعداد در سبد</span>
+                        </th>
+                        <th class="c-ui-table__header c-ui-table__header--nowrap ">
+                            <span class="js-search-table-column"></span>
+                        </th>
+                        <th class="c-ui-table__header c-ui-table__header--nowrap ">
+                            <span class="js-search-table-column"></span>
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
 
@@ -61,8 +63,10 @@
                     </td>
                     <td class="c-ui-table__cell c-ui-table__cell--has-input">
                         <div class="c-join__has-more-info">
-                            <div class="c-join-promotion__table-input c-join-promotion__discount c-join-promotion__discount--all js-number-input-wrapper">
-                                <input type="number" min="0" class="c-join-promotion__discount-input js-all-variants-discount-percent js-number-input" placeholder="≠">
+                            <div class="c-join-promotion__table-input c-join-promotion__discount 
+                            c-join-promotion__discount--all js-number-input-wrapper">
+                                <input type="number" min="0" class="c-join-promotion__discount-input
+                                 js-all-variants-discount-percent js-number-input" placeholder="≠">
                             </div>
                         </div>
                     </td>
@@ -97,9 +101,9 @@
                             </div>
                         </td>
                         <td class="c-ui-table__cell">
-                                                        <span class="c-mega-campaigns-join-list__container-table-row-item">
-                                                            {{ persianNum(number_format($promotion->productVariants()->first()->sale_price)) }}
-                                                        </span>
+                            <span class="c-mega-campaigns-join-list__container-table-row-item">
+                                {{ persianNum(number_format($promotion->productVariants()->first()->sale_price)) }}
+                            </span>
                         </td>
                         <td class="c-ui-table__cell uk-padding-remove">
                             <div class="c-mega-campaigns--mh-105 uk-flex">
@@ -108,8 +112,7 @@
                                         <div class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--xs js-number-input-wrapper">
                                             <input name="variant[promotion_percent]" type="number" min="0" max="100" class="js-discount-value js-number-input" value="{{ $promotion->percent }}">
                                         </div>
-                                        <span class="c-mega-campaigns-join-modal__body-table-input-sub-title">
-                                                                    </span>
+                                        <span class="c-mega-campaigns-join-modal__body-table-input-sub-title"></span>
                                     </div>
                                     <span class="c-mega-campaigns-join-modal__body-table-input-link c-mega-campaigns--mr-5"></span>
                                 </div>
@@ -121,9 +124,9 @@
                                     <div class="c-mega-campaigns-join-modal__body-table-input c-mega-campaigns-join-modal__body-table-input--medium js-number-input-wrapper">
                                         <input type="text" name="variant[promotion_price]" class="js-promotion-price js-numeric-input" value="{{ $promotion->promotion_price }}" data-selling_price="{{ $promotion->productVariants()->first()->sale_price }}" data-crossed_price="{{ $promotion->productVariants()->first()->sale_price }}">
                                     </div>
-                                    <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">
-                                                                    حداکثر قیمت مجاز:۴۸۰,۲۰۰ریال
-                                                                </span>
+                                    <!-- <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">
+                                        حداکثر قیمت مجاز:ریال
+                                    </span> -->
                                 </div>
                             </div>
                         </td>
@@ -171,9 +174,9 @@
 
                         <td class="c-ui-table__cell">
                             <div class="c-join-smart-products--middle-item-height uk-flex uk-flex-column uk-flex-center">
-                                                            <span class="c-mega-campaigns-join-list__container-table-row-item">
-                                                                {{ persianNum($promotion->productVariants()->first()->stock_count) }}
-                                                            </span>
+                                <span class="c-mega-campaigns-join-list__container-table-row-item">
+                                    {{ persianNum($promotion->productVariants()->first()->stock_count) }}
+                                </span>
                             </div>
                         </td>
 
@@ -219,7 +222,6 @@
                     </tr>
                 @endforeach
 
-
                 </tbody>
             </table>
             <div class="c-card__loading"></div>
@@ -232,6 +234,7 @@
             </a>
 
             {{ $promotions->links('staffpromotion::layouts.pagination.custom-pagination') }}
+
             <div class="c-ui-paginator js-paginator">
                 <div class="c-ui-paginator js-paginator">
                     @if(count($promotions))
@@ -245,7 +248,6 @@
                     @endif
                 </div>
             </div>
-
         </div>
     </div>
 </div>

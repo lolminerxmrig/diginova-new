@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 @section('title') محصولات حذف شده | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('seller/js/indexAction.js') }}"></script>
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 @endsection
 @section('content')
 <main class="c-main">
@@ -19,77 +19,6 @@
             </div>
             @if ($products->count())
 
-
-{{--                <div class="c-grid__row">--}}
-{{--                    <div class="c-grid__col">--}}
-{{--                        <div class="c-card" id="consignment-step-1">--}}
-{{--                            <div class="c-card__header">--}}
-{{--                                <h2 class="c-card__title">جستجو و فیلتر</h2>--}}
-{{--                            </div>--}}
-{{--                            <div class="c-card__body">--}}
-{{--                                <div class="c-ui-form__row" data-select2-id="12">--}}
-{{--                                    <div class="c-ui-form__col c-ui-form__col--8 c-ui-form__col--xs-12"--}}
-{{--                                         data-select2-id="11">--}}
-{{--                                        <label class="c-ui-form__label">جستجو بر اساس:</label>--}}
-{{--                                        <div class="c-ui-form__row" data-select2-id="10">--}}
-{{--                                            <div--}}
-{{--                                                class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--xs c-ui-form__col--wrap-xs"--}}
-{{--                                                style="min-width: 175px" >--}}
-{{--                                                <select--}}
-{{--                                                    class="c-ui-select c-ui-select--common c-ui-select--small js-form-clearable select2-hidden-accessible"--}}
-{{--                                                    name="searchGroup" data-select2-id="1" tabindex="-1"--}}
-{{--                                                    aria-hidden="true" id="searchGroup">--}}
-{{--                                                    <option value="product_name" selected>نام محصول</option>--}}
-{{--                                                    <option value="product_category">گروه کالا</option>--}}
-{{--                                                </select>--}}
-{{--                                            </div>--}}
-{{--                                            <div--}}
-{{--                                                class="c-ui-form__col c-ui-form__col--6 c-ui-form__col--xs-12--}}
-{{--                  c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">--}}
-{{--                                                <label>--}}
-{{--                                                    <div class="c-ui-input">--}}
-{{--                                                        <input type="text" name="searchKeyword" class="c-ui-input__field c-ui-input__field--order js-form-clearable"--}}
-{{--                                                               id="searchKeyword" value="" placeholder="عنوان را بنویسید ...">--}}
-{{--                                                    </div>--}}
-{{--                                                </label>--}}
-{{--                                            </div>--}}
-{{--                                            <div--}}
-{{--                                                class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">--}}
-{{--                                                <button class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--search-form"--}}
-{{--                                                    id="search-btn" disabled>--}}
-{{--                                                    <span>جستجو</span>--}}
-{{--                                                </button>--}}
-{{--                                            </div>--}}
-{{--                                            <div--}}
-{{--                                                class="c-ui-form__col c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">--}}
-{{--                                                <button type="button"--}}
-{{--                                                        class="c-ui-btn c-ui-btn--xs-block c-ui-btn--active c-ui-btn--clear-form"--}}
-{{--                                                        id="searchClear" disabled=""></button>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div--}}
-{{--                                        class="c-ui-form__col c-ui--mr-30 uk-padding-remove c-product-radio-group-container">--}}
-{{--                                        <div class="c-join__filter">--}}
-{{--                                            <p class="c-ui-form__label">نمایش محصول:</p>--}}
-{{--                                            <div class="c-join__filter-container">--}}
-{{--                                                <label class="c-join__radio-label">--}}
-{{--                                                    <input class="c-join__radio search_type" type="radio"--}}
-{{--                                                           name="search_type" value="all" checked>--}}
-{{--                                                    <span class="c-join__radio-option">همه محصولها</span>--}}
-{{--                                                </label>--}}
-{{--                                                <label class="c-join__radio-label">--}}
-{{--                                                    <input class="c-join__radio search_type" type="radio" name="search_type" value="only_special">--}}
-{{--                                                    <span class="c-join__radio-option">فقط ویژه ها</span>--}}
-{{--                                                </label>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
                 <div class="js-table-container" data-select2-id="17">
                     <div style="margin-top: 20px; margin-bottom: 20px;"></div>
                     <div class="c-grid__row">
@@ -100,9 +29,6 @@
                                         <div class="c-grid__col c-grid__col--lg-4">
                                             <a href="{{ route('staff.products.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت محصولات</a>
                                         </div>
-
-{{--                                        {{ $products->links('staffproduct::layouts.pagination.pagination') }}--}}
-
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
@@ -215,12 +141,10 @@
                                                             <div class="uk-modal-dialog uk-modal-dialog--flex">
                                                                 <button class="uk-modal-close-default uk-close uk-icon" type="button" uk-close=""></button>
 
-                                                                <div class="uk-modal-body" data-gtm-vis-recent-on-screen-9662696_13="79003" data-gtm-vis-first-on-screen-9662696_13="79004"
-                                                                     data-gtm-vis-total-visible-time-9662696_13="100" data-gtm-vis-has-fired-9662696_13="1">
+                                                                <div class="uk-modal-body">
                                                                     <div class="c-modal-notification">
                                                                         <div class="c-modal-notification__content c-modal-notification__content--limited">
                                                                             <h2 class="c-modal-notification__header">هشدار</h2>
-
                                                                             <p class="c-modal-notification__text">با حذف محصول ، تمامی تنوع‌های آن نیز حذف خواهد شد. آیا از حذف آن اطمینان دارید؟</p>
                                                                             <div class="c-modal-notification__actions">
                                                                                 <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
@@ -242,30 +166,11 @@
                                         <a href="{{ route('staff.products.index') }}" class="c-ui-btn js-view-all-orders">بازگشت به صفحه مدیریت محصولات</a>
 
                                         {{ $products->links('staffproduct::layouts.pagination.pagination') }}
-                                        <div class="c-ui-paginator js-paginator" data-select2-id="25">
+
+                                        <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
                                             </div>
-{{--                                            <div class="c-ui-paginator__select" data-select2-id="24">--}}
-{{--                                                <div class="c-ui-paginator__select-label">تعداد نمایش</div>--}}
-{{--                                                <div class="c-ui-paginator__select-pages">--}}
-{{--                                                    <div class="field-wrapper ui-select ui-select__container">--}}
-
-{{--                                                        <select class="c-ui-select c-ui-select--common c-ui-select--small--}}
-{{--                                                         select2-hidden-accessible paginator-selected"--}}
-{{--                                                            name="paginator-select-pages" id="paginator-bottom"--}}
-{{--                                                            tabindex="-1" aria-hidden="true">--}}
-{{--                                                            <option value="10">۱۰</option>--}}
-{{--                                                            <option value="20">۲۰</option>--}}
-{{--                                                            <option value="50">۵۰</option>--}}
-{{--                                                            <option value="100">۱۰۰</option>--}}
-{{--                                                        </select>--}}
-
-
-{{--                                                        <div class="js-select-options c-ui-paginator__dropdown-container"></div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
@@ -278,39 +183,6 @@
                     <div class="c-grid__row">
                         <div class="c-grid__col">
                             <div class="c-card">
-                                {{--
-                                <div class="c-card__header">
-                                  --}}
-                                {{--
-                                <div class="c-grid__col">
-                                  --}}
-                                {{--
-                                <h2 class="c-card__title c-join__tab-card-title">مدیریت محصولها</h2>
-                                --}}
-                                {{--
-                                <ul class="uk-tab c-promo__tabs">
-                                  --}}
-                                {{--
-                                <li class="c-promo__tab-item c-promo__tab-item--promotions uk-active" data-tab="1">--}}
-                                {{--                                            <a href="/promotion-management/">همه محصولها</a>--}}
-                                {{--
-                              </li>
-                              --}}
-                                {{--
-                                <li class="c-promo__tab-item c-promo__tab-item--products" data-tab="2">--}}
-                                {{--                                            <a href="/promotion-management/products/">محصولهای حذف شده</a>--}}
-                                {{--
-                              </li>
-                              --}}
-                                {{--
-                              </ul>
-                              --}}
-                                {{--
-                              </div>
-                              --}}
-                                {{--
-                              </div>
-                              --}}
                                 <div class="c-card__body">
                                     <div class="c-grid__col">
                                         <div class="c-grid__col c-promo__tab-container c-promo__tab-container--is-visible" data-tab="1">

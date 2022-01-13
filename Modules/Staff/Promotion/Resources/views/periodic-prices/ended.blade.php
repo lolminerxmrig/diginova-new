@@ -94,8 +94,6 @@
                                             </span>
                                         </div>
                                     </div>
-
-
                                 </form>
                             </div>
                             <ul class="c-mega-campaigns__select-product-warning c-mega-campaigns--ml-15 c-mega-campaigns--mr-15 

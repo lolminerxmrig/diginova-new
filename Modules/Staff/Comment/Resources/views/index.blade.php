@@ -1,11 +1,11 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت دیدگاه ها | {{ $fa_store_name }}  @endsection
 @section('head')
 <link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
 <script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/ratingAction.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/jalali-moment.browser.js') }}"></script>
-<!-- <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script> -->
 <style>
     tags {
         background: white;

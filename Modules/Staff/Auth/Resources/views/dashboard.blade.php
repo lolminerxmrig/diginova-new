@@ -29,9 +29,9 @@
     var newSeller = 1;
     var is_yalda = 0;
   </script>
-  <script src="{{ asset('staff/js/dashboardAction.js') }}"></script>
-  <script src="{{ asset('staff/js/econtract.js') }}"></script>
-  <script src="{{ asset('staff/js/promotionCalendar.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/dashboardAction.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/econtract.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/promotionCalendar.js') }}"></script>
   <style>
   @if(!is_null($header_logo))
     .c-profile-nav__avatar:after {
@@ -89,10 +89,10 @@
                   <div class="c-card__body c-card__body--grow">
                     <div class="c-rating-chart">
                       <?php
-                      $recommend_count = \Modules\Staff\Comment\Models\Comment::where('recommend_status', 'recommended')->count();
-                      $not_recommended = \Modules\Staff\Comment\Models\Comment::where('recommend_status', 'not_recommended')->count();
-                      $no_idea = \Modules\Staff\Comment\Models\Comment::where('recommend_status', 'no_idea')->count();
-                      $rating_sum = $recommend_count + $not_recommended + $no_idea;
+                        $recommend_count = \Modules\Staff\Comment\Models\Comment::where('recommend_status', 'recommended')->count();
+                        $not_recommended = \Modules\Staff\Comment\Models\Comment::where('recommend_status', 'not_recommended')->count();
+                        $no_idea = \Modules\Staff\Comment\Models\Comment::where('recommend_status', 'no_idea')->count();
+                        $rating_sum = $recommend_count + $not_recommended + $no_idea;
                       ?>
                       <div class="c-rating-chart__reg-from c-ui--mt-0 c-ui--mb-40">
                         از مجموع {{ persianNum($rating_sum) }} امتیاز به محصولات
@@ -130,22 +130,7 @@
                         </a>
                         <span class="c-rating-chart__description--sub">در ۳۰ روز گذشته</span>
                       </div>
-                      {{--                      <div class="c-profile-nav__rating--bottom">--}}
-                      {{--                        <div class="c-rating-chart__details">--}}
-                      {{--                          <a class="c-rating-chart__details-bar c-rating-chart__details-bar--full" href="/rating/">--}}
-                      {{--                            <div class="c-rating-chart__details-label" style="width: unset">رضایت خرید مشتریان از کالا</div>--}}
-                      {{--                            <div class="c-rating-chart__details-progress">--}}
-                      {{--                              <div class="c-rating-chart__details-rate-5" style="width: 70%;"></div>--}}
-                      {{--                            </div>--}}
-                      {{--                            <div class="c-rating-chart__details-value c-rating-chart__details-value--medium">۷۰ <span>٪</span></div>--}}
-                      {{--                          </a>--}}
-                      {{--                          <div class="c-rating-chart__description">--}}
-                      {{--                            از ۲ رأی--}}
-                      {{--                          </div>--}}
-                      {{--                        </div>--}}
-                      {{--                      </div>--}}
-
-                    </div>
+                     </div>
                   </div>
                 </div>
               </div>

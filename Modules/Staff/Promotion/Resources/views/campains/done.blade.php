@@ -79,7 +79,8 @@
                             </div>
                         </div>
                         <div class="c-mega-campaigns__btns-green c-join-smart-joined--mt-70 js-back-promotion-management">
-                            <a href="/periodic-prices/active/">تایید و بازگشت به مدیریت تخفیف‌ها </a></div>
+                            <a href="/periodic-prices/active/">تایید و بازگشت به مدیریت تخفیف‌ها </a>
+                        </div>
                     </div>
                 </div>
             </div>

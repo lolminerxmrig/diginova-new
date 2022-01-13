@@ -37,8 +37,6 @@ Route::domain('staff.diginova.test')->prefix('campains')->name('staff.campains.'
     Route::get('{id}', [StaffCampainController::class, 'manage'])
         ->name('manage');
 
-
-
     Route::get('searchCampain', [StaffCampainController::class, 'searchCampain'])
         ->name('searchCampain');
 
@@ -65,37 +63,5 @@ Route::domain('staff.diginova.test')->prefix('campains')->name('staff.campains.'
 
     Route::get('search', [StaffCampainController::class, 'search'])
         ->name('search');
-
-
-
-//
-//
-//    Route::post('{id}/load-product-variants', [StaffCampainController::class, 'loadProductVariants'])
-//        ->name('loadProductVariants');
-//
-//    Route::get('{id}/load-product-variants', [StaffCampainController::class, 'loadProductVariants'])
-//        ->name('loadProductVariants');
-//
-//
-//
-//
-//    Route::post('{id}/delete', [StaffCampainController::class, 'delete'])
-//        ->name('delete');
-//
-//    Route::get('done/index', [StaffCampainController::class, 'done'])
-//        ->name('done');
-//
-//
-//
-//
-//    Route::post('save', [StaffCampainController::class, 'save'])
-//        ->name('save');
-//
-
-
-
-
-
-
 
 });

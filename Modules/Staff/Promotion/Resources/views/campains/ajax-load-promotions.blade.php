@@ -7,10 +7,9 @@
                     افزودن کالای جدید به لیست تخفیف‌ها
                 </div>
             </div>
-
         </div>
 
-        <input id="join-promotions-container" data-promotion-id="5" hidden>
+        <input id="join-promotions-container" hidden>
 
         <div class="c-promo__row--m-sm">
             <table class="c-ui-table c-periodic-prices__table c-join__table js-search-table js-table-fixed-header"

@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت سفارشات | {{ $fa_store_name }}  @endsection
 @section('head')
   <script>
     var supernova_mode = "production";
@@ -81,8 +82,7 @@
             تاریخچه سفارشات
           </div>
           <div class="c-ui-main-header__splitter">
-            <div>
-            </div>
+            <div></div>
           </div>
           <div class="c-ui-main-header__description">
             اطلاعات و جزییات مربوط به کلیه سفارش‌های خود را در این قسمت پیگیری کنید.

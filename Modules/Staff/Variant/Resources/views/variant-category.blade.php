@@ -1,10 +1,13 @@
 @extends('layouts.staff.master')
-
+@section('title') مدیریت تنوع مجاز | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('seller/js/tags3.js') }}"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<script src="https://unpkg.com/@yaireo/dragsort"></script>
-<link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
+<!-- <script src="{{ asset('seller/js/tags3.js') }}"></script> -->
+<script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
+
+<script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}" 
+    media="print" onload="this.media='all'">
 @endsection
 
 @section('content')
@@ -14,9 +17,12 @@
             <div class="c-content-page c-content-page--plain c-grid__row">
                 <div class="c-grid__col">
                     <div class="c-content-page__header">
-                        <span class="c-content-page__header-action">مدیریت تنوع مجاز گروه کالایی</span>
-                        <span
-                            class="c-content-page__header-desc">از این صفحه می‌توانید تنوع مجاز هر گروه کالایی را مشخص کنید</span>
+                        <span class="c-content-page__header-action">
+                            مدیریت تنوع مجاز گروه کالایی
+                        </span>
+                        <span class="c-content-page__header-desc">
+                            از این صفحه می‌توانید تنوع مجاز هر گروه کالایی را مشخص کنید
+                        </span>
                     </div>
                 </div>
             </div>
@@ -29,26 +35,18 @@
                                     <div class="c-content-accordion js-accordion uk-accordion">
                                         <section class="c-content-accordion__row js-content-section uk-open"
                                                  id="stepCategoryAccordion">
-                                            <h2 style="
-                font-size: 18px;
-                margin-right: 33px;
-                margin-top: -8px;
-                ">
-                                                <div style="
-                  color: #606265;
-                  ">مدیریت تنوع مجاز گروه کالایی
-                                                </div>
+                                            <h2 style="font-size: 18px;margin-right: 33px;margin-top: -8px;">
+                                                <div style="color: #606265;">مدیریت تنوع مجاز گروه کالایی</div>
                                             </h2>
-                                            <div
-                                                style="width: 100%;margin: -7px 0px 20px 0px !important;padding: 0px !important;background: #e2dddd;height: 1px;">
+                                            <div style="width: 100%;margin: -7px 0px 20px 0px !important;padding: 0px !important;
+                                                background: #e2dddd;height: 1px;">
                                             </div>
-                                            <div
-                                                class="c-content-accordion__content c-content-accordion__content--small"
-                                                id="stepTitleContainer" aria-hidden="false"
-                                                style=" margin-right: -25px;">
+                                            <div class="c-content-accordion__content c-content-accordion__content--small"
+                                                id="stepTitleContainer" aria-hidden="false" style=" margin-right: -25px;">
                                                 <div class="c-card__body c-card__body--content category-box">
-                                                    <label for="" class="search-form__action-label">جستجو در میان
-                                                        دسته‌ها</label>
+                                                    <label for="" class="search-form__action-label">
+                                                        جستجو در میان دسته‌ها
+                                                    </label>
                                                     <div class="search-form__autocomplete-container">
                                                         <div class="search-form__autocomplete js-autosuggest-box">
                                                             <input name="search" id="searchKeyword"

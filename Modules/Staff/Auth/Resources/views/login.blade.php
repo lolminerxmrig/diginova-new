@@ -62,9 +62,9 @@
                     <div class="c-reg-form__col c-reg-form__col--12">
                         <div class="c-ui-input">
                             <input type="text" name="email"
-                                   class="c-ui-input__field c-ui-input__field--ltr c-ui-input__field--has-icon" value=""
-                                   placeholder="ایمیل خود را وارد کنید" maxlength="255" autocomplete="email" required=""
-                                   aria-invalid="false">
+                                   class="c-ui-input__field c-ui-input__field--ltr c-ui-input__field--has-icon"
+                                    value="" placeholder="ایمیل خود را وارد کنید" maxlength="255" 
+                                   autocomplete="email" required="" aria-invalid="false">
                             <div class="c-ui-input__icon c-ui-input__icon--email"></div>
                         </div>
                     </div>
@@ -114,8 +114,9 @@
                 <div class="c-reg-form__row c-reg-form__row--align-center c-reg-form__row--gap-40">
                     <div class="c-reg-form__col">
                         <p class="c-reg-form__text">
-                            <a href="{{ route('staff.forgotPage') }}" class="c-reg-form__link">رمز عبورم را فراموش کرده
-                                ام.</a>
+                            <a href="{{ route('staff.forgotPage') }}" class="c-reg-form__link">
+                                رمز عبورم را فراموش کرده ام.
+                            </a>
                         </p>
                     </div>
                 </div>

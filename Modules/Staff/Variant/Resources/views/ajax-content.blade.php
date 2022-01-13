@@ -13,7 +13,6 @@
                                                 ایجاد گروه تنوع جدید
                                             </div>
                                         </a>
-
                                         <div class="c-ui-paginator js-paginator" data-select2-id="16">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $variant_groups->count() }}">{{ persianNum($variant_groups->count()) }} مورد</span>
@@ -36,9 +35,7 @@
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap "> توضیحات گروه تنوع</span>
                                                 </th>
-                                                {{--                                                <th class="c-ui-table__header"><span--}}
-                                                {{--                                                        class="table-header-searchable uk-text-nowrap "> وضعيت </span>--}}
-                                                {{--                                                </th>--}}
+
                                                 <th class="c-ui-table__header"><span
                                                         class="table-header-searchable uk-text-nowrap "> فعال / غیرفعال </span>
                                                 </th>
@@ -60,10 +57,10 @@
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15" style="min-width: 90px">
                                                         <div class="uk-flex uk-flex-column">
                                                             <a href="#" target="_blank">
-                                            <span
-                                                class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
-                                            {{ $variantGroup->name }}
-                                            </span>
+                                                                <span
+                                                                    class="c-wallet__body-card-row-item c-ui--fit c-ui--initial">
+                                                                {{ $variantGroup->name }}
+                                                                </span>
                                                                 <span class="c-wallet__body-card-row-item c-ui--fit c-ui--initial"></span>
                                                             </a>
                                                         </div>

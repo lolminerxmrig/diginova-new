@@ -22,7 +22,6 @@
                                                             <option value="product_name" {{ (isset($type) && ($type == 'product_name'))? 'selected' : ''  }}>نام محصول</option>
                                                             <option value="product_id" {{ (isset($type) && ($type == 'product_id'))? 'selected' : ''  }}>کد محصول</option>
                                                             <option value="product_variant_id" {{ (isset($type) && ($type == 'product_variant_id'))? 'selected' : ''  }}>کد تنوع</option>
-{{--                                                            <option value="product_category">گروه کالا</option>--}}
                                                         </select>
                                                     </div>
                                                     <div class="uk-width-1-1 c-ui-form__col c-ui-form__col--xs-6 c-ui-form__col--group-item c-ui-form__col--wrap-xs c-ui-form__col--xs-full">
@@ -52,18 +51,6 @@
                                             </select>
                                         </div>
                                     </div>
-
-{{--                                    <div class="c-join-smart-select__notif">--}}
-{{--                                        <div class="c-join-smart-select__notif-title">--}}
-{{--                                         <span class="c-join-smart-select__notif-title-count">--}}
-{{--                                            ۸--}}
-{{--                                        </span>--}}
-{{--                                            پروموشن و کمیپن فعال، منطبق با کالاهای لیست زیر در سایت موجود است.--}}
-{{--                                        </div>--}}
-{{--                                        <div class="c-join-smart-select__notif-link js-active-campaign-list">--}}
-{{--                                            <a target="_blank" href="/join-promotions-list/index/?showAllPublicPromotions=1">لیست همه پروموشن‌های فعال</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
 
                                 </form>
                             </form>
@@ -175,7 +162,7 @@
                         </div>
                         @endif
                         @if(!is_null($product_variants) && count($product_variants))
-                        {{ $product_variants->links('staffpromotion::periodic-prices.custom-pagination') }}
+                            {{ $product_variants->links('staffpromotion::periodic-prices.custom-pagination') }}
                         @endif
                     </div>
                 </div>

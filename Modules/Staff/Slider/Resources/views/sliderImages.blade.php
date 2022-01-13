@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title') انتخاب تصویر اسلایدر | {{ $fa_store_name }}  @endsection
 @section('head')
   <script type="text/javascript" src="{{ asset('mehdi/staff/js/jquery-latest.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>

@@ -12,7 +12,6 @@ use Modules\Staff\Product\Models\ProductHasVariant;
 
 class Promotion extends Model
 {
-
     protected $fillable = [
         'promotion_price',
         'percent',

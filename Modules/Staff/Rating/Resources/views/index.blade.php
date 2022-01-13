@@ -1,16 +1,11 @@
 @extends('layouts.staff.master')
-
+@section('title') گزینه‌های امتیازدهی | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/dragsort') }}"></script>
 <link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
     media="print" onload="this.media='all'">
-
-<!-- <script src="{{ asset('seller/js/tags3.js') }}"></script>
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<script src="https://unpkg.com/@yaireo/dragsort"></script>
-<link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'"> -->
 @endsection
 
 @section('content')

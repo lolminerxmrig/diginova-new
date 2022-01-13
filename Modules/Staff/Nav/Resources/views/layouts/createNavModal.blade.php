@@ -7,18 +7,20 @@
       <div class="c-content-modal__header c-content-modal__header--overflow">
         <h3 class="c-content-modal__title">ایجاد فهرست جدید</h3>
       </div>
-
-
       <div class="c-content-modal__body c-content-modal__body--overflow">
         <div class="c-content-modal__body-container">
-
           <div class="c-content-modal__notes uk-hidden">
             <span class="c-content-modal__notes-title">توجه:</span>
             <ul class="c-content-modal__notes-list">
-              <li>نام برند مورد نظرتان را وارد کنید و درصورتی‌که برند را در این لیست پیدا نکردید، در صفحه‌ی درخواست برند، برند مورد نظرتان را جست‌و‌جو کرده و در صورت یافتن آن، روی دکمه‌ی افزودن برند به گروه کالایی کلیک کنید.</li>
+              <li>
+                نام برند مورد نظرتان را وارد کنید و درصورتی‌که برند را در این لیست پیدا نکردید،
+                 در صفحه‌ی درخواست برند، برند مورد نظرتان را جست‌و‌جو کرده 
+                و در صورت یافتن آن، روی دکمه‌ی افزودن برند به گروه کالایی کلیک کنید.
+              </li>
             </ul>
           </div>
-          <div class="c-variant-error hidden c-variant-error__box c-variant-error__box--modal mt-20 mb-20" id="ajaxBrandErrorsList"></div>
+          <div class="c-variant-error hidden c-variant-error__box c-variant-error__box--modal mt-20 mb-20"
+           id="ajaxBrandErrorsList"></div>
 
           <div class="c-grid__row c-grid__row--gap-lg mt-30">
             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-6">
@@ -35,7 +37,8 @@
               <label for="" class="uk-form-label">لینک:</label>
               <div class="field-wrapper c-autosuggest">
                 <div class="search-form__autocomplete js-autosuggest-box">
-                  <input name="nav_link" type="text" class="uk-input uk-input--ltr" placeholder="http://" id="registrationUrlValue">
+                  <input name="nav_link" type="text" class="uk-input uk-input--ltr" placeholder="http://"
+                   id="registrationUrlValue">
                   <ul class="c-autosuggest__list-container" style="display: none;"></ul>
                 </div>
               </div>

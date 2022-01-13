@@ -71,7 +71,6 @@
             </tbody>
         </table>
         <div class="c-card__loading"></div>
-
     </div>
     <br>
 
@@ -100,7 +99,6 @@
             </div>
         </div>
     </div>
-
 
 </div>
 <script>

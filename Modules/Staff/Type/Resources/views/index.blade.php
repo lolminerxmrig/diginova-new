@@ -1,6 +1,6 @@
 @extends('layouts.staff.master')
 
-@section('title') مدیریت نوع‌ها | {{ $fa_store_name }}  @endsection
+@section('title') مدیریت نوع کالا | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
     <script src="{{ asset('mehdi/public/js/jquery-ui.min.js') }}"></script>
