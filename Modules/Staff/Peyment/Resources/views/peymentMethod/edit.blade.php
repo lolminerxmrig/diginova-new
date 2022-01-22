@@ -296,21 +296,21 @@
                     </div>
                   </div>
 
-                  <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">
-                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap"
-                    style="padding-right: 0px !important;width: 32%;">
-                      <label class="c-ui-form__label" for="product_page_title">محدودیت:</label>
-                      <div class="field-wrapper field-wrapper--justify field-wrapper--background"
-                      style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
-                        <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">
-                          <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1"
-                           {{ count($peyment_method->states)? 'checked' : '' }}>
-                          <span class="c-ui-checkbox__check"></span>
-                          <span class="c-ui-checkbox__label">تعیین محدودیت برای استان و یا شهر</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
+{{--                  <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">--}}
+{{--                    <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--xs-gap"--}}
+{{--                    style="padding-right: 0px !important;width: 32%;">--}}
+{{--                      <label class="c-ui-form__label" for="product_page_title">محدودیت:</label>--}}
+{{--                      <div class="field-wrapper field-wrapper--justify field-wrapper--background"--}}
+{{--                      style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">--}}
+{{--                        <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto" id="productIsFakeLabel">--}}
+{{--                          <input type="checkbox" class="c-ui-checkbox__origin" name="has_state_limit" value="1"--}}
+{{--                           {{ count($peyment_method->states)? 'checked' : '' }}>--}}
+{{--                          <span class="c-ui-checkbox__check"></span>--}}
+{{--                          <span class="c-ui-checkbox__label">تعیین محدودیت برای استان و یا شهر</span>--}}
+{{--                        </label>--}}
+{{--                      </div>--}}
+{{--                    </div>--}}
+{{--                  </div>--}}
 
                   <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 c-grid__col--xs-gap method_states_div"
                    style=" {{ !count($peyment_method->states)? 'display: none' : '' }}">
