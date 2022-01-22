@@ -100,13 +100,16 @@ var is_yalda = 0;
                                                         <li class="c-variant__secondary-info--table-row">
                                                             <div class="c-variant__secondary-info--table-cell">
                                                                 <span class="c-variant__info">دسته‌بندی:</span>
-                                                                <span
-                                                                    class="c-variant__info--main">{{ $product->category()->first()->name }}</span>
+                                                                <span class="c-variant__info--main">
+                                                                    {{ $product->category()->first()->name }}
+                                                                </span>
                                                             </div>
 
                                                             <div class="c-variant__secondary-info--table-cell">
                                                                 <span class="c-variant__info">تنوع مجاز این کالا:</span>
-                                                                <span class="c-variant__info--main">{{ $product->category()->first()->variantGroup()->first()->name }}</span>
+                                                                <span class="c-variant__info--main">
+                                                                    {{ $product->category()->first()->variantGroup()->first()->name }}
+                                                                </span>
                                                             </div>
                                                         </li>
                                                         <li class="c-variant__secondary-info--table-row">

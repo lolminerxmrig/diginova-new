@@ -14,12 +14,16 @@
 
     <main class="c-main">
         <div class="uk-container uk-container-large">
-            <div class="c-grid " data-select2-id="13">
+            <div class="c-grid ">
                 <div class="c-grid__row">
                     <div class="c-grid__col">
                         <input type="hidden" value="" name="has-warehouses">
                         <div class="c-card c-card--transparent">
-                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">مدیریت محصول ها<span>از این صفحه می‌توانید محصول ها را مدیریت کنید</span>
+                            <h1 class="c-card__title c-card__title--dark c-card__title--desc">
+                                مدیریت محصول ها
+                                <span>
+                                    از این صفحه می‌توانید محصول ها را مدیریت کنید
+                                </span>
                             </h1>
                         </div>
                     </div>
@@ -32,17 +36,16 @@
                                     <h2 class="c-card__title">جستجو و فیلتر</h2>
                                 </div>
                                 <div class="c-card__body">
-                                    <div class="c-ui-form__row" data-select2-id="12">
-                                        <div class="c-ui-form__col c-ui-form__col--8 c-ui-form__col--xs-12"
-                                             data-select2-id="11">
+                                    <div class="c-ui-form__row">
+                                        <div class="c-ui-form__col c-ui-form__col--8 c-ui-form__col--xs-12">
                                             <label class="c-ui-form__label">جستجو بر اساس:</label>
-                                            <div class="c-ui-form__row" data-select2-id="10">
-                                                <div
-                                                    class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12 c-ui-form__col--small-gap c-ui-form__col--xs c-ui-form__col--wrap-xs"
+                                            <div class="c-ui-form__row">
+                                                <div class="c-ui-form__col c-ui-form__col--3 c-ui-form__col--xs-12 c-ui-form__col--small-gap
+                                                 c-ui-form__col--xs c-ui-form__col--wrap-xs"
                                                     style="min-width: 175px">
                                                     <select
                                                         class="c-ui-select c-ui-select--common c-ui-select--small js-form-clearable select2-hidden-accessible"
-                                                        name="searchGroup" data-select2-id="1" tabindex="-1"
+                                                        name="searchGroup" tabindex="-1"
                                                         aria-hidden="true" id="searchGroup">
                                                         <option value="product_name" selected>نام محصول</option>
                                                         <option value="product_category">گروه کالا</option>
@@ -84,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="js-table-container" data-select2-id="17">
+                    <div class="js-table-container">
                         <input name="page_type" value="index" hidden>
                         <div style="margin-top: 20px; margin-bottom: 20px;"></div>
                         <div class="c-grid__row">
@@ -103,7 +106,7 @@
                                                        class="c-ui-btn js-view-all-orders">مدیریت محصول های حذف شده</a>
                                                 </div>
                                             @endif
-                                            <div class="c-ui-paginator js-paginator" data-select2-id="16">
+                                            <div class="c-ui-paginator js-paginator">
                                                 <div class="c-ui-paginator__total" data-rows="۶">
                                                     تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
                                                 </div>
@@ -150,8 +153,9 @@
                                                     <tr name="row" id="{{$product->id}}"
                                                         class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                         <td class="c-ui-table__cell">
-                                                            <span
-                                                                class="c-wallet__body-card-row-item"> {{ persianNum($products->firstItem() + $key) }} </span>
+                                                            <span class="c-wallet__body-card-row-item"> 
+                                                                {{ persianNum($products->firstItem() + $key) }}
+                                                            </span>
                                                         </td>
 
                                                         <td class="c-ui-table__cell" style="min-width: 90px">
@@ -311,7 +315,7 @@
                                             @endif
 
                                             {{ $products->links('staffproduct::layouts.pagination.pagination') }}
-                                            <div class="c-ui-paginator js-paginator" data-select2-id="25">
+                                            <div class="c-ui-paginator js-paginator">
                                                 <div class="c-ui-paginator__total" data-rows="۶">
                                                     تعداد نتایج: 
                                                     <span name="total" data-id="{{ $products->total() }}">

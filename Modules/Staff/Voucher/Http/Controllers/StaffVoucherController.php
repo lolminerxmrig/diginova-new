@@ -10,13 +10,17 @@ use Illuminate\Http\Request;
 
 class StaffVoucherController extends Controller
 {
-    public function index() {
-        $vouchers = Voucher::orderBy('end_at')->paginate(10);
+    public function index()
+    {
+        $vouchers = Voucher::paginate(10);
+
         return view('staffvoucher::index', compact('vouchers'));
     }
 
-    public function create() {
+    public function create()
+    {
         $categories = Category::all();
+
         return view('staffvoucher::create', compact('categories'));
     }
 
@@ -67,19 +71,19 @@ class StaffVoucherController extends Controller
             ], 400);
         }
 
-        $voucher = Voucher::updateOrCreate(['id' => (!is_null($request->voucher_id)? $request->voucher_id : 0 )], [
-           'name' => $request->name,
-           'status' => ($request->status)? 'active' : 'inactive',
-           'code' => $request->code,
-           'percent' => $request->percent,
-           'up_to' => ($request->up_to)? $request->up_to : null,
-           'min_product_price' => ($request->min_product_price)? $request->min_product_price : null,
-           'start_at' => ($start_at)? $start_at : null,
-           'end_at' => ($end_at)? $end_at : null,
-           'max_usable' => ($request->maximum_usable)? $request->maximum_usable : null,
-           'type' => ($request->for_new_users)? 'first_purchase' : 'all_users',
-           'freeـshipping' => ($request->for_new_users)? 'true' : 'false',
-           'platform' => 'all',
+        $voucher = Voucher::updateOrCreate(['id' => (!is_null($request->voucher_id) ? $request->voucher_id : 0)], [
+            'name' => $request->name,
+            'status' => ($request->status) ? 'active' : 'inactive',
+            'code' => $request->code,
+            'percent' => $request->percent,
+            'up_to' => ($request->up_to) ? $request->up_to : null,
+            'min_product_price' => ($request->min_product_price) ? $request->min_product_price : null,
+            'start_at' => ($start_at) ? $start_at : null,
+            'end_at' => ($end_at) ? $end_at : null,
+            'max_usable' => ($request->maximum_usable) ? $request->maximum_usable : null,
+            'type' => ($request->for_new_users) ? 'first_purchase' : 'all_users',
+            'freeـshipping' => ($request->for_new_users) ? 'true' : 'false',
+            'platform' => 'all',
         ]);
 
         $category = Category::find($request->category_id);
@@ -92,44 +96,44 @@ class StaffVoucherController extends Controller
         }
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $categories = Category::all();
         $voucher = Voucher::findOrFail($id);
 
-        if ($voucher->categories()->exists())
-        {
+        if ($voucher->categories()->exists()) {
             $category = $voucher->categories()->first();
             do {
-                $main_cat=$category->parent;
+                $main_cat = $category->parent;
                 $lists[] = $category;
                 $parent_category = $category;
                 $category = $category->parent;
             } while (isset($category));
-            $lists = array_reverse($lists,true);
+            $lists = array_reverse($lists, true);
 
             foreach ($lists as $list) {
                 $all_parent[] = $list->id;
             }
-            array_unshift($all_parent,0);
-        }
-        else {
+            array_unshift($all_parent, 0);
+        } else {
             $all_parent = [];
             $parent_category = [];
         }
         return view('staffvoucher::edit', compact('voucher', 'categories', 'all_parent', 'parent_category'));
     }
 
-    public function update(Request $request) {
-
+    public function update(Request $request)
+    {
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         Voucher::find($id)->delete();
     }
 
     public function searchVoucher(Request $request, Voucher $vouchers)
     {
-        (!$request->paginatorNum) ? $request->paginatorNum = 10 : '';
+        $request->paginatorNum = $request->paginatorNum ?? 10;
 
         $vouchers = $this->Voucherfilter($request, $vouchers);
 
@@ -193,8 +197,7 @@ class StaffVoucherController extends Controller
     public function statusVoucher(Request $request)
     {
         Voucher::find($request->id)->update([
-            'status' => ($request->status)? 'active' : 'inactive',
+            'status' => ($request->status) ? 'active' : 'inactive',
         ]);
     }
-
 }
