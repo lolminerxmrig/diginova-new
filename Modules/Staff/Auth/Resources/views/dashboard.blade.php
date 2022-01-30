@@ -3,32 +3,6 @@
 @section('title') پیشخوان دیجی نوا @endsection
 
 @section('head')
-  <script>
-    var supernova_mode = "production";
-    var supernova_tracker_url = "";
-    var calendar = {"year":1400,"month":"\u0641\u0631\u0648\u0631\u062f\u06cc\u0646","month_index":1,"current_day":25,"days":31,"start_date":{"date":"2021-03-21 00:00:00.000000","timezone_type":3,"timezone":"Asia\/Tehran"},"start_weekday":1,"end_weekday":3,"end_date":{"date":"2021-04-20 00:00:00.000000","timezone_type":3,"timezone":"Asia\/Tehran"},"current_date":"\u0686\u0647\u0627\u0631\u200c\u0634\u0646\u0628\u0647 25 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 1400"};
-    var promotions = {"4386848":{"id":4386848,"title":"\u0634\u06af\u0641\u062a 26 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 1400","joinable_by_seller":true,"link":"\/promotion\/4386848\/join\/","not_joinable_tooltip":"  \u0627\u0645\u06a9\u0627\u0646 \u0627\u0641\u0632\u0648\u062f\u0646 \u06a9\u0627\u0644\u0627 \u0628\u0647 \u0627\u06cc\u0646 \u06a9\u0645\u067e\u06cc\u0646 \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f.","join_deadline":{"date":"2021-04-14 16:30:00.000000","timezone_type":3,"timezone":"Asia\/Tehran"},"start_date":{"year":1400,"month":1,"day":25},"date_interval":"25 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 \u062a\u0627 27 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646","end_date":{"year":1400,"month":1,"day":27}},"4584792":{"id":4584792,"title":"\u0634\u06af\u0641\u062a 1 \u0627\u0631\u062f\u06cc\u0628\u0647\u0634\u062a 1400","joinable_by_seller":true,"link":"\/promotion\/4584792\/join\/","not_joinable_tooltip":"  \u0627\u0645\u06a9\u0627\u0646 \u0627\u0641\u0632\u0648\u062f\u0646 \u06a9\u0627\u0644\u0627 \u0628\u0647 \u0627\u06cc\u0646 \u06a9\u0645\u067e\u06cc\u0646 \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f.","join_deadline":{"date":"2021-04-16 23:59:00.000000","timezone_type":3,"timezone":"Asia\/Tehran"},"start_date":{"year":1400,"month":1,"day":31},"date_interval":"31 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 \u062a\u0627 2 \u0627\u0631\u062f\u06cc\u0628\u0647\u0634\u062a","end_date":{"year":1400,"month":2,"day":2}},"4571880":{"id":4571880,"title":"\u0647\u0631 \u0686\u06cc\u0632\u06cc \u0632\u06cc\u0631 200 \u0647\u0632\u0627\u0631 \u062a\u0648\u0645\u0646!","joinable_by_seller":false,"link":"","not_joinable_tooltip":"  \u0627\u0645\u06a9\u0627\u0646 \u0627\u0641\u0632\u0648\u062f\u0646 \u06a9\u0627\u0644\u0627 \u0628\u0647 \u0627\u06cc\u0646 \u06a9\u0645\u067e\u06cc\u0646 \u0648\u062c\u0648\u062f \u0646\u062f\u0627\u0631\u062f.","join_deadline":{"date":"2021-04-24 00:00:00.000000","timezone_type":3,"timezone":"Asia\/Tehran"},"start_date":{"year":1400,"month":1,"day":28},"date_interval":"28 \u0641\u0631\u0648\u0631\u062f\u06cc\u0646 \u062a\u0627 4 \u0627\u0631\u062f\u06cc\u0628\u0647\u0634\u062a","end_date":{"year":1400,"month":2,"day":4}}};
-    var dashboard_sold_history_dates = 0;
-    var dashboard_sold_history_prices = 0;
-    var dashboard_sold_history_quantities = 0;
-    var dashboard_variant_active_with_inventory = 0;
-    var dashboard_variant_active_without_inventory = 5;
-    var dashboard_variant_all = 0;
-    var dashboard_variant_active_false = 0;
-    var dashboardRate = 70;
-    var existNewElectronicContract = false;
-    var contractDaysLeft = 7;
-    var isContractRejected = false;
-    var hasAccessToContract = true;
-    var stats_ajax_url = "\/ajax\/index\/stats\/";
-    var showRejectedMessage = 0;
-    var rejectedMessage = "";
-    var isLoggedSeller = 1;
-    var walkthroughSteps = [{"element":"#dashboard-step-1","intro":"\u0628\u0627 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0627\u0632 \u0645\u0646\u0648\u0647\u0627 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u0642\u062f\u0627\u0645 \u0628\u0647 \u062f\u0631\u062c \u0648 \u0645\u062f\u06cc\u0631\u06cc\u062a \u0645\u062d\u0635\u0648\u0644\u0627\u062a\u062a\u0627\u0646\u060c \u0642\u06cc\u0645\u062a\u200c\u06af\u0630\u0627\u0631\u06cc\u060c \u0627\u06cc\u062c\u0627\u062f \u0645\u062d\u0645\u0648\u0644\u0647 \u0648 \u0633\u0627\u06cc\u0631 \u0641\u0639\u0627\u0644\u06cc\u062a\u200c\u0647\u0627\u06cc \u0641\u0631\u0648\u0634\u062a\u0627\u0646 \u06a9\u0646\u06cc\u062f."},{"element":"#dashboard-step-2","intro":"\u067e\u06cc\u0627\u0645\u200c\u0647\u0627\u06cc \u0645\u0647\u0645\u060c \u0633\u0648\u0627\u0644\u0627\u062a \u0645\u0634\u062a\u0631\u06cc\u0627\u0646 \u0648 \u0645\u0634\u062e\u0635\u0627\u062a \u0634\u0645\u0627 \u062f\u0631 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0642\u0627\u0628\u0644 \u0645\u0634\u0627\u0647\u062f\u0647 \u0648 \u0628\u0631\u0631\u0633\u06cc \u0627\u0633\u062a."},{"element":"#dashboard-step-3","intro":"\u0648\u0636\u0639\u06cc\u062a \u0645\u062f\u0627\u0631\u06a9\u06cc \u06a9\u0647 \u0628\u0647 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u0627\u0631\u0627\u0626\u0647 \u062f\u0627\u062f\u0647\u200c\u0627\u06cc\u062f \u062f\u0631 \u0627\u06cc\u0646 \u0642\u0633\u0645\u062a \u0642\u0627\u0628\u0644 \u0645\u0634\u0627\u0647\u062f\u0647 \u0627\u0633\u062a."},{"element":"#dashboard-step-4","intro":"\u0641\u0631\u0648\u0634\u0646\u062f\u06af\u0627\u0646 \u0628\u0627\u06cc\u062f \u0642\u0628\u0644 \u0627\u0632 \u0634\u0631\u0648\u0639 \u0641\u0639\u0627\u0644\u06cc\u062a\u060c \u06cc\u06a9\u06cc \u0627\u0632 \u062f\u0648\u0631\u0647\u200c\u0647\u0627\u06cc \u0622\u0645\u0648\u0632\u0634 \u06a9\u0627\u0631 \u0628\u0627 \u067e\u0646\u0644 \u0645\u0631\u06a9\u0632 \u0641\u0631\u0648\u0634\u0646\u062f\u06af\u0627\u0646 \u0631\u0627 \u0628\u06af\u0630\u0631\u0627\u0646\u0646\u062f\u060c \u0648\u0636\u0639\u06cc\u062a \u0622\u0645\u0648\u0632\u0634 \u0634\u0645\u0627 \u062f\u0631 \u0631\u0627 \u062f\u0631 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0642\u0627\u0628\u0644 \u0645\u0634\u0627\u0647\u062f\u0647 \u0627\u0633\u062a."},{"element":"#dashboard-step-5","intro":"\u062f\u0631 \u0627\u06cc\u0646 \u0642\u0633\u0645\u062a \u0642\u0627\u062f\u0631 \u0628\u0647 \u0645\u0634\u0627\u0647\u062f\u0647\u200c\u06cc \u0648\u0636\u0639\u06cc\u062a \u0642\u0631\u0627\u0631\u062f\u0627\u062f\u062a\u0627\u0646 \u0628\u0627 \u062f\u06cc\u062c\u06cc\u200c\u06a9\u0627\u0644\u0627 \u0647\u0633\u062a\u06cc\u062f."},{"element":"#dashboard-step-6","intro":"\u0628\u0627 \u06a9\u0644\u06cc\u06a9 \u0631\u0648\u06cc \u0639\u0644\u0627\u0645\u062a \u0645\u062b\u0628\u062a\u060c \u0627\u0642\u062f\u0627\u0645 \u0628\u0647 \u062c\u0633\u062a\u062c\u0648 \u0648 \u06cc\u0627 \u062f\u0631\u062c \u0645\u062d\u0635\u0648\u0644 \u062c\u062f\u06cc\u062f \u06a9\u0646\u06cc\u062f."},{"element":"#dashboard-step-7","intro":"\u062f\u0631 \u0627\u06cc\u0646 \u0642\u0633\u0645\u062a \u0645\u06cc\u200c\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u062a\u0639\u062f\u0627\u062f \u062a\u0646\u0648\u0639 \u0647\u0627\u06cc \u0641\u0639\u0627\u0644\u062a\u0627\u0646 \u062f\u0631 \u067e\u0631\u0648\u0645\u0648\u0634\u0646 \u0647\u0627 \u0631\u0627 \u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u0646\u06cc\u062f \u0648 \u0628\u0627 \u06a9\u0644\u06cc\u06a9 \u0628\u0631 \u0631\u0648\u06cc \u0622\u0646\u060c \u0648\u0627\u0631\u062f \u0635\u0641\u062d\u0647 \u0645\u062f\u06cc\u0631\u06cc\u062a \u067e\u0631\u0648\u0645\u0648\u0634\u0646 \u0647\u0627 \u0634\u0648\u06cc\u062f."},{"element":"#dashboard-step-8","intro":"\u062f\u0631 \u0627\u06cc\u0646 \u0642\u0633\u0645\u062a \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0627\u0632 \u0648\u0636\u0639\u06cc\u062a \u067e\u0631\u062f\u0627\u062e\u062a \u0635\u0648\u0631\u062a\u062d\u0633\u0627\u0628 \u062e\u0648\u062f \u0645\u0637\u0644\u0639 \u0634\u0648\u06cc\u062f."},{"element":"#dashboard-step-9","intro":"\u062f\u0631 \u0628\u062e\u0634 \"\u0645\u0648\u062c\u0648\u062f\u06cc \u0627\u0646\u0628\u0627\u0631\" \u0648\u0636\u0639\u06cc\u062a \u0645\u062d\u0635\u0648\u0644\u0627\u062a\u062a\u0627\u0646 \u0627\u0632 \u0646\u0638\u0631 \u0645\u0648\u062c\u0648\u062f \u06cc\u0627 \u0646\u0627\u0645\u0648\u062c\u0648\u062f \u0628\u0648\u062f\u0646 \u0628\u0631 \u0631\u0648\u06cc \u0633\u0627\u06cc\u062a \u0648 \u06af\u0632\u0627\u0631\u0634\u06cc \u0627\u0632 \u0645\u0648\u062c\u0648\u062f\u06cc  \u06a9\u0627\u0644\u0627\u0647\u0627 \u062f\u0631\u0627\u0646\u0628\u0627\u0631\u0647\u0627\u06cc \u062f\u06cc\u062c\u06cc\u06a9\u0627\u0644\u0627\u060c \u0642\u0627\u0628\u0644 \u0645\u0634\u0627\u0647\u062f\u0647 \u0648 \u0628\u0631\u0631\u0633\u06cc \u0627\u0633\u062a."},{"element":"#dashboard-step-10","intro":"\u062f\u0631 \"\u0628\u062e\u0634 \u0645\u062f\u06cc\u0631\u06cc\u062a \u0633\u0641\u0627\u0631\u0634\u0627\u062a\" \u062a\u0639\u062f\u0627\u062f \u06a9\u0644 \u0633\u0641\u0627\u0631\u0634\u0627\u062a\u06cc \u06a9\u0647 \u0647\u0631 \u0631\u0648\u0632 \u062b\u0628\u062a \u0645\u06cc \u0634\u0648\u062f \u0648 \u062a\u0639\u062f\u0627\u062f\u06cc \u06a9\u0647 \u0628\u0627\u06cc\u062f \u0627\u0645\u0631\u0648\u0632 \u0648 \u0641\u0631\u062f\u0627 \u0628\u0647 \u0627\u0646\u0628\u0627\u0631 \u0627\u0631\u0633\u0627\u0644 \u0634\u0648\u0646\u062f \u0648 \u06cc\u0627 \u0647\u0646\u0648\u0632 \u0627\u0631\u0633\u0627\u0644 \u0646\u0634\u062f\u0647 \u0627\u0646\u062f \u0648 \u062f\u0627\u0631\u0627\u06cc \u062a\u0627\u062e\u06cc\u0631 \u0647\u0633\u062a\u0646\u062f\u060c \u0642\u0627\u0628\u0644 \u0645\u0634\u0627\u0647\u062f\u0647 \u0627\u0633\u062a."},{"element":"#dashboard-step-11","intro":"\u062f\u0631 \u0628\u062e\u0634 \"\u0645\u062f\u06cc\u0631\u06cc\u062a \u0642\u06cc\u0645\u062a \u06af\u0630\u0627\u0631\u06cc\" \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0648\u0636\u0639\u06cc\u062a \u062a\u0646\u0648\u0639 \u0647\u0627\u06cc \u0641\u0639\u0627\u0644 \u0631\u0627 \u0628\u0631\u0627\u0633\u0627\u0633 \u0641\u06cc\u0644\u062a\u0631 \u0648\u0636\u0639\u06cc\u062a \u0628\u0627\u06cc \u0628\u0627\u06a9\u0633 \u0648 \u0647\u0645 \u0686\u0646\u06cc\u0646 \u0648\u0636\u0639\u06cc\u062a \u0631\u0642\u0627\u0628\u062a \u0628\u0627 \u0633\u0627\u06cc\u0631 \u0641\u0631\u0648\u0634\u0646\u062f\u06af\u0627\u0646\u060c \u0645\u0634\u0627\u0647\u062f\u0647 \u0648 \u0628\u0631\u0631\u0633\u06cc \u06a9\u0646\u06cc\u062f."},{"element":"#dashboard-step-12","intro":"\u0627\u0645\u062a\u06cc\u0627\u0632 \u0639\u0645\u0644\u06a9\u0631\u062f \u0634\u0645\u0627 \u0628\u0631\u0627\u0633\u0627\u0633 \u0633\u0647 \u0645\u0639\u06cc\u0627\u0631 \u0648 \u062f\u0631\u0635\u062f \u0631\u0636\u0627\u06cc\u062a \u0645\u0634\u062a\u0631\u06cc\u0627\u0646 \u0627\u0632 \u062e\u0631\u06cc\u062f \u06a9\u0627\u0644\u0627\u0647\u0627\u06cc\u062a\u0627\u0646 \u0631\u0627 \u062f\u0631 \u0627\u06cc\u0646 \u0642\u0633\u0645\u062a \u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u0646\u06cc\u062f. \u0628\u0627 \u06a9\u0644\u06cc\u06a9 \u0631\u0648\u06cc \u062f\u0631\u0635\u062f \u0631\u0636\u0627\u06cc\u062a \u0645\u0634\u062a\u0631\u06cc\u0627\u0646 \u0648\u0627\u0631\u062f \u0635\u0641\u062d\u0647 \u062c\u0632\u06cc\u06cc\u0627\u062a \u062e\u0648\u0627\u0647\u06cc\u062f \u0634\u062f."},{"element":"#dashboard-step-13","intro":"\u062f\u0631 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0648\u0636\u0639\u06cc\u062a \u0645\u062d\u0635\u0648\u0644\u0627\u062a\u062a\u0627\u0646\u060c \u062a\u0639\u062f\u0627\u062f \u06a9\u0644 \u06a9\u0627\u0644\u0627\u0647\u0627\u06cc\u06cc \u06a9\u0647 \u062f\u0631 30 \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647 \u062f\u0631\u062c \u06a9\u0631\u062f\u0647 \u0627\u06cc\u062f \u0648 \u062f\u0631\u0635\u062f \u0631\u062f \u0634\u062f\u0646 \u06a9\u0627\u0644\u0627 \u0631\u0627 \u0645\u0634\u0627\u0647\u062f\u0647 \u0645\u06cc \u06a9\u0646\u06cc\u062f."},{"element":"#dashboard-step-14","intro":"\u062f\u0631 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0622\u062e\u0631\u06cc\u0646 \u0645\u0642\u0627\u0644\u0627\u062a \u0648 \u0627\u0637\u0644\u0627\u0639\u06cc\u0647 \u0647\u0627\u06cc \u0633\u0627\u06cc\u062a \u0633\u0644\u0631 \u0622\u06a9\u0627\u062f\u0645\u06cc \u0642\u0627\u0628\u0644 \u0645\u0634\u0627\u0647\u062f\u0647 \u0647\u0633\u062a\u0646\u062f."},{"element":"#dashboard-step-15","intro":"\u0627\u06af\u0631 \u06a9\u0627\u0644\u0627\u06cc \u0648\u0627\u062c\u062f \u0634\u0631\u0627\u06cc\u0637 \u067e\u0631\u0648\u0645\u0648\u0634\u0646 \u062f\u0627\u0634\u062a\u0647 \u0628\u0627\u0634\u06cc\u062f\u060c \u062f\u0631 \u0633\u0645\u062a \u0631\u0627\u0633\u062a \u062c\u062f\u0648\u0644 \u067e\u0631\u0648\u0645\u0648\u0634\u0646\u200c\u0647\u0627\u06cc\u06cc \u06a9\u0647 \u0627\u0645\u06a9\u0627\u0646 \u0634\u0631\u06a9\u062a \u062f\u0631 \u0622\u0646\u0647\u0627 \u0631\u0627 \u062f\u0627\u0631\u06cc\u062f \u0648 \u0647\u0646\u0648\u0632 \u0645\u0647\u0644\u062a \u062f\u0627\u0631\u0646\u062f \u0631\u0627 \u0645\u0634\u0627\u0647\u062f\u0647 \u0645\u06cc \u06a9\u0646\u06cc\u062f. \u0628\u0627 \u06a9\u0644\u06cc\u06a9 \u0631\u0648\u06cc \u0646\u0627\u0645 \u0647\u0631 \u067e\u0631\u0648\u0645\u0648\u0634\u0646 \u0648\u0627\u0631\u062f  \u0635\u0641\u062d\u0647 \u0622\u0646 \u067e\u0631\u0648\u0645\u0648\u0634\u0646 \u062e\u0648\u0627\u0647\u06cc\u062f \u0634\u062f."},{"element":"#dashboard-step-16","intro":"\u062f\u0631 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0645\u0628\u0644\u063a \u0641\u0631\u0648\u0634 \u0646\u0627\u062e\u0627\u0644\u0635 \u0647\u0641\u062a\u0647 \u062c\u0627\u0631\u06cc\u060c \u0647\u0641\u062a\u0647 \u06af\u0630\u0634\u062a\u0647 \u0648\u0645\u0627\u0647 \u06af\u0630\u0634\u062a\u0647 \u062e\u0648\u062f \u0631\u0627 \u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u0646\u06cc\u062f. (\u0641\u0631\u0648\u0634 \u0646\u0627\u062e\u0627\u0644\u0635 \u06cc\u0639\u0646\u06cc \u0641\u0631\u0648\u0634 \u0628\u062f\u0648\u0646 \u062f\u0631\u0646\u0638\u0631 \u06af\u0631\u0641\u062a\u0646 \u0633\u0641\u0627\u0631\u0634\u0627\u062a \u0645\u0631\u062c\u0648\u0639\u06cc \u0648 \u0644\u063a\u0648 \u0634\u062f\u0647)"},{"element":"#dashboard-step-17","intro":"\u062a\u0639\u062f\u0627\u062f \u0645\u062d\u0645\u0648\u0644\u0647 \u0647\u0627\u06cc\u06cc \u06a9\u0647 \u062f\u0631 \u0628\u0627\u0632\u0647 \u0632\u0645\u0627\u0646\u06cc \u0645\u0627\u0647 \u06af\u0630\u0634\u062a\u0647 \u0622\u0645\u0627\u062f\u0647 \u0627\u0631\u0633\u0627\u0644\/\u062a\u062d\u0648\u06cc\u0644 \u0628\u0648\u062f\u0647 \u0627\u0646\u062f \u0648 \u0645\u062d\u0645\u0648\u0644\u0647 \u0647\u0627\u06cc\u06cc \u06a9\u0647 \u0646\u0627\u0642\u0635 \u062f\u0631\u06cc\u0627\u0641\u062a \u0634\u062f\u0647 \u0627\u0646\u062f \u0648 \u06cc\u0627 \u062f\u0631\u06cc\u0627\u0641\u062a \u0646\u0634\u062f\u0647 \u0627\u0646\u062f\u060c \u062f\u0631 \u0627\u06cc\u0646 \u0642\u0633\u0645\u062a \u0642\u0627\u0628\u0644 \u0645\u0634\u0627\u0647\u062f\u0647 \u0627\u0633\u062a."},{"element":"#dashboard-step-18","intro":"\u062f\u0631 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u062a\u0639\u062f\u0627\u062f \u0641\u0631\u0648\u0634 \u0646\u0627\u062e\u0627\u0644\u0635 \u0647\u0641\u062a\u0647 \u062c\u0627\u0631\u06cc\u060c \u0647\u0641\u062a\u0647 \u06af\u0630\u0634\u062a\u0647 \u0648\u0645\u0627\u0647 \u06af\u0630\u0634\u062a\u0647 \u062e\u0648\u062f \u0631\u0627 \u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u0646\u06cc\u062f. (\u0641\u0631\u0648\u0634 \u0646\u0627\u062e\u0627\u0644\u0635 \u06cc\u0639\u0646\u06cc \u0641\u0631\u0648\u0634 \u0628\u062f\u0648\u0646 \u062f\u0631\u0646\u0638\u0631 \u06af\u0631\u0641\u062a\u0646 \u0633\u0641\u0627\u0631\u0634\u0627\u062a \u0645\u0631\u062c\u0648\u0639\u06cc \u0648 \u0644\u063a\u0648 \u0634\u062f\u0647)"},{"element":"#dashboard-step-19","intro":"\u062f\u0631 \u0627\u06cc\u0646 \u0628\u062e\u0634 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0633\u0648\u0627\u0628\u0642 \u0641\u0631\u0648\u0634 \u062e\u0648\u062f \u0631\u0627 \u0628\u0627 \u0641\u06cc\u0644\u062a\u0631 \u0631\u0648\u0632\u0627\u0646\u0647\u060c \u0647\u0641\u062a\u06af\u06cc \u06cc\u0627 \u0645\u0627\u0647\u0627\u0646\u0647 \u0628\u0647 \u0635\u0648\u0631\u062a \u06cc\u06a9 \u0646\u0645\u0648\u062f\u0627\u0631 \u0628\u0631 \u0627\u0633\u0627\u0633 \u0645\u0628\u0644\u063a \u0648 \u062a\u0639\u062f\u0627\u062f \u0641\u0631\u0648\u0634 \u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u0646\u06cc\u062f."},{"element":"#dashboard-step-20","intro":"\u062f\u0631 \u062c\u062f\u0648\u0644 \u067e\u0631\u0641\u0631\u0648\u0634 \u062a\u0631\u06cc\u0646 \u06a9\u0627\u0644\u0627\u0647\u0627\u060c \u0634\u0645\u0627 \u0645\u06cc \u062a\u0648\u0627\u0646\u06cc\u062f \u0644\u06cc\u0633\u062a\u06cc \u0627\u0632 \u067e\u0631 \u0641\u0631\u0648\u0634 \u062a\u0631\u06cc\u0646 \u06a9\u0627\u0644\u0627\u0647\u0627\u06cc \u062e\u0648\u062f \u0631\u0627 \u0628\u0627 \u062c\u0632\u06cc\u06cc\u0627\u062a \u0648 \u0628\u0627 \u0641\u06cc\u0644\u062a\u0631 \u0631\u0648\u0632\u0627\u0646\u0647\u060c \u0647\u0641\u062a\u06af\u06cc \u06cc\u0627 \u0645\u0627\u0647\u0627\u0646\u0647 \u0645\u0634\u0627\u0647\u062f\u0647 \u06a9\u0646\u06cc\u062f."}];
-    var showPriceModal = 0;
-    var newSeller = 1;
-    var is_yalda = 0;
-  </script>
   <script src="{{ asset('mehdi/staff/js/dashboardAction.js') }}"></script>
   <script src="{{ asset('mehdi/staff/js/econtract.js') }}"></script>
   <script src="{{ asset('mehdi/staff/js/promotionCalendar.js') }}"></script>
@@ -56,25 +30,25 @@
                     <div class="c-profile-nav">
                       <div class="c-profile-nav__avatar">
                         @if(!is_null($header_logo))
-                            <img src="{{ $site_url . '/' . (!is_null($header_logo)? $header_logo->path . '/' . $header_logo->name : '') }}" class="c-content-modal__uploads-img" alt="" style="width: 100% !important; height: 100%; border-radius: 50% !important;">
+                            <img src="{{ $site_url . '/' . (!is_null($header_logo)? $header_logo->path . '/' . $header_logo->name : '') }}"
+                             class="c-content-modal__uploads-img" alt="" style="width: 100% !important; height: 100%; border-radius: 50% !important;">
                         @endif
                       </div>
                       <h2 class="c-profile-nav__title">{{ $fa_store_name }}</h2>
 
                       <div class="c-profile-nav__menu">
                         <a href="{{ route('staff.settings.index') }}" class="c-profile-nav__menu-item">
-                          <img src="{{ asset('staff/icon/dashboard/setting.svg') }}">
+                          <img src="{{ asset('mehdi/staff/images/icons/dashboard/setting.svg') }}">
                           تنظیمات
                         </a>
                         <a href="{{ $site_url }}" target="_blank" class="c-profile-nav__menu-item">
-                          <img src="{{ asset('staff/icon/dashboard/store.svg') }}">
+                          <img src="{{ asset('mehdi/staff/images/icons/dashboard/store.svg') }}">
                           فروشگاه
                         </a>
                         <a class="c-profile-nav__menu-item">
-                          <img src="{{ asset('staff/icon/dashboard/activity.svg') }}">
+                          <img src="{{ asset('mehdi/staff/images/icons/dashboard/activity.svg') }}">
                           گزارشات
                         </a>
-
                       </div>
                     </div>
                   </div>
@@ -144,11 +118,11 @@
                 <div class="c-card c-card--transparent">
                   <div class="c-interactive-status {{ $peyment_methods->where('status', 'active')->count()? 'c-interactive-status--ok' : 'c-interactive-status--warning' }}" id="dashboard-step-3">
                     <div class="c-interactive-status__title">روش‌های پرداخت</div>
-                    @if($peyment_methods->where('status', 'active')->count())
-                      <div class="c-interactive-status__description">فعال</div>
-                    @else
-                      <div class="c-interactive-status__description">غیرفعال</div>
-                    @endif
+                      @if($peyment_methods->where('status', 'active')->count())
+                        <div class="c-interactive-status__description">فعال</div>
+                      @else
+                        <div class="c-interactive-status__description">غیرفعال</div>
+                      @endif
                   </div>
                 </div>
               </div>
@@ -158,11 +132,11 @@
                 <div class="c-card c-card--transparent">
                   <div class="c-interactive-status {{ ($settings->where('name', 'site_sms_status')->first()->value == 'active')? 'c-interactive-status--ok' : 'c-interactive-status--warning' }}" id="dashboard-step-4">
                     <div class="c-interactive-status__title">سامانه پیامکی</div>
-                    @if($settings->where('name', 'site_sms_status')->first()->value == 'active')
-                      <div class="c-interactive-status__description">فعال</div>
-                    @else
-                      <div class="c-interactive-status__description">غیرفعال</div>
-                    @endif
+                      @if($settings->where('name', 'site_sms_status')->first()->value == 'active')
+                        <div class="c-interactive-status__description">فعال</div>
+                      @else
+                        <div class="c-interactive-status__description">غیرفعال</div>
+                      @endif
                   </div>
                 </div>
               </div>
@@ -195,11 +169,11 @@
                 </a>
               </div>
               <div class="c-grid__col c-grid__col--sm-4 c-grid__col--xs-gap">
-                <a href="{{ route('staff.periodic-prices.index') }}" class="c-card c-card--is-link c-dashboard-status__jc-c uk-open" id="dashboard-step-7" aria-expanded="false">
+                <a href="{{ route('staff.periodic-prices.index') }}" class="c-card c-card--is-link c-dashboard-status__jc-c uk-open"
+                 id="dashboard-step-7" aria-expanded="false">
                   <div class="c-card__header c-card__header--no-border">
                     <h2 class="c-card__title c-card__title--dark">تنوع‌های فعال در پروموشن‌ها
-                      <span class="c-card__title-side c-card__title-side--arrow">۰
-                        </span>
+                      <span class="c-card__title-side c-card__title-side--arrow"></span>
                     </h2>
                   </div>
                 </a>
@@ -260,11 +234,11 @@
                     <div class="c-rating-chart c-rating-chart--condensed">
                       <a class="c-rating-chart__details-bar">
                         <div class="c-rating-chart__description c-rating-chart__description--bar c-card__stat-description uk-inline">
-                         محصولات بدون تنوع
+                          محصولات بدون تنوع
                           <div class="c-rating-chart__description"></div>
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
-                          {{ persianNum($products->count() - count(\Modules\Staff\Product\Models\ProductHasVariant::select('product_id')->distinct()->get())) }}
+                          {{ persianNum($products->count() - \Modules\Staff\Product\Models\ProductHasVariant::orderBy('product_id')->distinct('product_id')->count()) }}
                         </div>
                       </a>
                     </div>
@@ -275,7 +249,7 @@
                           محصولات بدون فروش
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
-                          {{ persianNum($products->count() - count(\Modules\Staff\Order\Models\ConsignmentHasProductVariants::select('product_id')->distinct()->get())) }}
+                          {{ persianNum($products->count() - \Modules\Staff\Order\Models\ConsignmentHasProductVariants::select('product_id')->distinct()->count()) }}
                         </div>
                       </a>
                     </div>
@@ -330,7 +304,7 @@
                           تنوع‌های بدون فروش
                         </div>
                         <div class="c-rating-chart__details-value c-rating-chart__details-value--large">
-                          {{ persianNum($consignments->count() - count(\Modules\Staff\Product\Models\ProductVariantable::where('variantable_type', 'ConsignmentHasProductVariants')->select('variantable_id')->distinct()->get())) }}
+                          {{ persianNum($consignments->count() - \Modules\Staff\Product\Models\ProductVariantable::where('variantable_type', 'ConsignmentHasProductVariants')->select('variantable_id')->distinct()->count()) }}
                         </div>
                       </div>
                     </a>
@@ -463,7 +437,10 @@
                 <div class="c-card__stat c-card__stat--section">
                   <a class="js-change-selling-chart" data-option="last_7_days">
                     <div class="c-card__stat-value c-card__stat-value--active" data-value="{{ $sum_order_cost_filter1 }}">
-                      <span dir="ltr" data-debug="{{ $sum_order_cost_filter1 }}">{{ persianNum(number_format($sum_order_cost_filter1)) }}</span> <span class="small">ریال</span>
+                      <span dir="ltr" data-debug="{{ $sum_order_cost_filter1 }}">
+                        {{ persianNum(number_format($sum_order_cost_filter1)) }}
+                        </span>
+                         <span class="small">ریال</span>
                     </div>
                     <div class="c-card__stat-description">
                       فروش هفته جاری
@@ -473,7 +450,10 @@
 
                 <a class="c-card__stat js-change-selling-chart" data-option="last_60_days">
                   <div class="c-card__stat-value" data-value="{{ $sum_order_cost_filter2 }}">
-                    <span dir="ltr" data-debug="{{ $sum_order_cost_filter2 }}">{{ persianNum(number_format($sum_order_cost_filter2)) }}</span> <span class="small">ریال</span>
+                    <span dir="ltr" data-debug="{{ $sum_order_cost_filter2 }}">
+                      {{ persianNum(number_format($sum_order_cost_filter2)) }}
+                      </span>
+                       <span class="small">ریال</span>
                   </div>
                   <div class="c-card__stat-description">
                     فروش هفته گذشته
@@ -482,7 +462,10 @@
 
                 <a class="c-card__stat js-change-selling-chart" data-option="last_year">
                   <div class="c-card__stat-value" data-value="0">
-                    <span dir="ltr" data-debug="{{ $sum_order_cost_filter3 }}">{{ persianNum(number_format($sum_order_cost_filter3)) }}</span> <span class="small">ریال</span>
+                    <span dir="ltr" data-debug="{{ $sum_order_cost_filter3 }}">
+                      {{ persianNum(number_format($sum_order_cost_filter3)) }}
+                    </span> 
+                    <span class="small">ریال</span>
                   </div>
                   <div class="c-card__stat-description">
                     فروش ماه گذشته

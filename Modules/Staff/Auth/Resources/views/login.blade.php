@@ -79,7 +79,6 @@
                                        autocomplete="current-password"
                                        required="" aria-invalid="false">
                                 <div class="c-ui-input__icon c-ui-input__icon--password"></div>
-                                <div class="c-ui-input__btn c-ui-input__btn--password "></div>
                             </div>
                             <div id="login[password]-error" class="error c-reg-form__error">{{ $errors->first() }}</div>
                         @else
@@ -90,8 +89,7 @@
                                        autocomplete="current-password"
                                        required="" aria-invalid="false">
                                 <div class="c-ui-input__icon c-ui-input__icon--password"></div>
-                                <div class="c-ui-input__btn c-ui-input__btn--password "></div>
-                            </div>
+                                </div>
                         @endif
                     </div>
                 </div>
