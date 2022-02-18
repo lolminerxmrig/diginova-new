@@ -37,7 +37,7 @@
                     <div class="c-grid__col">
                         <div class="c-card c-card--transparent c-ui--my-5">
                             <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-                                جزییات امتیاز محصول 
+                                جزییات امتیاز محصول
                                 <span>در این بخش می‌توانید جزییات امتیاز و نظرات مربوط به کالای خود را ببینید.</span>
                             </h1>
                         </div>
@@ -56,7 +56,7 @@
                                         <div class="uk-flex uk-flex-between">
                                             <div class="uk-width-1-3 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 c-ui-form__col--wrap-xs">
                                                 <label class="c-ui-form__label uk-text-right">
-                                                    مرتب سازی بر اساس:
+                                                    مرتب‌سازی بر اساس:
                                                 </label>
                                                 <div class="uk-flex">
                                                     <div class="c-profile-rating__details-filter uk-text-nowrap js-user-comment" data-sort="buyers">
@@ -71,8 +71,8 @@
                                             <input type="hidden" name="search[variantId]" value="">
                                             <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12
                                                  c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select">
-                                                <label class="c-ui-form__label uk-text-right">مرتب سازی بر اساس:</label>
-                                                <select id="sortType" class="js-select2 c-ui-select--with-svg-icon c-ui-select c-ui-select--common 
+                                                <label class="c-ui-form__label uk-text-right">مرتب‌سازی بر اساس:</label>
+                                                <select id="sortType" class="js-select2 c-ui-select--with-svg-icon c-ui-select c-ui-select--common
                                                     c-ui-select--small select2-hidden-accessible" name="sortType" tabindex="-1" aria-hidden="true">
                                                     <option value="all">همه دیدگاه‌ها</option>
                                                     <option value="not_checked">در انتظار برررسی</option>
@@ -81,7 +81,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <button id="submitButton" class="uk-icon-button uk-icon-button--search uk-invisible" 
+                                        <button id="submitButton" class="uk-icon-button uk-icon-button--search uk-invisible"
                                             uk-tooltip="title: جستجو; pos: top-center" type="submit" title="" aria-expanded="false"></button>
                                     </form>
                                 </div>
@@ -138,7 +138,7 @@
                                                             </tr>
 
                                                             @foreach($comments as $key => $comment)
-                                                                <tr class="c-ui-table__row c-ui-table__row--collapsable c-ui-table__row--body 
+                                                                <tr class="c-ui-table__row c-ui-table__row--collapsable c-ui-table__row--body
                                                                     c-profile-rating__expanded-product-row">
                                                                     <td class="c-ui-table__cell">
                                                                         {{ persianNum($comments->firstItem() + $key) }}
@@ -177,7 +177,7 @@
                                                                             style="margin-left: 15px;color: #60667a;font-weight: bold;"></span>
                                                                     </td>
                                                                 </tr>
-                                                                <tr class="c-ui-table__expand-row c-ui-table__expand-row--first c-ui-table__expand-row--last js-expanded-row 
+                                                                <tr class="c-ui-table__expand-row c-ui-table__expand-row--first c-ui-table__expand-row--last js-expanded-row
                                                                     c-ui-table__expand-row--hidden" data-expand-target="{{ $comment->id }}" style="color: #81858b !important;">
                                                                     <td class="c-profile-rating__details-more second-td" colspan="12">
                                                                         <table class="c-ui-table js-table-expandable js-search-table js-table-fixed-header">
@@ -236,7 +236,7 @@
                                                                                     <span class="uk-float-left uk-padding-medium-left"></span>
                                                                                 </label>
                                                                                 <div class="field-wrapper">
-                                                                                    <input type="text" class="c-content-input__origin js-attribute-old-value" name="title" 
+                                                                                    <input type="text" class="c-content-input__origin js-attribute-old-value" name="title"
                                                                                         id="title" value="{{ $comment->title }}" style="background: white;border-color: #e6e9ed!important;">
                                                                                 </div>
                                                                             </div>
@@ -247,7 +247,7 @@
                                                                                     وضعیت:
                                                                                     <span class="uk-float-left uk-padding-medium-left"></span>
                                                                                 </label>
-                                                                                <select id="status-{{ $comment->id }}" class="js-select2 c-ui-select--with-svg-icon c-ui-select 
+                                                                                <select id="status-{{ $comment->id }}" class="js-select2 c-ui-select--with-svg-icon c-ui-select
                                                                                     c-ui-select--common c-ui-select--small select2-hidden-accessible" name="status" tabindex="-1" aria-hidden="true">
                                                                                     <option value="not_checked" {{ $comment->publish_status == 'not_checked' ? 'selected' : '' }}>در انتظار برررسی</option>
                                                                                     <option value="accepted" {{ $comment->publish_status == 'accepted' ? 'selected' : '' }}>تایید شده</option>
@@ -256,7 +256,7 @@
                                                                             </div>
 
                                                                             @if(!is_null($comment->recommend_status))
-                                                                               <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12 
+                                                                               <div class="uk-width-1-4 c-ui-form__col c-ui-form__col--group-item c-ui-form__col--xs-12
                                                                                     c-ui-form__col--wrap-xs c-ui-form__col--xs-full c-mega-campaigns-join-list__container-filters-select">
                                                                                     <label class="uk-form-label uk-flex uk-flex-between" style="color: #81858b !important;">
                                                                                         توصیه خرید
@@ -273,7 +273,7 @@
                                                                         </div>
 
                                                                         <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%; margin: auto;">
-                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12 c-grid__col--xs-gap" 
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12 c-grid__col--xs-gap"
                                                                                 style="padding-right: 0px;margin-top: 20px;">
                                                                                 <label for="" class="uk-form-label" style="color: #81858b !important;">متن دیدگاه:</label>
                                                                                 <div class="field-wrapper field-wrapper--textarea enabled">
@@ -296,7 +296,7 @@
 
 
                                                                         <div class="c-grid__row c-grid__row--gap-lg" style="width: 100%; margin: auto; margin-bottom: 40px !important;">
-                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12 c-grid__col--xs-gap" 
+                                                                            <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--sm-12 c-grid__col--xs-gap"
                                                                                 style="padding-right: 0px;margin-top: 20px;">
                                                                                 <label for="" class="uk-form-label" style="color: #81858b !important;">نقاط ضعف:</label>
                                                                                 <div class="field-wrapper field-wrapper--textarea enabled">
@@ -307,16 +307,16 @@
                                                                         </div>
 
                                                                         @if(count($comment->ratings))
-                                                                            <div class="c-profile-rating__details-user-vote js-product-score-board" 
+                                                                            <div class="c-profile-rating__details-user-vote js-product-score-board"
                                                                                 style="height: auto;min-height: 95px;width: 100%;margin: auto;margin-right: 0px !important; background: unset;">
                                                                                 @foreach($comment->ratings as $rating)
-                                                                                    <div class="c-rating-chart__details-bar c-rating-chart__details-bar--profile js-product-score-item" 
+                                                                                    <div class="c-rating-chart__details-bar c-rating-chart__details-bar--profile js-product-score-item"
                                                                                         style="width: 45% !important;float: right;padding-top: 0px !important;margin-left: 5%;">
                                                                                         <div class="c-profile-rating__details-user-vote-item c-profile-rating__details-user-vote-item--title js-product-score-item-label">
                                                                                             {{ (strlen($rating->rating->name) > 35)? substr($rating->rating->name, 0, 31) . '...' : $rating->rating->name  }}
                                                                                         </div>
                                                                                         <div class="c-rating-chart__details-progress c-profile-rating__details-user-vote-score">
-                                                                                            <div class="c-profile-rating__details-user-vote-score--fill js-product-score-item-progress" 
+                                                                                            <div class="c-profile-rating__details-user-vote-score--fill js-product-score-item-progress"
                                                                                                 style="width: {{ ($rating->score)*20 }}%;"></div>
                                                                                         </div>
                                                                                         <div class="c-rating-chart__details-value c-profile-rating__details-user-vote-item js-product-score-item-value uk-flex-right">
