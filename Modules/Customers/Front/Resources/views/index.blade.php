@@ -277,14 +277,16 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                     <aside class="c-adplacement c-adplacement__container-row">
                         @if (!is_null($bannerGroup1) && $bannerGroup1->images()->exists())
                             @foreach ($bannerGroup1->images as $image)
-                                <a href="{{ $image->media()->exists() ? $image->link : '' }}"
-                                    class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank"
-                                    data-is-trackable="" title="{{ $image->media()->exists() ? $image->alt : '' }}">
-                                    <div class="c-adplacement__sponsored_box">
-                                        <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
-                                            alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy">
-                                    </div>
-                                </a>
+                                @if ($image->media()->exists())
+                                    <a href="{{ $image->media()->exists() ? $image->link : '' }}"
+                                        class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank"
+                                        data-is-trackable="" title="{{ $image->media()->exists() ? $image->alt : '' }}">
+                                        <div class="c-adplacement__sponsored_box">
+                                            <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
+                                                alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy">
+                                        </div>
+                                    </a>
+                                @endif
                             @endforeach
                         @endif
                     </aside>
@@ -371,15 +373,17 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                 <aside class="c-adplacement">
                   @if (!is_null($bannerGroup2) && $bannerGroup2->images()->exists())
                     @foreach ($bannerGroup2->images as $image)
-                      <a href="{{ $image->media()->exists() ? $image->link : '' }}"
-                         class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b"
-                         data-observed="0" target="_blank"
-                         title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
-                        <div class="c-adplacement__sponsored_box">
-                          <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
-                               alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
-                        </div>
-                      </a>
+                        @if ($image->media()->exists())
+                            <a href="{{ $image->media()->exists() ? $image->link : '' }}"
+                                class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b"
+                                data-observed="0" target="_blank"
+                                title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
+                                <div class="c-adplacement__sponsored_box">
+                                    <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
+                                        alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
+                                </div>
+                            </a>
+                        @endif
                     @endforeach
                   @endif
                 </aside>

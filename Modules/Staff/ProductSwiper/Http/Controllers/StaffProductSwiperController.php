@@ -13,7 +13,7 @@ class StaffProductSwiperController extends Controller
     public function index()
     {
         $categories = Category::select('id', 'name')->get();
-        $productSwipers = ProductSwiper::all();
+        $productSwipers = ProductSwiper::get();
 
         return view('staffProductSwiper::index',
           compact('productSwipers', 'categories'));
@@ -21,9 +21,9 @@ class StaffProductSwiperController extends Controller
 
     public function deleteProductSwipers($request)
     {
-        if (isset($request->deleted_rows) && (!is_null($request->deleted_rows)))
+        if (filled($request->deleted_rows))
             foreach ($request->deleted_rows as $deleted_row) {
-                ProductSwiper::find($deleted_row)->delete();
+                ProductSwiper::whereId($deleted_row)->delete();
             }
     }
 

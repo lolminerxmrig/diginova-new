@@ -79,7 +79,7 @@
 
                                         <tbody id="tbody">
                                           @if(isset($productSwipers) && !is_null($productSwipers))
-                                            @foreach($productSwipers->unique() as $productSwiper)
+                                            @foreach($productSwipers as $productSwiper)
                                               <tr name="row db-row" id="item-{{$productSwiper->id}}" data-id="{{$productSwiper->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
                                                 <input name="swiper_id" value="{{ $productSwiper->id }}" hidden>
                                                 <td class="c-ui-table__cell" style="padding-right: 0px; padding-left: 23px;">
@@ -264,9 +264,7 @@ $(document).on('click', '.remove-btn', function () {
             var deleted_id = $(".hide-tr").attr('data-id');
             var deleted_row = '<input name="deleted_row" value="' + deleted_id + '" hidden>';
             $('.c-main').append(deleted_row);
-
-            $(".hide-tr").hide();
-            $(".hide-tr").removeClass('hide-tr');
+            $(".hide-tr").remove();
         }
         else {
             $(".hide-tr").remove();
