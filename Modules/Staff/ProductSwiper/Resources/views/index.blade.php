@@ -45,7 +45,7 @@
                                 <div class="c-card__header c-card__header--table">
                                     <a target="_blank">
                                         <div class="c-mega-campaigns__btns-green-plus uk-margin-remove">
-                                            ایجاد اسلایدر محصول 
+                                            ایجاد اسلایدر محصول
                                         </div>
                                     </a>
                                     <div class="c-ui-paginator js-paginator"></div>
@@ -66,7 +66,7 @@
                                                 <span class="table-header-searchable uk-text-nowrap ">دسته‌بندی</span>
                                               </th>
                                               <th class="c-ui-table__header" style="max-width: 5% !important;">
-                                                <span class="table-header-searchable uk-text-nowrap ">مرتب سازی بر اساس</span>
+                                                <span class="table-header-searchable uk-text-nowrap ">مرتب‌سازی بر اساس</span>
                                               </th>
                                               <th class="c-ui-table__header">
                                                 <span class="table-header-searchable uk-text-nowrap ">وضعیت</span>
@@ -108,10 +108,10 @@
 
                                                 <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: right; min-width: 200px;">
                                                   <select name="sort_by" class="uk-input uk-input--select sort_by js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
-                                                      <option value="newest" {{ ($productSwiper->sort_by == 'newest')? 'selected' : '' }}>جدید ترین</option>
-                                                      <option value="expensive" {{ ($productSwiper->sort_by == 'expensive')? 'selected' : '' }}>گرانترین</option>
-                                                      <option value="chipest" {{ ($productSwiper->sort_by == 'chipest')? 'selected' : '' }}>ارزانترین</option>
-                                                      <option value="best_selling" {{ ($productSwiper->sort_by == 'best_selling')? 'selected' : '' }}>پرفروشترین</option>
+                                                      <option value="newest" {{ ($productSwiper->sort_by == 'newest')? 'selected' : '' }}>جدیدترین</option>
+                                                      <option value="expensive" {{ ($productSwiper->sort_by == 'expensive')? 'selected' : '' }}>گران‌ترین</option>
+                                                      <option value="chipest" {{ ($productSwiper->sort_by == 'chipest')? 'selected' : '' }}>ارزان‌ترین</option>
+                                                      <option value="best_selling" {{ ($productSwiper->sort_by == 'best_selling')? 'selected' : '' }}>پرفروش‌ترین</option>
                                                   </select>
                                                 </td>
 
@@ -314,10 +314,10 @@ $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
 
       <td class="c-ui-table__cell c-ui-table__cell--small-text" style="text-align: right; min-width: 5%;">
         <select name="sort_by" class="uk-input uk-input--select sort_by js-select-origin select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
-          <option value="newest" selected>جدید ترین</option>
-          <option value="expensive">گرانترین</option>
-          <option value="chipest">ارزانترین</option>
-          <option value="best_selling">پرفروشترین</option>
+          <option value="newest" selected>جدیدترین</option>
+          <option value="expensive">گران‌ترین</option>
+          <option value="chipest">ارزان‌ترین</option>
+          <option value="best_selling">پرفروش‌ترین</option>
         </select>
       </td>
 

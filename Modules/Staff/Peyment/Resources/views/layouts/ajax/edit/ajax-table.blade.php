@@ -1,6 +1,6 @@
 <div class="c-product-list__alert c-ui--mt-25 c-ui--mb-25">
   لازم به ذکر است به ازای هر ۱۳ منو یک ستون اضافه خواهد شد،
-   بدین صورت منوهای ایجاد شده پشت سرهم قرار می گیرند. حداکثر منوی قابل ایجاد ۵۲ عدد است.
+   بدین صورت منوهای ایجاد شده پشت سرهم قرار می‌گیرند. حداکثر منوی قابل ایجاد ۵۲ عدد است.
 </div>
 
 <div class="c-grid__row" style="margin-top:30px">
@@ -42,7 +42,7 @@
             @endphp
             @if(count($items))
               @foreach($items->sortBy('position') as $key => $item)
-                <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}" 
+                <tr name="row db-row" id="item-{{ $item->id }}" data-id="{{ $item->id }}"
                   class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
                   <td class="c-ui-table__cell c-ui-table__cell--small-text">
                       1
@@ -66,7 +66,7 @@
                     <div class="c-ui-tooltip__anchor">
                       <div class="c-ui-toggle__group">
                         <label class="c-ui-toggle">
-                          <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" 
+                          <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox"
                             name="menu_style" {{ ($item->style == 'bold')? 'checked' : '' }} data-item-id="{{$item->id}}">
                           <span class="c-ui-toggle__check"></span>
                         </label>
@@ -75,7 +75,7 @@
                   </td>
                   <td class="c-ui-table__cell">
                     <div class="c-promo__actions">
-                      <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary 
+                      <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary
                         js-remove-plp js-remove-product-list delete-btn" value="{{ $item->id }}">حذف</button>
                     </div>
                   </td>
