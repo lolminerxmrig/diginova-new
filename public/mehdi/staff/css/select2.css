@@ -30727,7 +30727,6 @@ ul.timeline > li:last-child > .timeline-badge-wrapper {
     width: 100px;
     height: 30px;
     margin-bottom: 15px;
-    background: url(../2ed3f22f.png) no-repeat 50% transparent;
     background-size: contain
 }
 
@@ -38561,7 +38560,6 @@ ul.timeline > li:last-child > .timeline-badge-wrapper {
     width: 100px;
     height: 30px;
     margin-bottom: 15px;
-    background: url(../2ed3f22f.png) no-repeat 50% transparent;
     background-size: contain
 }
 
@@ -57733,7 +57731,6 @@ textarea[readonly] {
 .c-content-loader__logo {
     width: 100px;
     margin-bottom: 15px;
-    background-image: url(../2ed3f22f.png)
 }
 
 .c-content-loader__logo,

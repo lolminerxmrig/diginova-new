@@ -905,17 +905,19 @@ class StaffProductController extends Controller
 
     public function variantDelete(Request $request)
     {
-        ProductHasVariant::find($request->id)->delete();
+        ProductHasVariant::whereId($request->id)
+            ->delete();
+
         $settings = Setting::select('name', 'value')->get();
+
         $product = Product::findOrFail($request->product_id);
         $this->updateProductMainDetails($product);
-        return View::make("staffproduct::ajax.variant.ajax-variant-list", compact('product', 'settings'));
+
     }
+
 
     public function stepUploadImages(Request $request)
     {
-
-
       $messages = [
         'files.*.mimes' => 'فرمت تصویر غیر مجاز است',
         'files.*.max' => 'حجم عکس بیشتر از مقدار مجاز است',
@@ -982,12 +984,14 @@ class StaffProductController extends Controller
 
     public function updateProductMainDetails($product){
         $product->increment('sales_count');
+
         if ($product->variants()->active()->exists()) {
             $product->update(['has_stock' => 1]);
         } else {
             $product->update(['has_stock' => 0]);
         }
-        $product->update(['min_price' => product_price($product)]);
+
+        $product->update(['min_price' => product_price($product) ?? 0]);
     }
 
 }

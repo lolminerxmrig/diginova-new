@@ -95,7 +95,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if(!is_null($product_variants))
+                    @if($product_variants)
                     @foreach($product_variants as $product_variant)
                       <tr data-variant-id="{{ $product_variant->id  }}" class="c-ui-table__row c-ui-table__row--body c-ui-table__row--with-hover c-join__table-row ">
                         <td class="c-ui-table__cell">
@@ -112,8 +112,8 @@
                         </td>
                         <td class="c-ui-table__cell " style="text-align: right;">
                               {{ $product_variant->product->title_fa }} | {{ $product_variant->variant->name }} | گارانتی
-                              {{ (!is_null($product_variant->warranty->month))? persianNum($product_variant->warranty->month) . ' ماهه' : '' }}
-                              {{ $product_variant->warranty->name }}
+                              {{ $product_variant->warranty && $product_variant->warranty->month ? persianNum($product_variant->warranty->month) . ' ماهه' : '' }}
+                              {{ $product_variant->warranty ? $product_variant->warranty->name : '' }}
                               <span class="c-join-promotion__dkpc-number">{{ $product_code_prefix }}C-{{ $product_variant->variant_code  }}</span>
                           </td>
                         <td class="c-ui-table__cell">{{ (!is_null($product_variant->buy_price)? persianNum(number_format($product_variant->buy_price)) : '') }}</td>
@@ -126,9 +126,9 @@
                           {{ $product_variant->variant->name }}
                       </td>
                         <td class="c-ui-table__cell">
-                          @if(!is_null($product_variant->warranty->month))
+                          @if(isset($product_variant->warranty->month))
                               گارانتی {{ persianNum($product_variant->warranty->month) }} ماهه {{ $product_variant->warranty->name }}
-                          @else
+                          @elseif(isset($product_variant->warranty->name))
                               گارانتی {{ $product_variant->warranty->name }}
                           @endif
                       </td>

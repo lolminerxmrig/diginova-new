@@ -48,7 +48,7 @@
                                                     c-ui-form__col--small-gap c-ui-form__col--wrap-xs c-ui-form__col--xs">
                                                 <label>
                                                     <div class="c-ui-input">
-                                                        <input type="text" name="searchKeyword" class="c-ui-input__field c-ui-input__field--order 
+                                                        <input type="text" name="searchKeyword" class="c-ui-input__field c-ui-input__field--order
                                                             js-form-clearable" id="searchKeyword" value="" placeholder="عنوان را بنویسید ...">
                                                     </div>
                                                 </label>
@@ -128,7 +128,7 @@
                                                 <tr name="row" id="{{$warranty->id}}" class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                     <td class="c-ui-table__cell">
                                                         <span class="c-wallet__body-card-row-item">
-                                                             {{ persianNum($warranties->firstItem() + $key) }} 
+                                                             {{ persianNum($warranties->firstItem() + $key) }}
                                                         </span>
                                                     </td>
                                                     <td class="c-ui-table__cell c-ui-table__cell-desc c-ui--pt-15 c-ui--pb-15">
@@ -156,8 +156,8 @@
                                                             </div>
                                                         </a>
                                                     </td>
-                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item"> 
-                                                        {{ persianNum($warranty->product_variants->count()) }} 
+                                                    <td class="c-ui-table__cell"><span class="c-wallet__body-card-row-item">
+                                                        {{ persianNum($warranty->product_variants->count()) }}
                                                     </span>
                                                     </td>
                                                     <td class="c-ui-table__cell">
@@ -166,11 +166,13 @@
                                                              c-join__btn--secondary-greenish" href="{{ route('staff.warranties.edit', $warranty->id) }}">
                                                                 ویرایش
                                                             </a>
-                                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete 
-                                                                c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                                value="{{ $warranty->id }}">
-                                                                حذف
-                                                            </button>
+                                                            @if($warranty->id !== 1)
+                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
+                                                                    c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
+                                                                    value="{{ $warranty->id }}">
+                                                                    حذف
+                                                                </button>
+                                                            @endif
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -184,9 +186,9 @@
                                                 ایجاد گارانتی جدید
                                             </div>
                                         </a>
-  
+
                                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
-                                        
+
                                         <div class="c-ui-paginator js-paginator">
                                             <div class="c-ui-paginator__total" data-rows="۶">
                                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">
@@ -215,7 +217,7 @@
                                                         نتیجه‌ای برای نمایش وجود ندارد!
                                                     </p>
                                                     <p class="c-join__promotion-info-statement">
-                                                        شما تعداد {{ persianNum($trashed_warranties->count()) }} گارانتی حذف شده در Trash 
+                                                        شما تعداد {{ persianNum($trashed_warranties->count()) }} گارانتی حذف شده در Trash
                                                         دارید برای مدیریت و بازگردانی آنها بر روی دکمه زیر کلیک کنید
                                                     </p>
                                                     <a class="c-join__btn c-join__btn--info-box c-join__btn--secondary-greenish"

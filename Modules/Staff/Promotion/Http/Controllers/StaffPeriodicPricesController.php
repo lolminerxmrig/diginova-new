@@ -31,19 +31,16 @@ class StaffPeriodicPricesController extends Controller
          compact('promotions', 'ended_status'));
     }
 
-    public function loadProductVariants(Request $request, ProductHasVariant $product_variants, $id)
+    public function loadProductVariants(Request $request)
     {
         $request->paginatorNum = $request->paginatorNum ?? 10;
+        $product_variants = ProductHasVariant::all();
+        dd($product_variants);
 
         $product_variants = $this->ProductVariantsSearch($request, $product_variants);
 
-        (!is_null($request['query']) 
-            ? $query = $request['query']
-            : $query = '');
-
-        (!is_null($request['type'])
-            ? $type = $request['type']
-            : $type = '');
+        $query = $request['query'];
+        $type = $request['type'];
 
         return view('staffpromotion::periodic-prices.ajax-load-variants',
             compact('product_variants', 'query', 'type'));

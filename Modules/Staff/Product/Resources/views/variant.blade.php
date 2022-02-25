@@ -1,6 +1,8 @@
 @extends('layouts.staff.master')
+@section('title') مدیریت تنوع ها | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/variantIndexAction.js') }}"></script>
+
 
 <script>
 var supernova_mode = "production";
@@ -20,7 +22,8 @@ var showPriceModal = 0;
 var newSeller = 1;
 var is_yalda = 0;
 
-@if(isset($product->category()->first()->variantGroup()->first()->type) && $product->category()->first()->variantGroup()->first()->type !== 0)
+@if(isset($product->category()->first()->variantGroup()->first()->type)
+    && $product->category()->first()->variantGroup()->first()->type !== 0)
   var coloredMode = true;
 @else
   var noColorNoSizeMode = true;
@@ -63,9 +66,7 @@ var is_yalda = 0;
                                                 <li>لطفاً قبل از درج تنوع، مشخصات فنی کالا (مانند: رنگ، ابعاد، اقلام
                                                     همراه کالا، جنس کالا، تصویر بسته‌بندی و ...) را چک کرده
                                                     و اطمینان حاصل کنید که تنوع شما با مشخصات فنی کالا
-                                                    مطابقت داشته باشد. عدم تطابق مشخصات فنی کالا با تنوع شما، علاوه
-                                                    بر ایجاد نارضایتی مشتریان، موجب
-                                                    مرجوع شدن سفارشات به علت مغایرت خواهد شد.
+                                                    مطابقت داشته باشد.
                                                 </li>
                                                 <li style="margin-top:10px;">
                                                     منظور از <u>قیمت خرید</u> قیمتی است که شما آن محصول را خریداری کرده‌اید.
@@ -92,7 +93,9 @@ var is_yalda = 0;
                                               @endif
                                             </div>
                                             <div class="c-variant__descr">
-                                                <h2 class="c-variant__title">{{ $product->title_fa }}</h2>
+                                                <h2 class="c-variant__title">
+                                                    {{ $product->title_fa }}
+                                                </h2>
                                                 <div class="c-variant__sub-title"></div>
                                                 <div
                                                     class="c-variant__secondary-info c-variant__secondary-info--top">
@@ -484,10 +487,11 @@ var is_yalda = 0;
                                 <a href="{{ route('staff.warranties.create') }}" target="_blank" class="search-link">ایجاد گارانتی جدید</a>
                             </label>
                             <div class="field-wrapper ui-select ui-select__container">
-
                                 <select name="" class="uk-input uk-input--select js-variant-warranty" data-placeholder="لطفا گارانتی را انتخاب کنید">
                                     <option></option>
-                                    <option value="1">{{ \Modules\Staff\Warranty\Models\Warranty::where('id', 1)->first()->name }}</option>
+                                    <option value="1">
+                                        {{ \Modules\Staff\Warranty\Models\Warranty::find(1)->name }}
+                                    </option>
                                     @if(count($warranties))
                                         @foreach($warranties->where('id', '!==', 1) as $warranty)
                                             @if(!is_null($warranty->month))

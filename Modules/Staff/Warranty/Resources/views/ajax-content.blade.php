@@ -21,7 +21,7 @@
 
                         <div class="c-ui-paginator js-paginator">
                             <div class="c-ui-paginator__total" data-rows="۶">
-                                تعداد نتایج: 
+                                تعداد نتایج:
                                 <span name="total" data-id="{{ $warranties->total() }}">
                                     {{ persianNum($warranties->total()) }} مورد
                                 </span>
@@ -93,9 +93,13 @@
                                         <div class="c-promo__actions">
                                             <a class="c-join__btn c-join__btn--icon-right c-join__btn--icon-edit c-join__btn--secondary-greenish"
                                                href="{{ route('staff.warranties.edit', $warranty->id) }}">ویرایش</a>
-                                            <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
-                                                              c-join__btn--primary js-remove-plp js-remove-product-list delete-btn"
-                                                    value="{{ $warranty->id }}">حذف</button>
+
+                                            @if($warranty->id !== 1)
+                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete
+                                                  c-join__btn--primary js-remove-plp js-remove-product-list delete-btn" value="{{ $warranty->id }}">
+                                                    حذف
+                                                </button>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -111,7 +115,7 @@
                         </a>
 
                         {{ $warranties->links('staffwarranty::layouts.pagination.pagination') }}
-                        
+
                         <div class="c-ui-paginator js-paginator">
                             <div class="c-ui-paginator__total" data-rows="۶">
                                 تعداد نتایج: <span name="total" data-id="{{ $warranties->total() }}">
