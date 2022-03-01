@@ -42,7 +42,14 @@ Route::domain('staff.diginova.test')->middleware('web')->group(function () {
     Route::post('account/changepasswordemail', [StaffRegLoginController::class, 'updatePassword'])
       ->name('staff.updatePassword');
 
+    Route::get('account/changepasswordemail/{token?}', [StaffRegLoginController::class, 'resetPassword'])
+        ->name('staff.resetPassword');
 
-  Route::get('account/changepasswordemail/{token?}', [StaffRegLoginController::class, 'resetPassword'])
-      ->name('staff.resetPassword');
+    Route::get('account/changepassword', [StaffRegLoginController::class, 'changePassword'])
+        ->name('staff.changePassword')
+        ->middleware('staff');
+
+    Route::post('account/changepassword', [StaffRegLoginController::class, 'changeOldPassword'])
+        ->name('staff.changeOldPassword')
+        ->middleware('staff');
 });

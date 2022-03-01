@@ -20,7 +20,7 @@ use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use App\Models\Media;
-
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class StaffRegLoginController extends Controller
 {
@@ -182,19 +182,37 @@ class StaffRegLoginController extends Controller
         ]);
       }
 
-      if ($request->rc !== '' && !is_null($request->rc) && Staff::where('remember_token', $request->rc)->exists() 
-      && $request->password == $request->password_confirmation)
+      if ($request->rc !== '' && !is_null($request->rc) && Staff::where('remember_token', $request->rc)->exists() && $request->password == $request->password_confirmation)
       {
         Staff::where('remember_token', $request->rc)->update([
           'password' => Hash::make($request->password),
           'remember_token' => null,
         ]);
       }
-      else {
+      // else {
 //        abort(404);
-      }
+      // }
 
       return redirect()->route('staff.loginPage');
 
+    }
+
+    public function changePassword()
+    {
+      return view('staffauth::change-password');
+    }
+
+    public function changeOldPassword(Request $request)
+    {
+        if(! Hash::check($request->changepassword['password_old'], Auth::guard('staff')->user()->password)) {
+          return view('staffauth::change-password', ['status' => -1]);
+        }
+
+        Auth::guard('staff')->user()->update([
+          'password' => Hash::make($request->changepassword['password']),
+        ]);
+
+        // $status = 1;
+        return view('staffauth::change-password', ['status' => 1]);
     }
 }
