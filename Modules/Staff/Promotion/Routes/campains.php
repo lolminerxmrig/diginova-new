@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Staff\Promotion\Http\Controllers\StaffCampainController;
+use Modules\Staff\Promotion\Http\Controllers\StaffPeriodicPricesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,5 +64,13 @@ Route::domain('staff.diginova.test')->prefix('campains')->name('staff.campains.'
 
     Route::get('search', [StaffCampainController::class, 'search'])
         ->name('search');
+
+
+        
+    Route::post('{id}/load-product-variants', [StaffPeriodicPricesController::class, 'loadProductVariants'])
+    ->name('loadProductVariants');
+
+    Route::get('{id}/load-product-variants', [StaffPeriodicPricesController::class, 'loadProductVariants'])
+        ->name('loadProductVariants');
 
 });

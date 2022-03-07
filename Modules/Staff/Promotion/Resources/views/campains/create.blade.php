@@ -1,5 +1,5 @@
 @extends('layouts.staff.master')
-
+@section('title') ایجاد کمپین | {{ $fa_store_name }}  @endsection
 @section('head')
     <script>
         var supernova_mode = "production";

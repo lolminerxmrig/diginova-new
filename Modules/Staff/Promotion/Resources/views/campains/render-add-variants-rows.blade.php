@@ -50,7 +50,6 @@
                     <input type="text" name="variant[promotion_price]" class="js-promotion-price js-numeric-input"
                            value="" data-selling_price="{{ $product_variant->sale_price }}" data-crossed_price="{{ $product_variant->sale_price }}">
                 </div>
-                <!-- <span class="c-mega-campaigns-join-modal__body-table-input-sub-title" style="visibility: hidden;">حداکثر قیمت مجاز:ریال</span> -->
             </div>
         </div>
     </td>
@@ -85,9 +84,6 @@
             </div>
         </div>
     </td>
-
-{{--    <input class="c-ui-toggle__origin js-toggle-active-product" name="campain_id" value="{{ $campain_id }}" hidden>--}}
-
     <td class="c-ui-table__cell uk-padding-remove">
         <div class="uk-flex uk-flex-between uk-flex-middle c-join-smart-products--middle-item-height js-edit-actions">
             <div class="uk-hidden c-mega-campaigns-join-modal__body-table-btn-separator c-mega-campaigns--ml-10">

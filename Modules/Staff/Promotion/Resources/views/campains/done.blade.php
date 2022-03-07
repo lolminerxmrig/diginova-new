@@ -1,4 +1,5 @@
 @extends('layouts.staff.master')
+@section('title')  مدیریت کمپین ها | {{ $fa_store_name }}  @endsection
 @section('head')
 <script src="{{ asset('mehdi/staff/js/dk.price.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/bundle.min.js') }}"></script>

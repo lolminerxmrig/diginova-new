@@ -25,7 +25,7 @@
                         <span class="js-search-table-column"></span>
                     </th>
                     <th class="c-ui-table__header  ">
-                        <span class="js-search-table-column">عنوان و‌ کد تنوع کالا ({{ $product_code_prefix }}C)</span>
+                        <span class="js-search-table-column">عنوان و‌ کد تنوع کالا ({{ strtoupper($product_code_prefix) }}C)</span>
                     </th>
                     <th class="c-ui-table__header  ">
                         <span class="js-search-table-column">قیمت فروش (ریال)</span>

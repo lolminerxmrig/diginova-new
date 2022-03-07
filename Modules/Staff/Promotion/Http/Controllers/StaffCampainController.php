@@ -5,7 +5,6 @@ namespace Modules\Staff\Promotion\Http\Controllers;
 use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 use Modules\Staff\Promotion\Models\Campain;

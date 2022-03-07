@@ -1,5 +1,6 @@
 @extends('layouts.staff.master')
 @section('head')
+@section('title')  مدیریت کمپین ها | {{ $fa_store_name }}  @endsection
 <script>
     var supernova_mode = "production";
     var supernova_tracker_url = "";
