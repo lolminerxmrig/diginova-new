@@ -1,40 +1,39 @@
 <?php
+
+$settings = \Modules\Staff\Setting\Models\Setting::all();
 $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
 $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
-$footer_desc_title = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_desc_title')->first()->value : null;
-$footer_description = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_description')->first()->value : null;
-$footer_slogan = \Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'footer_slogan')->first()->value : null;
-$custom_footer_code = \Modules\Staff\Setting\Models\Setting::where('name', 'custom_footer_code')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'custom_footer_code')->first()->value : null;
-$copyright_text = \Modules\Staff\Setting\Models\Setting::where('name', 'copyright_text')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'copyright_text')->first()->value : null;
-$store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value : null;
-$store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value : null;
-$ecunion_link = \Modules\Staff\Setting\Models\Setting::where('name', 'ecunion_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'ecunion_link')->first()->value : null;
-$enamad_link = \Modules\Staff\Setting\Models\Setting::where('name', 'enamad_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'enamad_link')->first()->value : null;
-$samandehi_link = \Modules\Staff\Setting\Models\Setting::where('name', 'samandehi_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'samandehi_link')->first()->value : null;
-$instagram_link = \Modules\Staff\Setting\Models\Setting::where('name', 'instagram_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'instagram_link')->first()->value : null;
-$twitter_link = \Modules\Staff\Setting\Models\Setting::where('name', 'twitter_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'twitter_link')->first()->value : null;
-$aparat_link = \Modules\Staff\Setting\Models\Setting::where('name', 'aparat_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'aparat_link')->first()->value : null;
-$linkedin_link = \Modules\Staff\Setting\Models\Setting::where('name', 'linkedin_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'linkedin_link')->first()->value : null;
-$whatsapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'whatsapp_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'whatsapp_link')->first()->value : null;
-$telegram_link = \Modules\Staff\Setting\Models\Setting::where('name', 'telegram_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'telegram_link')->first()->value : null;
-$googleplay_link = \Modules\Staff\Setting\Models\Setting::where('name', 'googleplay_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'googleplay_link')->first()->value : null;
-$cafebazaar_link = \Modules\Staff\Setting\Models\Setting::where('name', 'cafebazaar_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'cafebazaar_link')->first()->value : null;
-$myket_link = \Modules\Staff\Setting\Models\Setting::where('name', 'myket_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'myket_link')->first()->value : null;
-$sibapp_link = \Modules\Staff\Setting\Models\Setting::where('name', 'sibapp_link')->exists() ? \Modules\Staff\Setting\Models\Setting::where('name', 'sibapp_link')->first()->value : null;
+$footer_desc_title = $settings->where('name', 'footer_desc_title')->first()->value;
+$footer_description = $settings->where('name', 'footer_description')->first()->value;
+$footer_slogan = $settings->where('name', 'footer_slogan')->first()->value;
+$custom_footer_code = $settings->where('name', 'custom_footer_code')->first()->value;
+$copyright_text = $settings->where('name', 'copyright_text')->first()->value;
+$store_phone = $settings->where('name', 'store_phone')->first()->value;
+$store_email = $settings->where('name', 'store_email')->first()->value;
+$ecunion_link = $settings->where('name', 'ecunion_link')->first()->value;
+$enamad_link = $settings->where('name', 'enamad_link')->first()->value;
+$samandehi_link = $settings->where('name', 'samandehi_link')->first()->value;
+$instagram_link = $settings->where('name', 'instagram_link')->first()->value;
+$twitter_link = $settings->where('name', 'twitter_link')->first()->value;
+$aparat_link = $settings->where('name', 'aparat_link')->first()->value;
+$linkedin_link = $settings->where('name', 'linkedin_link')->first()->value;
+$whatsapp_link = $settings->where('name', 'whatsapp_link')->first()->value;
+$telegram_link = $settings->where('name', 'telegram_link')->first()->value;
+$googleplay_link = $settings->where('name', 'googleplay_link')->first()->value;
+$cafebazaar_link = $settings->where('name', 'cafebazaar_link')->first()->value;
+$myket_link = $settings->where('name', 'myket_link')->first()->value;
+$sibapp_link = $settings->where('name', 'sibapp_link')->first()->value;
+$custom_header_code = $settings->where('name', 'custom_header_code')->first()->value;
+$custom_footer_code = $settings->where('name', 'custom_footer_code')->first()->value;
+$custom_css_code = $settings->where('name', 'custom_css_code')->first()->value;
 
-$header_navs =
-    \Modules\Staff\Nav\Models\NavLocation::where('id', 1)->exists() &&
-    \Modules\Staff\Nav\Models\NavLocation::find(1)
-        ->navs()
-        ->exists()
-        ? \Modules\Staff\Nav\Models\NavLocation::find(1)->navs
-        : null;
+$nav = \Modules\Staff\Nav\Models\NavLocation::where('id', 1)->first();
+$header_navs = $nav && $nav->navs()->exists() ? $nav->navs : null;
 ?>
 <!DOCTYPE html>
 <html dir="rtl">
 
 <head>
-
     @include('layouts.front.ModulesScript')
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,14 +44,12 @@ $header_navs =
     <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{--  <link rel="canonical" href="{{ $site_url }}" />  --}}
     <link rel="shortcut icon"
         href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}"
         type="image/icon">
     <link rel="icon" type="image/png"
         href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}">
 
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/customize.css') }} "> --}}
     <link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} "
         media="screen and (max-height: 1184px)">
@@ -67,7 +64,13 @@ $header_navs =
 
     <link rel="manifest" href="{{ asset('assets/manifest.json') }}?v=1.4">
 
+    {{ $custom_header_code ?? '' }}
+
     @yield('head')
+
+    <style>
+        {{ $custom_css_code ?? '' }}
+    </style>
 
 </head>
 
@@ -620,5 +623,7 @@ $header_navs =
 
 
 </body>
+
+{{ $custom_footer_code ?? '' }}
 
 </html>

@@ -4,8 +4,8 @@ namespace Modules\Staff\Setting\Models;
 
 use App\Models\Media;
 use App\Models\State;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Setting extends Model
 {
@@ -13,11 +13,11 @@ class Setting extends Model
 
     public function states()
     {
-      return $this->morphToMany(State::class, 'zonable', 'zonables', 'zonable_id', 'zone_id');
+      return $this->morphToMany(State::class, 'zonable', 'zonables', null, 'zone_id');
     }
 
     public function media()
     {
-      return $this->morphToMany(Media::class, 'mediable', 'mediables', 'mediable_id', 'media_id');
+      return $this->morphToMany(Media::class, 'mediable', 'mediables', null, 'media_id');
     }
 }

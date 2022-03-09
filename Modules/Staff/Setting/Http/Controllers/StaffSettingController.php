@@ -4,13 +4,12 @@ namespace Modules\Staff\Setting\Http\Controllers;
 
 use App\Models\Media;
 use App\Models\State;
+use Illuminate\Http\Request;
 use App\Models\StoreAddress;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
+use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Support\Facades\Validator;
 use Modules\Staff\Category\Models\Category;
-use Modules\Staff\Setting\Models\Setting;
-use Illuminate\Http\Request;
 
 class StaffSettingController extends Controller
 {
@@ -21,15 +20,20 @@ class StaffSettingController extends Controller
       $states = State::all();
       $store_addresses = StoreAddress::all();
 
-      if(!is_null($settings->where('name', 'invoice_stamp')->first()->media) 
+      if(!is_null($settings->where('name', 'invoice_stamp')->first()->media)
         && count($settings->where('name', 'invoice_stamp')->first()->media)){
-        $stamp_image = $settings->where('name', 'invoice_stamp')->first()->media()->first();
+
+        $stamp_image = $settings->where('name', 'invoice_stamp')
+            ->first()
+            ->media()
+            ->first();
       }
       else {
         $stamp_image = null;
       }
 
-      return view('staffsetting::index', compact('settings', 'states', 'store_addresses', 'stamp_image'));
+      return view('staffsetting::index',
+          compact('settings', 'states', 'store_addresses', 'stamp_image'));
     }
 
     public function update(Request $request)
@@ -437,7 +441,10 @@ class StaffSettingController extends Controller
       ]);
 
       $settings = Setting::select('name', 'value')->get();
-      $site_url = $settings->where('name', 'site_url')->first()->value;
+
+      $site_url = $settings->where('name', 'site_url')
+          ->first()
+          ->value;
 
       return response()->json([
         'status' => true,
@@ -452,8 +459,9 @@ class StaffSettingController extends Controller
 
     public function deleteStampImage()
     {
-      $invoice_stamp = Setting::where('name', 'invoice_stamp')->first();
+      $invoice_stamp = Setting::where('name', 'invoice_stamp')
+          ->first();
+
       $invoice_stamp->media()->detach();
     }
-
 }

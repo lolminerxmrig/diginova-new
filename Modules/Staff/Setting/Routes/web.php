@@ -28,5 +28,4 @@ Route::domain('staff.diginova.test')->prefix('settings')->name('staff.settings.'
 
     Route::post('deleteStampImage', [StaffSettingController::class, 'deleteStampImage'])
         ->name('deleteStampImage');
-
 });

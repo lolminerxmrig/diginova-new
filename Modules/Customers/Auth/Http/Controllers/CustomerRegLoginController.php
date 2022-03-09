@@ -159,12 +159,9 @@ class CustomerRegLoginController extends Controller
             $customer = Customer::where('mobile', $customer_mobile)->select('id')->first();
             Auth::guard('customer')->loginUsingId($customer->id, true);
             if (session('newUser')){
-//              Log::info(session('previous_url_page'));
-//              return redirect(session('previous_url_page'));
               return redirect()->route('customer.welcomme');
             }
             else{
-//              return redirect(session('previous_url_page'));
               return redirect()->route('front.indexPage');
             }
         }

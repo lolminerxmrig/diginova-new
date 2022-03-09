@@ -1,31 +1,32 @@
 @extends('layouts.staff.master')
+@section('title') تنظیمات | {{ $fa_store_name }}  @endsection
 @section('head')
-<script>
-  var supernova_mode = "production";
-  var supernova_tracker_url = "";
-  var dashboard_sold_history_dates = 0;
-  var dashboard_sold_history_prices = 0;
-  var dashboard_sold_history_quantities = 0;
-  var dashboard_variant_active_with_inventory = 0;
-  var dashboard_variant_active_without_inventory = 0;
-  var dashboard_variant_all = 0;
-  var dashboard_variant_active_false = 0;
-  var dashboardRate = 70;
-  var existNewElectronicContract = false;
-  var contractDaysLeft = 7;
-  var isContractRejected = false;
-  var hasAccessToContract = true;
-  var showRejectedMessage = 0;
-  var rejectedMessage = "";
-  var isLoggedSeller = 1;
-  var walkthroughSteps = [];
-  var showPriceModal = 0;
-  var newSeller = 1;
-  var is_yalda = 0;
-</script>
+{{--<script>--}}
+{{--  var supernova_mode = "production";--}}
+{{--  var supernova_tracker_url = "";--}}
+{{--  var dashboard_sold_history_dates = 0;--}}
+{{--  var dashboard_sold_history_prices = 0;--}}
+{{--  var dashboard_sold_history_quantities = 0;--}}
+{{--  var dashboard_variant_active_with_inventory = 0;--}}
+{{--  var dashboard_variant_active_without_inventory = 0;--}}
+{{--  var dashboard_variant_all = 0;--}}
+{{--  var dashboard_variant_active_false = 0;--}}
+{{--  var dashboardRate = 70;--}}
+{{--  var existNewElectronicContract = false;--}}
+{{--  var contractDaysLeft = 7;--}}
+{{--  var isContractRejected = false;--}}
+{{--  var hasAccessToContract = true;--}}
+{{--  var showRejectedMessage = 0;--}}
+{{--  var rejectedMessage = "";--}}
+{{--  var isLoggedSeller = 1;--}}
+{{--  var walkthroughSteps = [];--}}
+{{--  var showPriceModal = 0;--}}
+{{--  var newSeller = 1;--}}
+{{--  var is_yalda = 0;--}}
+{{--</script>--}}
 
-<script src="{{ asset('mehdi/staff/js/inputmask.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
+<script src="{{ asset('mehdi/staff/js/inputmask.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
 
@@ -1067,7 +1068,8 @@
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="myket_link">لینک مایکت:</label>
                             <div class="c-ui-input ">
-                              <input type="text" name="myket_link" value="{{ $settings->where('name', 'myket_link')->first()->value }}" class="c-ui-input__field c-ui-input__RD-field">
+                              <input type="text" name="myket_link" value="{{ $settings->where('name', 'myket_link')->first()->value }}"
+                                     class="c-ui-input__field c-ui-input__RD-field">
                             </div>
                           </div>
                         </div>
@@ -1079,7 +1081,8 @@
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="sibapp_link">لینک سیب اپ:</label>
                             <div class="c-ui-input ">
-                              <input type="text" name="sibapp_link" value="{{ $settings->where('name', 'sibapp_link')->first()->value }}" class="c-ui-input__field c-ui-input__RD-field">
+                              <input type="text" name="sibapp_link" value="{{ $settings->where('name', 'sibapp_link')->first()->value }}"
+                                     class="c-ui-input__field c-ui-input__RD-field">
                             </div>
                           </div>
                         </div>
@@ -1088,7 +1091,8 @@
 
                       <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
                         <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
-                        <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes save_tab_form" data-value="footer">ذخیره تغییرات</div>
+                        <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right
+                         js-profile-submit-changes save_tab_form" data-value="footer">ذخیره تغییرات</div>
                       </div>
 
                     </div>
@@ -1117,10 +1121,13 @@
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-12 c-grid__col--lg-12">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="custom_header_code">اضافه کردن شماره سفارشی در تگ HEAD:</label>
+                            <label class="c-RD-profile__input-name" for="custom_header_code">
+                                اضافه کردن اسکریپت سفارشی در تگ HEAD:
+                            </label>
                             <div class="c-ui-input">
-                              <textarea name="custom_header_code" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
-                                        rows="5" style="border-color: #dddddd; font-weight: bold;"
+                              <textarea class="c-ui-input__field c-ui-input__field--order
+                               c-ui-input__field--textarea" name="custom_header_code"
+                                rows="5" style="border-color: #dddddd; font-weight: bold; direction: ltr;"
                               >{{ $settings->where('name', 'custom_header_code')->first()->value }}</textarea>
                             </div>
                           </div>
@@ -1131,10 +1138,12 @@
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-12 c-grid__col--lg-12">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="custom_footer_code">اضافه کردن شماره سفارشی در Footer:</label>
+                            <label class="c-RD-profile__input-name" for="custom_footer_code">
+                                اضافه کردن اسکریپت سفارشی در Footer:
+                            </label>
                             <div class="c-ui-input">
                               <textarea name="custom_footer_code" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
-                                        rows="5" style="border-color: #dddddd; font-weight: bold;"
+                                        rows="5" style="border-color: #dddddd; font-weight: bold; direction: ltr;" spellcheck="false"
                               >{{ $settings->where('name', 'custom_footer_code')->first()->value }}</textarea>
                             </div>
                           </div>
@@ -1148,7 +1157,7 @@
                             <label class="c-RD-profile__input-name" for="custom_css_code">کد CSS سفارشی:</label>
                             <div class="c-ui-input">
                               <textarea name="custom_css_code" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
-                                        rows="5" style="border-color: #dddddd; font-weight: bold;"
+                                        rows="5" style="border-color: #dddddd; font-weight: bold; direction: ltr;" spellcheck="false"
                               >{{ $settings->where('name', 'custom_css_code')->first()->value }}</textarea>
                             </div>
                           </div>
@@ -1156,10 +1165,12 @@
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                       </div>
 
-
                       <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
-                        <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
-                        <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes save_tab_form" data-value="advanced">ذخیره تغییرات</div>
+                        <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center
+                            uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
+                        <div class="c-RD-profile__approve-btn uk-flex uk-flex-center
+                        uk-flex-middle uk-margin-small-right js-profile-submit-changes
+                        save_tab_form" data-value="advanced">ذخیره تغییرات</div>
                       </div>
 
                     </div>
@@ -1210,7 +1221,8 @@
 
                       <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
                         <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
-                        <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right js-profile-submit-changes save_tab_form" data-value="license">ذخیره تغییرات</div>
+                        <div class="c-RD-profile__approve-btn uk-flex uk-flex-center uk-flex-middle uk-margin-small-right
+                         js-profile-submit-changes save_tab_form" data-value="license">ذخیره تغییرات</div>
                       </div>
 
                     </div>
