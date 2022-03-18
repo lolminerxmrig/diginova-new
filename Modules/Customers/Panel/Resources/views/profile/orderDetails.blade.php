@@ -13,11 +13,7 @@
   $count_canceled = \Modules\Staff\Order\Models\Order::where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'canceled')->first()->id)->count();
 ?>
 @extends('layouts.customer.master')
-@section('head')
-{{--  <script src="https://www.digikala.com/static/merged/7716bc34.js" ></script>--}}
-{{--  <script src="https://www.digikala.com/static/merged/5cee6064.js" ></script>--}}
-{{--  <script src="https://www.digikala.com/static/merged/222f3f4a.js" ></script>--}}
-@endsection
+@section('head')@endsection
 @section('o-page__content')
 <section class="o-page__content">
     <div class="o-box">
@@ -199,13 +195,13 @@
                     <div class="o-btn o-btn--icon-gray-md o-btn--l-more js-ui-see-more"></div>
                     <div class="c-ui-more__options js-ui-more-options">
                       <a class="c-ui-more__option " href="{{ route('front.createComment', $item->product_variant->product->product_code) }}">ثبت نظر</a>
-{{--                      <div class="c-ui-more__option js-repurchase-order-item" data-variant="14209876" data-url="/product/dkp-1002387/%D9%85%D8%A7%D9%88%D8%B3-%D8%A8%DB%8C-%D8%B3%DB%8C%D9%85-%D9%85%D8%AF%D9%84-4d">خرید مجدد کالا</div>--}}
                     </div>
                   </div>
                 </div>
                 <div class="c-profile-order__list-item-product-detail">
                   @if (!is_null($item->product_variant->variant->value))
-                    <span class="c-profile-order__list-item-product-detail-color" style="background-color: {{ $item->product_variant->variant->value }}"></span>
+                    <span class="c-profile-order__list-item-product-detail-color"
+                     style="background-color: {{ $item->product_variant->variant->value }}"></span>
                   @endif
                   {{ $item->product_variant->variant->name }}
                 </div>
@@ -235,19 +231,13 @@
 </section>
 @endsection
 
-
-{{--@section('page-content')--}}
-{{--@endsection--}}
-
 @section('source')
-
-  <script>
-    $('.js-payment-records-btn').on('click', function () {
-      $(this).toggleClass('is-open');
-      $(this).parent().siblings('.js-payment-records').toggle();
-    });
-  </script>
-
+<script>
+  $('.js-payment-records-btn').on('click', function () {
+    $(this).toggleClass('is-open');
+    $(this).parent().siblings('.js-payment-records').toggle();
+  });
+</script>
 <script src="{{ asset('staff/js/jalali-moment.browser.js') }}"></script>
 
 <script>
@@ -275,7 +265,4 @@
   persianNum();
   convertDate();
 </script>
-
-
-
 @endsection

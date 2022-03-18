@@ -8984,21 +8984,6 @@
   </div>
 </footer>
 
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "WebSite",
- "url": "https://www.digikala.com",
- "potentialAction": {
-   "@type": "SearchAction",
-   "target": "https://www.digikala.com/search/?q={search_term_string}",
-   "query-input": "required name=search_term_string"
- }
-}
-
-
-</script>
-
 <script>
   // اضافه کردن توکن به درخواست های ایجکس
   $.ajaxSetup({

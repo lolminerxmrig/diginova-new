@@ -612,7 +612,7 @@
     <header class="c-header js-header">
       <div class="uk-container uk-container-large">
         <div class="c-header__top">
-                    <h1 class="c-header__tag">پنل مدیریت</h1>
+          <h1 class="c-header__tag">پنل مدیریت</h1>
         </div>
       </div>
     </header>
@@ -626,14 +626,13 @@
         <nav class="uk-navbar-container uk-navbar-transparent uk-navbar--responsive uk-navbar" uk-navbar="">
           <div class="uk-navbar-right" id="dashboard-step-1">
             <ul class="uk-navbar-nav uk-navbar-nav--responsive">
-
               <li class="first-level">
-                <a href="{{ route('staff.dashboardPage') }}" class="" aria-expanded="false">پیشخوان</a>
+                <a href="{{ route('staff.dashboardPage') }}"  aria-expanded="false">پیشخوان</a>
               </li>
-
               <li class="first-level">
-                <a href="#" class="" aria-expanded="false">مدیریت محتوا
-                <span class="chevron-down"></span>
+                <a href="#"  aria-expanded="false">
+                  مدیریت محتوا
+                  <span class="chevron-down"></span>
                 </a>
                 <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter">
                   <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -688,13 +687,13 @@
                     <li>
                       <a href="{{ route('staff.navs.index') }}">مدیریت فهرست</a>
                     </li>
-
                   </ul>
                 </div>
               </li>
 
               <li class="first-level">
-                    <a href="#" class="" aria-expanded="false">بازاریابی
+                    <a href="#"  aria-expanded="false">
+                        بازاریابی
                         <span class="chevron-down"></span>
                     </a>
                     <div class="uk-navbar-dropdown uk-navbar-dropdown-bottom-right uk-animation-fade uk-animation-enter">
@@ -719,23 +718,23 @@
                 </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.delivery.index') }}" class="" aria-expanded="false">روش‌های ارسال</a>
+                <a href="{{ route('staff.delivery.index') }}"  aria-expanded="false">روش‌های ارسال</a>
               </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.peyment.index') }}" class="" aria-expanded="false">درگاه‌های پرداخت</a>
+                <a href="{{ route('staff.peyment.index') }}"  aria-expanded="false">درگاه‌های پرداخت</a>
               </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.customers.index') }}" class="" aria-expanded="false">مدیریت مشتریان</a>
+                <a href="{{ route('staff.customers.index') }}"  aria-expanded="false">مدیریت مشتریان</a>
               </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.orders.index') }}" class="" aria-expanded="false">مدیریت سفارشات</a>
+                <a href="{{ route('staff.orders.index') }}"  aria-expanded="false">مدیریت سفارشات</a>
               </li>
 
               <li class="first-level">
-                <a href="{{ route('staff.settings.index') }}" class="" aria-expanded="false">تنظیمات</a>
+                <a href="{{ route('staff.settings.index') }}"  aria-expanded="false">تنظیمات</a>
               </li>
 
             </ul>
@@ -743,7 +742,7 @@
           <div class="uk-navbar-left">
             <ul class="uk-navbar-nav uk-navbar-nav--responsive">
               <li>
-                <a href="#" class="" aria-expanded="false">
+                <a href="#"  aria-expanded="false">
                   {{ $staff->first_name . ' ' . $staff->last_name }}
                 <span class="chevron-down"></span>
                 </a>
@@ -783,13 +782,12 @@
     <div class="new-mobile-view-menu--invisible">
       <div class="new-mobile-view-menu__header">
         <button class="uk-navbar__control uk-navbar__control--collapse js-navbar-control" type="button" aria-label="show menu">
-        <span class="uk-navbar__control-box">
-        <span class="uk-navbar__control-inner"></span>
-        </span>
+          <span class="uk-navbar__control-box">
+            <span class="uk-navbar__control-inner"></span>
+          </span>
         </button>
         <h1 class="c-header__logo">
-          <a href="/">
-          </a>
+          <a href="/"></a>
         </h1>
       </div>
       <div class="uk-navbar-container__top">
@@ -797,25 +795,25 @@
           {{ $fa_store_name }}
         </a>
         <div>
-          <a href="{{ route('staff.logout') }}" class="c-profile-nav__menu-item c-profile-nav__menu-item--logout">خروج</a>
+          <a href="{{ route('staff.logout') }}" class="c-profile-nav__menu-item c-profile-nav__menu-item--logout">
+            خروج
+          </a>
         </div>
       </div>
       <div class="uk-navbar-container__bottom">
         <ul class="uk-navbar-nav">
           <div class="uk-navbar-container__bottom__header">
             <a href="{{ route('staff.dashboardPage') }}">
-            پیشخوان
+              پیشخوان
             </a>
           </div>
           <li>
             <a class="js-menu-item">
               <div> مدیریت محتوا </div>
-              <div class="chevron-down">
-              </div>
+              <div class="chevron-down"></div>
             </a>
             <div class="new-navbar-dropdown--close">
               <ul>
-
                 <li>
                   <a href="{{ route('staff.brands.index') }}">برندها</a>
                 </li>
@@ -901,7 +899,6 @@
               <div>
                 روش‌های ارسال
               </div>
-              <div></div>
             </a>
           </li>
 
@@ -910,7 +907,6 @@
               <div>
                 درگاه‌های پرداخت
               </div>
-              <div></div>
             </a>
           </li>
 
@@ -919,7 +915,6 @@
               <div>
                 مشتریان
               </div>
-              <div></div>
             </a>
           </li>
 
@@ -928,7 +923,6 @@
               <div>
                 مدیریت سفارشات
               </div>
-              <div></div>
             </a>
           </li>
 
@@ -937,7 +931,6 @@
               <div>
                 تنظیمات
               </div>
-              <div></div>
             </a>
           </li>
 
@@ -946,21 +939,20 @@
     </div>
 @yield('content')
 <footer class="c-footer">
-    <div class="c-footer__bottom">
-      <div class="uk-container uk-container-large">
-        <div class="uk-flex uk-flex-between">
-          <div>
-            قدرت گرفته از فروشگاه‌ساز قدرتمند
-            <span style="color: rgba(243, 187, 97, 1)">
+  <div class="c-footer__bottom">
+    <div class="uk-container uk-container-large">
+      <div class="uk-flex uk-flex-between">
+        <div>
+          قدرت گرفته از فروشگاه‌ساز قدرتمند
+          <span style="color: rgba(243, 187, 97, 1)">
             دیجی نوا
-            </span>
-
-          </div>
-          <div>Copyright © 2021 - Diginova-script.ir</div>
+          </span>
         </div>
+        <div>Copyright © 2021 - Diginova-script.ir</div>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 @yield('script')
 </body>
 </html>

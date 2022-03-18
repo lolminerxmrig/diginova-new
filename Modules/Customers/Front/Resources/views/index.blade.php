@@ -78,7 +78,6 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
 
     <!-- page js variables -->
     <script src="{{ asset('sentry-test.js') }}"></script>
-    {{--  <script src="{{ asset('assets/js/sentry.js') }}"></script>  --}}
     <script src="{{ asset('assets/js/indexAction.js') }}"></script>
 @endsection
 
@@ -222,11 +221,6 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                                 <div class="c-product-box__title">
                                                   {{ $product->title_fa }}
                                                 </div>
-{{--                                                <div class="c-product-box__digiplus c-product-box__digiplus--full u-invisible">--}}
-{{--                                                  <span class="c-product-box__digiplus-data c-digiplus-sign--before">--}}
-{{--                                                      ۰ تومان هدیه نقدی--}}
-{{--                                                  </span>--}}
-{{--                                                </div>--}}
                                                 <div class="c-product-box__row c-product-box__row--price">
                                                     <div class="c-price">
                                                         <div class="c-price__value c-price__value--plp js-price-complete-details">
@@ -483,7 +477,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
         </div>
         <div class="c-remodal-account__footer is-highlighted"><span>کاربر جدید هستید؟</span>
             <a data-snt-event="dkLoginClick" data-snt-params='{"type":"signup","site":"login-modal"}'
-                href="/users/login-register/?_back=https://www.digikala.com/" class="btn-link-spoiler">
+                href="/users/login-register/" class="btn-link-spoiler">
                 ثبت‌نام در {{ $fa_store_name }}
             </a>
         </div>

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0025)https://www.digikala.com/ -->
 <html class="" style="" dir="rtl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8904,7 +8903,7 @@
                 </div>
             </form>
         </div>
-        <div class="c-remodal-account__footer is-highlighted"><span>کاربر جدید هستید؟</span><a data-snt-event="dkLoginClick" data-snt-params="{&quot;type&quot;:&quot;signup&quot;,&quot;site&quot;:&quot;login-modal&quot;}" href="https://www.digikala.com/users/login-register/?_back=https://www.digikala.com/" class="btn-link-spoiler">ثبت‌نام در دیجی‌کالا</a></div>
+        <div class="c-remodal-account__footer is-highlighted"><span>کاربر جدید هستید؟</span><a data-snt-event="dkLoginClick" data-snt-params="{&quot;type&quot;:&quot;signup&quot;,&quot;site&quot;:&quot;login-modal&quot;}" href="https://www.digikala.com/users/login-register/" class="btn-link-spoiler">ثبت‌نام در دیجی‌کالا</a></div>
     </div>
 </div>
 <div class="remodal-wrapper remodal-is-closed" style="display: none;">

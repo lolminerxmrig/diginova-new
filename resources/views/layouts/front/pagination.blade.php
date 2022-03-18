@@ -1,7 +1,5 @@
 @if ($paginator->hasPages())
-
     <?php
-
         if ($paginator->currentPage() >= 5) {
             $begin = $paginator->currentPage() - 4;
         }    elseif ($paginator->currentPage() <= 4) {
@@ -17,7 +15,6 @@
         }
 
         $end = ($paginator->lastPage() - $begin > 9) ? $begin + 8 : $paginator->lastPage();
-
 
         $customItems = [];
 

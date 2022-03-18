@@ -145,10 +145,11 @@
                                     </div>
 
                                     <div class="c-box c-box--brands-filter js-ab-sidebar-filter">
-                                        <div class="">
-                                            <div class=" c-box__header c-box__header--toggleable js-box-toggle ">برند
+                                        <div>
+                                            <div class=" c-box__header c-box__header--toggleable js-box-toggle ">
+                                                برند
                                             </div>
-                                            <div class="  c-filter c-filter--params js-box-content">
+                                            <div class="c-filter c-filter--params js-box-content">
                                                 <div class="c-ui-input c-ui-input--quick-search">
                                                     <input type="text"
                                                            class="c-ui-input__field c-ui-input__field--cleanable js-filter-input js-cleanable-input"
@@ -184,7 +185,6 @@
                                                                     </label>
                                                                 </li>
                                                             @endforeach
-
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -193,7 +193,7 @@
                                     </div>
 
                                     @foreach($attribute_groups as $attribute_group)
-                                        <?php $attributes = $attribute_group->attributes()->orderBy('position', 'asc')->where('is_filterable', 1)->get(); ?>
+                                        <?php $attributes = $attribute_group->attributes()->orderBy('position', 'asc')  ->where('is_filterable', 1)->get(); ?>
                                         @foreach ($attributes as $attribute)
                                             @if($attribute->products()->where('has_stock', '>', 0)->exists())
                                                 <div class="c-box">
@@ -247,12 +247,13 @@
                                     </div>
                                     <div class="c-box js-ab-sidebar-filter" id="digikala_fake_section">
                                         <div class="c-filter c-filter--switcher js-box-content-items"><label
-                                                class="c-ui-statusswitcher"><input type="checkbox" value="1"
-                                                                                   name="only_original"
-                                                                                   id="stock_status-param-1"><span
-                                                    class="c-ui-statusswitcher__slider"><span
-                                                        class="c-ui-statusswitcher__slider__toggle"></span></span></label>فقط
-                                            کالاهای اصل
+                                                class="c-ui-statusswitcher">
+                                                <input type="checkbox" value="1" name="only_original" id="stock_status-param-1">
+                                                <span class="c-ui-statusswitcher__slider">
+                                                    <span class="c-ui-statusswitcher__slider__toggle"></span>
+                                                </span>
+                                            </label>
+                                            فقط کالاهای اصل
                                         </div>
                                     </div>
                                     <div class="c-box">
@@ -302,7 +303,7 @@
                                         </div>
                                     </div>
                                     <div class="c-box c-box--brands-filter js-ab-test-rating u-hidden">
-                                        <div class="">
+                                        <div>
                                             <div class=" c-box__header c-box__header--toggleable js-box-toggle ">امتیاز
 
                                             </div>
@@ -414,19 +415,19 @@
                                         <div class="c-listing__header">
                                             <ul class="c-listing__sort js-sort-options"
                                                 data-label="مرتب‌سازی بر اساس :">
-                                                <li class="">
+                                                <li>
                                                     <a href=" javascript:" data-sort="newest"
                                                        class="is-active">جدیدترین</a>
                                                 </li>
-                                                <li class="">
+                                                <li>
                                                     <a href=" javascript:" data-sort="best_selling">
                                                         پرفروش‌ترین‌</a>
                                                 </li>
-                                                <li class="">
+                                                <li>
                                                     <a href=" javascript:" data-sort="cheapest">
                                                         ارزان‌ترین</a>
                                                 </li>
-                                                <li class="">
+                                                <li>
                                                     <a href=" javascript:" data-sort="most_expensive">
                                                         گران‌ترین</a>
                                                 </li>
@@ -539,8 +540,6 @@
                                                                     </div>
                                                                 </div>
                                                             @endif
-
-
                                                             <div class="c-product-box__tags ">
                                                                 <div class="c-product-box__tags-container"></div>
                                                                 <ul class="c-product__seller-details c-product__seller-details--item">
@@ -572,15 +571,13 @@
                         class="c-category-desc c-expandable-text c-expandable-text--shadowed js-expandable-text-container collapsed">
                         <div class="c-expandable-text__text js-expandable-text">
                             <p>
-                                <strong>خرید انواع {{ $cat->name }} از {{ $fa_store_name }}&nbsp;</strong>
+                                <strong>
+                                    خرید انواع {{ $cat->name }} از {{ $fa_store_name }}&nbsp;
+                                </strong>
                             </p>
-                            <p>
-                                {{ $cat->description }}
-                            </p>
-
-                            <span
-                                class="c-expandable-text__expand-btn c-expandable-text__expand-btn--shadowed js-expand-btn"
-                                data-collapsed="نمایش بیشتر" data-expanded="بستن"></span>
+                            <p>{{ $cat->description }}</p>
+                            <span class="c-expandable-text__expand-btn c-expandable-text__expand-btn--shadowed js-expand-btn" data-collapsed="نمایش بیشتر" data-expanded="بستن">
+                            </span>
                         </div>
                     </article>
                 @endif

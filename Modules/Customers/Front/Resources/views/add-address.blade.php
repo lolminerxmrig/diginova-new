@@ -1,16 +1,10 @@
-@php
-  $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
-@endphp
-
 @extends('layouts.front.master')
 
 @section('head')
-
   <title>{{ $fa_store_name }}</title>
   <link rel="canonical" href="{{ route('front.addAddress') }}"/>
   <meta name="robots" content="noindex, nofollow"/>
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
   <script>
     var supernova_mode = "production";
     var userInformation = {
@@ -22,11 +16,9 @@
     var userId = {{ $customer->id }};
     var isNewCustomer = false;
   </script>
-
   <script id="sentry_js" src="{{ asset('assets/js/sentry.js') }}"></script>
   <script id="map_js" src="{{ asset('assets/new/js/map.js') }}"></script>
   <script src="https://www.parsimap.com/js/v3.1.0/parsimap.js?key=public"></script>
-
   <style>
     @media screen and (-ms-high-contrast: none) {
       .c-shipment-page__to-payment-sticky, .c-checkout__to-shipping-sticky {
@@ -49,7 +41,6 @@
       }
     }
   </style>
-
 @endsection
 
 @section('content')
@@ -58,18 +49,27 @@
   <div id="HomePageTopBanner"></div>
   <div class="c-address__page">
     <div class="js-add-address-btn u-hidden" data-not-modal="true"></div>
-    <div class="c-address__title js-address-modal-title">موقعیت مکانی آدرس</div>
-    <div class="c-address__subtitle js-address-modal-subtitle">لطفا موقعیت مکانی آدرس را بر روی نقشه تعیین کنید.</div>
+    <div class="c-address__title js-address-modal-title">
+      موقعیت مکانی آدرس
+    </div>
+    <div class="c-address__subtitle js-address-modal-subtitle">
+      لطفا موقعیت مکانی آدرس را بر روی نقشه تعیین کنید.
+    </div>
     <form method="post" id="add-edit-address-form" action="{{ route('front.saveAddress') }}">
       <input type="hidden" name="_token" value="{{ csrf_token() }}" />
       <div class="c-address__modal-content js-map-interactive" id="address-modal-map">
         <div class="c-map__address-container js-map-address-container u-hidden">
-          <div class="c-map__address-title">برای ادامه دادن فرآیند خرید موقعیت آدرس زیر را بر روی نقشه تعیین کنید:</div>
+          <div class="c-map__address-title">
+            برای ادامه دادن فرآیند خرید موقعیت آدرس زیر را بر روی نقشه تعیین کنید:
+          </div>
           <div class="c-map__address js-map-address"></div>
         </div>
         <div class="c-map__container  js-map-container">
-          <div class="c-map " id="map" data-current-icon="https://www.digikala.com/static/files/c1d18c6c.png"></div>
-          <div class="c-map__search-field"><input class="js-search-map-input" placeholder="جستجو آدرس"><button type="button" class="o-btn c-map__search-cancel js-search-map-cancel u-hidden"></button></div>
+          <div class="c-map " id="map" data-current-icon="{{ asset('mehdi/public/images/location.png') }}"></div>
+          <div class="c-map__search-field">
+            <input class="js-search-map-input" placeholder="جستجو آدرس">
+            <button type="button" class="o-btn c-map__search-cancel js-search-map-cancel u-hidden"></button>
+          </div>
           <div class="c-map__search-content">
             <div class="c-map__search-content-list js-search-map-content"></div>
           </div>
@@ -77,11 +77,15 @@
           <input type="hidden" name="address[lng]">
           <div class="c-map__overlay"></div>
           <div class="c-map__marker">
-            <img src="https://www.digikala.com/static/files/7ab27ed3.svg"/></div>
+            <img src="{{ asset('mehdi/public/images/location2.svg') }}"/></div>
         </div>
         <div class="c-address__modal-footer">
-          <div class="c-address__modal-footer-title">مرسوله شما به این موقعیت ارسال خواهد شد.</div>
-          <div class="o-btn o-btn--contained-red-md js-select-address-map">ثبت و افزودن جزییات</div>
+          <div class="c-address__modal-footer-title">
+            مرسوله شما به این موقعیت ارسال خواهد شد.
+          </div>
+          <div class="o-btn o-btn--contained-red-md js-select-address-map">
+            ثبت و افزودن جزییات
+          </div>
         </div>
       </div>
       <div class="c-address__modal-content u-hidden" id="address-modal-form">
@@ -89,7 +93,8 @@
           <div class="c-address__form-row">
             <div class="o-form__field-container">
               <div class="o-form__field-label">استان*</div>
-              <select class="c-ui-select js-ui-select-search js-dropdown-universal js-select-state js-address-state-id" name="address[state_id]" value="">
+              <select class="c-ui-select js-ui-select-search js-dropdown-universal js-select-state js-address-state-id"
+                name="address[state_id]" value="">
                 <option value="">انتخاب استان</option>
                 @foreach($states->where('type', 'state') as $state)
                 <option value="{{ $state->id }}" >{{ $state->name }}</option>
@@ -187,7 +192,6 @@
             </label>
           </div>
         </div>
-{{--        <div class="c-address__separator"></div>--}}
         <div class="c-address__modal-footer">
           <div class="o-btn o-btn--link-blue-sm js-back-to-map">اصلاح موقعیت بر روی نقشه</div>
           <button class="o-btn o-btn--contained-red-md js-submit-btn" type="submit">تایید و ثبت آدرس</button>
@@ -201,51 +205,14 @@
 
 @section('source')
   <script>
-
     // اضافه کردن توکن به درخواست های ایجکس
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
-
-    {{--function reloadScript() {--}}
-    {{--  $('#sentry_js').remove();--}}
-    {{--  $.getScript("{{ asset('assets/js/sentry.js') }}", function() {--}}
-    {{--    $('script:last').attr('id', 'sentry_js');--}}
-    {{--  });--}}
-
-    {{--  $('#map_js').remove();--}}
-    {{--  $.getScript("{{ asset('assets/new/js/map.js') }}", function() {--}}
-    {{--    $('script:last').attr('id', 'map_js');--}}
-    {{--  });--}}
-    {{--}--}}
-
-    {{--$(document).on('change', '.state-select', function (){--}}
-    {{--  $.ajax({--}}
-    {{--    method: "POST",--}}
-    {{--    url: '{{ route('front.ajax.cityLoader') }}',--}}
-    {{--    data: {--}}
-    {{--      state_id: $(this).val(),--}}
-    {{--    },--}}
-    {{--    success: function(response) {--}}
-    {{--      $('.city-changable').each(function (){--}}
-    {{--        $(this).remove();--}}
-    {{--      });--}}
-    {{--      $('.city-select').replaceWith(response);--}}
-    {{--      $(".js-ui-select-search").selectric({--}}
-    {{--        hasSearch: true--}}
-    {{--      });--}}
-    {{--    }--}}
-    {{--  });--}}
-    {{--});--}}
-
-
-
-
     $("body").addClass('c-checkout-pages');
     $("body").removeClass('has-top-banner');
-
   </script>
 @endsection
 

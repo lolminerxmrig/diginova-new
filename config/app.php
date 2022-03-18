@@ -170,8 +170,6 @@ return [
         Modules\Customers\Panel\Providers\CustomerPanelServiceProvider::class,
         Modules\Customers\Front\Providers\FrontServiceProvider::class,
 
-        Modules\Sellers\Auth\Providers\SellerAuthServiceProvider::class,
-
         Modules\Staff\Auth\Providers\StaffAuthServiceProvider::class,
         Modules\Staff\Category\Providers\StaffCategoryServiceProvider::class,
         Modules\Staff\Brand\Providers\StaffBrandServiceProvider::class,
@@ -272,12 +270,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Payment' => Shetabit\Payment\Facade\Payment::class,
         'Shipping' =>GhaniniaIR\Shipping\Shipping::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
     ],
 
 ];
