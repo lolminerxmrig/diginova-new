@@ -13,7 +13,7 @@
               <div class="c-profile-stats__col">
                 <p>
                   <span>نام و نام خانوادگی:</span>
-                  {{ !is_null($customer->first_name)? $customer->first_name : '' }} {{ !is_null($customer->last_name)? $customer->last_name : '' }}
+                  {{ $customer->first_name . ' ' . $customer->last_name }}
                 </p>
               </div>
               <div class="c-profile-stats__col">

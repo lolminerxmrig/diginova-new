@@ -18,19 +18,6 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
     <meta name="description" content="{{ $description }}" />
     <meta name="keywords" content="{{ $index_meta_keywords }}" />
 
-    <script>
-        var supernova_mode = "production";
-        var supernova_tracker_url = "";
-        var isHomePage = true;
-        var isAnanasFriendly = true;
-        var userId = null;
-        var adroRCActivation = true;
-        var loginRegisterUrlWithBack = "";
-        var isNewCustomer = false;
-        var digiclubLuckyDrawEndTime = "";
-        var activateUrl = "";
-    </script>
-
     <style>
         @media screen and (-ms-high-contrast: none) {
 
@@ -85,110 +72,85 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
     <main id="main">
         <div id="HomePageTopBanner"></div>
         <div id="content">
-
             <article class="container container--home">
                 <div class="o-page">
                     <div class="o-page__row o-page__row--main-top">
-
                         <aside class="c-adplacement c-adplacement__margin-bottom">
-                            @if (!is_null($banner2) &&
-        $banner2->images()->exists() &&
-        $banner2->images()->first()->media()->exists())
+                            @if ($banner2 && $banner2->status  == 'active' && $banner2->images()->exists() && $banner2->images()->first()->media()->exists())
                                 <a href="{{ $banner2->images()->first()->link }}" class="c-adplacement__item"
                                     target="_blank" title="{{ $banner2->images()->first()->alt }}">
                                     <img src="{{ $banner2->images()->first()->media()->exists()
-    ? $site_url .
-        '/' .
-        $banner2->images()->first()->media->first()->path .
-        '/' .
-        $banner2->images()->first()->media->first()->name
-    : '' }}"
-                                        alt="{{ $banner2->images()->first()->media()->exists()
-    ? $banner2->images()->first()->alt
-    : '' }}"
-                                        loading="lazy" />
+                                        ? $site_url . '/' . $banner2->images()->first()->media->first()->path . '/' . $banner2->images()->first()->media->first()->name : '' }}"
+                                        alt="{{ $banner2->images()->first()->media()->exists() ? $banner2->images()->first()->alt : '' }}" loading="lazy" />
                                 </a>
                             @endif
                         </aside>
 
-                        <div class="o-page__two-thirds o-page__two-thirds--right">
+                        <?php
+                            $banner3_exists = $banner3 && $banner3->status  == 'active' &&  
+                                $banner3->images()->exists() && $banner3->images()->first()->media()->exists();
+                            
+                            $banner4_exists = $banner4 && $banner4->status  == 'active' &&  
+                                $banner4->images()->exists() && $banner4->images()->first()->media()->exists();
+                        ?>
+
+                        <div class="{{ $banner3_exists || $banner4_exists ? 'o-page__two-thirds o-page__two-thirds--right' : 'o-page__fullsize' }}">
                             <section class="c-adplacement-head-slider c-adplacement-head-slider--home">
                                 <div class="c-swiper c-swiper--promo-box c-main-slider-container ">
-                                    <div
-                                        class="swiper-container swiper-container-horizontal js-main-page-slider swiper-container-fade swiper-container-rtl">
-                                        <div class="swiper-wrapper dkms-placement-slider c-adplacement"
-                                            style="transition-duration: 0ms;">
-                                            @if (!is_null($slider1) &&
-                                              $slider1->images()->exists() &&
-                                              $slider1->images()->first()->media()->exists())
-                                                @foreach ($slider1->images as $image)
+                                    <div class="swiper-container swiper-container-horizontal js-main-page-slider swiper-container-fade swiper-container-rtl">
+                                        <div class="swiper-wrapper dkms-placement-slider c-adplacement" style="transition-duration: 0ms;">
+                                            @if ($has_slider = !is_null($slider1) && $slider1->images()->exists() && $slider1->images()->first()->media()->exists())
+                                                @foreach ($slider1->images()->active()->get() as $image)
                                                     <a href="{{ $image->media()->exists() ? $image->link : '' }}"
                                                         class="c-main-slider__slide swiper-slide js-main-page-slider-image"
                                                         title="{{ $image->media()->exists() ? $image->alt : '' }}"
                                                         data-is-trackable="" target="_blank"
-                                                        style="background-image: url({{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}); width: 875px; transition-duration: 0ms; opacity: 1; transform: translate3d(1750px, 0px, 0px);"></a>
+                                                        style="background-image: url({{ $site_url . '/' . $image->media()->first()->path . '/' . $image->media()->first()->name }});
+                                                         width: 875px; transition-duration: 0ms; opacity: 1; transform: translate3d(1750px, 0px, 0px); background-size:cover;"></a>
                                                 @endforeach
                                             @endif
                                         </div>
-                                        <div
-                                            class="swiper-pagination c-main-slider__actions swiper-pagination-clickable swiper-pagination-bullets">
-                                        </div>
-                                        <div class="swiper-button-prev"></div>
-                                        <div class="swiper-button-next"></div>
+
+                                        @if ($has_slider && $slider1->images()->active()->count() > 1)
+                                            <div class="swiper-pagination c-main-slider__actions swiper-pagination-clickable swiper-pagination-bullets"></div>
+                                            <div class="swiper-button-prev"></div>
+                                            <div class="swiper-button-next"></div> 
+                                        @endif
                                     </div>
                                 </div>
                             </section>
                         </div>
 
-                        <div class="o-page__one-thirds o-page__one-thirds--left">
-                            <aside class="c-adplacement c-adplacement__container-column">
-                                @if (!is_null($banner3) &&
-                                    $banner3->images()->exists() &&
-                                    $banner3->images()->first()->media()->exists())
-                                    <a href="{{ $banner3->images()->first()->link }}"
-                                        class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column"
-                                        target="_blank" data-is-trackable=""
-                                        title="{{ $banner3->images()->first()->alt }}">
-                                        <div class="c-adplacement__sponsored_box">
-                                            <img src="{{ $banner3->images()->first()->media()->exists()
-                                                  ? $site_url .
-                                                      '/' .
-                                                      $banner3->images()->first()->media->first()->path .
-                                                      '/' .
-                                                      $banner3->images()->first()->media->first()->name
-                                                  : '' }}"
-                                                alt="{{ $banner3->images()->first()->media()->exists()
-                                                  ? $banner3->images()->first()->alt
-                                                  : '' }}"
-                                                loading="lazy" />
-                                        </div>
-                                    </a>
-                                @endif
-                                @if (!is_null($banner4) &&
-                                    $banner4->images()->exists() &&
-                                    $banner4->images()->first()->media()->exists())
-                                    <a href="{{ $banner4->images()->first()->link }}"
-                                        class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column"
-                                        target="_blank" data-is-trackable=""
-                                        title="{{ $banner4->images()->first()->alt }}">
-                                        <div class="c-adplacement__sponsored_box">
-                                            <img src="{{ $banner4->images()->first()->media()->exists()
-    ? $site_url .
-        '/' .
-        $banner4->images()->first()->media->first()->path .
-        '/' .
-        $banner4->images()->first()->media->first()->name
-    : '' }}"
-                                                alt="{{ $banner4->images()->first()->media()->exists()
-    ? $banner4->images()->first()->alt
-    : '' }}"
-                                                loading="lazy" />
-                                        </div>
-                                    </a>
-                                @endif
-                            </aside>
-                        </div>
-
+                        @if ($banner3_exists && $banner4_exists)
+                            <div class="o-page__one-thirds o-page__one-thirds--left">
+                                <aside class="c-adplacement c-adplacement__container-column">
+                                    @if ($banner3_exists)
+                                        <a href="{{ $banner3->images()->first()->link }}"
+                                            class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column"
+                                            target="_blank" data-is-trackable=""
+                                            title="{{ $banner3->images()->first()->alt }}">
+                                            <div class="c-adplacement__sponsored_box">
+                                                <img src="{{ $banner3->images()->first()->media()->exists() ? $site_url . '/' . $banner3->images()->first()->media->first()->path . '/' . $banner3->images()->first()->media->first()->name : '' }}"
+                                                    alt="{{ $banner3->images()->first()->media()->exists()
+                                                    ? $banner3->images()->first()->alt
+                                                    : '' }}"
+                                                    loading="lazy" />
+                                            </div>
+                                        </a>
+                                    @endif
+                                    @if ($banner4_exists)
+                                        <a href="{{ $banner4->images()->first()->link }}"
+                                            class="c-adplacement__item js-ad-placement-column-item c-adplacement__item--column"
+                                            target="_blank" data-is-trackable=""
+                                            title="{{ $banner4->images()->first()->alt }}">
+                                            <div class="c-adplacement__sponsored_box">
+                                                <img src="{{ $banner4->images()->first()->media()->exists() ? $site_url .'/' . $banner4->images()->first()->media->first()->path . '/' . $banner4->images()->first()->media->first()->name : '' }}" alt="{{ $banner4->images()->first()->media()->exists() ? $banner4->images()->first()->alt : '' }}" loading="lazy" />
+                                            </div>
+                                        </a>
+                                    @endif
+                                </aside>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </article>

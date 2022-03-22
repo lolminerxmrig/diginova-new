@@ -1315,37 +1315,6 @@
                              id="stepImagesContainer" hidden="" aria-hidden="true">
                           <div class="c-card__body c-card__body--content marketplace-redesign" id="stepImagesContent">
                             <form id="stepImagesForm" novalidate="novalidate">
-                              {{--                              <div class="c-content-upload__checkbox-container">--}}
-                              {{--                                <div class="field-wrapper">--}}
-                              {{--                                  <label class="c-ui-radio c-ui-radio--content">--}}
-                              {{--                                    <input type="radio" class="c-ui-radio__origin js-images-owner"--}}
-                              {{--                                           name="images[who_will_upload]" value="1" id="sellerWillUpload" checked="">--}}
-                              {{--                                    <span class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
-                              {{--                                    <span--}}
-                              {{--                                      class="c-ui-radio__label c-ui-radio__label--content">بارگذاری تصویر توسط شما</span>--}}
-                              {{--                                  </label>--}}
-                              {{--                                  <label class="c-ui-radio c-ui-radio--content">--}}
-                              {{--                                    <input type="radio" class="c-ui-radio__origin js-images-owner"--}}
-                              {{--                                           name="images[who_will_upload]" value="0">--}}
-                              {{--                                    <span class="c-ui-radio__check c-ui-radio__check--content"></span>--}}
-                              {{--                                    <span class="c-ui-radio__label c-ui-radio__label--content">درخواست عکاسی از محصولات توسط {{ $fa_store_name }}</span>--}}
-                              {{--                                  </label>--}}
-                              {{--                                </div>--}}
-                              {{--                              </div>--}}
-                              {{--                              <div class="hidden" id="imagesDKServiceContainer">--}}
-                              {{--                                <div class="c-content-upload__digikala">--}}
-                              {{--                                  در صورتی که تمایل دارید عکاسی از محصول شما توسط {{ $fa_store_name }} انجام شود، با کلیک بر روی--}}
-                              {{--                                  دکمه--}}
-                              {{--                                  به صفحه ارسال <span class="em">«درخواست عکاسی توسط {{ $fa_store_name }}»</span>درخواست هدایت--}}
-                              {{--                                  می‌شوید. پس--}}
-                              {{--                                  از تکمیل و ارسال فرم درخواست کارشناسان مربوطه در اسرع وقت با شما تماس خواهند گرفت.--}}
-                              {{--                                  توجه--}}
-                              {{--                                  داشته باشید که در اینصورت، پروسه ثبت کالای شما تا آماده شدن و بارگذاری تصاویر، نهایی--}}
-                              {{--                                  نخواهد شد.--}}
-                              {{--                                </div>--}}
-                              {{--                                <a href="https://selleracademy.digikala.com/درخواست-عکاسی-از-کال/" target="_blank"--}}
-                              {{--                                   class="c-ui-btn c-ui-btn--success mb-30">درخواست عکاسی توسط {{ $fa_store_name }}</a>--}}
-                              {{--                              </div>--}}
                               <div id="imagesSelfServiceContainer" class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col">
                                   <fieldset class="c-content-upload">
@@ -1368,17 +1337,7 @@
                                             ۸۵٪ کل تصویر را در برگیرد و پس زمینه تصویر اصلی بهتر است کاملاً سفید باشد.
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                            تصویر
-                                            بهتر است
-                                            فقط کالایی که قصد فروش آن را دارید نمایش دهد و بدون هیچ لوگو، نوشته و یا
-                                            واترمارکی
-                                            باشد..
-                                          </li>
-                                          <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             تصویر شما بهتر است مربعی باشد یا ابعاد یک در یک داشته باشد
-                                          </li>
-                                          <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                            فرمت تصاویر بهتر است JPG باشد
                                           </li>
                                           <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                             امکان آپلود چندین تصویر به صورت همزمان وجود دارد
@@ -1736,8 +1695,6 @@
             <div class="c-content-accordion__modal-body">
               <p class="c-content-accordion__modal-title c-content-accordion__modal-title--dark">
                 گام پنجم
-                {{--                <span class="js-modal-section">--}}
-                {{--                    پنجم                    </span>--}}
                 : بارگذاری تصاویر
               </p>
               <div class="o-spacing-m-t-5 c-content-accordion__modal-content-container">

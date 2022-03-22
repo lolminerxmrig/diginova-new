@@ -22,4 +22,9 @@ class SliderImage extends Model
     {
       return $this->morphToMany(Media::class, 'mediable');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->whereStatus('active');
+    }
 }

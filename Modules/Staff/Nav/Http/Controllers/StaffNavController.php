@@ -172,15 +172,16 @@ class StaffNavController extends Controller
       ], 400);
     }
 
-    Nav::where('id', $request->nav_id)->update([
+    $nav = Nav::findOrFail($request->nav_id);
+
+    $nav->update([
       'name' => $request->nav_name,
       'link' => $request->nav_link,
     ]);
 
-    if (!is_null($request->uploaded_icon_id))
+    if (filled($request->uploaded_icon_id))
     {
-      $media = Media::find($request->uploaded_icon_id);
-      $nav = Nav::find($request->nav_id);
+      $media = Media::findOrFail($request->uploaded_icon_id);
       $nav->media()->sync($media);
     }
 

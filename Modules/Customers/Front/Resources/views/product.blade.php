@@ -24,7 +24,7 @@
   <title>{{ $product_title_prefix . ' ' . $product->title_fa . '  '  }}</title>
   <!-- SEO -->
   <meta name="description" content="{{ $product->seo()->exists() ? $product->seo->description : '' }}"/>
-  <meta name="keywords" content="{{ $keywords ? implode(', ', $keywords) : '' }}"/>
+  <meta name="keywords" content="{{ isset($keywords) ? implode(', ', $keywords) : '' }}"/>
   <link rel="canonical" href="{{ route('front.productPage', ['product_code' => $product->product_code]) }}"/>
 
   @include('front::layouts.product.head-script', compact('product','product_variants', 'variantGroup'))

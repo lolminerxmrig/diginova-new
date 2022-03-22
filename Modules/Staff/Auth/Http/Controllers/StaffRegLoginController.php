@@ -107,6 +107,7 @@ class StaffRegLoginController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('staff')->logout();
+        
         return redirect()->route('staff.indexPage');
     }
 
@@ -189,12 +190,8 @@ class StaffRegLoginController extends Controller
           'remember_token' => null,
         ]);
       }
-      // else {
-//        abort(404);
-      // }
 
       return redirect()->route('staff.loginPage');
-
     }
 
     public function changePassword()
@@ -212,7 +209,6 @@ class StaffRegLoginController extends Controller
           'password' => Hash::make($request->changepassword['password']),
         ]);
 
-        // $status = 1;
         return view('staffauth::change-password', ['status' => 1]);
     }
 }

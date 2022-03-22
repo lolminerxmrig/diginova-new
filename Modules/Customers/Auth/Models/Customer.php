@@ -88,4 +88,16 @@ class Customer extends Authenticatable
     {
       return $this->hasMany(CustomerHistory::class);
     }
+
+    public function getDisplayNameAttribute()
+    {
+      return !is_null($this->first_name) 
+        ? $this->first_name . ' ' . $this->last_name
+        : $this->mobile;
+    }
+
+    public function getFullNameAttribute()
+    {
+      return $this->first_name . ' ' . $this->last_name;
+    }
 }

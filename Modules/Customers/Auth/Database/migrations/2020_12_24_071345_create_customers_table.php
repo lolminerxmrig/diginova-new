@@ -28,6 +28,8 @@ class CreateCustomersTable extends Migration
           $table->boolean('newsletters')->nullable();
           $table->string('return_money_method')->nullable();
           $table->string('status')->default('active');
+          $table->text('remember_token')->nullable();
+          $table->nullableMorphs('address');
           $table->timestamps();
         });
     }

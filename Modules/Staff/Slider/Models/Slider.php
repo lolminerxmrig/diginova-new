@@ -34,4 +34,9 @@ class Slider extends Model
     {
       return $this->hasMany(SliderImage::class);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->whereStatus('active');
+    }
 }

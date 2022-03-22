@@ -17,37 +17,39 @@ class CustomerRegLoginController extends Controller
         session()->put('previous_url_page', session()->previousUrl());
         session()->forget('has_password');
         session()->forget('c_mobile');
+
         return view('customerauth::login-register');
     }
 
     public function check(Request $request)
     {
         if (session('c_mobile'))
-        {
             $request->email_phone = session('c_mobile');
-        }
+
         if(is_numeric($request->email_phone))
         {
-            Log::info('شماره وارد شد');
             $request->email_phone = ltrim($request->email_phone, 0);
+
             $mobile_validator = Validator::make($request->all(), [
                 'email_phone' => 'required|unique:customers,mobile',
             ]);
+
             if ($mobile_validator->fails('unique')) {
-                Log::info('این شماره قبلا ثبت نام کرده');
                 if(Customer::where('mobile', $request->email_phone)->first()->password !== null)
                 {
                     if ($request->loginWithSms){
                         session()->put('has_password', 'true');
                         session()->put('c_mobile', $request->email_phone);
-                        VerifyAccount::updateOrCreate(['mobile' => $request->email_phone],
-                            ['account_type' => 'customer',
-                                'token' => rand(10000, 99999),
-                            ]);
+
+                        VerifyAccount::updateOrCreate(['mobile' => $request->email_phone],[
+                            'account_type' => 'customer',
+                            'token' => rand(10000, 99999),
+                        ]);
 
                         $token = VerifyAccount::where('mobile', $request->email_phone)->first()->token;
-                        Log::info('شماره موبایل:' . $request->email_phone);
+
                         Log::info('کد فعالسازی:' . $token);
+                        
                         session()->put('verify_code', 'true');
                         return redirect()->route('customer.confirmPage');
                     }

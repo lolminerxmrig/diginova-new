@@ -11,17 +11,16 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
     @include('layouts.front.ModulesScript')
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}"type="image/icon">
+    <link rel="icon" type="image/png" href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}">
     <meta name="robots" content="index, {{ $site_index_status == 'true' ? 'follow' : 'nofollow' }}" />
+
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#fb3449">
     <meta name="msapplication-navbutton-color" content="#fb3449">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon"
-        href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}"
-        type="image/icon">
-    <link rel="icon" type="image/png"
-        href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}">
 
     <link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} "
@@ -34,26 +33,22 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
         media="screen and (min-width: 1366px)">
     <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} "
         media="screen and (min-width: 1680px)">
-
-    <link rel="manifest" href="{{ asset('assets/manifest.json') }}?v=1.4">
-
-    {{ $settings->where('name', 'custom_header_code')->first()->value ?? '' }}
+        
+    {!! $settings->where('name', 'custom_header_code')->first()->value ?? '' !!}
 
     @yield('head')
 
-    <style>
-        {{ $settings->where('name', 'custom_css_code')->first()->value ?? '' }}
-    </style>
+    <style> {!! $settings->where('name', 'custom_css_code')->first()->value ?? '' !!} </style>
 
 </head>
 
-<body class="t-index has-top-banner" style="">
+<?php
+    $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
+    $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);    
+?>
+<body class="t-index {{ $banner1 && $banner1->status  == 'active' && $banner1->images()->exists() ? 'has-top-banner' : '' }}" style="">
     <header class="c-header js-header">
-        <?php
-            $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
-            $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);    
-        ?>
-        @if (!is_null($banner1) && $banner1->images()->exists() && $banner1->images()->first()->media()->exists())
+        @if ($banner1 && $banner1->status  == 'active' && $banner1->images()->exists() && $banner1->images()->first()->media()->exists())
             <aside class="c-adplacement c-adplacement__placeholder c-adplacement__container-row c-adplacement__container-row--top">
                 <a href="#" class="c-adplacement__item" target="_blank" style="background-image: url({{ $banner1->images()->first()->media()->exists()
                     ? $site_url . '/' . $banner1->images()->first()->media->first()->path . '/' . $banner1->images()->first()->media->first()->name
@@ -387,8 +382,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                 @endif
                             </ul>
                         </li>
-                        <input type="hidden" id="ESILogged"
-                            data-logged="{{ auth()->guard('customer')->check() ? 1 : 0 }}" />
+                        <input type="hidden" id="ESILogged" data-logged="{{ auth()->guard('customer')->check() ? 1 : 0 }}" />
 
                     </ul>
                 </div>
@@ -409,7 +403,9 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
             <div class="u-flex u-justify-between u-items-center items-center">
                 <div class="c-new-footer__logo"></div>
                 <div id="js-jump-to-top" class="c-new-footer__jump-to-top-container">
-                    <span class="c-new-footer__jump-to-top-label">بازگشت به بالا</span>
+                    <span class="c-new-footer__jump-to-top-label">
+                        بازگشت به بالا
+                    </span>
                     <span class="c-new-footer__jump-to-top-icon"></span>
                 </div>
             </div>
@@ -544,9 +540,8 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
             </div>
         </footer>
     </div>
-
 </body>
 
-{{ $settings->where('name', 'custom_footer_code')->first()->value ?? '' }}
+{!! $settings->where('name', 'custom_footer_code')->first()->value ?? '' !!}
 
 </html>
