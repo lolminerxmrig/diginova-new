@@ -10,7 +10,7 @@
                 <div class="c-form-account__col">
                     <label class="c-ui-input c-ui-input--account-login">
                         <input class="c-ui-input__field" type="text" name="login[email_phone]"
-                            autocomplete="current-email" placeholder="info@digikala.com">
+                            autocomplete="current-email" placeholder="{{ $settings->where('name', 'store_email')->first()->value }}">
                     </label>
                 </div>
             </div>
@@ -286,7 +286,7 @@
                     <div class="c-form-account__col">
                         <label class="c-ui-input c-ui-input--account-login">
                             <input autocomplete="current-email" class="c-ui-input__field"
-                                   name="login[email_phone]" placeholder="info@digikala.com" type="text">
+                                   name="login[email_phone]" placeholder="{{ $settings->where('name', 'store_email')->first()->value }}" type="text">
                         </label>
                     </div>
                 </div>

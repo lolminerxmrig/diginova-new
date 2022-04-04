@@ -701,15 +701,12 @@
                             <li>
                               <a href="{{ route('staff.campains.index') }}">مدیریت کمپین‌ها</a>
                             </li>
-
-                            <li>
+                            {{-- <li>
                               <a href="{{ route('staff.landings.index') }}">مدیریت صفحه سفارشی</a>
-                            </li>
-
+                            </li> --}}
                             <li>
                               <a href="{{ route('staff.periodic-prices.index') }}">تخفیف‌های شگفت‌انگیز</a>
                             </li>
-
                             <li>
                               <a href="{{ route('staff.vouchers.index') }}">مدیریت کد تخفیف</a>
                             </li>

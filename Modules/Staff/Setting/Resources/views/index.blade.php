@@ -1,29 +1,6 @@
 @extends('layouts.staff.master')
 @section('title') تنظیمات | {{ $fa_store_name }}  @endsection
 @section('head')
-{{--<script>--}}
-{{--  var supernova_mode = "production";--}}
-{{--  var supernova_tracker_url = "";--}}
-{{--  var dashboard_sold_history_dates = 0;--}}
-{{--  var dashboard_sold_history_prices = 0;--}}
-{{--  var dashboard_sold_history_quantities = 0;--}}
-{{--  var dashboard_variant_active_with_inventory = 0;--}}
-{{--  var dashboard_variant_active_without_inventory = 0;--}}
-{{--  var dashboard_variant_all = 0;--}}
-{{--  var dashboard_variant_active_false = 0;--}}
-{{--  var dashboardRate = 70;--}}
-{{--  var existNewElectronicContract = false;--}}
-{{--  var contractDaysLeft = 7;--}}
-{{--  var isContractRejected = false;--}}
-{{--  var hasAccessToContract = true;--}}
-{{--  var showRejectedMessage = 0;--}}
-{{--  var rejectedMessage = "";--}}
-{{--  var isLoggedSeller = 1;--}}
-{{--  var walkthroughSteps = [];--}}
-{{--  var showPriceModal = 0;--}}
-{{--  var newSeller = 1;--}}
-{{--  var is_yalda = 0;--}}
-{{--</script>--}}
 
 <link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
 <script src="{{ asset('mehdi/staff/js/inputmask.js') }}"></script>
@@ -85,18 +62,22 @@
                             <a class="c-RD-profile__menu-text" href="#general" style="color: rgb(98, 102, 109) !important;">عمومی</a>
                             <div class="c-RD-profile__selected-nav" style="display: block;">&nbsp;</div>
                           </li>
+
                           <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="store" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
                             <a class="c-RD-profile__menu-text" href="#store" style=" color: rgb(161, 163, 168) !important;">فروشگاه</a>
                             <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                           </li>
+
                           <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="footer" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
                             <a class="c-RD-profile__menu-text" href="#footer" style="color: rgb(161, 163, 168) !important;">پابرگ</a>
                             <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                           </li>
+
                           <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="sms" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
                             <a class="c-RD-profile__menu-text" href="#sms" style="color: rgb(161, 163, 168) !important;">سامانه پیامکی</a>
                             <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                           </li>
+
                           <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="email" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
                             <a class="c-RD-profile__menu-text" href="#email" style="color: rgb(161, 163, 168) !important;">ایمیل</a>
                             <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
@@ -116,6 +97,7 @@
                             <a class="c-RD-profile__menu-text" href="#advanced" style="color: rgb(161, 163, 168) !important;">پیشرفته</a>
                             <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
                           </li>
+
                           <li class="c-profile-nav--menu-links js-profile-navbar uk-flex uk-flex-column" data-content="license" style="padding-top: 5px; padding-bottom: 5px; pointer-events: all;">
                             <a class="c-RD-profile__menu-text" href="#license" style="color: rgb(161, 163, 168) !important;">لایسنس</a>
                             <div class="c-RD-profile__selected-nav" style="display: none;">&nbsp;</div>
@@ -161,7 +143,8 @@
                             <div class="c-form">
                                 <label class="c-RD-profile__input-name" for="en_store_name">نام انگلیسی فروشگاه:</label>
                                 <div class="c-ui-input ">
-                                  <input type="text" name="en_store_name" value="{{ $settings->where('name', 'en_store_name')->first()->value }}" class="c-ui-input__field c-ui-input__RD-field">
+                                  <input type="text" name="en_store_name" value="{{ $settings->where('name', 'en_store_name')->first()->value }}"
+                                   class="c-ui-input__field c-ui-input__RD-field" spellcheck="false">
                                 </div>
                             </div>
                           </div>
@@ -397,7 +380,8 @@
                             <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                               <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
                                 <input type="checkbox" class="c-ui-checkbox__origin" name="development_mode" value="1"
-                                  {{ ($settings->where('name', 'development_mode')->first()->value == 'true')? 'checked' : '' }}>
+                                  {{ ($settings->where('name', 'development_mode')->first()->value == 'true')? 'checked' : '' }}
+                                  disabled>
                                 <span class="c-ui-checkbox__check"></span>
                                 <span class="c-ui-checkbox__label">
                                   در صورت انتخاب امکان فروش در سایت غیرفعال خواهد شد و تنها امکان بازدید وجود خواهد داشت
@@ -415,7 +399,7 @@
                               <label class="c-RD-profile__input-name" for="auto_navigateـtoـcart">هدایت به سبد خرید بعد از افزودن کالا:</label>
                               <div class="c-ui-input ">
                                 <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
-                                        name="auto_navigateـtoـcart" data-active="false" aria-hidden="true">
+                                        name="auto_navigateـtoـcart" data-active="false" aria-hidden="true" disabled>
                                   <option value="true" {{ ($settings->where('name', 'auto_navigateـtoـcart')->first()->value == 'true')? 'selected' : '' }}>فعال</option>
                                   <option value="false" {{ ($settings->where('name', 'auto_navigateـtoـcart')->first()->value == 'false')? 'selected' : '' }}>غیرفعال</option>
                                 </select>
@@ -595,8 +579,9 @@
                             <div class="field-wrapper field-wrapper--justify field-wrapper--background"
                                  style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                               <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
-                                <input type="checkbox" class="c-ui-checkbox__origin" name="site_email_status" value="1"
-                                  {{ ($settings->where('name', 'site_email_status')->first()->value == 'active')? 'checked' : '' }}>
+                                <input type="checkbox" class="c-ui-checkbox__origin" name="site_email_status" value="1" checked disabled
+                                  {{-- {{ ($settings->where('name', 'site_email_status')->first()->value == 'active')? 'checked' : '' }} --}}
+                                  >
                                 <span class="c-ui-checkbox__check"></span>
                                 <span class="c-ui-checkbox__label">
                                   فعالسازی ایمیل فروشگاه
@@ -681,7 +666,7 @@
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                       </div>
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="order_email_status">
@@ -697,18 +682,17 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
-
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="order_email_text">متن ایمیل ثبت موفق سفارش:</label>
                             <div class="c-ui-input">
-                              <textarea name="order_email_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
-                                        rows="5" style="border-color: #dddddd; font-weight: bold;">
-                                        {{ $settings->where('name', 'order_email_text')->first()->value }}
-                              </textarea>
+                              <textarea name="order_email_text" 
+                                class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
+                                rows="5" style="border-color: #dddddd; font-weight: bold;"
+                                >{{ $settings->where('name', 'order_email_text')->first()->value }}</textarea>
                             </div>
                             <div class="c-profile-business-info-logo-hint" style="margin-right: 0px !important; margin-top: 10px !important;">
                               <span>نام مشتری:  <strong>[customer]</strong></span>&nbsp;&nbsp;
@@ -718,9 +702,9 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="delivery_email_status">
@@ -736,15 +720,16 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="delivery_email_text">متن ایمیل وضعیت تحویل کالا:</label>
                             <div class="c-ui-input">
                               <textarea name="delivery_email_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
-                                        rows="5" style="border-color: #dddddd; font-weight: bold;">{{ $settings->where('name', 'delivery_email_text')->first()->value }}</textarea>
+                                rows="5" style="border-color: #dddddd; font-weight: bold;"
+                                >{{ $settings->where('name', 'delivery_email_text')->first()->value }}</textarea>
                             </div>
                             <div class="c-profile-business-info-logo-hint" style="margin-right: 0px !important; margin-top: 10px !important;">
                               <span>نام مشتری:  <strong>[customer]</strong></span>&nbsp;&nbsp;
@@ -754,9 +739,9 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="email_forgot_code_status">
@@ -772,9 +757,9 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="send_registration_code_to_email">
@@ -790,7 +775,7 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
                       <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
                         <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
@@ -836,7 +821,9 @@
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="copyright_text">متن کپی رایت:</label>
                             <div class="c-ui-input">
-                              <textarea name="copyright_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" maxlength="1500" rows="5" style="border-color: #dddddd; font-weight: bold;">{{ $settings->where('name', 'copyright_text')->first()->value }}</textarea>
+                              <textarea name="copyright_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
+                              maxlength="1500" rows="5" style="border-color: #dddddd; font-weight: bold;"
+                              >{{ $settings->where('name', 'copyright_text')->first()->value }}</textarea>
                             </div>
                           </div>
                         </div>
@@ -887,9 +874,8 @@
                             <label class="c-RD-profile__input-name" for="footer_description">توضیحات فروشگاه:</label>
                             <div class="c-ui-input">
                               <textarea name="footer_description" class="c-ui-input__field c-ui-input__field--order
-                               c-ui-input__field--textarea" rows="5" style="border-color: #dddddd; font-weight: bold;">
-                              {{ $settings->where('name', 'footer_description')->first()->value }}
-                            </textarea>
+                               c-ui-input__field--textarea" rows="5" style="border-color: #dddddd; font-weight: bold;"
+                               >{{ $settings->where('name', 'footer_description')->first()->value }}</textarea>
                             </div>
                           </div>
                         </div>
@@ -1005,7 +991,7 @@
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                       </div>
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="whatsapp_link">لینک واتساپ:</label>
@@ -1015,9 +1001,9 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="telegram_link">لینک تلگرام:</label>
@@ -1027,9 +1013,7 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
-
-
+                      </div> --}}
 
                       <div class="c-grid__row" style="margin-top: 75px !important;">
                         <div class="c-grid__col c-grid__col--sm-6 c-grid__col--lg-10 c-RD-profile__section-title">
@@ -1254,7 +1238,8 @@
                             <div class="field-wrapper field-wrapper--justify field-wrapper--background" style="border-radius: 8px;background-color: #f5f7fa;padding-left: 15px;padding-right: 15px;min-height: 40px;">
                               <label class="c-ui-checkbox c-ui-checkbox--small c-ui-checkbox--auto">
                                 <input type="checkbox" class="c-ui-checkbox__origin" name="site_sms_status" value="1"
-                                  {{ ($settings->where('name', 'site_sms_status')->first()->value == 'active')? 'checked' : '' }} >
+                                  {{-- {{ ($settings->where('name', 'site_sms_status')->first()->value == 'active')? 'checked' : '' }} --}}
+                                  checked disabled>
                                 <span class="c-ui-checkbox__check"></span>
                                 <span class="c-ui-checkbox__label">
                                   در صورت انتخاب سامانه پیامکی فعال می‌شود
@@ -1300,12 +1285,14 @@
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="order_sms_text">متن پیام ثبت موفق سفارش:</label>
                             <div class="c-ui-input">
-                                <textarea name="order_sms_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"  rows="5" style="border-color: #dddddd; font-weight: bold;">{{ $settings->where('name', 'order_sms_text')->first()->value }}</textarea>
+                                <textarea name="order_sms_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" 
+                                 rows="5" style="border-color: #dddddd; font-weight: bold;" spellcheck="false"
+                                 >{{ $settings->where('name', 'order_sms_text')->first()->value }}</textarea>
                             </div>
                             <div class="c-profile-business-info-logo-hint" style="margin-right: 0px !important; margin-top: 10px !important;">
                               <span>نام مشتری:  <strong>[customer]</strong></span>&nbsp;&nbsp;
                               <span>شماره سفارش: <strong>[order_code]</strong></span>&nbsp;&nbsp;
-                              <span>لینک پیگیری: <strong>[tracking_url]</strong></span>&nbsp;&nbsp;
+                              {{-- <span>لینک پیگیری: <strong>[tracking_url]</strong></span>&nbsp;&nbsp; --}}
                             </div>
                           </div>
                         </div>
@@ -1342,20 +1329,22 @@
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                       </div>
 
-
                       <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="delivery_sms_text">متن ایمیل وضعیت تحویل کالا:</label>
+                            <label class="c-RD-profile__input-name" for="delivery_sms_text">
+                              متن پیامک وضعیت تحویل کالا:
+                            </label>
                             <div class="c-ui-input">
                               <textarea name="delivery_sms_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
-                                        maxlength="1500" rows="5" style="border-color: #dddddd; font-weight: bold;"
+                                        maxlength="1500" rows="5" style="border-color: #dddddd; font-weight: bold;" spellcheck="true"
                                         >{{ $settings->where('name', 'delivery_sms_text')->first()->value }}</textarea>
                             </div>
                             <div class="c-profile-business-info-logo-hint" style="margin-right: 0px !important; margin-top: 10px !important;">
                               <span>نام مشتری:  <strong>[customer]</strong></span>&nbsp;&nbsp;
+                              <span>وضعیت: <strong>[status]</strong></span>&nbsp;&nbsp;
                               <span>شماره سفارش: <strong>[order_code]</strong></span>&nbsp;&nbsp;
-                              <span>لینک پیگیری: <strong>[tracking_url]</strong></span>&nbsp;&nbsp;
+                              {{-- <span>لینک پیگیری: <strong>[tracking_url]</strong></span>&nbsp;&nbsp; --}}
                             </div>
                           </div>
                         </div>
@@ -1363,7 +1352,7 @@
                       </div>
 
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="sms_forgot_code_status">
@@ -1379,9 +1368,9 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
-                      <div class="c-grid__row">
+                      {{-- <div class="c-grid__row">
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="sms_reg_code_status">
@@ -1397,7 +1386,7 @@
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
-                      </div>
+                      </div> --}}
 
                       <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
                         <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
@@ -1427,18 +1416,43 @@
                       </div>
 
                       <div class="c-grid__row">
-                        <div class="c-grid__col c-grid__col--sm-12 c-grid__col--lg-12">
+                        <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
                           <div class="c-form">
-                            <label class="c-RD-profile__input-name" for="peyment_success_message">متن پیام پرداخت موفق:</label>
-                            <div class="c-ui-input">
-                              <textarea name="peyment_success_message" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
-                                        rows="5" style="border-color: #dddddd; font-weight: bold;"
-                              >{{ $settings->where('name', 'peyment_success_message')->first()->value }}</textarea>
+                            <label class="c-RD-profile__input-name" for="delivery_sms_status">
+                              ارسال پیامک پرداخت موفق سفارش به مشتری:
+                            </label>
+                            <div class="c-ui-input ">
+                              <select class="c-ui-select c-ui-select--common c-ui-select--small c-RD-profile select2-hidden-accessible"
+                                      name="successful_payment_sms_status" data-active="false" aria-hidden="true" spellcheck="false">
+                                <option value="active" {{ ($settings->where('name', 'successful_payment_sms_status')->first()->value == 'active')? 'selected' : '' }}>فعال</option>
+                                <option value="inactive" {{ ($settings->where('name', 'successful_payment_sms_status')->first()->value == 'inactive')? 'selected' : '' }}>غیرفعال</option>
+                              </select>
                             </div>
                           </div>
                         </div>
                         <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
                       </div>
+                      <div class="c-grid__row">
+                        <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4">
+                          <div class="c-form">
+                            <label class="c-RD-profile__input-name" for="peyment_success_message">متن پیام پرداخت موفق:</label>
+                            <div class="c-ui-input">
+                              <textarea name="peyment_success_message" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
+                                        rows="7" style="border-color: #dddddd; font-weight: bold;" spellcheck="false"
+                              >{{ $settings->where('name', 'peyment_success_message')->first()->value }}</textarea>
+                            </div>
+                            <div class="c-profile-business-info-logo-hint" style="margin-right: 0px !important; margin-top: 10px !important;">
+                              <span>نام مشتری:  <strong>[customer]</strong></span>&nbsp;&nbsp;
+                              <span>شماره فاکتور: <strong>[invoice_code]</strong></span>&nbsp;&nbsp;
+                              <span>مبلغ پرداخت: <strong>[cost]</strong></span>&nbsp;&nbsp;<br>
+                              <span>شماره سفارش: <strong>[order_code]</strong></span>&nbsp;&nbsp;
+                              <span>شناسه پیگیری: <strong>[tracking_code]</strong></span>&nbsp;&nbsp;
+                            </div>
+                          </div>
+                        </div>
+                        <div class="c-grid__col c-grid__col--sm-4 c-grid__col--lg-4"></div>
+                      </div>
+
 
                       <div class="c-ui-form__row c-RD-profile__form-action" style="margin-right: auto">
                         <div class="c-RD-profile__cancel-btn uk-flex uk-flex-center uk-flex-middle js-profile-cancel-edit-form">بازگشت</div>
@@ -2011,8 +2025,6 @@ $(document).on('click', '.save_tab_form', function (){
       shop_addresses_id : $("input[name='shop_address']").map(function(){return $(this).data('id');}).get(),
       deleted_addresses : $("input[name='deleted_address']").map(function(){return $(this).val();}).get(),
 
-
-      // footer tab
       // footer tab
       footer_slogan : $('input[name=footer_slogan]').val(),
       copyright_text : $('textarea[name=copyright_text]').val(),
@@ -2066,7 +2078,7 @@ $(document).on('click', '.save_tab_form', function (){
 
       // peyment tab
       peyment_success_message: $('textarea[name=peyment_success_message]').val(),
-
+      successful_payment_sms_status: $('select[name=successful_payment_sms_status]').val(),
 
       // invoice tab
       invoice_title : $('input[name=invoice_title]').val(),

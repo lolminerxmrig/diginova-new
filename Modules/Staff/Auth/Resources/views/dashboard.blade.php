@@ -177,29 +177,25 @@
                     </h2>
                   </div>
                 </a>
-
               </div>
               <div class="c-grid__col c-grid__col--sm-4 c-grid__col--xs-gap">
-                <a href="{{ route('staff.settings.index') }}" class="c-card c-card--is-link c-card--has-btn c-card--has-success c-dashboard-status__jc-c" id="dashboard-step-8">
+                <a href="{{ route('staff.settings.index') }}" id="dashboard-step-8"
+                  class="c-card c-card--is-link c-card--has-btn c-card--has-success c-dashboard-status__jc-c">
                   <div class="c-card__header c-card__header--no-border">
-                    <h2 class="c-card__title c-card__title--dark">وضعیت فروشگاه
+                    <h2 class="c-card__title c-card__title--dark">
+                      وضعیت فروشگاه
                       @if($settings->where('name', 'development_mode')->first()->value == 'true')
-                        <small>فعال</small>
-                      @else
                         <small style="font-size: 12px !important;">حالت توسعه</small>
+                        <div class="c-card__header-btn c-card__header-btn--deny"></div>
+                      @else
+                        <small>فعال</small>
+                        <div class="c-card__header-btn c-card__header-btn--success"></div>
                       @endif
                     </h2>
-                    @if($settings->where('name', 'development_mode')->first()->value == 'true')
-                      <div class="c-card__header-btn c-card__header-btn--success"></div>
-                    @else
-                      <div class="c-card__header-btn c-card__header-btn--deny"></div>
-                    @endif
                   </div>
                 </a>
               </div>
             </div>
-
-
             <div class="c-grid__row">
               <div class="c-grid__col c-grid__col--sm-4">
                 <div class="c-card" id="dashboard-step-9">

@@ -9,10 +9,12 @@
                 <span class="c-new-footer__jump-to-top-icon"></span>
             </div>
         </div>
-        @if (! is_null($settings->where('name', 'store_phone')->first()->value))
+        @if ($store_phone = $settings->where('name', 'store_phone')->first()->value)
             <div class="c-new-footer__contact-info-container">
                 <span>تلفن پشتیبانی:</span>
-                <a class="c-new-footer__phone-number">{{ persianNum(0 . $settings->where('name', 'store_phone')->first()->value) }}</a>
+                <a class="c-new-footer__phone-number">
+                    {{ persianNum($store_phone) }}
+                </a>
                 <span class="c-new-footer__phone-number-separator">|</span>
                 <span>
                     {{ $settings->where('name', 'footer_slogan')->first()->value }}

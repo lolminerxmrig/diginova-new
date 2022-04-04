@@ -409,14 +409,27 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                     <span class="c-new-footer__jump-to-top-icon"></span>
                 </div>
             </div>
-            @if (! is_null($settings->where('name', 'store_phone')->first()->value))
+            <?php
+                $store_phone = $settings->where('name', 'store_phone')->first()->value;
+                $footer_slogan = $settings->where('name', 'footer_slogan')->first()->value;
+            ?>
+            @if ($store_phone || $footer_slogan)
                 <div class="c-new-footer__contact-info-container">
-                    <span>تلفن پشتیبانی:</span>
-                    <a class="c-new-footer__phone-number">{{ persianNum(0 . $settings->where('name', 'store_phone')->first()->value) }}</a>
-                    <span class="c-new-footer__phone-number-separator">|</span>
-                    <span>
-                        {{ $settings->where('name', 'footer_slogan')->first()->value }}
-                    </span>
+                    @if ($store_phone)
+                        <span>تلفن پشتیبانی:</span>
+                        <a class="c-new-footer__phone-number">
+                            {{ persianNum($settings->where('name', 'store_phone')->first()->value) }}
+                        </a>
+                    @endif
+
+                    @if ($footer_slogan)
+                        @if ($store_phone)
+                            <span class="c-new-footer__phone-number-separator">|</span>
+                        @endif
+                        <span>
+                            {{ $settings->where('name', 'footer_slogan')->first()->value }}
+                        </span>
+                    @endif
                 </div>
             @endif
             <div class="c-new-footer__feature-inner-box-container"></div>
@@ -440,29 +453,37 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                         </nav>
                     @endforeach
                 @endif
-                <nav class="c-new-footer__column-social-media">
-                    <div class="c-new-footer__column-label">
-                        با ما همراه باشید
-                    </div>
-                    <div class="c-new-footer__social-links">
-                        @if (!is_null($linkedin_link = $settings->where('name', 'linkedin_link')->first()->value))
-                            <a href="{{ $linkedin_link }}"
-                                class="c-footer__social-link c-footer__social-link--linkedin" target="_blank"></a>
-                        @endif
-                        @if (! is_null($aparat_link = $settings->where('name', 'aparat_link')->first()->value))
-                            <a href="{{ $aparat_link }}" class="c-footer__social-link c-footer__social-link--aparat"
-                                target="_blank"></a>
-                        @endif
-                        @if (!is_null($twitter_link = $settings->where('name', 'twitter_link')->first()->value))
-                            <a href="{{ $twitter_link }}"
-                                class="c-footer__social-link c-footer__social-link--twitter" target="_blank"></a>
-                        @endif
-                        @if (!is_null($instagram_link = $settings->where('name', 'instagram_link')->first()->value))
-                            <a href="{{ $instagram_link }}"
-                                class="c-footer__social-link c-footer__social-link--instagram" target="_blank"></a>
-                        @endif
-                    </div>
-                </nav>
+                <?php
+                    $linkedin_link = $settings->where('name', 'linkedin_link')->first()->value;
+                    $aparat_link = $settings->where('name', 'aparat_link')->first()->value;
+                    $twitter_link = $settings->where('name', 'twitter_link')->first()->value;
+                    $instagram_link = $settings->where('name', 'instagram_link')->first()->value;
+                ?>
+                @if ($linkedin_link ||$aparat_link || $twitter_link || $instagram_link)
+                    <nav class="c-new-footer__column-social-media">
+                        <div class="c-new-footer__column-label">
+                            با ما همراه باشید
+                        </div>
+                        <div class="c-new-footer__social-links">
+                            @if (!is_null($linkedin_link))
+                                <a href="{{ $linkedin_link }}"
+                                    class="c-footer__social-link c-footer__social-link--linkedin" target="_blank"></a>
+                            @endif
+                            @if (! is_null($aparat_link))
+                                <a href="{{ $aparat_link }}" class="c-footer__social-link c-footer__social-link--aparat"
+                                    target="_blank"></a>
+                            @endif
+                            @if (!is_null($twitter_link))
+                                <a href="{{ $twitter_link }}"
+                                    class="c-footer__social-link c-footer__social-link--twitter" target="_blank"></a>
+                            @endif
+                            @if (!is_null($instagram_link))
+                                <a href="{{ $instagram_link }}"
+                                    class="c-footer__social-link c-footer__social-link--instagram" target="_blank"></a>
+                            @endif
+                        </div>
+                    </nav> 
+                @endif
             </div>
             <?php
                 $googleplay_link = $settings->where('name', 'googleplay_link')->first()->value;
@@ -473,7 +494,6 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
             @if ($googleplay_link || $cafebazaar_link || $myket_link || $sibapp_link)
                 <div class="c-new-footer__app-links-container">
                     <a class="u-flex u-items-center">
-                        <div class="c-new-footer__app-links-logo"></div>
                         <div class="c-new-footer__app-links-label">
                             دانلود اپلیکیشن
                             <label>{{ $fa_store_name }}</label>
@@ -524,15 +544,21 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                     </article>
                 </div>
                 <div class="u-flex">
-                    <div class="c-new-footer__trust-symbol">
-                        {{ $settings->where('name', 'samandehi_link')->first()->value ?? '' }}
-                    </div>
-                    <div class="c-new-footer__trust-symbol">
-                        {{ $settings->where('name', 'ecunion_link')->first()->value ?? '' }}
-                    </div>
-                    <div class="c-new-footer__trust-symbol">
-                        {{ $settings->where('name', 'enamad_link')->first()->value ?? '' }}
-                    </div>
+                    @if ($samandehi = $settings->where('name', 'samandehi_link')->first()->value)
+                        <div class="c-new-footer__trust-symbol">
+                            {{ $samandehi }}
+                        </div>   
+                    @endif
+                    @if ($ecunion = $settings->where('name', 'ecunion_link')->first()->value)
+                        <div class="c-new-footer__trust-symbol">
+                            {{ $ecunion }}
+                        </div>     
+                    @endif
+                    @if ($enamad = $settings->where('name', 'enamad_link')->first()->value)
+                        <div class="c-new-footer__trust-symbol">
+                            {{ $enamad }}
+                        </div> 
+                    @endif
                 </div>
             </div>
             <div class="c-new-footer__copyright u-text-center">

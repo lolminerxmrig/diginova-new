@@ -125,9 +125,8 @@ class CustomerRegLoginController extends Controller
             session()->forget('verify_code');
             return view('customerauth::confirm-sms');
         }
-        else {
-            return view('customerauth::confirm');
-        }
+
+        return view('customerauth::confirm');
     }
 
     public function confirm(Request $request)
@@ -156,6 +155,7 @@ class CustomerRegLoginController extends Controller
         $customer_mobile = session('c_mobile');
         $customerVerify = VerifyAccount::where('mobile', $customer_mobile)->first();
         $customer = Customer::where('mobile', $customer_mobile)->select('id')->first();
+
         if (($customerVerify !== null) && ($customerVerify->token ==  $request->code)){
             Customer::updateOrCreate(['mobile' => $customer_mobile]);
             $customer = Customer::where('mobile', $customer_mobile)->select('id')->first();
@@ -167,11 +167,9 @@ class CustomerRegLoginController extends Controller
               return redirect()->route('front.indexPage');
             }
         }
-        else
-        {
-            return view('customerauth::confirm-sms')
-                ->withErrors(['wrongSmsCode' => 'کد وارد شده اشتباه است']);
-        }
+
+        return view('customerauth::confirm-sms')
+        ->withErrors(['wrongSmsCode' => 'کد وارد شده اشتباه است']);
     }
 
     public function forgotPage()
@@ -181,7 +179,6 @@ class CustomerRegLoginController extends Controller
 
     public function forgot(Request $request)
     {
-//        dd($request->email_phone);
         return view('customerauth::forgot-sent');
     }
 
@@ -190,6 +187,7 @@ class CustomerRegLoginController extends Controller
         Auth::guard('customer')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('front.indexPage');
     }
 

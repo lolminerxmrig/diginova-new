@@ -4,10 +4,10 @@ namespace Modules\Customers\Front\Http\Controllers;
 
 use App\Models\State;
 use App\Models\StoreAddress;
+use App\Notifications\InvoicePaid;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use Modules\Customers\Front\Models\Cart;
@@ -42,9 +42,14 @@ use Modules\Staff\Voucher\Models\Voucher;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\AllowedSort;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OrderStatusChanged;
+use App\Notifications\OrderSubmited;
+use Modules\Customers\Auth\Models\Customer;
+use Kavenegar;
 
 class FrontController extends Controller
 {
@@ -54,6 +59,8 @@ class FrontController extends Controller
     public function index()
     {
         $customer = Auth::guard('customer')->user();
+        $index_meta_keywords = Setting::where('name', 'index_meta_keywords')->first()->value;
+        $index_meta_description = Setting::where('name', 'index_meta_description')->first()->value;
 
         $amazing_offer_products = Product::whereHas('variants', function ($q) {
             $q->whereHas('promotions', function ($q) {
@@ -102,7 +109,9 @@ class FrontController extends Controller
                 'productSwipers',
                 'primary',
                 'secondary',
-                'primaryType'
+                'primaryType',
+                'index_meta_keywords',
+                'index_meta_description'
             )
         );
     }
@@ -1610,7 +1619,7 @@ class FrontController extends Controller
         $order_status_id = OrderStatus::where('en_name', 'awaiting_payment')->first()->id;
 
         //ایجاد سفارش
-        Order::create([
+        $order = Order::create([
             'order_code' => $order_code,
             'order_status_id' => $order_status_id,
             'customer_id' => $customer->id,
@@ -1618,8 +1627,10 @@ class FrontController extends Controller
             'discount' => $sum_promotion_price + $final_sum_voucher,
         ]);
 
-        $order = Order::where('order_code', $order_code)->first();
-        $order_id = Order::where('order_code', $order_code)->first()->id;
+        // ارسال پیامک ثبت موفق سفارش
+        Notification::send(auth()->user(),
+            new OrderSubmited($order->order_code)
+        );
 
         if (OrderHasConsignment::count()) {
             $delivery_code = OrderHasConsignment::max('delivery_code') + 1;
@@ -1630,8 +1641,8 @@ class FrontController extends Controller
         }
 
         $i = 0;
-        foreach ($consignment_shipping_cost as $key => $shipping_cost) {
-
+        foreach ($consignment_shipping_cost as $key => $shipping_cost) 
+        {
             // ایجاد مرسوله
             OrderHasConsignment::create([
                 'consignment_code' => $consignment_code,
@@ -1641,7 +1652,7 @@ class FrontController extends Controller
                 'delivery_at' => null,
                 'order_status_id' => $order_status_id,
                 'delivery_method_id' => $method_ids[$i],
-                'order_id' => $order_id,
+                'order_id' => $order->id,
             ]);
 
             $consignment_id = OrderHasConsignment::where('consignment_code', $consignment_code)->first()->id;
@@ -1650,15 +1661,15 @@ class FrontController extends Controller
             foreach ($first_carts as $item) {
 
                 // ایدی حجم: key
-                if ($item->product_variant()->first()->product->weight()->id == $key) {
-
+                if ($item->product_variant()->first()->product->weight()->id == $key) 
+                {
                     $consignment_p_v_id = ConsignmentHasProductVariants::insertGetId([
                         'count' => $item->count,
                         'variant_price' => $item->new_sale_price,
                         'promotion_price' => $item->new_promotion_price,
                         'product_id' => $item->product_variant()->first()->product->id,
                         'consignment_id' => $consignment_id,
-                        'order_id' => $order_id,
+                        'order_id' => $order->id,
                         'order_status_id' => $order_status_id,
                         'product_variant_id' => $item->product_variant_id,
                         'promotion_type' => null,
@@ -1690,13 +1701,21 @@ class FrontController extends Controller
             'plaque' => $default_address->plaque,
             'unit' => $default_address->unit,
             'postal_code' => $default_address->postal_code,
-            'firstname' => !is_null($default_address->recipient_firstname) ? $default_address->recipient_firstname : $customer->first_name,
-            'lastname' => !is_null($default_address->recipient_lastname) ? $default_address->recipient_lastname : $customer->last_name,
-            'national_code' => !is_null($default_address->recipient_national_code) ? $default_address->recipient_national_code : $customer->national_code,
-            'mobile' => !is_null($default_address->recipient_mobile) ? $default_address->recipient_mobile : $customer->mobile,
+            'firstname' => !is_null($default_address->recipient_firstname) 
+                ? $default_address->recipient_firstname 
+                : $customer->first_name,
+            'lastname' => !is_null($default_address->recipient_lastname) 
+                ? $default_address->recipient_lastname 
+                : $customer->last_name,
+            'national_code' => !is_null($default_address->recipient_national_code) 
+                ? $default_address->recipient_national_code 
+                : $customer->national_code,
+            'mobile' => !is_null($default_address->recipient_mobile) 
+                ? $default_address->recipient_mobile 
+                : $customer->mobile,
             'customer_id' => $default_address->customer_id,
             'state_id' => $default_address->state_id,
-            'order_id' => $order_id,
+            'order_id' => $order->id,
         ]);
 
         $customer->carts()->where('type', 'first')->delete();
@@ -1726,19 +1745,28 @@ class FrontController extends Controller
         $invoiceـnumber = $_COOKIE["invoiceـnumber"];
 
         try {
-
             $receipt = Payment::transactionId($transaction_id)->verify();
+            
+            $paymentRecord = PeymentRecord::where('invoiceـnumber', $invoiceـnumber)
+                ->firstOrFail();
 
             // بروز رسانی رکورد پرداخت موفق سفارش
-            PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->update([
+            $paymentRecord->update([
                 'tracking_code' => $receipt->getReferenceId(),
                 'status' => 'successful',
             ]);
 
-            $order = PeymentRecord::where('invoiceـnumber', $invoiceـnumber)->first()->order();
+            $order = $paymentRecord->order();
 
             // تغییر وضعیت ها بعد از پرداخت موفق
             $this->updateStatusAfterSuccessfulPayment($order);
+
+            if (Setting::whereName('successful_payment_sms_status', 'active')->exists()) {
+                Notification::send($paymentRecord->customer,
+                new InvoicePaid($invoiceـnumber, $tracking_code = $receipt->getReferenceId()
+                    , $order->order_code, $order->cost)
+              );
+            }
         } catch (InvalidPaymentException $exception) {
 
             // تغییر وضعیت رکورد پرداخت به ناموفق وقتی از سمت درگاه ریسپانس ناموفق برمیگردد
@@ -1879,6 +1907,11 @@ class FrontController extends Controller
      */
     public function updateStatusAfterSuccessfulPayment($order): void
     {
+        // ارسال پیامک تعییر وضعیت سفارش
+        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
+            Notification::send(auth()->user(),
+                new OrderStatusChanged($order->order_code, 'تایید شده'));
+        }
 
         // تغییر وضعیت سفارش به تایید شده
         $order->update([
@@ -1909,8 +1942,16 @@ class FrontController extends Controller
                 } else {
                     $consignment_product_variant->product()->update(['has_stock' => 0]);
                 }
-                $consignment_product_variant->product()->update(['min_price' => product_price($consignment_product_variant->product)]);
+
+                $consignment_product_variant->product()->update([
+                    'min_price' => product_price($consignment_product_variant->product)
+                ]);
             }
+        }
+
+        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
+            Notification::send(auth()->user(),
+                new OrderStatusChanged($order->order_code, $order->cost));
         }
     }
 
@@ -1922,6 +1963,11 @@ class FrontController extends Controller
      */
     public function updateStatusAfterUnsuccessfulPayment($order)
     {
+        // ارسال پیامک تعییر وضعیت سفارش
+        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
+            Notification::send(auth()->user(),
+                new OrderStatusChanged($order->order_code, 'لغو شده'));
+        }
 
         // تغییر وضعیت سفارش به لغو شده
         $order->update([
@@ -2143,10 +2189,6 @@ class FrontController extends Controller
           }
     }
 
-
-
-
-
     public function findCategoryChilds(Category $category)
     {
         $this->category_childs[] = $category->id;
@@ -2158,9 +2200,10 @@ class FrontController extends Controller
         }
     }
 
-  public function getCategoryChilds(Category $category)
-  {
+    public function getCategoryChilds(Category $category)
+    {
         $this->findCategoryChilds($category);
+
         return $this->category_childs;
-  }
+    }
 }

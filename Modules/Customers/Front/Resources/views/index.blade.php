@@ -15,8 +15,8 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
 @section('head')
     <title>{{ $site_title }}</title>
     <!-- SEO -->
-    <meta name="description" content="{{ $description }}" />
     <meta name="keywords" content="{{ $index_meta_keywords }}" />
+    <meta name="description" content="{{ $index_meta_description }}" />
 
     <style>
         @media screen and (-ms-high-contrast: none) {

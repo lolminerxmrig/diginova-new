@@ -7,20 +7,22 @@ use App\Models\State;
 use Illuminate\Http\Request;
 use App\Models\StoreAddress;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 use Modules\Staff\Setting\Models\Setting;
 use Illuminate\Support\Facades\Validator;
 use Modules\Staff\Category\Models\Category;
+use Illuminate\Support\Facades\Mail;
 
 class StaffSettingController extends Controller
 {
-
     public function index()
     {
       $settings = Setting::all();
       $states = State::all();
       $store_addresses = StoreAddress::all();
 
-      if(!is_null($settings->where('name', 'invoice_stamp')->first()->media)
+      if($settings->where('name', 'invoice_stamp')->first()->media
         && count($settings->where('name', 'invoice_stamp')->first()->media)){
 
         $stamp_image = $settings->where('name', 'invoice_stamp')
@@ -38,47 +40,25 @@ class StaffSettingController extends Controller
 
     public function update(Request $request)
     {
-        if ($request->active_tab == 'general') {
-          return $this->updateGeneral($request);
-        }
-
-        if ($request->active_tab == 'sms') {
-          return $this->updateSms($request);
-        }
-
-        if ($request->active_tab == 'email') {
-          return $this->updateEmail($request);
-        }
-
-        if ($request->active_tab == 'advanced') {
-          return $this->updateAdvanced($request);
-        }
-
-        if ($request->active_tab == 'store') {
-          return $this->updateStore($request);
-        }
-
-        if ($request->active_tab == 'footer') {
-          return $this->updateFooter($request);
-        }
-
-        if ($request->active_tab == 'peyment') {
-          return $this->updatePeyment($request);
-        }
-
-        if ($request->active_tab == 'invoice') {
-          return $this->updateInvoice($request);
-        }
-
+        return match ($request->active_tab) {
+          'general' => $this->updateGeneral($request),
+          'sms' => $this->updateSms($request),
+          'email' => $this->updateEmail($request),
+          'advanced' => $this->updateAdvanced($request),
+          'store' => $this->updateStore($request),
+          'footer' => $this->updateFooter($request),
+          'peyment' => $this->updatePeyment($request),
+          'invoice' => $this->updateInvoice($request),
+        };
     }
 
     public function updateGeneral($request)
     {
-
         $messages = [
           'fa_store_name.required' => 'وارد کردن نام فارسی فروشگاه اجباری است.',
           'en_store_name.required' => 'وارد کردن نام انگلیسی فروشگاه اجباری است.',
           'site_title.required' => 'وارد کردن عنوان سایت اجباری است.',
+          'site_url.required' => 'وارد کردن عنوان سایت اجباری است.',
         ];
 
         $validator = Validator::make($request->all(), [
@@ -86,7 +66,7 @@ class StaffSettingController extends Controller
           'en_store_name' => 'required',
           'site_title' => 'required',
           'site_index_status' => 'required',
-          'site_url' => 'nullable',
+          'site_url' => 'required',
           'index_meta_keywords' => 'nullable',
           'index_meta_description' => 'nullable',
           'logoImageId' => 'nullable',
@@ -95,8 +75,10 @@ class StaffSettingController extends Controller
 
           'management_subdomain' => 'nullable',
           'admin_email' => 'required',
-
         ], $messages);
+
+        env('APP_URL', $request->site_url);
+        config()->set(['url' => $request->site_url]);
 
         if ($validator->fails()) {
             $errors = $validator->errors();
@@ -126,24 +108,19 @@ class StaffSettingController extends Controller
           $symbolImageId->media()->sync($media);
         }
 
-        $fillable = ['fa_store_name', 'en_store_name', 'site_index_status', 'site_title', 'site_url', 'index_meta_keywords', 'index_meta_description'];
+        $fillable = ['fa_store_name', 'en_store_name', 'site_index_status',
+         'site_title', 'site_url', 'index_meta_keywords', 'index_meta_description'];
 
-        foreach ($request->all() as $key => $item)
-        {
-          if (in_array($key, $fillable))
-            Setting::where('name', $key)->update([
-              "value" => $item,
-            ]);
-        }
-
+         $this->updateDBSetting($request->all(), $fillable);
     }
 
     public function updateStore($request)
     {
-
-      if (isset($request->deleted_addresses) && (!is_null($request->deleted_addresses))) {
+      if (filled($request->deleted_addresses)) {
         foreach ($request->deleted_addresses as $deleted_address) {
-          StoreAddress::find($deleted_address)->delete();
+          if ($deleted_address !== 'new' && $address = StoreAddress::whereId($deleted_address)->first()) {
+              $address->delete();
+          }
         }
       }
 
@@ -180,14 +157,7 @@ class StaffSettingController extends Controller
 
       $fillable = ['development_mode', 'auto_navigateـtoـcart', 'max_add_to_cart_num', 'max_shipping_day_count', 'products_per_page_count', 'inـpersonـdelivery', 'product_code_prefix', 'product_title_prefix'];
 
-      foreach ($request->all() as $key => $item)
-      {
-        if (in_array($key, $fillable)) {
-          Setting::where('name', $key)->update([
-            "value" => $item,
-          ]);
-        }
-      }
+      $this->updateDBSetting($request->all(), $fillable);
 
       $settings = Setting::all();
       $setting = $settings->where('name', 'store_city')->first();
@@ -196,7 +166,8 @@ class StaffSettingController extends Controller
 
       if ($request->inـpersonـdelivery == 'true') {
         foreach ($request->shop_addresses as $key => $address) {
-            StoreAddress::updateOrCreate(['id' => isset($request->shop_addresses_id[$key])? $request->shop_addresses_id[$key] : 0 ], [
+            StoreAddress::updateOrCreate(
+              ['id' => isset($request->shop_addresses_id[$key])? $request->shop_addresses_id[$key] : 0 ], [
               'type' => 'shop',
               'address' => $address,
             ]);
@@ -212,40 +183,25 @@ class StaffSettingController extends Controller
         'enamad_link', 'samandehi_link', 'instagram_link', 'twitter_link', 'aparat_link', 'linkedin_link',
         'whatsapp_link', 'telegram_link', 'googleplay_link', 'cafebazaar_link', 'myket_link', 'sibapp_link'];
 
-        foreach ($request->all() as $key => $item)
-        {
-          if (in_array($key, $fillable)) {
-            Setting::where('name', $key)->update([
-              "value" => $item,
-            ]);
-          }
-        }
-
+        $this->updateDBSetting($request->all(), $fillable);
     }
 
     public function updateAdvanced($request)
     {
         $fillable = ['custom_header_code', 'custom_footer_code', 'custom_css_code'];
 
-        foreach ($request->all() as $key => $item)
-        {
-          if (in_array($key, $fillable)) {
-            Setting::where('name', $key)->update([
-              "value" => $item,
-            ]);
-          }
-        }
+        $this->updateDBSetting($request->all(), $fillable);
     }
 
     public function updatePeyment($request)
     {
-
       $messages = [
         'peyment_success_message.required' => 'وارد کردن متن پیام پرداخت موفق اجباری است',
       ];
 
       $validator = Validator::make($request->all(), [
-        'peyment_success_message' => 'required',
+        'successful_payment_sms_status' => 'nullable|required_if:site_sms_status,active',
+        'peyment_success_message' => 'nullable|required_if:successful_payment_sms_status,active',
       ], $messages);
 
       if ($validator->fails()) {
@@ -258,16 +214,9 @@ class StaffSettingController extends Controller
         ], 400);
       }
 
-        $fillable = ['peyment_success_message'];
+        $fillable = ['peyment_success_message', 'successful_payment_sms_status'];
 
-        foreach ($request->all() as $key => $item)
-        {
-          if (in_array($key, $fillable)) {
-            Setting::where('name', $key)->update([
-              "value" => $item,
-            ]);
-          }
-        }
+        $this->updateDBSetting($request->all(), $fillable);
     }
 
     public function updateEmail($request)
@@ -309,19 +258,66 @@ class StaffSettingController extends Controller
           ], 400);
         }
 
-        $fillable = ['site_email_status', 'mail_server', 'mail_port', 'mail_username', 'mail_password', 'mail_address', 'order_email_status',
-                     'order_email_text', 'delivery_email_status', 'delivery_email_text', 'email_forgot_code_status', 'email_reg_code_status'];
+        $fillable = [
+          'site_email_status',
+          'mail_server',
+          'mail_port',
+          'mail_username',
+          'mail_password',
+          'mail_address',
+          'order_email_status',
+          'order_email_text',
+          'delivery_email_status',
+          'delivery_email_text',
+          'email_forgot_code_status',
+          'email_reg_code_status'
+        ];
 
-        foreach ($request->all() as $key => $item)
-        {
-          if (in_array($key, $fillable)) {
-            Setting::where('name', $key)->update([
-              "value" => $item,
-            ]);
-          }
+        $this->updateDBSetting($request->all(), $fillable);
 
+        Config::set('mail.mailers.smtp.host', $request->mail_server);
+        Config::set('mail.mailers.smtp.port', $request->mail_port);
+        Config::set('mail.mailers.smtp.username', $request->mail_username);
+        Config::set('mail.mailers.smtp.password', $request->mail_password);
+        Config::set('mail.from.address', $request->mail_address);
+
+        env('MAIL_HOST', $request->mail_server);
+        env('MAIL_PORT', $request->mail_port);
+        env('MAIL_USERNAME', $request->mail_username);
+        env('MAIL_PASSWORD', $request->mail_password);
+        env('MAIL_FROM_ADDRESS', $request->mail_address);
+
+        $checkEmailConfig = $this->checkEmailConfig($request);
+
+        if ($checkEmailConfig) {
+          return response()->json([
+            'status' => false,
+            'data' => [
+              'errors' => [
+                'email_config' => 'تغییرات شما ذخیره شد اما  پیکربندی ایمیل صحیح نیست',
+                'email' => $checkEmailConfig->getMessage()
+              ],
+            ]
+          ], 400);
         }
 
+    }
+
+    public function checkEmailConfig($request)
+    {
+        if ($request->site_email_status) {
+          try{
+            Mail::raw('test email config', function ($message) {
+                $message->from('test@test.com', 'test');
+                $message->sender('test@test.com', 'test');
+                $message->to('test@test.com', 'test');
+                $message->subject('test');
+            });
+          }
+          catch(\Exception $e){
+              return $e;
+          }
+        }
     }
 
     public function updateSms($request)
@@ -356,21 +352,23 @@ class StaffSettingController extends Controller
           ], 400);
         }
 
-        $fillable = ['site_sms_status', 'sms_provider', 'api_key', 'order_sms_text', 'sms_sender_number', 'delivery_sms_status', 'delivery_sms_text', 'sms_forgot_code_status', 'sms_reg_code_status'];
+        $fillable = [
+          'site_sms_status', 
+          'sms_provider', 
+          'api_key', 
+          'order_sms_text', 
+          'sms_sender_number', 
+          'delivery_sms_status', 
+          'delivery_sms_text', 
+          'sms_forgot_code_status', 
+          'sms_reg_code_status'
+        ];
 
-        foreach ($request->all() as $key => $item)
-        {
-          if (in_array($key, $fillable)) {
-            Setting::where('name', $key)->update([
-              "value" => $item,
-            ]);
-          }
-        }
+        $this->updateDBSetting($request->all(), $fillable);
     }
 
     public function updateInvoice($request)
     {
-
       $messages = [
         'invoice_title.required' => 'وارد کردن عنوان فاکتور اجباری است.',
       ];
@@ -398,9 +396,9 @@ class StaffSettingController extends Controller
         ], 400);
       }
 
-      if (!is_null($request->stampImageId)) {
-        $media = Media::find($request->stampImageId);
-        $stamp = Setting::where('name', 'invoice_stamp')->first();
+      if (filled($request->stampImageId)) {
+        $media = Media::findOrFail($request->stampImageId);
+        $stamp = Setting::where('name', 'invoice_stamp')->firstOrFail();
         $stamp->media()->sync($media);
       }
 
@@ -416,14 +414,7 @@ class StaffSettingController extends Controller
         'invoice_description'
       ];
 
-      foreach ($request->all() as $key => $item)
-      {
-        if (in_array($key, $fillable))
-          Setting::where('name', $key)->update([
-            "value" => $item,
-          ]);
-      }
-
+      $this->updateDBSetting($request->all(), $fillable);
     }
 
     public function UploadImage(Request $request)
@@ -463,5 +454,17 @@ class StaffSettingController extends Controller
           ->first();
 
       $invoice_stamp->media()->detach();
+    }
+
+    public function updateDBSetting($data, $fillable)
+    {
+      foreach ($data as $key => $item)
+      {
+        if (in_array($key, $fillable)) {
+          Setting::whereName($key)->update([
+            "value" => $item,
+          ]);
+        }
+      }
     }
 }

@@ -25,6 +25,7 @@ class StaffSettingServiceProvider extends ServiceProvider
 
         Relation::morphMap([
             'Setting' => 'Modules\Staff\Setting\Models\Setting',
+            'StoreAddress' => 'App\Models\StoreAddress',
         ]);
     }
 

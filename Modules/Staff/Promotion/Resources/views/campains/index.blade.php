@@ -1,17 +1,6 @@
 @extends('layouts.staff.master')
 @section('title')  مدیریت کمپین ها | {{ $fa_store_name }}  @endsection
 @section('head')
-<script>
-    var supernova_mode = "production";
-    var supernova_tracker_url = "";
-    var showRejectedMessage = 0;
-    var rejectedMessage = "";
-    var isLoggedSeller = 1;
-    var walkthroughSteps = [];
-    var showPriceModal = 0;
-    var newSeller = 1;
-    var is_yalda = 0;
-</script>
 <script src="{{ asset('mehdi/staff/js/campainTableView.js') }}"></script>
 <script src="{{ asset('mehdi/staff/js/jalali-moment.browser.js') }}"></script>
 @endsection

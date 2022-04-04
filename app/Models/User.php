@@ -58,4 +58,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function routeNotificationForKavenegar($driver, $notification = null)
+    {
+        return 0 . $this->mobile;
+    }
 }

@@ -1,24 +1,13 @@
 @extends('layouts.staff.master')
 @section('title') ایجاد کمپین | {{ $fa_store_name }}  @endsection
 @section('head')
-    <script>
-        var supernova_mode = "production";
-        var supernova_tracker_url = "";
-        var showRejectedMessage = 0;
-        var rejectedMessage = "";
-        var isLoggedSeller = 1;
-        var walkthroughSteps = [];
-        var showPriceModal = 0;
-        var newSeller = 1;
-        var is_yalda = 0;
-    </script>
-    <script src="{{ asset('mehdi/staff/js/promotions.js') }}"></script>
-    <style>
-        .c-grid__col--gap-lg {
-            padding-left: 5px !important;
-            padding-right: 5px !important;
-        }
-    </style>
+<script src="{{ asset('mehdi/staff/js/promotions.js') }}"></script>
+<style>
+    .c-grid__col--gap-lg {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -29,7 +18,7 @@
                     <div class="c-grid__col">
                         <div class="c-card c-card--transparent">
                             <h1 class="c-card__title c-card__title--dark c-card__title--desc">
-                                ایجاد کمپین
+                                            ایجاد کمپین
                                 <span class="c-card__title-sub c-card__title-sub--no-spacing">
                                     از این صفحه می‌توانید کمپین خود را ایجاد کنید.
                                 </span>

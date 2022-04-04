@@ -94,7 +94,7 @@
                                         <div class="js-table-container" id="product-list-items">
                                             <br>
                                             <div class="c-ui-paginator js-paginator">
-                                                @if(count($vouchers))
+                                                @if($vouchers)
                                                     <div class="c-ui-paginator__total" data-rows="">
                                                         تعداد نتایج: <span>{{ persianNum($vouchers->total()) }} مورد</span>
                                                     </div>
@@ -228,11 +228,11 @@
                                                 </a>
 
                                                 {{ $vouchers->links('staffvoucher::layouts.pagination.custom-pagination') }}
-                                                <div class="c-ui-paginator js-paginator">
+                                                {{-- <div class="c-ui-paginator js-paginator">
                                                     <div class="c-ui-paginator js-paginator">
-                                                        @if(count($vouchers))
+                                                        @if($vouchers)
                                                             <div class="c-ui-paginator__total" data-rows="">
-                                                                تعداد نتایج: <span>{{ persianNum($vouchers->total()) }} مورد</span>
+                                                            تعداد نتایج: <span>{{ persianNum($vouchers->total()) }} مورد</span>
                                                             </div>
                                                         @else
                                                             <div class="c-ui-paginator__total" data-rows="۰">
@@ -240,7 +240,7 @@
                                                             </div>
                                                         @endif
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             </div>
                                         </div>
