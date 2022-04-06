@@ -110,9 +110,9 @@
                                                         <th class="c-ui-table__header  ">
                                                             <span class="js-search-table-column">تعداد کالاهای موجود</span>
                                                         </th>
-                                                        <th class="c-ui-table__header c-ui-table__header--nowrap ">
+                                                        {{-- <th class="c-ui-table__header c-ui-table__header--nowrap ">
                                                             <span class="js-search-table-column">لینک صفحه سفارشی</span>
-                                                        </th>
+                                                        </th> --}}
                                                         <th class="c-ui-table__header c-ui-table__header--nowrap ">
                                                             <span class="js-search-table-column-sortable table-header-searchable"
                                                              data-sort-column="start_end_at" data-sort-order="desc">تاریخ نمایش کمپین</span>
@@ -144,7 +144,7 @@
                                                         <td class="c-ui-table__cell">
                                                             {{ ($campain->promotions()->exists())? persianNum(count($campain->promotions)) : persianNum(0) }}
                                                         </td>
-                                                        <td class="c-ui-table__cell {{ ($campain->landing()->exists())? 'c-ui-table__cell--text-blue' : '' }}">
+                                                        {{-- <td class="c-ui-table__cell {{ ($campain->landing()->exists())? 'c-ui-table__cell--text-blue' : '' }}">
                                                             @if($campain->landing()->exists())
                                                             <a class="c-join__promotion-link" href="{{ $site_url . '/product-list/' . $campain->slug }}"
                                                              target="_blank">{{ $site_url . '/product-list/' . $campain->slug }}</a>
@@ -153,7 +153,7 @@
                                                             @else
                                                                 ندارد
                                                             @endif
-                                                        </td>
+                                                        </td> --}}
                                                         <td class="c-ui-table__cell c-join-promotion__date-range">
                                                             <span class="c-ui-table__date-f rom span-time" data-value="{{ $campain->start_at }}" 
                                                                 data-type="شروع"></span>

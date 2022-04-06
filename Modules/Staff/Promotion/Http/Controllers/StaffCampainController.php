@@ -48,9 +48,7 @@ class StaffCampainController extends Controller
 
     public function moveToEnds(Request $request)
     {
-        Campain::find($request->promotionVariantId)->update([
-            'status' => 'ended',
-        ]);
+        Campain::whereId($request->promotionVariantId)->update(['status' => 'ended']);
 
         return response()->json([
             'status' => true,
@@ -121,7 +119,7 @@ class StaffCampainController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'status' => 'required',
-            'has_landing' => 'required',
+            'has_landing' => 'nullable',
             'start_at' => 'required|date',
             'end_at' => 'required|date|after:start_at',
             'slug' => 'nullable|required_if:has_landing,1',
@@ -382,8 +380,9 @@ class StaffCampainController extends Controller
     {
         $promotions = $promotions->newQuery();
 
-        $search_keyword = ltrim($request->search['title'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
-        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
+        $productCodePrefix = Setting::where('name', 'product_code_prefix')->first()->value . 'C-';
+        $search_keyword = ltrim($request->search['title'], $productCodePrefix);
+        $search_keyword = ltrim($search_keyword, $productCodePrefix);
 
         if ($request->search['type'] == 'all' && !is_null($search_keyword)) {
             $promotions->whereHas('productVariants', function ($query) use ($search_keyword) {

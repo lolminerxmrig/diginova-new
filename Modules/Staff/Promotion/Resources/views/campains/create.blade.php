@@ -40,7 +40,7 @@
                                             <label>
                                                 <div class="c-ui-input">
                                                     <input type="text" name="name" value="" class="c-ui-input__field c-ui-input__field--order 
-                                                    c-ui-input__field--has-btn js-form-clearable" id="product_page_title" placeholder="نام کمپین">
+                                                        c-ui-input__field--has-btn js-form-clearable" id="product_page_title" placeholder="نام کمپین">
                                                 </div>
                                             </label>
                                         </div>
@@ -74,8 +74,8 @@
                                             </select>
                                         </div>
 
-                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr
-                                         c-grid__col--flex-initial c-grid__col--sm-6" style="width: 166px;float: right;">
+                                        {{-- <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr
+                                         c-grid__col--flex-initial c-grid__col--sm-6" style="width: 166px;float: right;"s>
                                             <label class="c-ui-form__label" for="product_page_title">ایجاد صفحه سفارشی</label>
                                             <select id="has_landing" class="dropdown-control c-ui-select c-ui-select--common
                                              c-ui-select--small select2-hidden-accessible" name="has_landing" 
@@ -83,7 +83,7 @@
                                                 <option class="option-control" value="0" selected>خیر</option>
                                                 <option class="option-control" value="1">بله</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="product-form slug-section" style="display: none;">
                                             <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-6">
@@ -101,8 +101,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial
-                                         c-grid__col--sm-6 div-space"></div>
+                                        <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr
+                                         c-grid__col--flex-initial c-grid__col--sm-6 div-space"></div>
 
                                     </form>
 
@@ -190,23 +190,26 @@ $.ajaxSetup({
     }
 });
 
-$("#has_landing").on('change', function (){
-    if ($(this).val() == 1){
-        $(".slug-section").show();
-        $(".div-space").hide();
+// $("#has_landing").on('change', function (){
+//     if ($(this).val() == 1){
+//         $(".slug-section").show();
+//         $(".div-space").hide();
 
-        var buttonWidth = $('#button-urls').width() + 20;
-        $(".url-inputs").css({
-            'padding-left': buttonWidth,
-            'padding-top' : '2px',
-        });
+//         var buttonWidth = $('#button-urls').width() + 20;
+//         $(".url-inputs").css({
+//             'padding-left': buttonWidth,
+//             'padding-top' : '2px',
+//         });
+//     } else if ($(this).val() == 0){
+//         $(".slug-section").hide();
+//         $(".div-space").show();
+//         $(".url-inputs").val('');
+//     }
+// });
 
-    } else if ($(this).val() == 0){
-        $(".slug-section").hide();
-        $(".div-space").show();
-        $(".url-inputs").val('');
-    }
-});
+    $(".slug-section").hide();
+    $(".div-space").show();
+    $(".url-inputs").val('');
 </script>
 @endsection
 

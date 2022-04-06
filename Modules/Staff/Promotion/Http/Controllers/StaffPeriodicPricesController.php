@@ -34,10 +34,8 @@ class StaffPeriodicPricesController extends Controller
     public function loadProductVariants(Request $request)
     {
         $request->paginatorNum = $request->paginatorNum ?? 10;
-        $product_variants = ProductHasVariant::all();
-        dd($product_variants);
 
-        $product_variants = $this->ProductVariantsSearch($request, $product_variants);
+        $product_variants = $this->ProductVariantsSearch($request);
 
         $query = $request['query'];
         $type = $request['type'];
@@ -46,12 +44,17 @@ class StaffPeriodicPricesController extends Controller
             compact('product_variants', 'query', 'type'));
     }
 
-    public function ProductVariantsSearch($request, $product_variants)
+    public function ProductVariantsSearch($request)
     {
-        $product_variants = $product_variants->newQuery();
+        $product_variants = ProductHasVariant::query();
 
-        $search_keyword = ltrim($request['query'], Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
-        $search_keyword = ltrim($search_keyword, Setting::where('name', 'product_code_prefix')->first()->value . '-');
+        if (filled($request['query'])){
+            $search_keyword = ltrim($request['query'], 
+                Setting::where('name', 'product_code_prefix')->first()->value . 'C-');
+
+            $search_keyword = ltrim($search_keyword,
+                Setting::where('name', 'product_code_prefix')->first()->value . '-');
+        }
 
         if ($request->type == 'all' && !is_null($request['query'])) {
             $product_variants = $product_variants->whereHas('product', function ($query) use ($search_keyword) {

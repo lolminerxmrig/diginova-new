@@ -22,9 +22,9 @@
                 <th class="c-ui-table__header  ">
                     <span class="js-search-table-column">تعداد کالاهای موجود</span>
                 </th>
-                <th class="c-ui-table__header c-ui-table__header--nowrap ">
+                {{-- <th class="c-ui-table__header c-ui-table__header--nowrap ">
                     <span class="js-search-table-column">لینک صفحه سفارشی</span>
-                </th>
+                </th> --}}
                 <th class="c-ui-table__header c-ui-table__header--nowrap ">
                     <span class="js-search-table-column-sortable table-header-searchable" data-sort-column="start_end_at" data-sort-order="desc">تاریخ نمایش کمپین</span>
                 </th>
@@ -54,14 +54,14 @@
                         <td class="c-ui-table__cell">
                             {{ ($campain->promotions()->exists())? persianNum(count($campain->promotions)) : persianNum(0) }}
                         </td>
-                        <td class="c-ui-table__cell c-ui-table__cell--text-blue">
+                        {{-- <td class="c-ui-table__cell c-ui-table__cell--text-blue">
                             @if($campain->landing()->exists())
                                 <a class="c-join__promotion-link" href="{{ $site_url . '/product-list/' . $campain->slug }}" target="_blank">{{ $site_url . '/product-list/' . $campain->slug }}</a>
                                 <a class="c-join__promotion-copy-btn js-copy-btn" href="#" data-link="{{ $site_url . '/product-list/' . $campain->slug }}">کپی لینک</a>
                             @else
                                 ندارد
                             @endif
-                        </td>
+                        </td> --}}
                         <td class="c-ui-table__cell c-join-promotion__date-range">
                             <span class="c-ui-table__date-f rom span-time" data-value="{{ $campain->start_at }}" data-type="شروع"></span>
                             <br>
@@ -88,6 +88,18 @@
                             <div class="c-promo__actions">
                                 <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.campains.manage', ['id' => $campain->id]) }}">ویرایش</a>
                                 <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="{{ route('staff.campains.removeCampain', ['id' => $campain->id]) }}">حذف کمپین</button>
+                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--primary 
+                                js-tool-tip-archive js-stop-promotion" style="margin-top: 1px;width: 30px;"
+                                 data-promotion="3856494" data-variant="1"
+                                  data-promotion-variant-id="{{ $campain->id }}" aria-expanded="false">
+                                    <img src="{{ asset('staff/icon/archive.svg') }}">
+                                </button>
+                                <div class="c-rating-chart__description-tooltip 
+                                c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap
+                                 uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive; 
+                                 pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 128.172px; top: 80px;">
+                                    پایان دادن
+                                </div>
                             </div>
                         </td>
                     </tr>

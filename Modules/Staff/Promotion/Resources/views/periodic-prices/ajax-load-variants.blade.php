@@ -9,7 +9,6 @@
                     <div class="c-card">
                         <div class="c-card__body">
                             <form class="c-ui-form" method="POST" id="searchForm">
-
                                 <form class="c-ui-form" method="POST" id="searchForm">
                                     <div class="uk-flex">
                                         <div class="uk-width-1-2 c-mega-campaigns-join-list__container-filters-search c-mega-campaigns-join-list__container-filters-search--large">
