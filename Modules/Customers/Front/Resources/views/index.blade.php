@@ -94,13 +94,13 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                 $banner4->images()->exists() && $banner4->images()->first()->media()->exists();
                         ?>
 
-                        <div class="{{ $banner3_exists || $banner4_exists ? 'o-page__two-thirds o-page__two-thirds--right' : 'o-page__fullsize' }}">
+                        <div class="{{ $banner3_exists && $banner4_exists ? 'o-page__two-thirds o-page__two-thirds--right' : 'o-page__fullsize' }}">
                             <section class="c-adplacement-head-slider c-adplacement-head-slider--home">
                                 <div class="c-swiper c-swiper--promo-box c-main-slider-container ">
                                     <div class="swiper-container swiper-container-horizontal js-main-page-slider swiper-container-fade swiper-container-rtl">
                                         <div class="swiper-wrapper dkms-placement-slider c-adplacement" style="transition-duration: 0ms;">
                                             @if ($has_slider = !is_null($slider1) && $slider1->images()->exists() && $slider1->images()->first()->media()->exists())
-                                                @foreach ($slider1->images()->active()->get() as $image)
+                                                @foreach ($slider1->images()->active()->orderBy('position', 'asc')->get() as $image)
                                                     <a href="{{ $image->media()->exists() ? $image->link : '' }}"
                                                         class="c-main-slider__slide swiper-slide js-main-page-slider-image"
                                                         title="{{ $image->media()->exists() ? $image->alt : '' }}"

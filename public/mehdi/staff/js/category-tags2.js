@@ -1322,7 +1322,7 @@ let IndexAction = {
             };
 
             Services.ajaxPOSTRequestHTML(
-                "child-categories-loader",
+                "/content/create/category/tree/",
                 {
                     parent_id: $category
                         .find(".js-category-data:first")
@@ -1561,7 +1561,7 @@ let IndexAction = {
         };
 
         Services.ajaxPOSTRequestJSON(
-            "create/step/product",
+            "/content/create/product/step/product/",
             {
                 category_id: $selectedCategoryId,
                 force_marketplace_seller_id: $that.getForceMarketplaceSellerId()
@@ -1760,125 +1760,128 @@ let IndexAction = {
                     }
                 }
 
-                // if (isModuleActive('auto_title_suggestion')) {
-                var titlePlaceholderFa =
-                    "نام کالای خود را با رعایت این ترتیب درج نمائید: ماهیت کالا + برند + مدل";
-                var titlePlaceholderEn =
-                    "Enter the name of your item in the following order: Brand + Model + Nature of the Product";
-                var stepImagesHeader = "گام پنجم: بارگذاری تصاویر";
-                var $divisionsSelect = $(".js-divisions-select"),
-                    $productModel = $(".js-product-model");
+                if (isModuleActive("auto_title_suggestion")) {
+                    var titlePlaceholderFa =
+                        "نام کالای خود را با رعایت این ترتیب درج نمائید: ماهیت کالا + برند + مدل";
+                    var titlePlaceholderEn =
+                        "Enter the name of your item in the following order: Brand + Model + Nature of the Product";
+                    var stepImagesHeader = "گام چهارم: بارگذاری تصاویر";
+                    var $divisionsSelect = $(".js-divisions-select"),
+                        $productModel = $(".js-product-model");
 
-                // $('#stepTitleAccordion').hide();
-                // $('.js-step-product-title').show();
+                    $("#stepTitleAccordion").hide();
+                    $(".js-step-product-title").show();
 
-                //todo: disable extra title fields
-                if (data.autoTitleSuggestion) {
-                    if (isModuleActive("ccp_guideline") && data.guideline) {
-                        $(".js-modal-section").text("پنجم");
-                    }
-                    $(".js-auto-title-message").removeClass("uk-hidden");
+                    //todo: disable extra title fields
+                    if (data.autoTitleSuggestion) {
+                        if (isModuleActive("ccp_guideline") && data.guideline) {
+                            $(".js-modal-section").text("پنجم");
+                        }
+                        $(".js-auto-title-message").removeClass("uk-hidden");
 
-                    $productModel.removeClass("uk-hidden");
+                        $productModel.removeClass("uk-hidden");
 
-                    if (data.autoTitleSuggestion.division) {
-                        stepImagesHeader = "گام پنجم: بارگذاری تصاویر";
-                        $(".js-step-product-title").hide();
-                        $("#stepTitleAccordion").show();
-                        var buttonWidth = $("#button-urls").width() + 20;
-                        $(".url-inputs").css({
-                            "padding-left": buttonWidth
-                        });
+                        if (data.autoTitleSuggestion.division) {
+                            stepImagesHeader = "گام پنجم: بارگذاری تصاویر";
+                            $(".js-step-product-title").hide();
+                            $("#stepTitleAccordion").show();
 
-                        $divisionsSelect.removeClass("uk-hidden");
-                        $divisionsSelect.find("select").attr("disabled", false);
-                        var selectedDivision = $divisionsSelect
-                            .find(":selected")
-                            .attr("value");
+                            $divisionsSelect.removeClass("uk-hidden");
+                            $divisionsSelect
+                                .find("select")
+                                .attr("disabled", false);
+                            var selectedDivision = $divisionsSelect
+                                .find(":selected")
+                                .attr("value");
 
-                        // $divisionsSelect.on('select2:select', function () {
-                        //     selectedDivision = $divisionsSelect.find(':selected').attr('value');
-                        // })
+                            // $divisionsSelect.on('select2:select', function () {
+                            //     selectedDivision = $divisionsSelect.find(':selected').attr('value');
+                            // })
 
-                        $("#divisionsSelect").change(function() {
-                            selectedDivision = $(this).val();
-                            checkEnableEdit();
-                        });
+                            $("#divisionsSelect").change(function() {
+                                selectedDivision = $(this).val();
+                                checkEnableEdit();
+                            });
 
-                        var checkEnableEdit = function() {
-                            if (
-                                (!isModuleActive("auto_title_enable_edit") &&
-                                    !$that.isContentUser()) ||
-                                (isModuleActive("auto_title_enable_edit") &&
-                                    !$that.isContentUser())
-                            ) {
+                            var checkEnableEdit = function() {
                                 if (
-                                    selectedDivision !== "" &&
-                                    !data.autoTitleSuggestion.division[
-                                        selectedDivision
-                                    ].enable_edit
+                                    (!isModuleActive(
+                                        "auto_title_enable_edit"
+                                    ) &&
+                                        !$that.isContentUser()) ||
+                                    (isModuleActive("auto_title_enable_edit") &&
+                                        !$that.isContentUser())
                                 ) {
-                                    $("#editSubjectSuggested").attr(
-                                        "disabled",
-                                        true
-                                    );
+                                    if (
+                                        selectedDivision !== "" &&
+                                        !data.autoTitleSuggestion.division[
+                                            selectedDivision
+                                        ].enable_edit
+                                    ) {
+                                        $("#editSubjectSuggested").attr(
+                                            "disabled",
+                                            true
+                                        );
+                                    }
                                 }
-                            }
-                        };
+                            };
 
-                        checkEnableEdit();
-                    }
+                            checkEnableEdit();
+                        }
 
-                    titlePlaceholderFa = data.autoTitleSuggestion.hint_fa
-                        ? data.autoTitleSuggestion.hint_fa
-                        : titlePlaceholderFa;
-                    titlePlaceholderEn = data.autoTitleSuggestion.hint_en
-                        ? data.autoTitleSuggestion.hint_en
-                        : titlePlaceholderEn;
+                        titlePlaceholderFa = data.autoTitleSuggestion.hint_fa
+                            ? data.autoTitleSuggestion.hint_fa
+                            : titlePlaceholderFa;
+                        titlePlaceholderEn = data.autoTitleSuggestion.hint_en
+                            ? data.autoTitleSuggestion.hint_en
+                            : titlePlaceholderEn;
 
-                    if (data.autoTitleSuggestion.hint_fa) {
-                        $(".js-suggested-title-fa").attr(
-                            "placeholder",
-                            data.autoTitleSuggestion.hint_fa
-                        );
-                    }
-                } else if (
-                    !$divisionsSelect.hasClass("uk-hidden") &&
-                    !$productModel.hasClass("uk-hidden")
-                ) {
-                    $divisionsSelect.addClass("uk-hidden");
-                    $productModel.addClass("uk-hidden");
-                    $divisionsSelect.find("select").attr("disabled", true);
-                    $(".js-auto-title-message").addClass("uk-hidden");
-                }
-
-                if (!data.autoTitleSuggestion) {
-                    if (
-                        ($(".js-step-product-title").length &&
-                            $(".js-step-product-title").data("status") ===
-                                "in_review") ||
-                        $(".js-step-product-title").data("content-user") === 1
+                        if (data.autoTitleSuggestion.hint_fa) {
+                            $(".js-suggested-title-fa").attr(
+                                "placeholder",
+                                data.autoTitleSuggestion.hint_fa
+                            );
+                        }
+                    } else if (
+                        !$divisionsSelect.hasClass("uk-hidden") &&
+                        !$productModel.hasClass("uk-hidden")
                     ) {
-                        $(".js-step-product-title")
-                            .removeClass("uk-hidden")
-                            .css("display", "flex");
+                        $divisionsSelect.addClass("uk-hidden");
+                        $productModel.addClass("uk-hidden");
+                        $divisionsSelect.find("select").attr("disabled", true);
+                        $(".js-auto-title-message").addClass("uk-hidden");
                     }
 
-                    // if ($('.js-step-product-title').data('content-user') === 1) {
-                    //     $('#stepTitleAccordion').addClass('disabled');
-                    // }
+                    if (!data.autoTitleSuggestion) {
+                        if (
+                            ($(".js-step-product-title").length &&
+                                $(".js-step-product-title").data("status") ===
+                                    "in_review") ||
+                            $(".js-step-product-title").data("content-user") ===
+                                1
+                        ) {
+                            $(".js-step-product-title")
+                                .removeClass("uk-hidden")
+                                .css("display", "flex");
+                        }
+
+                        if (
+                            $(".js-step-product-title").data("content-user") ===
+                            1
+                        ) {
+                            $("#stepTitleAccordion").addClass("disabled");
+                        }
+                    }
+
+                    $(".js-step-images-header")[0].innerHTML = stepImagesHeader;
+
+                    $('[name="product[title_fa]"]').each(function() {
+                        this.setAttribute("placeholder", titlePlaceholderFa);
+                    });
+                    $('[name="product[title_en]"]').each(function() {
+                        this.setAttribute("placeholder", titlePlaceholderEn);
+                    });
                 }
-
-                $(".js-step-images-header")[0].innerHTML = stepImagesHeader;
-
-                $('[name="product[title_fa]"]').each(function() {
-                    this.setAttribute("placeholder", titlePlaceholderFa);
-                });
-                $('[name="product[title_en]"]').each(function() {
-                    this.setAttribute("placeholder", titlePlaceholderEn);
-                });
-
-                // }
 
                 let $stepContainer = $("#stepProductAccordion");
 
@@ -1899,7 +1902,7 @@ let IndexAction = {
                     .addClass("active");
 
                 Services.ajaxPOSTRequestHTML(
-                    "create/step/attributes",
+                    "/content/create/product/step/attributes/",
                     {
                         category_id: $selectedCategoryId
                     },
@@ -1960,15 +1963,6 @@ let IndexAction = {
             });
         });
 
-        $(".js-required-attribute").each(function() {
-            $(this).rules("add", {
-                required: true,
-                messages: {
-                    required: "وارد کردن مقدار اجباری است"
-                }
-            });
-        });
-
         $(".js-required-attribute-width").each(function() {
             $(this).rules("add", {
                 required: true,
@@ -2001,7 +1995,7 @@ let IndexAction = {
         let $form = $("#titleForm");
         let rules = {
             "title[title_fa]": {
-                required: false,
+                required: true,
                 minlength: 7,
                 maxlength: 255,
                 not_same_as_old_value: true
@@ -2072,7 +2066,7 @@ let IndexAction = {
         };
 
         Services.ajaxPOSTRequestHTML(
-            "search-categories",
+            "/content/create/category/search/",
             {
                 q: query,
                 force_marketplace_seller_id: this.getForceMarketplaceSellerId()
@@ -2125,58 +2119,61 @@ let IndexAction = {
                 $("#stepProductContainer").removeClass("c-content-loading");
             };
 
-            // Services.ajaxPOSTRequestJSON(
-            //     '/content/create/product/step/product/commission/',
-            //     {
-            //         category_id: $('#selectedCategoryIdConfirmed').val(),
-            //         brand_id: $(this).val(),
-            //         force_marketplace_seller_id: $that.getForceMarketplaceSellerId()
-            //     },
-            //     /**
-            //      * @param data
-            //      * @param data.forceUrl force url to go
-            //      * @param data.categoryFormValid Product Form is valid
-            //      * @param data.categoryForm.errors Backend validation errors
-            //      * @param data.productFormValid Product Form is valid
-            //      * @param data.productForm.jsErrors Backend validation errors
-            //      * @param data.productForm.errors Backend validation errors
-            //      * @param data.attributesFormValid Attribute Form is valid
-            //      * @param data.attributesForm.jsErrors Backend validation errors
-            //      * @param data.attributesForm.errors Backend validation errors
-            //      * @param data.imagesFormValid Images Form is valid
-            //      * @param data.imagesForm.jsErrors Backend validation errors
-            //      * @param data.imagesForm.errors Backend validation errors
-            //      * @param data.images3dFormValid Images3d Form is valid
-            //      * @param data.images3dForm.jsErrors Backend validation errors
-            //      * @param data.images3dForm.errors Backend validation errors
-            //      * @param data.videosFormValid Videos Form is valid
-            //      * @param data.videosForm.errors Backend validation errors
-            //      * @param data.productForm.commission Commission value
-            //      */
-            //     function (data) {
-            //         $that.handleErrors(data);
-            //         let $productStepNext = $('#productStepNext');
-            //         if (typeof data.productFormValid !== 'undefined' && data.productFormValid === false) {
-            //             if (!$that.hasForceMarketplaceSeller()) {
-            //                 $commissionsValueContainer.html('');
-            //                 $commissionsContainer.addClass('hidden');
-            //             }
-            //             $productStepNext.addClass('disabled');
-            //             return;
-            //         }
-            //         if (!$that.hasForceMarketplaceSeller()) {
-            //             $commissionsValueContainer.html(data.productForm.commission);
-            //             $commissionsContainer.removeClass('hidden');
-            //         }
-            //
-            //         $productStepNext.removeClass('disabled');
-            //
-            //     },
-            //     function () {
-            //     },
-            //     true,
-            //     true
-            // );
+            Services.ajaxPOSTRequestJSON(
+                "/content/create/product/step/product/commission/",
+                {
+                    category_id: $("#selectedCategoryIdConfirmed").val(),
+                    brand_id: $(this).val(),
+                    force_marketplace_seller_id: $that.getForceMarketplaceSellerId()
+                },
+                /**
+                 * @param data
+                 * @param data.forceUrl force url to go
+                 * @param data.categoryFormValid Product Form is valid
+                 * @param data.categoryForm.errors Backend validation errors
+                 * @param data.productFormValid Product Form is valid
+                 * @param data.productForm.jsErrors Backend validation errors
+                 * @param data.productForm.errors Backend validation errors
+                 * @param data.attributesFormValid Attribute Form is valid
+                 * @param data.attributesForm.jsErrors Backend validation errors
+                 * @param data.attributesForm.errors Backend validation errors
+                 * @param data.imagesFormValid Images Form is valid
+                 * @param data.imagesForm.jsErrors Backend validation errors
+                 * @param data.imagesForm.errors Backend validation errors
+                 * @param data.images3dFormValid Images3d Form is valid
+                 * @param data.images3dForm.jsErrors Backend validation errors
+                 * @param data.images3dForm.errors Backend validation errors
+                 * @param data.videosFormValid Videos Form is valid
+                 * @param data.videosForm.errors Backend validation errors
+                 * @param data.productForm.commission Commission value
+                 */
+                function(data) {
+                    $that.handleErrors(data);
+                    let $productStepNext = $("#productStepNext");
+                    if (
+                        typeof data.productFormValid !== "undefined" &&
+                        data.productFormValid === false
+                    ) {
+                        if (!$that.hasForceMarketplaceSeller()) {
+                            $commissionsValueContainer.html("");
+                            $commissionsContainer.addClass("hidden");
+                        }
+                        $productStepNext.addClass("disabled");
+                        return;
+                    }
+                    if (!$that.hasForceMarketplaceSeller()) {
+                        $commissionsValueContainer.html(
+                            data.productForm.commission
+                        );
+                        $commissionsContainer.removeClass("hidden");
+                    }
+
+                    $productStepNext.removeClass("disabled");
+                },
+                function() {},
+                true,
+                true
+            );
         });
     },
 
@@ -2190,9 +2187,7 @@ let IndexAction = {
                 required: true
             },
             "product[product_nature]": {
-                required: true,
-                minlength: 2,
-                maxlength: 255
+                required: true
             },
             "product[package_length]": {
                 required: true
@@ -2221,16 +2216,16 @@ let IndexAction = {
                 minlength: 2,
                 maxlength: 255
             },
-            "product[types][]": {
-                required: true
+            "product[category_product_type_id][]": {
+                // required: true
             },
             "product[title_alt]": {
                 maxlength: 150
             },
             "product[description]": {
-                // minlength: 150,
-                // maxlength: 2000,
-                // not_same_as_old_value: true
+                minlength: 150,
+                maxlength: 2000,
+                not_same_as_old_value: true
             }
         };
 
@@ -2261,6 +2256,12 @@ let IndexAction = {
             max: this.dimensionConfig
                 ? this.dimensionConfig.weight.max
                 : 9999000
+        };
+        rules["product[package_length]"] = {
+            required: true,
+            digits: true,
+            min: this.dimensionConfig ? this.dimensionConfig.length.min : 1,
+            max: this.dimensionConfig ? this.dimensionConfig.length.max : 20000
         };
         rules["product[package_width]"] = {
             required: true,
@@ -2341,7 +2342,7 @@ let IndexAction = {
                 maxlength:
                     "مدل وارد شده طولانی‌تر از حد مجاز است، مدل نمی‌تواند طولاتی‌تر از 255 کاراکتر باشد"
             },
-            "product[types][]": {
+            "product[category_product_type_id][]": {
                 required: "وارد کردن نوع کالا اجباری است"
             },
             "product[title_alt]": {
@@ -2439,18 +2440,72 @@ let IndexAction = {
                 $("html").removeClass("c-loader-overflow");
             };
 
-            let $stepContainer = $("#stepAttributesAccordion");
-            // $('#stepProductAccordion').removeClass('uk-open');
-            $stepContainer.append("<span></span>");
-            $stepContainer.removeClass("disabled");
-            $stepContainer.addClass("uk-open");
+            let $showAttributeStep = false;
+            $.when(
+                Services.ajaxPOSTRequestJSON(
+                    "/content/create/product/step/product/save/",
+                    $that.serializeForm(true),
+                    /**
+                     * @param data
+                     * @param data.forceUrl force url to go
+                     * @param data.categoryFormValid Product Form is valid
+                     * @param data.categoryForm.errors Backend validation errors
+                     * @param data.productFormValid Product Form is valid
+                     * @param data.productForm.jsErrors Backend validation errors
+                     * @param data.productForm.errors Backend validation errors
+                     * @param data.attributesFormValid Attribute Form is valid
+                     * @param data.attributesForm.jsErrors Backend validation errors
+                     * @param data.attributesForm.errors Backend validation errors
+                     * @param data.imagesFormValid Images Form is valid
+                     * @param data.imagesForm.jsErrors Backend validation errors
+                     * @param data.imagesForm.errors Backend validation errors
+                     * @param data.images3dFormValid Images3d Form is valid
+                     * @param data.images3dForm.jsErrors Backend validation errors
+                     * @param data.images3dForm.errors Backend validation errors
+                     * @param data.videosFormValid Videos Form is valid
+                     * @param data.videosForm.errors Backend validation errors
+                     */
+                    function(data) {
+                        $tagsSelect.siblings(".error-msg").remove();
+                        $tagsSelect.parent().removeClass("has-error");
+                        $that.handleErrors(data);
 
-            let $attributesStepNext = $("#attributesStepNext");
+                        if (
+                            typeof data.categoryFormValid !== "undefined" &&
+                            data.categoryFormValid === true &&
+                            typeof data.productFormValid !== "undefined" &&
+                            data.productFormValid === true
+                        ) {
+                            $showAttributeStep = true;
+                            $("#stepProductAccordion .c-content-progress")
+                                .removeClass("active failed")
+                                .addClass("passed");
+                            $("#stepAttributesAccordion .c-content-progress")
+                                .removeClass("passed failed")
+                                .addClass("active");
+                        }
+                    },
+                    function() {},
+                    true,
+                    true
+                )
+            ).then(function() {
+                if (!$showAttributeStep) {
+                    return false;
+                }
+                let $stepContainer = $("#stepAttributesAccordion");
+                // $('#stepProductAccordion').removeClass('uk-open');
+                $stepContainer.append("<span></span>");
+                $stepContainer.removeClass("disabled");
+                $stepContainer.addClass("uk-open");
 
-            $that.initUiSelect();
-            $attributesStepNext.removeClass("hidden");
-            $attributesStepNext.removeClass("disabled");
-            $that.scrollTo($stepContainer, 55);
+                let $attributesStepNext = $("#attributesStepNext");
+
+                $that.initUiSelect();
+                $attributesStepNext.removeClass("hidden");
+                $attributesStepNext.removeClass("disabled");
+                $that.scrollTo($stepContainer, 55);
+            });
 
             return false;
         });
@@ -2575,35 +2630,97 @@ let IndexAction = {
                 $("html").removeClass("c-loader-overflow");
             };
 
-            $("#stepAttributesAccordion .c-content-progress")
-                .removeClass("active failed")
-                .addClass("passed");
-            $("#stepTitleAccordion .c-content-progress")
-                .removeClass("passed failed")
-                .addClass("active");
+            Services.ajaxPOSTRequestJSON(
+                "/content/create/product/step/attributes/save/",
+                $that.serializeForm(true, true),
+                /**
+                 * @param data
+                 * @param data.forceUrl force url to go
+                 * @param data.categoryFormValid Product Form is valid
+                 * @param data.categoryForm.errors Backend validation errors
+                 * @param data.productFormValid Product Form is valid
+                 * @param data.productForm.jsErrors Backend validation errors
+                 * @param data.productForm.errors Backend validation errors
+                 * @param data.attributesFormValid Attribute Form is valid
+                 * @param data.attributesForm.jsErrors Backend validation errors
+                 * @param data.attributesForm.errors Backend validation errors
+                 * @param data.imagesFormValid Images Form is valid
+                 * @param data.imagesForm.jsErrors Backend validation errors
+                 * @param data.imagesForm.errors Backend validation errors
+                 * @param data.images3dFormValid Images3d Form is valid
+                 * @param data.images3dForm.jsErrors Backend validation errors
+                 * @param data.images3dForm.errors Backend validation errors
+                 * @param data.videosFormValid Videos Form is valid
+                 * @param data.videosForm.errors Backend validation errors
+                 */
+                function(data) {
+                    $that.handleErrors(data);
+                    if (
+                        typeof data.categoryFormValid !== "undefined" &&
+                        data.categoryFormValid === true &&
+                        typeof data.productFormValid !== "undefined" &&
+                        data.productFormValid === true &&
+                        typeof data.attributesFormValid !== "undefined" &&
+                        data.attributesFormValid === true
+                    ) {
+                        if (
+                            !isModuleActive("auto_title_suggestion") ||
+                            $("#stepTitleAccordion").css("display") === "none"
+                        ) {
+                            $("#stepProductAccordion").removeClass("uk-open");
+                            $("#stepImagesContent").append("<span></span>"); //dirty fix to open accordion
 
-            var buttonWidth = $("#button-urls").width() + 20;
-            $(".url-inputs").css({
-                "padding-left": buttonWidth
-            });
+                            let $stepContainer = $("#stepImagesAccordion");
+                            $stepContainer.addClass("uk-open");
+                            $stepContainer.removeClass("disabled");
+                            $that.scrollTo($stepContainer, 55);
+                            $("#saveButton").removeClass("disabled");
+                            $("#stepAttributesAccordion .c-content-progress")
+                                .removeClass("active failed")
+                                .addClass("passed");
+                            $("#stepImagesAccordion .c-content-progress")
+                                .removeClass("passed failed")
+                                .addClass("active");
+                        } else if (
+                            $("#stepTitleAccordion").css("display") !== "none"
+                        ) {
+                            $(".js-suggested-title-fa").html(
+                                data.attributesForm.bind.autoTitleSuggestion.fa
+                            );
+                            $(".js-suggested-title-fa").val(
+                                data.attributesForm.bind.autoTitleSuggestion.fa
+                            );
+                            // $('.js-suggested-title-en').html(data.attributesForm.bind.autoTitleSuggestion.en);
+                            // $('.js-suggested-title-en').val(data.attributesForm.bind.autoTitleSuggestion.en);
 
-            let $stepContainer = $("#stepTitleAccordion");
-            $("#stepProductAccordion").removeClass("uk-open");
-            $stepContainer.addClass("uk-open");
-            $stepContainer.removeClass("disabled");
-            $stepContainer.append("<span></span>");
+                            $("#stepAttributesAccordion .c-content-progress")
+                                .removeClass("active failed")
+                                .addClass("passed");
+                            $("#stepTitleAccordion .c-content-progress")
+                                .removeClass("passed failed")
+                                .addClass("active");
 
-            let $setSubjectStepNext = $("#setSubjectStepNext");
-            $that.initUiSelect();
-            $setSubjectStepNext.removeClass("hidden");
-            $("#editSubjectSuggested").removeClass("hidden");
-            $setSubjectStepNext.removeClass("disabled");
-            $("#editSubjectSuggested").removeClass("disabled");
-            $that.scrollTo($stepContainer, 55);
-            var buttonWidth = $("#button-urls").width() + 20;
-            $(".url-inputs").css({
-                "padding-left": buttonWidth
-            });
+                            let $stepContainer = $("#stepTitleAccordion");
+                            $("#stepProductAccordion").removeClass("uk-open");
+                            $stepContainer.addClass("uk-open");
+                            $stepContainer.removeClass("disabled");
+                            $stepContainer.append("<span></span>");
+
+                            let $setSubjectStepNext = $("#setSubjectStepNext");
+                            $that.initUiSelect();
+                            $setSubjectStepNext.removeClass("hidden");
+                            $("#editSubjectSuggested").removeClass("hidden");
+                            $setSubjectStepNext.removeClass("disabled");
+                            $("#editSubjectSuggested").removeClass("disabled");
+                            $that.scrollTo($stepContainer, 55);
+                        }
+                    }
+                },
+                function() {},
+                true,
+                true
+            );
+
             return false;
         });
     },
@@ -2614,10 +2731,6 @@ let IndexAction = {
         let $confirmBtn = $("#setSubjectStepNext");
         let $cancelBtn = $("#cancelEditSubjectSuggested");
         let $editBtn = $("#editSubjectSuggested");
-        var buttonWidth = $("#button-urls").width() + 20;
-        $(".url-inputs").css({
-            "padding-left": buttonWidth
-        });
 
         $editBtn.on("click", function() {
             $(".js-edite-title-suggested")
@@ -2625,10 +2738,6 @@ let IndexAction = {
                 .addClass("uk-open");
             $cancelBtn.removeClass("uk-hidden disabled");
             $editBtn.addClass("uk-hidden");
-            var buttonWidth = $("#button-urls").width() + 20;
-            $(".url-inputs").css({
-                "padding-left": buttonWidth
-            });
         });
 
         $cancelBtn.on("click", function() {
@@ -2642,10 +2751,6 @@ let IndexAction = {
 
         $("#stepTitleContainer").on("click", "#setSubjectStepNext", function() {
             $(".js-guide-line").addClass("uk-hidden");
-            var buttonWidth = $("#button-urls").width() + 20;
-            $(".url-inputs").css({
-                "padding-left": buttonWidth
-            });
             $form.submit();
             return false;
         });
@@ -2665,24 +2770,59 @@ let IndexAction = {
                 $("html").removeClass("c-loader-overflow");
             };
 
-            $("#stepAttributesAccordion").removeClass("uk-open");
-            $("#stepImagesContent").append("<span></span>"); //dirty fix to open accordion
+            Services.ajaxPOSTRequestJSON(
+                "/content/create/product/step/title/save/",
+                $that.serializeForm(true, true, false, true),
+                /**
+                 * @param data
+                 * @param data.forceUrl force url to go
+                 * @param data.categoryFormValid Product Form is valid
+                 * @param data.categoryForm.errors Backend validation errors
+                 * @param data.productFormValid Product Form is valid
+                 * @param data.productForm.jsErrors Backend validation errors
+                 * @param data.productForm.errors Backend validation errors
+                 * @param data.attributesFormValid Attribute Form is valid
+                 * @param data.attributesForm.jsErrors Backend validation errors
+                 * @param data.attributesForm.errors Backend validation errors
+                 * @param data.imagesFormValid Images Form is valid
+                 * @param data.imagesForm.jsErrors Backend validation errors
+                 * @param data.imagesForm.errors Backend validation errors
+                 * @param data.images3dFormValid Images3d Form is valid
+                 * @param data.images3dForm.jsErrors Backend validation errors
+                 * @param data.images3dForm.errors Backend validation errors
+                 * @param data.videosFormValid Videos Form is valid
+                 * @param data.videosForm.errors Backend validation errors
+                 */
+                function(data) {
+                    $that.handleErrors(data);
+                    if (
+                        typeof data.categoryFormValid !== "undefined" &&
+                        data.categoryFormValid === true &&
+                        typeof data.productFormValid !== "undefined" &&
+                        data.productFormValid === true &&
+                        typeof data.attributesFormValid !== "undefined" &&
+                        data.attributesFormValid === true
+                    ) {
+                        $("#stepAttributesAccordion").removeClass("uk-open");
+                        $("#stepImagesContent").append("<span></span>"); //dirty fix to open accordion
 
-            let $stepContainer = $("#stepImagesAccordion");
-            $stepContainer.addClass("uk-open");
-            $stepContainer.removeClass("disabled");
-            $that.scrollTo($stepContainer, 55);
-            $("#saveButton").removeClass("disabled");
-            $("#stepTitleAccordion .c-content-progress")
-                .removeClass("active failed")
-                .addClass("passed");
-            $("#stepImagesAccordion .c-content-progress")
-                .removeClass("passed failed")
-                .addClass("active");
-            var buttonWidth = $("#button-urls").width() + 20;
-            $(".url-inputs").css({
-                "padding-left": buttonWidth
-            });
+                        let $stepContainer = $("#stepImagesAccordion");
+                        $stepContainer.addClass("uk-open");
+                        $stepContainer.removeClass("disabled");
+                        $that.scrollTo($stepContainer, 55);
+                        $("#saveButton").removeClass("disabled");
+                        $("#stepTitleAccordion .c-content-progress")
+                            .removeClass("active failed")
+                            .addClass("passed");
+                        $("#stepImagesAccordion .c-content-progress")
+                            .removeClass("passed failed")
+                            .addClass("active");
+                    }
+                },
+                function() {},
+                true,
+                true
+            );
 
             return false;
         });
@@ -2710,7 +2850,7 @@ let IndexAction = {
         };
 
         Services.ajaxPOSTRequestJSON(
-            "/products/update",
+            "/content/create/product/step/attributes/save/",
             $that.serializeForm(true, true, true),
             /**
              * @param data
@@ -2801,10 +2941,6 @@ let IndexAction = {
                         }
                     });
                 }
-
-                console.log("start test");
-                console.log(data);
-                window.location.href = "/test";
             },
             function() {},
             true,
@@ -2815,11 +2951,7 @@ let IndexAction = {
     initSave: function() {
         let $that = this;
 
-        $("#saveButton, #saveDraft").on("click", function() {
-            let status = $(this).val();
-
-            let x = $("input[name='publish_status']").val(status);
-
+        $("#saveButton").on("click", function() {
             if ($that.data.saved) {
                 $that.showSuccessModal();
                 return false;
@@ -2840,6 +2972,16 @@ let IndexAction = {
                 return false;
             }
 
+            if (!$("#brandsSelect").val()) {
+                let $p = $("<p/>");
+                $p.html("وارد کردن برند کالا اجباری است");
+                $("#ajaxErrorProduct")
+                    .html($p)
+                    .removeClass("hidden");
+                $that.scrollTo($("#stepProductAccordion"), 55);
+                return false;
+            }
+
             if (!$productForm.valid()) {
                 $that.scrollTo($("#stepProductAccordion"), 55);
                 return false;
@@ -2856,10 +2998,6 @@ let IndexAction = {
             ) {
                 if (!$("#titleForm").valid()) {
                     $that.scrollTo($("#stepTitleAccordion"), 55);
-                    var buttonWidth = $("#button-urls").width() + 20;
-                    $(".url-inputs").css({
-                        "padding-left": buttonWidth
-                    });
                     return false;
                 }
             } else if (
@@ -2912,15 +3050,16 @@ let IndexAction = {
 
             $mainImageErrorContainer.addClass("hidden");
 
-            // if you want save pictures with roles use this:
-
-            // if (($that.imagesRequired() || $imagesCount > 0) && $imagesCount < 1) {
-            //     hasImageErrors = true;
-            //     let $div = $('<div/>');
-            //     $div.html('حداقل دو تصویر آپلود کنید');
-            //     $imagesErrorsContainer.append($div);
-            //     $ajaxErrorImages.removeClass('hidden');
-            // }
+            if (
+                ($that.imagesRequired() || $imagesCount > 0) &&
+                $imagesCount < 2
+            ) {
+                hasImageErrors = true;
+                let $div = $("<div/>");
+                $div.html("حداقل دو تصویر آپلود کنید");
+                $imagesErrorsContainer.append($div);
+                $ajaxErrorImages.removeClass("hidden");
+            }
 
             let $mainImageId = $("#mainImageContainer").val();
             if (!hasImageErrors && !$mainImageId && $imagesCount > 0) {
@@ -2961,16 +3100,12 @@ let IndexAction = {
                 ) {
                     $that.initGetAutoTitleEditMode();
                     $that.scrollTo($("#stepTitleAccordion"), 55);
-                    var buttonWidth = $("#button-urls").width() + 20;
-                    $(".url-inputs").css({
-                        "padding-left": buttonWidth
-                    });
                     return false;
                 }
             }
 
             Services.ajaxPOSTRequestJSON(
-                "create/product/save",
+                "/content/create/product/save/",
                 $that.serializeForm(true, true, true, true),
                 /**
                  * @param data.forceUrl force url to go
@@ -3014,17 +3149,11 @@ let IndexAction = {
                                 $that.showSuccessModal();
                                 return false;
                             } else {
-                                // if (data.save.redirectTo !== 'undefined') {
-                                //     window.location.href = data.save.redirectTo;
-                                // } else {
-                                //     window.location.reload();
-                                // }
-                                // return false;
-
-                                $that.data.saved = true;
-                                let $dkpcText = $("#afterSaveProductId");
-                                $dkpcText.text(data.save.id);
-                                $that.showSuccessModal();
+                                if (data.save.redirectTo !== "undefined") {
+                                    window.location.href = data.save.redirectTo;
+                                } else {
+                                    window.location.reload();
+                                }
                                 return false;
                             }
                         } else {
@@ -3416,17 +3545,13 @@ let IndexAction = {
         let $uploadGalleryContainer = $("#uploadGalleryContainer");
 
         window.UIkit.upload($uploadGalleryContainer, {
-            url: "/products/create/step/upload",
+            url: "/content/create/product/step/upload/",
             multiple: true,
             concurrent: 1,
             beforeSend: function(environment) {
                 $that.data.galleryRequests.push(environment.xhr);
                 environment.data.append("slot", counter++);
-                environment.headers["X-CSRF-TOKEN"] = document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute("content");
             },
-
             beforeAll: function() {
                 $("#ajaxErrorImages").addClass("hidden");
 
@@ -3526,7 +3651,7 @@ let IndexAction = {
                 let $imageInput = $uploadFileSection.find(
                     ".js-image-id-input:first"
                 );
-                let $idKeyPrefix = !$that.isNewMode() ? "" : "";
+                let $idKeyPrefix = !$that.isNewMode() ? "new_" : "";
 
                 $imageInput.attr(
                     "name",
@@ -4721,8 +4846,4 @@ let IndexAction = {
 
 $(function() {
     IndexAction.init();
-    var buttonWidth = $("#button-urls").width() + 20;
-    $(".url-inputs").css({
-        "padding-left": buttonWidth
-    });
 });

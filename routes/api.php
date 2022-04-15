@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Modules\Staff\Product\Models\Product;
 
 /*
 |--------------------------------------------------------------------------

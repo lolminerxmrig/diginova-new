@@ -33,10 +33,18 @@ class StaffProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('created_at', 'desc')->paginate(10);
-        $trashed_products = Product::distinct('title_fa')->onlyTrashed()->orderBy('created_at', 'desc')->paginate(10);
+        $products = Product::orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        $trashed_products = Product::distinct('title_fa')
+            ->onlyTrashed()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
         $settings = Setting::select('name', 'value')->get();
-        return view('staffproduct::index', compact('products', 'trashed_products', 'settings'));
+
+        return view('staffproduct::index',
+         compact('products', 'trashed_products', 'settings'));
     }
 
     public function edit($id)
@@ -61,7 +69,8 @@ class StaffProductController extends Controller
 
         $settings = Setting::select('name', 'value')->get();
 
-        return view('staffproduct::edit', compact('product', 'all_parent', 'categories', 'attr_groups', 'parent_category', 'settings'));
+        return view('staffproduct::edit', 
+            compact('product', 'all_parent', 'categories', 'attr_groups', 'parent_category', 'settings'));
     }
 
     /**
@@ -84,7 +93,9 @@ class StaffProductController extends Controller
     {
         $categories = Category::all();
         $id = $request->parent_id;
-        return View::make("staffproduct::ajax.child-cat-loader", compact('id', 'categories'));
+
+        return View::make("staffproduct::ajax.child-cat-loader",
+         compact('id', 'categories'));
     }
 
     /**
@@ -96,10 +107,11 @@ class StaffProductController extends Controller
         if (!is_null($request->q)) {
             $categories = Category::query()->where('name', 'LIKE', "%{$request->q}%")->get();
             return View::make("staffproduct::ajax.search-categories", compact('categories'));
-        } else {
-            $categories = Category::all();
-            return View::make("staffproduct::ajax.main-cat-loader", compact('categories'));
         }
+
+        $categories = Category::all();
+        
+        return View::make("staffproduct::ajax.main-cat-loader", compact('categories'));
     }
 
     /**
@@ -205,10 +217,28 @@ class StaffProductController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            "product.package_length" => "required",
+            "product.package_width" => "required",
+            "product.package_height" => "required",
+            "product.package_weight" => "required",
+            "product.brand_id" => "required",
+            "product.product_nature" => "required",
+            "product.model" => "required",
+        ]);
 
-        if (!is_null($request->slug)) {
-            $slug = $request->slug;
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return response()->json([
+                'status' => false,
+                'data' => [
+                    'errors' => $errors,
+                ]
+            ]);
         }
+
+        if (filled($request->slug))
+            $slug = $request->slug;
 
         if ($request->product['brand_id'] == 1) {
           $slug = $request->product['product_nature'] . ' مدل ' . $request->product['model'];

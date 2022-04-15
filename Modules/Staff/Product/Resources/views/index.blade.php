@@ -108,9 +108,11 @@
                                             @endif
                                             <div class="c-ui-paginator js-paginator">
                                                 <div class="c-ui-paginator__total" data-rows="۶">
-                                                    تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">{{ persianNum($products->total()) }} مورد</span>
+                                    تعداد نتایج: <span name="total" data-id="{{ $products->total() }}">
+                                                    {{ persianNum($products->total()) }} مورد
+                                                  </span>
                                                 </div>
-=                                            </div>
+                                            </div>
                                         </div>
                                         <div class="c-card__body c-ui-table__wrapper">
                                             <table
@@ -250,7 +252,9 @@
                                                                         aria-expanded="false"></div>
                                                                     <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack uk-animation-fade uk-animation-enter"
                                                                         uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;"
-                                                                        style="left: 152.844px; top: 74px; animation-duration: 200ms;" {{ (!count($product->category()->first()->variantGroup))? 'onclick="return false;"' : '' }}>
+                                                                        style="left: 152.844px; top: 74px; animation-duration: 200ms;"
+                                                                         {{ (!$product->category()->first() || !$product->category()->first()->variantGroup)? 'onclick="return false;"' : '' 
+                                                                        }}>
                                                                         افزودن تنوع
                                                                     </div>
                                                                 </a>
