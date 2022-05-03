@@ -199,7 +199,6 @@ return [
         /*
          * Packages Service Providers...
          */
-//        Maatwebsite\Excel\ExcelServiceProvider::class,
         GhaniniaIR\Shipping\ShippingServiceProvider::class,
         Shetabit\Payment\Provider\PaymentServiceProvider::class,
 //        Barryvdh\Debugbar\ServiceProvider::class,

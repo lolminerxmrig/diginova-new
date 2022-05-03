@@ -136,7 +136,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                     <div class="c-header__profile-dropdown-account-container">
                                         <div class="c-header__profile-dropdown-user">
                                             <div class="c-header__profile-dropdown-user-img">
-                                                <img src="{{ asset('mehdi/public/images/user.png') }}">
+                                                <img src="{{ asset('mehdi/public/images/user.svg') }}">
                                             </div>
                                             <div class="c-header__profile-dropdown-user-info">
                                                 <p class="c-header__profile-dropdown-user-name">
@@ -171,14 +171,12 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                             class="c-header__profile-dropdown-user-profile-full-link"></a>
                                     </div>
 
-                                    <div class="c-header__profile-dropdown-actions">
-                                        <div class="c-header__profile-dropdown-action-container">
-                                            <a href="/profile/orders/" data-snt-event="dkHeaderClick"
-                                                data-snt-params="{&quot;item&quot;:&quot;account&quot;,&quot;item_option&quot;:&quot;orders&quot;}"
-                                                class="c-header__profile-dropdown-action c-header__profile-dropdown-action--orders ">
+                                    <div class="c-header__profile-dropdown-actions">  
+                                        <li>
+                                            <a href="{{ route('customer.panel.myOrders') }}" class="c-profile-menu__item c-profile-menu__item--orders {{ (request()->routeIs('customer.panel.myOrders'))? 'is-active' : '' }}">
                                                 سفارش‌های من
                                             </a>
-                                        </div>
+                                        </li>
                                         <div class="c-header__profile-dropdown-action-container">
                                             <a href="/profile/favorites/?convert=true"
                                                 class="c-header__profile-dropdown-action c-header__profile-dropdown-action--favorites">

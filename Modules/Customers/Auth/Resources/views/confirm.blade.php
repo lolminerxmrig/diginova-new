@@ -8,6 +8,7 @@
 
 @section('content')
 <form class="c-login__form" action="{{ route('customer.confirm') }}" method="post" id="authForm">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
     @csrf
 
     <div class="c-login__header-logo">

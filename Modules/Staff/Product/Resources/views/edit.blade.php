@@ -6,23 +6,18 @@
         margin-top: 0px !important;
     }
 </style>
-<script src="{{ asset('seller/js/tags5.js') }}"></script>
+{{-- <script src="{{ asset('seller/js/tags5.js') }}"></script> --}}
+<script src="{{ asset('mehdi/staff/js/product-tags.js') }}"></script>
 
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
-<script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
-<script src="{{ asset('seller/js/tagify.min.js') }}"></script>
-<link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
-<script src="https://unpkg.com/@yaireo/dragsort"></script>
+<script src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
+<script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}" media="print" onload="this.media='all'">
+<script src="{{ asset('mehdi/staff/css/dragsort.css') }}"></script>
 @endsection
 
 @section('content')
-
-@php
-    $fa_store_name = $settings->where('name', 'site_url')->first()->value;
-    $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
-    $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
-@endphp
 
 <main class="c-content-layout">
     <div class="uk-container uk-container-large">
@@ -1269,7 +1264,7 @@
                                                             <label class="uk-form-label uk-flex uk-flex-between">نامک پیشنهادی:</label>
                                                             <div class="field-wrapper" style="margin-bottom: 15px;">
                                                                 <input type="text" name="suggest_slug" class="c-content-input__origin c-ui-input--deactive url-inputs suggest_slug" dir="ltr" disabled>
-                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
+                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_url }}/product/{{ strtolower($product_code_prefix) }}-{{ $product->product_code }}">
                                                             </div>
                                                         </div>
 
@@ -1277,7 +1272,7 @@
                                                             <label class="uk-form-label uk-flex uk-flex-between">نامک:</label>
                                                             <div class="field-wrapper" style="margin-bottom: 15px;">
                                                                 <input type="text" name="slug" class="c-content-input__origin url-inputs" dir="ltr" value="{{ $product->slug }}">
-                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
+                                                                <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_url }}/product/{{ strtolower($product_code_prefix) }}-{{ $product->product_code }}">
                                                             </div>
                                                         </div>
 
@@ -1406,19 +1401,19 @@
                                                                             <ul class="c-content-upload__list c-content-upload__list--tooltips">
                                                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                                                                     ابعاد
-                                                                                    تصویر بایستی در بازه ۶۰۰x۶۰۰ تا
-                                                                                    ۲۵۰۰x۲۵۰۰ و حجم آن بهتر است کمتر از
+                                                                                    تصویر بهتر است در بازه ۶۰۰x۶۰۰ تا
+                                                                                    ۲۵۰۰x۲۵۰۰ و حجم آن کمتر از
                                                                                     ۶ مگابایت باشد.
                                                                                 </li>
                                                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
                                                                                     کالا
                                                                                     بهتر است
                                                                                     ۸۵٪ کل تصویر را در برگیرد و پس
-                                                                                    زمینه تصویر اصلی بهتر است کاملاً
+                                                                                    زمینه تصویر اصلی کاملاً
                                                                                     سفید باشد.
                                                                                 </li>
                                                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
-                                                                                    تصویر شما باید مربعی باشد یا
+                                                                                    تصویر بهتر است مربعی باشد یا
                                                                                     ابعاد یک در یک داشته باشد
                                                                                 </li>
                                                                                 <li class="c-content-upload__list-item c-content-upload__list-item--tooltips">
