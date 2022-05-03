@@ -25,7 +25,8 @@
         "phpdocumentor/phpdocumentor": "^3.0",
         "phpoffice/phpspreadsheet": "^1.17",
         "shetabit/payment": "^4.0",
-        "spatie/laravel-query-builder": "^3.6"
+        "spatie/laravel-query-builder": "^3.6",
+        "codedge/laravel-selfupdater": "^3.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
