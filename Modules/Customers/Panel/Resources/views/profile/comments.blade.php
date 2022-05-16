@@ -1,7 +1,9 @@
 <?php
   $wating_count = 0;
-  if ($customer->order_variants()->where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'sold')->first()->id)->orWhere('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'returned')->first()->id)->exists()) {
-    foreach($customer->order_variants()->where('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'sold')->first()->id)->orWhere('order_status_id', \Modules\Staff\Shiping\Models\OrderStatus::where('en_name', 'returned')->first()->id)->select('product_id')->groupBy('product_id')->get() as $item) {
+
+  if ($customer->order_variants()->exists() && $customer->order_variants()->where('order_status_id', $sold_status_id)
+      ->orWhere('order_status_id', $returned_status_id)->exists()) {
+    foreach($customer->order_variants()->where('order_status_id', $returned_status_id)->orWhere('order_status_id', $returned_status_id)->select('product_id')->groupBy('product_id')->get() as $item) {
       if($customer->comments()->where('product_id', $item->product_id)->exists()) {
         continue;
       }

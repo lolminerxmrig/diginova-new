@@ -81,7 +81,7 @@ class Customer extends Authenticatable
 
     public function order_variants()
     {
-      return $this->hasMany(ConsignmentHasProductVariants::class, 'customer_id');
+      return $this->hasMany(ConsignmentHasProductVariants::class);
     }
 
     public function histories()
@@ -91,7 +91,7 @@ class Customer extends Authenticatable
 
     public function getDisplayNameAttribute()
     {
-      return !is_null($this->first_name) 
+      return !is_null($this->first_name)
         ? $this->first_name . ' ' . $this->last_name
         : $this->mobile;
     }

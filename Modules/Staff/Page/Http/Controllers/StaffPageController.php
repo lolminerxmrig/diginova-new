@@ -30,7 +30,7 @@ class StaffPageController extends Controller
 
         $media = Media:: all();
         $categories = Category:: all();
-        return view('staffpage::index', 
+        return view('staffpage::index',
             compact('brands', 'media', 'categories', 'trashed_brands'));
     }
 
@@ -66,7 +66,6 @@ class StaffPageController extends Controller
         if ($request->search_type == 'all')
         {
             return $this->ajaxPagination($request);
-
         }
         else {
             $brands = Brand::where('type', 1)
@@ -82,7 +81,7 @@ class StaffPageController extends Controller
             $pageType = 'only_special';
 
             if ($brands){
-                return View::make('staffpage::ajax-content', 
+                return View::make('staffpage::ajax-content',
                     compact('brands', 'pageType', 'trashed_brands'));
             }
 
@@ -102,7 +101,7 @@ class StaffPageController extends Controller
         $categories = Category::get()->unique('name');
         $media = Media:: all();
 
-        return view('staffpage::edit', 
+        return view('staffpage::edit',
             compact('categories', 'brand', 'brands', 'media'));
     }
 
@@ -130,7 +129,7 @@ class StaffPageController extends Controller
             $old_img = Mediable::where('media_id', $request->image)->first();
             if($old_img == null)
             {
-                if (Brand::find($request->id)->media()->first() !== null 
+                if (Brand::find($request->id)->media()->first() !== null
                     && Brand::find($request->id)->media()->first()->id !== $request->image){
                     Mediable::where('mediable_type', 'Brand')->where('mediable_id', $request->id)->delete();
                     if (($media) && ($media->person_role == 'staff') && ($media->person_id == $user_id)) {
@@ -313,6 +312,7 @@ class StaffPageController extends Controller
 
         if ($brands) {
             $pageType = 'brandSearch';
+
             return View::make("staffpage::ajax-content",
                 compact('brands', 'pageType', 'trashed_brands'));
         }

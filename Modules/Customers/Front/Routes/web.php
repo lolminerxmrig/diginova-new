@@ -27,5 +27,3 @@ Route::middleware('web')->name('front.')->group(function(){
 Route::middleware('web')->name('front.')->group(function(){
   Route::get('mainsearch', [FrontController::class, 'mainSearch'])->name('front.mainSearch');
 });
-
-Route::get('testing', [\Modules\Customers\Front\Http\Controllers\MyTestController::class , 'index']);

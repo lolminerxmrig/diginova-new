@@ -67,10 +67,8 @@ class StaffWarrantyController extends Controller
         $warranties = Warranty::all();
         $categories = Category::get();
 
-        return view(
-            'staffwarranty::edit',
-            compact('categories', 'warranty', 'warranties')
-        );
+        return view('staffwarranty::edit',
+            compact('categories', 'warranty', 'warranties'));
     }
 
     public function update(Request $request)

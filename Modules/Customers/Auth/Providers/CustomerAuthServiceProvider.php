@@ -5,7 +5,7 @@ namespace Modules\Customers\Auth\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
-class   CustomerAuthServiceProvider extends ServiceProvider
+class CustomerAuthServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.

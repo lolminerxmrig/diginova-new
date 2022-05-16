@@ -66,6 +66,5 @@ Route::domain('staff.diginova.test')->prefix('warranties')->name('staff.warranti
         ->name('uploadUpdate');
 
     Route::post('ajaxdelete', [StaffWarrantyController::class, 'deleteImage'])
-    ->name('ajaxdelete');
-
+        ->name('ajaxdelete');
 });

@@ -470,9 +470,12 @@ class CustomerProfileController extends Controller
    */
   public function comments()
     {
-      $customer = Auth::guard('customer')->user();
+      $customer = auth()->guard('customer')->user();
+      $sold_status_id = OrderStatus::where('en_name', 'sold')->first()->id;
+      $returned_status_id = OrderStatus::where('en_name', 'returned')->first()->id;
 
-      return view('customerpanel::profile.comments', compact('customer'));
+      return view('customerpanel::profile.comments',
+          compact('customer', 'sold_status_id', 'returned_status_id'));
     }
 
   /**
