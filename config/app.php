@@ -199,12 +199,6 @@ return [
         /*
          * Packages Service Providers...
          */
-//        Maatwebsite\Excel\ExcelServiceProvider::class,
-        GhaniniaIR\Shipping\ShippingServiceProvider::class,
-        Shetabit\Payment\Provider\PaymentServiceProvider::class,
-//        Barryvdh\Debugbar\ServiceProvider::class,
-
-
 
 
       /*
@@ -215,7 +209,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\TelescopeServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 

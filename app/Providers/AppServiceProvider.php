@@ -168,7 +168,7 @@ class AppServiceProvider extends ServiceProvider
     {
       if ($paymentMethod->count()) {
 
-        $site_url = $settings->where('name', 'site_url')->exists()
+        $site_url = $settings->where('name', 'site_url')->first()
             ? $settings->where('name', 'site_url')->first()->value
             : env('APP_URL');
 
