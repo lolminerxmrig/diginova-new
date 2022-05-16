@@ -33,7 +33,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
         media="screen and (min-width: 1366px)">
     <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} "
         media="screen and (min-width: 1680px)">
-        
+
     {!! $settings->where('name', 'custom_header_code')->first()->value ?? '' !!}
 
     @yield('head')
@@ -44,7 +44,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
 
 <?php
     $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
-    $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);    
+    $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
 ?>
 <body class="t-index {{ $banner1 && $banner1->status  == 'active' && $banner1->images()->exists() ? 'has-top-banner' : '' }}" style="">
     <header class="c-header js-header">
@@ -64,7 +64,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                 <div class="c-header__right-side">
                     <div class="c-header__logo ">
                         <a href="{{ route('front.indexPage') }}" class="c-header__logo-img"
-                            style="background: {{ !is_null($header_logo) ? 'url(' . $site_url . '/' . $header_logo->path . '/' . $header_logo->name . ')' : '' }} 
+                            style="background: {{ !is_null($header_logo) ? 'url(' . $site_url . '/' . $header_logo->path . '/' . $header_logo->name . ')' : '' }}
                             {{ is_null($header_logo) ? 'unset !important;' : 'no-repeat 50%;' }} !important; background-size: contain !important;">
                             Diginova
                         </a>
@@ -104,7 +104,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                     <li>
                                         <a class="js-search-keyword-link" href="javascript:">
                                             <span class="c-search__result-item c-search__result-icon c-search__result-icon--group">
-                                                نمایش همه نتایج برای 
+                                                نمایش همه نتایج برای
                                             </span>
                                             <span class="c-search__result-item--category js-search-keyword"></span>
                                         </a>
@@ -136,7 +136,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                     <div class="c-header__profile-dropdown-account-container">
                                         <div class="c-header__profile-dropdown-user">
                                             <div class="c-header__profile-dropdown-user-img">
-                                                <img src="{{ asset('mehdi/public/images/user.png') }}">
+                                                <img src="{{ asset('mehdi/public/images/user.svg') }}">
                                             </div>
                                             <div class="c-header__profile-dropdown-user-info">
                                                 <p class="c-header__profile-dropdown-user-name">
@@ -372,7 +372,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                             </li>
                                         @else
                                             <li class="js-categories-bar-item">
-                                                <a href="{{ $megamenu->link }}" class="c-navi-new-list__category-link 
+                                                <a href="{{ $megamenu->link }}" class="c-navi-new-list__category-link
                                                     c-navi-new-list__category-link--fresh c-navi-new-list__category-link--bold">
                                                     {{ persianNum($megamenu->name) }}
                                                 </a>
@@ -482,7 +482,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                     class="c-footer__social-link c-footer__social-link--instagram" target="_blank"></a>
                             @endif
                         </div>
-                    </nav> 
+                    </nav>
                 @endif
             </div>
             <?php
@@ -547,17 +547,17 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                     @if ($samandehi = $settings->where('name', 'samandehi_link')->first()->value)
                         <div class="c-new-footer__trust-symbol">
                             {{ $samandehi }}
-                        </div>   
+                        </div>
                     @endif
                     @if ($ecunion = $settings->where('name', 'ecunion_link')->first()->value)
                         <div class="c-new-footer__trust-symbol">
                             {{ $ecunion }}
-                        </div>     
+                        </div>
                     @endif
                     @if ($enamad = $settings->where('name', 'enamad_link')->first()->value)
                         <div class="c-new-footer__trust-symbol">
                             {{ $enamad }}
-                        </div> 
+                        </div>
                     @endif
                 </div>
             </div>

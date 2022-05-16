@@ -588,7 +588,7 @@ $customer = auth()->guard('customer')->user();
     <meta name="theme-color" content="#fb3449">
     <meta name="msapplication-navbutton-color" content="#fb3449">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
-    
+
     <link rel="stylesheet" href="{{ asset('assets/css/customize.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} "
@@ -688,7 +688,7 @@ $customer = auth()->guard('customer')->user();
 <header class="c-header js-header">
     <?php
         $banner1 = \Modules\Staff\Slider\Models\Slider::find(1);
-        $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);    
+        $banner2 = \Modules\Staff\Slider\Models\Slider::find(2);
     ?>
     @if (!is_null($banner1) && $banner1->images()->exists() && $banner1->images()->first()->media()->exists())
         <aside class="c-adplacement c-adplacement__placeholder c-adplacement__container-row c-adplacement__container-row--top">
@@ -706,7 +706,7 @@ $customer = auth()->guard('customer')->user();
             <div class="c-header__right-side">
                 <div class="c-header__logo ">
                     <a href="{{ route('front.indexPage') }}" class="c-header__logo-img"
-                        style="background: {{ !is_null($header_logo) ? 'url(' . $site_url . '/' . $header_logo->path . '/' . $header_logo->name . ')' : '' }} 
+                        style="background: {{ !is_null($header_logo) ? 'url(' . $site_url . '/' . $header_logo->path . '/' . $header_logo->name . ')' : '' }}
                         {{ is_null($header_logo) ? 'unset !important;' : 'no-repeat 50%;' }} !important; background-size: contain !important;">
                         Diginova
                     </a>
@@ -746,7 +746,7 @@ $customer = auth()->guard('customer')->user();
                                 <li>
                                     <a class="js-search-keyword-link" href="javascript:">
                                         <span class="c-search__result-item c-search__result-icon c-search__result-icon--group">
-                                            نمایش همه نتایج برای 
+                                            نمایش همه نتایج برای
                                         </span>
                                         <span class="c-search__result-item--category js-search-keyword"></span>
                                     </a>
@@ -778,7 +778,7 @@ $customer = auth()->guard('customer')->user();
                                 <div class="c-header__profile-dropdown-account-container">
                                     <div class="c-header__profile-dropdown-user">
                                         <div class="c-header__profile-dropdown-user-img">
-                                            <img src="{{ asset('mehdi/public/images/user.png') }}">
+                                            <img src="{{ asset('mehdi/public/images/user.svg') }}">
                                         </div>
                                         <div class="c-header__profile-dropdown-user-info">
                                             <p class="c-header__profile-dropdown-user-name">
@@ -1014,7 +1014,7 @@ $customer = auth()->guard('customer')->user();
                                         </li>
                                     @else
                                         <li class="js-categories-bar-item">
-                                            <a href="{{ $megamenu->link }}" class="c-navi-new-list__category-link 
+                                            <a href="{{ $megamenu->link }}" class="c-navi-new-list__category-link
                                                 c-navi-new-list__category-link--fresh c-navi-new-list__category-link--bold">
                                                 {{ persianNum($megamenu->name) }}
                                             </a>
@@ -1047,7 +1047,7 @@ $customer = auth()->guard('customer')->user();
                                 <div class="c-profile-box__section" style="padding-bottom: 10px;">
                                     <div class="c-profile-box__header">
                                         <div class="c-profile-box__avatar js-user-avatar js-change-avatar"
-                                             style="background-image: url({{ asset('mehdi\public\images\user.svg') }})">
+                                             style="background-image: url({{ asset('mehdi/public/images/user.svg') }})">
                                         </div>
                                         <div class="c-profile-box__header-content">
                                             <div class="c-profile-box__username">
