@@ -60,6 +60,7 @@ class AppServiceProvider extends ServiceProvider
           view()->share('fa_store_name', $settings->where('name', 'fa_store_name')->first()->value);
           view()->share('site_url', $settings->where('name', 'site_url')->first()->value);
           view()->share('product_code_prefix', strtolower($settings->where('name', 'product_code_prefix')->first()->value));
+          view()->share('product_title_prefix', strtolower($settings->where('name', 'product_title_prefix')->first()->value));
           view()->share('site_title', $settings->where('name', 'site_title')->first()->value);
           view()->share('site_index_status', $settings->where('name', 'site_index_status')->first()->value);
 
@@ -70,6 +71,7 @@ class AppServiceProvider extends ServiceProvider
           view()->share('fa_store_name', 'دیجی نوا');
           view()->share('site_url', 'localhost');
           view()->share('product_code_prefix', 'dnp');
+          view()->share('product_title_prefix', 'مشخصات، قیمت و خرید');
           view()->share('site_title', 'دیجی نوا');
           view()->share('site_index_status', 'false');
 

@@ -18,4 +18,8 @@ class OrderStatus extends Model
 
     protected $table = 'order_status';
 
+    public function scopeAwaiting($query)
+    {
+        return $query->where('en_name', 'awaiting_payment');
+    }
 }

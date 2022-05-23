@@ -313,15 +313,15 @@
                         @endif
 
                         <li class="c-checkout-bill__sum-price">
-                        <span class="c-checkout-bill__item-title">
-                            جمع سبد خرید
-                        </span>
-                          <span class="c-checkout-bill__price">
-                            {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
-                          <span class="c-checkout-bill__currency">
-                              تومان
+                          <span class="c-checkout-bill__item-title"> جمع سبد خرید </span>
+                            <span class="c-checkout-bill__price">
+                              @if (isset($sum_promotion_price))
+                                {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
+                              @else
+                                {{ persianNum(number_format(toman($sum_sale_price))) }}
+                              @endif
+                            <span class="c-checkout-bill__currency">تومان</span>
                           </span>
-                        </span>
                         </li>
 
                         <li class="c-checkout-bill__additional-shipping-cost">

@@ -7,16 +7,14 @@
   }
 </style>
 {{-- <script src="{{ asset('seller/js/tags5.js') }}"></script> --}}
-<script src="{{ asset('mehdi/staff/js/category-tags.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/product-tags.js') }}"></script>
 
-
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="{{ asset('seller/css/tagify.css') }}">
-<script src="{{ asset('seller/js/jQuery.tagify.min.js') }}"></script>
-<script src="{{ asset('seller/js/tagify.min.js') }}"></script>
-<link rel="stylesheet" href="https://unpkg.com/@yaireo/dragsort/dist/dragsort.css" media="print" onload="this.media='all'">
-<script src="https://unpkg.com/@yaireo/dragsort"></script>
-
+<script src="{{ asset('mehdi/staff/js/jquery-ui.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
+<script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}" media="print" onload="this.media='all'">
+<script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
 
 <script>
 //   var module_hash_id_storage = 1;
@@ -542,12 +540,6 @@
 @endsection
 
 @section('content')
-
-@php
-    $fa_store_name = $settings->where('name', 'site_url')->first()->value;
-    $product_code_prefix = $settings->where('name', 'product_code_prefix')->first()->value;
-    $product_title_prefix = $settings->where('name', 'product_title_prefix')->first()->value;
-@endphp
 
 <main class="c-content-layout">
     <div class="uk-container uk-container-large">
@@ -1203,7 +1195,7 @@
                                 <label class="uk-form-label uk-flex uk-flex-between">نامک پیشنهادی:</label>
                                 <div class="field-wrapper" style="margin-bottom: 15px;">
                                     <input type="text" class="c-content-input__origin c-ui-input--deactive url-inputs suggest_slug" name="suggest_slug" dir="ltr"  disabled>
-                                    <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
+                                    <input type="button" id="button-urls" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_url }}/product/{{ $product_code_prefix }}-code">
                                 </div>
                             </div>
 
@@ -1211,7 +1203,7 @@
                                 <label class="uk-form-label uk-flex uk-flex-between">نامک:</label>
                                 <div class="field-wrapper" style="margin-bottom: 15px;">
                                     <input type="text" class="c-content-input__origin url-inputs" name="slug" dir="ltr">
-                                    <input type="button" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $fa_store_name }}/product/{{ $product_code_prefix }}-code">
+                                    <input type="button" style="width: auto;" class="c-ui-tag__submit button-urls" value="/{{ $site_url }}/product/{{ $product_code_prefix }}-code">
                                 </div>
                             </div>
 
@@ -1691,11 +1683,9 @@
               <p class="c-content-accordion__modal-title c-content-accordion__modal-title--light">راهنما</p>
               <button class="uk-modal-close uk-close uk-icon" type="button" uk-close=""></button>
             </div>
-
             <div class="c-content-accordion__modal-body">
               <p class="c-content-accordion__modal-title c-content-accordion__modal-title--dark">
-                گام پنجم
-                : بارگذاری تصاویر
+                گام پنجم: بارگذاری تصاویر
               </p>
               <div class="o-spacing-m-t-5 c-content-accordion__modal-content-container">
                 <p class="c-content-accordion__modal-text js-modal-item uk-hidden" data-item="short_description">در این
@@ -1721,7 +1711,6 @@
 
                 <div class="o-spacing-m-t-6 c-content-accordion__modal-guidelines-separator uk-hidden js-modal-item"
                      data-item="gallery">
-
                   <div class="swiper-container js-swiper-container" dir="rtl">
                     <div class="swiper-wrapper o-spacing-m-t-5 uk-flex uk-flex-bottom">
                       <div class="swiper-slide">
@@ -1761,17 +1750,13 @@
           <div>
             <div class="c-content-accordion__modal-header uk-flex uk-flex-middle uk-flex-between">
               <p class="c-content-accordion__modal-title c-content-accordion__modal-title--light">راهنما</p>
-              <button class="uk-modal-close uk-close uk-icon" type="button" uk-close="">
-                <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1">
-                  <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                  <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
-                </svg>
-              </button>
+              <button class="uk-modal-close uk-close uk-icon" type="button" uk-close=""></button>
             </div>
 
             <div class="c-content-accordion__modal-body">
-              <p class="c-content-accordion__modal-title c-content-accordion__modal-title--dark">گام دوم: درج اطلاعات
-                کالا</p>
+              <p class="c-content-accordion__modal-title c-content-accordion__modal-title--dark">
+                گام دوم: درج اطلاعات کالا
+              </p>
               <div class="o-spacing-m-t-5 c-content-accordion__modal-content-container">
                 <p class="c-content-accordion__modal-text js-modal-item uk-hidden" data-item="short_description">در این
                   مرحله، باید گروه کالایی که محصول شما در آن قرار می‌گیرد را انتخاب نمایید.</p>
@@ -1784,8 +1769,8 @@
                 </div>
                 <div class="o-spacing-m-t-5 c-content-accordion__modal-guidelines js-modal-item uk-hidden"
                      data-item="items">
-                  <div
-                    class="o-spacing-p-t-4 o-spacing-p-b-4 c-content-accordion__modal-guidelines-separator c-content-accordion__modal-guidelines-separator-bottom">
+                  <div class="o-spacing-p-t-4 o-spacing-p-b-4 c-content-accordion__modal-guidelines-separator
+                   c-content-accordion__modal-guidelines-separator-bottom">
                     <div class="uk-flex uk-flex-between js-expand-item">
                       <p class="c-content-accordion__modal-guidelines-item"></p>
                       <span class="c-content-accordion__modal-guidelines-expand-icon"></span>
@@ -1820,8 +1805,8 @@
                   <div class="o-btn o-btn--outlined-primary-lg-text o-spacing-m-t-6 js-show-video">
                     مشاهده ویدیوی آموزشی
                   </div>
-                  <div
-                    class="o-btn o-btn--outlined-primary-lg-text o-spacing-m-t-6 js-hide-video c-content-accordion__modal-guidelines-back uk-hidden">
+                  <div class="o-btn o-btn--outlined-primary-lg-text o-spacing-m-t-6 js-hide-video
+                     c-content-accordion__modal-guidelines-back uk-hidden">
                     بازگشت به صفحه قبل
                   </div>
                 </div>
@@ -1836,12 +1821,7 @@
           <div>
             <div class="c-content-accordion__modal-header uk-flex uk-flex-middle uk-flex-between">
               <p class="c-content-accordion__modal-title c-content-accordion__modal-title--light">راهنما</p>
-              <button class="uk-modal-close uk-close uk-icon" type="button" uk-close="">
-                <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1">
-                  <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-                  <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
-                </svg>
-              </button>
+              <button class="uk-modal-close uk-close uk-icon" type="button" uk-close=""></button>
             </div>
 
             <div class="c-content-accordion__modal-body">
@@ -1920,17 +1900,6 @@
 @section('script')
 
 <script>
-
-// $(document).on('click', ".final-submit", function (){
-//     var field_val = $("input[name='suggest_slug']").val();
-//     $("input[name='product[suggest_slug]']").val(field_val);
-// });
-
-// $(document).on('click', ".final-submit", function (){
-//     var field_val = $("input[name='suggest_seo_title']").val();
-//     $("input[name='product[suggest_seo_title]']").val(field_val);
-// });
-
 $(document).on('change', '#stepTitleAccordion', function (){
     // تغییر پدینگ فیلد نامک
     var buttonWidth = $('#button-urls').width() + 20;
@@ -1967,16 +1936,13 @@ $(document).on('change', ".title-creator", function () {
 
   $(".persian-title").val(product_title);
 
-
-
   var suggest_slug = $(".persian-title").val();
   suggest_slug = suggest_slug.replace(/ /g,"-");
-
   $(".suggest_slug").val(suggest_slug);
 
   var suggest_seo_title = $("input[name='product_title_prefix']").val() + ' ' + $(".persian-title").val();
-  $(".suggest_seo_title").val(suggest_seo_title);
 
+  $(".suggest_seo_title").val(suggest_seo_title);
 });
 
 </script>

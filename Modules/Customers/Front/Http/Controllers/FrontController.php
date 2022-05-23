@@ -581,7 +581,6 @@ class FrontController extends Controller
 
     public function cart()
     {
-
         $customer = auth()->guard('customer')->user();
         $carts = $customer->carts;
 
@@ -1855,13 +1854,13 @@ class FrontController extends Controller
         $order = Order::where('order_code', $order_code)->first();
 
         // اگه دارای پرداخت موفق از طریق درگاه بود
-        if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('method_id', PeymentMethod::where('en_name', '!==', 'cod')->first()->id)->where('price', $order->cost)->exists()) {
+        if ($order->peyment_records()->successfulPeyment()->where('method_id', PeymentMethod::where('en_name', '!==', 'cod')->first()->id)->where('price', $order->cost)->exists()) {
             return abort(404);
         }
 
         $peyment_methods = PeymentMethod::where('status', 'active')->get();
 
-        if ($order->peyment_records()->where('status', 'successful')->where('method_type', 'PeymentMethod')->where('method_id', PeymentMethod::where('en_name', 'cod')->first()->id)->where('price', $order->cost)->exists()) {
+        if ($order->peyment_records()->successfulPeyment()->where('method_id', PeymentMethod::where('en_name', 'cod')->first()->id)->where('price', $order->cost)->exists()) {
             $peyment_methods = PeymentMethod::where('status', 'active')->where('en_name', '!==', 'cod')->get();
         }
 
@@ -1882,7 +1881,7 @@ class FrontController extends Controller
         $order = Order::where('order_code', $request->order_code)->first();
 
         // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
-        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist()) {
+        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->successfulPeyment()->doesntExist()) {
             // تغییر وضعیت بعد از پرداخت ناموفق
             $this->updateStatusAfterUnsuccessfulPayment($order);
 

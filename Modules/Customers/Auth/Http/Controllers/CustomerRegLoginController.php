@@ -131,12 +131,11 @@ class CustomerRegLoginController extends Controller
 
     public function confirm(Request $request)
     {
+        $credentials['password'] = $request->password;
         if(session('c_mobile') !== null){
             $credentials['mobile'] = session('c_mobile');
-            $credentials['password'] = $request->password;
         } elseif (session('c_email') !== null) {
             $credentials['email'] = session('c_email');
-            $credentials['password'] = $request->password;
         }
         if (Auth::guard('customer')->attempt($credentials)) {
             session()->forget('c_mobile');
@@ -145,6 +144,7 @@ class CustomerRegLoginController extends Controller
 
           return redirect()->route('front.indexPage');
         }
+        
         return back()->withErrors([
             'wrongEmailPass' => 'اطلاعات کاربری نادرست است',
         ]);
@@ -156,7 +156,7 @@ class CustomerRegLoginController extends Controller
         $customerVerify = VerifyAccount::where('mobile', $customer_mobile)->first();
         $customer = Customer::where('mobile', $customer_mobile)->select('id')->first();
 
-        if (($customerVerify !== null) && ($customerVerify->token ==  $request->code)){
+        if ($customerVerify && ($customerVerify->token ==  $request->code)){
             Customer::updateOrCreate(['mobile' => $customer_mobile]);
             $customer = Customer::where('mobile', $customer_mobile)->select('id')->first();
             Auth::guard('customer')->loginUsingId($customer->id, true);

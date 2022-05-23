@@ -43,12 +43,10 @@ class CustomerProfileController extends Controller
 
   public function updateAwaitingPaymentStatus($customer)
   {
-    if (Auth::guard('customer')->check() && $customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->exists()) {
+    if (Auth::guard('customer')->check() && $customer->orders()->where('order_status_id', OrderStatus::awaiting()->first()->id)->exists()) {
       foreach ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get() as $order) {
-        // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
-        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist())
+        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->successfulPeyment()->doesntExist())
         {
-          // تغییر وضعیت بعد از پرداخت ناموفق
           $this->frontController->updateStatusAfterUnsuccessfulPayment($order);
         }
       }
@@ -504,7 +502,7 @@ class CustomerProfileController extends Controller
 //    if ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->exists()) {
 //      foreach ($customer->orders()->where('order_status_id', OrderStatus::where('en_name', 'awaiting_payment')->first()->id)->get() as $order) {
 //        // اگه یه ساعت از ایجاد سفارش گذشته بود و پرداخت موفق از بخش روش پرداخت نداشت
-//        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->where('status', 'successful')->where('method_type', 'PeymentMethod')->doesntExist())
+//        if (Carbon::make($order->created_at)->addHour() < Carbon::now() && PeymentRecord::where('order_id', $order->id)->successfulPeyment()->doesntExist())
 //        {
 //          // تغییر وضعیت بعد از پرداخت ناموفق
 //          $this->frontController->updateStatusAfterUnsuccessfulPayment($order);
