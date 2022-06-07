@@ -55,10 +55,10 @@
                         {{ trans('installer_messages.environment.wizard.form.app_environment_label') }}
                     </label>
                     <select name="environment" id="environment" onchange='checkEnvironment(this.value);'>
-                        <option value="local" selected>{{ trans('installer_messages.environment.wizard.form.app_environment_label_local') }}</option>
+                        <option value="production" selected>{{ trans('installer_messages.environment.wizard.form.app_environment_label_production') }}</option>
+                        <option value="local">{{ trans('installer_messages.environment.wizard.form.app_environment_label_local') }}</option>
                         <option value="development">{{ trans('installer_messages.environment.wizard.form.app_environment_label_developement') }}</option>
                         <option value="qa">{{ trans('installer_messages.environment.wizard.form.app_environment_label_qa') }}</option>
-                        <option value="production">{{ trans('installer_messages.environment.wizard.form.app_environment_label_production') }}</option>
                         <option value="other">{{ trans('installer_messages.environment.wizard.form.app_environment_label_other') }}</option>
                     </select>
                     <div id="environment_text_input" style="display: none;">
@@ -72,31 +72,12 @@
                     @endif
                 </div>
 
-                <div class="form-group {{ $errors->has('app_debug') ? ' has-error ' : '' }}">
-                    <label for="app_debug">
-                        {{ trans('installer_messages.environment.wizard.form.app_debug_label') }}
-                    </label>
-                    <label for="app_debug_true">
-                        <input type="radio" name="app_debug" id="app_debug_true" value=true checked />
-                        {{ trans('installer_messages.environment.wizard.form.app_debug_label_true') }}
-                    </label>
-                    <label for="app_debug_false">
-                        <input type="radio" name="app_debug" id="app_debug_false" value=false />
-                        {{ trans('installer_messages.environment.wizard.form.app_debug_label_false') }}
-                    </label>
-                    @if ($errors->has('app_debug'))
-                        <span class="error-block">
-                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ $errors->first('app_debug') }}
-                        </span>
-                    @endif
-                </div>
 
-                <div class="form-group {{ $errors->has('app_log_level') ? ' has-error ' : '' }}">
+                <div class="form-group {{ $errors->has('app_log_level') ? ' has-error ' : '' }}" hidden>
                     <label for="app_log_level">
                         {{ trans('installer_messages.environment.wizard.form.app_log_level_label') }}
                     </label>
-                    <select name="app_log_level" id="app_log_level">
+                    <select name="app_log_level" id="app_log_level" dir="ltr">
                         <option value="debug" selected>{{ trans('installer_messages.environment.wizard.form.app_log_level_label_debug') }}</option>
                         <option value="info">{{ trans('installer_messages.environment.wizard.form.app_log_level_label_info') }}</option>
                         <option value="notice">{{ trans('installer_messages.environment.wizard.form.app_log_level_label_notice') }}</option>
@@ -118,7 +99,7 @@
                     <label for="app_url">
                         {{ trans('installer_messages.environment.wizard.form.app_url_label') }}
                     </label>
-                    <input type="url" name="app_url" id="app_url" value="http://localhost" placeholder="{{ trans('installer_messages.environment.wizard.form.app_url_placeholder') }}" />
+                    <input type="url" dir="ltr" name="app_url" id="app_url" value="{{ stripos($_SERVER['SERVER_PROTOCOL'],'https') === 0 ? 'https://' : 'http://' . $_SERVER['SERVER_NAME'] }}" placeholder="{{ trans('installer_messages.environment.wizard.form.app_url_placeholder') }}" />
                     @if ($errors->has('app_url'))
                         <span class="error-block">
                             <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
@@ -127,12 +108,34 @@
                     @endif
                 </div>
 
-                <div class="buttons">
-                    <button class="button" onclick="showDatabaseSettings();return false">
-                        {{ trans('installer_messages.environment.wizard.form.buttons.setup_database') }}
-                        <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
-                    </button>
+                <div class="form-group {{ $errors->has('app_debug') ? ' has-error ' : '' }}" style="margin-bottom: 10px;">
+                    <label for="app_debug">
+                        {{ trans('installer_messages.environment.wizard.form.app_debug_label') }}
+                    </label>
+                    <label for="app_debug_true">
+                        <input type="radio" name="app_debug" id="app_debug_true" value=true checked />
+                        {{ trans('installer_messages.environment.wizard.form.app_debug_label_true') }}
+                    </label>
+                    <label for="app_debug_false">
+                        <input type="radio" name="app_debug" id="app_debug_false" value=false />
+                        {{ trans('installer_messages.environment.wizard.form.app_debug_label_false') }}
+                    </label>
+                    @if ($errors->has('app_debug'))
+                        <span class="error-block">
+                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
+                            {{ $errors->first('app_debug') }}
+                        </span>
+                    @endif
                 </div>
+
+                <div class="buttons">
+                    <a class="button" onclick="showDatabaseSettings();return false">
+                        {{ trans('installer_messages.environment.wizard.form.buttons.setup_database') }}
+                        <i class="fa fa-angle-left fa-fw" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+
             </div>
             <div class="tab" id="tab2content">
 
@@ -220,15 +223,15 @@
                 </div>
 
                 <div class="buttons">
-                    <button class="button" onclick="showApplicationSettings();return false">
-                        <i class="fa fa-angle-left fa-fw" aria-hidden="true"></i>
+                    <a class="button" onclick="showApplicationSettings();return false">
                         {{ trans('installer_messages.environment.wizard.form.buttons.setup_application') }}
-                    </button>
+                        <i class="fa fa-angle-left fa-fw" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
             <div class="tab" id="tab3content">
-                <div class="block">
-                    <input type="radio" name="appSettingsTabs" id="appSettingsTab1" value="null" checked />
+                <div class="block" hidden>
+                    <input type="radio" name="appSettingsTabs" id="appSettingsTab1" value="null" />
                     <label for="appSettingsTab1">
                         <span>
                             {{ trans('installer_messages.environment.wizard.form.app_tabs.broadcasting_title') }}
@@ -309,7 +312,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="block">
+                <div class="block" hidden>
                     <input type="radio" name="appSettingsTabs" id="appSettingsTab2" value="null"/>
                     <label for="appSettingsTab2">
                         <span>
@@ -360,9 +363,9 @@
                     </div>
                 </div>
                 <div class="block">
-                    <input type="radio" name="appSettingsTabs" id="appSettingsTab3" value="null"/>
+                    <input type="radio" name="appSettingsTabs" id="appSettingsTab3" value="null" checked/>
                     <label for="appSettingsTab3">
-                        <span>
+                        <span class="advanced-section">
                             {{ trans('installer_messages.environment.wizard.form.app_tabs.mail_label') }}
                         </span>
                     </label>
@@ -371,7 +374,7 @@
                             <label for="mail_driver">
                                 {{ trans('installer_messages.environment.wizard.form.app_tabs.mail_driver_label') }}
                                 <sup>
-                                    <a href="https://laravel.com/docs/5.4/mail" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
+                                    <a href="https://laravel.com/docs/9.x/mail" target="_blank" title="{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}">
                                         <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
                                         <span class="sr-only">{{ trans('installer_messages.environment.wizard.form.app_tabs.more_info') }}</span>
                                     </a>
@@ -407,7 +410,7 @@
                         </div>
                         <div class="form-group {{ $errors->has('mail_username') ? ' has-error ' : '' }}">
                             <label for="mail_username">{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_username_label') }}</label>
-                            <input type="text" name="mail_username" id="mail_username" value="null" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_username_placeholder') }}" />
+                            <input type="text" name="mail_username" id="mail_username" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_username_placeholder') }}" />
                             @if ($errors->has('mail_username'))
                                 <span class="error-block">
                                     <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
@@ -417,7 +420,7 @@
                         </div>
                         <div class="form-group {{ $errors->has('mail_password') ? ' has-error ' : '' }}">
                             <label for="mail_password">{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_password_label') }}</label>
-                            <input type="text" name="mail_password" id="mail_password" value="null" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_password_placeholder') }}" />
+                            <input type="text" name="mail_password" id="mail_password" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_password_placeholder') }}" />
                             @if ($errors->has('mail_password'))
                                 <span class="error-block">
                                     <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
@@ -427,7 +430,7 @@
                         </div>
                         <div class="form-group {{ $errors->has('mail_encryption') ? ' has-error ' : '' }}">
                             <label for="mail_encryption">{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_encryption_label') }}</label>
-                            <input type="text" name="mail_encryption" id="mail_encryption" value="null" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_encryption_placeholder') }}" />
+                            <input type="text" name="mail_encryption" id="mail_encryption" value="" placeholder="{{ trans('installer_messages.environment.wizard.form.app_tabs.mail_encryption_placeholder') }}" />
                             @if ($errors->has('mail_encryption'))
                                 <span class="error-block">
                                     <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
@@ -437,7 +440,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="block margin-bottom-2">
+                <div class="block margin-bottom-2" hidden>
                     <input type="radio" name="appSettingsTabs" id="appSettingsTab4" value="null"/>
                     <label for="appSettingsTab4">
                         <span>
@@ -488,7 +491,7 @@
                 <div class="buttons">
                     <button class="button" type="submit">
                         {{ trans('installer_messages.environment.wizard.form.buttons.install') }}
-                        <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
+                        <i class="fa fa-angle-left fa-fw" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>

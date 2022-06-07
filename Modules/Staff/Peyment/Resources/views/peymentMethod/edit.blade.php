@@ -264,6 +264,28 @@
                   </div>
                 @endif
 
+                @if($peyment_method->en_name == 'pasargad')
+                  <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-12 ">
+                      <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
+                          <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-4 c-grid__col--xs-gap">
+                              <label for="merchantId" class="uk-form-label" style="color: #606265;margin-bottom: 7px;">
+                                  certificate:
+                                  <span class="uk-form-label__required"></span>
+                              </label>
+
+                              <div class="field-wrapper">
+                                  <label class="c-content-input">
+                                      <input type="text" class="c-content-input__origin c-content-input__origin" name="merchantId"
+                                             value="{{ $peyment_method->certificate }}" dir="rtl" style="text-align: right;border-color: #e6e9ed!important;">
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm"></div>
+                  </div>
+                @endif
+
                 {{-- گزینه‌های پرداخت درب منزل --}}
                 @if($peyment_method->en_name == 'cod')
                   <div class="c-grid__row " style="margin-right: 15px; margin-top: 25px !important;">
@@ -385,6 +407,7 @@ $(".save-form").on('click', function (e) {
   if ($("input[name='password']").length) { var password = $("input[name='password']").val(); } else { var password = null; }
   if ($("input[name='terminalId']").length) { var terminalId = $("input[name='terminalId']").val(); } else { var terminalId = null; }
   if ($("input[name='merchantId']").length) { var merchantId = $("input[name='merchantId']").val(); } else { var merchantId = null; }
+  if ($("input[name='certificate']").length) { var certificate = $("input[name='certificate']").val(); } else { var certificate = null; }
 
   var name = $("input[name='name']").val();
   var status = $("select[name='status']").val();
@@ -405,6 +428,7 @@ $(".save-form").on('click', function (e) {
       password: password,
       terminalId: terminalId,
       merchantId: merchantId,
+      certificate: certificate,
       zarin_gate_status: zarin_gate_status,
     },
 

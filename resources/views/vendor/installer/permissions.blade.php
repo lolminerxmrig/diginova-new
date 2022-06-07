@@ -5,8 +5,10 @@
 @endsection
 
 @section('title')
-    {{ trans('installer_messages.permissions.title') }}
-{{--    <i class="fa fa-key fa-fw" aria-hidden="true"></i>--}}
+    <span>{{ trans('installer_messages.permissions.title') }}</span>
+    <i class="fa-fw" aria-hidden="true">
+        <img src="{{ asset('installer/img/icons/key.png') }}" style="margin-top: 15px" width="20px">
+    </i>
 @endsection
 
 @section('container')
@@ -26,8 +28,8 @@
     @if ( ! isset($permissions['errors']))
         <div class="buttons" dir="rtl">
             <a href="{{ route('LaravelInstaller::environment') }}" class="button">
-                <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
                 {{ trans('installer_messages.permissions.next') }}
+                <i class="fa fa-angle-left fa-fw" aria-hidden="true"></i>
             </a>
         </div>
     @endif

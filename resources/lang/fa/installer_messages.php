@@ -24,7 +24,7 @@ return [
         'templateTitle' => '',
         'title'   => 'دیجی نوا',
         'message' => 'نصب آسان اسکریپت دیجی نوا',
-        'next'    => 'بررسی الزامات',
+        'next'    => 'بررسی نیازمندی ها',
     ],
 
     /*
@@ -46,7 +46,7 @@ return [
     'permissions' => [
         'templateTitle' => 'مجوز های دسترسی',
         'title' => 'مجوز های دسترسی',
-        'next' => 'پیکربندی Environment',
+        'next' => 'پیکربندی اسکریپت',
     ],
 
     /*
@@ -56,8 +56,8 @@ return [
      */
     'environment' => [
         'menu' => [
-            'templateTitle' => 'پیکربندی Environment',
-            'title' => 'Environment پیکربندی ',
+            'templateTitle' => 'پیکربندی',
+            'title' => 'پیکربندی',
             'desc' => 'لطفاً نحوه پیکربندی فایل <code>env.</code> را انتخاب کنید.',
             'wizard-button' => 'پیکربندی آسان',
             'classic-button' => 'ویرایشگر متن کلاسیک',
@@ -66,20 +66,20 @@ return [
             'templateTitle' => 'Environment Settings | Guided Wizard',
             'title' => 'پیکربندی اسکریپت',
             'tabs' => [
-                'environment' => 'Environment',
+                'environment' => 'تتظیمات اصلی',
                 'database' => 'دیتابیس',
                 'application' => 'پیشرفته',
             ],
             'form' => [
-                'name_required' => 'An environment name is required.',
+                'name_required' => 'وارد کردن نام فروشگاه الزامی است.',
                 'app_name_label' => 'نام فروشگاه',
                 'app_name_placeholder' => 'نام فروشگاه',
-                'app_environment_label' => 'App Environment',
-                'app_environment_label_local' => 'Local',
-                'app_environment_label_developement' => 'Development',
-                'app_environment_label_qa' => 'Qa',
-                'app_environment_label_production' => 'Production',
-                'app_environment_label_other' => 'Other',
+                'app_environment_label' => 'وضعیت فروشگاه',
+                'app_environment_label_local' => 'محلی',
+                'app_environment_label_developement' => 'توسعه',
+                'app_environment_label_qa' => 'بررسی کیفیت',
+                'app_environment_label_production' => 'پروداکشن',
+                'app_environment_label_other' => 'دیگر',
                 'app_environment_placeholder_other' => 'Enter your environment...',
                 'app_debug_label' => 'وضعیت دیباگینگ',
                 'app_debug_label_true' => 'فعال',
@@ -128,19 +128,19 @@ return [
                     'redis_password' => 'Redis Password',
                     'redis_port' => 'Redis Port',
 
-                    'mail_label' => 'Mail',
-                    'mail_driver_label' => 'Mail Driver',
-                    'mail_driver_placeholder' => 'Mail Driver',
-                    'mail_host_label' => 'Mail Host',
-                    'mail_host_placeholder' => 'Mail Host',
-                    'mail_port_label' => 'Mail Port',
-                    'mail_port_placeholder' => 'Mail Port',
-                    'mail_username_label' => 'Mail Username',
-                    'mail_username_placeholder' => 'Mail Username',
-                    'mail_password_label' => 'Mail Password',
-                    'mail_password_placeholder' => 'Mail Password',
-                    'mail_encryption_label' => 'Mail Encryption',
-                    'mail_encryption_placeholder' => 'Mail Encryption',
+                    'mail_label' => 'ایمیل',
+                    'mail_driver_label' => 'درایور ایمیل',
+                    'mail_driver_placeholder' => 'درایور ایمیل',
+                    'mail_host_label' => 'میزبان',
+                    'mail_host_placeholder' => 'میزبان',
+                    'mail_port_label' => 'پورت',
+                    'mail_port_placeholder' => 'پورت',
+                    'mail_username_label' => 'نام کاربری',
+                    'mail_username_placeholder' => 'کلمه عبور',
+                    'mail_password_label' => 'کلمه عبور',
+                    'mail_password_placeholder' => 'کلمه عبور',
+                    'mail_encryption_label' => 'رمزنگاری ایمیل',
+                    'mail_encryption_placeholder' => 'رمزنگاری ایمیل',
 
                     'pusher_label' => 'Pusher',
                     'pusher_app_id_label' => 'Pusher App Id',
@@ -159,10 +159,10 @@ return [
         ],
         'classic' => [
             'templateTitle' => 'Environment Settings | Classic Editor',
-            'title' => 'Classic Environment Editor',
-            'save' => 'Save .env',
-            'back' => 'Use Form Wizard',
-            'install' => 'Save and Install',
+            'title' => 'ویرایشگر متن کلاسیک',
+            'save' => '.env ذخیره',
+            'back' => 'استفاده از نصب آسان',
+            'install' => 'ذخیره و نصب',
         ],
         'title' => 'تنظیمات پیکربندی',
         'save' => 'ذخیره کردن .env',
@@ -246,4 +246,6 @@ return [
             'success_message' => 'Laravel Installer successfully UPDATED on ',
         ],
     ],
+
+
 ];

@@ -11,21 +11,20 @@ use Modules\Staff\Category\Models\Category;
 use Modules\Staff\Product\Models\Product;
 use Modules\Staff\Comment\Models\CommentHasRating;
 
-
 class Comment extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
         'parent_id',
-        'text', 
-        'title', 
-        'advantages', 
-        'disadvantages', 
-        'is_anonymous', 
-        'recommend_status', 
-        'publish_status', 
-        'product_id', 
+        'text',
+        'title',
+        'advantages',
+        'disadvantages',
+        'is_anonymous',
+        'recommend_status',
+        'publish_status',
+        'product_id',
         'customer_id'
     ];
 
@@ -57,5 +56,4 @@ class Comment extends Model
     public function scopeAccepted($query) {
         return $query->where('publish_status', 'accepted');
     }
-
 }

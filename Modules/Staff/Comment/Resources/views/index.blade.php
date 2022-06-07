@@ -149,7 +149,7 @@
                                                                     </td>
 
                                                                     <td class="c-ui-table__cell c-ui-table__cell--item-title c-ui-table__cell--text-blue uk-width-1-3" colspan="3">
-                                                                        <a href="#">{{ persianNum($comment->product->title_fa) }}</a>
+                                                                        <a href="#">{{ isset($comment->product) ? persianNum($comment->product->title_fa) : '' }}</a>
                                                                     </td>
 
                                                                     <td class="c-ui-table__cell" colspan="2">
@@ -185,7 +185,7 @@
                                                                                 <tr class="c-ui-table__row">
                                                                                     <td class="uk-flex uk-flex-middle" style="width: 26%;float: right;">
                                                                                         {{ $comment->customer->first_name . ' ' . $comment->customer->last_name }}
-                                                                                        (خریدار)
+{{--                                                                                        (خریدار)--}}
                                                                                     </td>
 
                                                                                     <td class="uk-flex uk-flex-middle" style="width: 15%;float: right;">

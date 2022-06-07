@@ -12,7 +12,7 @@
     </div>
 
     <p class="c-login__email-info-text">
-        حساب کاربری شما در {{ $fa_store_name }} ساخته شد. از خرید از میان بیش از ۲٬۰۰۰٬۰۰۰ تنوع کالا لذت ببرید
+        حساب کاربری شما در {{ $fa_store_name }} ساخته شد. 
     </p>
 
     <a href="{{ route('front.indexPage') }}" class="o-btn o-btn--full-width o-btn--outlined-red-lg c-login__form-action">

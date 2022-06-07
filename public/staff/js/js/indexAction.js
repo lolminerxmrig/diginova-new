@@ -307,8 +307,7 @@ var IndexAction = {
                             }});
                         hourLeadTimeSelect.on('change', function () {
                             currentFbsLeadTime.children('option:nth-child(2)').val($(this).val());
-                            hourLeadTime.removeClass('has-error');
-                        })
+                            hourLeadTime.removeClass('has-error');})
                     } else {
                         hourLeadTime.addClass('new-sbs-lead-time-field-wrapper__second-select--disabled');
                         hourLeadTime.removeClass('new-sbs-lead-time-field-wrapper__second-select');

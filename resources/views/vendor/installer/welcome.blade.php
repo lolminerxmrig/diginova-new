@@ -5,7 +5,10 @@
 @endsection
 
 @section('title')
-    {{ trans('installer_messages.welcome.title') }}
+    <span>{{ trans('installer_messages.welcome.title') }}</span>
+    <i class="fa-fw" aria-hidden="true">
+        <img src="{{ asset('installer/img/icons/home.png') }}" style="margin-top: 15px" width="20px">
+    </i>
 @endsection
 
 @section('container')
@@ -15,8 +18,8 @@
         </p>
         <p class="text-center">
           <a href="{{ route('LaravelInstaller::requirements') }}" class="button">
-              <i class="fa fa-angle-left fa-fw" aria-hidden="true"></i>
               {{ trans('installer_messages.welcome.next') }}
+              <i class="fa fa-angle-left fa-fw" aria-hidden="true"></i>
           </a>
         </p>
     </div>

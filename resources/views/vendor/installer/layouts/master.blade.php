@@ -25,46 +25,64 @@
                 <ul class="step" dir="rtl">
                     <li class="step__divider"></li>
                     <li class="step__item {{ isActive('LaravelInstaller::final') }}">
-                        <i class="step__icon fa fa-server" aria-hidden="true"></i>
+                        <i class="step__icon" aria-hidden="true">
+                            <img src="{{ asset('installer/img/icons/driver.png') }}" width="20px">
+                        </i>
                     </li>
                     <li class="step__divider"></li>
                     <li class="step__item {{ isActive('LaravelInstaller::environment')}} {{ isActive('LaravelInstaller::environmentWizard')}} {{ isActive('LaravelInstaller::environmentClassic')}}">
                         @if(Request::is('install/environment') || Request::is('install/environment/wizard') || Request::is('install/environment/classic') )
                             <a href="{{ route('LaravelInstaller::environment') }}">
-                                <i class="step__icon fa fa-cog" aria-hidden="true"></i>
+                                <i class="step__icon" aria-hidden="true">
+                                    <img src="{{ asset('installer/img/icons/settings.png') }}" width="20px">
+                                </i>
                             </a>
                         @else
-                            <i class="step__icon fa fa-cog" aria-hidden="true"></i>
+                            <i class="step__icon" aria-hidden="true">
+                                <img src="{{ asset('installer/img/icons/settings.png') }}" width="20px">
+                            </i>
                         @endif
                     </li>
                     <li class="step__divider"></li>
                     <li class="step__item {{ isActive('LaravelInstaller::permissions') }}">
                         @if(Request::is('install/permissions') || Request::is('install/environment') || Request::is('install/environment/wizard') || Request::is('install/environment/classic') )
                             <a href="{{ route('LaravelInstaller::permissions') }}">
-                                <i class="step__icon fa fa-key" aria-hidden="true"></i>
+                                <i class="step__icon" aria-hidden="true">
+                                    <img src="{{ asset('installer/img/icons/key.png') }}" width="20px">
+                                </i>
                             </a>
                         @else
-                            <i class="step__icon fa fa-key" aria-hidden="true"></i>
+                            <i class="step__icon" aria-hidden="true">
+                                <img src="{{ asset('installer/img/icons/key.png') }}" width="20px">
+                            </i>
                         @endif
                     </li>
                     <li class="step__divider"></li>
                     <li class="step__item {{ isActive('LaravelInstaller::requirements') }}">
                         @if(Request::is('install') || Request::is('install/requirements') || Request::is('install/permissions') || Request::is('install/environment') || Request::is('install/environment/wizard') || Request::is('install/environment/classic') )
                             <a href="{{ route('LaravelInstaller::requirements') }}">
-                                <i class="step__icon fa fa-list" aria-hidden="true"></i>
+                                <i class="step__icon" aria-hidden="true">
+                                    <img src="{{ asset('installer/img/icons/monitor.png') }}" width="20px">
+                                </i>
                             </a>
                         @else
-                            <i class="step__icon fa fa-list" aria-hidden="true"></i>
+                            <i class="step__icon" aria-hidden="true">
+                                <img src="{{ asset('installer/img/icons/monitor.png') }}" width="20px">
+                            </i>
                         @endif
                     </li>
                     <li class="step__divider"></li>
                     <li class="step__item {{ isActive('LaravelInstaller::welcome') }}">
                         @if(Request::is('install') || Request::is('install/requirements') || Request::is('install/permissions') || Request::is('install/environment') || Request::is('install/environment/wizard') || Request::is('install/environment/classic') )
                             <a href="{{ route('LaravelInstaller::welcome') }}">
-                                <i class="step__icon fa fa-home" aria-hidden="true"></i>
+                                <i class="step__icon" aria-hidden="true">
+                                    <img src="{{ asset('installer/img/icons/home.png') }}" width="20px">
+                                </i>
                             </a>
                         @else
-                            <i class="step__icon fa fa-home" aria-hidden="true"></i>
+                            <i class="step__icon" aria-hidden="true">
+                                <img src="{{ asset('installer/img/icons/home.png') }}" width="20px">
+                            </i>
                         @endif
                     </li>
                     <li class="step__divider"></li>
@@ -82,15 +100,15 @@
                         </p>
                     @endif
                     @if(session()->has('errors'))
-                        <div class="alert alert-danger" id="error_alert">
-                            <button type="button" class="close" id="close_alert" data-dismiss="alert" aria-hidden="true">
-                                 <i class="fa fa-close" aria-hidden="true"></i>
-                            </button>
-                            <h4>
-                                <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                                {{ trans('installer_messages.forms.errorTitle') }}
-                            </h4>
-                            <ul>
+                        <div class="alert alert-danger" id="error_alert" dir="rtl">
+{{--                            <button type="button" class="close" id="close_alert" data-dismiss="alert" aria-hidden="true">--}}
+{{--                                 <i class="fa fa-close" aria-hidden="true"></i>--}}
+{{--                            </button>--}}
+{{--                            <h6>--}}
+{{--                                <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>--}}
+{{--                                {{ trans('installer_messages.forms.errorTitle') }}--}}
+{{--                            </h6>--}}
+                            <ul style="margin-top: 10px;">
                                 @foreach($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach

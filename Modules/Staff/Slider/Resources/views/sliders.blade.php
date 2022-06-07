@@ -156,7 +156,7 @@
 
                                 <label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">
                                   <input name="sliderImage" data-id="{{ $slider->id }}" type="file" class="js-profile-business-info-logo"
-                                   accept="image/jpg,image/png,image/jpeg">
+                                   accept="image">
                                   <input name="sliderImageId" type="hidden"
                                   value="{{ ($slider->images()->exists() && $slider->images->first()->media()->exists())? $slider->images()->first()->media->first()->id : '' }}">
                                 </label>

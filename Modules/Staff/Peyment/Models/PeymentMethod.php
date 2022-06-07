@@ -23,8 +23,9 @@ class PeymentMethod extends Model
       'merchantId',
       'terminalId',
       'key',
-      'sha1Key',
       'iv',
+      'certificate',
+      'paymentIdentity',
       'options'
     ];
 

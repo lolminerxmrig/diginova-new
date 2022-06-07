@@ -87,10 +87,10 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                         </aside>
 
                         <?php
-                            $banner3_exists = $banner3 && $banner3->status  == 'active' &&  
+                            $banner3_exists = $banner3 && $banner3->status  == 'active' &&
                                 $banner3->images()->exists() && $banner3->images()->first()->media()->exists();
-                            
-                            $banner4_exists = $banner4 && $banner4->status  == 'active' &&  
+
+                            $banner4_exists = $banner4 && $banner4->status  == 'active' &&
                                 $banner4->images()->exists() && $banner4->images()->first()->media()->exists();
                         ?>
 
@@ -114,7 +114,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                         @if ($has_slider && $slider1->images()->active()->count() > 1)
                                             <div class="swiper-pagination c-main-slider__actions swiper-pagination-clickable swiper-pagination-bullets"></div>
                                             <div class="swiper-button-prev"></div>
-                                            <div class="swiper-button-next"></div> 
+                                            <div class="swiper-button-next"></div>
                                         @endif
                                     </div>
                                 </div>
@@ -322,7 +322,6 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
             </section>
             </div>
             @endif
-
             <article class="container container--home">
 
               <div class="o-page">
@@ -345,44 +344,71 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                 </aside>
               </div>
 
-                  <?php
-                    $second = 0; // شمارنده ارایه دومی
-                    $default = 0; // شمارنده ارایه اصلی
-                    $avg = count($primary) / (count($secondary)? count($secondary) : 1);
-                    $avg = floor($avg);
-                  ?>
 
-                  @foreach ($primary as $item)
+              <?php
+                $second = 0; // شمارنده ارایه دومی
+                $default = 0; // شمارنده ارایه اصلی
+                $avg = count($primary) / (count($secondary)? count($secondary) : 1);
+                $avg = floor($avg);
+              ?>
 
-                    @if ($primaryType == 'productSwiper')
-                        @include('front::layouts.productSwiper',['item' => $item])
-                    @else
-                        @include('front::layouts.slider',['item' => $item])
-                    @endif
+              @foreach ($primary as $item)
 
-                    <?php  $default++; ?>
-                    @if ($default >= $avg)
-                      @if (isset($secondary[$second]))
-                          @if ($primaryType == 'productSwiper')
-                            @include('front::layouts.slider',['item' => $secondary[$second]])
-                          @else
-                            @include('front::layouts.productSwiper',['item' => $secondary[$second]])
-                          @endif
-                          <?php
-                            $second++;
-                            $default = 0;
-                          ?>
+                @if ($primaryType == 'productSwiper')
+                    @include('front::layouts.productSwiper',['item' => $item])
+                @else
+                    @include('front::layouts.slider',['item' => $item])
+                @endif
+
+                <?php  $default++; ?>
+                @if ($default >= $avg)
+                  @if (isset($secondary[$second]))
+                      @if ($primaryType == 'productSwiper')
+                        @include('front::layouts.slider',['item' => $secondary[$second]])
+                      @else
+                        @include('front::layouts.productSwiper',['item' => $secondary[$second]])
                       @endif
-                    @endif
-                  @endforeach
+                      <?php
+                        $second++;
+                        $default = 0;
+                      ?>
+                  @endif
+                @endif
+              @endforeach
 
+                <div class="o-page">
+                    <aside class="c-adplacement">
+                        @if (!is_null($bannerGroup4) && $bannerGroup4->images()->exists())
+                            @foreach ($bannerGroup4->images as $image)
+                                @if ($image->media()->exists())
+                                    <a href="{{ $image->media()->exists() ? $image->link : '' }}"
+                                       class="js-banner-impression-adro c-adplacement__item c-adplacement__item--b"
+                                       data-observed="0" target="_blank"
+                                       title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
+                                        <div class="c-adplacement__sponsored_box">
+                                            <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
+                                                 alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
+                                        </div>
+                                    </a>
+                                @endif
+                            @endforeach
+                        @endif
+                    </aside>
+                </div>
 
-
+                <div id="sidebar">
+                    <aside>
+                        @if ($banner5 && $banner5->status  == 'active' && $banner5->images()->exists() && $banner5->images()->first()->media()->exists())
+                            <a href="{{ $banner5->images()->first()->link }}" class="c-adplacement__item"
+                               target="_blank" title="{{ $banner5->images()->first()->alt }}">
+                                <img src="{{ $banner5->images()->first()->media()->exists()
+                                        ? $site_url . '/' . $banner5->images()->first()->media->first()->path . '/' . $banner5->images()->first()->media->first()->name : '' }}"
+                                     alt="{{ $banner5->images()->first()->media()->exists() ? $banner5->images()->first()->alt : '' }}" loading="lazy"  />
+                            </a>
+                        @endif
+                    </aside>
+                </div>
             </article>
-
-        </div>
-        <div id="sidebar">
-            <aside></aside>
         </div>
     </main>
 @endsection

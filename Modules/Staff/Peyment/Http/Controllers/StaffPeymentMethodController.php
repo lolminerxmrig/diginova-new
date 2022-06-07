@@ -58,6 +58,7 @@ class StaffPeymentMethodController extends Controller
           'username' => 'required_if:en_name,behpardakht,asanpardakht',
           'password' => 'required_if:en_name,behpardakht,asanpardakht',
           'terminalId' => 'required_if:en_name,behpardakht,sepehr',
+          'certificate' => 'nullable', //pasargad
           'merchantId' => 'required_if:en_name,asanpardakht,idpay,irankish,nextpay,parsian,pasargad,payir,payping,paystar,poolam,sadad,saman,yekpay,zarinpal,zibal',
           'zarin_gate_status' => 'required_if:en_name,zarinpal',
         ], $messages);
@@ -98,8 +99,10 @@ class StaffPeymentMethodController extends Controller
           'password' => isset($request->password)? $request->password : null,
           'terminalId' => isset($request->terminalId)? $request->terminalId : null,
           'merchantId' => isset($request->merchantId)? $request->merchantId : null,
-          'options' => (isset($request->zarin_gate_status) && ($request->zarin_gate_status == 'active')) 
-            ? 'zarin_gate' 
+          'paymentIdentity' => isset($request->paymentIdentity)? $request->paymentIdentity : null,
+          'certificate' => isset($request->certificate)? $request->certificate : null,
+          'options' => (isset($request->zarin_gate_status) && ($request->zarin_gate_status == 'active'))
+            ? 'zarin_gate'
             : null,
         ]);
 

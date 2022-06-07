@@ -16,16 +16,16 @@
     font-family: IRANSansX;
     font-style: normal;
     font-weight: 700;
-    src: url('mehdi/public/fonts/woff/IRANSansX-Bold.woff') format('woff'),
-    url('mehdi/public/fonts/woff2/IRANSansX-Bold.woff2') format('woff2');
+    src: url('../../mehdi/public/fonts/woff/IRANSansX-Bold.woff') format('woff'),
+    url('../../mehdi/public/fonts/woff2/IRANSansX-Bold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: IRANSansX;
     font-style: normal;
     font-weight: 400;
-    src: url('mehdi/public/fonts/woff/IRANSansX-Regular.woff') format('woff'),
-    url('mehdi/public/fonts/woff2/IRANSansX-Regular.woff2') format('woff2');
+    src: url('../../mehdi/public/fonts/woff/IRANSansX-Regular.woff') format('woff'),
+    url('../../mehdi/public/fonts/woff2/IRANSansX-Regular.woff2') format('woff2');
 }
 
 .fa {
@@ -3208,15 +3208,14 @@ samp {
 }
 
 button {
-    overflow: visible;
-    text-transform: none;
-    -webkit-appearance: button;
-    cursor: pointer;
-    display: block;
-    cursor: pointer;
-    font-size: 12px;
-    padding: .4375em 1.75em;
-    margin-bottom: 1.18125em
+    background-color: transparent;
+    text-decoration: none;
+    color: #1d73a2;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    margin: 0;
+    padding: 0;
+    cursor: pointer
 }
 
 input {
@@ -3224,7 +3223,7 @@ input {
 }
 
 input:focus {
-    background: #ff0
+    background: #f4f4f4;
 }
 
 optgroup {
@@ -3236,11 +3235,11 @@ select {
     outline: none;
     border: 1px solid #ddd;
     border-radius: 3px;
-    padding: 10px 12px;
+    padding: 7px 12px;
     width: calc(100% - 24px);
     margin: 0 auto 1em;
     width: 100%;
-    height: 35px
+    height: 40px;
 }
 
 textarea {
@@ -3520,6 +3519,10 @@ h3 {
     margin-bottom: .303784103173448em
 }
 
+.advanced-section {
+    font-family: IRANSansX !important;
+}
+
 h4 {
     margin: 0;
     padding: 0;
@@ -3786,16 +3789,16 @@ input[type=text] {
 
 .box {
     width: 450px;
-    border-radius: 0 0 3px 3px;
+    border-radius: 12px;
     overflow: hidden;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 3px rgba(0, 0, 0, 0.23);
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 3px rgba(0, 0, 0, 0.23)
+    box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.24);
+    -webkit-box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.24);
 }
 
 .header {
-    background-color: #357295;
+    background-color: #BF2E3F;
     padding: 30px 30px 40px;
     border-radius: 3px 3px 0 0;
     text-align: center
@@ -3821,7 +3824,7 @@ input[type=text] {
     user-select: none;
     color: #fff;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 22px;
     margin: 0 0 15px
 }
 
@@ -3840,7 +3843,7 @@ input[type=text] {
     flex-direction: row-reverse;
     -ms-flex-pack: center;
     -webkit-box-pack: center;
-    justify-content: center;
+    justifvy-content: center;
     -ms-flex-align: center;
     -webkit-box-align: center;
     align-items: center;
@@ -3848,7 +3851,7 @@ input[type=text] {
 }
 
 .step__divider {
-    background-color: #cacfd2;
+    background-color: #bababa;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -3870,7 +3873,7 @@ input[type=text] {
 }
 
 .step__icon {
-    background-color: #cacfd2;
+    background-color: #bababa;
     font-style: normal;
     width: 40px;
     height: 40px;
@@ -3933,9 +3936,9 @@ input[type=text] {
 
 .button {
     display: inline-block;
-    background-color: #34a0db;
-    border-radius: 2px;
-    padding: 7px 20px;
+    background-color: #ED374E;
+    border-radius: 8px;
+    padding: 8px 20px;
     color: #fff;
     -webkit-box-shadow: 0 1px 1.5px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
     box-shadow: 0 1px 1.5px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.24);
@@ -3952,8 +3955,8 @@ input[type=text] {
 .button:hover {
     color: #fff;
     -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 3px rgba(0, 0, 0, 0.23);
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 6px 3px rgba(0, 0, 0, 0.23);
-    background-color: #2490cb
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.19), 0 4px 3px rgba(0, 0, 0, 0.23);
+    background-color: #ED374E;
 }
 
 .button--light {
@@ -4212,8 +4215,9 @@ input[type='number'] {
 }
 
 .block {
-    -webkit-box-shadow: 0 3px 1px #a9a9a9;
-    box-shadow: 0 3px 1px #a9a9a9
+    -webkit-box-shadow: 0 3px 1px #eb374e;
+    box-shadow: 0 3px 1px #eb374e
+    box-shadow: 0 3px 1px #eb374e
 }
 
 .block input[type='radio'] {
@@ -4236,7 +4240,7 @@ input[type='number'] {
 }
 
 .block input[type='radio']:checked + label {
-    background-color: #a9a9a9
+    background-color: #ec374e
 }
 
 .block input[type='radio']:checked ~ .info {
@@ -4296,14 +4300,14 @@ input[type='number'] {
 }
 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 0 6px #bababa;
     border-radius: 0
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 0;
-    background: #ccc;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+    background: #bf2e3f;
+    -webkit-box-shadow: inset 0 0 6px #ec374e
 }
 
 .margin-bottom-1 {
@@ -4332,9 +4336,10 @@ input[type='number'] {
 }
 
 .alert.alert-danger {
-    background: red;
+    background: #eb374e;
     color: #fff;
-    padding: 10px 20px 15px
+    padding: 10px 30px 15px;
+    border-radius: 8px;
 }
 
 .alert.alert-danger h4 {
@@ -4358,7 +4363,7 @@ input[type='number'] {
     float: right;
     border-radius: 50%;
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0;
     background-color: transparent;
     cursor: pointer;
@@ -4376,13 +4381,13 @@ svg:not(:root) {
 }
 
 .step__item.active .step__icon, .step__item.active ~ .step__divider, .step__item.active ~ .step__item .step__icon {
-    background-color: #34a0db;
+    background-color: #ED374E;
     -webkit-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out
 }
 
 .step__item.active .step__icon:hover, .step__item.active ~ .step__item .step__icon:hover {
-    background-color: #3d657b
+    background-color: #7e7c7c
 }
 
 .form-group.has-error select {
@@ -4457,6 +4462,10 @@ svg:not(:root) {
 
 #tab3content .block:last-child {
     border-radius: 0 0 3px 3px
+}
+
+.error-block {
+    font-family: 'IRANSansX';
 }
 
 /*# sourceMappingURL=style.min.css.map */

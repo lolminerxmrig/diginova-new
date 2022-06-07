@@ -163,7 +163,7 @@
 
                               <label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">
                                 <input name="sliderImage" data-id="{{ $item->id }}" type="file"
-                                  class="js-profile-business-info-logo" accept="image/jpg,image/png,image/jpeg">
+                                  class="js-profile-business-info-logo" accept="image">
                                 <input name="sliderImageId" type="hidden"
                                   value="{{ ($item->media()->exists())? $item->media->first()->id : '' }}">
                               </label>
@@ -424,7 +424,7 @@
         '</td>' +
         '<td class="c-ui-table__cell"><div class="c-promo__actions" style="width: auto; min-width: 15%; margin: auto;">' +
         '<label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">' +
-        ' <input name="sliderImage" data-media-id="" data-id="" type="file" class="js-profile-business-info-logo sliderImage" accept="image/jpg,image/png,image/jpeg">' +
+        ' <input name="sliderImage" data-media-id="" data-id="" type="file" class="js-profile-business-info-logo sliderImage" accept="image">' +
         ' <input name="sliderImageId" type="hidden" value=""> </label>' +
         '<a href="" class="venobox o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye" data-variant-id="" data-hide="{is_archived: true}" data-value="1" data-is-archived="false" data-tooltip-type="normal" data-tooltip-position="br" data-tooltip-has-before-element="true" style="float: right;margin-top: 5px !important;margin-right: 5px;"> ' +
         '<span data-tooltip-body="" style="min-height:20px; width: auto;">شاهده تصویر</span> </a>' +
