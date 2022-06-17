@@ -10,13 +10,13 @@
           type="image/icon">
     <link rel="icon" type="image/png"
           href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }} ">
-    <link rel="stylesheet" href="{{ asset('assets/css/max-height1184px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} "
           media="screen and (max-height: 1184px)">
-    <link rel="stylesheet" href="{{ asset('assets/css/max-width1365px.css') }} " media="screen and (max-width: 1365px)">
-    <link rel="stylesheet" href="{{ asset('assets/css/min-width1025px.css') }} " media="screen and (min-width: 1025px)">
-    <link rel="stylesheet" href="{{ asset('assets/css/min-width1366px.css') }} " media="screen and (min-width: 1366px)">
-    <link rel="stylesheet" href="{{ asset('assets/css/min-width1680px.css') }} " media="screen and (min-width: 1680px)">
+    <link rel="stylesheet" href="{{ asset('assets/new/css/max-width1365px.css') }} " media="screen and (max-width: 1365px)">
+    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1025px.css') }} " media="screen and (min-width: 1025px)">
+    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1366px.css') }} " media="screen and (min-width: 1366px)">
+    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} " media="screen and (min-width: 1680px)">
     <script src="{{ asset('assets/js/sentry.js') }} "></script>
     @yield('head')
 </head>
