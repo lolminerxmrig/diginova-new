@@ -155,7 +155,7 @@
                                                     <tr name="row" id="{{$product->id}}"
                                                         class="c-ui-table__row c-ui-table__row--body c-join__table-row">
                                                         <td class="c-ui-table__cell">
-                                                            <span class="c-wallet__body-card-row-item"> 
+                                                            <span class="c-wallet__body-card-row-item">
                                                                 {{ persianNum($products->firstItem() + $key) }}
                                                             </span>
                                                         </td>
@@ -164,7 +164,7 @@
                                                           @if(count($product->media))
                                                             @foreach($product->media as $image)
                                                                 @if($product->media && ($image->pivot->is_main == 1))
-                                                                    <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" width="75" height="75">
+                                                                    <img src="{{ full_media_path($image) }}" width="75" height="75">
                                                                 @endif
                                                             @endforeach
                                                           @else
@@ -253,7 +253,7 @@
                                                                     <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack uk-animation-fade uk-animation-enter"
                                                                         uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;"
                                                                         style="left: 152.844px; top: 74px; animation-duration: 200ms;"
-                                                                         {{ (!$product->category()->first() || !$product->category()->first()->variantGroup)? 'onclick="return false;"' : '' 
+                                                                         {{ (!$product->category()->first() || !$product->category()->first()->variantGroup)? 'onclick="return false;"' : ''
                                                                         }}>
                                                                         افزودن تنوع
                                                                     </div>
@@ -321,7 +321,7 @@
                                             {{ $products->links('staffproduct::layouts.pagination.pagination') }}
                                             <div class="c-ui-paginator js-paginator">
                                                 <div class="c-ui-paginator__total" data-rows="۶">
-                                                    تعداد نتایج: 
+                                                    تعداد نتایج:
                                                     <span name="total" data-id="{{ $products->total() }}">
                                                         {{ persianNum($products->total()) }} مورد
                                                     </span>

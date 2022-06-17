@@ -35,7 +35,7 @@
                   <a href="{{ route('front.productPage', $item->product->product_code) }}" target="_blank">
                     @foreach($item->product->media as $image)
                       @if($item->product->media && ($image->pivot->is_main == 1))
-                        <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60" alt="{{ $item->product->title_fa }}">
+                        <img src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60" alt="{{ $item->product->title_fa }}">
                       @endif
                     @endforeach
                   </a>

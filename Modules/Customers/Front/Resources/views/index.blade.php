@@ -80,7 +80,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                 <a href="{{ $banner2->images()->first()->link }}" class="c-adplacement__item"
                                     target="_blank" title="{{ $banner2->images()->first()->alt }}">
                                     <img src="{{ $banner2->images()->first()->media()->exists()
-                                        ? $site_url . '/' . $banner2->images()->first()->media->first()->path . '/' . $banner2->images()->first()->media->first()->name : '' }}"
+                                        ? full_media_path($banner2->images()->first()->media->first()) : '' }}"
                                         alt="{{ $banner2->images()->first()->media()->exists() ? $banner2->images()->first()->alt : '' }}" loading="lazy" />
                                 </a>
                             @endif
@@ -105,7 +105,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                                         class="c-main-slider__slide swiper-slide js-main-page-slider-image"
                                                         title="{{ $image->media()->exists() ? $image->alt : '' }}"
                                                         data-is-trackable="" target="_blank"
-                                                        style="background-image: url({{ $site_url . '/' . $image->media()->first()->path . '/' . $image->media()->first()->name }});
+                                                        style="background-image: url({{ full_media_path($image->images()->first()->media->first()) }});
                                                          width: 875px; transition-duration: 0ms; opacity: 1; transform: translate3d(1750px, 0px, 0px); background-size:cover;"></a>
                                                 @endforeach
                                             @endif
@@ -234,12 +234,10 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                         @if (!is_null($bannerGroup1) && $bannerGroup1->images()->exists())
                             @foreach ($bannerGroup1->images as $image)
                                 @if ($image->media()->exists())
-                                    <a href="{{ $image->media()->exists() ? $image->link : '' }}"
-                                        class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank"
-                                        data-is-trackable="" title="{{ $image->media()->exists() ? $image->alt : '' }}">
+                                    <a href="{{ $image->link }}" class="c-adplacement__item js-banner-impression-adro"
+                                       data-observed="1" target="_blank" data-is-trackable="" title="{{ $image->alt }}">
                                         <div class="c-adplacement__sponsored_box">
-                                            <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
-                                                alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy">
+                                            <img src="{{ full_media_path($image->media->first()) }}" alt="{{ $image->alt }}" loading="lazy">
                                         </div>
                                     </a>
                                 @endif
@@ -334,7 +332,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                 data-observed="0" target="_blank"
                                 title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
                                 <div class="c-adplacement__sponsored_box">
-                                    <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
+                                    <img src="{{ full_media_path($image->media->first()) }}"
                                         alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
                                 </div>
                             </a>
@@ -386,7 +384,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                        data-observed="0" target="_blank"
                                        title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
                                         <div class="c-adplacement__sponsored_box">
-                                            <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
+                                            <img src="{{ full_media_path($image->media->first()) }}"
                                                  alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
                                         </div>
                                     </a>

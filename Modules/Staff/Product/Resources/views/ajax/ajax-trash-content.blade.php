@@ -58,7 +58,7 @@
                                     <td class="c-ui-table__cell" style="min-width: 90px">
                                         @foreach($product->media as $image)
                                             @if($product->media && ($image->pivot->is_main == 1))
-                                                <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}"
+                                                <img src="{{ full_media_path($image) }}"
                                                      width="75" height="75">
                                             @endif
                                         @endforeach

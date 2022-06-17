@@ -79,7 +79,7 @@
                                             <div class="c-filter-shortcut__category-image">
                                                 @if ($cat->media()->exists())
                                                     <img
-                                                        src="{{ $cat->media()->exists() ? $site_url . '/' . $cat->media()->first()->path . '/' . $cat->media()->first()->name : '' }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">
+                                                        src="{{ full_media_path($cat->media()->first()) }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">
                                                 @endif
                                             </div>
                                             <div class="c-filter-shortcut__category-title">{{ $cat->name }}</div>

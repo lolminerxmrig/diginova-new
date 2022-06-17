@@ -110,7 +110,7 @@ $product_categories = array_reverse($product_categories, true);
                                         @foreach($product->media as $image)
                                             @if($product->media && ($image->pivot->is_main == 1))
                                                 <a href="">
-                                                    <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}">
+                                                    <img src="{{ full_media_path($image) }}">
                                                 </a>
                                             @endif
                                         @endforeach

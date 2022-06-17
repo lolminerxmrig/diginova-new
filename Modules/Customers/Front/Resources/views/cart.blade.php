@@ -113,7 +113,7 @@
                                 <a class="c-cart-item__thumb-img {{ (!$has_count)? 'c-cart-item__thumb--inactive' : '' }}" href="{{ route('front.productPage', $product->product_code) }}" target="_blank">
                                   @foreach($product->media as $image)
                                     @if($product->media && ($image->pivot->is_main == 1))
-                                      <img alt="{{ $product->title_fa }}" src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">
+                                      <img alt="{{ $product->title_fa }}" src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">
                                     @endif
                                   @endforeach
                                 </a>
@@ -432,7 +432,7 @@
                               <a class="c-cart-item__thumb-img" href="{{ route('front.productPage', $product->product_code) }}" target="_blank">
                                 @foreach($product->media as $image)
                                   @if($product->media && ($image->pivot->is_main == 1))
-                                    <img alt="{{ $product->title_fa }}" src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">
+                                    <img alt="{{ $product->title_fa }}" src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60">
                                   @endif
                                 @endforeach
                               </a>

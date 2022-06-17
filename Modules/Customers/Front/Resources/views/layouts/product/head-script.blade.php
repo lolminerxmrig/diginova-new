@@ -251,7 +251,7 @@
       ],
       @foreach($product->media as $image)
         @if($product->media && ($image->pivot->is_main == 1))
-            "image_url": "{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
+            "image_url": "{{ full_media_path($image) }}?x-oss-process=image\/resize,m_lfit,h_350,w_350\/quality,q_60",
         @endif
         @endforeach
       "product_url": "{{ route('front.productPage', $product->product_code) }}"

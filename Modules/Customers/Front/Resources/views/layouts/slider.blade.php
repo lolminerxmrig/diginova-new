@@ -8,7 +8,7 @@
             data-observed="0" target="_blank"
             title="{{ $image->media()->exists() ? $image->alt : '' }}" data-is-trackable="">
           <div class="c-adplacement__sponsored_box">
-            <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
+            <img src="{{ full_media_path($image->media->first()) }}"
                   alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy" />
           </div>
         </a>
@@ -28,7 +28,7 @@
               class="c-adplacement__item js-banner-impression-adro" data-observed="1" target="_blank"
               data-is-trackable="" title="{{ $image->media()->exists() ? $image->alt : '' }}">
              <div class="c-adplacement__sponsored_box">
-               <img src="{{ $site_url . '/' . $image->media->first()->path . '/' . $image->media->first()->name }}"
+               <img src="{{ full_media_path($image->media->first()) }}"
                     alt="{{ $image->media()->exists() ? $image->alt : '' }}" loading="lazy">
              </div>
            </a>
@@ -48,7 +48,7 @@
             data-is-trackable="" title="{{ $item->images()->first()->alt }}">
             <div class="c-adplacement__sponsored_box">
               <img src="{{ $item->images()->first()->media()->exists()
-                      ? $site_url . '/' . $item->images()->first()->media->first()->path . '/' . $item->images()->first()->media->first()->name
+                      ? full_media_path($item->images()->first()->media->first())
                       : ''
                     }}"
                   alt="{{ $item->images()->first()->media()->exists()

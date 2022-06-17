@@ -580,8 +580,8 @@ $customer = auth()->guard('customer')->user();
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}"type="image/icon">
-    <link rel="icon" type="image/png" href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}">
+    <link rel="shortcut icon" href="{{ full_media_path($favicon_image) }}"type="image/icon">
+    <link rel="icon" type="image/png" href="{{ full_media_path($favicon_image) }}">
     <meta name="robots" content="noindex, nofollow">
 
     <meta name="msapplication-TileColor" content="#ffffff">

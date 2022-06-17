@@ -332,3 +332,7 @@ function validPromotions($promotions)
 {
     return $promotions->active()->get();
 }
+
+function full_media_path($media) {
+    return !is_null($media) ? $site_url . '/' . $media->path . '/' . $media->name : '';
+}

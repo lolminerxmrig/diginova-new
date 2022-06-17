@@ -27,7 +27,7 @@
             <a href="{{ route('front.productPage', $history->product->product_code) }}" class="c-profile-user-history__list-item-img" target="_blank">
               @foreach($history->product->media as $image)
                 @if($history->product->media && ($image->pivot->is_main == 1))
-                  <img data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" alt="{{ $history->product->title_fa }}" src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" loading="lazy">
+                  <img data-src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" alt="{{ $history->product->title_fa }}" src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" loading="lazy">
                 @endif
               @endforeach
             </a>

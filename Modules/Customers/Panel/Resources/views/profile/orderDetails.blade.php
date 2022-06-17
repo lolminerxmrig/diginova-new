@@ -180,7 +180,7 @@
                 @if ($item->product_variant->product->media()->exists())
                   @foreach($item->product_variant->product->media as $image)
                     @if($item->product_variant->product->media && ($image->pivot->is_main == 1))
-                      <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $item->product_variant->product->title_fa }}">
+                      <img src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $item->product_variant->product->title_fa }}">
                     @endif
                   @endforeach
                 @endif

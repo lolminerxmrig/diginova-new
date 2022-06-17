@@ -591,10 +591,10 @@
                     @foreach($product->media as $image)
                       @if($product->media && ($image->pivot->is_main == 1))
                         <img class="js-gallery-img"
-                             data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
+                             data-src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
                              title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}"
-                             data-zoom-image="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,w_1280/quality,q_80"
-                             src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
+                             data-zoom-image="{{ full_media_path($image) }}?x-oss-process=image/resize,w_1280/quality,q_80"
+                             src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_600,w_600/quality,q_80"
                              loading="lazy">
                       @endif
                     @endforeach
@@ -609,11 +609,11 @@
                           data-event-category="product_page" data-event-label="3555626-num of pics:14">
                         <div class="thumb-wrapper">
                           <img
-                            data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                            data-src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
                             title="" data-snt-event="dkProductPageClick"
                             data-snt-params="{&quot;item&quot;:&quot;gallery-option&quot;,&quot;item_option&quot;:&quot;thumbnail-image&quot;}"
                             alt="{{ $product->title_fa }} thumb 1 {{ $key+1 }}" data-type=""
-                            src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                            src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
                             loading="lazy">
                           <div class="c-gallery__images-count">
                           <span class="c-gallery__count-circle">
@@ -775,7 +775,7 @@
                               @foreach($product->media as $image)
                                 @if($product->media && ($image->pivot->is_main == 1))
                                   <img alt="{{ $item->title_fa }}"
-                                       src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
+                                       src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"
                                        class=" js-ab-not-app-incredible-product swiper-lazy swiper-lazy-loaded"
                                        loading="lazy">
                                 @endif
@@ -1302,10 +1302,10 @@
                   class="c-remodal-gallery__main-img js-gallery-main-img js-img-main-{{ $key+1 }} {{ ($key == 0)? 'is-active js-img-main-1' : '' }}"
                   data-slide-title="Slide {{ $key+1 }}">
                   <img
-                    data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
-                    data-high-res-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+                    data-src="{{ full_media_path($image) }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+                    data-high-res-src="{{ full_media_path($image) }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
                     class="pannable-image" title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
-                    src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
+                    src="{{ full_media_path($image) }}?x-oss-process=image/resize,h_1600/quality,q_80/watermark,image_ZGstdy8xLnBuZw==,t_90,g_nw,x_15,y_15"
                     loading="lazy">
                 </div>
               @endif
@@ -1317,9 +1317,9 @@
                   @foreach($product->media as $key => $image)
                     <div class="c-remodal-gallery__thumb js-image-thumb" data-order="{{ $key+1 }}">
                       <img
-                        data-src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                        data-src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
                         title="{{ $product->title_fa }}" alt="{{ $product->title_fa }}" data-type=""
-                        src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
+                        src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_115,w_115/quality,q_60"
                         loading="lazy">
                     </div>
                   @endforeach

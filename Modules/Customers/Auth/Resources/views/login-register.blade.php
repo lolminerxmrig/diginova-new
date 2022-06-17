@@ -13,7 +13,7 @@
 
         <div class="c-login__header-logo c-login__header-logo--lg">
             <a href="{{ route('front.indexPage') }}">
-                <img alt="{{ $site_url }}" src="{{ !is_null($header_logo) ? $site_url . '/' . $header_logo->path . '/' . $header_logo->name : '' }}">
+                <img alt="{{ $site_url }}" src="{{ full_media_path($header_logo) }}">
             </a>
         </div>
 

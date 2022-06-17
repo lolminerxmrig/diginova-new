@@ -131,7 +131,7 @@
                           <div class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-3">
                             <label class="c-ui-form__label" for="product_page_title">زمان ثبت سفارش:</label>
                             <div class="field-wrapper">
-                              <input type="text" name="order_code" data-value="{{ $order->created_at }}" 
+                              <input type="text" name="order_code" data-value="{{ $order->created_at }}"
                               class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable span-time" disabled>
                             </div>
                           </div>
@@ -140,7 +140,7 @@
                             class="c-grid__col c-grid__col--gap-lg c-grid__col--row-attr c-grid__col--flex-initial c-grid__col--sm-3">
                             <label class="c-ui-form__label" for="product_page_title">وضعیت سفارش:</label>
                             <div class="field-wrapper">
-                              <input type="text" name="order_code" value="{{ $order->status->name }}" 
+                              <input type="text" name="order_code" value="{{ $order->status->name }}"
                               class="c-ui-input__field c-ui-input__field--order c-ui-input__field--has-btn js-form-clearable" disabled>
                             </div>
                           </div>
@@ -441,7 +441,7 @@
                           <span class="js-search-table-column">عنوان و کد تنوع (DNPC)</span>
                         </th>
                         <th class="c-ui-table__header c-ui-table__header--nowrap " style="transform: none;">
-                          <span class="js-search-table-column-sortable table-header-searchable" 
+                          <span class="js-search-table-column-sortable table-header-searchable"
                           data-sort-column="product_id" data-sort-order="desc">کد محصول</span>
                         </th>
                         <th class="c-ui-table__header c-ui-table__header--nowrap " style="transform: none;">
@@ -472,7 +472,7 @@
                                 style="width: 10% !important;padding-left: 0px !important;margin-left: 0px;"
                                 data-value="{{ $order->created_at }}"></td>
                             <td class="c-order-history__status uk-flex" style="width: 6% !important;">
-                              <span class="c-commission-table__tag" style="width: auto; margin:auto; text-align: center;"> 
+                              <span class="c-commission-table__tag" style="width: auto; margin:auto; text-align: center;">
                               {{ persianNum($j) }} از {{ persianNum(count($consignment->consignment_variants)) }}
                             </span>
                             </td>
@@ -481,7 +481,7 @@
                               $image = $consignment_variant->product_variant->first()->product->media()->where('is_main', 1)->first();
                             @endphp
                             <td class="c-order-history__item-image">
-                              <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" alt=""
+                              <img src="{{ full_media_path($image) }}" alt=""
                                    class="c-content-upload__img">
                             </td>
                             <td class="c-order-history__item-title" style="margin-left: 30px !important;">
@@ -554,7 +554,7 @@
                                   <td style="width: 20% !important;">
                                     {{ !is_null($consignment_variant->promotion_price)
                                       ? persianNum(number_format($consignment_variant->promotion_price))
-                                      : persianNum(0) 
+                                      : persianNum(0)
                                     }}
                                   </td>
                                   <td style="width: 20% !important;">

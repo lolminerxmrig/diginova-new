@@ -11,8 +11,8 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
     @include('layouts.front.ModulesScript')
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}"type="image/icon">
-    <link rel="icon" type="image/png" href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}">
+    <link rel="shortcut icon" href="{{ full_media_path($favicon_image) }}"type="image/icon">
+    <link rel="icon" type="image/png" href="{{ full_media_path($favicon_image) }}">
     <meta name="robots" content="index, {{ $site_index_status == 'true' ? 'follow' : 'nofollow' }}" />
 
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -171,7 +171,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                             class="c-header__profile-dropdown-user-profile-full-link"></a>
                                     </div>
 
-                                    <div class="c-header__profile-dropdown-actions">  
+                                    <div class="c-header__profile-dropdown-actions">
                                         <li>
                                             <a href="{{ route('customer.panel.myOrders') }}" class="c-profile-menu__item c-profile-menu__item--orders {{ (request()->routeIs('customer.panel.myOrders'))? 'is-active' : '' }}">
                                                 سفارش‌های من

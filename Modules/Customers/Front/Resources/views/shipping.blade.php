@@ -8224,7 +8224,7 @@
                                           >
                                           <div class="c-checkout-pack__shipping-type">
                                             <div class="c-checkout-time-table__shipping-type">
-                                              <span style="background-image: url({{ $site_url . '/' .  $method->media()->first()->path . '/' . $method->media()->first()->name }}); width: 25px !important;height: 19px !important; float: right; background-repeat: no-repeat; background-size: 20px; background-position: right bottom; margin-left: 0px;"></span>
+                                              <span style="background-image: url({{ full_media_path($method->media()->first()) }}); width: 25px !important;height: 19px !important; float: right; background-repeat: no-repeat; background-size: 20px; background-position: right bottom; margin-left: 0px;"></span>
                                               {{ $method->name }}
                                             </div>
                                           </div>
@@ -8234,11 +8234,6 @@
                                 @endif
                               @endif
                             @endforeach
-
-
-
-
-
                           </div>
                           <div class="c-checkout-pack__row">
                             <script>

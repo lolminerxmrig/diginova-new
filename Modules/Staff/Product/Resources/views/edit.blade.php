@@ -302,7 +302,7 @@
                                                                             data-tooltip="با انتخاب این گزینه، کلمه “غیراصل” در
                                                                              کنار عنوان کالا و نشان “غیراصل” در کنار
                                                                              تصویر کالای شما در سایت قرار خواهد گرفت. برند کالا
-                                                                             باید “متفرقه” درج شود.   در صورت فروش کالای غیراصل بدون 
+                                                                             باید “متفرقه” درج شود.   در صورت فروش کالای غیراصل بدون
                                                                             این نشان، مطابق با قوانین جریمه خواهید شد."></span>
                                                                     </div>
                                                                 </div>
@@ -408,7 +408,7 @@
                                                                 <div>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                             <div
                                                                 class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial o-spacing-m-t-4 c-grid__col--sm-4 ">
                                                                 <label for=""
@@ -1466,7 +1466,7 @@
                                                                                             <input type="hidden" name="images[main_image]" id="mainImageContainer"  value="{{$image->id}}"/>
                                                                                         @endif
                                                                                         <div class="c-content-upload__img-container">
-                                                                                            <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}" alt="" class="c-content-upload__img">
+                                                                                            <img src="{{ full_media_path($image) }}" alt="" class="c-content-upload__img">
                                                                                         </div>
                                                                                         <div class="c-content-upload__mid-container">
                                                                                             <div class="c-content-upload__mid-container--top">
@@ -1684,7 +1684,7 @@
                                     مشاهده ویدیوی آموزشی
                                 </div>
                                 <div
-                                    class="o-btn o-btn--outlined-primary-lg-text o-spacing-m-t-6 js-hide-video 
+                                    class="o-btn o-btn--outlined-primary-lg-text o-spacing-m-t-6 js-hide-video
                                         c-content-accordion__modal-guidelines-back uk-hidden">
                                     بازگشت به صفحه قبل
                                 </div>
@@ -1767,7 +1767,7 @@
                                     مشاهده ویدیوی آموزشی
                                 </div>
                                 <div
-                                    class="o-btn o-btn--outlined-primary-lg-text o-spacing-m-t-6 js-hide-video 
+                                    class="o-btn o-btn--outlined-primary-lg-text o-spacing-m-t-6 js-hide-video
                                         c-content-accordion__modal-guidelines-back uk-hidden">
                                     بازگشت به صفحه قبل
                                 </div>

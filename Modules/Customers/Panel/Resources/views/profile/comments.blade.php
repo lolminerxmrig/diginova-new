@@ -56,7 +56,7 @@
           <div class="c-profile-comments__product-thumb">
             @foreach($item->product->media as $image)
               @if($item->product->media && ($image->pivot->is_main == 1))
-                <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $item->product->title_fa }}">
+                <img src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_lfit,h_150,w_150/quality,q_80" alt="{{ $item->product->title_fa }}">
               @endif
             @endforeach
           </div>
@@ -108,7 +108,7 @@
           <a href="{{ route('front.productPage', $comment->product->product_code) }}">
             @foreach($comment->product->media as $image)
               @if($comment->product->media && ($image->pivot->is_main == 1))
-                <img src="{{ $site_url . '/' .$image->path . '/' . $image->name }}?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60" alt="{{ $comment->product->title_fa }}">
+                <img src="{{ full_media_path($image) }}?x-oss-process=image/resize,m_fill,h_150,w_150/quality,q_60" alt="{{ $comment->product->title_fa }}">
               @endif
             @endforeach
           </a>
