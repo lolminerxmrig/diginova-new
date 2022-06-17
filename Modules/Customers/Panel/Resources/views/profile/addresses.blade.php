@@ -6,7 +6,7 @@
     var activeMenu = "addresses";
     var faqPageTitle = "profile_section";
     var skipWalletRequest = true;
-    var userInformation = {"firstName":"\u0645\u0647\u062f\u06cc","lastName":"\u062c\u0644\u0627\u0644\u06cc","nationalSecurityNumber":"","mobile":""};
+    var userInformation = {"firstName":"","lastName":"","nationalSecurityNumber":"","mobile":""};
     var addressAjaxUrls = {"add":"\/ajax\/profile\/addresses\/add\/","edit":"\/ajax\/profile\/addresses\/edit\/","delete":"\/ajax\/addresses\/remove\/"};
     var isFirstAddress = false;
     var pageName = "Profile";

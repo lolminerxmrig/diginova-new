@@ -7970,11 +7970,11 @@
           <script>
             var insider_object = {
               "user": {
-                "uuid": "9735394",
-                "name": "\u0645\u0647\u062f\u06cc",
-                "surename": "\u062c\u0644\u0627\u0644\u06cc",
-                "email": "mehdi.jalaliii03@gmail.com",
-                "phone_number": "+989389701200",
+                "uuid": "",
+                "name": "",
+                "surename": "",
+                "email": "",
+                "phone_number": "",
                 "gdpr_optin": true,
                 "email_optin": true
               }

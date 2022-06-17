@@ -35,8 +35,6 @@ Route::get("product/comment/$product_code_prefix-{product_code}", [FrontControll
 Route::get('search/category-{slug}', [FrontController::class, 'categoryPage'])->name('front.categoryPage');
 Route::get('search', [FrontController::class, 'search'])->name('search');
 
-//Route::get('ajax/search/category-phone-data-cable', [CategoryController::class, 'searchFilter'])->name('front.categoryPage');
-
 Route::prefix('ajax')->name('front.ajax.')->group(function () {
   Route::get('search/category-{slug}', [CategoryController::class, 'searchFilter'])->name('categoryPage');
   Route::get('search', [CategoryController::class, 'searchQuery'])->name('searchPage');
@@ -95,17 +93,11 @@ Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::get('order/status/{order_code}', [FrontController::class, 'orderStatus'])->name('orderStatus');
   Route::get('profile/orders/{order_code}', [FrontController::class, 'profileOrders'])->name('profileOrders');
   Route::get('payment-order', [FrontController::class, 'paymentOrder'])->name('paymentOrder');
-
   Route::get('repayment-order/{order_code}', [FrontController::class, 'repaymentOrder'])->name('repaymentOrder');
   Route::get('reselect/{order_code}', [FrontController::class, 'reselectGateway'])->name('reselectGateway');
   Route::post('reselect/payment', [FrontController::class, 'reselectPaymant'])->name('reselectPaymant');
 });
 
-Route::get('tracker/events', function (){
-});
+Route::get('tracker/events', function (){});
 
-Route::get('ajax/profile/wallet', function () {
-});
-
-// Route::get('test', [\Modules\Staff\Category\Http\Controllers\StaffCategoryController::class, 'test']);
-
+Route::get('ajax/profile/wallet', function () {});

@@ -60,6 +60,7 @@ class StaffSliderController extends Controller
           'path' => 'media/sliders',
           'person_id' => auth()->guard('staff')->user()->id,
           'person_role' => 'staff' ,
+          'status' => 1
         ]);
 
         SliderImage::updateOrCreate(['slider_id' => $request->slider_id], [
@@ -138,7 +139,6 @@ class StaffSliderController extends Controller
               'slider_id' => $position,
             ]);
         }
-
     }
 
     public function updateSliderImagesRow(Request $request)
@@ -195,7 +195,6 @@ class StaffSliderController extends Controller
 
 
             }
-
         }
 
     }

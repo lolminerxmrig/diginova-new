@@ -13992,15 +13992,6 @@ var plusBadgeMotion = { "v": "5.5.9", "fr": 60, "ip": 0, "op": 330, "w": 126, "h
 /*[PATH @digikala/supernova-digikala-desktop/assets/local/js/shared/main.js]*/
 /* global __ */
 
-// init sentry
-if (typeof module_js_crashlytics != "undefined" && !!module_js_crashlytics) {
-    try {
-        window.Sentry.init({ dsn: 'https://b415f70edfa3422987e9c71c127cd97c@sentry.digikala.com/4' });
-    } catch (e) {
-        console.log('failed to load sentry', e);
-    }
-}
-
 var Main = {
     trends: [],
     gaListName: null,

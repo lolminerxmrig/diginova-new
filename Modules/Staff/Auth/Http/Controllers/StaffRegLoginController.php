@@ -74,7 +74,7 @@ class StaffRegLoginController extends Controller
         $remember = filled($request->remember) ?: false;
 
         if (Auth::guard('staff')->attempt($credentials, $remember)) {
-            $this->deleteUnusedMedia();
+//            $this->deleteUnusedMedia();
             $request->session()->regenerate();
             return redirect()->route('staff.dashboardPage');
           }
@@ -107,7 +107,7 @@ class StaffRegLoginController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('staff')->logout();
-        
+
         return redirect()->route('staff.indexPage');
     }
 
