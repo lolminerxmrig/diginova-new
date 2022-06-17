@@ -589,7 +589,6 @@ $customer = auth()->guard('customer')->user();
     <meta name="msapplication-navbutton-color" content="#fb3449">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/customize.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} "
         media="screen and (max-height: 1184px)">

@@ -10,7 +10,6 @@
           type="image/icon">
     <link rel="icon" type="image/png"
           href="{{ !is_null($favicon_image) ? $site_url . '/' . $favicon_image->path . '/' . $favicon_image->name : '' }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/customize.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }} ">
     <link rel="stylesheet" href="{{ asset('assets/css/max-height1184px.css') }} "
           media="screen and (max-height: 1184px)">
