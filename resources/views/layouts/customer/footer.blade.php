@@ -85,28 +85,28 @@
                     @if ($googleplay_link)
                         <a class="store-link" href="{{ $googleplay_link }}" target="_blank">
                             <img alt="دریافت از گوگل پلی" width="150px" height="44px" loading="lazy"
-                                src="{{ asset('mehdi/public/images/googleplay.svg') }}">
+                                src="{{ asset('assets/images/svg/googleplay.svg') }}">
                         </a>
                     @endif
                     @if ($cafebazaar_link)
                         <a class="store-link" href="{{ $cafebazaar_link }}" target="_blank">
-                            <img data-src="{{ asset('mehdi/public/images/cafebazaar.svg') }}"
+                            <img data-src="{{ asset('assets/images/svg/cafebazaar.svg') }}"
                                 width="150px" height="44px" loading="lazy" alt="دریافت از بازار"
-                                src="{{ asset('mehdi/public/images/cafebazaar.svg') }}">
+                                src="{{ asset('assets/images/svg/cafebazaar.svg') }}">
                         </a>
                     @endif
                     @if ($myket_link)
                         <a class="store-link" href="{{ $myket_link }}" target="_blank">
-                            <img data-src="{{ asset('mehdi/public/images/myket.png') }}"
+                            <img data-src="{{ asset('assets/images/png/myket.png') }}"
                                 width="150px" height="44px" loading="lazy" alt="دریافت از مایکت"
-                                src="{{ asset('mehdi/public/images/myket.png') }}">
+                                src="{{ asset('assets/images/png/myket.png') }}">
                         </a>
                     @endif
                     @if ($sibapp_link)
                         <a class="store-link" href="{{ $sibapp_link }}" target="_blank">
-                            <img data-src="{{ asset('mehdi/public/images/sibapp.svg') }}"
+                            <img data-src="{{ asset('assets/images/svg/sibapp.svg') }}"
                                 width="150px" height="44px" loading="lazy" alt="دریافت از سیبچه"
-                                src="{{ asset('mehdi/public/images/sibapp.svg') }}">
+                                src="{{ asset('assets/images/svg/sibapp.svg') }}">
                         </a>
                     @endif
                 </div>

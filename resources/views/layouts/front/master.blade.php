@@ -22,16 +22,16 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets/css/max-height1184px.css') }} "
         media="screen and (max-height: 1184px)">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/max-width1365px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/max-width1365px.css') }} "
         media="screen and (max-width: 1365px)">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1025px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/min-width1025px.css') }} "
         media="screen and (min-width: 1025px)">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1366px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/min-width1366px.css') }} "
         media="screen and (min-width: 1366px)">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/min-width1680px.css') }} "
         media="screen and (min-width: 1680px)">
 
     {!! $settings->where('name', 'custom_header_code')->first()->value ?? '' !!}
@@ -136,7 +136,7 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                                     <div class="c-header__profile-dropdown-account-container">
                                         <div class="c-header__profile-dropdown-user">
                                             <div class="c-header__profile-dropdown-user-img">
-                                                <img src="{{ asset('mehdi/public/images/user.svg') }}">
+                                                <img src="{{ asset('assets/images/svg/user.svg') }}">
                                             </div>
                                             <div class="c-header__profile-dropdown-user-info">
                                                 <p class="c-header__profile-dropdown-user-name">
@@ -501,28 +501,28 @@ $telegram_link = $settings->where('name', 'telegram_link')->first()->value;
                         @if ($googleplay_link)
                             <a class="store-link" href="{{ $googleplay_link }}" target="_blank">
                                 <img alt="دریافت از گوگل پلی" width="150px" height="44px" loading="lazy"
-                                    src="{{ asset('mehdi/public/images/googleplay.svg') }}">
+                                    src="{{ asset('assets/images/svg/googleplay.svg') }}">
                             </a>
                         @endif
                         @if ($cafebazaar_link)
                             <a class="store-link" href="{{ $cafebazaar_link }}" target="_blank">
-                                <img data-src="{{ asset('mehdi/public/images/cafebazaar.svg') }}"
+                                <img data-src="{{ asset('assets/images/svg/cafebazaar.svg') }}"
                                     width="150px" height="44px" loading="lazy" alt="دریافت از بازار"
-                                    src="{{ asset('mehdi/public/images/cafebazaar.svg') }}">
+                                    src="{{ asset('assets/images/svg/cafebazaar.svg') }}">
                             </a>
                         @endif
                         @if ($myket_link)
                             <a class="store-link" href="{{ $myket_link }}" target="_blank">
-                                <img data-src="{{ asset('mehdi/public/images/myket.png') }}"
+                                <img data-src="{{ asset('assets/images/png/myket.png') }}"
                                     width="150px" height="44px" loading="lazy" alt="دریافت از مایکت"
-                                    src="{{ asset('mehdi/public/images/myket.png') }}">
+                                    src="{{ asset('assets/images/png/myket.png') }}">
                             </a>
                         @endif
                         @if ($sibapp_link)
                             <a class="store-link" href="{{ $sibapp_link }}" target="_blank">
-                                <img data-src="{{ asset('mehdi/public/images/sibapp.svg') }}"
+                                <img data-src="{{ asset('assets/images/svg/sibapp.svg') }}"
                                     width="150px" height="44px" loading="lazy" alt="دریافت از سیبچه"
-                                    src="{{ asset('mehdi/public/images/sibapp.svg') }}">
+                                    src="{{ asset('assets/images/svg/sibapp.svg') }}">
                             </a>
                         @endif
                     </div>

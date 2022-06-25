@@ -39,7 +39,7 @@ $product_categories = array_reverse($product_categories, true);
     </script>
 
     <script src="{{ asset('assets/js/sentry.js') }}"></script>
-    <script src="{{ asset('assets/new/js/AddCommentAction.js') }}"></script>
+    <script src="{{ asset('assets/js/AddCommentAction.js') }}"></script>
 
     <style>
         body {

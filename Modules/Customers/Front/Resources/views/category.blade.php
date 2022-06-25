@@ -24,8 +24,8 @@
         var activateUrl = "\/digiclub\/activate\/";
      </script>
 
-    <script src="{{ asset('assets/new/js/sentry.js') }}"></script>
-    <script src="{{ asset('assets/new/js/url2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sentry2.js') }}"></script>
+    <script src="{{ asset('assets/js/url2.min.js') }}"></script>
 
     <style>
         @media screen and (-ms-high-contrast: none) {

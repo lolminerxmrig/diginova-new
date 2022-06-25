@@ -10,7 +10,7 @@
 <meta name="robots" content="noindex, nofollow"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="{{ asset('assets/js/sentry.js') }}"></script>
-<script src="{{ asset('assets/new/js/CartIndexAction.js') }}"></script>
+<script src="{{ asset('assets/js/CartIndexAction.js') }}"></script>
 
 <style>
   @media screen and (-ms-high-contrast: none) {

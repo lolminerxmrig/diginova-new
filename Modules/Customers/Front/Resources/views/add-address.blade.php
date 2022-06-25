@@ -17,7 +17,7 @@
     var isNewCustomer = false;
   </script>
   <script id="sentry_js" src="{{ asset('assets/js/sentry.js') }}"></script>
-  <script id="map_js" src="{{ asset('assets/new/js/map.js') }}"></script>
+  <script id="map_js" src="{{ asset('assets/js/map2.js') }}"></script>
   <script src="https://www.parsimap.com/js/v3.1.0/parsimap.js?key=public"></script>
   <style>
     @media screen and (-ms-high-contrast: none) {
@@ -65,7 +65,7 @@
           <div class="c-map__address js-map-address"></div>
         </div>
         <div class="c-map__container  js-map-container">
-          <div class="c-map " id="map" data-current-icon="{{ asset('mehdi/public/images/location.png') }}"></div>
+          <div class="c-map " id="map" data-current-icon="{{ asset('assets/images/png/location.png') }}"></div>
           <div class="c-map__search-field">
             <input class="js-search-map-input" placeholder="جستجو آدرس">
             <button type="button" class="o-btn c-map__search-cancel js-search-map-cancel u-hidden"></button>
@@ -77,7 +77,7 @@
           <input type="hidden" name="address[lng]">
           <div class="c-map__overlay"></div>
           <div class="c-map__marker">
-            <img src="{{ asset('mehdi/public/images/location2.svg') }}"/></div>
+            <img src="{{ asset('assets/images/svg/location2.svg') }}"/></div>
         </div>
         <div class="c-address__modal-footer">
           <div class="c-address__modal-footer-title">

@@ -2,7 +2,7 @@
 @section('title') مدیریت واحدها | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
-    <script src="{{ asset('mehdi/public/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
     <script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
     <script src="{{ asset('mehdi/staff/js/tagify.min.js') }}"></script>

@@ -671,16 +671,16 @@
   }
 </script>
 
-<link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
-<link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} "
+<link rel="stylesheet" href="{{ asset('assets/css/app.css') }} ">
+<link rel="stylesheet" href="{{ asset('assets/css/max-height1184px.css') }} "
 media="screen and (max-height: 1184px)">
-<link rel="stylesheet" href="{{ asset('assets/new/css/max-width1365px.css') }} "
+<link rel="stylesheet" href="{{ asset('assets/css/max-width1365px.css') }} "
 media="screen and (max-width: 1365px)">
-<link rel="stylesheet" href="{{ asset('assets/new/css/min-width1025px.css') }} "
+<link rel="stylesheet" href="{{ asset('assets/css/min-width1025px.css') }} "
 media="screen and (min-width: 1025px)">
-<link rel="stylesheet" href="{{ asset('assets/new/css/min-width1366px.css') }} "
+<link rel="stylesheet" href="{{ asset('assets/css/min-width1366px.css') }} "
 media="screen and (min-width: 1366px)">
-<link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} "
+<link rel="stylesheet" href="{{ asset('assets/css/min-width1680px.css') }} "
 media="screen and (min-width: 1680px)">
 
 <script>
@@ -699,7 +699,7 @@ var activateUrl = "\/digiclub\/activate\/";
 </script>
 
 <script src="{{ asset('assets/js/sentry.js') }}"></script>
-<script src="{{ asset('assets/new/js/peymentIndexAction.js') }}" ></script>
+<script src="{{ asset('assets/js/peymentIndexAction.js') }}" ></script>
 </head>
 <body class=" t-header-light c-checkout-pages has-top-banner" style="">
 <style>

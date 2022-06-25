@@ -589,16 +589,16 @@ $customer = auth()->guard('customer')->user();
     <meta name="msapplication-navbutton-color" content="#fb3449">
     <meta name="apple-mobile-web-app-status-bar-style" content="#fb3449">
 
-    <link rel="stylesheet" href="{{ asset('assets/new/css/app.css') }} ">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/max-height1184px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets/css/max-height1184px.css') }} "
         media="screen and (max-height: 1184px)">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/max-width1365px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/max-width1365px.css') }} "
         media="screen and (max-width: 1365px)">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1025px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/min-width1025px.css') }} "
         media="screen and (min-width: 1025px)">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1366px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/min-width1366px.css') }} "
         media="screen and (min-width: 1366px)">
-    <link rel="stylesheet" href="{{ asset('assets/new/css/min-width1680px.css') }} "
+    <link rel="stylesheet" href="{{ asset('assets/css/min-width1680px.css') }} "
         media="screen and (min-width: 1680px)">
 
     <script src="{{ asset('assets/js/sentry.js') }} "></script>
@@ -777,7 +777,7 @@ $customer = auth()->guard('customer')->user();
                                 <div class="c-header__profile-dropdown-account-container">
                                     <div class="c-header__profile-dropdown-user">
                                         <div class="c-header__profile-dropdown-user-img">
-                                            <img src="{{ asset('mehdi/public/images/user.svg') }}">
+                                            <img src="{{ asset('assets/images/svg/user.svg') }}">
                                         </div>
                                         <div class="c-header__profile-dropdown-user-info">
                                             <p class="c-header__profile-dropdown-user-name">
@@ -1046,7 +1046,7 @@ $customer = auth()->guard('customer')->user();
                                 <div class="c-profile-box__section" style="padding-bottom: 10px;">
                                     <div class="c-profile-box__header">
                                         <div class="c-profile-box__avatar js-user-avatar js-change-avatar"
-                                             style="background-image: url({{ asset('mehdi/public/images/user.svg') }})">
+                                             style="background-image: url({{ asset('assets/images/svg/user.svg') }})">
                                         </div>
                                         <div class="c-profile-box__header-content">
                                             <div class="c-profile-box__username">

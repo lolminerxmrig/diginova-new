@@ -7,7 +7,7 @@
                         <div class="c-profile-box__section" style="padding-bottom: 10px;">
                             <div class="c-profile-box__header">
                                 <div class="c-profile-box__avatar js-user-avatar js-change-avatar"
-                                     style="background-image: url({{ asset('mehdi/public/images/user.svg') }})">
+                                     style="background-image: url({{ asset('assets/images/svg/user.svg') }})">
                                 </div>
                                 <div class="c-profile-box__header-content">
                                     <div class="c-profile-box__username">

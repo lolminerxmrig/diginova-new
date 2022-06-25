@@ -1,9 +1,9 @@
 @extends('layouts.staff.master')
-@section('title') 
-    ویرایش گروه ویژگی | {{ $fa_store_name }} 
+@section('title')
+    ویرایش گروه ویژگی | {{ $fa_store_name }}
 @endsection
 @section('head')
-<script src="{{ asset('mehdi/public/js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('mehdi/staff/css/tagify.css') }}">
 <script src="{{ asset('mehdi/staff/js/jQuery.tagify.min.js') }}"></script>
 
@@ -34,7 +34,7 @@
                         <h1 class="c-card__title c-card__title--dark c-card__title--desc">
                             ویرایش گروه ویژگی
                             <span>
-                            برای ویرایش  گروه ویژگی و ایجاد ویژگی 
+                            برای ویرایش  گروه ویژگی و ایجاد ویژگی
                             برای آن از این قسمت استفاده نمایید
                             </span>
                         </h1>
@@ -55,7 +55,7 @@
                             <div class="c-grid__row c-grid__row--gap-lg">
                                 <div class="c-grid__col c-grid__col--gap-lg c-grid__col--flex-initial c-grid__col--lg-8 ">
                                     <div class="c-grid__row c-grid__row--gap-lg c-grid__row--nowrap-sm">
-                                        <div class="c-grid__col c-grid__col--gap-lg 
+                                        <div class="c-grid__col c-grid__col--gap-lg
                                             c-grid__col--flex-initial c-grid__col--lg-6 c-grid__col--xs-gap">
                                             <label for="" class="uk-form-label" style="color: #606265;margin-bottom: 7px;">نام گروه ویژگی
                                                 <span class="uk-form-label__required"></span>
@@ -64,7 +64,7 @@
                                                 <label class="c-content-input">
                                                     <input name="group_id" class="group_id" value="{{ $attributeGroup->id }}" hidden>
                                                     <input type="text" class="c-content-input__origin
-                                                     c-content-input__origin attr_group_name" name="attr_group_name" 
+                                                     c-content-input__origin attr_group_name" name="attr_group_name"
                                                      value="{{ $attributeGroup->name }}" dir="rtl" style="text-align: right;">
                                                 </label>
                                             </div>
@@ -78,10 +78,10 @@
                                         توضیحات (اختیاری)
                                     </label>
                                     <div class="field-wrapper field-wrapper--textarea">
-                                        <textarea name="attr_group_desc"class="c-content-input__origin c-content-input__origin--textarea 
+                                        <textarea name="attr_group_desc"class="c-content-input__origin c-content-input__origin--textarea
                                             js-textarea-words attr_group_desc" rows="2" maxlength="1000"
-                                            @if(!$attributeGroup->description) 
-                                                placeholder="در صورت تمایل اطلاعات گروه ویژگی را وارد کنید ..." 
+                                            @if(!$attributeGroup->description)
+                                                placeholder="در صورت تمایل اطلاعات گروه ویژگی را وارد کنید ..."
                                             @endif >{{ ($attributeGroup->description)? $attributeGroup->description : '' }}</textarea>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                                     <div class="c-ui-tooltip__anchor">
                                                         <div class="c-ui-toggle__group">
                                                             <label class="c-ui-toggle">
-                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_favorite" 
+                                                                <input class="c-ui-toggle__origin js-toggle-active-product attr_favorite"
                                                                     type="checkbox" name="attr_favorite"  {{ ($attribute->is_favorite)? 'checked' : '' }}>
                                                                 <span class="c-ui-toggle__check"></span>
                                                             </label>
@@ -201,7 +201,7 @@
                                                         @elseif(($attribute->type == 3) || ($attribute->type == 4))
                                                             <input name='drag-sort' class="attr_input_tag" value='{{ $attribute->values }}'>
                                                         @elseif($attribute->type == 5)
-                                                            <select name="attr_unit" class="uk-input uk-input--select attr_input_tag js-select-origin 
+                                                            <select name="attr_unit" class="uk-input uk-input--select attr_input_tag js-select-origin
                                                                 select2-hidden-accessible" tabindex="-1" aria-hidden="true" aria-invalid="false">
                                                                 @if(isset($units) && count($units))
                                                                     @foreach($units as $unit)
@@ -254,7 +254,7 @@
             </div>
         </div>
     </div>
-    
+
         <div id="pageLoader" class="c-content-loader c-content-loader--fixed">
             <div class="c-content-loader__logo"></div>
             <div class="c-content-loader__spinner"></div>
@@ -262,7 +262,7 @@
     </div>
 </main>
 
-<div uk-modal="esc-close: true; bg-close: true;" 
+<div uk-modal="esc-close: true; bg-close: true;"
     class="uk-modal-container uk-modal-container--message js-common-modal-notification uk-modal"
      style="display: none;">
     <div class="uk-modal-dialog uk-modal-dialog--flex">
@@ -273,7 +273,7 @@
                     <h2 class="c-modal-notification__header">هشدار</h2>
 
                     <p class="c-modal-notification__text">
-                      با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته انتخابی به صورت کامل 
+                      با حذف ویژگی مورد نظر ، این ویژگی از فیلتر محصولات دسته انتخابی به صورت کامل
                       حذف شده و قابل بازیابی نمی باشد. آیا از حذف کامل آن اطمینان دارید؟
                     </p>
                     <div class="c-modal-notification__actions">
@@ -435,7 +435,7 @@ $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
             </div>
         </td>
         <td class="c-ui-table__cell" style="min-width:90px">
-            <input class="c-content-input__origin js-attribute-old-value attr_name" name="attr_name">    
+            <input class="c-content-input__origin js-attribute-old-value attr_name" name="attr_name">
         </td>
         <td class="c-ui-table__cell c-ui-table__cell--small-text td-select" style="text-align:right; min-width: 200px;">
             <select name="attr_type" class="uk-input uk-input--select js-select-origin attr_type select2-hidden-accessible"
@@ -450,7 +450,7 @@ $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
         <td class="c-ui-table__cell c-ui-table__cell--small-text">
             <div class="c-ui-tooltip__anchor">
                 <div class="c-ui-toggle__group"><label class="c-ui-toggle">
-                    <input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox" 
+                    <input class="c-ui-toggle__origin js-toggle-active-product attr_required" type="checkbox"
                     name="attr_required" value="1"> <span class="c-ui-toggle__check"></span></label>
                 </div>
             </div>
@@ -467,7 +467,7 @@ $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
         <div class="c-ui-tooltip__anchor">
             <div class="c-ui-toggle__group">
             <label class="c-ui-toggle">
-            <input class="c-ui-toggle__origin 
+            <input class="c-ui-toggle__origin
             js-toggle-active-product attr_filterable" type="checkbox" name="attr_favorite">
             <span class="c-ui-toggle__check"></span>
             </label>
@@ -481,7 +481,7 @@ $(document).on('click', '.c-mega-campaigns__btns-green-plus', function () {
         </td>
         <td class="c-ui-table__cell">
         <div class="c-promo__actions" style="width:50%;margin:auto">
-            <button type="button" class="c-content-upload__btn 
+            <button type="button" class="c-content-upload__btn
             c-content-upload__btn--remove remove-btn"></button>
         </div>
         </td>
@@ -690,7 +690,7 @@ $(document).on('change', '.attr_type', function (){
 
         var disabled_field = `
             <div class="uk-flex uk-flex-column values-td">
-            <input type="text" class="c-content-input__origin attr_input_tag 
+            <input type="text" class="c-content-input__origin attr_input_tag
                 c-ui-input--deactive val_field" disabled="">
             </td>
         `;
@@ -735,7 +735,7 @@ $(document).on('change', '.attr_type', function (){
         $(this).closest('.row').find("input[name='attr_favorite']").removeAttr('disabled');
 
         // var xxx = $(".select-unit:last").clone();
-        
+
         var xxx = `
         <div class="uk-flex uk-flex-column values-td select-unit" style="display: none;">
             <select name="attr_unit[]" class="uk-input uk-input--select attr_input_tag

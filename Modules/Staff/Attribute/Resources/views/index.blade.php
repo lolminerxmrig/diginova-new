@@ -2,7 +2,7 @@
 @section('title') مدیریت ویژگی‌ها | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
-    <script src="{{ asset('mehdi/public/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
 
     <!-- <script src="{{ asset('seller/js/tags3.js') }}"></script> -->
 @endsection

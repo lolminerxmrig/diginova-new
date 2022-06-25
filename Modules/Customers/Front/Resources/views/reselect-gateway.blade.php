@@ -19,7 +19,7 @@
   var activateUrl = "\/digiclub\/activate\/";
 </script>
 <script src="{{ asset('assets/js/sentry.js') }}"></script>
-<script src="{{ asset('assets/new/js/paymentResponseAction.js') }}"></script>
+<script src="{{ asset('assets/js/paymentResponseAction.js') }}"></script>
 @endsection
 
 

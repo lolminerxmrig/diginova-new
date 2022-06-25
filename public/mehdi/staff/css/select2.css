@@ -12539,63 +12539,63 @@ iframe.uk-cover {
 
 @font-face {
     font-family: IRANYekan;
-    src: url(../../public/fonts/IRANYekan-1.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/IRANYekan-1.ttf) format("truetype");
     font-weight: 300;
     font-style: normal
 }
 
 @font-face {
     font-family: IRANYekan;
-    src: url(../../public/fonts/IRANYekan-2.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/IRANYekan-2.ttf) format("truetype");
     font-weight: 400;
     font-style: normal
 }
 
 @font-face {
     font-family: IRANYekan;
-    src: url(../../public/fonts/IRANYekan-3.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/IRANYekan-3.ttf) format("truetype");
     font-weight: 700;
     font-style: normal
 }
 
 @font-face {
     font-family: IRANSans;
-    src: url(../../public/fonts/IRANSans.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/IRANSans.ttf) format("truetype");
     font-weight: 400;
     font-style: normal
 }
 
 @font-face {
     font-family: YekanBakh;
-    src: url(../../public/fonts/YekanBakh-1.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/YekanBakh-1.ttf) format("truetype");
     font-weight: 900;
     font-style: normal
 }
 
 @font-face {
     font-family: YekanBakh;
-    src: url(../../public/fonts/YekanBakh-2.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/YekanBakh-2.ttf) format("truetype");
     font-weight: 800;
     font-style: normal
 }
 
 @font-face {
     font-family: YekanBakh;
-    src: url(../../public/fonts/YekanBakh-3.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/YekanBakh-3.ttf) format("truetype");
     font-weight: 700;
     font-style: normal
 }
 
 @font-face {
     font-family: YekanBakh;
-    src: url(../../public/fonts/YekanBakh-4.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/YekanBakh-4.ttf) format("truetype");
     font-weight: 500;
     font-style: normal
 }
 
 @font-face {
     font-family: YekanBakh;
-    src: url(../../public/fonts/YekanBakh-5.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/YekanBakh-5.ttf) format("truetype");
     font-weight: 400;
     font-style: normal
 }
@@ -12632,7 +12632,7 @@ body {
 
 @font-face {
     font-family: IRANYekanNumbersOnly;
-    src: url(../../public/fonts/IRANYekanNumbersOnly.ttf) format("truetype");
+    src: url(../../../assets/fonts/ttf/IRANYekanNumbersOnly.ttf) format("truetype");
     font-weight: 300;
     font-style: normal
 }
@@ -12656,8 +12656,8 @@ h6 {
 
 @font-face {
     font-family: digikala;
-    src: url(../../public/fonts/digikala.eot);
-    src: url(../../public/fonts/digikala.eot?#iefix) format("eot"), url(../../public/fonts/digikala.woff2) format("woff2"), url(../../public/fonts/digikala.woff) format("woff"), url(../../public/fonts/digikala.ttf) format("truetype")
+    src: url(../../../assets/fonts/eot/digikala.eot);
+    src: url(../../../assets/fonts/eot/digikala.eot?#iefix) format("eot"), url(../../../assets/fonts/woff2/digikala.woff2) format("woff2"), url(../../../assets/fonts/woff/digikala.woff) format("woff"), url(../../../assets/fonts/ttf/digikala.ttf) format("truetype")
 }
 
 .advantage-box .tags .remove-tag:after,

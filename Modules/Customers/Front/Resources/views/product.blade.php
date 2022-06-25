@@ -30,15 +30,15 @@
   @include('front::layouts.product.head-script', compact('product','product_variants', 'variantGroup'))
 
   <script src="{{ asset('assets/js/sentry.js') }}"></script>
-  <script src="{{ asset('assets/new/js/jwplayer.js') }} "></script>
-  <script src="{{ asset('assets/new/js/jwpsrv.js') }} "></script>
-  <script src="{{ asset('assets/new/js/jwplayer.core.controls.js') }} "></script>
-  <script src="{{ asset('assets/new/js/jwplayer.core.controls.html5.js') }} "></script>
-  <script src="{{ asset('assets/new/js/provider.hlsjs.js') }} "></script>
-  <script src="{{ asset('assets/new/js/video-js.min.js') }} "></script>
-  <script src="{{ asset('assets/new/js/videojs-contrib-quality-levels.min.js') }} "></script>
-  <script src="{{ asset('assets/new/js/videojs-hls-quality-selector.min.js') }} "></script>
-  <script src="{{ asset('assets/new/js/url.min.js') }}"></script>
+  <script src="{{ asset('assets/js/jwplayer.js') }} "></script>
+  <script src="{{ asset('assets/js/jwpsrv.js') }} "></script>
+  <script src="{{ asset('assets/js/jwplayer.core.controls.js') }} "></script>
+  <script src="{{ asset('assets/js/jwplayer.core.controls.html5.js') }} "></script>
+  <script src="{{ asset('assets/js/provider.hlsjs.js') }} "></script>
+  <script src="{{ asset('assets/js/video-js.min.js') }} "></script>
+  <script src="{{ asset('assets/js/videojs-contrib-quality-levels.min.js') }} "></script>
+  <script src="{{ asset('assets/js/videojs-hls-quality-selector.min.js') }} "></script>
+  <script src="{{ asset('assets/js/url.min.js') }}"></script>
 
   <style>
       body {

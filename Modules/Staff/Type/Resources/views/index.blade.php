@@ -3,7 +3,7 @@
 @section('title') مدیریت نوع کالا | {{ $fa_store_name }}  @endsection
 @section('head')
     <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
-    <script src="{{ asset('mehdi/public/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('mehdi/staff/js/dragsort.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('mehdi/staff/css/dragsort.css') }}"
          media="print" onload="this.media='all'">
@@ -134,7 +134,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="uk-form-label edit-form-section" 
+                                                    <label class="uk-form-label edit-form-section"
                                                         style="margin-bottom: 15px;margin-top: 40px;margin-right: 40px;">لیست نوع:</label>
 
                                                     <div id="dragable_section" class="ui-sortable">
@@ -159,7 +159,7 @@
                                                                         </p>
                                                                         <div class="c-modal-notification__actions">
                                                                             <button class="c-modal-notification__btn no uk-modal-close">خیر</button>
-                                                                            <button class="c-modal-notification__btn 
+                                                                            <button class="c-modal-notification__btn
                                                                                 c-modal-notification__btn--secondary yes uk-modal-close">بله</button>
                                                                         </div>
                                                                     </div>
