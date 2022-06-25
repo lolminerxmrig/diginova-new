@@ -650,7 +650,6 @@
 <meta name="robots" content="noindex, nofollow"/>
 <link rel="canonical" href="{{ $site_url }}/shipping"/>
 
-<link rel="manifest" href="{{ asset('assets/manifest.json') }}?v=1.4">
 <meta name="msapplication-TileColor" content="#ffffff">
 {{--  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">--}}
 <meta name="theme-color" content="#fb3449">
@@ -2630,7 +2629,8 @@ var activateUrl = "\/digiclub\/activate\/";
                       <div class="c-navi-new-list__sublist-top-bar"><a href="/main/apparel/" class="c-navi-new-list__sublist-see-all-cats">
                           همه دسته‌بندی‌های مد و پوشاک
                         </a><a href="https://www.digistyle.com" target="_blank"
-                               class="c-navi-new-list__sublist-top-bar-image"><img src="https://www.digikala.com/static/files/5851ec93.svg"/></a>
+                               class="c-navi-new-list__sublist-top-bar-image">
+                              <img src="https://www.digikala.com/static/files/5851ec93.svg"/></a>
                       </div>
                       <ul>
                         <li class="c-navi-new-list__sublist-option c-navi-new-list__sublist-option--title"

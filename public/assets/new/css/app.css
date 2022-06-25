@@ -23246,12 +23246,6 @@ li:last-child .c-navi-list__tracking-a {
     display: block;
 }
 
-.c-footer__social--telegram a:before {
-    background-image: url(../../images/png/telegram.png);
-    background-size: 40px 40px;
-    width: 40px;
-    height: 40px;
-}
 
 .c-footer__social--telegram img {
     position: relative;
@@ -66095,7 +66089,7 @@ body.navi-is-visible:not(.t-header-light) .c-checkout-aside {
     margin: 0 auto;
     width: 200px;
     height: 150px;
-    background: url(../../images/png/68b7acd6.png) 50% no-repeat;
+    background: url(../../images/png/empty-cart-icon.png) 50% no-repeat;
     background-size: contain;
 }
 
@@ -66103,7 +66097,7 @@ body.navi-is-visible:not(.t-header-light) .c-checkout-aside {
     margin: 0 auto;
     width: 200px;
     height: 150px;
-    background: url(../../images/png/06d51c65.png) 50% no-repeat;
+    background: url(../../images/png/empty-sfl-icon.png) 50% no-repeat;
     background-size: contain;
 }
 
@@ -89332,41 +89326,6 @@ label.erlabel {
     background-size: cover;
 }
 
-.c-my-landing-page__category--book-and-media {
-    background-image: url(../../images/jpg/e3816cd0.jpg);
-}
-
-.c-my-landing-page__category--personal-appliance {
-    background-image: url(../../images/jpg/2bbe0624.jpg);
-}
-
-.c-my-landing-page__category--electronic-devices {
-    background-image: url(../../images/jpg/900b4391.jpg);
-}
-
-.c-my-landing-page__category--apparel {
-    background-image: url(../../images/jpg/3075e7d5.jpg);
-}
-
-.c-my-landing-page__category--home-and-kitchen {
-    background-image: url(../../images/jpg/efc2a18e.jpg);
-}
-
-.c-my-landing-page__category--mother-and-child {
-    background-image: url(../../images/jpg/2150385e.jpg);
-}
-
-.c-my-landing-page__category--sport-entertainment {
-    background-image: url(../../images/jpg/0f0cb5ce.jpg);
-}
-
-.c-my-landing-page__category--vehicles {
-    background-image: url(../../images/jpg/4835e0d5.jpg);
-}
-
-.c-my-landing-page__category--food-beverage {
-    background-image: url(../../images/jpg/0560ff64.jpg);
-}
 
 .c-my-landing-page__category-header {
     padding-top: 24px;

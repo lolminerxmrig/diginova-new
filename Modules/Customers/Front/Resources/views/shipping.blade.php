@@ -640,7 +640,6 @@
   <meta name="robots" content="noindex, nofollow"/>
   <link rel="canonical" href="{{ $site_url }}/shipping"/>
 
-  <link rel="manifest" href="{{ asset('assets/manifest.json') }}?v=1.4">
   <meta name="msapplication-TileColor" content="#ffffff">
   {{--  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">--}}
   <meta name="theme-color" content="#fb3449">

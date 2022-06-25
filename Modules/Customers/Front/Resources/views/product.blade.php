@@ -1077,7 +1077,9 @@
                 دریافت کد تخفیف
               </div>
             </div>
-            <div class="c-share__referral-img"><img src="../../static/files/84182fb2.svg"/></div>
+            <div class="c-share__referral-img">
+                <img src="../../static/files/84182fb2.svg"/>
+    </div>
           </div>
         </form>
       </div>
