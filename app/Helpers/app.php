@@ -106,7 +106,8 @@ function getSingleImage($model)
 {
   if($model->images()->first()->media()->exists())
   {
-    return $output = $site_url . '/' . $model->images()->first()->media->first()->path . '/'. $model->images()->first()->media->first()->name;
+      $site_url = \Modules\Staff\Setting\Models\Setting::where('name', 'site_url')->first()->value;
+      return $output = $site_url . '/' . $model->images()->first()->media->first()->path . '/'. $model->images()->first()->media->first()->name;
   }
   return null;
 }
@@ -334,5 +335,6 @@ function validPromotions($promotions)
 }
 
 function full_media_path($media) {
+    $site_url = \Modules\Staff\Setting\Models\Setting::where('name', 'site_url')->first()->value;
     return !is_null($media) ? $site_url . '/' . $media->path . '/' . $media->name : '';
 }
