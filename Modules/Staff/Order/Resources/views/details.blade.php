@@ -277,9 +277,9 @@
                                 </div>
                                 <div class="c-profile-order__payment-record">
                                   @if($peyment_record->status == 'success')
-                                    <img src="{{ asset('staff/icon/bank/successful.svg') }}">
+                                    <img src="{{ asset('mehdi/staff/images/bank/successful.svg') }}">
                                   @else
-                                    <img src="{{ asset('staff/icon/bank/failed.svg') }}">
+                                    <img src="{{ asset('mehdi/staff/images/bank/failed.svg') }}">
                                   @endif
                                 </div>
                                 <div class="c-profile-order__payment-record">
