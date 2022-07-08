@@ -133,7 +133,6 @@ class Product extends Model
 
     public function weight()
     {
-      return $this->morphToMany(ProductWeight::class, 'weightable', 'weightables', 'wheight_id', 'weightable_id')->first();
+      return $this->morphToMany(ProductWeight::class, 'weightable', 'weightables', 'weightable_id', 'wheight_id');
     }
-
 }

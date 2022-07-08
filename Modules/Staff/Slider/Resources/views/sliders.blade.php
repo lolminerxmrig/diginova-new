@@ -98,7 +98,6 @@
                       <tbody id="tbody">
 
                       @foreach($sliders as $key => $slider)
-
                         <tr name="row db-row" id="item-{{ $slider->id }}" data-id="1"
                          class="c-ui-table__row c-ui-table__row--body c-join__table-row row db-row">
 
@@ -138,11 +137,12 @@
 
                           <td class="c-ui-table__cell c-ui-table__cell--small-text">
                             <div class="c-ui-tooltip__anchor"
-                            style="{{ (($slider->type == 'banner-r') || ($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'opacity:30%' : '' }}">
+                            style="{{ (($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'opacity:30%' : '' }}">
                               <div class="c-ui-toggle__group">
                                 <label class="c-ui-toggle">
-                                  <input class="c-ui-toggle__origin js-toggle-active-product status"
-                                   type="checkbox" name="status" {{ ($slider->status == 'active')? 'checked' : '' }} {{ (($slider->type == 'banner-r') || ($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'disabled' : '' }}>
+                                  <input class="c-ui-toggle__origin js-toggle-active-product status" type="checkbox" name="status"
+                                      {{ ($slider->status == 'active')? 'checked' : '' }} {{ (($slider->type == 'banner-group-r')  || ($slider->type == 'slider-r') )? 'disabled' : '' }}
+                                  >
                                   <span class="c-ui-toggle__check"></span>
                                 </label>
                               </div>
@@ -151,9 +151,7 @@
 
                           <td class="c-ui-table__cell">
                             <div class="c-promo__actions" style="width: auto; min-width: 15%; margin: auto;">
-
                               @if($slider->type == 'banner' || $slider->type == 'banner-r')
-
                                 <label class="c-RD-profile__upload-btn" style="margin-top: 5px;border: 1px solid #e6e6e6;height: 37px;width: 37px;">
                                   <input name="sliderImage" data-id="{{ $slider->id }}" type="file" class="js-profile-business-info-logo"
                                    accept="image">
@@ -165,14 +163,12 @@
                                   <span data-tooltip-body="" style="min-height:20px; width: auto;">مشاهده تصویر</span>
                                 </a>
                               @else
-
                                 <a href="{{ route('staff.sliders.sliderImages', ['id' => $slider->id ]) }}" style="width: 25px;margin-left: 15px;float: right;margin-top: 5px;margin-right: 0px !important;padding-right: 0px;" class="uk-padding-remove">
                                   <div class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--view c-ui--mr-10 js-tool-tip-desc" aria-expanded="false" style="margin-right: 0px !important; background-color: unset;   "></div>
                                   <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-desc; pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 130px; top: 76px;">
                                     مدیریت تصاویر
                                   </div>
                                 </a>
-
                                 <button class="o-spacing-m-t-1 js-campaign-actions js-archive-badge c-product-config-archive-badge
                                 uk-flex uk-flex-center uk-flex-middle uk-padding-remove vbox-item" data-icon="action-visibility-eye"
                                  data-hide="{is_archived: true}" data-value="1" data-is-archived="false"
@@ -185,6 +181,7 @@
                           </td>
                         </tr>
                       @endforeach
+
                       </tbody>
                     </table>
                   </div>

@@ -1,7 +1,7 @@
 <?php $cons_count = 0; ?>
 @foreach($weights as $weight)
   @foreach ($first_carts as $item)
-    @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
+    @if ($item->product_variant()->first()->product->weight()->first()->id == $weight->id)
       <?php $cons_count++; ?>
       @break;
     @endif

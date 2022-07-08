@@ -20,7 +20,7 @@
           </a>
         </div>
         <div class="c-404__image">
-          <img data-src="{{ asset('assets/images/png/404.png') }}" src="{{ asset('assets/images/png/404.png') }}" loading="lazy">
+          <img src="{{ asset('assets/images/png/404.png') }}" loading="lazy">
         </div>
       </div>
     </div>

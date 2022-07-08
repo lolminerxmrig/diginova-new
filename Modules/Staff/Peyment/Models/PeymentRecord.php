@@ -44,4 +44,18 @@ class PeymentRecord extends Model
           ->where('method_type', 'PeymentMethod');
     }
 
+//    public function scopeVoucher($query)
+//    {
+//        return $query->where('method_type', 'Voucher');
+//    }
+//
+//    public function scopeUnsuccessful($query)
+//    {
+//        return $query->where('status', 'unsuccessful');
+//    }
+//
+//    public function scopeSuccessful($query)
+//    {
+//        return $query->where('status', 'successful');
+//    }
 }

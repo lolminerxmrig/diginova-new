@@ -19,18 +19,10 @@ class CreatePeymentRecordsTable extends Migration
             $table->string('status')->nullable();
             $table->bigInteger('price')->nullable();
             $table->bigInteger('invoiceـnumber')->nullable();
-            $table->foreignId('order_id')->nullable();
-            $table->foreignId('customer_id')->nullable();
+            $table->foreignId('order_id')->nullable()->constrained();
+            $table->foreignId('customer_id')->nullable()->constrained();
             $table->nullableMorphs('method');
             $table->timestamps();
-
-            $table->foreign('order_id')
-                ->references('id')
-                ->on('orders');
-
-            $table->foreign('customer_id')
-                ->references('id')
-                ->on('customers');
         });
     }
 

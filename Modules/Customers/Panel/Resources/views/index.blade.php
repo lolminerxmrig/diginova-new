@@ -156,7 +156,7 @@
             <span class="c-table-orders__payment-status c-table-orders__payment-status--error">لغو شده</span>
           </div>
           <div class="c-table-orders__cell c-table-orders__cell--detail">
-            <a href="/profile/orders/84987432/" class="btn-order-more"></a>
+            <a href="/profile/my-orders/84987432/" class="btn-order-more"></a>
           </div>
         </div>
         <div class="c-table-orders__row">
@@ -171,7 +171,7 @@
             <span class="c-table-orders__payment-status c-table-orders__payment-status--ok">پرداخت موفق</span>
           </div>
           <div class="c-table-orders__cell c-table-orders__cell--detail">
-            <a href="/profile/orders/49417487/" class="btn-order-more"></a>
+            <a href="/profile/my-orders/49417487/" class="btn-order-more"></a>
           </div>
         </div>
         <a href="{{ route('customer.panel.orders') }}" class="c-table-orders__show-more">مشاهده لیست سفارش‌ها</a>

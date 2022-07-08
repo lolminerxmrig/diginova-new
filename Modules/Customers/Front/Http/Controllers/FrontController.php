@@ -927,24 +927,26 @@ class FrontController extends Controller
             ]);
         }
 
+
         CustomerAddress::create([
             'lan' => $request->address['lat'],
             'len' => $request->address['lng'],
             'address' => $request->address['address'],
-            'plaque' => $request->address['bld_num'],
-            'unit' => $request->address['apt_id'],
-            'postal_code' => $request->address['post_code'],
-            'is_recipient_self' => (isset($request->address['recipient_is_self']) && ($request->address['recipient_is_self'] == "true")) ? true : false,
-            'recipient_firstname' => (isset($request->address['first_name']) && !is_null($request->address['first_name'])) ? $request->address['first_name'] : null,
-            'recipient_lastname' => (isset($request->address['last_name']) && !is_null($request->address['last_name'])) ? $request->address['last_name'] : null,
-            'recipient_national_code' => (isset($request->address['national_id']) && !is_null($request->address['national_id'])) ? $request->address['national_id'] : null,
-            'recipient_mobile' => (isset($request->address['mobile_phone']) && !is_null($request->address['mobile_phone'])) ? ltrim($request->address['mobile_phone'], 0) : null,
+            'plaque' => enNum($request->address['bld_num']),
+            'unit' =>  enNum($request->address['apt_id']),
+            'postal_code' =>  enNum($request->address['post_code']),
+            'is_recipient_self' => (isset($request->address['recipient_is_self']) && ($request->address['recipient_is_self'] == "true")),
+            'recipient_firstname' => filled($request->address['first_name']) ? enNum($request->address['first_name']) : null,
+            'recipient_lastname' =>  filled($request->address['last_name']) ? enNum($request->address['last_name']) : null,
+            'recipient_national_code' => filled($request->address['national_id']) ? enNum($request->address['national_id']) : null,
+            'recipient_mobile' => filled($request->address['mobile_phone']) ? ltrim(enNum($request->address['mobile_phone']), 0) : null,
             //      'is_main' => $request->address[''],
             'customer_id' => $customer_id,
-            'state_id' => (isset($request->address['district_id']) && !is_null($request->address['district_id'])) ? $request->address['district_id'] : $request->address['city_id'],
+            'state_id' => filled($request->address['district_id']) ? enNum($request->address['district_id']) : enNum($request->address['city_id']),
         ]);
 
-        if (!$customer->delivery_address()->exists()) {
+
+        if (! $customer->delivery_address) {
             $defualt_address_id = $customer->addresses()->latest()->first()->id;
             $customer->update([
                 'address_type' => 'CustomerAddress',
@@ -1020,14 +1022,14 @@ class FrontController extends Controller
 
         foreach ($weights as $i => $weight) {
             foreach ($first_carts as $item) {
-                if ($item->product_variant()->first()->product->weight()->id == $weight->id) {
+                if ($item->product_variant->product->weight()->first()->id == $weight->id) {
                     $has_consignment = true;
                 }
 
                 if (isset($has_consignment) && $has_consignment) {
                     $sum_weight = 0;
                     foreach ($first_carts as $key => $cart) {
-                        if ($cart->product_variant()->first()->product->weight()->id == $weight->id) {
+                        if ($cart->product_variant()->first()->product->weight()->first()->id == $weight->id) {
                             $sum_weight += $cart->product_variant()->first()->product->weight;
                             if ($first_carts->count() - 1 == $key) {
                                 if ($weight->deliveryMethods()->exists()) {
@@ -1107,7 +1109,7 @@ class FrontController extends Controller
 
         foreach ($weights as $i => $weight) {
             foreach ($cart as $key => $item) {
-                if (($item->product_variant()->first()->product->weight()->id == $weight->id)) {
+                if (($item->product_variant()->first()->product->weight()->first()->id == $weight->id)) {
                     $fillable_weight_ids[] = $weight->id;
                     if (isset($consignment_weight[$weight->id])) {
                         $consignment_weight[$weight->id] += $item->product_variant()->first()->product->weight;
@@ -1400,7 +1402,7 @@ class FrontController extends Controller
 
         foreach ($weights as $i => $weight) {
             foreach ($cart as $key => $item) {
-                if (($item->product_variant()->first()->product->weight()->id == $weight->id)) {
+                if (($item->product_variant()->first()->product->weight()->first()->id == $weight->id)) {
                     // چک میکنه که تنوع کالایی پروموشن داره یا نه
                     $product_variant = $item->product_variant()->first();
                     if ($product_variant->promotions()->exists()) {
@@ -1535,7 +1537,6 @@ class FrontController extends Controller
     {
 
         $customer = Auth::guard('customer')->user();
-
         if (!PeymentRecord::where('customer_id', $customer->id)->where('method_type', 'Voucher')->where('status', 'unsuccessful')->exists()) {
             return null;
         }
@@ -1626,10 +1627,11 @@ class FrontController extends Controller
             'discount' => $sum_promotion_price + $final_sum_voucher,
         ]);
 
-        // ارسال پیامک ثبت موفق سفارش
-        Notification::send(auth()->user(),
-            new OrderSubmited($order->order_code)
-        );
+
+//        // ارسال پیامک ثبت موفق سفارش
+//        Notification::send(auth()->user(),
+//            new OrderSubmited($order->order_code)
+//        );
 
         if (OrderHasConsignment::count()) {
             $delivery_code = OrderHasConsignment::max('delivery_code') + 1;
@@ -1640,7 +1642,7 @@ class FrontController extends Controller
         }
 
         $i = 0;
-        foreach ($consignment_shipping_cost as $key => $shipping_cost) 
+        foreach ($consignment_shipping_cost as $key => $shipping_cost)
         {
             // ایجاد مرسوله
             OrderHasConsignment::create([
@@ -1660,7 +1662,7 @@ class FrontController extends Controller
             foreach ($first_carts as $item) {
 
                 // ایدی حجم: key
-                if ($item->product_variant()->first()->product->weight()->id == $key) 
+                if ($item->product_variant()->first()->product->weight()->first()->id == $key)
                 {
                     $consignment_p_v_id = ConsignmentHasProductVariants::insertGetId([
                         'count' => $item->count,
@@ -1700,17 +1702,17 @@ class FrontController extends Controller
             'plaque' => $default_address->plaque,
             'unit' => $default_address->unit,
             'postal_code' => $default_address->postal_code,
-            'firstname' => !is_null($default_address->recipient_firstname) 
-                ? $default_address->recipient_firstname 
+            'firstname' => !is_null($default_address->recipient_firstname)
+                ? $default_address->recipient_firstname
                 : $customer->first_name,
-            'lastname' => !is_null($default_address->recipient_lastname) 
-                ? $default_address->recipient_lastname 
+            'lastname' => !is_null($default_address->recipient_lastname)
+                ? $default_address->recipient_lastname
                 : $customer->last_name,
-            'national_code' => !is_null($default_address->recipient_national_code) 
-                ? $default_address->recipient_national_code 
+            'national_code' => !is_null($default_address->recipient_national_code)
+                ? $default_address->recipient_national_code
                 : $customer->national_code,
-            'mobile' => !is_null($default_address->recipient_mobile) 
-                ? $default_address->recipient_mobile 
+            'mobile' => !is_null($default_address->recipient_mobile)
+                ? $default_address->recipient_mobile
                 : $customer->mobile,
             'customer_id' => $default_address->customer_id,
             'state_id' => $default_address->state_id,
@@ -1745,7 +1747,7 @@ class FrontController extends Controller
 
         try {
             $receipt = Payment::transactionId($transaction_id)->verify();
-            
+
             $paymentRecord = PeymentRecord::where('invoiceـnumber', $invoiceـnumber)
                 ->firstOrFail();
 
@@ -1760,12 +1762,12 @@ class FrontController extends Controller
             // تغییر وضعیت ها بعد از پرداخت موفق
             $this->updateStatusAfterSuccessfulPayment($order);
 
-            if (Setting::whereName('successful_payment_sms_status', 'active')->exists()) {
-                Notification::send($paymentRecord->customer,
-                new InvoicePaid($invoiceـnumber, $tracking_code = $receipt->getReferenceId()
-                    , $order->order_code, $order->cost)
-              );
-            }
+//            if (Setting::whereName('successful_payment_sms_status', 'active')->exists()) {
+//                Notification::send($paymentRecord->customer,
+//                new InvoicePaid($invoiceـnumber, $tracking_code = $receipt->getReferenceId()
+//                    , $order->order_code, $order->cost)
+//              );
+//            }
         } catch (InvalidPaymentException $exception) {
 
             // تغییر وضعیت رکورد پرداخت به ناموفق وقتی از سمت درگاه ریسپانس ناموفق برمیگردد
@@ -1906,11 +1908,11 @@ class FrontController extends Controller
      */
     public function updateStatusAfterSuccessfulPayment($order): void
     {
-        // ارسال پیامک تعییر وضعیت سفارش
-        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
-            Notification::send(auth()->user(),
-                new OrderStatusChanged($order->order_code, 'تایید شده'));
-        }
+//        // ارسال پیامک تعییر وضعیت سفارش
+//        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
+//            Notification::send(auth()->user(),
+//                new OrderStatusChanged($order->order_code, 'تایید شده'));
+//        }
 
         // تغییر وضعیت سفارش به تایید شده
         $order->update([
@@ -1948,10 +1950,10 @@ class FrontController extends Controller
             }
         }
 
-        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
-            Notification::send(auth()->user(),
-                new OrderStatusChanged($order->order_code, $order->cost));
-        }
+//        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
+//            Notification::send(auth()->user(),
+//                new OrderStatusChanged($order->order_code, $order->cost));
+//        }
     }
 
     /**
@@ -1963,10 +1965,10 @@ class FrontController extends Controller
     public function updateStatusAfterUnsuccessfulPayment($order)
     {
         // ارسال پیامک تعییر وضعیت سفارش
-        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
-            Notification::send(auth()->user(),
-                new OrderStatusChanged($order->order_code, 'لغو شده'));
-        }
+//        if (Setting::whereName('delivery_sms_status', 'active')->exists()) {
+//            Notification::send(auth()->user(),
+//                new OrderStatusChanged($order->order_code, 'لغو شده'));
+//        }
 
         // تغییر وضعیت سفارش به لغو شده
         $order->update([

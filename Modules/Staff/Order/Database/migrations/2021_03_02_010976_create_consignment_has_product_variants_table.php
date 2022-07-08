@@ -20,20 +20,14 @@ class CreateConsignmentHasProductVariantsTable extends Migration
             $table->string('promotion_type')->nullable();
             $table->bigInteger('promotion_price')->nullable();
             $table->integer('promotion_percent')->nullable();
-            $table->foreignId('product_id')->nullable();
-            $table->foreignId('order_id')->nullable();
-            $table->foreignId('consignment_id')->nullable();
-            $table->foreignId('product_variant_id')->nullable();
-            $table->foreignId('order_status_id')->nullable();
-            $table->foreignId('customer_id')->nullable();
+            $table->foreignId('state_id')->nullable()->constrained('states')->nullOnDelete();
+            $table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('order_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('consignment_id')->nullable()->constrained('order_has_consignments')->cascadeOnDelete();
+            $table->foreignId('product_variant_id')->nullable()->constrained('product_has_variants')->nullOnDelete();
+            $table->foreignId('order_status_id')->nullable()->constrained('order_status')->restrictOnDelete();
+            $table->foreignId('customer_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
-
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->foreign('consignment_id')->references('id')->on('order_has_consignments')->onDelete('cascade');
-            $table->foreign('order_status_id')->references('id')->on('order_status');
-            $table->foreign('product_variant_id')->references('id')->on('product_has_variants');
-            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

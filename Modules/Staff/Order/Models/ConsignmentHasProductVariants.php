@@ -15,16 +15,16 @@ class ConsignmentHasProductVariants extends Model
     use HasFactory;
 
     protected $fillable = [
-      'count', 
-      'variant_price', 
-      'promotion_price', 
-      'promotion_percent', 
-      'product_id', 
-      'product_variant_id', 
-      'consignment_id', 
-      'order_id', 
-      'promotion_type', 
-      'order_status_id', 
+      'count',
+      'variant_price',
+      'promotion_price',
+      'promotion_percent',
+      'product_id',
+      'product_variant_id',
+      'consignment_id',
+      'order_id',
+      'promotion_type',
+      'order_status_id',
       'customer_id'
     ];
 

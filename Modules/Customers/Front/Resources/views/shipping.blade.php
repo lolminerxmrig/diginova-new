@@ -6,7 +6,7 @@
 <?php $cons_count = 0; ?>
 @foreach($weights as $weight)
   @foreach ($first_carts as $item)
-    @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
+    @if ($item->product_variant()->first()->product->weight()->first()->id == $weight->id)
       <?php $cons_count++; ?>
       @break;
     @endif
@@ -1498,7 +1498,7 @@
               </div>
               <div class="c-header__profile-dropdown-actions">
                 <div class="c-header__profile-dropdown-action-container">
-                  <a href="/profile/orders/" data-snt-event="dkHeaderClick"
+                  <a href="/profile/my-orders/" data-snt-event="dkHeaderClick"
                      data-snt-params='{"item":"account","item_option":"orders"}'
                      class="c-header__profile-dropdown-action c-header__profile-dropdown-action--orders ">سفارش‌های
                     من</a>
@@ -8167,7 +8167,7 @@
                       ?>
 
                       @foreach ($first_carts as $item)
-                        @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
+                        @if ($item->product_variant()->first()->product->weight()->first()->id == $weight->id)
                           <?php $has_consignment = true; ?>
                         @endif
                       @endforeach
@@ -8191,7 +8191,7 @@
                           <div class="c-checkout-pack__shipping-type-row">
                             <?php $sum_weight = 0; ?>
                             @foreach ($first_carts as $key => $cart)
-                              @if ($cart->product_variant()->first()->product->weight()->id == $weight->id)
+                              @if ($cart->product_variant()->first()->product->weight()->first()->id == $weight->id)
                                 <?php $sum_weight += $cart->product_variant()->first()->product->weight; ?>
                                 @if ($first_carts->count()-1 == $key)
                                     @if ($weight->deliveryMethods()->exists())
@@ -8250,7 +8250,7 @@
                                   <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
 
                                     @foreach ($first_carts as $cart)
-                                      @if ($cart->product_variant()->first()->product->weight()->id == $weight->id)
+                                      @if ($cart->product_variant()->first()->product->weight()->first()->id == $weight->id)
                                         <div class="swiper-slide js-product-box-container" data-item-id="{{ $cart->id }}" style="width: 154.167px;">
                                           <div class="c-product-box c-product-box--compact js-product-box">
                                             <a class="c-product-box__img js-url">
@@ -8349,15 +8349,14 @@
         </span>
         </li>
 
-        @if($first_carts->sum('new_promotion_price') > 0)
-
-          <?php $sum_promotion_price = 0; ?>
-          @foreach($first_carts as $priceItem)
-            @if ($priceItem->new_sale_price > $priceItem->new_promotion_price)
+      <?php $sum_promotion_price = 0; ?>
+      @foreach($first_carts as $priceItem)
+          @if ($priceItem->new_sale_price > $priceItem->new_promotion_price)
               <?php $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count); ?>
-            @endif
-          @endforeach
+          @endif
+      @endforeach
 
+        @if($first_carts->sum('new_promotion_price') > 0)
           <li>
             <span class="c-checkout-bill__item-title">
                 تخفیف کالاها
@@ -8378,7 +8377,7 @@
             جمع
         </span>
         <span class="c-checkout-bill__price">
-          {{ persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) }}
+          {{ isset($sum_promotion_price) ? persianNum(number_format(toman($sum_sale_price - $sum_promotion_price))) :  persianNum(toman($sum_sale_price)) }}
           <span class="c-checkout-bill__currency">
               تومان
           </span>

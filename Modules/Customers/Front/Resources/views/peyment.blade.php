@@ -2,16 +2,6 @@
   $store_email = \Modules\Staff\Setting\Models\Setting::where('name', 'store_email')->first()->value;
   $store_phone = \Modules\Staff\Setting\Models\Setting::where('name', 'store_phone')->first()->value;
 @endphp
-
-{{--<?php $cons_count = 0; ?>--}}
-{{--@foreach($weights as $weight)--}}
-{{--  @foreach ($first_carts as $item)--}}
-{{--    @if ($item->product_variant()->first()->product->weight()->id == $weight->id)--}}
-{{--      <?php $cons_count++; ?>--}}
-{{--      @break;--}}
-{{--    @endif--}}
-{{--  @endforeach--}}
-{{--@endforeach--}}
 <!DOCTYPE html>
 <html class="" style="" dir="rtl">
 <head>
@@ -810,7 +800,7 @@ var activateUrl = "\/digiclub\/activate\/";
               </div>
               <div class="c-header__profile-dropdown-actions">
                 <div class="c-header__profile-dropdown-action-container">
-                  <a href="/profile/orders/"
+                  <a href="/profile/my-orders/"
                      data-snt-event="dkHeaderClick"
                      data-snt-params='{"item":"account","item_option":"orders"}'
                      class="c-header__profile-dropdown-action c-header__profile-dropdown-action--orders ">سفارش‌های من</a>
@@ -6784,7 +6774,7 @@ var activateUrl = "\/digiclub\/activate\/";
                     ?>
 
                     @foreach ($first_carts as $item)
-                      @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
+                      @if ($item->product_variant()->first()->product->weight()->first()->id == $weight->id)
                         <?php
                           $has_consignment = true;
                           $consignment_product_count += 1;
@@ -6820,7 +6810,7 @@ var activateUrl = "\/digiclub\/activate\/";
                             <div class="swiper-container swiper-container-horizontal js-package-swiper">
                               <div class="swiper-wrapper">
                                 @foreach ($first_carts as $cart)
-                                  @if ($cart->product_variant()->first()->product->weight()->id == $weight->id)
+                                  @if ($cart->product_variant()->first()->product->weight()->first()->id == $weight->id)
                                    <div class="swiper-slide">
                                     <div class="c-product-box c-product-box--compact">
                                       <a class="c-product-box__img">
@@ -6862,7 +6852,7 @@ var activateUrl = "\/digiclub\/activate\/";
               <?php $cons_count = 0; ?>
               @foreach($weights as $weight)
                 @foreach ($first_carts as $item)
-                  @if ($item->product_variant()->first()->product->weight()->id == $weight->id)
+                  @if ($item->product_variant()->first()->product->weight()->first()->id == $weight->id)
                     <?php $cons_count++; ?>
                     @break;
                   @endif
@@ -6888,14 +6878,14 @@ var activateUrl = "\/digiclub\/activate\/";
                       </span>
                     </li>
 
-                    @if($first_carts->sum('new_promotion_price') > 0)
-
-                      <?php $sum_promotion_price = 0; ?>
-                      @foreach($first_carts as $priceItem)
+                    <?php $sum_promotion_price = 0; ?>
+                    @foreach($first_carts as $priceItem)
                         @if ($priceItem->new_sale_price > $priceItem->new_promotion_price)
-                          <?php $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count); ?>
+                            <?php $sum_promotion_price += (($priceItem->new_sale_price - $priceItem->new_promotion_price) * $priceItem->count); ?>
                         @endif
-                      @endforeach
+                    @endforeach
+
+                    @if($first_carts->sum('new_promotion_price') > 0)
                       <li>
                         <span class="c-checkout-bill__item-title">
                             تخفیف کالاها

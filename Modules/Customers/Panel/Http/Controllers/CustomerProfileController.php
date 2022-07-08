@@ -283,7 +283,7 @@ class CustomerProfileController extends Controller
 
         if($mobile->created_at->addMinutes(3) < now())
         {
-            if(EnNum($request->confirm['code']) == $token ) {
+            if(enNum($request->confirm['code']) == $token ) {
                 $customer = Auth::guard('customer')->user();
 
                 Customer::find($customer->id)->update([

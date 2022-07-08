@@ -4,6 +4,7 @@
 
 @section('head')
 <script src="{{ asset('assets/js/otpAction.js') }} "></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('content')
@@ -56,7 +57,6 @@
         </div>
 
         <button type="submit" class="o-btn o-btn--full-width o-btn--contained-red-lg">ادامه</button>
-
     </form>
 
     <form method="post" name="resendForm" action="{{ route('customer.check') }}" hidden>

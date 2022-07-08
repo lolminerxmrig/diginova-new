@@ -91,7 +91,7 @@ Route::name('front.')->middleware('web', 'customer')->group(function () {
   Route::get('payment', [FrontController::class, 'payment'])->name('payment');
   Route::post('payment', [FrontController::class, 'submitOrder'])->name('submitOrder');
   Route::get('order/status/{order_code}', [FrontController::class, 'orderStatus'])->name('orderStatus');
-  Route::get('profile/orders/{order_code}', [FrontController::class, 'profileOrders'])->name('profileOrders');
+  Route::get('profile/my-orders/{order_code}', [FrontController::class, 'profileOrders'])->name('profileOrders');
   Route::get('payment-order', [FrontController::class, 'paymentOrder'])->name('paymentOrder');
   Route::get('repayment-order/{order_code}', [FrontController::class, 'repaymentOrder'])->name('repaymentOrder');
   Route::get('reselect/{order_code}', [FrontController::class, 'reselectGateway'])->name('reselectGateway');

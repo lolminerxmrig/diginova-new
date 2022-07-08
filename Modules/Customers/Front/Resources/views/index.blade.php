@@ -93,8 +93,6 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                             $banner4_exists = $banner4 && $banner4->status  == 'active' &&
                                 $banner4->images()->exists() && $banner4->images()->first()->media()->exists();
                         ?>
-
-                        <div class="{{ $banner3_exists && $banner4_exists ? 'o-page__two-thirds o-page__two-thirds--right' : 'o-page__fullsize' }}">
                             <section class="c-adplacement-head-slider c-adplacement-head-slider--home">
                                 <div class="c-swiper c-swiper--promo-box c-main-slider-container ">
                                     <div class="swiper-container swiper-container-horizontal js-main-page-slider swiper-container-fade swiper-container-rtl">
@@ -105,7 +103,7 @@ $banner5 = \Modules\Staff\Slider\Models\Slider::find(10);
                                                         class="c-main-slider__slide swiper-slide js-main-page-slider-image"
                                                         title="{{ $image->media()->exists() ? $image->alt : '' }}"
                                                         data-is-trackable="" target="_blank"
-                                                        style="background-image: url({{ full_media_path($image->images()->first()->media->first()) }});
+                                                        style="background-image: url({{ full_media_path($image->media()->first()) }});
                                                          width: 875px; transition-duration: 0ms; opacity: 1; transform: translate3d(1750px, 0px, 0px); background-size:cover;"></a>
                                                 @endforeach
                                             @endif

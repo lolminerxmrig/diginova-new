@@ -814,7 +814,7 @@ $customer = auth()->guard('customer')->user();
 
                                 <div class="c-header__profile-dropdown-actions">
                                     <div class="c-header__profile-dropdown-action-container">
-                                        <a href="/profile/orders/" data-snt-event="dkHeaderClick"
+                                        <a href="/profile/my-orders/" data-snt-event="dkHeaderClick"
                                             data-snt-params="{&quot;item&quot;:&quot;account&quot;,&quot;item_option&quot;:&quot;orders&quot;}"
                                             class="c-header__profile-dropdown-action c-header__profile-dropdown-action--orders ">
                                             سفارش‌های من
