@@ -19807,10 +19807,6 @@ var Main = {
             functions.push(this.scrollToAnchorHref);
         }
 
-        // if (isModuleActive('console_greeting')) {
-        //     functions.push(this.initConsoleGreeting);
-        // }
-
         if (isModuleActive('new_desktop_header')) {
             functions = functions.concat([
                 this.initStickyHeader,
