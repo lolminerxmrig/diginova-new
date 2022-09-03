@@ -1,4 +1,3 @@
-/*[PATH @digikala/supernova-digikala-marketplace/assets/local/js/controllers/accountController/changePasswordEmailAction.js]*/
 let changePasswordEmailAction = {
     init: function () {
         this.initChangePasswordForm();
