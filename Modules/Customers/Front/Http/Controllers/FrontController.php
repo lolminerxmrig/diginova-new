@@ -673,7 +673,11 @@ class FrontController extends Controller
                 'new_promotion_price' => $promotion_price,
                 'product_variant_id' => $product_variant->id,
             ]);
+        } elseif (auth()->guard('customer')->check()) {
+            Cart::where('product_variant_id', $product_variant->id)->first()->increment('count');
         }
+
+
 
         return redirect()->route('front.cart');
     }
@@ -719,9 +723,9 @@ class FrontController extends Controller
      * @param $variant_id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function removeFromSaveForLater($variant_id)
+    public function removeFromSaveForLaterAjax($variant_id)
     {
-        $customer = Auth::guard('customer')->user();
+        $customer = auth()->guard('customer')->user();
 
         Cart::where('product_variant_id', $variant_id)
             ->where('customer_id', $customer->id)
@@ -733,6 +737,22 @@ class FrontController extends Controller
                 'redirectUrl' => route('front.cart'),
             ],
         ]);
+    }
+
+
+    /**
+     * @param $variant_id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function removeFromSaveForLater($variant_id)
+    {
+        $customer = auth()->guard('customer')->user();
+
+        Cart::where('product_variant_id', $variant_id)
+            ->where('customer_id', $customer->id)
+            ->where('type', 'second')->first()->delete();
+
+        return redirect()->back();
     }
 
     /**

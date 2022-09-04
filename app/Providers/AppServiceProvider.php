@@ -35,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
         $paymentMethod = PeymentMethod::all();
         $deliveryMethodValue = DeliveryMethodValue::all();
 
+        view()->share('settings', $settings);
+
         $this->setViewData($settings);
 
         if ($deliveryMethodValue->count()) {
@@ -79,6 +81,7 @@ class AppServiceProvider extends ServiceProvider
           view()->share('favicon_image', null);
           view()->share('symbol_image', null);
       }
+        view()->share('customer', auth()->guard('customer')->user());
     }
 
     public function setPostPishtazConfigs($deliveryMethodValue)

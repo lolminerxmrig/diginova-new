@@ -269,7 +269,7 @@ function toman($price) {
 }
 
 function defualtCartOldPrice($cart){
-  if ($cart->old_promotion_price < $cart->old_sale_price) {
+  if (!is_null($cart->old_promotion_price) && $cart->old_promotion_price < $cart->old_sale_price) {
     return $cart->old_promotion_price;
   } else {
     return $cart->old_sale_price;
@@ -277,7 +277,7 @@ function defualtCartOldPrice($cart){
 }
 
 function defualtCartNewPrice($cart){
-  if ($cart->new_promotion_price < $cart->new_sale_price) {
+  if (!is_null($cart->new_promotion_price) && $cart->new_promotion_price < $cart->new_sale_price) {
     return $cart->new_promotion_price;
   } else {
     return $cart->new_sale_price;
