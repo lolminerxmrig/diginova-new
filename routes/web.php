@@ -52,7 +52,8 @@ Route::prefix('ajax')->name('front.ajax.')->group(function () {
 
   Route::get('cart/move/save-for-later/{variant_code}', [FrontController::class, 'saveForLater'])->name('saveForLater');
 
-  Route::post('save-for-later/variant/remove/{variant_id}', [FrontController::class, 'removeFromSaveForLater'])->name('removeFromSaveForLater');
+  Route::post('save-for-later/variant/remove/{variant_id}', [FrontController::class, 'removeFromSaveForLaterAjax'])->name('removeFromSaveForLater');
+  Route::get('save-for-later/variant/remove/{variant_id}', [FrontController::class, 'removeFromSaveForLater']);
   Route::get('save-for-later/move/cart/{variant_id}', [FrontController::class, 'moveToFirstCart'])->name('moveToFirstCart');
   Route::get('save-for-later/move/all/cart', [FrontController::class, 'moveAllToFirstCart'])->name('moveAllToFirstCart');
 
