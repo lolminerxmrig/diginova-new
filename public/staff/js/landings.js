@@ -1,4 +1,3 @@
-/*[PATH @digikala/supernova-digikala-marketplace/assets/local/js/promotion.js]*/
 var Promotion = {
     init: function () {
         this.initSelect();
