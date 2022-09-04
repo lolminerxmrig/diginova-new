@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 
 @section('head')
-<script src="{{ asset('seller/js/create-brand-validation.js') }}"></script>
-<script src="{{ asset('seller/js/tags.js') }}"></script>
+<script src="{{ asset('staff/js/create-brand-validation.js') }}"></script>
+<script src="{{ asset('staff/js/staff-tags.js') }}"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/translations/fa.js"></script>
 <style>

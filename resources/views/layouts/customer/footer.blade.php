@@ -3,7 +3,9 @@
 <div class="c-new-footer__container">
     <footer class="c-new-footer container c-new-footer--home-page">
         <div class="u-flex u-justify-between u-items-center items-center">
-            <div class="c-new-footer__logo"></div>
+            <div class="c-new-footer__logo">
+                <img width="150" src="{{ full_media_path($header_logo) }}">
+            </div>
             <div id="js-jump-to-top" class="c-new-footer__jump-to-top-container">
                 <span class="c-new-footer__jump-to-top-label">بازگشت به بالا</span>
                 <span class="c-new-footer__jump-to-top-icon"></span>
@@ -75,7 +77,11 @@
         @if ($googleplay_link || $cafebazaar_link || $myket_link || $sibapp_link)
             <div class="c-new-footer__app-links-container">
                 <a class="u-flex u-items-center">
-                    <div class="c-new-footer__app-links-logo"></div>
+                    @if($symbol_image)
+                    <div class="c-new-footer__app-links-logo">
+                        <img width="44" height="44" src="{{ $site_url . '/' . $symbol_image->path . '/' . $symbol_image->name }}" alt="نماد سایت">
+                    </div>
+                    @endif
                     <div class="c-new-footer__app-links-label">
                         دانلود اپلیکیشن
                         <label>{{ $fa_store_name }}</label>
@@ -126,15 +132,21 @@
                 </article>
             </div>
             <div class="u-flex">
-                <div class="c-new-footer__trust-symbol">
-                    {{ $settings->where('name', 'samandehi_link')->first()->value ?? '' }}
-                </div>
-                <div class="c-new-footer__trust-symbol">
-                    {{ $settings->where('name', 'ecunion_link')->first()->value ?? '' }}
-                </div>
-                <div class="c-new-footer__trust-symbol">
-                    {{ $settings->where('name', 'enamad_link')->first()->value ?? '' }}
-                </div>
+                @if ($samandehi = $settings->where('name', 'samandehi_link')->first()->value)
+                    <div class="c-new-footer__trust-symbol">
+                        {{ $samandehi }}
+                    </div>
+                @endif
+                @if ($ecunion = $settings->where('name', 'ecunion_link')->first()->value)
+                    <div class="c-new-footer__trust-symbol">
+                        {{ $ecunion }}
+                    </div>
+                @endif
+                @if ($enamad = $settings->where('name', 'enamad_link')->first()->value)
+                    <div class="c-new-footer__trust-symbol">
+                        {{ $enamad }}
+                    </div>
+                @endif
             </div>
         </div>
         <div class="c-new-footer__copyright u-text-center">
@@ -142,3 +154,5 @@
         </div>
     </footer>
 </div>
+
+{!! $settings->where('name', 'custom_footer_code')->first()->value ?? '' !!}

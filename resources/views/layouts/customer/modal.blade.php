@@ -238,8 +238,7 @@
                 <div class="c-remodal-avatar__title">تغییر نمایه کاربری شما</div>
                 <ul class="c-profile-avatars">
                     <li class="js-change-user-avatar is-active" data-avatar-id="default">
-                        <span class="c-profile-avatars__item" style="background-image: url(https://www.digikala.com/static/files/fd4840b2.svg)">
-                        </span>
+                        <span class="c-profile-avatars__item" style="background-image: url(https://www.digikala.com/static/files/fd4840b2.svg)"></span>
                     </li>
                     <li class="js-change-user-avatar" data-avatar-id="avatar_01">
                         <span class="c-profile-avatars__item" style="background-image: url(https://www.digikala.com/static/files/df110dcf.svg)"></span>
@@ -285,8 +284,8 @@
                 <div class="c-form-account__row">
                     <div class="c-form-account__col">
                         <label class="c-ui-input c-ui-input--account-login">
-                            <input autocomplete="current-email" class="c-ui-input__field"
-                                   name="login[email_phone]" placeholder="{{ $settings->where('name', 'store_email')->first()->value }}" type="text">
+                            <input autocomplete="current-email" class="c-ui-input__field" name="login[email_phone]"
+                               placeholder="{{ $settings->where('name', 'store_email')->first()->value }}" type="text">
                         </label>
                     </div>
                 </div>
@@ -362,8 +361,7 @@
                 <p class="js-remodal-general-alert__text">
                     آیا مطمئنید که این محصول از لیست مورد علاقه شما حذف شود؟
                 </p>
-                <p class="c-remodal-general-alert__description js-remodal-general-alert__description"
-                   style="display: none;">
+                <p class="c-remodal-general-alert__description js-remodal-general-alert__description" style="display: none;">
                 </p>
             </div>
             <div class="c-remodal-general-alert__actions">

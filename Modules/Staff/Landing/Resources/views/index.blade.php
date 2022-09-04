@@ -4,7 +4,6 @@
         var module_hash_id_storage = 1;
         var module_no_replace_update_command_status = 1;
         var module_adding_new_days_to_incredible_and_plus = 1;
-        var module_console_greeting = 1;
         var module_daily_sellable_stock = 1;
         var module_online_shipment_cancellation = 1;
         var module_fc_supplier_invoice = 1;
@@ -570,7 +569,7 @@
     var newSeller = 1;
     var is_yalda = 0;
 </script>
-<script src="{{ asset('seller/js/tableView.js') }}"></script>
+<script src="{{ asset('staff/js/tableView.js') }}"></script>
 <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
 @endsection
 @section('content')

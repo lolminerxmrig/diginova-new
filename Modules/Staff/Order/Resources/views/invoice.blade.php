@@ -255,7 +255,7 @@
     }
   </style>
   <script src="{{ asset('staff/js/jalali-moment.browser.js') }}"></script>
-  <script id="jquery" src="{{ asset('seller/js/jquery-3.5.1.min.js') }}"></script>
+  <script id="jquery" src="{{ asset('staff/js/jquery-3.5.1.min.js') }}"></script>
   <script src="{{ asset('staff/js/jalali-moment.browser.js') }}"></script>
 </head>
 <body>

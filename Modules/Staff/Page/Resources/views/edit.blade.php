@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 
 @section('head')
-    <script src="{{ asset('seller/js/edit-brand-validation.js') }}"></script>
-    <script src="{{ asset('seller/js/tags.js') }}"></script>
+    <script src="{{ asset('staff/js/edit-brand-validation.js') }}"></script>
+    <script src="{{ asset('staff/js/tags.js') }}"></script>
     <style>
         .hide-div{
             display: none;

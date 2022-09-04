@@ -21,7 +21,6 @@
 //   var module_no_replace_update_command_status = 1;
 //   var module_no_cli_lock = 1;
 //   var module_improve_change_queues = 1;
-//   var module_console_greeting = 1;
 //   var module_daily_sellable_stock = 1;
 //   var module_online_shipment_cancellation = 1;
 //   var module_fc_supplier_invoice = 1;

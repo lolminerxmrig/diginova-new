@@ -334,7 +334,8 @@
                           </div>
                           <div class="o-spacing-m-r-3" style="padding-right: 20px;padding-top: 15px;">
                             <span style="display: block;">نماد فروشگاه در صفحه محصول</span>
-                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 24x24px</span><span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg, jpeg, jpg</span>
+                            <span style="display: inline-block;font-size: 12px;margin-top: 7px;">اندازه استاندارد: 24x24px</span>
+                              <span style="display: inline-block;font-size: 12px;margin-top: 7px;margin-right: 20px;">فرمت استاندارد: png, svg, jpeg, jpg</span>
                           </div>
                         </div>
 
@@ -689,7 +690,7 @@
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="order_email_text">متن ایمیل ثبت موفق سفارش:</label>
                             <div class="c-ui-input">
-                              <textarea name="order_email_text" 
+                              <textarea name="order_email_text"
                                 class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
                                 rows="5" style="border-color: #dddddd; font-weight: bold;"
                                 >{{ $settings->where('name', 'order_email_text')->first()->value }}</textarea>
@@ -1285,7 +1286,7 @@
                           <div class="c-form">
                             <label class="c-RD-profile__input-name" for="order_sms_text">متن پیام ثبت موفق سفارش:</label>
                             <div class="c-ui-input">
-                                <textarea name="order_sms_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea" 
+                                <textarea name="order_sms_text" class="c-ui-input__field c-ui-input__field--order c-ui-input__field--textarea"
                                  rows="5" style="border-color: #dddddd; font-weight: bold;" spellcheck="false"
                                  >{{ $settings->where('name', 'order_sms_text')->first()->value }}</textarea>
                             </div>

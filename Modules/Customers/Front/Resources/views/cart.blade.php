@@ -8,7 +8,6 @@
 <title>سبد خرید | {{ $fa_store_name }}</title>
 <link rel="canonical" href="{{ route('front.cart') }}"/>
 <meta name="robots" content="noindex, nofollow"/>
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="{{ asset('assets/js/sentry.js') }}"></script>
 <script src="{{ asset('assets/js/CartIndexAction.js') }}"></script>
 
@@ -206,12 +205,6 @@
                                          data-product="{{ $cart->product_variant()->first()->product->id }}"
                                          data-variant="{{ $cart->product_variant()->first()->id }}"
                                          data-event="remove_from_cart"
-{{--                                           data-evnet-category="funnel"--}}
-{{--                                           data-enhanced-ecommerce="{&quot;id&quot;:4826524,&quot;name&quot;:&quot;درزگیر ترک سطوح نیپون مدل S100 وزن 1 کیلوگرم&quot;,&quot;category&quot;:&quot;TC&quot;,&quot;category_id&quot;:8265,&quot;brand&quot;:&quot;nippon-paint&quot;,&quot;variant&quot;:{{ $cart->product_variant()->first()->id }},&quot;price&quot;:415000,&quot;discount_percent&quot;:0,&quot;quantity&quot;:1}"--}}
-{{--                                           data-event-label="price: 415000, category: رنگ, items: 0"--}}
-{{--                                           data-gtm-vis-first-on-screen-9070001_346="2524"--}}
-{{--                                           data-gtm-vis-total-visible-time-9070001_346="100"--}}
-{{--                                           data-gtm-vis-has-fired-9070001_346="1"--}}
                                       >
                                         حذف
                                       </a>
@@ -219,9 +212,6 @@
                                          data-id="{{ $cart->product_variant()->first()->id }}"
                                          data-product="{{ $cart->product_variant()->first()->product->id }}"
                                          data-variant="{{ $cart->product_variant()->first()->id }}"
-{{--                                           data-gtm-vis-first-on-screen-9070001_346="2532"--}}
-{{--                                           data-gtm-vis-total-visible-time-9070001_346="100"--}}
-{{--                                           data-gtm-vis-has-fired-9070001_346="1"--}}
                                       >
                                         ذخیره در لیست خرید بعدی
                                       </a>
@@ -507,9 +497,15 @@
                                     <a class="c-cart-item__move-to-cart js-add-to-cart-from-sfl" data-variant-id="{{ $product_variant->id }}">
                                       افزودن به سبد خرید
                                     </a>
-                                    <a class="c-cart-item__remove-from-sfl js-remove-from-save" data-event="remove_from_cart" data-evnet-category="funnel" data-product-id="{{ $product->id }}" data-variant-id="{{ $product_variant->id }}" data-token="">
-                                      حذف محصول
-                                    </a>
+                                      <a class="c-cart-item__delete js-remove-from-save"
+                                         href="/ajax/save-for-later/variant/remove/{{ $product_variant->id }}/"
+                                         data-id="{{ $product_variant->id }}"
+                                         data-product="{{ $product->id }}"
+                                         data-variant="{{ $product_variant->id }}"
+                                         data-event="remove_from_cart"
+                                      >
+                                          حذف محصول
+                                      </a>
                                   </div>
                                   <div class="c-cart-item__product-price">
                                     {{ persianNum(number_format(toman(defualtCartNewPrice($cart)))) }}

@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 @section('title') ویرایش برند | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('seller/js/edit-brand-validation.js') }}"></script>
-<script src="{{ asset('seller/js/tags.js') }}"></script>
+<script src="{{ asset('staff/js/edit-brand-validation.js') }}"></script>
+<script src="{{ asset('staff/js/staff-tags.js') }}"></script>
 <style>
   .hide-div {
     display: none;

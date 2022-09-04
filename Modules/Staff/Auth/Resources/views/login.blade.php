@@ -33,7 +33,7 @@
                 </h1>
             </header>
             <div class="c-new-login__sidebar-center">
-                <img src="{{ asset('seller/svg/seller-center-svg.svg') }}" class="c-new-login__sidebar-img">
+                <img src="{{ asset('staff/images/seller-center.svg') }}" class="c-new-login__sidebar-img">
             </div>
             <footer class="c-new-login__footer">
                 <p>Copyright © 2021 DigiNova</p>
@@ -63,7 +63,7 @@
                         <div class="c-ui-input">
                             <input type="text" name="email"
                                    class="c-ui-input__field c-ui-input__field--ltr c-ui-input__field--has-icon"
-                                    value="" placeholder="ایمیل خود را وارد کنید" maxlength="255" 
+                                    value="" placeholder="ایمیل خود را وارد کنید" maxlength="255"
                                    autocomplete="email" required="" aria-invalid="false">
                             <div class="c-ui-input__icon c-ui-input__icon--email"></div>
                         </div>
