@@ -531,17 +531,13 @@ var IndexAction = {
                 function () {
                     var snt_params = {"item": "remove-from-cart", "item_option": null};
                     // SN-Tracker Click Event
-                    snt('dkCartPageClick', snt_params, true);
-                    try {
-                        // Google Analytics
-                        ga('ec:addProduct', variantData);
-                        ga("ec:setAction", 'remove');
-                        ga("send", 'event', "ecommerce", "remove from cart", "remove from cart page");
-                    } catch (e) {
-                    }
-                    // Adro Retargeting
-                    // if (window.adroRCActivation) {
-                    //     StickyRetargeting.EventListener(StickyRetargeting.Clear_Products.bind(StickyRetargeting, [variantData.id]));
+                    // snt('dkCartPageClick', snt_params, true);
+                    // try {
+                    //     // Google Analytics
+                    //     ga('ec:addProduct', variantData);
+                    //     ga("ec:setAction", 'remove');
+                    //     ga("send", 'event', "ecommerce", "remove from cart", "remove from cart page");
+                    // } catch (e) {
                     // }
                     if(isModuleActive('data_layer')) {
                         IndexAction.setGARemoveFromCartImpressionEvent(productId)
@@ -568,18 +564,18 @@ var IndexAction = {
                     '/ajax/save-for-later/variant/remove/' + variantId,
                     {token: csrf},
                     function (response) {
-                        try {
-                            ga('set', 'nonInteraction', true);
-                            ga('send', 'event', {
-                                eventCategory: 'funnel',
-                                eventAction: 'remove_from_next_purchase',
-                                eventLabel: productId
-                            });
-                        } catch (e) {
-                            console.log("ga event problem : " + e.toString());
-                        }
-                        $(thiz).closest('.js-sfl-cart-fade').fadeOut(300);
-                        window.location.reload();
+                    //     try {
+                    //         ga('set', 'nonInteraction', true);
+                    //         ga('send', 'event', {
+                    //             eventCategory: 'funnel',
+                    //             eventAction: 'remove_from_next_purchase',
+                    //             eventLabel: productId
+                    //         });
+                    //     } catch (e) {
+                    //         console.log("ga event problem : " + e.toString());
+                    //     }
+                    //     $(thiz).closest('.js-sfl-cart-fade').fadeOut(300);
+                    //     window.location.reload();
                     },
                     function (response) {
                         if (response.errors !== undefined) {
@@ -787,16 +783,16 @@ var IndexAction = {
                     $(this).find('.c-checkout__header').data('shipment-type') : shipmentCode + ', ' + $(this).find('.c-checkout__header').data('shipment-type');
             });
 
-            try {
-                ga('set', 'nonInteraction', true);
-                ga('send', 'event', {
-                    eventCategory: 'Cart Page',
-                    eventAction: shipmentType,
-                    eventLabel: shipmentCode,
-                });
-            } catch (e) {
-                console.warn(e);
-            }
+            // try {
+            //     ga('set', 'nonInteraction', true);
+            //     ga('send', 'event', {
+            //         eventCategory: 'Cart Page',
+            //         eventAction: shipmentType,
+            //         eventLabel: shipmentCode,
+            //     });
+            // } catch (e) {
+            //     console.warn(e);
+            // }
         }, 1000);
     },
 
