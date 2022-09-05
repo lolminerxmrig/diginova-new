@@ -8,13 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ full_media_path($favicon_image) }}"type="image/icon">
-  <link rel="stylesheet" href="{{ asset('seller/css/select2.css') }}">
+  <link rel="stylesheet" href="{{ asset('staff/css/select2.css') }}">
   <script>
     var module_hash_id_storage = 1;
     var module_no_replace_update_command_status = 1;
     var module_adding_new_days_to_incredible_and_plus = 1;
     var module_new_rrp_change_rule_for_incredible_offers = 1;
-    var module_console_greeting = 1;
     var module_daily_sellable_stock = 1;
     var module_online_shipment_cancellation = 1;
     var module_fc_supplier_invoice = 1;
@@ -603,9 +602,9 @@
     var module_cpc_modal_use_ajax_for_fetching_data = 1;
     var module_marketplace_wallet = 1;
   </script>
-  <script id="jquery" src="{{ asset('seller/js/jquery.min.js') }}"></script>
-  <script src="{{ asset('seller/js/jquery.toast.js') }}"></script>
-  <link href="{{ asset('seller/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
+  <script id="jquery" src="{{ asset('staff/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('staff/js/jquery.toast.js') }}"></script>
+  <link href="{{ asset('staff/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
   @yield('head')
 </head>
   <body>
