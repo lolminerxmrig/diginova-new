@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ full_media_path($favicon_image) }}"type="image/icon">
-  <link rel="stylesheet" href="{{ asset('staff/css/select2.css') }}">
+  <link rel="stylesheet" href="{{ asset('mehdi/staff/css/select2.css') }}">
   <script>
     var module_hash_id_storage = 1;
     var module_no_replace_update_command_status = 1;
@@ -602,11 +602,11 @@
     var module_cpc_modal_use_ajax_for_fetching_data = 1;
     var module_marketplace_wallet = 1;
   </script>
-  <script id="jquery" src="{{ asset('staff/js/jquery.min.js') }}"></script>
-  <script src="{{ asset('staff/js/jquery.toast.js') }}"></script>
-  <link href="{{ asset('staff/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
+  <script id="jquery" src="{{ asset('mehdi/staff/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('mehdi/staff/js/jquery.toast.js') }}"></script>
+  <link href="{{ asset('mehdi/staff/css/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
   @yield('head')
-</head>
+</head>`
   <body>
     <header class="c-header js-header">
       <div class="uk-container uk-container-large">

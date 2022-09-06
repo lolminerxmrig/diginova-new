@@ -174,7 +174,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('staff/js/warranties.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/warranties.js') }}"></script>
 
 <script>
 

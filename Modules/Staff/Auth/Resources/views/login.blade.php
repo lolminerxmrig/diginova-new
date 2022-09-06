@@ -33,7 +33,7 @@
                 </h1>
             </header>
             <div class="c-new-login__sidebar-center">
-                <img src="{{ asset('staff/images/seller-center.svg') }}" class="c-new-login__sidebar-img">
+                <img src="{{ asset('mehdi/staff/images/seller-center.svg') }}" class="c-new-login__sidebar-img">
             </div>
             <footer class="c-new-login__footer">
                 <p>Copyright © 2021 DigiNova</p>

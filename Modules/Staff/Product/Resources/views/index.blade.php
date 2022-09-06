@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 @section('title') مدیریت محصولات | {{ $fa_store_name }}  @endsection
 @section('head')
-    <script src="{{ asset('staff/js/indexAction.js') }}"></script>
-    <script src="{{ asset('staff/js/tableView.js') }}"></script>
+    <script src="{{ asset('mehdi/staff/js/indexAction.js') }}"></script>
+    <script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 @endsection
 @section('content')
 

@@ -72583,7 +72583,7 @@ body .dk-price-wrapper .dk-price-translate-persian:before {
 }
 
 .c-card__promotion-step--confirmed:after {
-    background: url(../svg/0eee0b9b.svg) no-repeat 50%
+    background: url(../svg/confirmed.svg) no-repeat 50%
 }
 
 .c-card__rules {
@@ -82958,7 +82958,7 @@ body .dk-price-wrapper .dk-price-translate-persian:before {
 }
 
 .c-mod-product-details__tags-item--by-cf {
-    background-image: url(../svg/0e200296.svg)
+    background-image: url(../svg/cf.svg)
 }
 
 .c-mod-product-details__tags-item--for-dk {

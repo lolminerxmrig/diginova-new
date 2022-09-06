@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 @section('title') ویرایش برند | {{ $fa_store_name }}  @endsection
 @section('head')
-<script src="{{ asset('staff/js/edit-brand-validation.js') }}"></script>
-<script src="{{ asset('staff/js/staff-tags.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/edit-brand-validation.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/staff-tags.js') }}"></script>
 <style>
   .hide-div {
     display: none;
@@ -282,7 +282,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('staff/js/brands.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/brands.js') }}"></script>
 <script>
   // اضافه کردن توکن به درخواست های ایجکس
   $.ajaxSetup({

@@ -570,7 +570,7 @@
     var newSeller = 1;
     var is_yalda = 0;
 </script>
-<script src="{{ asset('staff/js/promotions.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/promotions.js') }}"></script>
 <style>
 .c-grid__col--gap-lg {
     padding-left: 5px !important;

@@ -38,13 +38,13 @@
                                  c-mega-campaigns-join-list__options-item--active">
                                  کمپین‌های فعال / آغاز نشده
                                 </a>
-                                <a href="{{ route('staff.campains.ended') }}" 
+                                <a href="{{ route('staff.campains.ended') }}"
                                 class="c-mega-campaigns-join-list__options-item">کمپین‌های پایان‌یافته</a>
                             </div>
 
                             <div class="c-card__body">
                                 <div class="c-grid__col">
-                                    <div class="c-grid__col c-promo__tab-container 
+                                    <div class="c-grid__col c-promo__tab-container
                                     c-promo__tab-container--is-visible" data-tab="1">
 
                                         <div class="c-grid__row c-promo__has-divider">
@@ -53,8 +53,8 @@
                                                     <div class="c-ui-form__col c-ui-form__col-4">
                                                         <label class="c-ui-form__label">جستجو:</label>
                                                         <div class="c-ui-input">
-                                                            <input type="search" name="title" class="c-ui-input__field c-ui-input__field--order 
-                                                            js-form-clearable c-join__input" id="search_input" placeholder="جستجوی نام کمپین" 
+                                                            <input type="search" name="title" class="c-ui-input__field c-ui-input__field--order
+                                                            js-form-clearable c-join__input" id="search_input" placeholder="جستجوی نام کمپین"
                                                             style="width: 400px;">
                                                             <button class="uk-icon-button c-join__search-btn uk-icon" uk-tooltip="title: جستجو;"
                                                              uk-icon="icon: search" id="submitButton" title="" aria-expanded="false">
@@ -65,7 +65,7 @@
                                                     <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
                                                         <label for="form-field-start_at" class="c-ui-form__label">تاریخ و زمان شروع</label>
                                                         <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker
-                                                         pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" 
+                                                         pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0"
                                                          data-date="1" data-name="start_at" value="" id="form-field-dt-36491" autocomplete="off">
                                                         <input name="start_at" id="start_at" type="hidden" value="">
                                                     </span>
@@ -73,7 +73,7 @@
                                                     <span class="c-ui-form__col c-ui-form__col--group-item" style="width: 215px">
                                                         <label for="form-field-end_at" class="c-ui-form__label">تاریخ و زمان پایان</label>
                                                         <input class="uk-input c-ui-input__field c-ui-input__field--order js-promotion-date-picker
-                                                         pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0" 
+                                                         pwt-datepicker-input-element" data-format="LLLL" data-time="1" data-from-today="0"
                                                          data-date="1" data-name="end_at" value="" id="form-field-dt-25286" autocomplete="off">
                                                         <input name="end_at" id="end_at" type="hidden" value="">
                                                     </span>
@@ -97,10 +97,10 @@
                                             </div>
 
                                             <div class="c-grid__row c-promo__row--m-sm">
-                                                <table class="c-ui-table c-join__table  js-search-table js-table-fixed-header" 
-                                                data-sort-column="created_at" data-sort-order="desc" 
-                                                data-search-url="{{ route('staff.campains.searchCampain') }}" 
-                                                data-auto-reload-seconds="0" data-new-ui="1" 
+                                                <table class="c-ui-table c-join__table  js-search-table js-table-fixed-header"
+                                                data-sort-column="created_at" data-sort-order="desc"
+                                                data-search-url="{{ route('staff.campains.searchCampain') }}"
+                                                data-auto-reload-seconds="0" data-new-ui="1"
                                                 data-is-header-floating="1" data-has-checkboxes="">
                                                     <thead>
                                                     <tr class="c-ui-table__row">
@@ -136,7 +136,7 @@
                                                             <div style="font-weight: bold;">{{ $campain->name }}</div>
                                                             <div class="c-join__landing-state c-ui-table__cell--text-warning">
                                                                 @if(!is_null($campain->end_at) && $campain->end_at < now())
-                                                                <span class="c-join__has-icon c-join__has-icon--clock" 
+                                                                <span class="c-join__has-icon c-join__has-icon--clock"
                                                                  style="padding-right: 25px;">پایان یافته</span>
                                                                 @endif
                                                             </div>
@@ -148,14 +148,14 @@
                                                             @if($campain->landing()->exists())
                                                             <a class="c-join__promotion-link" href="{{ $site_url . '/product-list/' . $campain->slug }}"
                                                              target="_blank">{{ $site_url . '/product-list/' . $campain->slug }}</a>
-                                                            <a class="c-join__promotion-copy-btn js-copy-btn" href="#" 
+                                                            <a class="c-join__promotion-copy-btn js-copy-btn" href="#"
                                                             data-link="{{ $site_url . '/product-list/' . $campain->slug }}">کپی لینک</a>
                                                             @else
                                                                 ندارد
                                                             @endif
                                                         </td> --}}
                                                         <td class="c-ui-table__cell c-join-promotion__date-range">
-                                                            <span class="c-ui-table__date-f rom span-time" data-value="{{ $campain->start_at }}" 
+                                                            <span class="c-ui-table__date-f rom span-time" data-value="{{ $campain->start_at }}"
                                                                 data-type="شروع"></span>
                                                             <br>
                                                             <span class="c-ui-table__date-to span-time" data-value="{{ $campain->end_at }}"
@@ -176,7 +176,7 @@
                                                             <div class="c-ui-tooltip__anchor">
                                                                 <div class="c-ui-toggle__group">
                                                                     <label class="c-ui-toggle">
-                                                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox" 
+                                                                        <input class="c-ui-toggle__origin js-toggle-active-product" type="checkbox"
                                                                         data-id="{{ $campain->id }}" name="status" {{ ($campain->status)? 'checked' : '' }}>
                                                                         <span class="c-ui-toggle__check"></span>
                                                                     </label>
@@ -189,18 +189,18 @@
                                                                 <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish"
                                                                  href="{{ route('staff.campains.manage', ['id' => $campain->id]) }}">ویرایش</a>
                                                                 <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary
-                                                                     js-remove-plp js-remove-product-list" 
+                                                                     js-remove-plp js-remove-product-list"
                                                                      data-url="{{ route('staff.campains.removeCampain', ['id' => $campain->id]) }}">حذف کمپین</button>
 
-                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--primary 
+                                                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--primary
                                                                 js-tool-tip-archive js-stop-promotion" style="margin-top: 1px;width: 30px;"
                                                                  data-promotion="3856494" data-variant="1"
                                                                   data-promotion-variant-id="{{ $campain->id }}" aria-expanded="false">
-                                                                    <img src="{{ asset('staff/icon/archive.svg') }}">
+                                                                    <img src="{{ asset('mehdi/staff/icon/archive.svg') }}">
                                                                 </button>
-                                                                <div class="c-rating-chart__description-tooltip 
+                                                                <div class="c-rating-chart__description-tooltip
                                                                 c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap
-                                                                 uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive; 
+                                                                 uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive;
                                                                  pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 128.172px; top: 80px;">
                                                                     پایان دادن
                                                                 </div>

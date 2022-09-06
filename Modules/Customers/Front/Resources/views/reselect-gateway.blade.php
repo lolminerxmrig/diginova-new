@@ -207,7 +207,7 @@
 
 @section('source')
 
-<script src="{{ asset('staff/js/jalali-moment.browser.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/jalali-moment.browser.js') }}"></script>
 
 <script>
   function persianNum() {

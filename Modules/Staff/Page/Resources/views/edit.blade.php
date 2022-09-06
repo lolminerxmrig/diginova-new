@@ -1,8 +1,8 @@
 @extends('layouts.staff.master')
 
 @section('head')
-    <script src="{{ asset('staff/js/edit-brand-validation.js') }}"></script>
-    <script src="{{ asset('staff/js/tags.js') }}"></script>
+    <script src="{{ asset('mehdi/staff/js/edit-brand-validation.js') }}"></script>
+    <script src="{{ asset('mehdi/staff/js/tags.js') }}"></script>
     <style>
         .hide-div{
             display: none;
@@ -442,7 +442,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('staff/js/brands.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/brands.js') }}"></script>
 
 {{--<script>--}}
 {{--    $(".imagesSection2").show();--}}

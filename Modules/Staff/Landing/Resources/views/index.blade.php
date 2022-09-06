@@ -569,7 +569,7 @@
     var newSeller = 1;
     var is_yalda = 0;
 </script>
-<script src="{{ asset('staff/js/tableView.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/tableView.js') }}"></script>
 <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
 @endsection
 @section('content')

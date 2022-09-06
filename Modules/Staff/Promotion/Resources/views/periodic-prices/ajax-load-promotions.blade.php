@@ -9,7 +9,7 @@
         </div>
         <div class="c-promo__row--m-sm">
             <table class="c-ui-table c-periodic-prices__table c-join__table  js-search-table js-table-fixed-header"
-             data-sort-column="created_at" data-sort-order="desc" 
+             data-sort-column="created_at" data-sort-order="desc"
              data-search-url="{{ ($paginate_type == 'active')? route('staff.periodic-prices.search') : route('staff.periodic-prices.endedSearch') }}"
              data-auto-reload-seconds="0" data-new-ui="1" data-is-header-floating="1" data-has-checkboxes="">
                 <thead>
@@ -63,7 +63,7 @@
                     </td>
                     <td class="c-ui-table__cell c-ui-table__cell--has-input">
                         <div class="c-join__has-more-info">
-                            <div class="c-join-promotion__table-input c-join-promotion__discount 
+                            <div class="c-join-promotion__table-input c-join-promotion__discount
                             c-join-promotion__discount--all js-number-input-wrapper">
                                 <input type="number" min="0" class="c-join-promotion__discount-input
                                  js-all-variants-discount-percent js-number-input" placeholder="≠">
@@ -201,7 +201,7 @@
                                     <button class="c-mega-campaigns-join-list__container-table-btn c-mega-campaigns-join-list__container-table-btn--cancle c-mega-campaigns--ml-10 js-edit-cancel-button js-table-swap-row-handle" disabled=""></button>
                                 </div>
                                 <button class="c-mega-campaigns-join-list__container-table-btn  js-stop-promotion js-tool-tip-archive" style="margin-top: 7px;" data-promotion="3856494" data-variant="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}">
-                                    <img src="{{ asset('staff/icon/archive.svg') }}">
+                                    <img src="{{ asset('mehdi/staff/icon/archive.svg') }}">
                                 </button>
                                 <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive; pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 128.172px; top: 80px;">
                                     پایان دادن

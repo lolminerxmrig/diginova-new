@@ -263,7 +263,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('staff/js/brands.js') }}"></script>
+<script src="{{ asset('mehdi/staff/js/brands.js') }}"></script>
 
 <script>
 

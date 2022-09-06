@@ -553,7 +553,7 @@
                                                                     </div>
 
                                                                     <button class="c-mega-campaigns-join-list__container-table-btn  js-stop-promotion js-tool-tip-archive" style="margin-top: 7px;" data-promotion="3856494" data-variant="{{ $promotion->id }}" data-promotion-variant-id="{{ $promotion->id }}">
-                                                                        <img src="{{ asset('staff/icon/archive.svg') }}">
+                                                                        <img src="{{ asset('mehdi/staff/icon/archive.svg') }}">
                                                                     </button>
                                                                     <div class="c-rating-chart__description-tooltip c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive; pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 128.172px; top: 80px;">
                                                                         پایان دادن

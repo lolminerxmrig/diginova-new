@@ -88,15 +88,15 @@
                             <div class="c-promo__actions">
                                 <a class="c-join__btn c-join__btn--icon-left c-join__btn--icon-edit c-join__btn--secondary-greenish" href="{{ route('staff.campains.manage', ['id' => $campain->id]) }}">ویرایش</a>
                                 <button class="c-join__btn c-join__btn--icon-right c-join__btn--icon-delete c-join__btn--primary js-remove-plp js-remove-product-list" data-url="{{ route('staff.campains.removeCampain', ['id' => $campain->id]) }}">حذف کمپین</button>
-                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--primary 
+                                <button class="c-join__btn c-join__btn--icon-right c-join__btn--primary
                                 js-tool-tip-archive js-stop-promotion" style="margin-top: 1px;width: 30px;"
                                  data-promotion="3856494" data-variant="1"
                                   data-promotion-variant-id="{{ $campain->id }}" aria-expanded="false">
-                                    <img src="{{ asset('staff/icon/archive.svg') }}">
+                                    <img src="{{ asset('mehdi/staff/icon/archive.svg') }}">
                                 </button>
-                                <div class="c-rating-chart__description-tooltip 
+                                <div class="c-rating-chart__description-tooltip
                                 c-mega-campaigns-join-list__container-table-btn-tooltip uk-text-nowrap
-                                 uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive; 
+                                 uk-dropdown uk-dropdown-stack" uk-dropdown="boundary: .js-tool-tip-archive;
                                  pos: bottom-center;delay-hide: 0;offset: 10;" style="left: 128.172px; top: 80px;">
                                     پایان دادن
                                 </div>
@@ -118,7 +118,7 @@
         </a>
 
         {{ $campains->links('staffpromotion::campains.custom-pagination') }}
-        
+
         <div class="c-ui-paginator js-paginator">
             <div class="c-ui-paginator js-paginator">
                 @if(count($campains))
